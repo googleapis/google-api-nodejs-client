@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace libraryagent_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace libraryagent_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -112,7 +108,10 @@ export namespace libraryagent_v1 {
     shelves: Resource$Shelves;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.shelves = new Resource$Shelves(this.context);
     }
@@ -127,9 +126,7 @@ export namespace libraryagent_v1 {
      */
     author?: string;
     /**
-     * The resource name of the book. Book names have the form
-     * `shelves/{shelf_id}/books/{book_id}`. The name is ignored when creating a
-     * book.
+     * The resource name of the book. Book names have the form `shelves/{shelf_id}/books/{book_id}`. The name is ignored when creating a book.
      */
     name?: string;
     /**
@@ -150,9 +147,7 @@ export namespace libraryagent_v1 {
      */
     books?: Schema$GoogleExampleLibraryagentV1Book[];
     /**
-     * A token to retrieve next page of results. Pass this value in the
-     * ListBooksRequest.page_token field in the subsequent call to `ListBooks`
-     * method to retrieve the next page of results.
+     * A token to retrieve next page of results. Pass this value in the ListBooksRequest.page_token field in the subsequent call to `ListBooks` method to retrieve the next page of results.
      */
     nextPageToken?: string;
   }
@@ -161,9 +156,7 @@ export namespace libraryagent_v1 {
    */
   export interface Schema$GoogleExampleLibraryagentV1ListShelvesResponse {
     /**
-     * A token to retrieve next page of results. Pass this value in the
-     * ListShelvesRequest.page_token field in the subsequent call to
-     * `ListShelves` method to retrieve the next page of results.
+     * A token to retrieve next page of results. Pass this value in the ListShelvesRequest.page_token field in the subsequent call to `ListShelves` method to retrieve the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -176,8 +169,7 @@ export namespace libraryagent_v1 {
    */
   export interface Schema$GoogleExampleLibraryagentV1Shelf {
     /**
-     * Output only. The resource name of the shelf. Shelf names have the form
-     * `shelves/{shelf_id}`. The name is ignored when creating a shelf.
+     * Output only. The resource name of the shelf. Shelf names have the form `shelves/{shelf_id}`. The name is ignored when creating a shelf.
      */
     name?: string;
     /**
@@ -275,8 +267,7 @@ export namespace libraryagent_v1 {
 
     /**
      * libraryagent.shelves.list
-     * @desc Lists shelves. The order is unspecified but deterministic. Newly
-     * created shelves will not necessarily be added to the end of this list.
+     * @desc Lists shelves. The order is unspecified but deterministic. Newly created shelves will not necessarily be added to the end of this list.
      * @alias libraryagent.shelves.list
      * @memberOf! ()
      *
@@ -389,14 +380,11 @@ export namespace libraryagent_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Requested page size. Server may return fewer shelves than requested. If
-     * unspecified, server will pick an appropriate default.
+     * Requested page size. Server may return fewer shelves than requested. If unspecified, server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.
-     * Typically, this is the value of ListShelvesResponse.next_page_token
-     * returned from the previous call to `ListShelves` method.
+     * A token identifying a page of results the server should return. Typically, this is the value of ListShelvesResponse.next_page_token returned from the previous call to `ListShelves` method.
      */
     pageToken?: string;
   }
@@ -409,10 +397,7 @@ export namespace libraryagent_v1 {
 
     /**
      * libraryagent.shelves.books.borrow
-     * @desc Borrow a book from the library. Returns the book if it is borrowed
-     * successfully. Returns NOT_FOUND if the book does not exist in the
-     * library. Returns quota exceeded error if the amount of books borrowed
-     * exceeds allocation quota in any dimensions.
+     * @desc Borrow a book from the library. Returns the book if it is borrowed successfully. Returns NOT_FOUND if the book does not exist in the library. Returns quota exceeded error if the amount of books borrowed exceeds allocation quota in any dimensions.
      * @alias libraryagent.shelves.books.borrow
      * @memberOf! ()
      *
@@ -572,9 +557,7 @@ export namespace libraryagent_v1 {
 
     /**
      * libraryagent.shelves.books.list
-     * @desc Lists books in a shelf. The order is unspecified but deterministic.
-     * Newly created books will not necessarily be added to the end of this
-     * list. Returns NOT_FOUND if the shelf does not exist.
+     * @desc Lists books in a shelf. The order is unspecified but deterministic. Newly created books will not necessarily be added to the end of this list. Returns NOT_FOUND if the shelf does not exist.
      * @alias libraryagent.shelves.books.list
      * @memberOf! ()
      *
@@ -675,9 +658,7 @@ export namespace libraryagent_v1 {
 
     /**
      * libraryagent.shelves.books.return
-     * @desc Return a book to the library. Returns the book if it is returned to
-     * the library successfully. Returns error if the book does not belong to
-     * the library or the users didn't borrow before.
+     * @desc Return a book to the library. Returns the book if it is returned to the library successfully. Returns error if the book does not belong to the library or the users didn't borrow before.
      * @alias libraryagent.shelves.books.return
      * @memberOf! ()
      *
@@ -788,14 +769,11 @@ export namespace libraryagent_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Requested page size. Server may return fewer books than requested. If
-     * unspecified, server will pick an appropriate default.
+     * Requested page size. Server may return fewer books than requested. If unspecified, server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.
-     * Typically, this is the value of ListBooksResponse.next_page_token.
-     * returned from the previous call to `ListBooks` method.
+     * A token identifying a page of results the server should return. Typically, this is the value of ListBooksResponse.next_page_token. returned from the previous call to `ListBooks` method.
      */
     pageToken?: string;
     /**

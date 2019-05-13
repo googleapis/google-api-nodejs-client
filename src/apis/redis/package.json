@@ -18,7 +18,7 @@
     "url": "https://github.com/googleapis/google-api-nodejs-client.git"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.0.0"
   },
   "scripts": {
     "fix": "gts fix",
@@ -29,7 +29,7 @@
     "webpack": "webpack"
   },
   "dependencies": {
-    "googleapis-common": "^0.7.0"
+    "googleapis-common": "^2.0.0"
   },
   "devDependencies": {
     "gts": "^1.0.0",

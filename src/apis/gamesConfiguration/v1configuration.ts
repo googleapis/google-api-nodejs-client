@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -97,7 +94,10 @@ export namespace gamesConfiguration_v1configuration {
     leaderboardConfigurations: Resource$Leaderboardconfigurations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.achievementConfigurations = new Resource$Achievementconfigurations(
         this.context
@@ -114,9 +114,7 @@ export namespace gamesConfiguration_v1configuration {
    */
   export interface Schema$AchievementConfiguration {
     /**
-     * The type of the achievement. Possible values are:   -
-     * &quot;STANDARD&quot; - Achievement is either locked or unlocked.  -
-     * &quot;INCREMENTAL&quot; - Achievement is incremental.
+     * The type of the achievement. Possible values are:   - &quot;STANDARD&quot; - Achievement is either locked or unlocked.  - &quot;INCREMENTAL&quot; - Achievement is incremental.
      */
     achievementType?: string;
     /**
@@ -128,15 +126,11 @@ export namespace gamesConfiguration_v1configuration {
      */
     id?: string;
     /**
-     * The initial state of the achievement. Possible values are:   -
-     * &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; -
-     * Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is
-     * unlocked.
+     * The initial state of the achievement. Possible values are:   - &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
      */
     initialState?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesConfiguration#achievementConfiguration.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfiguration.
      */
     kind?: string;
     /**
@@ -165,8 +159,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     iconUrl?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesConfiguration#achievementConfigurationDetail.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfigurationDetail.
      */
     kind?: string;
     /**
@@ -191,8 +184,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     items?: Schema$AchievementConfiguration[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#achievementConfigurationListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementConfigurationListResponse.
      */
     kind?: string;
     /**
@@ -205,35 +197,27 @@ export namespace gamesConfiguration_v1configuration {
    */
   export interface Schema$GamesNumberAffixConfiguration {
     /**
-     * When the language requires special treatment of &quot;small&quot; numbers
-     * (as with 2, 3, and 4 in Czech; or numbers ending 2, 3, or 4 but not 12,
-     * 13, or 14 in Polish).
+     * When the language requires special treatment of &quot;small&quot; numbers (as with 2, 3, and 4 in Czech; or numbers ending 2, 3, or 4 but not 12, 13, or 14 in Polish).
      */
     few?: Schema$LocalizedStringBundle;
     /**
-     * When the language requires special treatment of &quot;large&quot; numbers
-     * (as with numbers ending 11-99 in Maltese).
+     * When the language requires special treatment of &quot;large&quot; numbers (as with numbers ending 11-99 in Maltese).
      */
     many?: Schema$LocalizedStringBundle;
     /**
-     * When the language requires special treatment of numbers like one (as with
-     * the number 1 in English and most other languages; in Russian, any number
-     * ending in 1 but not ending in 11 is in this class).
+     * When the language requires special treatment of numbers like one (as with the number 1 in English and most other languages; in Russian, any number ending in 1 but not ending in 11 is in this class).
      */
     one?: Schema$LocalizedStringBundle;
     /**
-     * When the language does not require special treatment of the given
-     * quantity (as with all numbers in Chinese, or 42 in English).
+     * When the language does not require special treatment of the given quantity (as with all numbers in Chinese, or 42 in English).
      */
     other?: Schema$LocalizedStringBundle;
     /**
-     * When the language requires special treatment of numbers like two (as with
-     * 2 in Welsh, or 102 in Slovenian).
+     * When the language requires special treatment of numbers like two (as with 2 in Welsh, or 102 in Slovenian).
      */
     two?: Schema$LocalizedStringBundle;
     /**
-     * When the language requires special treatment of the number 0 (as in
-     * Arabic).
+     * When the language requires special treatment of the number 0 (as in Arabic).
      */
     zero?: Schema$LocalizedStringBundle;
   }
@@ -246,22 +230,15 @@ export namespace gamesConfiguration_v1configuration {
      */
     currencyCode?: string;
     /**
-     * The formatting for the number. Possible values are:   -
-     * &quot;NUMERIC&quot; - Numbers are formatted to have no digits or a fixed
-     * number of digits after the decimal point according to locale. An optional
-     * custom unit can be added. - &quot;TIME_DURATION&quot; - Numbers are
-     * formatted to hours, minutes and seconds. - &quot;CURRENCY&quot; - Numbers
-     * are formatted to currency according to locale.
+     * The formatting for the number. Possible values are:   - &quot;NUMERIC&quot; - Numbers are formatted to have no digits or a fixed number of digits after the decimal point according to locale. An optional custom unit can be added. - &quot;TIME_DURATION&quot; - Numbers are formatted to hours, minutes and seconds. - &quot;CURRENCY&quot; - Numbers are formatted to currency according to locale.
      */
     numberFormatType?: string;
     /**
-     * The number of decimal places for number. Only used for NUMERIC format
-     * type.
+     * The number of decimal places for number. Only used for NUMERIC format type.
      */
     numDecimalPlaces?: number;
     /**
-     * An optional suffix for the NUMERIC format type. These strings follow the
-     * same  plural rules as all Android string resources.
+     * An optional suffix for the NUMERIC format type. These strings follow the same  plural rules as all Android string resources.
      */
     suffix?: Schema$GamesNumberAffixConfiguration;
   }
@@ -274,8 +251,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     imageType?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesConfiguration#imageConfiguration.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#imageConfiguration.
      */
     kind?: string;
     /**
@@ -300,8 +276,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     id?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesConfiguration#leaderboardConfiguration.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfiguration.
      */
     kind?: string;
     /**
@@ -317,9 +292,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     scoreMin?: string;
     /**
-     * The type of the leaderboard. Possible values are:   -
-     * &quot;LARGER_IS_BETTER&quot; - Larger scores posted are ranked higher.  -
-     * &quot;SMALLER_IS_BETTER&quot; - Smaller scores posted are ranked higher.
+     * The type of the leaderboard. Possible values are:   - &quot;LARGER_IS_BETTER&quot; - Larger scores posted are ranked higher.  - &quot;SMALLER_IS_BETTER&quot; - Smaller scores posted are ranked higher.
      */
     scoreOrder?: string;
     /**
@@ -336,8 +309,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     iconUrl?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesConfiguration#leaderboardConfigurationDetail.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfigurationDetail.
      */
     kind?: string;
     /**
@@ -362,8 +334,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     items?: Schema$LeaderboardConfiguration[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#leaderboardConfigurationListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#leaderboardConfigurationListResponse.
      */
     kind?: string;
     /**
@@ -376,8 +347,7 @@ export namespace gamesConfiguration_v1configuration {
    */
   export interface Schema$LocalizedString {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesConfiguration#localizedString.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.
      */
     kind?: string;
     /**
@@ -394,8 +364,7 @@ export namespace gamesConfiguration_v1configuration {
    */
   export interface Schema$LocalizedStringBundle {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesConfiguration#localizedStringBundle.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.
      */
     kind?: string;
     /**
@@ -483,8 +452,7 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * gamesConfiguration.achievementConfigurations.get
-     * @desc Retrieves the metadata of the achievement configuration with the
-     * given ID.
+     * @desc Retrieves the metadata of the achievement configuration with the given ID.
      * @alias gamesConfiguration.achievementConfigurations.get
      * @memberOf! ()
      *
@@ -638,8 +606,7 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * gamesConfiguration.achievementConfigurations.list
-     * @desc Returns a list of the achievement configurations in this
-     * application.
+     * @desc Returns a list of the achievement configurations in this application.
      * @alias gamesConfiguration.achievementConfigurations.list
      * @memberOf! ()
      *
@@ -732,8 +699,7 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * gamesConfiguration.achievementConfigurations.patch
-     * @desc Update the metadata of the achievement configuration with the given
-     * ID. This method supports patch semantics.
+     * @desc Update the metadata of the achievement configuration with the given ID. This method supports patch semantics.
      * @alias gamesConfiguration.achievementConfigurations.patch
      * @memberOf! ()
      *
@@ -811,8 +777,7 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * gamesConfiguration.achievementConfigurations.update
-     * @desc Update the metadata of the achievement configuration with the given
-     * ID.
+     * @desc Update the metadata of the achievement configuration with the given ID.
      * @alias gamesConfiguration.achievementConfigurations.update
      * @memberOf! ()
      *
@@ -942,9 +907,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     applicationId?: string;
     /**
-     * The maximum number of resource configurations to return in the response,
-     * used for paging. For any response, the actual number of resources
-     * returned may be less than the specified maxResults.
+     * The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -1187,8 +1150,7 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * gamesConfiguration.leaderboardConfigurations.get
-     * @desc Retrieves the metadata of the leaderboard configuration with the
-     * given ID.
+     * @desc Retrieves the metadata of the leaderboard configuration with the given ID.
      * @alias gamesConfiguration.leaderboardConfigurations.get
      * @memberOf! ()
      *
@@ -1342,8 +1304,7 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * gamesConfiguration.leaderboardConfigurations.list
-     * @desc Returns a list of the leaderboard configurations in this
-     * application.
+     * @desc Returns a list of the leaderboard configurations in this application.
      * @alias gamesConfiguration.leaderboardConfigurations.list
      * @memberOf! ()
      *
@@ -1436,8 +1397,7 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * gamesConfiguration.leaderboardConfigurations.patch
-     * @desc Update the metadata of the leaderboard configuration with the given
-     * ID. This method supports patch semantics.
+     * @desc Update the metadata of the leaderboard configuration with the given ID. This method supports patch semantics.
      * @alias gamesConfiguration.leaderboardConfigurations.patch
      * @memberOf! ()
      *
@@ -1515,8 +1475,7 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * gamesConfiguration.leaderboardConfigurations.update
-     * @desc Update the metadata of the leaderboard configuration with the given
-     * ID.
+     * @desc Update the metadata of the leaderboard configuration with the given ID.
      * @alias gamesConfiguration.leaderboardConfigurations.update
      * @memberOf! ()
      *
@@ -1646,9 +1605,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     applicationId?: string;
     /**
-     * The maximum number of resource configurations to return in the response,
-     * used for paging. For any response, the actual number of resources
-     * returned may be less than the specified maxResults.
+     * The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
      */
     maxResults?: number;
     /**

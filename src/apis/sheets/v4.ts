@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace sheets_v4 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace sheets_v4 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -112,7 +108,10 @@ export namespace sheets_v4 {
     spreadsheets: Resource$Spreadsheets;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.spreadsheets = new Resource$Spreadsheets(this.context);
     }
@@ -123,9 +122,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$AddBandingRequest {
     /**
-     * The banded range to add. The bandedRangeId field is optional; if one is
-     * not set, an id will be randomly generated. (It is an error to specify the
-     * ID of a range that already exists.)
+     * The banded range to add. The bandedRangeId field is optional; if one is not set, an id will be randomly generated. (It is an error to specify the ID of a range that already exists.)
      */
     bandedRange?: Schema$BandedRange;
   }
@@ -143,10 +140,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$AddChartRequest {
     /**
-     * The chart that should be added to the spreadsheet, including the position
-     * where it should be placed. The chartId field is optional; if one is not
-     * set, an id will be randomly generated. (It is an error to specify the ID
-     * of a chart that already exists.)
+     * The chart that should be added to the spreadsheet, including the position where it should be placed. The chartId field is optional; if one is not set, an id will be randomly generated. (It is an error to specify the ID of an embedded object that already exists.)
      */
     chart?: Schema$EmbeddedChart;
   }
@@ -160,8 +154,7 @@ export namespace sheets_v4 {
     chart?: Schema$EmbeddedChart;
   }
   /**
-   * Adds a new conditional format rule at the given index. All subsequent
-   * rules&#39; indexes are incremented.
+   * Adds a new conditional format rule at the given index. All subsequent rules&#39; indexes are incremented.
    */
   export interface Schema$AddConditionalFormatRuleRequest {
     /**
@@ -174,20 +167,7 @@ export namespace sheets_v4 {
     rule?: Schema$ConditionalFormatRule;
   }
   /**
-   * Creates a group over the specified range.  If the requested range is a
-   * superset of the range of an existing group G, then the depth of G is
-   * incremented and this new group G&#39; has the depth of that group. For
-   * example, a group [C:D, depth 1] + [B:E] results in groups [B:E, depth 1]
-   * and [C:D, depth 2]. If the requested range is a subset of the range of an
-   * existing group G, then the depth of the new group G&#39; becomes one
-   * greater than the depth of G. For example, a group [B:E, depth 1] + [C:D]
-   * results in groups [B:E, depth 1] and [C:D, depth 2]. If the requested range
-   * starts before and ends within, or starts within and ends after, the range
-   * of an existing group G, then the range of the existing group G becomes the
-   * union of the ranges, and the new group G&#39; has depth one greater than
-   * the depth of G and range as the intersection of the ranges. For example, a
-   * group [B:D, depth 1] + [C:E] results in groups [B:E, depth 1] and [C:D,
-   * depth 2].
+   * Creates a group over the specified range.  If the requested range is a superset of the range of an existing group G, then the depth of G is incremented and this new group G&#39; has the depth of that group. For example, a group [C:D, depth 1] + [B:E] results in groups [B:E, depth 1] and [C:D, depth 2]. If the requested range is a subset of the range of an existing group G, then the depth of the new group G&#39; becomes one greater than the depth of G. For example, a group [B:E, depth 1] + [C:D] results in groups [B:E, depth 1] and [C:D, depth 2]. If the requested range starts before and ends within, or starts within and ends after, the range of an existing group G, then the range of the existing group G becomes the union of the ranges, and the new group G&#39; has depth one greater than the depth of G and range as the intersection of the ranges. For example, a group [B:D, depth 1] + [C:E] results in groups [B:E, depth 1] and [C:D, depth 2].
    */
   export interface Schema$AddDimensionGroupRequest {
     /**
@@ -209,9 +189,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$AddFilterViewRequest {
     /**
-     * The filter to add. The filterViewId field is optional; if one is not set,
-     * an id will be randomly generated. (It is an error to specify the ID of a
-     * filter that already exists.)
+     * The filter to add. The filterViewId field is optional; if one is not set, an id will be randomly generated. (It is an error to specify the ID of a filter that already exists.)
      */
     filter?: Schema$FilterView;
   }
@@ -229,9 +207,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$AddNamedRangeRequest {
     /**
-     * The named range to add. The namedRangeId field is optional; if one is not
-     * set, an id will be randomly generated. (It is an error to specify the ID
-     * of a range that already exists.)
+     * The named range to add. The namedRangeId field is optional; if one is not set, an id will be randomly generated. (It is an error to specify the ID of a range that already exists.)
      */
     namedRange?: Schema$NamedRange;
   }
@@ -249,9 +225,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$AddProtectedRangeRequest {
     /**
-     * The protected range to be added. The protectedRangeId field is optional;
-     * if one is not set, an id will be randomly generated. (It is an error to
-     * specify the ID of a range that already exists.)
+     * The protected range to be added. The protectedRangeId field is optional; if one is not set, an id will be randomly generated. (It is an error to specify the ID of a range that already exists.)
      */
     protectedRange?: Schema$ProtectedRange;
   }
@@ -265,17 +239,11 @@ export namespace sheets_v4 {
     protectedRange?: Schema$ProtectedRange;
   }
   /**
-   * Adds a new sheet. When a sheet is added at a given index, all subsequent
-   * sheets&#39; indexes are incremented. To add an object sheet, use
-   * AddChartRequest instead and specify EmbeddedObjectPosition.sheetId or
-   * EmbeddedObjectPosition.newSheet.
+   * Adds a new sheet. When a sheet is added at a given index, all subsequent sheets&#39; indexes are incremented. To add an object sheet, use AddChartRequest instead and specify EmbeddedObjectPosition.sheetId or EmbeddedObjectPosition.newSheet.
    */
   export interface Schema$AddSheetRequest {
     /**
-     * The properties the new sheet should have. All properties are optional.
-     * The sheetId field is optional; if one is not set, an id will be randomly
-     * generated. (It is an error to specify the ID of a sheet that already
-     * exists.)
+     * The properties the new sheet should have. All properties are optional. The sheetId field is optional; if one is not set, an id will be randomly generated. (It is an error to specify the ID of a sheet that already exists.)
      */
     properties?: Schema$SheetProperties;
   }
@@ -289,15 +257,11 @@ export namespace sheets_v4 {
     properties?: Schema$SheetProperties;
   }
   /**
-   * Adds new cells after the last row with data in a sheet, inserting new rows
-   * into the sheet if necessary.
+   * Adds new cells after the last row with data in a sheet, inserting new rows into the sheet if necessary.
    */
   export interface Schema$AppendCellsRequest {
     /**
-     * The fields of CellData that should be updated. At least one field must be
-     * specified. The root is the CellData; &#39;row.values.&#39; should not be
-     * specified. A single `&quot;*&quot;` can be used as short-hand for listing
-     * every field.
+     * The fields of CellData that should be updated. At least one field must be specified. The root is the CellData; &#39;row.values.&#39; should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string;
     /**
@@ -335,8 +299,7 @@ export namespace sheets_v4 {
      */
     spreadsheetId?: string;
     /**
-     * The range (in A1 notation) of the table that values are being appended to
-     * (before the values were appended). Empty if no table was found.
+     * The range (in A1 notation) of the table that values are being appended to (before the values were appended). Empty if no table was found.
      */
     tableRange?: string;
     /**
@@ -349,25 +312,20 @@ export namespace sheets_v4 {
    */
   export interface Schema$AutoFillRequest {
     /**
-     * The range to autofill. This will examine the range and detect the
-     * location that has data and automatically fill that data in to the rest of
-     * the range.
+     * The range to autofill. This will examine the range and detect the location that has data and automatically fill that data in to the rest of the range.
      */
     range?: Schema$GridRange;
     /**
-     * The source and destination areas to autofill. This explicitly lists the
-     * source of the autofill and where to extend that data.
+     * The source and destination areas to autofill. This explicitly lists the source of the autofill and where to extend that data.
      */
     sourceAndDestination?: Schema$SourceAndDestination;
     /**
-     * True if we should generate data with the &quot;alternate&quot; series.
-     * This differs based on the type and amount of source data.
+     * True if we should generate data with the &quot;alternate&quot; series. This differs based on the type and amount of source data.
      */
     useAlternateSeries?: boolean;
   }
   /**
-   * Automatically resizes one or more dimensions based on the contents of the
-   * cells in that dimension.
+   * Automatically resizes one or more dimensions based on the contents of the cells in that dimension.
    */
   export interface Schema$AutoResizeDimensionsRequest {
     /**
@@ -384,9 +342,7 @@ export namespace sheets_v4 {
      */
     bandedRangeId?: number;
     /**
-     * Properties for column bands. These properties are applied on a column-
-     * by-column basis throughout all the columns in the range. At least one of
-     * row_properties or column_properties must be specified.
+     * Properties for column bands. These properties are applied on a column- by-column basis throughout all the columns in the range. At least one of row_properties or column_properties must be specified.
      */
     columnProperties?: Schema$BandingProperties;
     /**
@@ -394,23 +350,12 @@ export namespace sheets_v4 {
      */
     range?: Schema$GridRange;
     /**
-     * Properties for row bands. These properties are applied on a row-by-row
-     * basis throughout all the rows in the range. At least one of
-     * row_properties or column_properties must be specified.
+     * Properties for row bands. These properties are applied on a row-by-row basis throughout all the rows in the range. At least one of row_properties or column_properties must be specified.
      */
     rowProperties?: Schema$BandingProperties;
   }
   /**
-   * Properties referring a single dimension (either row or column). If both
-   * BandedRange.row_properties and BandedRange.column_properties are set, the
-   * fill colors are applied to cells according to the following rules:  *
-   * header_color and footer_color take priority over band colors. *
-   * first_band_color takes priority over second_band_color. * row_properties
-   * takes priority over column_properties.  For example, the first row color
-   * takes priority over the first column color, but the first column color
-   * takes priority over the second row color. Similarly, the row header takes
-   * priority over the column header in the top left cell, but the column header
-   * takes priority over the first row color if the row header is not set.
+   * Properties referring a single dimension (either row or column). If both BandedRange.row_properties and BandedRange.column_properties are set, the fill colors are applied to cells according to the following rules:  * header_color and footer_color take priority over band colors. * first_band_color takes priority over second_band_color. * row_properties takes priority over column_properties.  For example, the first row color takes priority over the first column color, but the first column color takes priority over the second row color. Similarly, the row header takes priority over the column header in the top left cell, but the column header takes priority over the first row color if the row header is not set.
    */
   export interface Schema$BandingProperties {
     /**
@@ -418,18 +363,11 @@ export namespace sheets_v4 {
      */
     firstBandColor?: Schema$Color;
     /**
-     * The color of the last row or column. If this field is not set, the last
-     * row or column will be filled with either first_band_color or
-     * second_band_color, depending on the color of the previous row or column.
+     * The color of the last row or column. If this field is not set, the last row or column will be filled with either first_band_color or second_band_color, depending on the color of the previous row or column.
      */
     footerColor?: Schema$Color;
     /**
-     * The color of the first row or column. If this field is set, the first row
-     * or column will be filled with this color and the colors will alternate
-     * between first_band_color and second_band_color starting from the second
-     * row or column. Otherwise, the first row or column will be filled with
-     * first_band_color and the colors will proceed to alternate as they
-     * normally would.
+     * The color of the first row or column. If this field is set, the first row or column will be filled with this color and the colors will alternate between first_band_color and second_band_color starting from the second row or column. Otherwise, the first row or column will be filled with first_band_color and the colors will proceed to alternate as they normally would.
      */
     headerColor?: Schema$Color;
     /**
@@ -438,13 +376,11 @@ export namespace sheets_v4 {
     secondBandColor?: Schema$Color;
   }
   /**
-   * An axis of the chart. A chart may not have more than one axis per axis
-   * position.
+   * An axis of the chart. A chart may not have more than one axis per axis position.
    */
   export interface Schema$BasicChartAxis {
     /**
-     * The format of the title. Only valid if the axis is not associated with
-     * the domain.
+     * The format of the title. Only valid if the axis is not associated with the domain.
      */
     format?: Schema$TextFormat;
     /**
@@ -452,8 +388,7 @@ export namespace sheets_v4 {
      */
     position?: string;
     /**
-     * The title of this axis. If set, this overrides any title inferred from
-     * headers of the data.
+     * The title of this axis. If set, this overrides any title inferred from headers of the data.
      */
     title?: string;
     /**
@@ -462,13 +397,11 @@ export namespace sheets_v4 {
     titleTextPosition?: Schema$TextPosition;
   }
   /**
-   * The domain of a chart. For example, if charting stock prices over time,
-   * this would be the date.
+   * The domain of a chart. For example, if charting stock prices over time, this would be the date.
    */
   export interface Schema$BasicChartDomain {
     /**
-     * The data of the domain. For example, if charting stock prices over time,
-     * this is the data representing the dates.
+     * The data of the domain. For example, if charting stock prices over time, this is the data representing the dates.
      */
     domain?: Schema$ChartData;
     /**
@@ -477,20 +410,15 @@ export namespace sheets_v4 {
     reversed?: boolean;
   }
   /**
-   * A single series of data in a chart. For example, if charting stock prices
-   * over time, multiple series may exist, one for the &quot;Open Price&quot;,
-   * &quot;High Price&quot;, &quot;Low Price&quot; and &quot;Close Price&quot;.
+   * A single series of data in a chart. For example, if charting stock prices over time, multiple series may exist, one for the &quot;Open Price&quot;, &quot;High Price&quot;, &quot;Low Price&quot; and &quot;Close Price&quot;.
    */
   export interface Schema$BasicChartSeries {
     /**
-     * The color for elements (i.e. bars, lines, points) associated with this
-     * series.  If empty, a default color is used.
+     * The color for elements (i.e. bars, lines, points) associated with this series.  If empty, a default color is used.
      */
     color?: Schema$Color;
     /**
-     * The line style of this series. Valid only if the chartType is AREA, LINE,
-     * or SCATTER. COMBO charts are also supported if the series chart type is
-     * AREA or LINE.
+     * The line style of this series. Valid only if the chartType is AREA, LINE, or SCATTER. COMBO charts are also supported if the series chart type is AREA or LINE.
      */
     lineStyle?: Schema$LineStyle;
     /**
@@ -498,24 +426,16 @@ export namespace sheets_v4 {
      */
     series?: Schema$ChartData;
     /**
-     * The minor axis that will specify the range of values for this series. For
-     * example, if charting stocks over time, the &quot;Volume&quot; series may
-     * want to be pinned to the right with the prices pinned to the left,
-     * because the scale of trading volume is different than the scale of
-     * prices. It is an error to specify an axis that isn&#39;t a valid minor
-     * axis for the chart&#39;s type.
+     * The minor axis that will specify the range of values for this series. For example, if charting stocks over time, the &quot;Volume&quot; series may want to be pinned to the right with the prices pinned to the left, because the scale of trading volume is different than the scale of prices. It is an error to specify an axis that isn&#39;t a valid minor axis for the chart&#39;s type.
      */
     targetAxis?: string;
     /**
-     * The type of this series. Valid only if the chartType is COMBO. Different
-     * types will change the way the series is visualized. Only LINE, AREA, and
-     * COLUMN are supported.
+     * The type of this series. Valid only if the chartType is COMBO. Different types will change the way the series is visualized. Only LINE, AREA, and COLUMN are supported.
      */
     type?: string;
   }
   /**
-   * The specification for a basic chart.  See BasicChartType for the list of
-   * charts this supports.
+   * The specification for a basic chart.  See BasicChartType for the list of charts this supports.
    */
   export interface Schema$BasicChartSpec {
     /**
@@ -527,8 +447,7 @@ export namespace sheets_v4 {
      */
     chartType?: string;
     /**
-     * The behavior of tooltips and data highlighting when hovering on data and
-     * chart area.
+     * The behavior of tooltips and data highlighting when hovering on data and chart area.
      */
     compareMode?: string;
     /**
@@ -536,16 +455,11 @@ export namespace sheets_v4 {
      */
     domains?: Schema$BasicChartDomain[];
     /**
-     * The number of rows or columns in the data that are &quot;headers&quot;.
-     * If not set, Google Sheets will guess how many rows are headers based on
-     * the data.  (Note that BasicChartAxis.title may override the axis title
-     * inferred from the header values.)
+     * The number of rows or columns in the data that are &quot;headers&quot;. If not set, Google Sheets will guess how many rows are headers based on the data.  (Note that BasicChartAxis.title may override the axis title  inferred from the header values.)
      */
     headerCount?: number;
     /**
-     * If some values in a series are missing, gaps may appear in the chart
-     * (e.g, segments of lines in a line chart will be missing).  To eliminate
-     * these gaps set this to true. Applies to Line, Area, and Combo charts.
+     * If some values in a series are missing, gaps may appear in the chart (e.g, segments of lines in a line chart will be missing).  To eliminate these gaps set this to true. Applies to Line, Area, and Combo charts.
      */
     interpolateNulls?: boolean;
     /**
@@ -553,8 +467,7 @@ export namespace sheets_v4 {
      */
     legendPosition?: string;
     /**
-     * Gets whether all lines should be rendered smooth or straight by default.
-     * Applies to Line charts.
+     * Gets whether all lines should be rendered smooth or straight by default. Applies to Line charts.
      */
     lineSmoothing?: boolean;
     /**
@@ -562,8 +475,7 @@ export namespace sheets_v4 {
      */
     series?: Schema$BasicChartSeries[];
     /**
-     * The stacked type for charts that support vertical stacking. Applies to
-     * Area, Bar, Column, Combo, and Stepped Area charts.
+     * The stacked type for charts that support vertical stacking. Applies to Area, Bar, Column, Combo, and Stepped Area charts.
      */
     stackedType?: string;
     /**
@@ -576,8 +488,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BasicFilter {
     /**
-     * The criteria for showing/hiding values per column. The map&#39;s key is
-     * the column index, and the value is the criteria for that column.
+     * The criteria for showing/hiding values per column. The map&#39;s key is the column index, and the value is the criteria for that column.
      */
     criteria?: {[key: string]: Schema$FilterCriteria};
     /**
@@ -585,14 +496,12 @@ export namespace sheets_v4 {
      */
     range?: Schema$GridRange;
     /**
-     * The sort order per column. Later specifications are used when values are
-     * equal in the earlier specifications.
+     * The sort order per column. Later specifications are used when values are equal in the earlier specifications.
      */
     sortSpecs?: Schema$SortSpec[];
   }
   /**
-   * The request for clearing more than one range selected by a DataFilter in a
-   * spreadsheet.
+   * The request for clearing more than one range selected by a DataFilter in a spreadsheet.
    */
   export interface Schema$BatchClearValuesByDataFilterRequest {
     /**
@@ -601,15 +510,11 @@ export namespace sheets_v4 {
     dataFilters?: Schema$DataFilter[];
   }
   /**
-   * The response when clearing a range of values selected with DataFilters in a
-   * spreadsheet.
+   * The response when clearing a range of values selected with DataFilters in a spreadsheet.
    */
   export interface Schema$BatchClearValuesByDataFilterResponse {
     /**
-     * The ranges that were cleared, in A1 notation. (If the requests were for
-     * an unbounded range or a ranger larger  than the bounds of the sheet, this
-     * will be the actual ranges  that were cleared, bounded to the sheet&#39;s
-     * limits.)
+     * The ranges that were cleared, in A1 notation. (If the requests were for an unbounded range or a ranger larger  than the bounds of the sheet, this will be the actual ranges  that were cleared, bounded to the sheet&#39;s limits.)
      */
     clearedRanges?: string[];
     /**
@@ -631,10 +536,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchClearValuesResponse {
     /**
-     * The ranges that were cleared, in A1 notation. (If the requests were for
-     * an unbounded range or a ranger larger  than the bounds of the sheet, this
-     * will be the actual ranges  that were cleared, bounded to the sheet&#39;s
-     * limits.)
+     * The ranges that were cleared, in A1 notation. (If the requests were for an unbounded range or a ranger larger  than the bounds of the sheet, this will be the actual ranges  that were cleared, bounded to the sheet&#39;s limits.)
      */
     clearedRanges?: string[];
     /**
@@ -643,39 +545,28 @@ export namespace sheets_v4 {
     spreadsheetId?: string;
   }
   /**
-   * The request for retrieving a range of values in a spreadsheet selected by a
-   * set of DataFilters.
+   * The request for retrieving a range of values in a spreadsheet selected by a set of DataFilters.
    */
   export interface Schema$BatchGetValuesByDataFilterRequest {
     /**
-     * The data filters used to match the ranges of values to retrieve.  Ranges
-     * that match any of the specified data filters will be included in the
-     * response.
+     * The data filters used to match the ranges of values to retrieve.  Ranges that match any of the specified data filters will be included in the response.
      */
     dataFilters?: Schema$DataFilter[];
     /**
-     * How dates, times, and durations should be represented in the output. This
-     * is ignored if value_render_option is FORMATTED_VALUE. The default
-     * dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
      */
     dateTimeRenderOption?: string;
     /**
-     * The major dimension that results should use.  For example, if the
-     * spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then a request that selects
-     * that range and sets `majorDimension=ROWS` will return `[[1,2],[3,4]]`,
-     * whereas a request that sets `majorDimension=COLUMNS` will return
-     * `[[1,3],[2,4]]`.
+     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then a request that selects that range and sets `majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas a request that sets `majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
      */
     majorDimension?: string;
     /**
-     * How values should be represented in the output. The default render option
-     * is ValueRenderOption.FORMATTED_VALUE.
+     * How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
      */
     valueRenderOption?: string;
   }
   /**
-   * The response when retrieving more than one range of values in a spreadsheet
-   * selected by DataFilters.
+   * The response when retrieving more than one range of values in a spreadsheet selected by DataFilters.
    */
   export interface Schema$BatchGetValuesByDataFilterResponse {
     /**
@@ -688,8 +579,7 @@ export namespace sheets_v4 {
     valueRanges?: Schema$MatchedValueRange[];
   }
   /**
-   * The response when retrieving more than one range of values in a
-   * spreadsheet.
+   * The response when retrieving more than one range of values in a spreadsheet.
    */
   export interface Schema$BatchGetValuesResponse {
     /**
@@ -697,8 +587,7 @@ export namespace sheets_v4 {
      */
     spreadsheetId?: string;
     /**
-     * The requested values. The order of the ValueRanges is the same as the
-     * order of the requested ranges.
+     * The requested values. The order of the ValueRanges is the same as the order of the requested ranges.
      */
     valueRanges?: Schema$ValueRange[];
   }
@@ -707,25 +596,19 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchUpdateSpreadsheetRequest {
     /**
-     * Determines if the update response should include the spreadsheet
-     * resource.
+     * Determines if the update response should include the spreadsheet resource.
      */
     includeSpreadsheetInResponse?: boolean;
     /**
-     * A list of updates to apply to the spreadsheet. Requests will be applied
-     * in the order they are specified. If any request is not valid, no requests
-     * will be applied.
+     * A list of updates to apply to the spreadsheet. Requests will be applied in the order they are specified. If any request is not valid, no requests will be applied.
      */
     requests?: Schema$Request[];
     /**
-     * True if grid data should be returned. Meaningful only if if
-     * include_spreadsheet_in_response is &#39;true&#39;. This parameter is
-     * ignored if a field mask was set in the request.
+     * True if grid data should be returned. Meaningful only if if include_spreadsheet_in_response is &#39;true&#39;. This parameter is ignored if a field mask was set in the request.
      */
     responseIncludeGridData?: boolean;
     /**
-     * Limits the ranges included in the response spreadsheet. Meaningful only
-     * if include_spreadsheet_response is &#39;true&#39;.
+     * Limits the ranges included in the response spreadsheet. Meaningful only if include_spreadsheet_response is &#39;true&#39;.
      */
     responseRanges?: string[];
   }
@@ -734,8 +617,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchUpdateSpreadsheetResponse {
     /**
-     * The reply of the updates.  This maps 1:1 with the updates, although
-     * replies to some requests may be empty.
+     * The reply of the updates.  This maps 1:1 with the updates, although replies to some requests may be empty.
      */
     replies?: Schema$Response[];
     /**
@@ -743,9 +625,7 @@ export namespace sheets_v4 {
      */
     spreadsheetId?: string;
     /**
-     * The spreadsheet after updates were applied. This is only set if
-     * [BatchUpdateSpreadsheetRequest.include_spreadsheet_in_response] is
-     * `true`.
+     * The spreadsheet after updates were applied. This is only set if [BatchUpdateSpreadsheetRequest.include_spreadsheet_in_response] is `true`.
      */
     updatedSpreadsheet?: Schema$Spreadsheet;
   }
@@ -754,31 +634,19 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchUpdateValuesByDataFilterRequest {
     /**
-     * The new values to apply to the spreadsheet.  If more than one range is
-     * matched by the specified DataFilter the specified values will be applied
-     * to all of those ranges.
+     * The new values to apply to the spreadsheet.  If more than one range is matched by the specified DataFilter the specified values will be applied to all of those ranges.
      */
     data?: Schema$DataFilterValueRange[];
     /**
-     * Determines if the update response should include the values of the cells
-     * that were updated. By default, responses do not include the updated
-     * values. The `updatedData` field within each of the
-     * BatchUpdateValuesResponse.responses will contain the updated values. If
-     * the range to write was larger than than the range actually written, the
-     * response will include all values in the requested range (excluding
-     * trailing empty rows and columns).
+     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. The `updatedData` field within each of the BatchUpdateValuesResponse.responses will contain the updated values. If the range to write was larger than than the range actually written, the response will include all values in the requested range (excluding trailing empty rows and columns).
      */
     includeValuesInResponse?: boolean;
     /**
-     * Determines how dates, times, and durations in the response should be
-     * rendered. This is ignored if response_value_render_option is
-     * FORMATTED_VALUE. The default dateTime render option is
-     * DateTimeRenderOption.SERIAL_NUMBER.
+     * Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.
      */
     responseDateTimeRenderOption?: string;
     /**
-     * Determines how values in the response should be rendered. The default
-     * render option is ValueRenderOption.FORMATTED_VALUE.
+     * Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
      */
     responseValueRenderOption?: string;
     /**
@@ -803,8 +671,7 @@ export namespace sheets_v4 {
      */
     totalUpdatedCells?: number;
     /**
-     * The total number of columns where at least one cell in the column was
-     * updated.
+     * The total number of columns where at least one cell in the column was updated.
      */
     totalUpdatedColumns?: number;
     /**
@@ -812,8 +679,7 @@ export namespace sheets_v4 {
      */
     totalUpdatedRows?: number;
     /**
-     * The total number of sheets where at least one cell in the sheet was
-     * updated.
+     * The total number of sheets where at least one cell in the sheet was updated.
      */
     totalUpdatedSheets?: number;
   }
@@ -826,25 +692,15 @@ export namespace sheets_v4 {
      */
     data?: Schema$ValueRange[];
     /**
-     * Determines if the update response should include the values of the cells
-     * that were updated. By default, responses do not include the updated
-     * values. The `updatedData` field within each of the
-     * BatchUpdateValuesResponse.responses will contain the updated values. If
-     * the range to write was larger than than the range actually written, the
-     * response will include all values in the requested range (excluding
-     * trailing empty rows and columns).
+     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. The `updatedData` field within each of the BatchUpdateValuesResponse.responses will contain the updated values. If the range to write was larger than than the range actually written, the response will include all values in the requested range (excluding trailing empty rows and columns).
      */
     includeValuesInResponse?: boolean;
     /**
-     * Determines how dates, times, and durations in the response should be
-     * rendered. This is ignored if response_value_render_option is
-     * FORMATTED_VALUE. The default dateTime render option is
-     * DateTimeRenderOption.SERIAL_NUMBER.
+     * Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.
      */
     responseDateTimeRenderOption?: string;
     /**
-     * Determines how values in the response should be rendered. The default
-     * render option is ValueRenderOption.FORMATTED_VALUE.
+     * Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
      */
     responseValueRenderOption?: string;
     /**
@@ -857,8 +713,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchUpdateValuesResponse {
     /**
-     * One UpdateValuesResponse per requested range, in the same order as the
-     * requests appeared.
+     * One UpdateValuesResponse per requested range, in the same order as the requests appeared.
      */
     responses?: Schema$UpdateValuesResponse[];
     /**
@@ -870,8 +725,7 @@ export namespace sheets_v4 {
      */
     totalUpdatedCells?: number;
     /**
-     * The total number of columns where at least one cell in the column was
-     * updated.
+     * The total number of columns where at least one cell in the column was updated.
      */
     totalUpdatedColumns?: number;
     /**
@@ -879,14 +733,12 @@ export namespace sheets_v4 {
      */
     totalUpdatedRows?: number;
     /**
-     * The total number of sheets where at least one cell in the sheet was
-     * updated.
+     * The total number of sheets where at least one cell in the sheet was updated.
      */
     totalUpdatedSheets?: number;
   }
   /**
-   * A condition that can evaluate to true or false. BooleanConditions are used
-   * by conditional formatting, data validation, and the criteria in filters.
+   * A condition that can evaluate to true or false. BooleanConditions are used by conditional formatting, data validation, and the criteria in filters.
    */
   export interface Schema$BooleanCondition {
     /**
@@ -894,9 +746,7 @@ export namespace sheets_v4 {
      */
     type?: string;
     /**
-     * The values of the condition. The number of supported values depends on
-     * the condition type.  Some support zero values, others one or two values,
-     * and ConditionType.ONE_OF_LIST supports an arbitrary number of values.
+     * The values of the condition. The number of supported values depends on the condition type.  Some support zero values, others one or two values, and ConditionType.ONE_OF_LIST supports an arbitrary number of values.
      */
     values?: Schema$ConditionValue[];
   }
@@ -905,14 +755,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$BooleanRule {
     /**
-     * The condition of the rule. If the condition evaluates to true, the format
-     * is applied.
+     * The condition of the rule. If the condition evaluates to true, the format is applied.
      */
     condition?: Schema$BooleanCondition;
     /**
-     * The format to apply. Conditional formatting can only apply a subset of
-     * formatting: bold, italic, strikethrough, foreground color &amp;
-     * background color.
+     * The format to apply. Conditional formatting can only apply a subset of formatting: bold, italic, strikethrough, foreground color &amp; background color.
      */
     format?: Schema$CellFormat;
   }
@@ -929,8 +776,7 @@ export namespace sheets_v4 {
      */
     style?: string;
     /**
-     * The width of the border, in pixels. Deprecated; the width is determined
-     * by the &quot;style&quot; field.
+     * The width of the border, in pixels. Deprecated; the width is determined by the &quot;style&quot; field.
      */
     width?: number;
   }
@@ -956,9 +802,7 @@ export namespace sheets_v4 {
     top?: Schema$Border;
   }
   /**
-   * A &lt;a
-   * href=&quot;/chart/interactive/docs/gallery/bubblechart&quot;&gt;bubble
-   * chart&lt;/a&gt;.
+   * A &lt;a href=&quot;/chart/interactive/docs/gallery/bubblechart&quot;&gt;bubble chart&lt;/a&gt;.
    */
   export interface Schema$BubbleChartSpec {
     /**
@@ -970,41 +814,31 @@ export namespace sheets_v4 {
      */
     bubbleLabels?: Schema$ChartData;
     /**
-     * The max radius size of the bubbles, in pixels. If specified, the field
-     * must be a positive value.
+     * The max radius size of the bubbles, in pixels. If specified, the field must be a positive value.
      */
     bubbleMaxRadiusSize?: number;
     /**
-     * The minimum radius size of the bubbles, in pixels. If specific, the field
-     * must be a positive value.
+     * The minimum radius size of the bubbles, in pixels. If specific, the field must be a positive value.
      */
     bubbleMinRadiusSize?: number;
     /**
-     * The opacity of the bubbles between 0 and 1.0. 0 is fully transparent and
-     * 1 is fully opaque.
+     * The opacity of the bubbles between 0 and 1.0. 0 is fully transparent and 1 is fully opaque.
      */
     bubbleOpacity?: number;
     /**
-     * The data contianing the bubble sizes.  Bubble sizes are used to draw the
-     * bubbles at different sizes relative to each other. If specified,
-     * group_ids must also be specified.  This field is optional.
+     * The data contianing the bubble sizes.  Bubble sizes are used to draw the bubbles at different sizes relative to each other. If specified, group_ids must also be specified.  This field is optional.
      */
     bubbleSizes?: Schema$ChartData;
     /**
-     * The format of the text inside the bubbles. Underline and Strikethrough
-     * are not supported.
+     * The format of the text inside the bubbles. Underline and Strikethrough are not supported.
      */
     bubbleTextStyle?: Schema$TextFormat;
     /**
-     * The data containing the bubble x-values.  These values locate the bubbles
-     * in the chart horizontally.
+     * The data containing the bubble x-values.  These values locate the bubbles in the chart horizontally.
      */
     domain?: Schema$ChartData;
     /**
-     * The data containing the bubble group IDs. All bubbles with the same group
-     * ID are drawn in the same color. If bubble_sizes is specified then this
-     * field must also be specified but may contain blank values. This field is
-     * optional.
+     * The data containing the bubble group IDs. All bubbles with the same group ID are drawn in the same color. If bubble_sizes is specified then this field must also be specified but may contain blank values. This field is optional.
      */
     groupIds?: Schema$ChartData;
     /**
@@ -1012,15 +846,12 @@ export namespace sheets_v4 {
      */
     legendPosition?: string;
     /**
-     * The data contianing the bubble y-values.  These values locate the bubbles
-     * in the chart vertically.
+     * The data contianing the bubble y-values.  These values locate the bubbles in the chart vertically.
      */
     series?: Schema$ChartData;
   }
   /**
-   * A &lt;a
-   * href=&quot;/chart/interactive/docs/gallery/candlestickchart&quot;&gt;candlestick
-   * chart&lt;/a&gt;.
+   * A &lt;a href=&quot;/chart/interactive/docs/gallery/candlestickchart&quot;&gt;candlestick chart&lt;/a&gt;.
    */
   export interface Schema$CandlestickChartSpec {
     /**
@@ -1028,37 +859,28 @@ export namespace sheets_v4 {
      */
     data?: Schema$CandlestickData[];
     /**
-     * The domain data (horizontal axis) for the candlestick chart.  String data
-     * will be treated as discrete labels, other data will be treated as
-     * continuous values.
+     * The domain data (horizontal axis) for the candlestick chart.  String data will be treated as discrete labels, other data will be treated as continuous values.
      */
     domain?: Schema$CandlestickDomain;
   }
   /**
-   * The Candlestick chart data, each containing the low, open, close, and high
-   * values for a series.
+   * The Candlestick chart data, each containing the low, open, close, and high values for a series.
    */
   export interface Schema$CandlestickData {
     /**
-     * The range data (vertical axis) for the close/final value for each candle.
-     * This is the top of the candle body.  If greater than the open value the
-     * candle will be filled.  Otherwise the candle will be hollow.
+     * The range data (vertical axis) for the close/final value for each candle. This is the top of the candle body.  If greater than the open value the candle will be filled.  Otherwise the candle will be hollow.
      */
     closeSeries?: Schema$CandlestickSeries;
     /**
-     * The range data (vertical axis) for the high/maximum value for each
-     * candle. This is the top of the candle&#39;s center line.
+     * The range data (vertical axis) for the high/maximum value for each candle. This is the top of the candle&#39;s center line.
      */
     highSeries?: Schema$CandlestickSeries;
     /**
-     * The range data (vertical axis) for the low/minimum value for each candle.
-     * This is the bottom of the candle&#39;s center line.
+     * The range data (vertical axis) for the low/minimum value for each candle. This is the bottom of the candle&#39;s center line.
      */
     lowSeries?: Schema$CandlestickSeries;
     /**
-     * The range data (vertical axis) for the open/initial value for each
-     * candle. This is the bottom of the candle body.  If less than the close
-     * value the candle will be filled.  Otherwise the candle will be hollow.
+     * The range data (vertical axis) for the open/initial value for each candle. This is the bottom of the candle body.  If less than the close value the candle will be filled.  Otherwise the candle will be hollow.
      */
     openSeries?: Schema$CandlestickSeries;
   }
@@ -1089,32 +911,23 @@ export namespace sheets_v4 {
    */
   export interface Schema$CellData {
     /**
-     * A data validation rule on the cell, if any.  When writing, the new data
-     * validation rule will overwrite any prior rule.
+     * A data validation rule on the cell, if any.  When writing, the new data validation rule will overwrite any prior rule.
      */
     dataValidation?: Schema$DataValidationRule;
     /**
-     * The effective format being used by the cell. This includes the results of
-     * applying any conditional formatting and, if the cell contains a formula,
-     * the computed number format. If the effective format is the default
-     * format, effective format will not be written. This field is read-only.
+     * The effective format being used by the cell. This includes the results of applying any conditional formatting and, if the cell contains a formula, the computed number format. If the effective format is the default format, effective format will not be written. This field is read-only.
      */
     effectiveFormat?: Schema$CellFormat;
     /**
-     * The effective value of the cell. For cells with formulas, this is the
-     * calculated value.  For cells with literals, this is the same as the
-     * user_entered_value. This field is read-only.
+     * The effective value of the cell. For cells with formulas, this is the calculated value.  For cells with literals, this is the same as the user_entered_value. This field is read-only.
      */
     effectiveValue?: Schema$ExtendedValue;
     /**
-     * The formatted value of the cell. This is the value as it&#39;s shown to
-     * the user. This field is read-only.
+     * The formatted value of the cell. This is the value as it&#39;s shown to the user. This field is read-only.
      */
     formattedValue?: string;
     /**
-     * A hyperlink this cell points to, if any. This field is read-only.  (To
-     * set it, use a `=HYPERLINK` formula in the userEnteredValue.formulaValue
-     * field.)
+     * A hyperlink this cell points to, if any. This field is read-only.  (To set it, use a `=HYPERLINK` formula in the userEnteredValue.formulaValue field.)
      */
     hyperlink?: string;
     /**
@@ -1122,33 +935,19 @@ export namespace sheets_v4 {
      */
     note?: string;
     /**
-     * A pivot table anchored at this cell. The size of pivot table itself is
-     * computed dynamically based on its data, grouping, filters, values, etc.
-     * Only the top-left cell of the pivot table contains the pivot table
-     * definition. The other cells will contain the calculated values of the
-     * results of the pivot in their effective_value fields.
+     * A pivot table anchored at this cell. The size of pivot table itself is computed dynamically based on its data, grouping, filters, values, etc. Only the top-left cell of the pivot table contains the pivot table definition. The other cells will contain the calculated values of the results of the pivot in their effective_value fields.
      */
     pivotTable?: Schema$PivotTable;
     /**
-     * Runs of rich text applied to subsections of the cell.  Runs are only
-     * valid on user entered strings, not formulas, bools, or numbers. Runs
-     * start at specific indexes in the text and continue until the next run.
-     * Properties of a run will continue unless explicitly changed in a
-     * subsequent run (and properties of the first run will continue the
-     * properties of the cell unless explicitly changed).  When writing, the new
-     * runs will overwrite any prior runs.  When writing a new
-     * user_entered_value, previous runs are erased.
+     * Runs of rich text applied to subsections of the cell.  Runs are only valid on user entered strings, not formulas, bools, or numbers. Runs start at specific indexes in the text and continue until the next run. Properties of a run will continue unless explicitly changed in a subsequent run (and properties of the first run will continue the properties of the cell unless explicitly changed).  When writing, the new runs will overwrite any prior runs.  When writing a new user_entered_value, previous runs are erased.
      */
     textFormatRuns?: Schema$TextFormatRun[];
     /**
-     * The format the user entered for the cell.  When writing, the new format
-     * will be merged with the existing format.
+     * The format the user entered for the cell.  When writing, the new format will be merged with the existing format.
      */
     userEnteredFormat?: Schema$CellFormat;
     /**
-     * The value the user entered in the cell. e.g, `1234`, `&#39;Hello&#39;`,
-     * or `=NOW()` Note: Dates, Times and DateTimes are represented as doubles
-     * in serial number format.
+     * The value the user entered in the cell. e.g, `1234`, `&#39;Hello&#39;`, or `=NOW()` Note: Dates, Times and DateTimes are represented as doubles in serial number format.
      */
     userEnteredValue?: Schema$ExtendedValue;
   }
@@ -1215,15 +1014,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ChartSourceRange {
     /**
-     * The ranges of data for a series or domain. Exactly one dimension must
-     * have a length of 1, and all sources in the list must have the same
-     * dimension with length 1. The domain (if it exists) &amp; all series must
-     * have the same number of source ranges. If using more than one source
-     * range, then the source range at a given offset must be in order and
-     * contiguous across the domain and series.  For example, these are valid
-     * configurations:      domain sources: A1:A5     series1 sources: B1:B5
-     * series2 sources: D6:D10      domain sources: A1:A5, C10:C12     series1
-     * sources: B1:B5, D10:D12     series2 sources: C1:C5, E10:E12
+     * The ranges of data for a series or domain. Exactly one dimension must have a length of 1, and all sources in the list must have the same dimension with length 1. The domain (if it exists) &amp; all series must have the same number of source ranges. If using more than one source range, then the source range at a given offset must be in order and contiguous across the domain and series.  For example, these are valid configurations:      domain sources: A1:A5     series1 sources: B1:B5     series2 sources: D6:D10      domain sources: A1:A5, C10:C12     series1 sources: B1:B5, D10:D12     series2 sources: C1:C5, E10:E12
      */
     sources?: Schema$GridRange[];
   }
@@ -1232,8 +1023,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ChartSpec {
     /**
-     * The alternative text that describes the chart.  This is often used for
-     * accessibility.
+     * The alternative text that describes the chart.  This is often used for accessibility.
      */
     altText?: string;
     /**
@@ -1241,8 +1031,7 @@ export namespace sheets_v4 {
      */
     backgroundColor?: Schema$Color;
     /**
-     * A basic chart specification, can be one of many kinds of charts. See
-     * BasicChartType for the list of all charts this supports.
+     * A basic chart specification, can be one of many kinds of charts. See BasicChartType for the list of all charts this supports.
      */
     basicChart?: Schema$BasicChartSpec;
     /**
@@ -1254,9 +1043,7 @@ export namespace sheets_v4 {
      */
     candlestickChart?: Schema$CandlestickChartSpec;
     /**
-     * The name of the font to use by default for all chart text (e.g. title,
-     * axis labels, legend).  If a font is specified for a specific part of the
-     * chart it will override this font name.
+     * The name of the font to use by default for all chart text (e.g. title, axis labels, legend).  If a font is specified for a specific part of the chart it will override this font name.
      */
     fontName?: string;
     /**
@@ -1268,9 +1055,7 @@ export namespace sheets_v4 {
      */
     histogramChart?: Schema$HistogramChartSpec;
     /**
-     * True to make a chart fill the entire space in which it&#39;s rendered
-     * with minimum padding.  False to use the default padding. (Not applicable
-     * to Geo and Org charts.)
+     * True to make a chart fill the entire space in which it&#39;s rendered with minimum padding.  False to use the default padding. (Not applicable to Geo and Org charts.)
      */
     maximized?: boolean;
     /**
@@ -1332,10 +1117,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ClearValuesResponse {
     /**
-     * The range (in A1 notation) that was cleared. (If the request was for an
-     * unbounded range or a ranger larger  than the bounds of the sheet, this
-     * will be the actual range  that was cleared, bounded to the sheet&#39;s
-     * limits.)
+     * The range (in A1 notation) that was cleared. (If the request was for an unbounded range or a ranger larger  than the bounds of the sheet, this will be the actual range  that was cleared, bounded to the sheet&#39;s limits.)
      */
     clearedRange?: string;
     /**
@@ -1344,72 +1126,11 @@ export namespace sheets_v4 {
     spreadsheetId?: string;
   }
   /**
-   * Represents a color in the RGBA color space. This representation is designed
-   * for simplicity of conversion to/from color representations in various
-   * languages over compactness; for example, the fields of this representation
-   * can be trivially provided to the constructor of &quot;java.awt.Color&quot;
-   * in Java; it can also be trivially provided to UIColor&#39;s
-   * &quot;+colorWithRed:green:blue:alpha&quot; method in iOS; and, with just a
-   * little work, it can be easily formatted into a CSS &quot;rgba()&quot;
-   * string in JavaScript, as well.  Note: this proto does not carry information
-   * about the absolute color space that should be used to interpret the RGB
-   * value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default,
-   * applications SHOULD assume the sRGB color space.  Example (Java): import
-   * com.google.type.Color;       // ...      public static java.awt.Color
-   * fromProto(Color protocolor) {        float alpha = protocolor.hasAlpha() ?
-   * protocolor.getAlpha().getValue()            : 1.0;         return new
-   * java.awt.Color(            protocolor.getRed(), protocolor.getGreen(),
-   * protocolor.getBlue(),            alpha);      }       public static Color
-   * toProto(java.awt.Color color) {        float red = (float) color.getRed();
-   * float green = (float) color.getGreen();        float blue = (float)
-   * color.getBlue();        float denominator = 255.0;        Color.Builder
-   * resultBuilder =            Color                .newBuilder() .setRed(red /
-   * denominator)                .setGreen(green / denominator) .setBlue(blue /
-   * denominator);        int alpha = color.getAlpha();        if (alpha != 255)
-   * {          result.setAlpha(              FloatValue .newBuilder()
-   * .setValue(((float) alpha) / denominator)                  .build()); }
-   * return resultBuilder.build();      }      // ...  Example (iOS / Obj-C): //
-   * ...      static UIColor* fromProto(Color* protocolor) {         float red =
-   * [protocolor red];         float green = [protocolor green];         float
-   * blue = [protocolor blue];         FloatValue* alpha_wrapper = [protocolor
-   * alpha];         float alpha = 1.0;         if (alpha_wrapper != nil) {
-   * alpha = [alpha_wrapper value];         }         return [UIColor
-   * colorWithRed:red green:green blue:blue alpha:alpha];      }       static
-   * Color* toProto(UIColor* color) {          CGFloat red, green, blue, alpha;
-   * if (![color getRed:&amp;red green:&amp;green blue:&amp;blue
-   * alpha:&amp;alpha]) {            return nil;          }          Color*
-   * result = [[Color alloc] init];          [result setRed:red]; [result
-   * setGreen:green];          [result setBlue:blue];          if (alpha &lt;=
-   * 0.9999) {            [result setAlpha:floatWrapperWithValue(alpha)]; }
-   * [result autorelease];          return result;     }     // ...   Example
-   * (JavaScript):      // ...      var protoToCssColor = function(rgb_color) {
-   * var redFrac = rgb_color.red || 0.0;        var greenFrac = rgb_color.green
-   * || 0.0;        var blueFrac = rgb_color.blue || 0.0;        var red =
-   * Math.floor(redFrac * 255);        var green = Math.floor(greenFrac * 255);
-   * var blue = Math.floor(blueFrac * 255);         if (!(&#39;alpha&#39; in
-   * rgb_color)) {           return rgbToCssColor_(red, green, blue);        }
-   * var alphaFrac = rgb_color.alpha.value || 0.0;        var rgbParams = [red,
-   * green, blue].join(&#39;,&#39;);        return [&#39;rgba(&#39;, rgbParams,
-   * &#39;,&#39;, alphaFrac, &#39;)&#39;].join(&#39;&#39;);     };      var
-   * rgbToCssColor_ = function(red, green, blue) {       var rgbNumber = new
-   * Number((red &lt;&lt; 16) | (green &lt;&lt; 8) | blue);       var hexString
-   * = rgbNumber.toString(16);       var missingZeros = 6 - hexString.length;
-   * var resultBuilder = [&#39;#&#39;];       for (var i = 0; i &lt;
-   * missingZeros; i++) {          resultBuilder.push(&#39;0&#39;);       }
-   * resultBuilder.push(hexString);       return resultBuilder.join(&#39;&#39;);
-   * };      // ...
+   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness; for example, the fields of this representation can be trivially provided to the constructor of &quot;java.awt.Color&quot; in Java; it can also be trivially provided to UIColor&#39;s &quot;+colorWithRed:green:blue:alpha&quot; method in iOS; and, with just a little work, it can be easily formatted into a CSS &quot;rgba()&quot; string in JavaScript, as well.  Note: this proto does not carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications SHOULD assume the sRGB color space.  Example (Java):       import com.google.type.Color;       // ...      public static java.awt.Color fromProto(Color protocolor) {        float alpha = protocolor.hasAlpha()            ? protocolor.getAlpha().getValue()            : 1.0;         return new java.awt.Color(            protocolor.getRed(),            protocolor.getGreen(),            protocolor.getBlue(),            alpha);      }       public static Color toProto(java.awt.Color color) {        float red = (float) color.getRed();        float green = (float) color.getGreen();        float blue = (float) color.getBlue();        float denominator = 255.0;        Color.Builder resultBuilder =            Color                .newBuilder()                .setRed(red / denominator)                .setGreen(green / denominator)                .setBlue(blue / denominator);        int alpha = color.getAlpha();        if (alpha != 255) {          result.setAlpha(              FloatValue                  .newBuilder()                  .setValue(((float) alpha) / denominator)                  .build());        }        return resultBuilder.build();      }      // ...  Example (iOS / Obj-C):       // ...      static UIColor* fromProto(Color* protocolor) {         float red = [protocolor red];         float green = [protocolor green];         float blue = [protocolor blue];         FloatValue* alpha_wrapper = [protocolor alpha];         float alpha = 1.0;         if (alpha_wrapper != nil) {           alpha = [alpha_wrapper value];         }         return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];      }       static Color* toProto(UIColor* color) {          CGFloat red, green, blue, alpha;          if (![color getRed:&amp;red green:&amp;green blue:&amp;blue alpha:&amp;alpha]) {            return nil;          }          Color* result = [[Color alloc] init];          [result setRed:red];          [result setGreen:green];          [result setBlue:blue];          if (alpha &lt;= 0.9999) {            [result setAlpha:floatWrapperWithValue(alpha)];          }          [result autorelease];          return result;     }     // ...   Example (JavaScript):      // ...      var protoToCssColor = function(rgb_color) {        var redFrac = rgb_color.red || 0.0;        var greenFrac = rgb_color.green || 0.0;        var blueFrac = rgb_color.blue || 0.0;        var red = Math.floor(redFrac * 255);        var green = Math.floor(greenFrac * 255);        var blue = Math.floor(blueFrac * 255);         if (!(&#39;alpha&#39; in rgb_color)) {           return rgbToCssColor_(red, green, blue);        }         var alphaFrac = rgb_color.alpha.value || 0.0;        var rgbParams = [red, green, blue].join(&#39;,&#39;);        return [&#39;rgba(&#39;, rgbParams, &#39;,&#39;, alphaFrac, &#39;)&#39;].join(&#39;&#39;);     };      var rgbToCssColor_ = function(red, green, blue) {       var rgbNumber = new Number((red &lt;&lt; 16) | (green &lt;&lt; 8) | blue);       var hexString = rgbNumber.toString(16);       var missingZeros = 6 - hexString.length;       var resultBuilder = [&#39;#&#39;];       for (var i = 0; i &lt; missingZeros; i++) {          resultBuilder.push(&#39;0&#39;);       }       resultBuilder.push(hexString);       return resultBuilder.join(&#39;&#39;);     };      // ...
    */
   export interface Schema$Color {
     /**
-     * The fraction of this color that should be applied to the pixel. That is,
-     * the final pixel color is defined by the equation:    pixel color = alpha
-     * * (this color) + (1.0 - alpha) * (background color)  This means that a
-     * value of 1.0 corresponds to a solid color, whereas a value of 0.0
-     * corresponds to a completely transparent color. This uses a wrapper
-     * message rather than a simple float scalar so that it is possible to
-     * distinguish between a default value and the value being unset. If
-     * omitted, this color object is to be rendered as a solid color (as if the
-     * alpha value had been explicitly given with a value of 1.0).
+     * The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation:    pixel color = alpha * (this color) + (1.0 - alpha) * (background color)  This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is to be rendered as a solid color (as if the alpha value had been explicitly given with a value of 1.0).
      */
     alpha?: number;
     /**
@@ -1430,8 +1151,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ConditionalFormatRule {
     /**
-     * The formatting is either &quot;on&quot; or &quot;off&quot; according to
-     * the rule.
+     * The formatting is either &quot;on&quot; or &quot;off&quot; according to the rule.
      */
     booleanRule?: Schema$BooleanRule;
     /**
@@ -1439,8 +1159,7 @@ export namespace sheets_v4 {
      */
     gradientRule?: Schema$GradientRule;
     /**
-     * The ranges that are formatted if the condition is true. All the ranges
-     * must be on the same grid.
+     * The ranges that are formatted if the condition is true. All the ranges must be on the same grid.
      */
     ranges?: Schema$GridRange[];
   }
@@ -1449,16 +1168,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$ConditionValue {
     /**
-     * A relative date (based on the current date). Valid only if the type is
-     * DATE_BEFORE, DATE_AFTER, DATE_ON_OR_BEFORE or DATE_ON_OR_AFTER.  Relative
-     * dates are not supported in data validation. They are supported only in
-     * conditional formatting and conditional filters.
+     * A relative date (based on the current date). Valid only if the type is DATE_BEFORE, DATE_AFTER, DATE_ON_OR_BEFORE or DATE_ON_OR_AFTER.  Relative dates are not supported in data validation. They are supported only in conditional formatting and conditional filters.
      */
     relativeDate?: string;
     /**
-     * A value the condition is based on. The value is parsed as if the user
-     * typed into a cell. Formulas are supported (and must begin with an `=` or
-     * a &#39;+&#39;).
+     * A value the condition is based on. The value is parsed as if the user typed into a cell. Formulas are supported (and must begin with an `=` or a &#39;+&#39;).
      */
     userEnteredValue?: string;
   }
@@ -1467,11 +1181,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$CopyPasteRequest {
     /**
-     * The location to paste to. If the range covers a span that&#39;s a
-     * multiple of the source&#39;s height or width, then the data will be
-     * repeated to fill in the destination range. If the range is smaller than
-     * the source range, the entire source data will still be copied (beyond the
-     * end of the destination range).
+     * The location to paste to. If the range covers a span that&#39;s a multiple of the source&#39;s height or width, then the data will be repeated to fill in the destination range. If the range is smaller than the source range, the entire source data will still be copied (beyond the end of the destination range).
      */
     destination?: Schema$GridRange;
     /**
@@ -1523,8 +1233,7 @@ export namespace sheets_v4 {
      */
     destination?: Schema$GridCoordinate;
     /**
-     * What kind of data to paste.  All the source data will be cut, regardless
-     * of what is pasted.
+     * What kind of data to paste.  All the source data will be cut, regardless of what is pasted.
      */
     pasteType?: string;
     /**
@@ -1533,8 +1242,7 @@ export namespace sheets_v4 {
     source?: Schema$GridRange;
   }
   /**
-   * Filter that describes what data should be selected or returned from a
-   * request.
+   * Filter that describes what data should be selected or returned from a request.
    */
   export interface Schema$DataFilter {
     /**
@@ -1542,8 +1250,7 @@ export namespace sheets_v4 {
      */
     a1Range?: string;
     /**
-     * Selects data associated with the developer metadata matching the criteria
-     * described by this DeveloperMetadataLookup.
+     * Selects data associated with the developer metadata matching the criteria described by this DeveloperMetadataLookup.
      */
     developerMetadataLookup?: Schema$DeveloperMetadataLookup;
     /**
@@ -1564,10 +1271,7 @@ export namespace sheets_v4 {
      */
     majorDimension?: string;
     /**
-     * The data to be written.  If the provided values exceed any of the ranges
-     * matched by the data filter then the request will fail.  If the provided
-     * values are less than the matched ranges only the specified values will be
-     * written, existing values in the matched ranges will remain unaffected.
+     * The data to be written.  If the provided values exceed any of the ranges matched by the data filter then the request will fail.  If the provided values are less than the matched ranges only the specified values will be written, existing values in the matched ranges will remain unaffected.
      */
     values?: any[][];
   }
@@ -1584,8 +1288,7 @@ export namespace sheets_v4 {
      */
     inputMessage?: string;
     /**
-     * True if the UI should be customized based on the kind of condition. If
-     * true, &quot;List&quot; conditions will show a dropdown.
+     * True if the UI should be customized based on the kind of condition. If true, &quot;List&quot; conditions will show a dropdown.
      */
     showCustomUi?: boolean;
     /**
@@ -1594,18 +1297,7 @@ export namespace sheets_v4 {
     strict?: boolean;
   }
   /**
-   * Allows you to organize the date-time values in a source data column into
-   * buckets based on selected parts of their date or time values. For example,
-   * consider a pivot table showing sales transactions by date:
-   * +----------+--------------+     | Date     | SUM of Sales |
-   * +----------+--------------+     | 1/1/2017 |      $621.14 |     | 2/3/2017
-   * |      $708.84 |     | 5/8/2017 |      $326.84 |     ...
-   * +----------+--------------+ Applying a date-time group rule with a
-   * DateTimeRuleType of YEAR_MONTH results in the following pivot table.
-   * +--------------+--------------+     | Grouped Date | SUM of Sales |
-   * +--------------+--------------+     | 2017-Jan     |   $53,731.78 |     |
-   * 2017-Feb     |   $83,475.32 |     | 2017-Mar     |   $94,385.05 |     ...
-   * +--------------+--------------+
+   * Allows you to organize the date-time values in a source data column into buckets based on selected parts of their date or time values. For example, consider a pivot table showing sales transactions by date:      +----------+--------------+     | Date     | SUM of Sales |     +----------+--------------+     | 1/1/2017 |      $621.14 |     | 2/3/2017 |      $708.84 |     | 5/8/2017 |      $326.84 |     ...     +----------+--------------+ Applying a date-time group rule with a DateTimeRuleType of YEAR_MONTH results in the following pivot table.      +--------------+--------------+     | Grouped Date | SUM of Sales |     +--------------+--------------+     | 2017-Jan     |   $53,731.78 |     | 2017-Feb     |   $83,475.32 |     | 2017-Mar     |   $94,385.05 |     ...     +--------------+--------------+
    */
   export interface Schema$DateTimeRule {
     /**
@@ -1623,8 +1315,7 @@ export namespace sheets_v4 {
     bandedRangeId?: number;
   }
   /**
-   * Deletes a conditional format rule at the given index. All subsequent
-   * rules&#39; indexes are decremented.
+   * Deletes a conditional format rule at the given index. All subsequent rules&#39; indexes are decremented.
    */
   export interface Schema$DeleteConditionalFormatRuleRequest {
     /**
@@ -1650,8 +1341,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$DeleteDeveloperMetadataRequest {
     /**
-     * The data filter describing the criteria used to select which developer
-     * metadata entry to delete.
+     * The data filter describing the criteria used to select which developer metadata entry to delete.
      */
     dataFilter?: Schema$DataFilter;
   }
@@ -1665,10 +1355,7 @@ export namespace sheets_v4 {
     deletedDeveloperMetadata?: Schema$DeveloperMetadata[];
   }
   /**
-   * Deletes a group over the specified range by decrementing the depth of the
-   * dimensions in the range.  For example, assume the sheet has a depth-1 group
-   * over B:E and a depth-2 group over C:D. Deleting a group over D:E leaves the
-   * sheet with a depth-1 group over B:D and a depth-2 group over C:C.
+   * Deletes a group over the specified range by decrementing the depth of the dimensions in the range.  For example, assume the sheet has a depth-1 group over B:E and a depth-2 group over C:D. Deleting a group over D:E leaves the sheet with a depth-1 group over B:D and a depth-2 group over C:C.
    */
   export interface Schema$DeleteDimensionGroupRequest {
     /**
@@ -1739,10 +1426,7 @@ export namespace sheets_v4 {
      */
     range?: Schema$GridRange;
     /**
-     * The dimension from which deleted cells will be replaced with. If ROWS,
-     * existing cells will be shifted upward to replace the deleted cells. If
-     * COLUMNS, existing cells will be shifted left to replace the deleted
-     * cells.
+     * The dimension from which deleted cells will be replaced with. If ROWS, existing cells will be shifted upward to replace the deleted cells. If COLUMNS, existing cells will be shifted left to replace the deleted cells.
      */
     shiftDimension?: string;
   }
@@ -1756,14 +1440,7 @@ export namespace sheets_v4 {
     sheetId?: number;
   }
   /**
-   * Developer metadata associated with a location or object in a spreadsheet.
-   * Developer metadata may be used to associate arbitrary data with various
-   * parts of a spreadsheet and will remain associated at those locations as
-   * they move around and the spreadsheet is edited.  For example, if developer
-   * metadata is associated with row 5 and another row is then subsequently
-   * inserted above row 5, that original metadata will still be associated with
-   * the row it was first associated with (what is now row 6). If the associated
-   * object is deleted its metadata is deleted too.
+   * Developer metadata associated with a location or object in a spreadsheet. Developer metadata may be used to associate arbitrary data with various parts of a spreadsheet and will remain associated at those locations as they move around and the spreadsheet is edited.  For example, if developer metadata is associated with row 5 and another row is then subsequently inserted above row 5, that original metadata will still be associated with the row it was first associated with (what is now row 6). If the associated object is deleted its metadata is deleted too.
    */
   export interface Schema$DeveloperMetadata {
     /**
@@ -1771,14 +1448,11 @@ export namespace sheets_v4 {
      */
     location?: Schema$DeveloperMetadataLocation;
     /**
-     * The spreadsheet-scoped unique ID that identifies the metadata. IDs may be
-     * specified when metadata is created, otherwise one will be randomly
-     * generated and assigned. Must be positive.
+     * The spreadsheet-scoped unique ID that identifies the metadata. IDs may be specified when metadata is created, otherwise one will be randomly generated and assigned. Must be positive.
      */
     metadataId?: number;
     /**
-     * The metadata key. There may be multiple metadata in a spreadsheet with
-     * the same key.  Developer metadata must always have a key specified.
+     * The metadata key. There may be multiple metadata in a spreadsheet with the same key.  Developer metadata must always have a key specified.
      */
     metadataKey?: string;
     /**
@@ -1786,8 +1460,7 @@ export namespace sheets_v4 {
      */
     metadataValue?: string;
     /**
-     * The metadata visibility.  Developer metadata must always have a
-     * visibility specified.
+     * The metadata visibility.  Developer metadata must always have a visibility specified.
      */
     visibility?: string;
   }
@@ -1796,9 +1469,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$DeveloperMetadataLocation {
     /**
-     * Represents the row or column when metadata is associated with a
-     * dimension. The specified DimensionRange must represent a single row or
-     * column; it cannot be unbounded or span multiple rows or columns.
+     * Represents the row or column when metadata is associated with a dimension. The specified DimensionRange must represent a single row or column; it cannot be unbounded or span multiple rows or columns.
      */
     dimensionRange?: Schema$DimensionRange;
     /**
@@ -1815,87 +1486,48 @@ export namespace sheets_v4 {
     spreadsheet?: boolean;
   }
   /**
-   * Selects DeveloperMetadata that matches all of the specified fields.  For
-   * example, if only a metadata ID is specified this considers the
-   * DeveloperMetadata with that particular unique ID. If a metadata key is
-   * specified, this considers all developer metadata with that key.  If a key,
-   * visibility, and location type are all specified, this considers all
-   * developer metadata with that key and visibility that are associated with a
-   * location of that type.  In general, this selects all DeveloperMetadata that
-   * matches the intersection of all the specified fields; any field or
-   * combination of fields may be specified.
+   * Selects DeveloperMetadata that matches all of the specified fields.  For example, if only a metadata ID is specified this considers the DeveloperMetadata with that particular unique ID. If a metadata key is specified, this considers all developer metadata with that key.  If a key, visibility, and location type are all specified, this considers all developer metadata with that key and visibility that are associated with a location of that type.  In general, this selects all DeveloperMetadata that matches the intersection of all the specified fields; any field or combination of fields may be specified.
    */
   export interface Schema$DeveloperMetadataLookup {
     /**
-     * Determines how this lookup matches the location.  If this field is
-     * specified as EXACT, only developer metadata associated on the exact
-     * location specified is matched.  If this field is specified to
-     * INTERSECTING, developer metadata associated on intersecting locations is
-     * also matched.  If left unspecified, this field assumes a default value of
-     * INTERSECTING. If this field is specified, a metadataLocation must also be
-     * specified.
+     * Determines how this lookup matches the location.  If this field is specified as EXACT, only developer metadata associated on the exact location specified is matched.  If this field is specified to INTERSECTING, developer metadata associated on intersecting locations is also matched.  If left unspecified, this field assumes a default value of INTERSECTING. If this field is specified, a metadataLocation must also be specified.
      */
     locationMatchingStrategy?: string;
     /**
-     * Limits the selected developer metadata to those entries which are
-     * associated with locations of the specified type.  For example, when this
-     * field is specified as ROW this lookup only considers developer metadata
-     * associated on rows.  If the field is left unspecified, all location types
-     * are considered.  This field cannot be specified as SPREADSHEET when the
-     * locationMatchingStrategy is specified as INTERSECTING or when the
-     * metadataLocation is specified as a non-spreadsheet location: spreadsheet
-     * metadata cannot intersect any other developer metadata location.  This
-     * field also must be left unspecified when the locationMatchingStrategy is
-     * specified as EXACT.
+     * Limits the selected developer metadata to those entries which are associated with locations of the specified type.  For example, when this field is specified as ROW this lookup only considers developer metadata associated on rows.  If the field is left unspecified, all location types are considered.  This field cannot be specified as SPREADSHEET when the locationMatchingStrategy is specified as INTERSECTING or when the metadataLocation is specified as a non-spreadsheet location: spreadsheet metadata cannot intersect any other developer metadata location.  This field also must be left unspecified when the locationMatchingStrategy is specified as EXACT.
      */
     locationType?: string;
     /**
-     * Limits the selected developer metadata to that which has a matching
-     * DeveloperMetadata.metadata_id.
+     * Limits the selected developer metadata to that which has a matching DeveloperMetadata.metadata_id.
      */
     metadataId?: number;
     /**
-     * Limits the selected developer metadata to that which has a matching
-     * DeveloperMetadata.metadata_key.
+     * Limits the selected developer metadata to that which has a matching DeveloperMetadata.metadata_key.
      */
     metadataKey?: string;
     /**
-     * Limits the selected developer metadata to those entries associated with
-     * the specified location.  This field either matches exact locations or all
-     * intersecting locations according the specified locationMatchingStrategy.
+     * Limits the selected developer metadata to those entries associated with the specified location.  This field either matches exact locations or all intersecting locations according the specified locationMatchingStrategy.
      */
     metadataLocation?: Schema$DeveloperMetadataLocation;
     /**
-     * Limits the selected developer metadata to that which has a matching
-     * DeveloperMetadata.metadata_value.
+     * Limits the selected developer metadata to that which has a matching DeveloperMetadata.metadata_value.
      */
     metadataValue?: string;
     /**
-     * Limits the selected developer metadata to that which has a matching
-     * DeveloperMetadata.visibility.  If left unspecified, all developer
-     * metadata visibile to the requesting project is considered.
+     * Limits the selected developer metadata to that which has a matching DeveloperMetadata.visibility.  If left unspecified, all developer metadata visibile to the requesting project is considered.
      */
     visibility?: string;
   }
   /**
-   * A group over an interval of rows or columns on a sheet, which can contain
-   * or be contained within other groups. A group can be collapsed or expanded
-   * as a unit on the sheet.
+   * A group over an interval of rows or columns on a sheet, which can contain or be contained within other groups. A group can be collapsed or expanded as a unit on the sheet.
    */
   export interface Schema$DimensionGroup {
     /**
-     * This field is true if this group is collapsed. A collapsed group remains
-     * collapsed if an overlapping group at a shallower depth is expanded.  A
-     * true value does not imply that all dimensions within the group are
-     * hidden, since a dimension&#39;s visibility can change independently from
-     * this group property. However, when this property is updated, all
-     * dimensions within it are set to hidden if this field is true, or set to
-     * visible if this field is false.
+     * This field is true if this group is collapsed. A collapsed group remains collapsed if an overlapping group at a shallower depth is expanded.  A true value does not imply that all dimensions within the group are hidden, since a dimension&#39;s visibility can change independently from this group property. However, when this property is updated, all dimensions within it are set to hidden if this field is true, or set to visible if this field is false.
      */
     collapsed?: boolean;
     /**
-     * The depth of the group, representing how many groups have a range that
-     * wholly contains the range of this group.
+     * The depth of the group, representing how many groups have a range that wholly contains the range of this group.
      */
     depth?: number;
     /**
@@ -1925,9 +1557,7 @@ export namespace sheets_v4 {
     pixelSize?: number;
   }
   /**
-   * A range along a single dimension on a sheet. All indexes are zero-based.
-   * Indexes are half open: the start index is inclusive and the end index is
-   * exclusive. Missing indexes indicate the range is unbounded on that side.
+   * A range along a single dimension on a sheet. All indexes are zero-based. Indexes are half open: the start index is inclusive and the end index is exclusive. Missing indexes indicate the range is unbounded on that side.
    */
   export interface Schema$DimensionRange {
     /**
@@ -1970,14 +1600,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$DuplicateSheetRequest {
     /**
-     * The zero-based index where the new sheet should be inserted. The index of
-     * all sheets after this are incremented.
+     * The zero-based index where the new sheet should be inserted. The index of all sheets after this are incremented.
      */
     insertSheetIndex?: number;
     /**
-     * If set, the ID of the new sheet. If not set, an ID is chosen. If set, the
-     * ID must not conflict with any existing sheet ID. If set, it must be
-     * non-negative.
+     * If set, the ID of the new sheet. If not set, an ID is chosen. If set, the ID must not conflict with any existing sheet ID. If set, it must be non-negative.
      */
     newSheetId?: number;
     /**
@@ -2003,9 +1630,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$Editors {
     /**
-     * True if anyone in the document&#39;s domain has edit access to the
-     * protected range.  Domain protection is only supported on documents within
-     * a domain.
+     * True if anyone in the document&#39;s domain has edit access to the protected range.  Domain protection is only supported on documents within a domain.
      */
     domainUsersCanEdit?: boolean;
     /**
@@ -2039,8 +1664,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$EmbeddedObjectPosition {
     /**
-     * If true, the embedded object is put on a new sheet whose ID is chosen for
-     * you. Used only when writing.
+     * If true, the embedded object is put on a new sheet whose ID is chosen for you. Used only when writing.
      */
     newSheet?: boolean;
     /**
@@ -2048,8 +1672,7 @@ export namespace sheets_v4 {
      */
     overlayPosition?: Schema$OverlayPosition;
     /**
-     * The sheet this is on. Set only if the embedded object is on its own
-     * sheet. Must be non-negative.
+     * The sheet this is on. Set only if the embedded object is on its own sheet. Must be non-negative.
      */
     sheetId?: number;
   }
@@ -2058,8 +1681,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ErrorValue {
     /**
-     * A message with more information about the error (in the spreadsheet&#39;s
-     * locale).
+     * A message with more information about the error (in the spreadsheet&#39;s locale).
      */
     message?: string;
     /**
@@ -2084,14 +1706,11 @@ export namespace sheets_v4 {
      */
     formulaValue?: string;
     /**
-     * Represents a double value. Note: Dates, Times and DateTimes are
-     * represented as doubles in &quot;serial number&quot; format.
+     * Represents a double value. Note: Dates, Times and DateTimes are represented as doubles in &quot;serial number&quot; format.
      */
     numberValue?: number;
     /**
-     * Represents a string value. Leading single quotes are not included. For
-     * example, if the user typed `&#39;123` into the UI, this would be
-     * represented as a `stringValue` of `&quot;123&quot;`.
+     * Represents a string value. Leading single quotes are not included. For example, if the user typed `&#39;123` into the UI, this would be represented as a `stringValue` of `&quot;123&quot;`.
      */
     stringValue?: string;
   }
@@ -2100,9 +1719,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$FilterCriteria {
     /**
-     * A condition that must be true for values to be shown. (This does not
-     * override hiddenValues -- if a value is listed there,  it will still be
-     * hidden.)
+     * A condition that must be true for values to be shown. (This does not override hiddenValues -- if a value is listed there,  it will still be hidden.)
      */
     condition?: Schema$BooleanCondition;
     /**
@@ -2115,8 +1732,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$FilterView {
     /**
-     * The criteria for showing/hiding values per column. The map&#39;s key is
-     * the column index, and the value is the criteria for that column.
+     * The criteria for showing/hiding values per column. The map&#39;s key is the column index, and the value is the criteria for that column.
      */
     criteria?: {[key: string]: Schema$FilterCriteria};
     /**
@@ -2124,18 +1740,15 @@ export namespace sheets_v4 {
      */
     filterViewId?: number;
     /**
-     * The named range this filter view is backed by, if any.  When writing,
-     * only one of range or named_range_id may be set.
+     * The named range this filter view is backed by, if any.  When writing, only one of range or named_range_id may be set.
      */
     namedRangeId?: string;
     /**
-     * The range this filter view covers.  When writing, only one of range or
-     * named_range_id may be set.
+     * The range this filter view covers.  When writing, only one of range or named_range_id may be set.
      */
     range?: Schema$GridRange;
     /**
-     * The sort order per column. Later specifications are used when values are
-     * equal in the earlier specifications.
+     * The sort order per column. Later specifications are used when values are equal in the earlier specifications.
      */
     sortSpecs?: Schema$SortSpec[];
     /**
@@ -2156,8 +1769,7 @@ export namespace sheets_v4 {
      */
     find?: string;
     /**
-     * True if the search should include cells with formulas. False to skip
-     * cells with formulas.
+     * True if the search should include cells with formulas. False to skip cells with formulas.
      */
     includeFormulas?: boolean;
     /**
@@ -2177,15 +1789,7 @@ export namespace sheets_v4 {
      */
     replacement?: string;
     /**
-     * True if the find value is a regex. The regular expression and replacement
-     * should follow Java regex rules at
-     * https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html.
-     * The replacement string is allowed to refer to capturing groups. For
-     * example, if one cell has the contents `&quot;Google Sheets&quot;` and
-     * another has `&quot;Google Docs&quot;`, then searching for `&quot;o.*
-     * (.*)&quot;` with a replacement of `&quot;$1 Rocks&quot;` would change the
-     * contents of the cells to `&quot;GSheets Rocks&quot;` and `&quot;GDocs
-     * Rocks&quot;` respectively.
+     * True if the find value is a regex. The regular expression and replacement should follow Java regex rules at https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html. The replacement string is allowed to refer to capturing groups. For example, if one cell has the contents `&quot;Google Sheets&quot;` and another has `&quot;Google Docs&quot;`, then searching for `&quot;o.* (.*)&quot;` with a replacement of `&quot;$1 Rocks&quot;` would change the contents of the cells to `&quot;GSheets Rocks&quot;` and `&quot;GDocs Rocks&quot;` respectively.
      */
     searchByRegex?: boolean;
     /**
@@ -2202,10 +1806,7 @@ export namespace sheets_v4 {
      */
     formulasChanged?: number;
     /**
-     * The number of occurrences (possibly multiple within a cell) changed. For
-     * example, if replacing `&quot;e&quot;` with `&quot;o&quot;` in
-     * `&quot;Google Sheets&quot;`, this would be `&quot;3&quot;` because
-     * `&quot;Google Sheets&quot;` -&gt; `&quot;Googlo Shoots&quot;`.
+     * The number of occurrences (possibly multiple within a cell) changed. For example, if replacing `&quot;e&quot;` with `&quot;o&quot;` in `&quot;Google Sheets&quot;`, this would be `&quot;3&quot;` because `&quot;Google Sheets&quot;` -&gt; `&quot;Googlo Shoots&quot;`.
      */
     occurrencesChanged?: number;
     /**
@@ -2226,20 +1827,16 @@ export namespace sheets_v4 {
    */
   export interface Schema$GetSpreadsheetByDataFilterRequest {
     /**
-     * The DataFilters used to select which ranges to retrieve from the
-     * spreadsheet.
+     * The DataFilters used to select which ranges to retrieve from the spreadsheet.
      */
     dataFilters?: Schema$DataFilter[];
     /**
-     * True if grid data should be returned. This parameter is ignored if a
-     * field mask was set in the request.
+     * True if grid data should be returned. This parameter is ignored if a field mask was set in the request.
      */
     includeGridData?: boolean;
   }
   /**
-   * A rule that applies a gradient color scale format, based on the
-   * interpolation points listed. The format of a cell will vary based on its
-   * contents as compared to the values of the interpolation points.
+   * A rule that applies a gradient color scale format, based on the interpolation points listed. The format of a cell will vary based on its contents as compared to the values of the interpolation points.
    */
   export interface Schema$GradientRule {
     /**
@@ -2277,19 +1874,15 @@ export namespace sheets_v4 {
    */
   export interface Schema$GridData {
     /**
-     * Metadata about the requested columns in the grid, starting with the
-     * column in start_column.
+     * Metadata about the requested columns in the grid, starting with the column in start_column.
      */
     columnMetadata?: Schema$DimensionProperties[];
     /**
-     * The data in the grid, one entry per row, starting with the row in
-     * startRow. The values in RowData will correspond to columns starting at
-     * start_column.
+     * The data in the grid, one entry per row, starting with the row in startRow. The values in RowData will correspond to columns starting at start_column.
      */
     rowData?: Schema$RowData[];
     /**
-     * Metadata about the requested rows in the grid, starting with the row in
-     * start_row.
+     * Metadata about the requested rows in the grid, starting with the row in start_row.
      */
     rowMetadata?: Schema$DimensionProperties[];
     /**
@@ -2335,20 +1928,7 @@ export namespace sheets_v4 {
     rowGroupControlAfter?: boolean;
   }
   /**
-   * A range on a sheet. All indexes are zero-based. Indexes are half open, e.g
-   * the start index is inclusive and the end index is exclusive --
-   * [start_index, end_index). Missing indexes indicate the range is unbounded
-   * on that side.  For example, if `&quot;Sheet1&quot;` is sheet ID 0, then:
-   * `Sheet1!A1:A1 == sheet_id: 0,                   start_row_index: 0,
-   * end_row_index: 1,                   start_column_index: 0,
-   * end_column_index: 1`    `Sheet1!A3:B4 == sheet_id: 0, start_row_index: 2,
-   * end_row_index: 4,                   start_column_index: 0,
-   * end_column_index: 2`    `Sheet1!A:B == sheet_id: 0, start_column_index: 0,
-   * end_column_index: 2`    `Sheet1!A5:B == sheet_id: 0, start_row_index: 4,
-   * start_column_index: 0, end_column_index: 2`    `Sheet1 == sheet_id:0`  The
-   * start index must always be less than or equal to the end index. If the
-   * start index equals the end index, then the range is empty. Empty ranges are
-   * typically not meaningful and are usually rendered in the UI as `#REF!`.
+   * A range on a sheet. All indexes are zero-based. Indexes are half open, e.g the start index is inclusive and the end index is exclusive -- [start_index, end_index). Missing indexes indicate the range is unbounded on that side.  For example, if `&quot;Sheet1&quot;` is sheet ID 0, then:    `Sheet1!A1:A1 == sheet_id: 0,                   start_row_index: 0, end_row_index: 1,                   start_column_index: 0, end_column_index: 1`    `Sheet1!A3:B4 == sheet_id: 0,                   start_row_index: 2, end_row_index: 4,                   start_column_index: 0, end_column_index: 2`    `Sheet1!A:B == sheet_id: 0,                 start_column_index: 0, end_column_index: 2`    `Sheet1!A5:B == sheet_id: 0,                  start_row_index: 4,                  start_column_index: 0, end_column_index: 2`    `Sheet1 == sheet_id:0`  The start index must always be less than or equal to the end index. If the start index equals the end index, then the range is empty. Empty ranges are typically not meaningful and are usually rendered in the UI as `#REF!`.
    */
   export interface Schema$GridRange {
     /**
@@ -2373,20 +1953,11 @@ export namespace sheets_v4 {
     startRowIndex?: number;
   }
   /**
-   * A &lt;a
-   * href=&quot;/chart/interactive/docs/gallery/histogram&quot;&gt;histogram
-   * chart&lt;/a&gt;. A histogram chart groups data items into bins, displaying
-   * each bin as a column of stacked items.  Histograms are used to display the
-   * distribution of a dataset.  Each column of items represents a range into
-   * which those items fall.  The number of bins can be chosen automatically or
-   * specified explicitly.
+   * A &lt;a href=&quot;/chart/interactive/docs/gallery/histogram&quot;&gt;histogram chart&lt;/a&gt;. A histogram chart groups data items into bins, displaying each bin as a column of stacked items.  Histograms are used to display the distribution of a dataset.  Each column of items represents a range into which those items fall.  The number of bins can be chosen automatically or specified explicitly.
    */
   export interface Schema$HistogramChartSpec {
     /**
-     * By default the bucket size (the range of values stacked in a single
-     * column) is chosen automatically, but it may be overridden here. E.g., A
-     * bucket size of 1.5 results in buckets from 0 - 1.5, 1.5 - 3.0, etc.
-     * Cannot be negative. This field is optional.
+     * By default the bucket size (the range of values stacked in a single column) is chosen automatically, but it may be overridden here. E.g., A bucket size of 1.5 results in buckets from 0 - 1.5, 1.5 - 3.0, etc. Cannot be negative. This field is optional.
      */
     bucketSize?: number;
     /**
@@ -2394,53 +1965,24 @@ export namespace sheets_v4 {
      */
     legendPosition?: string;
     /**
-     * The outlier percentile is used to ensure that outliers do not adversely
-     * affect the calculation of bucket sizes.  For example, setting an outlier
-     * percentile of 0.05 indicates that the top and bottom 5% of values when
-     * calculating buckets.  The values are still included in the chart, they
-     * will be added to the first or last buckets instead of their own buckets.
-     * Must be between 0.0 and 0.5.
+     * The outlier percentile is used to ensure that outliers do not adversely affect the calculation of bucket sizes.  For example, setting an outlier percentile of 0.05 indicates that the top and bottom 5% of values when calculating buckets.  The values are still included in the chart, they will be added to the first or last buckets instead of their own buckets. Must be between 0.0 and 0.5.
      */
     outlierPercentile?: number;
     /**
-     * The series for a histogram may be either a single series of values to be
-     * bucketed or multiple series, each of the same length, containing the name
-     * of the series followed by the values to be bucketed for that series.
+     * The series for a histogram may be either a single series of values to be bucketed or multiple series, each of the same length, containing the name of the series followed by the values to be bucketed for that series.
      */
     series?: Schema$HistogramSeries[];
     /**
-     * Whether horizontal divider lines should be displayed between items in
-     * each column.
+     * Whether horizontal divider lines should be displayed between items in each column.
      */
     showItemDividers?: boolean;
   }
   /**
-   * Allows you to organize the numeric values in a source data column into
-   * buckets of a constant size. All values from HistogramRule.start to
-   * HistogramRule.end are placed into groups of size HistogramRule.interval. In
-   * addition, all values below HistogramRule.start are placed in one group, and
-   * all values above HistogramRule.end are placed in another. Only
-   * HistogramRule.interval is required, though if HistogramRule.start and
-   * HistogramRule.end are both provided, HistogramRule.start must be less than
-   * HistogramRule.end. For example, a pivot table showing average purchase
-   * amount by age that has 50+ rows:      +-----+-------------------+     | Age
-   * | AVERAGE of Amount |     +-----+-------------------+     | 16  | $27.13 |
-   * | 17  |             $5.24 |     | 18  |            $20.15 |     ...
-   * +-----+-------------------+ could be turned into a pivot table that looks
-   * like the one below by applying a histogram group rule with a
-   * HistogramRule.start of 25, an HistogramRule.interval of 20, and an
-   * HistogramRule.end of 65.      +-------------+-------------------+     |
-   * Grouped Age | AVERAGE of Amount |     +-------------+-------------------+
-   * | &lt; 25        |            $19.34 |     | 25-45       | $31.43 |     |
-   * 45-65       |            $35.87 |     | &gt; 65        |            $27.55
-   * |     +-------------+-------------------+     | Grand Total | $29.12 |
-   * +-------------+-------------------+
+   * Allows you to organize the numeric values in a source data column into buckets of a constant size. All values from HistogramRule.start to HistogramRule.end are placed into groups of size HistogramRule.interval. In addition, all values below HistogramRule.start are placed in one group, and all values above HistogramRule.end are placed in another. Only HistogramRule.interval is required, though if HistogramRule.start and HistogramRule.end are both provided, HistogramRule.start must be less than HistogramRule.end. For example, a pivot table showing average purchase amount by age that has 50+ rows:      +-----+-------------------+     | Age | AVERAGE of Amount |     +-----+-------------------+     | 16  |            $27.13 |     | 17  |             $5.24 |     | 18  |            $20.15 |     ...     +-----+-------------------+ could be turned into a pivot table that looks like the one below by applying a histogram group rule with a HistogramRule.start of 25, an HistogramRule.interval of 20, and an HistogramRule.end of 65.      +-------------+-------------------+     | Grouped Age | AVERAGE of Amount |     +-------------+-------------------+     | &lt; 25        |            $19.34 |     | 25-45       |            $31.43 |     | 45-65       |            $35.87 |     | &gt; 65        |            $27.55 |     +-------------+-------------------+     | Grand Total |            $29.12 |     +-------------+-------------------+
    */
   export interface Schema$HistogramRule {
     /**
-     * The maximum value at which items are placed into buckets of constant
-     * size. Values above end are lumped into a single bucket. This field is
-     * optional.
+     * The maximum value at which items are placed into buckets of constant size. Values above end are lumped into a single bucket. This field is optional.
      */
     end?: number;
     /**
@@ -2448,9 +1990,7 @@ export namespace sheets_v4 {
      */
     interval?: number;
     /**
-     * The minimum value at which items are placed into buckets of constant
-     * size. Values below start are lumped into a single bucket. This field is
-     * optional.
+     * The minimum value at which items are placed into buckets of constant size. Values below start are lumped into a single bucket. This field is optional.
      */
     start?: number;
   }
@@ -2459,8 +1999,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$HistogramSeries {
     /**
-     * The color of the column representing this series in each bucket. This
-     * field is optional.
+     * The color of the column representing this series in each bucket. This field is optional.
      */
     barColor?: Schema$Color;
     /**
@@ -2473,21 +2012,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$InsertDimensionRequest {
     /**
-     * Whether dimension properties should be extended from the dimensions
-     * before or after the newly inserted dimensions. True to inherit from the
-     * dimensions before (in which case the start index must be greater than 0),
-     * and false to inherit from the dimensions after.  For example, if row
-     * index 0 has red background and row index 1 has a green background, then
-     * inserting 2 rows at index 1 can inherit either the green or red
-     * background.  If `inheritFromBefore` is true, the two new rows will be red
-     * (because the row before the insertion point was red), whereas if
-     * `inheritFromBefore` is false, the two new rows will be green (because the
-     * row after the insertion point was green).
+     * Whether dimension properties should be extended from the dimensions before or after the newly inserted dimensions. True to inherit from the dimensions before (in which case the start index must be greater than 0), and false to inherit from the dimensions after.  For example, if row index 0 has red background and row index 1 has a green background, then inserting 2 rows at index 1 can inherit either the green or red background.  If `inheritFromBefore` is true, the two new rows will be red (because the row before the insertion point was red), whereas if `inheritFromBefore` is false, the two new rows will be green (because the row after the insertion point was green).
      */
     inheritFromBefore?: boolean;
     /**
-     * The dimensions to insert.  Both the start and end indexes must be
-     * bounded.
+     * The dimensions to insert.  Both the start and end indexes must be bounded.
      */
     range?: Schema$DimensionRange;
   }
@@ -2500,15 +2029,12 @@ export namespace sheets_v4 {
      */
     range?: Schema$GridRange;
     /**
-     * The dimension which will be shifted when inserting cells. If ROWS,
-     * existing cells will be shifted down. If COLUMNS, existing cells will be
-     * shifted right.
+     * The dimension which will be shifted when inserting cells. If ROWS, existing cells will be shifted down. If COLUMNS, existing cells will be shifted right.
      */
     shiftDimension?: string;
   }
   /**
-   * A single interpolation point on a gradient conditional format. These pin
-   * the gradient color scale according to the color, type and value chosen.
+   * A single interpolation point on a gradient conditional format. These pin the gradient color scale according to the color, type and value chosen.
    */
   export interface Schema$InterpolationPoint {
     /**
@@ -2520,24 +2046,20 @@ export namespace sheets_v4 {
      */
     type?: string;
     /**
-     * The value this interpolation point uses.  May be a formula. Unused if
-     * type is MIN or MAX.
+     * The value this interpolation point uses.  May be a formula. Unused if type is MIN or MAX.
      */
     value?: string;
   }
   /**
-   * Settings to control how circular dependencies are resolved with iterative
-   * calculation.
+   * Settings to control how circular dependencies are resolved with iterative calculation.
    */
   export interface Schema$IterativeCalculationSettings {
     /**
-     * When iterative calculation is enabled and successive results differ by
-     * less than this threshold value, the calculation rounds stop.
+     * When iterative calculation is enabled and successive results differ by less than this threshold value, the calculation rounds stop.
      */
     convergenceThreshold?: number;
     /**
-     * When iterative calculation is enabled, the maximum number of calculation
-     * rounds to perform.
+     * When iterative calculation is enabled, the maximum number of calculation rounds to perform.
      */
     maxIterations?: number;
   }
@@ -2555,49 +2077,29 @@ export namespace sheets_v4 {
     width?: number;
   }
   /**
-   * Allows you to manually organize the values in a source data column into
-   * buckets with names of your choosing. For example, a pivot table that
-   * aggregates population by state:      +-------+-------------------+     |
-   * State | SUM of Population |     +-------+-------------------+     | AK    |
-   * 0.7 |     | AL    |               4.8 |     | AR    |               2.9 |
-   * ...     +-------+-------------------+ could be turned into a pivot table
-   * that aggregates population by time zone by providing a list of groups (for
-   * example, groupName = &#39;Central&#39;, items = [&#39;AL&#39;,
-   * &#39;AR&#39;, &#39;IA&#39;, ...]) to a manual group rule. Note that a
-   * similar effect could be achieved by adding a time zone column to the source
-   * data and adjusting the pivot table.      +-----------+-------------------+
-   * | Time Zone | SUM of Population |     +-----------+-------------------+ |
-   * Central   |             106.3 |     | Eastern   |             151.9 |     |
-   * Mountain  |              17.4 |     ... +-----------+-------------------+
+   * Allows you to manually organize the values in a source data column into buckets with names of your choosing. For example, a pivot table that aggregates population by state:      +-------+-------------------+     | State | SUM of Population |     +-------+-------------------+     | AK    |               0.7 |     | AL    |               4.8 |     | AR    |               2.9 |     ...     +-------+-------------------+ could be turned into a pivot table that aggregates population by time zone by providing a list of groups (for example, groupName = &#39;Central&#39;, items = [&#39;AL&#39;, &#39;AR&#39;, &#39;IA&#39;, ...]) to a manual group rule. Note that a similar effect could be achieved by adding a time zone column to the source data and adjusting the pivot table.      +-----------+-------------------+     | Time Zone | SUM of Population |     +-----------+-------------------+     | Central   |             106.3 |     | Eastern   |             151.9 |     | Mountain  |              17.4 |     ...     +-----------+-------------------+
    */
   export interface Schema$ManualRule {
     /**
-     * The list of group names and the corresponding items from the source data
-     * that map to each group name.
+     * The list of group names and the corresponding items from the source data that map to each group name.
      */
     groups?: Schema$ManualRuleGroup[];
   }
   /**
-   * A group name and a list of items from the source data that should be placed
-   * in the group with this name.
+   * A group name and a list of items from the source data that should be placed in the group with this name.
    */
   export interface Schema$ManualRuleGroup {
     /**
-     * The group name, which must be a string. Each group in a given ManualRule
-     * must have a unique group name.
+     * The group name, which must be a string. Each group in a given ManualRule must have a unique group name.
      */
     groupName?: Schema$ExtendedValue;
     /**
-     * The items in the source data that should be placed into this group. Each
-     * item may be a string, number, or boolean. Items may appear in at most one
-     * group within a given ManualRule. Items that do not appear in any group
-     * will appear on their own.
+     * The items in the source data that should be placed into this group. Each item may be a string, number, or boolean. Items may appear in at most one group within a given ManualRule. Items that do not appear in any group will appear on their own.
      */
     items?: Schema$ExtendedValue[];
   }
   /**
-   * A developer metadata entry and the data filters specified in the original
-   * request that matched it.
+   * A developer metadata entry and the data filters specified in the original request that matched it.
    */
   export interface Schema$MatchedDeveloperMetadata {
     /**
@@ -2640,16 +2142,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$MoveDimensionRequest {
     /**
-     * The zero-based start index of where to move the source data to, based on
-     * the coordinates *before* the source data is removed from the grid.
-     * Existing data will be shifted down or right (depending on the dimension)
-     * to make room for the moved dimensions. The source dimensions are removed
-     * from the grid, so the the data may end up in a different index than
-     * specified.  For example, given `A1..A5` of `0, 1, 2, 3, 4` and wanting to
-     * move `&quot;1&quot;` and `&quot;2&quot;` to between `&quot;3&quot;` and
-     * `&quot;4&quot;`, the source would be `ROWS [1..3)`,and the destination
-     * index would be `&quot;4&quot;` (the zero-based index of row 5). The end
-     * result would be `A1..A5` of `0, 3, 1, 2, 4`.
+     * The zero-based start index of where to move the source data to, based on the coordinates *before* the source data is removed from the grid.  Existing data will be shifted down or right (depending on the dimension) to make room for the moved dimensions. The source dimensions are removed from the grid, so the the data may end up in a different index than specified.  For example, given `A1..A5` of `0, 1, 2, 3, 4` and wanting to move `&quot;1&quot;` and `&quot;2&quot;` to between `&quot;3&quot;` and `&quot;4&quot;`, the source would be `ROWS [1..3)`,and the destination index would be `&quot;4&quot;` (the zero-based index of row 5). The end result would be `A1..A5` of `0, 3, 1, 2, 4`.
      */
     destinationIndex?: number;
     /**
@@ -2679,10 +2172,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$NumberFormat {
     /**
-     * Pattern string used for formatting.  If not set, a default pattern based
-     * on the user&#39;s locale will be used if necessary for the given type.
-     * See the [Date and Number Formats guide](/sheets/api/guides/formats) for
-     * more information about the supported patterns.
+     * Pattern string used for formatting.  If not set, a default pattern based on the user&#39;s locale will be used if necessary for the given type. See the [Date and Number Formats guide](/sheets/api/guides/formats) for more information about the supported patterns.
      */
     pattern?: string;
     /**
@@ -2691,21 +2181,11 @@ export namespace sheets_v4 {
     type?: string;
   }
   /**
-   * An &lt;a href=&quot;/chart/interactive/docs/gallery/orgchart&quot;&gt;org
-   * chart&lt;/a&gt;. Org charts require a unique set of labels in labels and
-   * may optionally include parent_labels and tooltips. parent_labels contain,
-   * for each node, the label identifying the parent node.  tooltips contain,
-   * for each node, an optional tooltip.  For example, to describe an OrgChart
-   * with Alice as the CEO, Bob as the President (reporting to Alice) and Cathy
-   * as VP of Sales (also reporting to Alice), have labels contain
-   * &quot;Alice&quot;, &quot;Bob&quot;, &quot;Cathy&quot;, parent_labels
-   * contain &quot;&quot;, &quot;Alice&quot;, &quot;Alice&quot; and tooltips
-   * contain &quot;CEO&quot;, &quot;President&quot;, &quot;VP Sales&quot;.
+   * An &lt;a href=&quot;/chart/interactive/docs/gallery/orgchart&quot;&gt;org chart&lt;/a&gt;. Org charts require a unique set of labels in labels and may optionally include parent_labels and tooltips. parent_labels contain, for each node, the label identifying the parent node.  tooltips contain, for each node, an optional tooltip.  For example, to describe an OrgChart with Alice as the CEO, Bob as the President (reporting to Alice) and Cathy as VP of Sales (also reporting to Alice), have labels contain &quot;Alice&quot;, &quot;Bob&quot;, &quot;Cathy&quot;, parent_labels contain &quot;&quot;, &quot;Alice&quot;, &quot;Alice&quot; and tooltips contain &quot;CEO&quot;, &quot;President&quot;, &quot;VP Sales&quot;.
    */
   export interface Schema$OrgChartSpec {
     /**
-     * The data containing the labels for all the nodes in the chart.  Labels
-     * must be unique.
+     * The data containing the labels for all the nodes in the chart.  Labels must be unique.
      */
     labels?: Schema$ChartData;
     /**
@@ -2717,9 +2197,7 @@ export namespace sheets_v4 {
      */
     nodeSize?: string;
     /**
-     * The data containing the label of the parent for the corresponding node. A
-     * blank value indicates that the node has no parent and is a top-level
-     * node. This field is optional.
+     * The data containing the label of the parent for the corresponding node. A blank value indicates that the node has no parent and is a top-level node. This field is optional.
      */
     parentLabels?: Schema$ChartData;
     /**
@@ -2727,9 +2205,7 @@ export namespace sheets_v4 {
      */
     selectedNodeColor?: Schema$Color;
     /**
-     * The data containing the tooltip for the corresponding node.  A blank
-     * value results in no tooltip being displayed for the node. This field is
-     * optional.
+     * The data containing the tooltip for the corresponding node.  A blank value results in no tooltip being displayed for the node. This field is optional.
      */
     tooltips?: Schema$ChartData;
   }
@@ -2746,13 +2222,11 @@ export namespace sheets_v4 {
      */
     heightPixels?: number;
     /**
-     * The horizontal offset, in pixels, that the object is offset from the
-     * anchor cell.
+     * The horizontal offset, in pixels, that the object is offset from the anchor cell.
      */
     offsetXPixels?: number;
     /**
-     * The vertical offset, in pixels, that the object is offset from the anchor
-     * cell.
+     * The vertical offset, in pixels, that the object is offset from the anchor cell.
      */
     offsetYPixels?: number;
     /**
@@ -2761,8 +2235,7 @@ export namespace sheets_v4 {
     widthPixels?: number;
   }
   /**
-   * The amount of padding around the cell, in pixels. When updating padding,
-   * every field must be specified.
+   * The amount of padding around the cell, in pixels. When updating padding, every field must be specified.
    */
   export interface Schema$Padding {
     /**
@@ -2808,8 +2281,7 @@ export namespace sheets_v4 {
     type?: string;
   }
   /**
-   * A &lt;a href=&quot;/chart/interactive/docs/gallery/piechart&quot;&gt;pie
-   * chart&lt;/a&gt;.
+   * A &lt;a href=&quot;/chart/interactive/docs/gallery/piechart&quot;&gt;pie chart&lt;/a&gt;.
    */
   export interface Schema$PieChartSpec {
     /**
@@ -2851,31 +2323,11 @@ export namespace sheets_v4 {
      */
     groupRule?: Schema$PivotGroupRule;
     /**
-     * The labels to use for the row/column groups which can be customized. For
-     * example, in the following pivot table, the row label is `Region` (which
-     * could be renamed to `State`) and the column label is `Product` (which
-     * could be renamed `Item`). Pivot tables created before December 2017 do
-     * not have header labels. If you&#39;d like to add header labels to an
-     * existing pivot table, please delete the existing pivot table and then
-     * create a new pivot table with same parameters.
-     * +--------------+---------+-------+     | SUM of Units | Product |       |
-     * | Region       | Pen     | Paper |     +--------------+---------+-------+
-     * | New York     |     345 |    98 |     | Oregon       |     234 |   123 |
-     * | Tennessee    |     531 |   415 |     +--------------+---------+-------+
-     * | Grand Total  |    1110 |   636 |     +--------------+---------+-------+
+     * The labels to use for the row/column groups which can be customized. For example, in the following pivot table, the row label is `Region` (which could be renamed to `State`) and the column label is `Product` (which could be renamed `Item`). Pivot tables created before December 2017 do not have header labels. If you&#39;d like to add header labels to an existing pivot table, please delete the existing pivot table and then create a new pivot table with same parameters.      +--------------+---------+-------+     | SUM of Units | Product |       |     | Region       | Pen     | Paper |     +--------------+---------+-------+     | New York     |     345 |    98 |     | Oregon       |     234 |   123 |     | Tennessee    |     531 |   415 |     +--------------+---------+-------+     | Grand Total  |    1110 |   636 |     +--------------+---------+-------+
      */
     label?: string;
     /**
-     * True if the headings in this pivot group should be repeated. This is only
-     * valid for row groupings and is ignored by columns.  By default, we
-     * minimize repitition of headings by not showing higher level headings
-     * where they are the same. For example, even though the third row below
-     * corresponds to &quot;Q1 Mar&quot;, &quot;Q1&quot; is not shown because it
-     * is redundant with previous rows. Setting repeat_headings to true would
-     * cause &quot;Q1&quot; to be repeated for &quot;Feb&quot; and
-     * &quot;Mar&quot;.      +--------------+     | Q1     | Jan |     | | Feb |
-     * |        | Mar |     +--------+-----+     | Q1 Total     |
-     * +--------------+
+     * True if the headings in this pivot group should be repeated. This is only valid for row groupings and is ignored by columns.  By default, we minimize repitition of headings by not showing higher level headings where they are the same. For example, even though the third row below corresponds to &quot;Q1 Mar&quot;, &quot;Q1&quot; is not shown because it is redundant with previous rows. Setting repeat_headings to true would cause &quot;Q1&quot; to be repeated for &quot;Feb&quot; and &quot;Mar&quot;.      +--------------+     | Q1     | Jan |     |        | Feb |     |        | Mar |     +--------+-----+     | Q1 Total     |     +--------------+
      */
     repeatHeadings?: boolean;
     /**
@@ -2887,15 +2339,11 @@ export namespace sheets_v4 {
      */
     sortOrder?: string;
     /**
-     * The column offset of the source range that this grouping is based on. For
-     * example, if the source was `C10:E15`, a `sourceColumnOffset` of `0` means
-     * this group refers to column `C`, whereas the offset `1` would refer to
-     * column `D`.
+     * The column offset of the source range that this grouping is based on.  For example, if the source was `C10:E15`, a `sourceColumnOffset` of `0` means this group refers to column `C`, whereas the offset `1` would refer to column `D`.
      */
     sourceColumnOffset?: number;
     /**
-     * The bucket of the opposite pivot group to sort by. If not specified,
-     * sorting is alphabetical by this group&#39;s values.
+     * The bucket of the opposite pivot group to sort by. If not specified, sorting is alphabetical by this group&#39;s values.
      */
     valueBucket?: Schema$PivotGroupSortValueBucket;
     /**
@@ -2904,11 +2352,7 @@ export namespace sheets_v4 {
     valueMetadata?: Schema$PivotGroupValueMetadata[];
   }
   /**
-   * An optional setting on a PivotGroup that defines buckets for the values in
-   * the source data column rather than breaking out each individual value. Only
-   * one PivotGroup with a group rule may be added for each column in the source
-   * data, though on any given column you may add both a PivotGroup that has a
-   * rule and a PivotGroup that does not.
+   * An optional setting on a PivotGroup that defines buckets for the values in the source data column rather than breaking out each individual value. Only one PivotGroup with a group rule may be added for each column in the source data, though on any given column you may add both a PivotGroup that has a rule and a PivotGroup that does not.
    */
   export interface Schema$PivotGroupRule {
     /**
@@ -2929,19 +2373,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$PivotGroupSortValueBucket {
     /**
-     * Determines the bucket from which values are chosen to sort.  For example,
-     * in a pivot table with one row group &amp; two column groups, the row
-     * group can list up to two values. The first value corresponds to a value
-     * within the first column group, and the second value corresponds to a
-     * value in the second column group.  If no values are listed, this would
-     * indicate that the row should be sorted according to the &quot;Grand
-     * Total&quot; over the column groups. If a single value is listed, this
-     * would correspond to using the &quot;Total&quot; of that bucket.
+     * Determines the bucket from which values are chosen to sort.  For example, in a pivot table with one row group &amp; two column groups, the row group can list up to two values. The first value corresponds to a value within the first column group, and the second value corresponds to a value in the second column group.  If no values are listed, this would indicate that the row should be sorted according to the &quot;Grand Total&quot; over the column groups. If a single value is listed, this would correspond to using the &quot;Total&quot; of that bucket.
      */
     buckets?: Schema$ExtendedValue[];
     /**
-     * The offset in the PivotTable.values list which the values in this
-     * grouping should be sorted by.
+     * The offset in the PivotTable.values list which the values in this grouping should be sorted by.
      */
     valuesIndex?: number;
   }
@@ -2954,8 +2390,7 @@ export namespace sheets_v4 {
      */
     collapsed?: boolean;
     /**
-     * The calculated value the metadata corresponds to. (Note that formulaValue
-     * is not valid,  because the values will be calculated.)
+     * The calculated value the metadata corresponds to. (Note that formulaValue is not valid,  because the values will be calculated.)
      */
     value?: Schema$ExtendedValue;
   }
@@ -2968,12 +2403,7 @@ export namespace sheets_v4 {
      */
     columns?: Schema$PivotGroup[];
     /**
-     * An optional mapping of filters per source column offset.  The filters are
-     * applied before aggregating data into the pivot table. The map&#39;s key
-     * is the column offset of the source range that you want to filter, and the
-     * value is the criteria for that column.  For example, if the source was
-     * `C10:E15`, a key of `0` will have the filter for column `C`, whereas the
-     * key `1` is for column `D`.
+     * An optional mapping of filters per source column offset.  The filters are applied before aggregating data into the pivot table. The map&#39;s key is the column offset of the source range that you want to filter, and the value is the criteria for that column.  For example, if the source was `C10:E15`, a key of `0` will have the filter for column `C`, whereas the key `1` is for column `D`.
      */
     criteria?: {[key: string]: Schema$PivotFilterCriteria};
     /**
@@ -2985,8 +2415,7 @@ export namespace sheets_v4 {
      */
     source?: Schema$GridRange;
     /**
-     * Whether values should be listed horizontally (as columns) or vertically
-     * (as rows).
+     * Whether values should be listed horizontally (as columns) or vertically (as rows).
      */
     valueLayout?: string;
     /**
@@ -2999,17 +2428,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$PivotValue {
     /**
-     * If specified, indicates that pivot values should be displayed as the
-     * result of a calculation with another pivot value. For example, if
-     * calculated_display_type is specified as PERCENT_OF_GRAND_TOTAL, all the
-     * pivot values are displayed as the percentage of the grand total. In the
-     * Sheets UI, this is referred to as &quot;Show As&quot; in the value
-     * section of a pivot table.
+     * If specified, indicates that pivot values should be displayed as the result of a calculation with another pivot value. For example, if calculated_display_type is specified as PERCENT_OF_GRAND_TOTAL, all the pivot values are displayed as the percentage of the grand total. In the Sheets UI, this is referred to as &quot;Show As&quot; in the value section of a pivot table.
      */
     calculatedDisplayType?: string;
     /**
-     * A custom formula to calculate the value.  The formula must start with an
-     * `=` character.
+     * A custom formula to calculate the value.  The formula must start with an `=` character.
      */
     formula?: string;
     /**
@@ -3017,16 +2440,11 @@ export namespace sheets_v4 {
      */
     name?: string;
     /**
-     * The column offset of the source range that this value reads from.  For
-     * example, if the source was `C10:E15`, a `sourceColumnOffset` of `0` means
-     * this value refers to column `C`, whereas the offset `1` would refer to
-     * column `D`.
+     * The column offset of the source range that this value reads from.  For example, if the source was `C10:E15`, a `sourceColumnOffset` of `0` means this value refers to column `C`, whereas the offset `1` would refer to column `D`.
      */
     sourceColumnOffset?: number;
     /**
-     * A function to summarize the value. If formula is set, the only supported
-     * values are SUM and CUSTOM. If sourceColumnOffset is set, then `CUSTOM` is
-     * not supported.
+     * A function to summarize the value. If formula is set, the only supported values are SUM and CUSTOM. If sourceColumnOffset is set, then `CUSTOM` is not supported.
      */
     summarizeFunction?: string;
   }
@@ -3039,14 +2457,11 @@ export namespace sheets_v4 {
      */
     description?: string;
     /**
-     * The users and groups with edit access to the protected range. This field
-     * is only visible to users with edit access to the protected range and the
-     * document. Editors are not supported with warning_only protection.
+     * The users and groups with edit access to the protected range. This field is only visible to users with edit access to the protected range and the document. Editors are not supported with warning_only protection.
      */
     editors?: Schema$Editors;
     /**
-     * The named range this protected range is backed by, if any.  When writing,
-     * only one of range or named_range_id may be set.
+     * The named range this protected range is backed by, if any.  When writing, only one of range or named_range_id may be set.
      */
     namedRangeId?: string;
     /**
@@ -3054,29 +2469,19 @@ export namespace sheets_v4 {
      */
     protectedRangeId?: number;
     /**
-     * The range that is being protected. The range may be fully unbounded, in
-     * which case this is considered a protected sheet.  When writing, only one
-     * of range or named_range_id may be set.
+     * The range that is being protected. The range may be fully unbounded, in which case this is considered a protected sheet.  When writing, only one of range or named_range_id may be set.
      */
     range?: Schema$GridRange;
     /**
-     * True if the user who requested this protected range can edit the
-     * protected area. This field is read-only.
+     * True if the user who requested this protected range can edit the protected area. This field is read-only.
      */
     requestingUserCanEdit?: boolean;
     /**
-     * The list of unprotected ranges within a protected sheet. Unprotected
-     * ranges are only supported on protected sheets.
+     * The list of unprotected ranges within a protected sheet. Unprotected ranges are only supported on protected sheets.
      */
     unprotectedRanges?: Schema$GridRange[];
     /**
-     * True if this protected range will show a warning when editing.
-     * Warning-based protection means that every user can edit data in the
-     * protected range, except editing will prompt a warning asking the user to
-     * confirm the edit.  When writing: if this field is true, then editors is
-     * ignored. Additionally, if this field is changed from true to false and
-     * the `editors` field is not set (nor included in the field mask), then the
-     * editors will be set to all the editors in the document.
+     * True if this protected range will show a warning when editing. Warning-based protection means that every user can edit data in the protected range, except editing will prompt a warning asking the user to confirm the edit.  When writing: if this field is true, then editors is ignored. Additionally, if this field is changed from true to false and the `editors` field is not set (nor included in the field mask), then the editors will be set to all the editors in the document.
      */
     warningOnly?: boolean;
   }
@@ -3090,15 +2495,7 @@ export namespace sheets_v4 {
     range?: Schema$GridRange;
   }
   /**
-   * Updates all cells in the range to the values in the given Cell object. Only
-   * the fields listed in the fields field are updated; others are unchanged. If
-   * writing a cell with a formula, the formula&#39;s ranges will automatically
-   * increment for each field in the range. For example, if writing a cell with
-   * formula `=A1` into range B2:C4, B2 would be `=A1`, B3 would be `=A2`, B4
-   * would be `=A3`, C2 would be `=B1`, C3 would be `=B2`, C4 would be `=B3`. To
-   * keep the formula&#39;s ranges static, use the `$` indicator. For example,
-   * use the formula `=$A$1` to prevent both the row and the column from
-   * incrementing.
+   * Updates all cells in the range to the values in the given Cell object. Only the fields listed in the fields field are updated; others are unchanged.  If writing a cell with a formula, the formula&#39;s ranges will automatically increment for each field in the range. For example, if writing a cell with formula `=A1` into range B2:C4, B2 would be `=A1`, B3 would be `=A2`, B4 would be `=A3`, C2 would be `=B1`, C3 would be `=B2`, C4 would be `=B3`.  To keep the formula&#39;s ranges static, use the `$` indicator. For example, use the formula `=$A$1` to prevent both the row and the column from incrementing.
    */
   export interface Schema$RepeatCellRequest {
     /**
@@ -3106,9 +2503,7 @@ export namespace sheets_v4 {
      */
     cell?: Schema$CellData;
     /**
-     * The fields that should be updated.  At least one field must be specified.
-     * The root `cell` is implied and should not be specified. A single
-     * `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated.  At least one field must be specified. The root `cell` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string;
     /**
@@ -3165,8 +2560,7 @@ export namespace sheets_v4 {
      */
     autoFill?: Schema$AutoFillRequest;
     /**
-     * Automatically resizes one or more dimensions based on the contents of the
-     * cells in that dimension.
+     * Automatically resizes one or more dimensions based on the contents of the cells in that dimension.
      */
     autoResizeDimensions?: Schema$AutoResizeDimensionsRequest;
     /**
@@ -3429,14 +2823,11 @@ export namespace sheets_v4 {
     values?: Schema$CellData[];
   }
   /**
-   * A request to retrieve all developer metadata matching the set of specified
-   * criteria.
+   * A request to retrieve all developer metadata matching the set of specified criteria.
    */
   export interface Schema$SearchDeveloperMetadataRequest {
     /**
-     * The data filters describing the criteria used to determine which
-     * DeveloperMetadata entries to return.  DeveloperMetadata matching any of
-     * the specified filters will be included in the response.
+     * The data filters describing the criteria used to determine which DeveloperMetadata entries to return.  DeveloperMetadata matching any of the specified filters will be included in the response.
      */
     dataFilters?: Schema$DataFilter[];
   }
@@ -3459,8 +2850,7 @@ export namespace sheets_v4 {
     filter?: Schema$BasicFilter;
   }
   /**
-   * Sets a data validation rule to every cell in the range. To clear validation
-   * in a range, call this with no rule specified.
+   * Sets a data validation rule to every cell in the range. To clear validation in a range, call this with no rule specified.
    */
   export interface Schema$SetDataValidationRequest {
     /**
@@ -3468,8 +2858,7 @@ export namespace sheets_v4 {
      */
     range?: Schema$GridRange;
     /**
-     * The data validation rule to set on each cell in the range, or empty to
-     * clear the data validation in the range.
+     * The data validation rule to set on each cell in the range, or empty to clear the data validation in the range.
      */
     rule?: Schema$DataValidationRule;
   }
@@ -3490,8 +2879,7 @@ export namespace sheets_v4 {
      */
     charts?: Schema$EmbeddedChart[];
     /**
-     * All column groups on this sheet, ordered by increasing range start index,
-     * then by group depth.
+     * All column groups on this sheet, ordered by increasing range start index, then by group depth.
      */
     columnGroups?: Schema$DimensionGroup[];
     /**
@@ -3499,13 +2887,7 @@ export namespace sheets_v4 {
      */
     conditionalFormats?: Schema$ConditionalFormatRule[];
     /**
-     * Data in the grid, if this is a grid sheet. The number of GridData objects
-     * returned is dependent on the number of ranges requested on this sheet.
-     * For example, if this is representing `Sheet1`, and the spreadsheet was
-     * requested with ranges `Sheet1!A1:C10` and `Sheet1!D15:E20`, then the
-     * first GridData will have a startRow/startColumn of `0`, while the second
-     * one will have `startRow 14` (zero-based row 15), and `startColumn 3`
-     * (zero-based column D).
+     * Data in the grid, if this is a grid sheet. The number of GridData objects returned is dependent on the number of ranges requested on this sheet. For example, if this is representing `Sheet1`, and the spreadsheet was requested with ranges `Sheet1!A1:C10` and `Sheet1!D15:E20`, then the first GridData will have a startRow/startColumn of `0`, while the second one will have `startRow 14` (zero-based row 15), and `startColumn 3` (zero-based column D).
      */
     data?: Schema$GridData[];
     /**
@@ -3529,8 +2911,7 @@ export namespace sheets_v4 {
      */
     protectedRanges?: Schema$ProtectedRange[];
     /**
-     * All row groups on this sheet, ordered by increasing range start index,
-     * then by group depth.
+     * All row groups on this sheet, ordered by increasing range start index, then by group depth.
      */
     rowGroups?: Schema$DimensionGroup[];
   }
@@ -3539,10 +2920,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$SheetProperties {
     /**
-     * Additional properties of the sheet if this sheet is a grid. (If the sheet
-     * is an object sheet, containing a chart or image, then this field will be
-     * absent.) When writing it is an error to set any grid properties on
-     * non-grid sheets.
+     * Additional properties of the sheet if this sheet is a grid. (If the sheet is an object sheet, containing a chart or image, then this field will be absent.) When writing it is an error to set any grid properties on non-grid sheets.
      */
     gridProperties?: Schema$GridProperties;
     /**
@@ -3550,15 +2928,7 @@ export namespace sheets_v4 {
      */
     hidden?: boolean;
     /**
-     * The index of the sheet within the spreadsheet. When adding or updating
-     * sheet properties, if this field is excluded then the sheet is added or
-     * moved to the end of the sheet list. When updating sheet indices or
-     * inserting sheets, movement is considered in &quot;before the move&quot;
-     * indexes. For example, if there were 3 sheets (S1, S2, S3) in order to
-     * move S1 ahead of S2 the index would have to be set to 2. A sheet index
-     * update request is ignored if the requested index is identical to the
-     * sheets current index or if the requested new index is equal to the
-     * current sheet index + 1.
+     * The index of the sheet within the spreadsheet. When adding or updating sheet properties, if this field is excluded then the sheet is added or moved to the end of the sheet list. When updating sheet indices or inserting sheets, movement is considered in &quot;before the move&quot; indexes. For example, if there were 3 sheets (S1, S2, S3) in order to move S1 ahead of S2 the index would have to be set to 2. A sheet index update request is ignored if the requested index is identical to the sheets current index or if the requested new index is equal to the current sheet index + 1.
      */
     index?: number;
     /**
@@ -3566,13 +2936,11 @@ export namespace sheets_v4 {
      */
     rightToLeft?: boolean;
     /**
-     * The ID of the sheet. Must be non-negative. This field cannot be changed
-     * once set.
+     * The ID of the sheet. Must be non-negative. This field cannot be changed once set.
      */
     sheetId?: number;
     /**
-     * The type of sheet. Defaults to GRID. This field cannot be changed once
-     * set.
+     * The type of sheet. Defaults to GRID. This field cannot be changed once set.
      */
     sheetType?: string;
     /**
@@ -3593,8 +2961,7 @@ export namespace sheets_v4 {
      */
     range?: Schema$GridRange;
     /**
-     * The sort order per column. Later specifications are used when values are
-     * equal in the earlier specifications.
+     * The sort order per column. Later specifications are used when values are equal in the earlier specifications.
      */
     sortSpecs?: Schema$SortSpec[];
   }
@@ -3620,9 +2987,7 @@ export namespace sheets_v4 {
      */
     dimension?: string;
     /**
-     * The number of rows or columns that data should be filled into. Positive
-     * numbers expand beyond the last row or last column of the source. Negative
-     * numbers expand before the first row or first column of the source.
+     * The number of rows or columns that data should be filled into. Positive numbers expand beyond the last row or last column of the source.  Negative numbers expand before the first row or first column of the source.
      */
     fillLength?: number;
     /**
@@ -3668,29 +3033,19 @@ export namespace sheets_v4 {
      */
     autoRecalc?: string;
     /**
-     * The default format of all cells in the spreadsheet.
-     * CellData.effectiveFormat will not be set if the cell&#39;s format is
-     * equal to this default format. This field is read-only.
+     * The default format of all cells in the spreadsheet. CellData.effectiveFormat will not be set if the cell&#39;s format is equal to this default format. This field is read-only.
      */
     defaultFormat?: Schema$CellFormat;
     /**
-     * Determines whether and how circular references are resolved with
-     * iterative calculation.  Absence of this field means that circular
-     * references will result in calculation errors.
+     * Determines whether and how circular references are resolved with iterative calculation.  Absence of this field means that circular references will result in calculation errors.
      */
     iterativeCalculationSettings?: Schema$IterativeCalculationSettings;
     /**
-     * The locale of the spreadsheet in one of the following formats:  * an ISO
-     * 639-1 language code such as `en`  * an ISO 639-2 language code such as
-     * `fil`, if no 639-1 code exists  * a combination of the ISO language code
-     * and country code, such as `en_US`  Note: when updating this field, not
-     * all locales/languages are supported.
+     * The locale of the spreadsheet in one of the following formats:  * an ISO 639-1 language code such as `en`  * an ISO 639-2 language code such as `fil`, if no 639-1 code exists  * a combination of the ISO language code and country code, such as `en_US`  Note: when updating this field, not all locales/languages are supported.
      */
     locale?: string;
     /**
-     * The time zone of the spreadsheet, in CLDR format such as
-     * `America/New_York`. If the time zone isn&#39;t recognized, this may be a
-     * custom time zone such as `GMT-07:00`.
+     * The time zone of the spreadsheet, in CLDR format such as `America/New_York`. If the time zone isn&#39;t recognized, this may be a custom time zone such as `GMT-07:00`.
      */
     timeZone?: string;
     /**
@@ -3699,8 +3054,7 @@ export namespace sheets_v4 {
     title?: string;
   }
   /**
-   * The format of a run of text in a cell. Absent values indicate that the
-   * field isn&#39;t specified.
+   * The format of a run of text in a cell. Absent values indicate that the field isn&#39;t specified.
    */
   export interface Schema$TextFormat {
     /**
@@ -3733,8 +3087,7 @@ export namespace sheets_v4 {
     underline?: boolean;
   }
   /**
-   * A run of a text format. The format of this run continues until the start
-   * index of the next run. When updating, all fields must be set.
+   * A run of a text format. The format of this run continues until the start index of the next run. When updating, all fields must be set.
    */
   export interface Schema$TextFormatRun {
     /**
@@ -3760,23 +3113,16 @@ export namespace sheets_v4 {
    */
   export interface Schema$TextRotation {
     /**
-     * The angle between the standard orientation and the desired orientation.
-     * Measured in degrees. Valid values are between -90 and 90. Positive angles
-     * are angled upwards, negative are angled downwards.  Note: For LTR text
-     * direction positive angles are in the counterclockwise direction, whereas
-     * for RTL they are in the clockwise direction
+     * The angle between the standard orientation and the desired orientation. Measured in degrees. Valid values are between -90 and 90. Positive angles are angled upwards, negative are angled downwards.  Note: For LTR text direction positive angles are in the counterclockwise direction, whereas for RTL they are in the clockwise direction
      */
     angle?: number;
     /**
-     * If true, text reads top to bottom, but the orientation of individual
-     * characters is unchanged. For example:      | V |     | e |     | r | | t
-     * |     | i |     | c |     | a |     | l |
+     * If true, text reads top to bottom, but the orientation of individual characters is unchanged. For example:      | V |     | e |     | r |     | t |     | i |     | c |     | a |     | l |
      */
     vertical?: boolean;
   }
   /**
-   * Splits a column of text into multiple columns, based on a delimiter in each
-   * cell.
+   * Splits a column of text into multiple columns, based on a delimiter in each cell.
    */
   export interface Schema$TextToColumnsRequest {
     /**
@@ -3797,50 +3143,32 @@ export namespace sheets_v4 {
    */
   export interface Schema$TreemapChartColorScale {
     /**
-     * The background color for cells with a color value greater than or equal
-     * to maxValue. Defaults to #109618 if not specified.
+     * The background color for cells with a color value greater than or equal to maxValue. Defaults to #109618 if not specified.
      */
     maxValueColor?: Schema$Color;
     /**
-     * The background color for cells with a color value at the midpoint between
-     * minValue and maxValue. Defaults to #efe6dc if not specified.
+     * The background color for cells with a color value at the midpoint between minValue and maxValue. Defaults to #efe6dc if not specified.
      */
     midValueColor?: Schema$Color;
     /**
-     * The background color for cells with a color value less than or equal to
-     * minValue. Defaults to #dc3912 if not specified.
+     * The background color for cells with a color value less than or equal to minValue. Defaults to #dc3912 if not specified.
      */
     minValueColor?: Schema$Color;
     /**
-     * The background color for cells that have no color data associated with
-     * them. Defaults to #000000 if not specified.
+     * The background color for cells that have no color data associated with them. Defaults to #000000 if not specified.
      */
     noDataColor?: Schema$Color;
   }
   /**
-   * A &lt;a href=&quot;/chart/interactive/docs/gallery/treemap&quot;&gt;Treemap
-   * chart&lt;/a&gt;.
+   * A &lt;a href=&quot;/chart/interactive/docs/gallery/treemap&quot;&gt;Treemap chart&lt;/a&gt;.
    */
   export interface Schema$TreemapChartSpec {
     /**
-     * The data that determines the background color of each treemap data cell.
-     * This field is optional. If not specified, size_data is used to determine
-     * background colors. If specified, the data is expected to be numeric.
-     * color_scale will determine how the values in this data map to data cell
-     * background colors.
+     * The data that determines the background color of each treemap data cell. This field is optional. If not specified, size_data is used to determine background colors. If specified, the data is expected to be numeric. color_scale will determine how the values in this data map to data cell background colors.
      */
     colorData?: Schema$ChartData;
     /**
-     * The color scale for data cells in the treemap chart. Data cells are
-     * assigned colors based on their color values. These color values come from
-     * color_data, or from size_data if color_data is not specified. Cells with
-     * color values less than or equal to min_value will have minValueColor as
-     * their background color. Cells with color values greater than or equal to
-     * max_value will have maxValueColor as their background color. Cells with
-     * color values between min_value and max_value will have background colors
-     * on a gradient between minValueColor and maxValueColor, the midpoint of
-     * the gradient being midValueColor. Cells with missing or non-numeric color
-     * values will have noDataColor as their background color.
+     * The color scale for data cells in the treemap chart. Data cells are assigned colors based on their color values. These color values come from color_data, or from size_data if color_data is not specified. Cells with color values less than or equal to min_value will have minValueColor as their background color. Cells with color values greater than or equal to max_value will have maxValueColor as their background color. Cells with color values between min_value and max_value will have background colors on a gradient between minValueColor and maxValueColor, the midpoint of the gradient being midValueColor. Cells with missing or non-numeric color values will have noDataColor as their background color.
      */
     colorScale?: Schema$TreemapChartColorScale;
     /**
@@ -3852,9 +3180,7 @@ export namespace sheets_v4 {
      */
     hideTooltips?: boolean;
     /**
-     * The number of additional data levels beyond the labeled levels to be
-     * shown on the treemap chart. These levels are not interactive and are
-     * shown without their labels. Defaults to 0 if not specified.
+     * The number of additional data levels beyond the labeled levels to be shown on the treemap chart. These levels are not interactive and are shown without their labels. Defaults to 0 if not specified.
      */
     hintedLevels?: number;
     /**
@@ -3862,23 +3188,15 @@ export namespace sheets_v4 {
      */
     labels?: Schema$ChartData;
     /**
-     * The number of data levels to show on the treemap chart. These levels are
-     * interactive and are shown with their labels. Defaults to 2 if not
-     * specified.
+     * The number of data levels to show on the treemap chart. These levels are interactive and are shown with their labels. Defaults to 2 if not specified.
      */
     levels?: number;
     /**
-     * The maximum possible data value. Cells with values greater than this will
-     * have the same color as cells with this value. If not specified, defaults
-     * to the actual maximum value from color_data, or the maximum value from
-     * size_data if color_data is not specified.
+     * The maximum possible data value. Cells with values greater than this will have the same color as cells with this value. If not specified, defaults to the actual maximum value from color_data, or the maximum value from size_data if color_data is not specified.
      */
     maxValue?: number;
     /**
-     * The minimum possible data value. Cells with values less than this will
-     * have the same color as cells with this value. If not specified, defaults
-     * to the actual minimum value from color_data, or the minimum value from
-     * size_data if color_data is not specified.
+     * The minimum possible data value. Cells with values less than this will have the same color as cells with this value. If not specified, defaults to the actual minimum value from color_data, or the minimum value from size_data if color_data is not specified.
      */
     minValue?: number;
     /**
@@ -3886,10 +3204,7 @@ export namespace sheets_v4 {
      */
     parentLabels?: Schema$ChartData;
     /**
-     * The data that determines the size of each treemap data cell. This data is
-     * expected to be numeric. The cells corresponding to non-numeric or missing
-     * data will not be rendered. If color_data is not specified, this data is
-     * used to determine data cell background colors as well.
+     * The data that determines the size of each treemap data cell. This data is expected to be numeric. The cells corresponding to non-numeric or missing data will not be rendered. If color_data is not specified, this data is used to determine data cell background colors as well.
      */
     sizeData?: Schema$ChartData;
     /**
@@ -3902,9 +3217,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UnmergeCellsRequest {
     /**
-     * The range within which all cells should be unmerged. If the range spans
-     * multiple merges, all will be unmerged. The range must not partially span
-     * any merge.
+     * The range within which all cells should be unmerged. If the range spans multiple merges, all will be unmerged. The range must not partially span any merge.
      */
     range?: Schema$GridRange;
   }
@@ -3917,19 +3230,12 @@ export namespace sheets_v4 {
      */
     bandedRange?: Schema$BandedRange;
     /**
-     * The fields that should be updated.  At least one field must be specified.
-     * The root `bandedRange` is implied and should not be specified. A single
-     * `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated.  At least one field must be specified. The root `bandedRange` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string;
   }
   /**
-   * Updates the borders of a range. If a field is not set in the request, that
-   * means the border remains as-is. For example, with two subsequent
-   * UpdateBordersRequest:   1. range: A1:A5 `{ top: RED, bottom: WHITE }`  2.
-   * range: A1:A5 `{ left: BLUE }`  That would result in A1:A5 having a borders
-   * of `{ top: RED, bottom: WHITE, left: BLUE }`. If you want to clear a
-   * border, explicitly set the style to NONE.
+   * Updates the borders of a range. If a field is not set in the request, that means the border remains as-is. For example, with two subsequent UpdateBordersRequest:   1. range: A1:A5 `{ top: RED, bottom: WHITE }`  2. range: A1:A5 `{ left: BLUE }`  That would result in A1:A5 having a borders of `{ top: RED, bottom: WHITE, left: BLUE }`. If you want to clear a border, explicitly set the style to NONE.
    */
   export interface Schema$UpdateBordersRequest {
     /**
@@ -3966,16 +3272,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateCellsRequest {
     /**
-     * The fields of CellData that should be updated. At least one field must be
-     * specified. The root is the CellData; &#39;row.values.&#39; should not be
-     * specified. A single `&quot;*&quot;` can be used as short-hand for listing
-     * every field.
+     * The fields of CellData that should be updated. At least one field must be specified. The root is the CellData; &#39;row.values.&#39; should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string;
     /**
-     * The range to write data to.  If the data in rows does not cover the
-     * entire requested range, the fields matching those set in fields will be
-     * cleared.
+     * The range to write data to.  If the data in rows does not cover the entire requested range, the fields matching those set in fields will be cleared.
      */
     range?: Schema$GridRange;
     /**
@@ -3983,14 +3284,12 @@ export namespace sheets_v4 {
      */
     rows?: Schema$RowData[];
     /**
-     * The coordinate to start writing data at. Any number of rows and columns
-     * (including a different number of columns per row) may be written.
+     * The coordinate to start writing data at. Any number of rows and columns (including a different number of columns per row) may be written.
      */
     start?: Schema$GridCoordinate;
   }
   /**
-   * Updates a chart&#39;s specifications. (This does not move or resize a
-   * chart. To move or resize a chart, use UpdateEmbeddedObjectPositionRequest.)
+   * Updates a chart&#39;s specifications. (This does not move or resize a chart. To move or resize a chart, use  UpdateEmbeddedObjectPositionRequest.)
    */
   export interface Schema$UpdateChartSpecRequest {
     /**
@@ -4003,8 +3302,7 @@ export namespace sheets_v4 {
     spec?: Schema$ChartSpec;
   }
   /**
-   * Updates a conditional format rule at the given index, or moves a
-   * conditional format rule to another index.
+   * Updates a conditional format rule at the given index, or moves a conditional format rule to another index.
    */
   export interface Schema$UpdateConditionalFormatRuleRequest {
     /**
@@ -4020,8 +3318,7 @@ export namespace sheets_v4 {
      */
     rule?: Schema$ConditionalFormatRule;
     /**
-     * The sheet of the rule to move.  Required if new_index is set, unused
-     * otherwise.
+     * The sheet of the rule to move.  Required if new_index is set, unused otherwise.
      */
     sheetId?: number;
   }
@@ -4034,27 +3331,20 @@ export namespace sheets_v4 {
      */
     newIndex?: number;
     /**
-     * The new rule that replaced the old rule (if replacing), or the rule that
-     * was moved (if moved)
+     * The new rule that replaced the old rule (if replacing), or the rule that was moved (if moved)
      */
     newRule?: Schema$ConditionalFormatRule;
     /**
-     * The old index of the rule. Not set if a rule was replaced (because it is
-     * the same as new_index).
+     * The old index of the rule. Not set if a rule was replaced (because it is the same as new_index).
      */
     oldIndex?: number;
     /**
-     * The old (deleted) rule. Not set if a rule was moved (because it is the
-     * same as new_rule).
+     * The old (deleted) rule. Not set if a rule was moved (because it is the same as new_rule).
      */
     oldRule?: Schema$ConditionalFormatRule;
   }
   /**
-   * A request to update properties of developer metadata. Updates the
-   * properties of the developer metadata selected by the filters to the values
-   * provided in the DeveloperMetadata resource.  Callers must specify the
-   * properties they wish to update in the fields parameter, as well as specify
-   * at least one DataFilter matching the metadata they wish to update.
+   * A request to update properties of developer metadata. Updates the properties of the developer metadata selected by the filters to the values provided in the DeveloperMetadata resource.  Callers must specify the properties they wish to update in the fields parameter, as well as specify at least one DataFilter matching the metadata they wish to update.
    */
   export interface Schema$UpdateDeveloperMetadataRequest {
     /**
@@ -4062,14 +3352,11 @@ export namespace sheets_v4 {
      */
     dataFilters?: Schema$DataFilter[];
     /**
-     * The value that all metadata matched by the data filters will be updated
-     * to.
+     * The value that all metadata matched by the data filters will be updated to.
      */
     developerMetadata?: Schema$DeveloperMetadata;
     /**
-     * The fields that should be updated.  At least one field must be specified.
-     * The root `developerMetadata` is implied and should not be specified. A
-     * single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated.  At least one field must be specified. The root `developerMetadata` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string;
   }
@@ -4087,14 +3374,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateDimensionGroupRequest {
     /**
-     * The group whose state should be updated. The range and depth of the group
-     * should specify a valid group on the sheet, and all other fields updated.
+     * The group whose state should be updated. The range and depth of the group should specify a valid group on the sheet, and all other fields updated.
      */
     dimensionGroup?: Schema$DimensionGroup;
     /**
-     * The fields that should be updated.  At least one field must be specified.
-     * The root `dimensionGroup` is implied and should not be specified. A
-     * single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated.  At least one field must be specified. The root `dimensionGroup` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string;
   }
@@ -4103,9 +3387,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateDimensionPropertiesRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified.
-     * The root `properties` is implied and should not be specified. A single
-     * `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated.  At least one field must be specified. The root `properties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string;
     /**
@@ -4118,23 +3400,15 @@ export namespace sheets_v4 {
     range?: Schema$DimensionRange;
   }
   /**
-   * Update an embedded object&#39;s position (such as a moving or resizing a
-   * chart or image).
+   * Update an embedded object&#39;s position (such as a moving or resizing a chart or image).
    */
   export interface Schema$UpdateEmbeddedObjectPositionRequest {
     /**
-     * The fields of OverlayPosition that should be updated when setting a new
-     * position. Used only if newPosition.overlayPosition is set, in which case
-     * at least one field must be specified.  The root
-     * `newPosition.overlayPosition` is implied and should not be specified. A
-     * single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields of OverlayPosition that should be updated when setting a new position. Used only if newPosition.overlayPosition is set, in which case at least one field must be specified.  The root `newPosition.overlayPosition` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string;
     /**
-     * An explicit position to move the embedded object to. If
-     * newPosition.sheetId is set, a new sheet with that ID will be created. If
-     * newPosition.newSheet is set to true, a new sheet will be created with an
-     * ID that will be chosen for you.
+     * An explicit position to move the embedded object to. If newPosition.sheetId is set, a new sheet with that ID will be created. If newPosition.newSheet is set to true, a new sheet will be created with an ID that will be chosen for you.
      */
     newPosition?: Schema$EmbeddedObjectPosition;
     /**
@@ -4156,9 +3430,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateFilterViewRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified.
-     * The root `filter` is implied and should not be specified. A single
-     * `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated.  At least one field must be specified. The root `filter` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string;
     /**
@@ -4171,9 +3443,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateNamedRangeRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified.
-     * The root `namedRange` is implied and should not be specified. A single
-     * `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated.  At least one field must be specified. The root `namedRange` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string;
     /**
@@ -4186,9 +3456,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateProtectedRangeRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified.
-     * The root `protectedRange` is implied and should not be specified. A
-     * single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated.  At least one field must be specified. The root `protectedRange` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string;
     /**
@@ -4201,9 +3469,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateSheetPropertiesRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified.
-     * The root `properties` is implied and should not be specified. A single
-     * `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated.  At least one field must be specified. The root `properties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string;
     /**
@@ -4216,9 +3482,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$UpdateSpreadsheetPropertiesRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified.
-     * The root &#39;properties&#39; is implied and should not be specified. A
-     * single `&quot;*&quot;` can be used as short-hand for listing every field.
+     * The fields that should be updated.  At least one field must be specified. The root &#39;properties&#39; is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.
      */
     fields?: string;
     /**
@@ -4227,8 +3491,7 @@ export namespace sheets_v4 {
     properties?: Schema$SpreadsheetProperties;
   }
   /**
-   * The response when updating a range of values by a data filter in a
-   * spreadsheet.
+   * The response when updating a range of values by a data filter in a spreadsheet.
    */
   export interface Schema$UpdateValuesByDataFilterResponse {
     /**
@@ -4244,9 +3507,7 @@ export namespace sheets_v4 {
      */
     updatedColumns?: number;
     /**
-     * The values of the cells in the range matched by the dataFilter after all
-     * updates were applied. This is only included if the request&#39;s
-     * `includeValuesInResponse` field was `true`.
+     * The values of the cells in the range matched by the dataFilter after all updates were applied. This is only included if the request&#39;s `includeValuesInResponse` field was `true`.
      */
     updatedData?: Schema$ValueRange;
     /**
@@ -4275,8 +3536,7 @@ export namespace sheets_v4 {
      */
     updatedColumns?: number;
     /**
-     * The values of the cells after updates were applied. This is only included
-     * if the request&#39;s `includeValuesInResponse` field was `true`.
+     * The values of the cells after updates were applied. This is only included if the request&#39;s `includeValuesInResponse` field was `true`.
      */
     updatedData?: Schema$ValueRange;
     /**
@@ -4293,32 +3553,15 @@ export namespace sheets_v4 {
    */
   export interface Schema$ValueRange {
     /**
-     * The major dimension of the values.  For output, if the spreadsheet data
-     * is: `A1=1,B1=2,A2=3,B2=4`, then requesting
-     * `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas
-     * requesting `range=A1:B2,majorDimension=COLUMNS` will return
-     * `[[1,3],[2,4]]`.  For input, with `range=A1:B2,majorDimension=ROWS` then
-     * `[[1,2],[3,4]]` will set `A1=1,B1=2,A2=3,B2=4`. With
-     * `range=A1:B2,majorDimension=COLUMNS` then `[[1,2],[3,4]]` will set
-     * `A1=1,B1=3,A2=2,B2=4`.  When writing, if this field is not set, it
-     * defaults to ROWS.
+     * The major dimension of the values.  For output, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.  For input, with `range=A1:B2,majorDimension=ROWS` then `[[1,2],[3,4]]` will set `A1=1,B1=2,A2=3,B2=4`. With `range=A1:B2,majorDimension=COLUMNS` then `[[1,2],[3,4]]` will set `A1=1,B1=3,A2=2,B2=4`.  When writing, if this field is not set, it defaults to ROWS.
      */
     majorDimension?: string;
     /**
-     * The range the values cover, in A1 notation. For output, this range
-     * indicates the entire requested range, even though the values will exclude
-     * trailing rows and columns. When appending values, this field represents
-     * the range to search for a table, after which values will be appended.
+     * The range the values cover, in A1 notation. For output, this range indicates the entire requested range, even though the values will exclude trailing rows and columns. When appending values, this field represents the range to search for a table, after which values will be appended.
      */
     range?: string;
     /**
-     * The data that was read or to be written.  This is an array of arrays, the
-     * outer array representing all the data and each inner array representing a
-     * major dimension. Each item in the inner array corresponds with one cell.
-     * For output, empty trailing rows and columns will not be included.  For
-     * input, supported value types are: bool, string, and double. Null values
-     * will be skipped. To set a cell to an empty value, set the string value to
-     * an empty string.
+     * The data that was read or to be written.  This is an array of arrays, the outer array representing all the data and each inner array representing a major dimension. Each item in the inner array corresponds with one cell.  For output, empty trailing rows and columns will not be included.  For input, supported value types are: bool, string, and double. Null values will be skipped. To set a cell to an empty value, set the string value to an empty string.
      */
     values?: any[][];
   }
@@ -4340,8 +3583,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$WaterfallChartCustomSubtotal {
     /**
-     * True if the data point at subtotal_index is the subtotal. If false, the
-     * subtotal will be computed and appear after the data point.
+     * True if the data point at subtotal_index is the subtotal. If false, the subtotal will be computed and appear after the data point.
      */
     dataIsSubtotal?: boolean;
     /**
@@ -4349,14 +3591,7 @@ export namespace sheets_v4 {
      */
     label?: string;
     /**
-     * The 0-based index of a data point within the series. If data_is_subtotal
-     * is true, the data point at this index is the subtotal. Otherwise, the
-     * subtotal appears after the data point with this index. A series can have
-     * multiple subtotals at arbitrary indices, but subtotals do not affect the
-     * indices of the data points. For example, if a series has three data
-     * points, their indices will always be 0, 1, and 2, regardless of how many
-     * subtotals exist on the series or what data points they are associated
-     * with.
+     * The 0-based index of a data point within the series. If data_is_subtotal is true, the data point at this index is the subtotal. Otherwise, the subtotal appears after the data point with this index. A series can have multiple subtotals at arbitrary indices, but subtotals do not affect the indices of the data points. For example, if a series has three data points, their indices will always be 0, 1, and 2, regardless of how many subtotals exist on the series or what data points they are associated with.
      */
     subtotalIndex?: number;
   }
@@ -4378,9 +3613,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$WaterfallChartSeries {
     /**
-     * Custom subtotal columns appearing in this series. The order in which
-     * subtotals are defined is not significant. Only one subtotal may be
-     * defined for each data point.
+     * Custom subtotal columns appearing in this series. The order in which subtotals are defined is not significant. Only one subtotal may be defined for each data point.
      */
     customSubtotals?: Schema$WaterfallChartCustomSubtotal[];
     /**
@@ -4388,9 +3621,7 @@ export namespace sheets_v4 {
      */
     data?: Schema$ChartData;
     /**
-     * True to hide the subtotal column from the end of the series. By default,
-     * a subtotal column will appear at the end of each series. Setting this
-     * field to true will hide that subtotal column for this series.
+     * True to hide the subtotal column from the end of the series. By default, a subtotal column will appear at the end of each series. Setting this field to true will hide that subtotal column for this series.
      */
     hideTrailingSubtotal?: boolean;
     /**
@@ -4452,19 +3683,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.batchUpdate
-     * @desc Applies one or more updates to the spreadsheet.  Each request is
-     * validated before being applied. If any request is not valid then the
-     * entire request will fail and nothing will be applied.  Some requests have
-     * replies to give you some information about how they are applied. The
-     * replies will mirror the requests.  For example, if you applied 4 updates
-     * and the 3rd one had a reply, then the response will have 2 empty replies,
-     * the actual reply, and another empty reply, in that order.  Due to the
-     * collaborative nature of spreadsheets, it is not guaranteed that the
-     * spreadsheet will reflect exactly your changes after this completes,
-     * however it is guaranteed that the updates in the request will be applied
-     * together atomically. Your changes may be altered with respect to
-     * collaborator changes. If there are no collaborators, the spreadsheet
-     * should reflect your changes.
+     * @desc Applies one or more updates to the spreadsheet.  Each request is validated before being applied. If any request is not valid then the entire request will fail and nothing will be applied.  Some requests have replies to give you some information about how they are applied. The replies will mirror the requests.  For example, if you applied 4 updates and the 3rd one had a reply, then the response will have 2 empty replies, the actual reply, and another empty reply, in that order.  Due to the collaborative nature of spreadsheets, it is not guaranteed that the spreadsheet will reflect exactly your changes after this completes, however it is guaranteed that the updates in the request will be applied together atomically. Your changes may be altered with respect to collaborator changes. If there are no collaborators, the spreadsheet should reflect your changes.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -4480,8 +3699,7 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The spreadsheet to apply the updates to.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // A list of updates to apply to the spreadsheet.
@@ -4507,10 +3725,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -4640,10 +3856,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -4727,17 +3941,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.get
-     * @desc Returns the spreadsheet at the given ID. The caller must specify
-     * the spreadsheet ID.  By default, data within grids will not be returned.
-     * You can include grid data one of two ways:  * Specify a field mask
-     * listing your desired fields using the `fields` URL parameter in HTTP  *
-     * Set the includeGridData URL parameter to true.  If a field mask is set,
-     * the `includeGridData` parameter is ignored  For large spreadsheets, it is
-     * recommended to retrieve only the specific fields of the spreadsheet that
-     * you want.  To retrieve only subsets of the spreadsheet, use the ranges
-     * URL parameter. Multiple ranges can be specified.  Limiting the range will
-     * return only the portions of the spreadsheet that intersect the requested
-     * ranges. Ranges are specified using A1 notation.
+     * @desc Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID.  By default, data within grids will not be returned. You can include grid data one of two ways:  * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP  * Set the includeGridData URL parameter to true.  If a field mask is set, the `includeGridData` parameter is ignored  For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want.  To retrieve only subsets of the spreadsheet, use the ranges URL parameter. Multiple ranges can be specified.  Limiting the range will return only the portions of the spreadsheet that intersect the requested ranges. Ranges are specified using A1 notation.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -4753,8 +3957,7 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The spreadsheet to request.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     // The ranges to retrieve from the spreadsheet.
      *     ranges: [],  // TODO: Update placeholder value.
@@ -4778,10 +3981,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -4871,18 +4072,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.getByDataFilter
-     * @desc Returns the spreadsheet at the given ID. The caller must specify
-     * the spreadsheet ID.  This method differs from GetSpreadsheet in that it
-     * allows selecting which subsets of spreadsheet data to return by
-     * specifying a dataFilters parameter. Multiple DataFilters can be
-     * specified.  Specifying one or more data filters will return the portions
-     * of the spreadsheet that intersect ranges matched by any of the filters.
-     * By default, data within grids will not be returned. You can include grid
-     * data one of two ways:  * Specify a field mask listing your desired fields
-     * using the `fields` URL parameter in HTTP  * Set the includeGridData
-     * parameter to true.  If a field mask is set, the `includeGridData`
-     * parameter is ignored  For large spreadsheets, it is recommended to
-     * retrieve only the specific fields of the spreadsheet that you want.
+     * @desc Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID.  This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified.  Specifying one or more data filters will return the portions of the spreadsheet that intersect ranges matched by any of the filters.  By default, data within grids will not be returned. You can include grid data one of two ways:  * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP  * Set the includeGridData parameter to true.  If a field mask is set, the `includeGridData` parameter is ignored  For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -4898,8 +4088,7 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The spreadsheet to request.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // The DataFilters used to select which ranges to retrieve from
@@ -4907,8 +4096,8 @@ export namespace sheets_v4 {
      *       dataFilters: [],  // TODO: Update placeholder value.
      *
      *       // True if grid data should be returned.
-     *       // This parameter is ignored if a field mask was set in the
-     * request. includeGridData: false,  // TODO: Update placeholder value.
+     *       // This parameter is ignored if a field mask was set in the request.
+     *       includeGridData: false,  // TODO: Update placeholder value.
      *
      *       // TODO: Add desired properties to the request body.
      *     },
@@ -4928,10 +4117,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -5053,8 +4240,7 @@ export namespace sheets_v4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * True if grid data should be returned. This parameter is ignored if a
-     * field mask was set in the request.
+     * True if grid data should be returned. This parameter is ignored if a field mask was set in the request.
      */
     includeGridData?: boolean;
     /**
@@ -5092,9 +4278,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.developerMetadata.get
-     * @desc Returns the developer metadata with the specified ID. The caller
-     * must specify the spreadsheet ID and the developer metadata's unique
-     * metadataId.
+     * @desc Returns the developer metadata with the specified ID. The caller must specify the spreadsheet ID and the developer metadata's unique metadataId.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -5110,8 +4294,7 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the spreadsheet to retrieve metadata from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     // The ID of the developer metadata to retrieve.
      *     metadataId: 0,  // TODO: Update placeholder value.
@@ -5119,8 +4302,10 @@ export namespace sheets_v4 {
      *     auth: authClient,
      *   };
      *
-     *   sheets.spreadsheets.developerMetadata.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   sheets.spreadsheets.developerMetadata.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -5129,10 +4314,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -5220,11 +4403,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.developerMetadata.search
-     * @desc Returns all developer metadata matching the specified DataFilter.
-     * If the provided DataFilter represents a DeveloperMetadataLookup object,
-     * this will return all DeveloperMetadata entries selected by it. If the
-     * DataFilter represents a location in a spreadsheet, this will return all
-     * developer metadata associated with locations intersecting that region.
+     * @desc Returns all developer metadata matching the specified DataFilter. If the provided DataFilter represents a DeveloperMetadataLookup object, this will return all DeveloperMetadata entries selected by it. If the DataFilter represents a location in a spreadsheet, this will return all developer metadata associated with locations intersecting that region.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -5240,8 +4419,7 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the spreadsheet to retrieve metadata from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -5250,8 +4428,10 @@ export namespace sheets_v4 {
      *     auth: authClient,
      *   };
      *
-     *   sheets.spreadsheets.developerMetadata.search(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   sheets.spreadsheets.developerMetadata.search(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -5260,10 +4440,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -5401,8 +4579,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.sheets.copyTo
-     * @desc Copies a single sheet from a spreadsheet to another spreadsheet.
-     * Returns the properties of the newly created sheet.
+     * @desc Copies a single sheet from a spreadsheet to another spreadsheet. Returns the properties of the newly created sheet.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -5418,8 +4595,7 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the spreadsheet containing the sheet to copy.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     // The ID of the sheet to copy.
      *     sheetId: 0,  // TODO: Update placeholder value.
@@ -5446,10 +4622,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -5567,16 +4741,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.values.append
-     * @desc Appends values to a spreadsheet. The input range is used to search
-     * for existing data and find a "table" within that range. Values will be
-     * appended to the next row of the table, starting with the first column of
-     * the table. See the [guide](/sheets/api/guides/values#appending_values)
-     * and [sample code](/sheets/api/samples/writing#append_values) for specific
-     * details of how tables are detected and data is appended.  The caller must
-     * specify the spreadsheet ID, range, and a valueInputOption.  The
-     * `valueInputOption` only controls how the input data will be added to the
-     * sheet (column-wise or row-wise), it does not influence what cell the data
-     * starts being written to.
+     * @desc Appends values to a spreadsheet. The input range is used to search for existing data and find a "table" within that range. Values will be appended to the next row of the table, starting with the first column of the table. See the [guide](/sheets/api/guides/values#appending_values) and [sample code](/sheets/api/samples/writing#append_values) for specific details of how tables are detected and data is appended.  The caller must specify the spreadsheet ID, range, and a valueInputOption.  The `valueInputOption` only controls how the input data will be added to the sheet (column-wise or row-wise), it does not influence what cell the data starts being written to.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -5592,8 +4757,7 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     // The A1 notation of a range to search for a logical table of data.
      *     // Values will be appended after the last row of the table.
@@ -5624,10 +4788,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -5722,10 +4884,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.values.batchClear
-     * @desc Clears one or more ranges of values from a spreadsheet. The caller
-     * must specify the spreadsheet ID and one or more ranges. Only values are
-     * cleared -- all other properties of the cell (such as formatting, data
-     * validation, etc..) are kept.
+     * @desc Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -5741,8 +4900,7 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // The ranges to clear, in A1 notation.
@@ -5754,8 +4912,10 @@ export namespace sheets_v4 {
      *     auth: authClient,
      *   };
      *
-     *   sheets.spreadsheets.values.batchClear(request, function(err, response)
-     * { if (err) { console.error(err); return;
+     *   sheets.spreadsheets.values.batchClear(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -5764,10 +4924,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -5858,11 +5016,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.values.batchClearByDataFilter
-     * @desc Clears one or more ranges of values from a spreadsheet. The caller
-     * must specify the spreadsheet ID and one or more DataFilters. Ranges
-     * matching any of the specified data filters will be cleared.  Only values
-     * are cleared -- all other properties of the cell (such as formatting, data
-     * validation, etc..) are kept.
+     * @desc Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more DataFilters. Ranges matching any of the specified data filters will be cleared.  Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -5878,8 +5032,7 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // The DataFilters used to determine which ranges to clear.
@@ -5891,8 +5044,10 @@ export namespace sheets_v4 {
      *     auth: authClient,
      *   };
      *
-     *   sheets.spreadsheets.values.batchClearByDataFilter(request,
-     * function(err, response) { if (err) { console.error(err); return;
+     *   sheets.spreadsheets.values.batchClearByDataFilter(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -5901,10 +5056,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -6009,8 +5162,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.values.batchGet
-     * @desc Returns one or more ranges of values from a spreadsheet. The caller
-     * must specify the spreadsheet ID and one or more ranges.
+     * @desc Returns one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -6026,8 +5178,7 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the spreadsheet to retrieve data from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     // The A1 notation of the values to retrieve.
      *     ranges: [],  // TODO: Update placeholder value.
@@ -6036,13 +5187,11 @@ export namespace sheets_v4 {
      *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
      *     valueRenderOption: '',  // TODO: Update placeholder value.
      *
-     *     // How dates, times, and durations should be represented in the
-     * output.
+     *     // How dates, times, and durations should be represented in the output.
      *     // This is ignored if value_render_option is
      *     // FORMATTED_VALUE.
-     *     // The default dateTime render option is
-     * [DateTimeRenderOption.SERIAL_NUMBER]. dateTimeRenderOption: '',  // TODO:
-     * Update placeholder value.
+     *     // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     *     dateTimeRenderOption: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
@@ -6059,10 +5208,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -6158,10 +5305,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.values.batchGetByDataFilter
-     * @desc Returns one or more ranges of values that match the specified data
-     * filters. The caller must specify the spreadsheet ID and one or more
-     * DataFilters.  Ranges that match any of the data filters in the request
-     * will be returned.
+     * @desc Returns one or more ranges of values that match the specified data filters. The caller must specify the spreadsheet ID and one or more DataFilters.  Ranges that match any of the data filters in the request will be returned.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -6177,28 +5321,23 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the spreadsheet to retrieve data from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // How values should be represented in the output.
      *       // The default render option is ValueRenderOption.FORMATTED_VALUE.
      *       valueRenderOption: '',  // TODO: Update placeholder value.
      *
-     *       // The data filters used to match the ranges of values to retrieve.
-     * Ranges
-     *       // that match any of the specified data filters will be included in
-     * the
+     *       // The data filters used to match the ranges of values to retrieve.  Ranges
+     *       // that match any of the specified data filters will be included in the
      *       // response.
      *       dataFilters: [],  // TODO: Update placeholder value.
      *
-     *       // How dates, times, and durations should be represented in the
-     * output.
+     *       // How dates, times, and durations should be represented in the output.
      *       // This is ignored if value_render_option is
      *       // FORMATTED_VALUE.
-     *       // The default dateTime render option is
-     * [DateTimeRenderOption.SERIAL_NUMBER]. dateTimeRenderOption: '',  // TODO:
-     * Update placeholder value.
+     *       // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     *       dateTimeRenderOption: '',  // TODO: Update placeholder value.
      *
      *       // TODO: Add desired properties to the request body.
      *     },
@@ -6206,8 +5345,10 @@ export namespace sheets_v4 {
      *     auth: authClient,
      *   };
      *
-     *   sheets.spreadsheets.values.batchGetByDataFilter(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   sheets.spreadsheets.values.batchGetByDataFilter(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -6216,10 +5357,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -6316,9 +5455,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.values.batchUpdate
-     * @desc Sets values in one or more ranges of a spreadsheet. The caller must
-     * specify the spreadsheet ID, a valueInputOption, and one or more
-     * ValueRanges.
+     * @desc Sets values in one or more ranges of a spreadsheet. The caller must specify the spreadsheet ID, a valueInputOption, and one or more ValueRanges.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -6334,8 +5471,7 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // How the input data should be interpreted.
@@ -6350,8 +5486,10 @@ export namespace sheets_v4 {
      *     auth: authClient,
      *   };
      *
-     *   sheets.spreadsheets.values.batchUpdate(request, function(err, response)
-     * { if (err) { console.error(err); return;
+     *   sheets.spreadsheets.values.batchUpdate(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -6360,10 +5498,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -6457,9 +5593,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.values.batchUpdateByDataFilter
-     * @desc Sets values in one or more ranges of a spreadsheet. The caller must
-     * specify the spreadsheet ID, a valueInputOption, and one or more
-     * DataFilterValueRanges.
+     * @desc Sets values in one or more ranges of a spreadsheet. The caller must specify the spreadsheet ID, a valueInputOption, and one or more DataFilterValueRanges.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -6475,15 +5609,13 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // How the input data should be interpreted.
      *       valueInputOption: '',  // TODO: Update placeholder value.
      *
-     *       // The new values to apply to the spreadsheet.  If more than one
-     * range is
+     *       // The new values to apply to the spreadsheet.  If more than one range is
      *       // matched by the specified DataFilter the specified values will be
      *       // applied to all of those ranges.
      *       data: [],  // TODO: Update placeholder value.
@@ -6494,8 +5626,10 @@ export namespace sheets_v4 {
      *     auth: authClient,
      *   };
      *
-     *   sheets.spreadsheets.values.batchUpdateByDataFilter(request,
-     * function(err, response) { if (err) { console.error(err); return;
+     *   sheets.spreadsheets.values.batchUpdateByDataFilter(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -6504,10 +5638,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -6612,9 +5744,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.values.clear
-     * @desc Clears values from a spreadsheet. The caller must specify the
-     * spreadsheet ID and range. Only values are cleared -- all other properties
-     * of the cell (such as formatting, data validation, etc..) are kept.
+     * @desc Clears values from a spreadsheet. The caller must specify the spreadsheet ID and range. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -6630,8 +5760,7 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     // The A1 notation of the values to clear.
      *     range: 'my-range',  // TODO: Update placeholder value.
@@ -6655,10 +5784,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -6746,8 +5873,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.values.get
-     * @desc Returns a range of values from a spreadsheet. The caller must
-     * specify the spreadsheet ID and a range.
+     * @desc Returns a range of values from a spreadsheet. The caller must specify the spreadsheet ID and a range.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -6763,8 +5889,7 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the spreadsheet to retrieve data from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     // The A1 notation of the values to retrieve.
      *     range: 'my-range',  // TODO: Update placeholder value.
@@ -6773,13 +5898,11 @@ export namespace sheets_v4 {
      *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
      *     valueRenderOption: '',  // TODO: Update placeholder value.
      *
-     *     // How dates, times, and durations should be represented in the
-     * output.
+     *     // How dates, times, and durations should be represented in the output.
      *     // This is ignored if value_render_option is
      *     // FORMATTED_VALUE.
-     *     // The default dateTime render option is
-     * [DateTimeRenderOption.SERIAL_NUMBER]. dateTimeRenderOption: '',  // TODO:
-     * Update placeholder value.
+     *     // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     *     dateTimeRenderOption: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
@@ -6796,10 +5919,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -6891,8 +6012,7 @@ export namespace sheets_v4 {
 
     /**
      * sheets.spreadsheets.values.update
-     * @desc Sets values in a range of a spreadsheet. The caller must specify
-     * the spreadsheet ID, range, and a valueInputOption.
+     * @desc Sets values in a range of a spreadsheet. The caller must specify the spreadsheet ID, range, and a valueInputOption.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -6908,8 +6028,7 @@ export namespace sheets_v4 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder
-     * value.
+     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
      *
      *     // The A1 notation of the values to update.
      *     range: 'my-range',  // TODO: Update placeholder value.
@@ -6918,8 +6037,7 @@ export namespace sheets_v4 {
      *     valueInputOption: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
+     *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
@@ -6938,10 +6056,8 @@ export namespace sheets_v4 {
      * });
      *
      * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication
-     * credentials. See
-     *   //
-     * https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+     *   // TODO: Change placeholder below to generate authentication credentials. See
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/drive'
@@ -7042,9 +6158,7 @@ export namespace sheets_v4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Determines if the update response should include the values of the cells
-     * that were appended. By default, responses do not include the updated
-     * values.
+     * Determines if the update response should include the values of the cells that were appended. By default, responses do not include the updated values.
      */
     includeValuesInResponse?: boolean;
     /**
@@ -7052,20 +6166,15 @@ export namespace sheets_v4 {
      */
     insertDataOption?: string;
     /**
-     * The A1 notation of a range to search for a logical table of data. Values
-     * will be appended after the last row of the table.
+     * The A1 notation of a range to search for a logical table of data. Values will be appended after the last row of the table.
      */
     range?: string;
     /**
-     * Determines how dates, times, and durations in the response should be
-     * rendered. This is ignored if response_value_render_option is
-     * FORMATTED_VALUE. The default dateTime render option is
-     * [DateTimeRenderOption.SERIAL_NUMBER].
+     * Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
      */
     responseDateTimeRenderOption?: string;
     /**
-     * Determines how values in the response should be rendered. The default
-     * render option is ValueRenderOption.FORMATTED_VALUE.
+     * Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
      */
     responseValueRenderOption?: string;
     /**
@@ -7124,17 +6233,11 @@ export namespace sheets_v4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * How dates, times, and durations should be represented in the output. This
-     * is ignored if value_render_option is FORMATTED_VALUE. The default
-     * dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
      */
     dateTimeRenderOption?: string;
     /**
-     * The major dimension that results should use.  For example, if the
-     * spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting
-     * `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas
-     * requesting `range=A1:B2,majorDimension=COLUMNS` will return
-     * `[[1,3],[2,4]]`.
+     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
      */
     majorDimension?: string;
     /**
@@ -7146,8 +6249,7 @@ export namespace sheets_v4 {
      */
     spreadsheetId?: string;
     /**
-     * How values should be represented in the output. The default render option
-     * is ValueRenderOption.FORMATTED_VALUE.
+     * How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
      */
     valueRenderOption?: string;
   }
@@ -7231,17 +6333,11 @@ export namespace sheets_v4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * How dates, times, and durations should be represented in the output. This
-     * is ignored if value_render_option is FORMATTED_VALUE. The default
-     * dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
      */
     dateTimeRenderOption?: string;
     /**
-     * The major dimension that results should use.  For example, if the
-     * spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting
-     * `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas
-     * requesting `range=A1:B2,majorDimension=COLUMNS` will return
-     * `[[1,3],[2,4]]`.
+     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
      */
     majorDimension?: string;
     /**
@@ -7253,8 +6349,7 @@ export namespace sheets_v4 {
      */
     spreadsheetId?: string;
     /**
-     * How values should be represented in the output. The default render option
-     * is ValueRenderOption.FORMATTED_VALUE.
+     * How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
      */
     valueRenderOption?: string;
   }
@@ -7266,11 +6361,7 @@ export namespace sheets_v4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Determines if the update response should include the values of the cells
-     * that were updated. By default, responses do not include the updated
-     * values. If the range to write was larger than than the range actually
-     * written, the response will include all values in the requested range
-     * (excluding trailing empty rows and columns).
+     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than than the range actually written, the response will include all values in the requested range (excluding trailing empty rows and columns).
      */
     includeValuesInResponse?: boolean;
     /**
@@ -7278,15 +6369,11 @@ export namespace sheets_v4 {
      */
     range?: string;
     /**
-     * Determines how dates, times, and durations in the response should be
-     * rendered. This is ignored if response_value_render_option is
-     * FORMATTED_VALUE. The default dateTime render option is
-     * DateTimeRenderOption.SERIAL_NUMBER.
+     * Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.
      */
     responseDateTimeRenderOption?: string;
     /**
-     * Determines how values in the response should be rendered. The default
-     * render option is ValueRenderOption.FORMATTED_VALUE.
+     * Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
      */
     responseValueRenderOption?: string;
     /**

@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace reseller_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace reseller_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -97,7 +94,10 @@ export namespace reseller_v1 {
     subscriptions: Resource$Subscriptions;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.customers = new Resource$Customers(this.context);
       this.resellernotify = new Resource$Resellernotify(this.context);
@@ -110,8 +110,7 @@ export namespace reseller_v1 {
    */
   export interface Schema$Address {
     /**
-     * A customer&#39;s physical address. An address can be composed of one to
-     * three lines. The addressline2 and addressLine3 are optional.
+     * A customer&#39;s physical address. An address can be composed of one to three lines. The addressline2 and addressLine3 are optional.
      */
     addressLine1?: string;
     /**
@@ -127,9 +126,7 @@ export namespace reseller_v1 {
      */
     contactName?: string;
     /**
-     * For countryCode information, see the ISO 3166 country code elements.
-     * Verify that country is approved for resale of Google products. This
-     * property is required when creating a new customer.
+     * For countryCode information, see the ISO 3166 country code elements. Verify that country is approved for resale of Google products. This property is required when creating a new customer.
      */
     countryCode?: string;
     /**
@@ -145,8 +142,7 @@ export namespace reseller_v1 {
      */
     organizationName?: string;
     /**
-     * A postalCode example is a postal zip code such as 94043. This property is
-     * required when creating a new customer.
+     * A postalCode example is a postal zip code such as 94043. This property is required when creating a new customer.
      */
     postalCode?: string;
     /**
@@ -159,41 +155,23 @@ export namespace reseller_v1 {
    */
   export interface Schema$ChangePlanRequest {
     /**
-     * Google-issued code (100 char max) for discounted pricing on subscription
-     * plans. Deal code must be included in changePlan request in order to
-     * receive discounted rate. This property is optional. If a deal code has
-     * already been added to a subscription, this property may be left empty and
-     * the existing discounted rate will still apply (if not empty, only provide
-     * the deal code that is already present on the subscription). If a deal
-     * code has never been added to a subscription and this property is left
-     * blank, regular pricing will apply.
+     * Google-issued code (100 char max) for discounted pricing on subscription plans. Deal code must be included in changePlan request in order to receive discounted rate. This property is optional. If a deal code has already been added to a subscription, this property may be left empty and the existing discounted rate will still apply (if not empty, only provide the deal code that is already present on the subscription). If a deal code has never been added to a subscription and this property is left blank, regular pricing will apply.
      */
     dealCode?: string;
     /**
-     * Identifies the resource as a subscription change plan request. Value:
-     * subscriptions#changePlanRequest
+     * Identifies the resource as a subscription change plan request. Value: subscriptions#changePlanRequest
      */
     kind?: string;
     /**
-     * The planName property is required. This is the name of the
-     * subscription&#39;s payment plan. For more information about the Google
-     * payment plans, see API concepts.  Possible values are:   -
-     * ANNUAL_MONTHLY_PAY - The annual commitment plan with monthly payments
-     * Caution: ANNUAL_MONTHLY_PAY is returned as ANNUAL in all API responses.
-     * - ANNUAL_YEARLY_PAY - The annual commitment plan with yearly payments   -
-     * FLEXIBLE - The flexible plan   - TRIAL - The 30-day free trial plan
+     * The planName property is required. This is the name of the subscription&#39;s payment plan. For more information about the Google payment plans, see API concepts.  Possible values are:   - ANNUAL_MONTHLY_PAY - The annual commitment plan with monthly payments  Caution: ANNUAL_MONTHLY_PAY is returned as ANNUAL in all API responses.   - ANNUAL_YEARLY_PAY - The annual commitment plan with yearly payments   - FLEXIBLE - The flexible plan   - TRIAL - The 30-day free trial plan
      */
     planName?: string;
     /**
-     * This is an optional property. This purchase order (PO) information is for
-     * resellers to use for their company tracking usage. If a purchaseOrderId
-     * value is given it appears in the API responses and shows up in the
-     * invoice. The property accepts up to 80 plain text characters.
+     * This is an optional property. This purchase order (PO) information is for resellers to use for their company tracking usage. If a purchaseOrderId value is given it appears in the API responses and shows up in the invoice. The property accepts up to 80 plain text characters.
      */
     purchaseOrderId?: string;
     /**
-     * This is a required property. The seats property is the number of user
-     * seat licenses.
+     * This is a required property. The seats property is the number of user seat licenses.
      */
     seats?: Schema$Seats;
   }
@@ -202,17 +180,11 @@ export namespace reseller_v1 {
    */
   export interface Schema$Customer {
     /**
-     * Like the &quot;Customer email&quot; in the reseller tools, this email is
-     * the secondary contact used if something happens to the customer&#39;s
-     * service such as service outage or a security issue. This property is
-     * required when creating a new customer and should not use the same domain
-     * as customerDomain.
+     * Like the &quot;Customer email&quot; in the reseller tools, this email is the secondary contact used if something happens to the customer&#39;s service such as service outage or a security issue. This property is required when creating a new customer and should not use the same domain as customerDomain.
      */
     alternateEmail?: string;
     /**
-     * The customer&#39;s primary domain name string. customerDomain is required
-     * when creating a new customer. Do not include the www prefix in the domain
-     * when adding a customer.
+     * The customer&#39;s primary domain name string. customerDomain is required when creating a new customer. Do not include the www prefix in the domain when adding a customer.
      */
     customerDomain?: string;
     /**
@@ -220,9 +192,7 @@ export namespace reseller_v1 {
      */
     customerDomainVerified?: boolean;
     /**
-     * This property will always be returned in a response as the unique
-     * identifier generated by Google. In a request, this property can be either
-     * the primary domain or the unique identifier generated by Google.
+     * This property will always be returned in a response as the unique identifier generated by Google. In a request, this property can be either the primary domain or the unique identifier generated by Google.
      */
     customerId?: string;
     /**
@@ -230,22 +200,15 @@ export namespace reseller_v1 {
      */
     kind?: string;
     /**
-     * Customer contact phone number. Must start with &quot;+&quot; followed by
-     * the country code. The rest of the number can be contiguous numbers or
-     * respect the phone local format conventions, but it must be a real phone
-     * number and not, for example, &quot;123&quot;. This field is silently
-     * ignored if invalid.
+     * Customer contact phone number. Must start with &quot;+&quot; followed by the country code. The rest of the number can be contiguous numbers or respect the phone local format conventions, but it must be a real phone number and not, for example, &quot;123&quot;. This field is silently ignored if invalid.
      */
     phoneNumber?: string;
     /**
-     * A customer&#39;s address information. Each field has a limit of 255
-     * charcters.
+     * A customer&#39;s address information. Each field has a limit of 255 charcters.
      */
     postalAddress?: Schema$Address;
     /**
-     * URL to customer&#39;s Admin console dashboard. The read-only URL is
-     * generated by the API service. This is used if your client application
-     * requires the customer to complete a task in the Admin console.
+     * URL to customer&#39;s Admin console dashboard. The read-only URL is generated by the API service. This is used if your client application requires the customer to complete a task in the Admin console.
      */
     resourceUiUrl?: string;
   }
@@ -254,14 +217,11 @@ export namespace reseller_v1 {
    */
   export interface Schema$RenewalSettings {
     /**
-     * Identifies the resource as a subscription renewal setting. Value:
-     * subscriptions#renewalSettings
+     * Identifies the resource as a subscription renewal setting. Value: subscriptions#renewalSettings
      */
     kind?: string;
     /**
-     * Renewal settings for the annual commitment plan. For more detailed
-     * information, see renewal options in the administrator help center. When
-     * renewing a subscription, the renewalType is a required property.
+     * Renewal settings for the annual commitment plan. For more detailed information, see renewal options in the administrator help center. When renewing a subscription, the renewalType is a required property.
      */
     renewalType?: string;
   }
@@ -292,35 +252,19 @@ export namespace reseller_v1 {
    */
   export interface Schema$Seats {
     /**
-     * Identifies the resource as a subscription seat setting. Value:
-     * subscriptions#seats
+     * Identifies the resource as a subscription seat setting. Value: subscriptions#seats
      */
     kind?: string;
     /**
-     * Read-only field containing the current number of users that are assigned
-     * a license for the product defined in skuId. This field&#39;s value is
-     * equivalent to the numerical count of users returned by the Enterprise
-     * License Manager API method: listForProductAndSku
+     * Read-only field containing the current number of users that are assigned a license for the product defined in skuId. This field&#39;s value is equivalent to the numerical count of users returned by the Enterprise License Manager API method: listForProductAndSku
      */
     licensedNumberOfSeats?: number;
     /**
-     * This is a required property and is exclusive to subscriptions with
-     * FLEXIBLE or TRIAL plans. This property sets the maximum number of
-     * licensed users allowed on a subscription. This quantity can be increased
-     * up to the maximum limit defined in the reseller&#39;s contract. The
-     * minimum quantity is the current number of users in the customer account.
-     * Note: G Suite subscriptions automatically assign a license to every user.
+     * This is a required property and is exclusive to subscriptions with FLEXIBLE or TRIAL plans. This property sets the maximum number of licensed users allowed on a subscription. This quantity can be increased up to the maximum limit defined in the reseller&#39;s contract. The minimum quantity is the current number of users in the customer account. Note: G Suite subscriptions automatically assign a license to every user.
      */
     maximumNumberOfSeats?: number;
     /**
-     * This is a required property and is exclusive to subscriptions with
-     * ANNUAL_MONTHLY_PAY and ANNUAL_YEARLY_PAY plans. This property sets the
-     * maximum number of licenses assignable to users on a subscription. The
-     * reseller can add more licenses, but once set, the numberOfSeats cannot be
-     * reduced until renewal. The reseller is invoiced based on the
-     * numberOfSeats value regardless of how many of these user licenses are
-     * assigned. Note: G Suite subscriptions automatically assign a license to
-     * every user.
+     * This is a required property and is exclusive to subscriptions with ANNUAL_MONTHLY_PAY and ANNUAL_YEARLY_PAY plans. This property sets the maximum number of licenses assignable to users on a subscription. The reseller can add more licenses, but once set, the numberOfSeats cannot be reduced until renewal. The reseller is invoiced based on the numberOfSeats value regardless of how many of these user licenses are assigned. Note: G Suite subscriptions automatically assign a license to every user.
      */
     numberOfSeats?: number;
   }
@@ -329,14 +273,11 @@ export namespace reseller_v1 {
    */
   export interface Schema$Subscription {
     /**
-     * Read-only field that returns the current billing method for a
-     * subscription.
+     * Read-only field that returns the current billing method for a subscription.
      */
     billingMethod?: string;
     /**
-     * The creationTime property is the date when subscription was created. It
-     * is in milliseconds using the Epoch format. See an example Epoch
-     * converter.
+     * The creationTime property is the date when subscription was created. It is in milliseconds using the Epoch format. See an example Epoch converter.
      */
     creationTime?: string;
     /**
@@ -344,16 +285,11 @@ export namespace reseller_v1 {
      */
     customerDomain?: string;
     /**
-     * This property will always be returned in a response as the unique
-     * identifier generated by Google. In a request, this property can be either
-     * the primary domain or the unique identifier generated by Google.
+     * This property will always be returned in a response as the unique identifier generated by Google. In a request, this property can be either the primary domain or the unique identifier generated by Google.
      */
     customerId?: string;
     /**
-     * Google-issued code (100 char max) for discounted pricing on subscription
-     * plans. Deal code must be included in insert requests in order to receive
-     * discounted rate. This property is optional, regular pricing applies if
-     * left empty.
+     * Google-issued code (100 char max) for discounted pricing on subscription plans. Deal code must be included in insert requests in order to receive discounted rate. This property is optional, regular pricing applies if left empty.
      */
     dealCode?: string;
     /**
@@ -361,10 +297,7 @@ export namespace reseller_v1 {
      */
     kind?: string;
     /**
-     * The plan property is required. In this version of the API, the G Suite
-     * plans are the flexible plan, annual commitment plan, and the 30-day free
-     * trial plan. For more information about the API&quot;s payment plans, see
-     * the API concepts.
+     * The plan property is required. In this version of the API, the G Suite plans are the flexible plan, annual commitment plan, and the 30-day free trial plan. For more information about the API&quot;s payment plans, see the API concepts.
      */
     plan?: {
       commitmentInterval?: {endTime?: string; startTime?: string};
@@ -372,41 +305,27 @@ export namespace reseller_v1 {
       planName?: string;
     };
     /**
-     * This is an optional property. This purchase order (PO) information is for
-     * resellers to use for their company tracking usage. If a purchaseOrderId
-     * value is given it appears in the API responses and shows up in the
-     * invoice. The property accepts up to 80 plain text characters.
+     * This is an optional property. This purchase order (PO) information is for resellers to use for their company tracking usage. If a purchaseOrderId value is given it appears in the API responses and shows up in the invoice. The property accepts up to 80 plain text characters.
      */
     purchaseOrderId?: string;
     /**
-     * Renewal settings for the annual commitment plan. For more detailed
-     * information, see renewal options in the administrator help center.
+     * Renewal settings for the annual commitment plan. For more detailed information, see renewal options in the administrator help center.
      */
     renewalSettings?: Schema$RenewalSettings;
     /**
-     * URL to customer&#39;s Subscriptions page in the Admin console. The
-     * read-only URL is generated by the API service. This is used if your
-     * client application requires the customer to complete a task using the
-     * Subscriptions page in the Admin console.
+     * URL to customer&#39;s Subscriptions page in the Admin console. The read-only URL is generated by the API service. This is used if your client application requires the customer to complete a task using the Subscriptions page in the Admin console.
      */
     resourceUiUrl?: string;
     /**
-     * This is a required property. The number and limit of user seat licenses
-     * in the plan.
+     * This is a required property. The number and limit of user seat licenses in the plan.
      */
     seats?: Schema$Seats;
     /**
-     * A required property. The skuId is a unique system identifier for a
-     * product&#39;s SKU assigned to a customer in the subscription. For
-     * products and SKUs available in this version of the API, see  Product and
-     * SKU IDs.
+     * A required property. The skuId is a unique system identifier for a product&#39;s SKU assigned to a customer in the subscription. For products and SKUs available in this version of the API, see  Product and SKU IDs.
      */
     skuId?: string;
     /**
-     * Read-only external display name for a product&#39;s SKU assigned to a
-     * customer in the subscription. SKU names are subject to change at
-     * Google&#39;s discretion. For products and SKUs available in this version
-     * of the API, see  Product and SKU IDs.
+     * Read-only external display name for a product&#39;s SKU assigned to a customer in the subscription. SKU names are subject to change at Google&#39;s discretion. For products and SKUs available in this version of the API, see  Product and SKU IDs.
      */
     skuName?: string;
     /**
@@ -414,39 +333,22 @@ export namespace reseller_v1 {
      */
     status?: string;
     /**
-     * The subscriptionId is the subscription identifier and is unique for each
-     * customer. This is a required property. Since a subscriptionId changes
-     * when a subscription is updated, we recommend not using this ID as a key
-     * for persistent data. Use the subscriptionId as described in retrieve all
-     * reseller subscriptions.
+     * The subscriptionId is the subscription identifier and is unique for each customer. This is a required property. Since a subscriptionId changes when a subscription is updated, we recommend not using this ID as a key for persistent data. Use the subscriptionId as described in retrieve all reseller subscriptions.
      */
     subscriptionId?: string;
     /**
-     * Read-only field containing an enumerable of all the current suspension
-     * reasons for a subscription. It is possible for a subscription to have
-     * many concurrent, overlapping suspension reasons. A subscription&#39;s
-     * STATUS is SUSPENDED until all pending suspensions are removed.  Possible
-     * options include:   - PENDING_TOS_ACCEPTANCE - The customer has not logged
-     * in and accepted the G Suite Resold Terms of Services.   -
-     * RENEWAL_WITH_TYPE_CANCEL - The customer&#39;s commitment ended and their
-     * service was cancelled at the end of their term.   - RESELLER_INITIATED -
-     * A manual suspension invoked by a Reseller.   - TRIAL_ENDED - The
-     * customer&#39;s trial expired without a plan selected.   - OTHER - The
-     * customer is suspended for an internal Google reason (e.g. abuse or
-     * otherwise).
+     * Read-only field containing an enumerable of all the current suspension reasons for a subscription. It is possible for a subscription to have many concurrent, overlapping suspension reasons. A subscription&#39;s STATUS is SUSPENDED until all pending suspensions are removed.  Possible options include:   - PENDING_TOS_ACCEPTANCE - The customer has not logged in and accepted the G Suite Resold Terms of Services.   - RENEWAL_WITH_TYPE_CANCEL - The customer&#39;s commitment ended and their service was cancelled at the end of their term.   - RESELLER_INITIATED - A manual suspension invoked by a Reseller.   - TRIAL_ENDED - The customer&#39;s trial expired without a plan selected.   - OTHER - The customer is suspended for an internal Google reason (e.g. abuse or otherwise).
      */
     suspensionReasons?: string[];
     /**
-     * Read-only transfer related information for the subscription. For more
-     * information, see retrieve transferable subscriptions for a customer.
+     * Read-only transfer related information for the subscription. For more information, see retrieve transferable subscriptions for a customer.
      */
     transferInfo?: {
       minimumTransferableSeats?: number;
       transferabilityExpirationTime?: string;
     };
     /**
-     * The G Suite annual commitment and flexible payment plans can be in a
-     * 30-day free trial. For more information, see the API concepts.
+     * The G Suite annual commitment and flexible payment plans can be in a 30-day free trial. For more information, see the API concepts.
      */
     trialSettings?: {isInTrial?: boolean; trialEndTime?: string};
   }
@@ -455,13 +357,11 @@ export namespace reseller_v1 {
    */
   export interface Schema$Subscriptions {
     /**
-     * Identifies the resource as a collection of subscriptions. Value:
-     * reseller#subscriptions
+     * Identifies the resource as a collection of subscriptions. Value: reseller#subscriptions
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -621,8 +521,7 @@ export namespace reseller_v1 {
 
     /**
      * reseller.customers.patch
-     * @desc Update a customer account's settings. This method supports patch
-     * semantics.
+     * @desc Update a customer account's settings. This method supports patch semantics.
      * @alias reseller.customers.patch
      * @memberOf! ()
      *
@@ -772,10 +671,7 @@ export namespace reseller_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Either the customer's primary domain name or the customer's unique
-     * identifier. If using the domain name, we do not recommend using a
-     * customerId as a key for persistent data. If the domain name for a
-     * customerId is changed, the Google system automatically updates.
+     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
   }
@@ -786,12 +682,7 @@ export namespace reseller_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The customerAuthToken query string is required when creating a resold
-     * account that transfers a direct customer's subscription or transfers
-     * another reseller customer's subscription to your reseller management.
-     * This is a hexadecimal authentication token needed to complete the
-     * subscription transfer. For more information, see the administrator help
-     * center.
+     * The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
      */
     customerAuthToken?: string;
 
@@ -807,10 +698,7 @@ export namespace reseller_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Either the customer's primary domain name or the customer's unique
-     * identifier. If using the domain name, we do not recommend using a
-     * customerId as a key for persistent data. If the domain name for a
-     * customerId is changed, the Google system automatically updates.
+     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
 
@@ -826,10 +714,7 @@ export namespace reseller_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Either the customer's primary domain name or the customer's unique
-     * identifier. If using the domain name, we do not recommend using a
-     * customerId as a key for persistent data. If the domain name for a
-     * customerId is changed, the Google system automatically updates.
+     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
 
@@ -1204,9 +1089,7 @@ export namespace reseller_v1 {
 
     /**
      * reseller.subscriptions.changePlan
-     * @desc Update a subscription plan. Use this method to update a plan for a
-     * 30-day trial or a flexible plan subscription to an annual commitment plan
-     * with monthly or yearly payments.
+     * @desc Update a subscription plan. Use this method to update a plan for a 30-day trial or a flexible plan subscription to an annual commitment plan with monthly or yearly payments.
      * @alias reseller.subscriptions.changePlan
      * @memberOf! ()
      *
@@ -1282,8 +1165,7 @@ export namespace reseller_v1 {
 
     /**
      * reseller.subscriptions.changeRenewalSettings
-     * @desc Update a user license's renewal settings. This is applicable for
-     * accounts with annual commitment plans only.
+     * @desc Update a user license's renewal settings. This is applicable for accounts with annual commitment plans only.
      * @alias reseller.subscriptions.changeRenewalSettings
      * @memberOf! ()
      *
@@ -1661,9 +1543,7 @@ export namespace reseller_v1 {
 
     /**
      * reseller.subscriptions.list
-     * @desc List of subscriptions managed by the reseller. The list can be all
-     * subscriptions, all of a customer's subscriptions, or all of a customer's
-     * transferable subscriptions.
+     * @desc List of subscriptions managed by the reseller. The list can be all subscriptions, all of a customer's subscriptions, or all of a customer's transferable subscriptions.
      * @alias reseller.subscriptions.list
      * @memberOf! ()
      *
@@ -1741,8 +1621,7 @@ export namespace reseller_v1 {
 
     /**
      * reseller.subscriptions.startPaidService
-     * @desc Immediately move a 30-day free trial subscription to a paid service
-     * subscription.
+     * @desc Immediately move a 30-day free trial subscription to a paid service subscription.
      * @alias reseller.subscriptions.startPaidService
      * @memberOf! ()
      *
@@ -1899,18 +1778,11 @@ export namespace reseller_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Either the customer's primary domain name or the customer's unique
-     * identifier. If using the domain name, we do not recommend using a
-     * customerId as a key for persistent data. If the domain name for a
-     * customerId is changed, the Google system automatically updates.
+     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
     /**
-     * This is a required property. The subscriptionId is the subscription
-     * identifier and is unique for each customer. Since a subscriptionId
-     * changes when a subscription is updated, we recommend to not use this ID
-     * as a key for persistent data. And the subscriptionId can be found using
-     * the retrieve all reseller subscriptions method.
+     * This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
      */
     subscriptionId?: string;
   }
@@ -1922,18 +1794,11 @@ export namespace reseller_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Either the customer's primary domain name or the customer's unique
-     * identifier. If using the domain name, we do not recommend using a
-     * customerId as a key for persistent data. If the domain name for a
-     * customerId is changed, the Google system automatically updates.
+     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
     /**
-     * This is a required property. The subscriptionId is the subscription
-     * identifier and is unique for each customer. Since a subscriptionId
-     * changes when a subscription is updated, we recommend to not use this ID
-     * as a key for persistent data. And the subscriptionId can be found using
-     * the retrieve all reseller subscriptions method.
+     * This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
      */
     subscriptionId?: string;
 
@@ -1950,18 +1815,11 @@ export namespace reseller_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Either the customer's primary domain name or the customer's unique
-     * identifier. If using the domain name, we do not recommend using a
-     * customerId as a key for persistent data. If the domain name for a
-     * customerId is changed, the Google system automatically updates.
+     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
     /**
-     * This is a required property. The subscriptionId is the subscription
-     * identifier and is unique for each customer. Since a subscriptionId
-     * changes when a subscription is updated, we recommend to not use this ID
-     * as a key for persistent data. And the subscriptionId can be found using
-     * the retrieve all reseller subscriptions method.
+     * This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
      */
     subscriptionId?: string;
 
@@ -1978,18 +1836,11 @@ export namespace reseller_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Either the customer's primary domain name or the customer's unique
-     * identifier. If using the domain name, we do not recommend using a
-     * customerId as a key for persistent data. If the domain name for a
-     * customerId is changed, the Google system automatically updates.
+     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
     /**
-     * This is a required property. The subscriptionId is the subscription
-     * identifier and is unique for each customer. Since a subscriptionId
-     * changes when a subscription is updated, we recommend to not use this ID
-     * as a key for persistent data. And the subscriptionId can be found using
-     * the retrieve all reseller subscriptions method.
+     * This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
      */
     subscriptionId?: string;
 
@@ -2006,23 +1857,15 @@ export namespace reseller_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Either the customer's primary domain name or the customer's unique
-     * identifier. If using the domain name, we do not recommend using a
-     * customerId as a key for persistent data. If the domain name for a
-     * customerId is changed, the Google system automatically updates.
+     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
     /**
-     * The deletionType query string enables the cancellation, downgrade, or
-     * suspension of a subscription.
+     * The deletionType query string enables the cancellation, downgrade, or suspension of a subscription.
      */
     deletionType?: string;
     /**
-     * This is a required property. The subscriptionId is the subscription
-     * identifier and is unique for each customer. Since a subscriptionId
-     * changes when a subscription is updated, we recommend to not use this ID
-     * as a key for persistent data. And the subscriptionId can be found using
-     * the retrieve all reseller subscriptions method.
+     * This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
      */
     subscriptionId?: string;
   }
@@ -2034,18 +1877,11 @@ export namespace reseller_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Either the customer's primary domain name or the customer's unique
-     * identifier. If using the domain name, we do not recommend using a
-     * customerId as a key for persistent data. If the domain name for a
-     * customerId is changed, the Google system automatically updates.
+     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
     /**
-     * This is a required property. The subscriptionId is the subscription
-     * identifier and is unique for each customer. Since a subscriptionId
-     * changes when a subscription is updated, we recommend to not use this ID
-     * as a key for persistent data. And the subscriptionId can be found using
-     * the retrieve all reseller subscriptions method.
+     * This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
      */
     subscriptionId?: string;
   }
@@ -2057,19 +1893,11 @@ export namespace reseller_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The customerAuthToken query string is required when creating a resold
-     * account that transfers a direct customer's subscription or transfers
-     * another reseller customer's subscription to your reseller management.
-     * This is a hexadecimal authentication token needed to complete the
-     * subscription transfer. For more information, see the administrator help
-     * center.
+     * The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
      */
     customerAuthToken?: string;
     /**
-     * Either the customer's primary domain name or the customer's unique
-     * identifier. If using the domain name, we do not recommend using a
-     * customerId as a key for persistent data. If the domain name for a
-     * customerId is changed, the Google system automatically updates.
+     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
 
@@ -2086,35 +1914,19 @@ export namespace reseller_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The customerAuthToken query string is required when creating a resold
-     * account that transfers a direct customer's subscription or transfers
-     * another reseller customer's subscription to your reseller management.
-     * This is a hexadecimal authentication token needed to complete the
-     * subscription transfer. For more information, see the administrator help
-     * center.
+     * The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
      */
     customerAuthToken?: string;
     /**
-     * Either the customer's primary domain name or the customer's unique
-     * identifier. If using the domain name, we do not recommend using a
-     * customerId as a key for persistent data. If the domain name for a
-     * customerId is changed, the Google system automatically updates.
+     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
     /**
-     * When retrieving all of your subscriptions and filtering for specific
-     * customers, you can enter a prefix for a customer name. Using an example
-     * customer group that includes exam.com, example20.com and example.com:   -
-     * exa -- Returns all customer names that start with 'exa' which could
-     * include exam.com, example20.com, and example.com. A name prefix is
-     * similar to using a regular expression's asterisk, exa*.  - example --
-     * Returns example20.com and example.com.
+     * When retrieving all of your subscriptions and filtering for specific customers, you can enter a prefix for a customer name. Using an example customer group that includes exam.com, example20.com and example.com:   - exa -- Returns all customer names that start with 'exa' which could include exam.com, example20.com, and example.com. A name prefix is similar to using a regular expression's asterisk, exa*.  - example -- Returns example20.com and example.com.
      */
     customerNamePrefix?: string;
     /**
-     * When retrieving a large list, the maxResults is the maximum number of
-     * results per page. The nextPageToken value takes you to the next page. The
-     * default is 20.
+     * When retrieving a large list, the maxResults is the maximum number of results per page. The nextPageToken value takes you to the next page. The default is 20.
      */
     maxResults?: number;
     /**
@@ -2130,18 +1942,11 @@ export namespace reseller_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Either the customer's primary domain name or the customer's unique
-     * identifier. If using the domain name, we do not recommend using a
-     * customerId as a key for persistent data. If the domain name for a
-     * customerId is changed, the Google system automatically updates.
+     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
     /**
-     * This is a required property. The subscriptionId is the subscription
-     * identifier and is unique for each customer. Since a subscriptionId
-     * changes when a subscription is updated, we recommend to not use this ID
-     * as a key for persistent data. And the subscriptionId can be found using
-     * the retrieve all reseller subscriptions method.
+     * This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
      */
     subscriptionId?: string;
   }
@@ -2153,18 +1958,11 @@ export namespace reseller_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Either the customer's primary domain name or the customer's unique
-     * identifier. If using the domain name, we do not recommend using a
-     * customerId as a key for persistent data. If the domain name for a
-     * customerId is changed, the Google system automatically updates.
+     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
     /**
-     * This is a required property. The subscriptionId is the subscription
-     * identifier and is unique for each customer. Since a subscriptionId
-     * changes when a subscription is updated, we recommend to not use this ID
-     * as a key for persistent data. And the subscriptionId can be found using
-     * the retrieve all reseller subscriptions method.
+     * This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
      */
     subscriptionId?: string;
   }

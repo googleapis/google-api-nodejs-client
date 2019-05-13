@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace identitytoolkit_v3 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace identitytoolkit_v3 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,7 +92,10 @@ export namespace identitytoolkit_v3 {
     relyingparty: Resource$Relyingparty;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.relyingparty = new Resource$Relyingparty(this.context);
     }
@@ -134,8 +134,7 @@ export namespace identitytoolkit_v3 {
      */
     registered?: boolean;
     /**
-     * Session ID which should be passed in the following verifyAssertion
-     * request.
+     * Session ID which should be passed in the following verifyAssertion request.
      */
     sessionId?: string;
     /**
@@ -161,8 +160,7 @@ export namespace identitytoolkit_v3 {
      */
     kind?: string;
     /**
-     * The next page token. To be used in a subsequent request to return the
-     * next page of results.
+     * The next page token. To be used in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -246,8 +244,7 @@ export namespace identitytoolkit_v3 {
     users?: Schema$UserInfo[];
   }
   /**
-   * Response of getting a code for user confirmation (reset password, change
-   * email etc.).
+   * Response of getting a code for user confirmation (reset password, change email etc.).
    */
   export interface Schema$GetOobConfirmationCodeResponse {
     /**
@@ -255,8 +252,7 @@ export namespace identitytoolkit_v3 {
      */
     email?: string;
     /**
-     * The fixed string
-     * &quot;identitytoolkit#GetOobConfirmationCodeResponse&quot;.
+     * The fixed string &quot;identitytoolkit#GetOobConfirmationCodeResponse&quot;.
      */
     kind?: string;
     /**
@@ -277,8 +273,7 @@ export namespace identitytoolkit_v3 {
      */
     recaptchaSiteKey?: string;
     /**
-     * The stoken field for the recaptcha widget, used to request captcha
-     * challenge.
+     * The stoken field for the recaptcha widget, used to request captcha challenge.
      */
     recaptchaStoken?: string;
   }
@@ -287,13 +282,11 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$IdentitytoolkitRelyingpartyCreateAuthUriRequest {
     /**
-     * The app ID of the mobile app, base64(CERT_SHA1):PACKAGE_NAME for Android,
-     * BUNDLE_ID for iOS.
+     * The app ID of the mobile app, base64(CERT_SHA1):PACKAGE_NAME for Android, BUNDLE_ID for iOS.
      */
     appId?: string;
     /**
-     * Explicitly specify the auth flow type. Currently only support
-     * &quot;CODE_FLOW&quot; type. The field is only used for Google provider.
+     * Explicitly specify the auth flow type. Currently only support &quot;CODE_FLOW&quot; type. The field is only used for Google provider.
      */
     authFlowType?: string;
     /**
@@ -301,25 +294,19 @@ export namespace identitytoolkit_v3 {
      */
     clientId?: string;
     /**
-     * The opaque value used by the client to maintain context info between the
-     * authentication request and the IDP callback.
+     * The opaque value used by the client to maintain context info between the authentication request and the IDP callback.
      */
     context?: string;
     /**
-     * The URI to which the IDP redirects the user after the federated login
-     * flow.
+     * The URI to which the IDP redirects the user after the federated login flow.
      */
     continueUri?: string;
     /**
-     * The query parameter that client can customize by themselves in auth url.
-     * The following parameters are reserved for server so that they cannot be
-     * customized by clients: client_id, response_type, scope, redirect_uri,
-     * state, oauth_token.
+     * The query parameter that client can customize by themselves in auth url. The following parameters are reserved for server so that they cannot be customized by clients: client_id, response_type, scope, redirect_uri, state, oauth_token.
      */
     customParameter?: {[key: string]: string};
     /**
-     * The hosted domain to restrict sign-in to accounts at that domain for
-     * Google Apps hosted accounts.
+     * The hosted domain to restrict sign-in to accounts at that domain for Google Apps hosted accounts.
      */
     hostedDomain?: string;
     /**
@@ -331,14 +318,11 @@ export namespace identitytoolkit_v3 {
      */
     oauthConsumerKey?: string;
     /**
-     * Additional oauth scopes, beyond the basid user profile, that the user
-     * would be prompted to grant
+     * Additional oauth scopes, beyond the basid user profile, that the user would be prompted to grant
      */
     oauthScope?: string;
     /**
-     * Optional realm for OpenID protocol. The sub string
-     * &quot;scheme://domain:port&quot; of the param &quot;continueUri&quot; is
-     * used if this is not set.
+     * Optional realm for OpenID protocol. The sub string &quot;scheme://domain:port&quot; of the param &quot;continueUri&quot; is used if this is not set.
      */
     openidRealm?: string;
     /**
@@ -346,9 +330,7 @@ export namespace identitytoolkit_v3 {
      */
     otaApp?: string;
     /**
-     * The IdP ID. For white listed IdPs it&#39;s a short domain name e.g.
-     * google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs
-     * it&#39;s the OP identifier.
+     * The IdP ID. For white listed IdPs it&#39;s a short domain name e.g. google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs it&#39;s the OP identifier.
      */
     providerId?: string;
     /**
@@ -356,9 +338,7 @@ export namespace identitytoolkit_v3 {
      */
     sessionId?: string;
     /**
-     * For multi-tenant use cases, in order to construct sign-in URL with the
-     * correct IDP parameters, Firebear needs to know which Tenant to retrieve
-     * IDP configs from.
+     * For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from.
      */
     tenantId?: string;
     /**
@@ -371,8 +351,7 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$IdentitytoolkitRelyingpartyDeleteAccountRequest {
     /**
-     * GCP project number of the requesting delegated app. Currently only
-     * intended for Firebase V1 migration.
+     * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
     delegatedProjectNumber?: string;
     /**
@@ -389,8 +368,7 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$IdentitytoolkitRelyingpartyDownloadAccountRequest {
     /**
-     * GCP project number of the requesting delegated app. Currently only
-     * intended for Firebase V1 migration.
+     * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
     delegatedProjectNumber?: string;
     /**
@@ -398,13 +376,11 @@ export namespace identitytoolkit_v3 {
      */
     maxResults?: number;
     /**
-     * The token for the next page. This should be taken from the previous
-     * response.
+     * The token for the next page. This should be taken from the previous response.
      */
     nextPageToken?: string;
     /**
-     * Specify which project (field value is actually project id) to operate.
-     * Only used when provided credential.
+     * Specify which project (field value is actually project id) to operate. Only used when provided credential.
      */
     targetProjectId?: string;
   }
@@ -430,8 +406,7 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$IdentitytoolkitRelyingpartyGetAccountInfoRequest {
     /**
-     * GCP project number of the requesting delegated app. Currently only
-     * intended for Firebase V1 migration.
+     * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
     delegatedProjectNumber?: string;
     /**
@@ -577,8 +552,7 @@ export namespace identitytoolkit_v3 {
      */
     customAttributes?: string;
     /**
-     * GCP project number of the requesting delegated app. Currently only
-     * intended for Firebase V1 migration.
+     * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
     delegatedProjectNumber?: string;
     /**
@@ -675,8 +649,7 @@ export namespace identitytoolkit_v3 {
      */
     changeEmailTemplate?: Schema$EmailTemplate;
     /**
-     * GCP project number of the requesting delegated app. Currently only
-     * intended for Firebase V1 migration.
+     * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
     delegatedProjectNumber?: string;
     /**
@@ -788,9 +761,7 @@ export namespace identitytoolkit_v3 {
      */
     photoUrl?: string;
     /**
-     * For multi-tenant use cases, in order to construct sign-in URL with the
-     * correct IDP parameters, Firebear needs to know which Tenant to retrieve
-     * IDP configs from.
+     * For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from.
      */
     tenantId?: string;
     /**
@@ -812,8 +783,7 @@ export namespace identitytoolkit_v3 {
      */
     cpuMemCost?: number;
     /**
-     * GCP project number of the requesting delegated app. Currently only
-     * intended for Firebase V1 migration.
+     * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
     delegatedProjectNumber?: string;
     dkLen?: number;
@@ -835,8 +805,7 @@ export namespace identitytoolkit_v3 {
      */
     saltSeparator?: string;
     /**
-     * If true, backend will do sanity check(including duplicate email and
-     * federated id) when uploading account.
+     * If true, backend will do sanity check(including duplicate email and federated id) when uploading account.
      */
     sanityCheck?: boolean;
     /**
@@ -844,8 +813,7 @@ export namespace identitytoolkit_v3 {
      */
     signerKey?: string;
     /**
-     * Specify which project (field value is actually project id) to operate.
-     * Only used when provided credential.
+     * Specify which project (field value is actually project id) to operate. Only used when provided credential.
      */
     targetProjectId?: string;
     /**
@@ -858,14 +826,11 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$IdentitytoolkitRelyingpartyVerifyAssertionRequest {
     /**
-     * When it&#39;s true, automatically creates a new account if the user
-     * doesn&#39;t exist. When it&#39;s false, allows existing user to sign in
-     * normally and throws exception if the user doesn&#39;t exist.
+     * When it&#39;s true, automatically creates a new account if the user doesn&#39;t exist. When it&#39;s false, allows existing user to sign in normally and throws exception if the user doesn&#39;t exist.
      */
     autoCreate?: boolean;
     /**
-     * GCP project number of the requesting delegated app. Currently only
-     * intended for Firebase V1 migration.
+     * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
     delegatedProjectNumber?: string;
     /**
@@ -877,8 +842,7 @@ export namespace identitytoolkit_v3 {
      */
     instanceId?: string;
     /**
-     * The GITKit token for the non-trusted IDP pending to be confirmed by the
-     * user.
+     * The GITKit token for the non-trusted IDP pending to be confirmed by the user.
      */
     pendingIdToken?: string;
     /**
@@ -886,13 +850,11 @@ export namespace identitytoolkit_v3 {
      */
     postBody?: string;
     /**
-     * The URI to which the IDP redirects the user back. It may contain
-     * federated login result params added by the IDP.
+     * The URI to which the IDP redirects the user back. It may contain federated login result params added by the IDP.
      */
     requestUri?: string;
     /**
-     * Whether return 200 and IDP credential rather than throw exception when
-     * federated id is already linked.
+     * Whether return 200 and IDP credential rather than throw exception when federated id is already linked.
      */
     returnIdpCredential?: boolean;
     /**
@@ -908,9 +870,7 @@ export namespace identitytoolkit_v3 {
      */
     sessionId?: string;
     /**
-     * For multi-tenant use cases, in order to construct sign-in URL with the
-     * correct IDP parameters, Firebear needs to know which Tenant to retrieve
-     * IDP configs from.
+     * For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from.
      */
     tenantId?: string;
     /**
@@ -923,8 +883,7 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$IdentitytoolkitRelyingpartyVerifyCustomTokenRequest {
     /**
-     * GCP project number of the requesting delegated app. Currently only
-     * intended for Firebase V1 migration.
+     * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
     delegatedProjectNumber?: string;
     /**
@@ -953,8 +912,7 @@ export namespace identitytoolkit_v3 {
      */
     captchaResponse?: string;
     /**
-     * GCP project number of the requesting delegated app. Currently only
-     * intended for Firebase V1 migration.
+     * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
     delegatedProjectNumber?: string;
     /**
@@ -974,8 +932,7 @@ export namespace identitytoolkit_v3 {
      */
     password?: string;
     /**
-     * The GITKit token for the non-trusted IDP, which is to be confirmed by the
-     * user.
+     * The GITKit token for the non-trusted IDP, which is to be confirmed by the user.
      */
     pendingIdToken?: string;
     /**
@@ -983,9 +940,7 @@ export namespace identitytoolkit_v3 {
      */
     returnSecureToken?: boolean;
     /**
-     * For multi-tenant use cases, in order to construct sign-in URL with the
-     * correct IDP parameters, Firebear needs to know which Tenant to retrieve
-     * IDP configs from.
+     * For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from.
      */
     tenantId?: string;
     /**
@@ -1002,8 +957,7 @@ export namespace identitytoolkit_v3 {
     operation?: string;
     phoneNumber?: string;
     /**
-     * The session info previously returned by
-     * IdentityToolkit-SendVerificationCode.
+     * The session info previously returned by IdentityToolkit-SendVerificationCode.
      */
     sessionInfo?: string;
     temporaryProof?: string;
@@ -1037,8 +991,7 @@ export namespace identitytoolkit_v3 {
      */
     enabled?: boolean;
     /**
-     * Percent of users who will be prompted/redirected federated login for this
-     * IDP.
+     * Percent of users who will be prompted/redirected federated login for this IDP.
      */
     experimentPercent?: number;
     /**
@@ -1055,18 +1008,15 @@ export namespace identitytoolkit_v3 {
     whitelistedAudiences?: string[];
   }
   /**
-   * Request of getting a code for user confirmation (reset password, change
-   * email etc.)
+   * Request of getting a code for user confirmation (reset password, change email etc.)
    */
   export interface Schema$Relyingparty {
     /**
-     * whether or not to install the android app on the device where the link is
-     * opened
+     * whether or not to install the android app on the device where the link is opened
      */
     androidInstallApp?: boolean;
     /**
-     * minimum version of the app. if the version on the device is lower than
-     * this version then the user is taken to the play store to upgrade the app
+     * minimum version of the app. if the version on the device is lower than this version then the user is taken to the play store to upgrade the app
      */
     androidMinimumVersion?: string;
     /**
@@ -1127,8 +1077,7 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$ResetPasswordResponse {
     /**
-     * The user&#39;s email. If the out-of-band code is for email recovery, the
-     * user&#39;s original email.
+     * The user&#39;s email. If the out-of-band code is for email recovery, the user&#39;s original email.
      */
     email?: string;
     /**
@@ -1161,8 +1110,7 @@ export namespace identitytoolkit_v3 {
      */
     emailVerified?: boolean;
     /**
-     * If idToken is STS id token, then this field will be expiration time of
-     * STS id token in seconds.
+     * If idToken is STS id token, then this field will be expiration time of STS id token in seconds.
      */
     expiresIn?: string;
     /**
@@ -1204,8 +1152,7 @@ export namespace identitytoolkit_v3 {
     refreshToken?: string;
   }
   /**
-   * Response of signing up new user, creating anonymous user or anonymous user
-   * reauth.
+   * Response of signing up new user, creating anonymous user or anonymous user reauth.
    */
   export interface Schema$SignupNewUserResponse {
     /**
@@ -1217,8 +1164,7 @@ export namespace identitytoolkit_v3 {
      */
     email?: string;
     /**
-     * If idToken is STS id token, then this field will be expiration time of
-     * STS id token in seconds.
+     * If idToken is STS id token, then this field will be expiration time of STS id token in seconds.
      */
     expiresIn?: string;
     /**
@@ -1358,8 +1304,7 @@ export namespace identitytoolkit_v3 {
      */
     appScheme?: string;
     /**
-     * The opaque value used by the client to maintain context info between the
-     * authentication request and the IDP callback.
+     * The opaque value used by the client to maintain context info between the authentication request and the IDP callback.
      */
     context?: string;
     /**
@@ -1371,8 +1316,7 @@ export namespace identitytoolkit_v3 {
      */
     displayName?: string;
     /**
-     * The email returned by the IdP. NOTE: The federated login user may not own
-     * the email.
+     * The email returned by the IdP. NOTE: The federated login user may not own the email.
      */
     email?: string;
     /**
@@ -1380,8 +1324,7 @@ export namespace identitytoolkit_v3 {
      */
     emailRecycled?: boolean;
     /**
-     * The value is true if the IDP is also the email provider. It means the
-     * user owns the email.
+     * The value is true if the IDP is also the email provider. It means the user owns the email.
      */
     emailVerified?: boolean;
     /**
@@ -1389,8 +1332,7 @@ export namespace identitytoolkit_v3 {
      */
     errorMessage?: string;
     /**
-     * If idToken is STS id token, then this field will be expiration time of
-     * STS id token in seconds.
+     * If idToken is STS id token, then this field will be expiration time of STS id token in seconds.
      */
     expiresIn?: string;
     /**
@@ -1410,9 +1352,7 @@ export namespace identitytoolkit_v3 {
      */
     idToken?: string;
     /**
-     * It&#39;s the identifier param in the createAuthUri request if the
-     * identifier is an email. It can be used to check whether the user input
-     * email is different from the asserted email.
+     * It&#39;s the identifier param in the createAuthUri request if the identifier is an email. It can be used to check whether the user input email is different from the asserted email.
      */
     inputEmail?: string;
     /**
@@ -1432,13 +1372,11 @@ export namespace identitytoolkit_v3 {
      */
     lastName?: string;
     /**
-     * The RP local ID if it&#39;s already been mapped to the IdP account
-     * identified by the federated ID.
+     * The RP local ID if it&#39;s already been mapped to the IdP account identified by the federated ID.
      */
     localId?: string;
     /**
-     * Whether the assertion is from a non-trusted IDP and need account linking
-     * confirmation.
+     * Whether the assertion is from a non-trusted IDP and need account linking confirmation.
      */
     needConfirmation?: boolean;
     /**
@@ -1478,8 +1416,7 @@ export namespace identitytoolkit_v3 {
      */
     oauthTokenSecret?: string;
     /**
-     * The original email stored in the mapping storage. It&#39;s returned when
-     * the federated ID is associated to a different email.
+     * The original email stored in the mapping storage. It&#39;s returned when the federated ID is associated to a different email.
      */
     originalEmail?: string;
     /**
@@ -1487,12 +1424,7 @@ export namespace identitytoolkit_v3 {
      */
     photoUrl?: string;
     /**
-     * The IdP ID. For white listed IdPs it&#39;s a short domain name e.g.
-     * google.com, aol.com, live.net and yahoo.com. If the
-     * &quot;providerId&quot; param is set to OpenID OP identifer other than the
-     * whilte listed IdPs the OP identifier is returned. If the
-     * &quot;identifier&quot; param is federated ID in the createAuthUri
-     * request. The domain part of the federated ID is returned.
+     * The IdP ID. For white listed IdPs it&#39;s a short domain name e.g. google.com, aol.com, live.net and yahoo.com. If the &quot;providerId&quot; param is set to OpenID OP identifer other than the whilte listed IdPs the OP identifier is returned. If the &quot;identifier&quot; param is federated ID in the createAuthUri request. The domain part of the federated ID is returned.
      */
     providerId?: string;
     /**
@@ -1512,8 +1444,7 @@ export namespace identitytoolkit_v3 {
      */
     timeZone?: string;
     /**
-     * When action is &#39;map&#39;, contains the idps which can be used for
-     * confirmation.
+     * When action is &#39;map&#39;, contains the idps which can be used for confirmation.
      */
     verifiedProvider?: string[];
   }
@@ -1522,8 +1453,7 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$VerifyCustomTokenResponse {
     /**
-     * If idToken is STS id token, then this field will be expiration time of
-     * STS id token in seconds.
+     * If idToken is STS id token, then this field will be expiration time of STS id token in seconds.
      */
     expiresIn?: string;
     /**
@@ -1552,13 +1482,11 @@ export namespace identitytoolkit_v3 {
      */
     displayName?: string;
     /**
-     * The email returned by the IdP. NOTE: The federated login user may not own
-     * the email.
+     * The email returned by the IdP. NOTE: The federated login user may not own the email.
      */
     email?: string;
     /**
-     * If idToken is STS id token, then this field will be expiration time of
-     * STS id token in seconds.
+     * If idToken is STS id token, then this field will be expiration time of STS id token in seconds.
      */
     expiresIn?: string;
     /**
@@ -1570,8 +1498,7 @@ export namespace identitytoolkit_v3 {
      */
     kind?: string;
     /**
-     * The RP local ID if it&#39;s already been mapped to the IdP account
-     * identified by the federated ID.
+     * The RP local ID if it&#39;s already been mapped to the IdP account identified by the federated ID.
      */
     localId?: string;
     /**
@@ -3189,8 +3116,7 @@ export namespace identitytoolkit_v3 {
 
     /**
      * identitytoolkit.relyingparty.verifyPhoneNumber
-     * @desc Verifies ownership of a phone number and creates/updates the user
-     * account accordingly.
+     * @desc Verifies ownership of a phone number and creates/updates the user account accordingly.
      * @alias identitytoolkit.relyingparty.verifyPhoneNumber
      * @memberOf! ()
      *

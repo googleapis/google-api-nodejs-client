@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace siteVerification_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace siteVerification_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,7 +92,10 @@ export namespace siteVerification_v1 {
     webResource: Resource$Webresource;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.webResource = new Resource$Webresource(this.context);
     }
@@ -107,24 +107,17 @@ export namespace siteVerification_v1 {
      */
     site?: {identifier?: string; type?: string};
     /**
-     * The verification method that will be used to verify this site. For sites,
-     * &#39;FILE&#39; or &#39;META&#39; methods may be used. For domains, only
-     * &#39;DNS&#39; may be used.
+     * The verification method that will be used to verify this site. For sites, &#39;FILE&#39; or &#39;META&#39; methods may be used. For domains, only &#39;DNS&#39; may be used.
      */
     verificationMethod?: string;
   }
   export interface Schema$SiteVerificationWebResourceGettokenResponse {
     /**
-     * The verification method to use in conjunction with this token. For FILE,
-     * the token should be placed in the top-level directory of the site, stored
-     * inside a file of the same name. For META, the token should be placed in
-     * the HEAD tag of the default page that is loaded for the site. For DNS,
-     * the token should be placed in a TXT record of the domain.
+     * The verification method to use in conjunction with this token. For FILE, the token should be placed in the top-level directory of the site, stored inside a file of the same name. For META, the token should be placed in the HEAD tag of the default page that is loaded for the site. For DNS, the token should be placed in a TXT record of the domain.
      */
     method?: string;
     /**
-     * The verification token. The token must be placed appropriately in order
-     * for verification to succeed.
+     * The verification token. The token must be placed appropriately in order for verification to succeed.
      */
     token?: string;
   }
@@ -136,9 +129,7 @@ export namespace siteVerification_v1 {
   }
   export interface Schema$SiteVerificationWebResourceResource {
     /**
-     * The string used to identify this site. This value should be used in the
-     * &quot;id&quot; portion of the REST URL for the Get, Update, and Delete
-     * operations.
+     * The string used to identify this site. This value should be used in the &quot;id&quot; portion of the REST URL for the Get, Update, and Delete operations.
      */
     id?: string;
     /**
@@ -589,8 +580,7 @@ export namespace siteVerification_v1 {
 
     /**
      * siteVerification.webResource.patch
-     * @desc Modify the list of owners for your website or domain. This method
-     * supports patch semantics.
+     * @desc Modify the list of owners for your website or domain. This method supports patch semantics.
      * @alias siteVerification.webResource.patch
      * @memberOf! ()
      *

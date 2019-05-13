@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace binaryauthorization_v1beta1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace binaryauthorization_v1beta1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace binaryauthorization_v1beta1 {
   /**
    * Binary Authorization API
    *
-   * The management interface for Binary Authorization, a system providing
-   * policy control for images deployed to Kubernetes Engine clusters.
+   * The management interface for Binary Authorization, a system providing policy control for images deployed to Kubernetes Engine clusters.
    *
    * @example
    * const {google} = require('googleapis');
@@ -113,18 +108,17 @@ export namespace binaryauthorization_v1beta1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
   }
 
   /**
-   * An admission rule specifies either that all container images used in a pod
-   * creation request must be attested to by one or more attestors, that all pod
-   * creations will be allowed, or that all pod creations will be denied. Images
-   * matching an admission whitelist pattern are exempted from admission rules
-   * and will never block a pod creation.
+   * An admission rule specifies either that all container images used in a pod creation request must be attested to by one or more attestors, that all pod creations will be allowed, or that all pod creations will be denied.  Images matching an admission whitelist pattern are exempted from admission rules and will never block a pod creation.
    */
   export interface Schema$AdmissionRule {
     /**
@@ -136,41 +130,29 @@ export namespace binaryauthorization_v1beta1 {
      */
     evaluationMode?: string;
     /**
-     * Optional. The resource names of the attestors that must attest to a
-     * container image, in the format `projects/x/attestors/x. Each attestor
-     * must exist before a policy can reference it.  To add an attestor to a
-     * policy the principal issuing the policy change request must be able to
-     * read the attestor resource.  Note: this field must be non-empty when the
-     * evaluation_mode field specifies REQUIRE_ATTESTATION, otherwise it must be
-     * empty.
+     * Optional. The resource names of the attestors that must attest to a container image, in the format `projects/x/attestors/x. Each attestor must exist before a policy can reference it.  To add an attestor to a policy the principal issuing the policy change request must be able to read the attestor resource.  Note: this field must be non-empty when the evaluation_mode field specifies REQUIRE_ATTESTATION, otherwise it must be empty.
      */
     requireAttestationsBy?: string[];
   }
   /**
-   * An admission whitelist pattern exempts images from checks by admission
-   * rules.
+   * An admission whitelist pattern exempts images from checks by admission rules.
    */
   export interface Schema$AdmissionWhitelistPattern {
     /**
-     * An image name pattern to whitelist, in the form `registry/path/to/image`.
-     * This supports a trailing `*` as a wildcard, but this is allowed only in
-     * text after the `registry/` part.
+     * An image name pattern to whitelist, in the form `registry/path/to/image`. This supports a trailing `*` as a wildcard, but this is allowed only in text after the `registry/` part.
      */
     namePattern?: string;
   }
   /**
-   * An attestor that attests to container image artifacts. An existing attestor
-   * cannot be modified except where indicated.
+   * An attestor that attests to container image artifacts. An existing attestor cannot be modified except where indicated.
    */
   export interface Schema$Attestor {
     /**
-     * Optional. A descriptive comment.  This field may be updated. The field
-     * may be displayed in chooser dialogs.
+     * Optional. A descriptive comment.  This field may be updated. The field may be displayed in chooser dialogs.
      */
     description?: string;
     /**
-     * Required. The resource name, in the format: `projects/x/attestors/x. This
-     * field may not be updated.
+     * Required. The resource name, in the format: `projects/x/attestors/x. This field may not be updated.
      */
     name?: string;
     /**
@@ -183,18 +165,11 @@ export namespace binaryauthorization_v1beta1 {
     userOwnedDrydockNote?: Schema$UserOwnedDrydockNote;
   }
   /**
-   * An attestor public key that will be used to verify attestations signed by
-   * this attestor.
+   * An attestor public key that will be used to verify attestations signed by this attestor.
    */
   export interface Schema$AttestorPublicKey {
     /**
-     * ASCII-armored representation of a PGP public key, as the entire output by
-     * the command `gpg --export --armor foo@example.com` (either LF or CRLF
-     * line endings). When using this field, `id` should be left blank.  The
-     * BinAuthz API handlers will calculate the ID and fill it in automatically.
-     * BinAuthz computes this ID as the OpenPGP RFC4880 V4 fingerprint,
-     * represented as upper-case hex.  If `id` is provided by the caller, it
-     * will be overwritten by the API-calculated ID.
+     * ASCII-armored representation of a PGP public key, as the entire output by the command `gpg --export --armor foo@example.com` (either LF or CRLF line endings). When using this field, `id` should be left blank.  The BinAuthz API handlers will calculate the ID and fill it in automatically.  BinAuthz computes this ID as the OpenPGP RFC4880 V4 fingerprint, represented as upper-case hex.  If `id` is provided by the caller, it will be overwritten by the API-calculated ID.
      */
     asciiArmoredPgpPublicKey?: string;
     /**
@@ -202,18 +177,11 @@ export namespace binaryauthorization_v1beta1 {
      */
     comment?: string;
     /**
-     * The ID of this public key. Signatures verified by BinAuthz must include
-     * the ID of the public key that can be used to verify them, and that ID
-     * must match the contents of this field exactly. Additional restrictions on
-     * this field can be imposed based on which public key type is encapsulated.
-     * See the documentation on `public_key` cases below for details.
+     * The ID of this public key. Signatures verified by BinAuthz must include the ID of the public key that can be used to verify them, and that ID must match the contents of this field exactly. Additional restrictions on this field can be imposed based on which public key type is encapsulated. See the documentation on `public_key` cases below for details.
      */
     id?: string;
     /**
-     * A raw PKIX SubjectPublicKeyInfo format public key.  NOTE: `id` may be
-     * explicitly provided by the caller when using this type of public key, but
-     * it MUST be a valid RFC3986 URI. If `id` is left blank, a default one will
-     * be computed based on the digest of the DER encoding of the public key.
+     * A raw PKIX SubjectPublicKeyInfo format public key.  NOTE: `id` may be explicitly provided by the caller when using this type of public key, but it MUST be a valid RFC3986 URI. If `id` is left blank, a default one will be computed based on the digest of the DER encoding of the public key.
      */
     pkixPublicKey?: Schema$PkixPublicKey;
   }
@@ -222,106 +190,53 @@ export namespace binaryauthorization_v1beta1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied
-     * condition will not allow user access via current binding. Different
-     * bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource.
-     * `members` can have the following values:  * `allUsers`: A special
-     * identifier that represents anyone who is    on the internet; with or
-     * without a Google account.  * `allAuthenticatedUsers`: A special
-     * identifier that represents anyone    who is authenticated with a Google
-     * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com` .
-     * * `serviceAccount:{emailid}`: An email address that represents a service
-     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
-     * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
-     * (primary) that represents all the    users of that domain. For example,
-     * `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
-     * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`.
+     * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents an expression text. Example:      title: &quot;User account
-   * presence&quot;     description: &quot;Determines whether the request has a
-   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which
-     * describes the expression, e.g. when hovered over it in a UI.
+     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string;
     /**
-     * Textual representation of an expression in Common Expression Language
-     * syntax.  The application context of the containing message determines
-     * which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
     expression?: string;
     /**
-     * An optional string indicating the location of the expression for error
-     * reporting, e.g. a file name and a position in the file.
+     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string;
     /**
-     * An optional title for the expression, i.e. a short string describing its
-     * purpose. This can be used e.g. in UIs which allow to enter the
-     * expression.
+     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to
-   * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `binding` binds a list of `members` to
-   * a `role`, where the members can be user accounts, Google groups, Google
-   * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
-   * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
-   * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
-   * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
-   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
-   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
-   * Example**      bindings:     - members:       - user:mike@example.com -
-   * group:admins@example.com       - domain:google.com       -
-   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
-   * roles/owner     - members:       - user:sean@example.com       role:
-   * roles/viewer   For a description of IAM and its features, see the [IAM
-   * developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$IamPolicy {
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members
-     * will result in an error.
+     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a policy from overwriting each other. It
-     * is strongly suggested that systems make use of the `etag` in the
-     * read-modify-write cycle to perform policy updates in order to avoid race
-     * conditions: An `etag` is returned in the response to `getIamPolicy`, and
-     * systems are expected to put that etag in the request to `setIamPolicy` to
-     * ensure that their change will be applied to the same version of the
-     * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
-     * existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
      */
     etag?: string;
     /**
@@ -338,28 +253,20 @@ export namespace binaryauthorization_v1beta1 {
      */
     attestors?: Schema$Attestor[];
     /**
-     * A token to retrieve the next page of results. Pass this value in the
-     * ListAttestorsRequest.page_token field in the subsequent call to the
-     * `ListAttestors` method to retrieve the next page of results.
+     * A token to retrieve the next page of results. Pass this value in the ListAttestorsRequest.page_token field in the subsequent call to the `ListAttestors` method to retrieve the next page of results.
      */
     nextPageToken?: string;
   }
   /**
-   * A public key in the PkixPublicKey format (see
-   * https://tools.ietf.org/html/rfc5280#section-4.1.2.7 for details). Public
-   * keys of this type are typically textually encoded using the PEM format.
+   * A public key in the PkixPublicKey format (see https://tools.ietf.org/html/rfc5280#section-4.1.2.7 for details). Public keys of this type are typically textually encoded using the PEM format.
    */
   export interface Schema$PkixPublicKey {
     /**
-     * A PEM-encoded public key, as described in
-     * https://tools.ietf.org/html/rfc7468#section-13
+     * A PEM-encoded public key, as described in https://tools.ietf.org/html/rfc7468#section-13
      */
     publicKeyPem?: string;
     /**
-     * The signature algorithm used to verify a message against a signature
-     * using this key. These signature algorithm must match the structure and
-     * any object identifiers encoded in `public_key_pem` (i.e. this algorithm
-     * must match that of the public key).
+     * The signature algorithm used to verify a message against a signature using this key. These signature algorithm must match the structure and any object identifiers encoded in `public_key_pem` (i.e. this algorithm must match that of the public key).
      */
     signatureAlgorithm?: string;
   }
@@ -368,24 +275,15 @@ export namespace binaryauthorization_v1beta1 {
    */
   export interface Schema$Policy {
     /**
-     * Optional. Admission policy whitelisting. A matching admission request
-     * will always be permitted. This feature is typically used to exclude
-     * Google or third-party infrastructure images from Binary Authorization
-     * policies.
+     * Optional. Admission policy whitelisting. A matching admission request will always be permitted. This feature is typically used to exclude Google or third-party infrastructure images from Binary Authorization policies.
      */
     admissionWhitelistPatterns?: Schema$AdmissionWhitelistPattern[];
     /**
-     * Optional. Per-cluster admission rules. Cluster spec format:
-     * `location.clusterId`. There can be at most one admission rule per cluster
-     * spec. A `location` is either a compute zone (e.g. us-central1-a) or a
-     * region (e.g. us-central1). For `clusterId` syntax restrictions see
-     * https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters.
+     * Optional. Per-cluster admission rules. Cluster spec format: `location.clusterId`. There can be at most one admission rule per cluster spec. A `location` is either a compute zone (e.g. us-central1-a) or a region (e.g. us-central1). For `clusterId` syntax restrictions see https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters.
      */
     clusterAdmissionRules?: {[key: string]: Schema$AdmissionRule};
     /**
-     * Required. Default admission rule for a cluster without a per-cluster,
-     * per- kubernetes-service-account, or per-istio-service-identity admission
-     * rule.
+     * Required. Default admission rule for a cluster without a per-cluster, per- kubernetes-service-account, or per-istio-service-identity admission rule.
      */
     defaultAdmissionRule?: Schema$AdmissionRule;
     /**
@@ -393,15 +291,11 @@ export namespace binaryauthorization_v1beta1 {
      */
     description?: string;
     /**
-     * Optional. Controls the evaluation of a Google-maintained global admission
-     * policy for common system-level images. Images not covered by the global
-     * policy will be subject to the project admission policy. This setting has
-     * no effect when specified inside a global admission policy.
+     * Optional. Controls the evaluation of a Google-maintained global admission policy for common system-level images. Images not covered by the global policy will be subject to the project admission policy. This setting has no effect when specified inside a global admission policy.
      */
     globalPolicyEvaluationMode?: string;
     /**
-     * Output only. The resource name, in the format `projects/x/policy`. There
-     * is at most one policy per project.
+     * Output only. The resource name, in the format `projects/x/policy`. There is at most one policy per project.
      */
     name?: string;
     /**
@@ -414,10 +308,7 @@ export namespace binaryauthorization_v1beta1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size
-     * of the policy is limited to a few 10s of KB. An empty policy is a valid
-     * policy but certain Cloud Platform services (such as Projects) might
-     * reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
      */
     policy?: Schema$IamPolicy;
   }
@@ -426,10 +317,7 @@ export namespace binaryauthorization_v1beta1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with
-     * wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
-     * For more information see [IAM
-     * Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[];
   }
@@ -438,42 +326,24 @@ export namespace binaryauthorization_v1beta1 {
    */
   export interface Schema$TestIamPermissionsResponse {
     /**
-     * A subset of `TestPermissionsRequest.permissions` that the caller is
-     * allowed.
+     * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[];
   }
   /**
-   * An user owned drydock note references a Drydock ATTESTATION_AUTHORITY Note
-   * created by the user.
+   * An user owned drydock note references a Drydock ATTESTATION_AUTHORITY Note created by the user.
    */
   export interface Schema$UserOwnedDrydockNote {
     /**
-     * Output only. This field will contain the service account email address
-     * that this Attestor will use as the principal when querying Container
-     * Analysis. Attestor administrators must grant this service account the IAM
-     * role needed to read attestations from the note_reference in Container
-     * Analysis (`containeranalysis.notes.occurrences.viewer`).  This email
-     * address is fixed for the lifetime of the Attestor, but callers should not
-     * make any other assumptions about the service account email; future
-     * versions may use an email based on a different naming pattern.
+     * Output only. This field will contain the service account email address that this Attestor will use as the principal when querying Container Analysis. Attestor administrators must grant this service account the IAM role needed to read attestations from the note_reference in Container Analysis (`containeranalysis.notes.occurrences.viewer`).  This email address is fixed for the lifetime of the Attestor, but callers should not make any other assumptions about the service account email; future versions may use an email based on a different naming pattern.
      */
     delegationServiceAccountEmail?: string;
     /**
-     * Required. The Drydock resource name of a ATTESTATION_AUTHORITY Note,
-     * created by the user, in the format: `projects/x/notes/x (or the legacy
-     * `providers/x/notes/x). This field may not be updated.  An attestation by
-     * this attestor is stored as a Drydock ATTESTATION_AUTHORITY Occurrence
-     * that names a container image and that links to this Note. Drydock is an
-     * external dependency.
+     * Required. The Drydock resource name of a ATTESTATION_AUTHORITY Note, created by the user, in the format: `projects/x/notes/x (or the legacy `providers/x/notes/x). This field may not be updated.  An attestation by this attestor is stored as a Drydock ATTESTATION_AUTHORITY Occurrence that names a container image and that links to this Note. Drydock is an external dependency.
      */
     noteReference?: string;
     /**
-     * Optional. Public keys that verify attestations signed by this attestor.
-     * This field may be updated.  If this field is non-empty, one of the
-     * specified public keys must verify that an attestation was signed by this
-     * attestor for the image specified in the admission request.  If this field
-     * is empty, this attestor always returns that no valid attestations exist.
+     * Optional. Public keys that verify attestations signed by this attestor.  This field may be updated.  If this field is non-empty, one of the specified public keys must verify that an attestation was signed by this attestor for the image specified in the admission request.  If this field is empty, this attestor always returns that no valid attestations exist.
      */
     publicKeys?: Schema$AttestorPublicKey[];
   }
@@ -490,8 +360,7 @@ export namespace binaryauthorization_v1beta1 {
 
     /**
      * binaryauthorization.projects.getPolicy
-     * @desc Gets the policy for this project. Returns a default policy if the
-     * project does not have one.
+     * @desc Gets the policy for this project. Returns a default policy if the project does not have one.
      * @alias binaryauthorization.projects.getPolicy
      * @memberOf! ()
      *
@@ -561,11 +430,7 @@ export namespace binaryauthorization_v1beta1 {
 
     /**
      * binaryauthorization.projects.updatePolicy
-     * @desc Creates or updates a project's policy, and returns a copy of the
-     * new policy. A policy is always updated as a whole, to avoid race
-     * conditions with concurrent policy enforcement (or management!) requests.
-     * Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT if the
-     * request is malformed.
+     * @desc Creates or updates a project's policy, and returns a copy of the new policy. A policy is always updated as a whole, to avoid race conditions with concurrent policy enforcement (or management!) requests. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT if the request is malformed.
      * @alias binaryauthorization.projects.updatePolicy
      * @memberOf! ()
      *
@@ -643,8 +508,7 @@ export namespace binaryauthorization_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the policy to retrieve, in the format
-     * `projects/x/policy`.
+     * Required. The resource name of the policy to retrieve, in the format `projects/x/policy`.
      */
     name?: string;
   }
@@ -656,8 +520,7 @@ export namespace binaryauthorization_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Output only. The resource name, in the format `projects/x/policy`. There
-     * is at most one policy per project.
+     * Output only. The resource name, in the format `projects/x/policy`. There is at most one policy per project.
      */
     name?: string;
 
@@ -675,9 +538,7 @@ export namespace binaryauthorization_v1beta1 {
 
     /**
      * binaryauthorization.projects.attestors.create
-     * @desc Creates an attestor, and returns a copy of the new attestor.
-     * Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT if the
-     * request is malformed, ALREADY_EXISTS if the attestor already exists.
+     * @desc Creates an attestor, and returns a copy of the new attestor. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT if the request is malformed, ALREADY_EXISTS if the attestor already exists.
      * @alias binaryauthorization.projects.attestors.create
      * @memberOf! ()
      *
@@ -752,8 +613,7 @@ export namespace binaryauthorization_v1beta1 {
 
     /**
      * binaryauthorization.projects.attestors.delete
-     * @desc Deletes an attestor. Returns NOT_FOUND if the attestor does not
-     * exist.
+     * @desc Deletes an attestor. Returns NOT_FOUND if the attestor does not exist.
      * @alias binaryauthorization.projects.attestors.delete
      * @memberOf! ()
      *
@@ -893,8 +753,7 @@ export namespace binaryauthorization_v1beta1 {
 
     /**
      * binaryauthorization.projects.attestors.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @alias binaryauthorization.projects.attestors.getIamPolicy
      * @memberOf! ()
      *
@@ -969,8 +828,7 @@ export namespace binaryauthorization_v1beta1 {
 
     /**
      * binaryauthorization.projects.attestors.list
-     * @desc Lists attestors. Returns INVALID_ARGUMENT if the project does not
-     * exist.
+     * @desc Lists attestors. Returns INVALID_ARGUMENT if the project does not exist.
      * @alias binaryauthorization.projects.attestors.list
      * @memberOf! ()
      *
@@ -1049,8 +907,7 @@ export namespace binaryauthorization_v1beta1 {
 
     /**
      * binaryauthorization.projects.attestors.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias binaryauthorization.projects.attestors.setIamPolicy
      * @memberOf! ()
      *
@@ -1126,11 +983,7 @@ export namespace binaryauthorization_v1beta1 {
 
     /**
      * binaryauthorization.projects.attestors.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
-     * be used for building permission-aware UIs and command-line tools, not for
-     * authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @alias binaryauthorization.projects.attestors.testIamPermissions
      * @memberOf! ()
      *
@@ -1213,8 +1066,7 @@ export namespace binaryauthorization_v1beta1 {
 
     /**
      * binaryauthorization.projects.attestors.update
-     * @desc Updates an attestor. Returns NOT_FOUND if the attestor does not
-     * exist.
+     * @desc Updates an attestor. Returns NOT_FOUND if the attestor does not exist.
      * @alias binaryauthorization.projects.attestors.update
      * @memberOf! ()
      *
@@ -1313,8 +1165,7 @@ export namespace binaryauthorization_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the attestors to delete, in the format
-     * `projects/x/attestors/x`.
+     * Required. The name of the attestors to delete, in the format `projects/x/attestors/x`.
      */
     name?: string;
   }
@@ -1326,8 +1177,7 @@ export namespace binaryauthorization_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the attestor to retrieve, in the format
-     * `projects/x/attestors/x`.
+     * Required. The name of the attestor to retrieve, in the format `projects/x/attestors/x`.
      */
     name?: string;
   }
@@ -1339,8 +1189,7 @@ export namespace binaryauthorization_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -1352,19 +1201,15 @@ export namespace binaryauthorization_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Requested page size. The server may return fewer results than requested.
-     * If unspecified, the server will pick an appropriate default.
+     * Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.
-     * Typically, this is the value of ListAttestorsResponse.next_page_token
-     * returned from the previous call to the `ListAttestors` method.
+     * A token identifying a page of results the server should return. Typically, this is the value of ListAttestorsResponse.next_page_token returned from the previous call to the `ListAttestors` method.
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the project associated with the attestors,
-     * in the format `projects/x`.
+     * Required. The resource name of the project associated with the attestors, in the format `projects/x`.
      */
     parent?: string;
   }
@@ -1376,8 +1221,7 @@ export namespace binaryauthorization_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -1394,8 +1238,7 @@ export namespace binaryauthorization_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -1412,8 +1255,7 @@ export namespace binaryauthorization_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name, in the format: `projects/x/attestors/x`.
-     * This field may not be updated.
+     * Required. The resource name, in the format: `projects/x/attestors/x`. This field may not be updated.
      */
     name?: string;
 
@@ -1431,8 +1273,7 @@ export namespace binaryauthorization_v1beta1 {
 
     /**
      * binaryauthorization.projects.policy.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @alias binaryauthorization.projects.policy.getIamPolicy
      * @memberOf! ()
      *
@@ -1507,8 +1348,7 @@ export namespace binaryauthorization_v1beta1 {
 
     /**
      * binaryauthorization.projects.policy.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias binaryauthorization.projects.policy.setIamPolicy
      * @memberOf! ()
      *
@@ -1584,11 +1424,7 @@ export namespace binaryauthorization_v1beta1 {
 
     /**
      * binaryauthorization.projects.policy.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
-     * be used for building permission-aware UIs and command-line tools, not for
-     * authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @alias binaryauthorization.projects.policy.testIamPermissions
      * @memberOf! ()
      *
@@ -1678,8 +1514,7 @@ export namespace binaryauthorization_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -1691,8 +1526,7 @@ export namespace binaryauthorization_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -1709,8 +1543,7 @@ export namespace binaryauthorization_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 

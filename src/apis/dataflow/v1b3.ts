@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace dataflow_v1b3 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace dataflow_v1b3 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -112,15 +108,17 @@ export namespace dataflow_v1b3 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
   }
 
   /**
-   * Obsolete in favor of ApproximateReportedProgress and
-   * ApproximateSplitRequest.
+   * Obsolete in favor of ApproximateReportedProgress and ApproximateSplitRequest.
    */
   export interface Schema$ApproximateProgress {
     /**
@@ -141,17 +139,11 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$ApproximateReportedProgress {
     /**
-     * Total amount of parallelism in the portion of input of this task that has
-     * already been consumed and is no longer active. In the first two examples
-     * above (see remaining_parallelism), the value should be 29 or 2
-     * respectively.  The sum of remaining_parallelism and consumed_parallelism
-     * should equal the total amount of parallelism in this work item.  If
-     * specified, must be finite.
+     * Total amount of parallelism in the portion of input of this task that has already been consumed and is no longer active. In the first two examples above (see remaining_parallelism), the value should be 29 or 2 respectively.  The sum of remaining_parallelism and consumed_parallelism should equal the total amount of parallelism in this work item.  If specified, must be finite.
      */
     consumedParallelism?: Schema$ReportedParallelism;
     /**
-     * Completion as fraction of the input consumed, from 0.0 (beginning,
-     * nothing consumed), to 1.0 (end of the input, entire input consumed).
+     * Completion as fraction of the input consumed, from 0.0 (beginning, nothing consumed), to 1.0 (end of the input, entire input consumed).
      */
     fractionConsumed?: number;
     /**
@@ -159,41 +151,20 @@ export namespace dataflow_v1b3 {
      */
     position?: Schema$Position;
     /**
-     * Total amount of parallelism in the input of this task that remains, (i.e.
-     * can be delegated to this task and any new tasks via dynamic splitting).
-     * Always at least 1 for non-finished work items and 0 for finished.
-     * &quot;Amount of parallelism&quot; refers to how many non-empty parts of
-     * the input can be read in parallel. This does not necessarily equal number
-     * of records. An input that can be read in parallel down to the individual
-     * records is called &quot;perfectly splittable&quot;. An example of
-     * non-perfectly parallelizable input is a block-compressed file format
-     * where a block of records has to be read as a whole, but different blocks
-     * can be read in parallel.  Examples: * If we are processing record #30
-     * (starting at 1) out of 50 in a perfectly   splittable 50-record input,
-     * this value should be 21 (20 remaining + 1   current). * If we are reading
-     * through block 3 in a block-compressed file consisting   of 5 blocks, this
-     * value should be 3 (since blocks 4 and 5 can be   processed in parallel by
-     * new tasks via dynamic splitting and the current   task remains processing
-     * block 3). * If we are reading through the last block in a
-     * block-compressed file,   or reading or processing the last record in a
-     * perfectly splittable   input, this value should be 1, because apart from
-     * the current task, no   additional remainder can be split off.
+     * Total amount of parallelism in the input of this task that remains, (i.e. can be delegated to this task and any new tasks via dynamic splitting). Always at least 1 for non-finished work items and 0 for finished.  &quot;Amount of parallelism&quot; refers to how many non-empty parts of the input can be read in parallel. This does not necessarily equal number of records. An input that can be read in parallel down to the individual records is called &quot;perfectly splittable&quot;. An example of non-perfectly parallelizable input is a block-compressed file format where a block of records has to be read as a whole, but different blocks can be read in parallel.  Examples: * If we are processing record #30 (starting at 1) out of 50 in a perfectly   splittable 50-record input, this value should be 21 (20 remaining + 1   current). * If we are reading through block 3 in a block-compressed file consisting   of 5 blocks, this value should be 3 (since blocks 4 and 5 can be   processed in parallel by new tasks via dynamic splitting and the current   task remains processing block 3). * If we are reading through the last block in a block-compressed file,   or reading or processing the last record in a perfectly splittable   input, this value should be 1, because apart from the current task, no   additional remainder can be split off.
      */
     remainingParallelism?: Schema$ReportedParallelism;
   }
   /**
-   * A suggestion by the service to the worker to dynamically split the
-   * WorkItem.
+   * A suggestion by the service to the worker to dynamically split the WorkItem.
    */
   export interface Schema$ApproximateSplitRequest {
     /**
-     * A fraction at which to split the work item, from 0.0 (beginning of the
-     * input) to 1.0 (end of the input).
+     * A fraction at which to split the work item, from 0.0 (beginning of the input) to 1.0 (end of the input).
      */
     fractionConsumed?: number;
     /**
-     * The fraction of the remainder of work to split the work item at, from 0.0
-     * (split at the current position) to 1.0 (end of the input).
+     * The fraction of the remainder of work to split the work item at, from 0.0 (split at the current position) to 1.0 (end of the input).
      */
     fractionOfRemainder?: number;
     /**
@@ -202,8 +173,7 @@ export namespace dataflow_v1b3 {
     position?: Schema$Position;
   }
   /**
-   * A structured message reporting an autoscaling decision made by the Dataflow
-   * service.
+   * A structured message reporting an autoscaling decision made by the Dataflow service.
    */
   export interface Schema$AutoscalingEvent {
     /**
@@ -211,9 +181,7 @@ export namespace dataflow_v1b3 {
      */
     currentNumWorkers?: string;
     /**
-     * A message describing why the system decided to adjust the current number
-     * of workers, why it failed, or why the system decided to not make any
-     * changes to the number of workers.
+     * A message describing why the system decided to adjust the current number of workers, why it failed, or why the system decided to not make any changes to the number of workers.
      */
     description?: Schema$StructuredMessage;
     /**
@@ -225,13 +193,11 @@ export namespace dataflow_v1b3 {
      */
     targetNumWorkers?: string;
     /**
-     * The time this event was emitted to indicate a new target or current
-     * num_workers value.
+     * The time this event was emitted to indicate a new target or current num_workers value.
      */
     time?: string;
     /**
-     * A short and friendly name for the worker pool this event refers to,
-     * populated from the value of PoolStageRelation::user_pool_name.
+     * A short and friendly name for the worker pool this event refers to, populated from the value of PoolStageRelation::user_pool_name.
      */
     workerPool?: string;
   }
@@ -287,8 +253,7 @@ export namespace dataflow_v1b3 {
     tableId?: string;
   }
   /**
-   * Description of an interstitial value between transforms in an execution
-   * stage.
+   * Description of an interstitial value between transforms in an execution stage.
    */
   export interface Schema$ComponentSource {
     /**
@@ -296,8 +261,7 @@ export namespace dataflow_v1b3 {
      */
     name?: string;
     /**
-     * User name for the original user transform or collection with which this
-     * source is most closely associated.
+     * User name for the original user transform or collection with which this source is most closely associated.
      */
     originalTransformOrCollection?: string;
     /**
@@ -314,8 +278,7 @@ export namespace dataflow_v1b3 {
      */
     name?: string;
     /**
-     * User name for the original user transform with which this transform is
-     * most closely associated.
+     * User name for the original user transform with which this transform is most closely associated.
      */
     originalTransform?: string;
     /**
@@ -353,9 +316,7 @@ export namespace dataflow_v1b3 {
     systemStageName?: string;
   }
   /**
-   * A position that encapsulates an inner position and an index for the inner
-   * position. A ConcatPosition can be used by a reader of a source that
-   * encapsulates a set of other sources.
+   * A position that encapsulates an inner position and an index for the inner position. A ConcatPosition can be used by a reader of a source that encapsulates a set of other sources.
    */
   export interface Schema$ConcatPosition {
     /**
@@ -389,8 +350,7 @@ export namespace dataflow_v1b3 {
     standardUnits?: string;
   }
   /**
-   * Identifies a counter within a per-job namespace. Counters whose structured
-   * names are the same get merged into a single value for the job.
+   * Identifies a counter within a per-job namespace. Counters whose structured names are the same get merged into a single value for the job.
    */
   export interface Schema$CounterStructuredName {
     /**
@@ -402,16 +362,11 @@ export namespace dataflow_v1b3 {
      */
     executionStepName?: string;
     /**
-     * Index of an input collection that&#39;s being read from/written to as a
-     * side input. The index identifies a step&#39;s side inputs starting by 1
-     * (e.g. the first side input has input_index 1, the third has input_index
-     * 3). Side inputs are identified by a pair of (original_step_name,
-     * input_index). This field helps uniquely identify them.
+     * Index of an input collection that&#39;s being read from/written to as a side input. The index identifies a step&#39;s side inputs starting by 1 (e.g. the first side input has input_index 1, the third has input_index 3). Side inputs are identified by a pair of (original_step_name, input_index). This field helps uniquely identify them.
      */
     inputIndex?: number;
     /**
-     * Counter name. Not necessarily globally-unique, but unique within the
-     * context of the other fields. Required.
+     * Counter name. Not necessarily globally-unique, but unique within the context of the other fields. Required.
      */
     name?: string;
     /**
@@ -419,18 +374,15 @@ export namespace dataflow_v1b3 {
      */
     origin?: string;
     /**
-     * The step name requesting an operation, such as GBK. I.e. the ParDo
-     * causing a read/write from shuffle to occur, or a read from side inputs.
+     * The step name requesting an operation, such as GBK. I.e. the ParDo causing a read/write from shuffle to occur, or a read from side inputs.
      */
     originalRequestingStepName?: string;
     /**
-     * System generated name of the original step in the user&#39;s graph,
-     * before optimization.
+     * System generated name of the original step in the user&#39;s graph, before optimization.
      */
     originalStepName?: string;
     /**
-     * A string containing a more specific namespace of the counter&#39;s
-     * origin.
+     * A string containing a more specific namespace of the counter&#39;s origin.
      */
     originNamespace?: string;
     /**
@@ -443,8 +395,7 @@ export namespace dataflow_v1b3 {
     workerId?: string;
   }
   /**
-   * A single message which encapsulates structured name and metadata for a
-   * given counter.
+   * A single message which encapsulates structured name and metadata for a given counter.
    */
   export interface Schema$CounterStructuredNameAndMetadata {
     /**
@@ -465,9 +416,7 @@ export namespace dataflow_v1b3 {
      */
     boolean?: boolean;
     /**
-     * True if this counter is reported as the total cumulative aggregate value
-     * accumulated since the worker started working on this WorkItem. By default
-     * this is false, indicating that this counter is reported as a delta.
+     * True if this counter is reported as the total cumulative aggregate value accumulated since the worker started working on this WorkItem. By default this is false, indicating that this counter is reported as a delta.
      */
     cumulative?: boolean;
     /**
@@ -511,8 +460,7 @@ export namespace dataflow_v1b3 {
      */
     nameAndKind?: Schema$NameAndKind;
     /**
-     * The service-generated short identifier for this counter. The short_id
-     * -&gt; (name, metadata) mapping is constant for the lifetime of a job.
+     * The service-generated short identifier for this counter. The short_id -&gt; (name, metadata) mapping is constant for the lifetime of a job.
      */
     shortId?: string;
     /**
@@ -529,8 +477,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$CPUTime {
     /**
-     * Average CPU utilization rate (% non-idle cpu / second) since previous
-     * sample.
+     * Average CPU utilization rate (% non-idle cpu / second) since previous sample.
      */
     rate?: number;
     /**
@@ -538,8 +485,7 @@ export namespace dataflow_v1b3 {
      */
     timestamp?: string;
     /**
-     * Total active CPU time across all cores (ie., non-idle) in milliseconds
-     * since start-up.
+     * Total active CPU time across all cores (ie., non-idle) in milliseconds since start-up.
      */
     totalMs?: string;
   }
@@ -552,8 +498,7 @@ export namespace dataflow_v1b3 {
      */
     environment?: Schema$RuntimeEnvironment;
     /**
-     * Required. A Cloud Storage path to the template from which to create the
-     * job. Must be a valid Cloud Storage URL, beginning with `gs://`.
+     * Required. A Cloud Storage path to the template from which to create the job. Must be a valid Cloud Storage URL, beginning with `gs://`.
      */
     gcsPath?: string;
     /**
@@ -561,9 +506,7 @@ export namespace dataflow_v1b3 {
      */
     jobName?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
-     * which to direct the request.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      */
     location?: string;
     /**
@@ -585,16 +528,11 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$DataDiskAssignment {
     /**
-     * Mounted data disks. The order is important a data disk&#39;s 0-based
-     * index in this list defines which persistent directory the disk is mounted
-     * to, for example the list of {
-     * &quot;myproject-1014-104817-4c2-harness-0-disk-0&quot; }, {
-     * &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot; }.
+     * Mounted data disks. The order is important a data disk&#39;s 0-based index in this list defines which persistent directory the disk is mounted to, for example the list of { &quot;myproject-1014-104817-4c2-harness-0-disk-0&quot; }, { &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot; }.
      */
     dataDisks?: string[];
     /**
-     * VM instance name the data disks mounted to, for example
-     * &quot;myproject-1014-104817-4c2-harness-0&quot;.
+     * VM instance name the data disks mounted to, for example &quot;myproject-1014-104817-4c2-harness-0&quot;.
      */
     vmInstance?: string;
   }
@@ -612,10 +550,11 @@ export namespace dataflow_v1b3 {
     projectId?: string;
   }
   /**
-   * Specification of one of the bundles produced as a result of splitting a
-   * Source (e.g. when executing a SourceSplitRequest, or when splitting an
-   * active task using WorkItemStatus.dynamic_source_split), relative to the
-   * source being split.
+   * Response from deleting a snapshot.
+   */
+  export interface Schema$DeleteSnapshotResponse {}
+  /**
+   * Specification of one of the bundles produced as a result of splitting a Source (e.g. when executing a SourceSplitRequest, or when splitting an active task using WorkItemStatus.dynamic_source_split), relative to the source being split.
    */
   export interface Schema$DerivedSource {
     /**
@@ -632,20 +571,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$Disk {
     /**
-     * Disk storage type, as defined by Google Compute Engine.  This must be a
-     * disk type appropriate to the project and zone in which the workers will
-     * run.  If unknown or unspecified, the service will attempt to choose a
-     * reasonable default.  For example, the standard persistent disk type is a
-     * resource name typically ending in &quot;pd-standard&quot;.  If SSD
-     * persistent disks are available, the resource name typically ends with
-     * &quot;pd-ssd&quot;.  The actual valid values are defined the Google
-     * Compute Engine API, not by the Cloud Dataflow API; consult the Google
-     * Compute Engine documentation for more information about determining the
-     * set of available disk types for a particular project and zone.  Google
-     * Compute Engine Disk types are local to a particular project in a
-     * particular zone, and so the resource name will typically look something
-     * like this:
-     * compute.googleapis.com/projects/project-id/zones/zone/diskTypes/pd-standard
+     * Disk storage type, as defined by Google Compute Engine.  This must be a disk type appropriate to the project and zone in which the workers will run.  If unknown or unspecified, the service will attempt to choose a reasonable default.  For example, the standard persistent disk type is a resource name typically ending in &quot;pd-standard&quot;.  If SSD persistent disks are available, the resource name typically ends with &quot;pd-ssd&quot;.  The actual valid values are defined the Google Compute Engine API, not by the Cloud Dataflow API; consult the Google Compute Engine documentation for more information about determining the set of available disk types for a particular project and zone.  Google Compute Engine Disk types are local to a particular project in a particular zone, and so the resource name will typically look something like this:  compute.googleapis.com/projects/project-id/zones/zone/diskTypes/pd-standard
      */
     diskType?: string;
     /**
@@ -653,8 +579,7 @@ export namespace dataflow_v1b3 {
      */
     mountPoint?: string;
     /**
-     * Size of disk in GB.  If zero or unspecified, the service will attempt to
-     * choose a reasonable default.
+     * Size of disk in GB.  If zero or unspecified, the service will attempt to choose a reasonable default.
      */
     sizeGb?: number;
   }
@@ -683,8 +608,7 @@ export namespace dataflow_v1b3 {
      */
     javaClassValue?: string;
     /**
-     * The key identifying the display data. This is intended to be used as a
-     * label for the display data when viewed in a dax monitoring system.
+     * The key identifying the display data. This is intended to be used as a label for the display data when viewed in a dax monitoring system.
      */
     key?: string;
     /**
@@ -692,18 +616,11 @@ export namespace dataflow_v1b3 {
      */
     label?: string;
     /**
-     * The namespace for the key. This is usually a class name or programming
-     * language namespace (i.e. python module) which defines the display data.
-     * This allows a dax monitoring system to specially handle the data and
-     * perform custom rendering.
+     * The namespace for the key. This is usually a class name or programming language namespace (i.e. python module) which defines the display data. This allows a dax monitoring system to specially handle the data and perform custom rendering.
      */
     namespace?: string;
     /**
-     * A possible additional shorter value to display. For example a
-     * java_class_name_value of com.mypackage.MyDoFn will be stored with MyDoFn
-     * as the short_str_value and com.mypackage.MyDoFn as the java_class_name
-     * value. short_str_value can be displayed and java_class_name_value will be
-     * displayed as a tooltip.
+     * A possible additional shorter value to display. For example a java_class_name_value of com.mypackage.MyDoFn will be stored with MyDoFn as the short_str_value and com.mypackage.MyDoFn as the java_class_name value. short_str_value can be displayed and java_class_name_value will be displayed as a tooltip.
      */
     shortStrValue?: string;
     /**
@@ -740,8 +657,7 @@ export namespace dataflow_v1b3 {
      */
     min?: Schema$SplitInt64;
     /**
-     * Use an int64 since we&#39;d prefer the added precision. If overflow is a
-     * common problem we can detect it and use an additional int64 or a double.
+     * Use an int64 since we&#39;d prefer the added precision. If overflow is a common problem we can detect it and use an additional int64 or a double.
      */
     sum?: Schema$SplitInt64;
     /**
@@ -750,19 +666,15 @@ export namespace dataflow_v1b3 {
     sumOfSquares?: number;
   }
   /**
-   * When a task splits using WorkItemStatus.dynamic_source_split, this message
-   * describes the two parts of the split relative to the description of the
-   * current task&#39;s input.
+   * When a task splits using WorkItemStatus.dynamic_source_split, this message describes the two parts of the split relative to the description of the current task&#39;s input.
    */
   export interface Schema$DynamicSourceSplit {
     /**
-     * Primary part (continued to be processed by worker). Specified relative to
-     * the previously-current source. Becomes current.
+     * Primary part (continued to be processed by worker). Specified relative to the previously-current source. Becomes current.
      */
     primary?: Schema$DerivedSource;
     /**
-     * Residual part (returned to the pool of work). Specified relative to the
-     * previously-current source.
+     * Residual part (returned to the pool of work). Specified relative to the previously-current source.
      */
     residual?: Schema$DerivedSource;
   }
@@ -771,16 +683,11 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$Environment {
     /**
-     * The type of cluster manager API to use.  If unknown or unspecified, the
-     * service will attempt to choose a reasonable default.  This should be in
-     * the form of the API service name, e.g.
-     * &quot;compute.googleapis.com&quot;.
+     * The type of cluster manager API to use.  If unknown or unspecified, the service will attempt to choose a reasonable default.  This should be in the form of the API service name, e.g. &quot;compute.googleapis.com&quot;.
      */
     clusterManagerApiService?: string;
     /**
-     * The dataset for the current project where various workflow related tables
-     * are stored.  The supported resource type is:  Google BigQuery:
-     * bigquery.googleapis.com/{dataset}
+     * The dataset for the current project where various workflow related tables are stored.  The supported resource type is:  Google BigQuery:   bigquery.googleapis.com/{dataset}
      */
     dataset?: string;
     /**
@@ -796,10 +703,7 @@ export namespace dataflow_v1b3 {
      */
     internalExperiments?: {[key: string]: any};
     /**
-     * The Cloud Dataflow SDK pipeline options specified by the user. These
-     * options are passed through the service and are used to recreate the SDK
-     * pipeline options on the worker in a language agnostic and platform
-     * independent way.
+     * The Cloud Dataflow SDK pipeline options specified by the user. These options are passed through the service and are used to recreate the SDK pipeline options on the worker in a language agnostic and platform independent way.
      */
     sdkPipelineOptions?: {[key: string]: any};
     /**
@@ -807,20 +711,11 @@ export namespace dataflow_v1b3 {
      */
     serviceAccountEmail?: string;
     /**
-     * If set, contains the Cloud KMS key identifier used to encrypt data at
-     * rest, AKA a Customer Managed Encryption Key (CMEK).  Format:
-     * projects/PROJECT_ID/locations/LOCATION/keyRings/KEY_RING/cryptoKeys/KEY
+     * If set, contains the Cloud KMS key identifier used to encrypt data at rest, AKA a Customer Managed Encryption Key (CMEK).  Format:   projects/PROJECT_ID/locations/LOCATION/keyRings/KEY_RING/cryptoKeys/KEY
      */
     serviceKmsKeyName?: string;
     /**
-     * The prefix of the resources the system should use for temporary storage.
-     * The system will append the suffix &quot;/temp-{JOBNAME} to this resource
-     * prefix, where {JOBNAME} is the value of the job_name field.  The
-     * resulting bucket and object prefix is used as the prefix of the resources
-     * used to store temporary data needed during the job execution.  NOTE: This
-     * will override the value in taskrunner_settings. The supported resource
-     * type is:  Google Cloud Storage: storage.googleapis.com/{bucket}/{object}
-     * bucket.storage.googleapis.com/{object}
+     * The prefix of the resources the system should use for temporary storage.  The system will append the suffix &quot;/temp-{JOBNAME} to this resource prefix, where {JOBNAME} is the value of the job_name field.  The resulting bucket and object prefix is used as the prefix of the resources used to store temporary data needed during the job execution.  NOTE: This will override the value in taskrunner_settings. The supported resource type is:  Google Cloud Storage:    storage.googleapis.com/{bucket}/{object}   bucket.storage.googleapis.com/{object}
      */
     tempStoragePrefix?: string;
     /**
@@ -828,13 +723,11 @@ export namespace dataflow_v1b3 {
      */
     userAgent?: {[key: string]: any};
     /**
-     * A structure describing which components and their versions of the service
-     * are required in order to run the job.
+     * A structure describing which components and their versions of the service are required in order to run the job.
      */
     version?: {[key: string]: any};
     /**
-     * The worker pools. At least one &quot;harness&quot; worker pool must be
-     * specified in order for the job to have workers.
+     * The worker pools. At least one &quot;harness&quot; worker pool must be specified in order for the job to have workers.
      */
     workerPools?: Schema$WorkerPool[];
   }
@@ -856,9 +749,7 @@ export namespace dataflow_v1b3 {
     executionStageState?: string;
   }
   /**
-   * Description of the composing transforms, names/ids, and input/outputs of a
-   * stage of execution.  Some composing transforms and sources may have been
-   * generated by the Dataflow service during execution planning.
+   * Description of the composing transforms, names/ids, and input/outputs of a stage of execution.  Some composing transforms and sources may have been generated by the Dataflow service during execution planning.
    */
   export interface Schema$ExecutionStageSummary {
     /**
@@ -891,15 +782,11 @@ export namespace dataflow_v1b3 {
     outputSource?: Schema$StageSource[];
   }
   /**
-   * Indicates which [regional endpoint]
-   * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) failed
-   * to respond to a request for data.
+   * Indicates which [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) failed to respond to a request for data.
    */
   export interface Schema$FailedLocation {
     /**
-     * The name of the [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * failed to respond.
+     * The name of the [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that failed to respond.
      */
     name?: string;
   }
@@ -913,8 +800,7 @@ export namespace dataflow_v1b3 {
     filePattern?: string;
   }
   /**
-   * An instruction that copies its inputs (zero or more) to its (single)
-   * output.
+   * An instruction that copies its inputs (zero or more) to its (single) output.
    */
   export interface Schema$FlattenInstruction {
     /**
@@ -953,9 +839,7 @@ export namespace dataflow_v1b3 {
      */
     componentId?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains the job specified by job_id.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -977,42 +861,29 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$GetTemplateResponse {
     /**
-     * The template metadata describing the template name, available parameters,
-     * etc.
+     * The template metadata describing the template name, available parameters, etc.
      */
     metadata?: Schema$TemplateMetadata;
     /**
-     * The status of the get template request. Any problems with the request
-     * will be indicated in the error_details.
+     * The status of the get template request. Any problems with the request will be indicated in the error_details.
      */
     status?: Schema$Status;
   }
   /**
-   * Histogram of value counts for a distribution.  Buckets have an inclusive
-   * lower bound and exclusive upper bound and use &quot;1,2,5 bucketing&quot;:
-   * The first bucket range is from [0,1) and all subsequent bucket boundaries
-   * are powers of ten multiplied by 1, 2, or 5. Thus, bucket boundaries are 0,
-   * 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, ... Negative values are not
-   * supported.
+   * Histogram of value counts for a distribution.  Buckets have an inclusive lower bound and exclusive upper bound and use &quot;1,2,5 bucketing&quot;: The first bucket range is from [0,1) and all subsequent bucket boundaries are powers of ten multiplied by 1, 2, or 5. Thus, bucket boundaries are 0, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, ... Negative values are not supported.
    */
   export interface Schema$Histogram {
     /**
-     * Counts of values in each bucket. For efficiency, prefix and trailing
-     * buckets with count = 0 are elided. Buckets can store the full range of
-     * values of an unsigned long, with ULLONG_MAX falling into the 59th bucket
-     * with range [1e19, 2e19).
+     * Counts of values in each bucket. For efficiency, prefix and trailing buckets with count = 0 are elided. Buckets can store the full range of values of an unsigned long, with ULLONG_MAX falling into the 59th bucket with range [1e19, 2e19).
      */
     bucketCounts?: string[];
     /**
-     * Starting index of first stored bucket. The non-inclusive upper-bound of
-     * the ith bucket is given by:   pow(10,(i-first_bucket_offset)/3) *
-     * (1,2,5)[(i-first_bucket_offset)%3]
+     * Starting index of first stored bucket. The non-inclusive upper-bound of the ith bucket is given by:   pow(10,(i-first_bucket_offset)/3) * (1,2,5)[(i-first_bucket_offset)%3]
      */
     firstBucketOffset?: number;
   }
   /**
-   * An input of an instruction, as a reference to an output of a producer
-   * instruction.
+   * An input of an instruction, as a reference to an output of a producer instruction.
    */
   export interface Schema$InstructionInput {
     /**
@@ -1020,9 +891,7 @@ export namespace dataflow_v1b3 {
      */
     outputNum?: number;
     /**
-     * The index (origin zero) of the parallel instruction that produces the
-     * output to be consumed by this input.  This index is relative to the list
-     * of instructions in this input&#39;s instruction&#39;s containing MapTask.
+     * The index (origin zero) of the parallel instruction that produces the output to be consumed by this input.  This index is relative to the list of instructions in this input&#39;s instruction&#39;s containing MapTask.
      */
     producerInstructionIndex?: number;
   }
@@ -1039,19 +908,15 @@ export namespace dataflow_v1b3 {
      */
     name?: string;
     /**
-     * For system-generated byte and mean byte metrics, certain instructions
-     * should only report the key size.
+     * For system-generated byte and mean byte metrics, certain instructions should only report the key size.
      */
     onlyCountKeyBytes?: boolean;
     /**
-     * For system-generated byte and mean byte metrics, certain instructions
-     * should only report the value size.
+     * For system-generated byte and mean byte metrics, certain instructions should only report the value size.
      */
     onlyCountValueBytes?: boolean;
     /**
-     * System-defined name for this output in the original workflow graph.
-     * Outputs that do not contribute to an original instruction do not set
-     * this.
+     * System-defined name for this output in the original workflow graph. Outputs that do not contribute to an original instruction do not set this.
      */
     originalName?: string;
     /**
@@ -1099,32 +964,19 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$Job {
     /**
-     * The client&#39;s unique identifier of the job, re-used across retried
-     * attempts. If this field is set, the service will ensure its uniqueness.
-     * The request to create a job will fail if the service has knowledge of a
-     * previously submitted job with the same client&#39;s ID and job name. The
-     * caller may use this field to ensure idempotence of job creation across
-     * retried attempts to create a job. By default, the field is empty and, in
-     * that case, the service ignores it.
+     * The client&#39;s unique identifier of the job, re-used across retried attempts. If this field is set, the service will ensure its uniqueness. The request to create a job will fail if the service has knowledge of a previously submitted job with the same client&#39;s ID and job name. The caller may use this field to ensure idempotence of job creation across retried attempts to create a job. By default, the field is empty and, in that case, the service ignores it.
      */
     clientRequestId?: string;
     /**
-     * If this is specified, the job&#39;s initial state is populated from the
-     * given snapshot.
+     * If this is specified, the job&#39;s initial state is populated from the given snapshot.
      */
     createdFromSnapshotId?: string;
     /**
-     * The timestamp when the job was initially created. Immutable and set by
-     * the Cloud Dataflow service.
+     * The timestamp when the job was initially created. Immutable and set by the Cloud Dataflow service.
      */
     createTime?: string;
     /**
-     * The current state of the job.  Jobs are created in the
-     * `JOB_STATE_STOPPED` state unless otherwise specified.  A job in the
-     * `JOB_STATE_RUNNING` state may asynchronously enter a terminal state.
-     * After a job has reached a terminal state, no further state updates may be
-     * made.  This field may be mutated by the Cloud Dataflow service; callers
-     * cannot mutate it.
+     * The current state of the job.  Jobs are created in the `JOB_STATE_STOPPED` state unless otherwise specified.  A job in the `JOB_STATE_RUNNING` state may asynchronously enter a terminal state. After a job has reached a terminal state, no further state updates may be made.  This field may be mutated by the Cloud Dataflow service; callers cannot mutate it.
      */
     currentState?: string;
     /**
@@ -1140,45 +992,27 @@ export namespace dataflow_v1b3 {
      */
     executionInfo?: Schema$JobExecutionInfo;
     /**
-     * The unique ID of this job.  This field is set by the Cloud Dataflow
-     * service when the Job is created, and is immutable for the life of the
-     * job.
+     * The unique ID of this job.  This field is set by the Cloud Dataflow service when the Job is created, and is immutable for the life of the job.
      */
     id?: string;
     /**
-     * This field is populated by the Dataflow service to support filtering jobs
-     * by the metadata values provided here. Populated for ListJobs and all
-     * GetJob views SUMMARY and higher.
+     * This field is populated by the Dataflow service to support filtering jobs by the metadata values provided here. Populated for ListJobs and all GetJob views SUMMARY and higher.
      */
     jobMetadata?: Schema$JobMetadata;
     /**
-     * User-defined labels for this job.  The labels map can contain no more
-     * than 64 entries.  Entries of the labels map are UTF8 strings that comply
-     * with the following restrictions:  * Keys must conform to regexp:
-     * \p{Ll}\p{Lo}{0,62} * Values must conform to regexp:
-     * [\p{Ll}\p{Lo}\p{N}_-]{0,63} * Both keys and values are additionally
-     * constrained to be &lt;= 128 bytes in size.
+     * User-defined labels for this job.  The labels map can contain no more than 64 entries.  Entries of the labels map are UTF8 strings that comply with the following restrictions:  * Keys must conform to regexp:  \p{Ll}\p{Lo}{0,62} * Values must conform to regexp:  [\p{Ll}\p{Lo}\p{N}_-]{0,63} * Both keys and values are additionally constrained to be &lt;= 128 bytes in size.
      */
     labels?: {[key: string]: string};
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains this job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
     /**
-     * The user-specified Cloud Dataflow job name.  Only one Job with a given
-     * name may exist in a project at any given time. If a caller attempts to
-     * create a Job with the same name as an already-existing Job, the attempt
-     * returns the existing Job.  The name must match the regular expression
-     * `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`
+     * The user-specified Cloud Dataflow job name.  Only one Job with a given name may exist in a project at any given time. If a caller attempts to create a Job with the same name as an already-existing Job, the attempt returns the existing Job.  The name must match the regular expression `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`
      */
     name?: string;
     /**
-     * Preliminary field: The format of this data may change at any time. A
-     * description of the user pipeline and stages through which it is executed.
-     * Created by Cloud Dataflow service.  Only retrieved with
-     * JOB_VIEW_DESCRIPTION or JOB_VIEW_ALL.
+     * Preliminary field: The format of this data may change at any time. A description of the user pipeline and stages through which it is executed. Created by Cloud Dataflow service.  Only retrieved with JOB_VIEW_DESCRIPTION or JOB_VIEW_ALL.
      */
     pipelineDescription?: Schema$PipelineDescription;
     /**
@@ -1186,43 +1020,27 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * If another job is an update of this job (and thus, this job is in
-     * `JOB_STATE_UPDATED`), this field contains the ID of that job.
+     * If another job is an update of this job (and thus, this job is in `JOB_STATE_UPDATED`), this field contains the ID of that job.
      */
     replacedByJobId?: string;
     /**
-     * If this job is an update of an existing job, this field is the job ID of
-     * the job it replaced.  When sending a `CreateJobRequest`, you can update a
-     * job by specifying it here. The job named here is stopped, and its
-     * intermediate state is transferred to this job.
+     * If this job is an update of an existing job, this field is the job ID of the job it replaced.  When sending a `CreateJobRequest`, you can update a job by specifying it here. The job named here is stopped, and its intermediate state is transferred to this job.
      */
     replaceJobId?: string;
     /**
-     * The job&#39;s requested state.  `UpdateJob` may be used to switch between
-     * the `JOB_STATE_STOPPED` and `JOB_STATE_RUNNING` states, by setting
-     * requested_state.  `UpdateJob` may also be used to directly set a
-     * job&#39;s requested state to `JOB_STATE_CANCELLED` or `JOB_STATE_DONE`,
-     * irrevocably terminating the job if it has not already reached a terminal
-     * state.
+     * The job&#39;s requested state.  `UpdateJob` may be used to switch between the `JOB_STATE_STOPPED` and `JOB_STATE_RUNNING` states, by setting requested_state.  `UpdateJob` may also be used to directly set a job&#39;s requested state to `JOB_STATE_CANCELLED` or `JOB_STATE_DONE`, irrevocably terminating the job if it has not already reached a terminal state.
      */
     requestedState?: string;
     /**
-     * This field may be mutated by the Cloud Dataflow service; callers cannot
-     * mutate it.
+     * This field may be mutated by the Cloud Dataflow service; callers cannot mutate it.
      */
     stageStates?: Schema$ExecutionStageState[];
     /**
-     * The timestamp when the job was started (transitioned to
-     * JOB_STATE_PENDING). Flexible resource scheduling jobs are started with
-     * some delay after job creation, so start_time is unset before start and is
-     * updated when the job is started by the Cloud Dataflow service. For other
-     * jobs, start_time always equals to create_time and is immutable and set by
-     * the Cloud Dataflow service.
+     * The timestamp when the job was started (transitioned to JOB_STATE_PENDING). Flexible resource scheduling jobs are started with some delay after job creation, so start_time is unset before start and is updated when the job is started by the Cloud Dataflow service. For other jobs, start_time always equals to create_time and is immutable and set by the Cloud Dataflow service.
      */
     startTime?: string;
     /**
-     * Exactly one of step or steps_location should be specified.  The top-level
-     * steps that constitute the entire job.
+     * Exactly one of step or steps_location should be specified.  The top-level steps that constitute the entire job.
      */
     steps?: Schema$Step[];
     /**
@@ -1230,17 +1048,11 @@ export namespace dataflow_v1b3 {
      */
     stepsLocation?: string;
     /**
-     * A set of files the system should be aware of that are used for temporary
-     * storage. These temporary files will be removed on job completion. No
-     * duplicates are allowed. No file patterns are supported.  The supported
-     * files are:  Google Cloud Storage:
-     * storage.googleapis.com/{bucket}/{object}
-     * bucket.storage.googleapis.com/{object}
+     * A set of files the system should be aware of that are used for temporary storage. These temporary files will be removed on job completion. No duplicates are allowed. No file patterns are supported.  The supported files are:  Google Cloud Storage:     storage.googleapis.com/{bucket}/{object}    bucket.storage.googleapis.com/{object}
      */
     tempFiles?: string[];
     /**
-     * The map of transform name prefixes of the job to be replaced to the
-     * corresponding name prefixes of the new job.
+     * The map of transform name prefixes of the job to be replaced to the corresponding name prefixes of the new job.
      */
     transformNameMapping?: {[key: string]: string};
     /**
@@ -1249,8 +1061,7 @@ export namespace dataflow_v1b3 {
     type?: string;
   }
   /**
-   * Additional information about how a Cloud Dataflow job will be executed that
-   * isn&#39;t contained in the submitted job.
+   * Additional information about how a Cloud Dataflow job will be executed that isn&#39;t contained in the submitted job.
    */
   export interface Schema$JobExecutionInfo {
     /**
@@ -1259,13 +1070,11 @@ export namespace dataflow_v1b3 {
     stages?: {[key: string]: Schema$JobExecutionStageInfo};
   }
   /**
-   * Contains information about how a particular google.dataflow.v1beta3.Step
-   * will be executed.
+   * Contains information about how a particular google.dataflow.v1beta3.Step will be executed.
    */
   export interface Schema$JobExecutionStageInfo {
     /**
-     * The steps associated with the execution stage. Note that stages may have
-     * several steps, and that a given step might be run by more than one stage.
+     * The steps associated with the execution stage. Note that stages may have several steps, and that a given step might be run by more than one stage.
      */
     stepName?: string[];
   }
@@ -1291,8 +1100,7 @@ export namespace dataflow_v1b3 {
     time?: string;
   }
   /**
-   * Metadata available primarily for filtering jobs. Will be included in the
-   * ListJob response and Job SUMMARY view.
+   * Metadata available primarily for filtering jobs. Will be included in the ListJob response and Job SUMMARY view.
    */
   export interface Schema$JobMetadata {
     /**
@@ -1325,11 +1133,7 @@ export namespace dataflow_v1b3 {
     spannerDetails?: Schema$SpannerIODetails[];
   }
   /**
-   * JobMetrics contains a collection of metrics describing the detailed
-   * progress of a Dataflow job. Metrics correspond to user-defined and
-   * system-defined metrics in the job.  This resource captures only the most
-   * recent values of each metric; time-series data can be queried for them
-   * (under the same metric names) from Cloud Monitoring.
+   * JobMetrics contains a collection of metrics describing the detailed progress of a Dataflow job. Metrics correspond to user-defined and system-defined metrics in the job.  This resource captures only the most recent values of each metric; time-series data can be queried for them (under the same metric names) from Cloud Monitoring.
    */
   export interface Schema$JobMetrics {
     /**
@@ -1342,16 +1146,11 @@ export namespace dataflow_v1b3 {
     metricTime?: string;
   }
   /**
-   * Data disk assignment information for a specific key-range of a sharded
-   * computation. Currently we only support UTF-8 character splits to simplify
-   * encoding into JSON.
+   * Data disk assignment information for a specific key-range of a sharded computation. Currently we only support UTF-8 character splits to simplify encoding into JSON.
    */
   export interface Schema$KeyRangeDataDiskAssignment {
     /**
-     * The name of the data disk where data for this range is stored. This name
-     * is local to the Google Cloud Platform project and uniquely identifies the
-     * disk within that project, for example
-     * &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
+     * The name of the data disk where data for this range is stored. This name is local to the Google Cloud Platform project and uniquely identifies the disk within that project, for example &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
      */
     dataDisk?: string;
     /**
@@ -1364,26 +1163,19 @@ export namespace dataflow_v1b3 {
     start?: string;
   }
   /**
-   * Location information for a specific key-range of a sharded computation.
-   * Currently we only support UTF-8 character splits to simplify encoding into
-   * JSON.
+   * Location information for a specific key-range of a sharded computation. Currently we only support UTF-8 character splits to simplify encoding into JSON.
    */
   export interface Schema$KeyRangeLocation {
     /**
-     * The name of the data disk where data for this range is stored. This name
-     * is local to the Google Cloud Platform project and uniquely identifies the
-     * disk within that project, for example
-     * &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
+     * The name of the data disk where data for this range is stored. This name is local to the Google Cloud Platform project and uniquely identifies the disk within that project, for example &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
      */
     dataDisk?: string;
     /**
-     * The physical location of this range assignment to be used for streaming
-     * computation cross-worker message delivery.
+     * The physical location of this range assignment to be used for streaming computation cross-worker message delivery.
      */
     deliveryEndpoint?: string;
     /**
-     * DEPRECATED. The location of the persistent state for this range, as a
-     * persistent directory in the worker local filesystem.
+     * DEPRECATED. The location of the persistent state for this range, as a persistent directory in the worker local filesystem.
      */
     deprecatedPersistentDirectory?: string;
     /**
@@ -1417,8 +1209,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$LaunchTemplateResponse {
     /**
-     * The job that was launched, if the request was not a dry run and the job
-     * was successfully launched.
+     * The job that was launched, if the request was not a dry run and the job was successfully launched.
      */
     job?: Schema$Job;
   }
@@ -1431,9 +1222,7 @@ export namespace dataflow_v1b3 {
      */
     currentWorkerTime?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains the WorkItem&#39;s job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem&#39;s job.
      */
     location?: string;
     /**
@@ -1445,13 +1234,11 @@ export namespace dataflow_v1b3 {
      */
     unifiedWorkerRequest?: {[key: string]: any};
     /**
-     * Worker capabilities. WorkItems might be limited to workers with specific
-     * capabilities.
+     * Worker capabilities. WorkItems might be limited to workers with specific capabilities.
      */
     workerCapabilities?: string[];
     /**
-     * Identifies the worker leasing work -- typically the ID of the virtual
-     * machine running the worker.
+     * Identifies the worker leasing work -- typically the ID of the virtual machine running the worker.
      */
     workerId?: string;
     /**
@@ -1490,14 +1277,11 @@ export namespace dataflow_v1b3 {
     nextPageToken?: string;
   }
   /**
-   * Response to a request to list Cloud Dataflow jobs.  This may be a partial
-   * response, depending on the page size in the ListJobsRequest.
+   * Response to a request to list Cloud Dataflow jobs.  This may be a partial response, depending on the page size in the ListJobsRequest.
    */
   export interface Schema$ListJobsResponse {
     /**
-     * Zero or more messages describing the [regional endpoints]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * failed to respond.
+     * Zero or more messages describing the [regional endpoints] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that failed to respond.
      */
     failedLocation?: Schema$FailedLocation[];
     /**
@@ -1510,15 +1294,20 @@ export namespace dataflow_v1b3 {
     nextPageToken?: string;
   }
   /**
-   * MapTask consists of an ordered set of instructions, each of which describes
-   * one particular low-level operation for the worker to perform in order to
-   * accomplish the MapTask&#39;s WorkItem.  Each instruction must appear in the
-   * list before any instructions which depends on its output.
+   * List of snapshots.
+   */
+  export interface Schema$ListSnapshotsResponse {
+    /**
+     * Returned snapshots.
+     */
+    snapshots?: Schema$Snapshot[];
+  }
+  /**
+   * MapTask consists of an ordered set of instructions, each of which describes one particular low-level operation for the worker to perform in order to accomplish the MapTask&#39;s WorkItem.  Each instruction must appear in the list before any instructions which depends on its output.
    */
   export interface Schema$MapTask {
     /**
-     * Counter prefix that can be used to prefix counters. Not currently used in
-     * Dataflow.
+     * Counter prefix that can be used to prefix counters. Not currently used in Dataflow.
      */
     counterPrefix?: string;
     /**
@@ -1526,8 +1315,7 @@ export namespace dataflow_v1b3 {
      */
     instructions?: Schema$ParallelInstruction[];
     /**
-     * System-defined name of the stage containing this MapTask. Unique across
-     * the workflow.
+     * System-defined name of the stage containing this MapTask. Unique across the workflow.
      */
     stageName?: string;
     /**
@@ -1536,13 +1324,11 @@ export namespace dataflow_v1b3 {
     systemName?: string;
   }
   /**
-   * The metric short id is returned to the user alongside an offset into
-   * ReportWorkItemStatusRequest
+   * The metric short id is returned to the user alongside an offset into ReportWorkItemStatusRequest
    */
   export interface Schema$MetricShortId {
     /**
-     * The index of the corresponding metric in the ReportWorkItemStatusRequest.
-     * Required.
+     * The index of the corresponding metric in the ReportWorkItemStatusRequest. Required.
      */
     metricIndex?: number;
     /**
@@ -1555,12 +1341,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$MetricStructuredName {
     /**
-     * Zero or more labeled fields which identify the part of the job this
-     * metric is associated with, such as the name of a step or collection.  For
-     * example, built-in counters associated with steps will have
-     * context[&#39;step&#39;] = &lt;step-name&gt;. Counters associated with
-     * PCollections in the SDK will have context[&#39;pcollection&#39;] =
-     * &lt;pcollection-name&gt;.
+     * Zero or more labeled fields which identify the part of the job this metric is associated with, such as the name of a step or collection.  For example, built-in counters associated with steps will have context[&#39;step&#39;] = &lt;step-name&gt;. Counters associated with PCollections in the SDK will have context[&#39;pcollection&#39;] = &lt;pcollection-name&gt;.
      */
     context?: {[key: string]: string};
     /**
@@ -1568,9 +1349,7 @@ export namespace dataflow_v1b3 {
      */
     name?: string;
     /**
-     * Origin (namespace) of metric name. May be blank for user-define metrics;
-     * will be &quot;dataflow&quot; for metrics defined by the Dataflow service
-     * or SDK.
+     * Origin (namespace) of metric name. May be blank for user-define metrics; will be &quot;dataflow&quot; for metrics defined by the Dataflow service or SDK.
      */
     origin?: string;
   }
@@ -1579,10 +1358,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$MetricUpdate {
     /**
-     * True if this metric is reported as the total cumulative aggregate value
-     * accumulated since the worker started working on this WorkItem. By default
-     * this is false, indicating that this metric is reported as a delta that is
-     * not associated with any WorkItem.
+     * True if this metric is reported as the total cumulative aggregate value accumulated since the worker started working on this WorkItem. By default this is false, indicating that this metric is reported as a delta that is not associated with any WorkItem.
      */
     cumulative?: boolean;
     /**
@@ -1590,9 +1366,7 @@ export namespace dataflow_v1b3 {
      */
     distribution?: any;
     /**
-     * A struct value describing properties of a Gauge. Metrics of gauge type
-     * show the value of a metric across time, and is aggregated based on the
-     * newest value.
+     * A struct value describing properties of a Gauge. Metrics of gauge type show the value of a metric across time, and is aggregated based on the newest value.
      */
     gauge?: any;
     /**
@@ -1600,26 +1374,15 @@ export namespace dataflow_v1b3 {
      */
     internal?: any;
     /**
-     * Metric aggregation kind.  The possible metric aggregation kinds are
-     * &quot;Sum&quot;, &quot;Max&quot;, &quot;Min&quot;, &quot;Mean&quot;,
-     * &quot;Set&quot;, &quot;And&quot;, &quot;Or&quot;, and
-     * &quot;Distribution&quot;. The specified aggregation kind is
-     * case-insensitive.  If omitted, this is not an aggregated value but
-     * instead a single metric sample value.
+     * Metric aggregation kind.  The possible metric aggregation kinds are &quot;Sum&quot;, &quot;Max&quot;, &quot;Min&quot;, &quot;Mean&quot;, &quot;Set&quot;, &quot;And&quot;, &quot;Or&quot;, and &quot;Distribution&quot;. The specified aggregation kind is case-insensitive.  If omitted, this is not an aggregated value but instead a single metric sample value.
      */
     kind?: string;
     /**
-     * Worker-computed aggregate value for the &quot;Mean&quot; aggregation
-     * kind. This holds the count of the aggregated values and is used in
-     * combination with mean_sum above to obtain the actual mean aggregate
-     * value. The only possible value type is Long.
+     * Worker-computed aggregate value for the &quot;Mean&quot; aggregation kind. This holds the count of the aggregated values and is used in combination with mean_sum above to obtain the actual mean aggregate value. The only possible value type is Long.
      */
     meanCount?: any;
     /**
-     * Worker-computed aggregate value for the &quot;Mean&quot; aggregation
-     * kind. This holds the sum of the aggregated values and is used in
-     * combination with mean_count below to obtain the actual mean aggregate
-     * value. The only possible value types are Long and Double.
+     * Worker-computed aggregate value for the &quot;Mean&quot; aggregation kind. This holds the sum of the aggregated values and is used in combination with mean_count below to obtain the actual mean aggregate value. The only possible value types are Long and Double.
      */
     meanSum?: any;
     /**
@@ -1627,22 +1390,15 @@ export namespace dataflow_v1b3 {
      */
     name?: Schema$MetricStructuredName;
     /**
-     * Worker-computed aggregate value for aggregation kinds &quot;Sum&quot;,
-     * &quot;Max&quot;, &quot;Min&quot;, &quot;And&quot;, and &quot;Or&quot;.
-     * The possible value types are Long, Double, and Boolean.
+     * Worker-computed aggregate value for aggregation kinds &quot;Sum&quot;, &quot;Max&quot;, &quot;Min&quot;, &quot;And&quot;, and &quot;Or&quot;.  The possible value types are Long, Double, and Boolean.
      */
     scalar?: any;
     /**
-     * Worker-computed aggregate value for the &quot;Set&quot; aggregation kind.
-     * The only possible value type is a list of Values whose type can be Long,
-     * Double, or String, according to the metric&#39;s type.  All Values in the
-     * list must be of the same type.
+     * Worker-computed aggregate value for the &quot;Set&quot; aggregation kind.  The only possible value type is a list of Values whose type can be Long, Double, or String, according to the metric&#39;s type.  All Values in the list must be of the same type.
      */
     set?: any;
     /**
-     * Timestamp associated with the metric value. Optional when workers are
-     * reporting work progress; it will be filled in responses from the metrics
-     * API.
+     * Timestamp associated with the metric value. Optional when workers are reporting work progress; it will be filled in responses from the metrics API.
      */
     updateTime?: string;
   }
@@ -1651,9 +1407,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$MountedDataDisk {
     /**
-     * The name of the data disk. This name is local to the Google Cloud
-     * Platform project and uniquely identifies the disk within that project,
-     * for example &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
+     * The name of the data disk. This name is local to the Google Cloud Platform project and uniquely identifies the disk within that project, for example &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
      */
     dataDisk?: string;
   }
@@ -1662,8 +1416,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$MultiOutputInfo {
     /**
-     * The id of the tag the user code will emit to this output by; this should
-     * correspond to the tag of some SideInputInfo.
+     * The id of the tag the user code will emit to this output by; this should correspond to the tag of some SideInputInfo.
      */
     tag?: string;
   }
@@ -1681,19 +1434,11 @@ export namespace dataflow_v1b3 {
     name?: string;
   }
   /**
-   * The packages that must be installed in order for a worker to run the steps
-   * of the Cloud Dataflow job that will be assigned to its worker pool.  This
-   * is the mechanism by which the Cloud Dataflow SDK causes code to be loaded
-   * onto the workers. For example, the Cloud Dataflow Java SDK might use this
-   * to install jars containing the user&#39;s code and all of the various
-   * dependencies (libraries, data files, etc.) required in order for that code
-   * to run.
+   * The packages that must be installed in order for a worker to run the steps of the Cloud Dataflow job that will be assigned to its worker pool.  This is the mechanism by which the Cloud Dataflow SDK causes code to be loaded onto the workers. For example, the Cloud Dataflow Java SDK might use this to install jars containing the user&#39;s code and all of the various dependencies (libraries, data files, etc.) required in order for that code to run.
    */
   export interface Schema$Package {
     /**
-     * The resource to read the package from. The supported resource type is:
-     * Google Cloud Storage:    storage.googleapis.com/{bucket}
-     * bucket.storage.googleapis.com/
+     * The resource to read the package from. The supported resource type is:  Google Cloud Storage:    storage.googleapis.com/{bucket}   bucket.storage.googleapis.com/
      */
     location?: string;
     /**
@@ -1781,8 +1526,7 @@ export namespace dataflow_v1b3 {
     regexes?: string[];
   }
   /**
-   * An instruction that does a ParDo operation. Takes one main input and zero
-   * or more side inputs, and produces zero or more outputs. Runs user code.
+   * An instruction that does a ParDo operation. Takes one main input and zero or more side inputs, and produces zero or more outputs. Runs user code.
    */
   export interface Schema$ParDoInstruction {
     /**
@@ -1819,13 +1563,11 @@ export namespace dataflow_v1b3 {
      */
     inputElementCodec?: {[key: string]: any};
     /**
-     * If this instruction includes a combining function this is the name of the
-     * intermediate store between the GBK and the CombineValues.
+     * If this instruction includes a combining function this is the name of the intermediate store between the GBK and the CombineValues.
      */
     originalCombineValuesInputStoreName?: string;
     /**
-     * If this instruction includes a combining function, this is the name of
-     * the CombineValues instruction lifted into this instruction.
+     * If this instruction includes a combining function, this is the name of the CombineValues instruction lifted into this instruction.
      */
     originalCombineValuesStepName?: string;
     /**
@@ -1838,9 +1580,7 @@ export namespace dataflow_v1b3 {
     valueCombiningFn?: {[key: string]: any};
   }
   /**
-   * A descriptive representation of submitted pipeline as well as the executed
-   * form.  This data is provided by the Dataflow service for ease of
-   * visualizing the pipeline and interpreting Dataflow provided metrics.
+   * A descriptive representation of submitted pipeline as well as the executed form.  This data is provided by the Dataflow service for ease of visualizing the pipeline and interpreting Dataflow provided metrics.
    */
   export interface Schema$PipelineDescription {
     /**
@@ -1852,15 +1592,12 @@ export namespace dataflow_v1b3 {
      */
     executionPipelineStage?: Schema$ExecutionStageSummary[];
     /**
-     * Description of each transform in the pipeline and collections between
-     * them.
+     * Description of each transform in the pipeline and collections between them.
      */
     originalPipelineTransform?: Schema$TransformSummary[];
   }
   /**
-   * Position defines a position within a collection of data.  The value can be
-   * either the end position, a key (used with ordered collections), a byte
-   * offset, or a record index.
+   * Position defines a position within a collection of data.  The value can be either the end position, a key (used with ordered collections), a byte offset, or a record index.
    */
   export interface Schema$Position {
     /**
@@ -1872,8 +1609,7 @@ export namespace dataflow_v1b3 {
      */
     concatPosition?: Schema$ConcatPosition;
     /**
-     * Position is past all other positions. Also useful for the end position of
-     * an unbounded range.
+     * Position is past all other positions. Also useful for the end position of an unbounded range.
      */
     end?: boolean;
     /**
@@ -1885,8 +1621,7 @@ export namespace dataflow_v1b3 {
      */
     recordIndex?: string;
     /**
-     * CloudPosition is a base64 encoded BatchShufflePosition (with FIXED
-     * sharding).
+     * CloudPosition is a base64 encoded BatchShufflePosition (with FIXED sharding).
      */
     shufflePosition?: string;
   }
@@ -1904,8 +1639,7 @@ export namespace dataflow_v1b3 {
     topic?: string;
   }
   /**
-   * Identifies a pubsub location to use for transferring data into or out of a
-   * streaming Dataflow job.
+   * Identifies a pubsub location to use for transferring data into or out of a streaming Dataflow job.
    */
   export interface Schema$PubsubLocation {
     /**
@@ -1913,28 +1647,23 @@ export namespace dataflow_v1b3 {
      */
     dropLateData?: boolean;
     /**
-     * If set, contains a pubsub label from which to extract record ids. If left
-     * empty, record deduplication will be strictly best effort.
+     * If set, contains a pubsub label from which to extract record ids. If left empty, record deduplication will be strictly best effort.
      */
     idLabel?: string;
     /**
-     * A pubsub subscription, in the form of
-     * &quot;pubsub.googleapis.com/subscriptions/&lt;project-id&gt;/&lt;subscription-name&gt;&quot;
+     * A pubsub subscription, in the form of &quot;pubsub.googleapis.com/subscriptions/&lt;project-id&gt;/&lt;subscription-name&gt;&quot;
      */
     subscription?: string;
     /**
-     * If set, contains a pubsub label from which to extract record timestamps.
-     * If left empty, record timestamps will be generated upon arrival.
+     * If set, contains a pubsub label from which to extract record timestamps. If left empty, record timestamps will be generated upon arrival.
      */
     timestampLabel?: string;
     /**
-     * A pubsub topic, in the form of
-     * &quot;pubsub.googleapis.com/topics/&lt;project-id&gt;/&lt;topic-name&gt;&quot;
+     * A pubsub topic, in the form of &quot;pubsub.googleapis.com/topics/&lt;project-id&gt;/&lt;topic-name&gt;&quot;
      */
     topic?: string;
     /**
-     * If set, specifies the pubsub subscription that will be used for tracking
-     * custom time timestamps for watermark estimation.
+     * If set, specifies the pubsub subscription that will be used for tracking custom time timestamps for watermark estimation.
      */
     trackingSubscription?: string;
     /**
@@ -1952,16 +1681,11 @@ export namespace dataflow_v1b3 {
     source?: Schema$Source;
   }
   /**
-   * Represents the level of parallelism in a WorkItem&#39;s input, reported by
-   * the worker.
+   * Represents the level of parallelism in a WorkItem&#39;s input, reported by the worker.
    */
   export interface Schema$ReportedParallelism {
     /**
-     * Specifies whether the parallelism is infinite. If true, &quot;value&quot;
-     * is ignored. Infinite parallelism means the service will assume that the
-     * work item can always be split into more non-empty work items by dynamic
-     * splitting. This is a work-around for lack of support for infinity by the
-     * current JSON-based Java RPC stack.
+     * Specifies whether the parallelism is infinite. If true, &quot;value&quot; is ignored. Infinite parallelism means the service will assume that the work item can always be split into more non-empty work items by dynamic splitting. This is a work-around for lack of support for infinity by the current JSON-based Java RPC stack.
      */
     isInfinite?: boolean;
     /**
@@ -1978,9 +1702,7 @@ export namespace dataflow_v1b3 {
      */
     currentWorkerTime?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains the WorkItem&#39;s job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem&#39;s job.
      */
     location?: string;
     /**
@@ -1988,16 +1710,11 @@ export namespace dataflow_v1b3 {
      */
     unifiedWorkerRequest?: {[key: string]: any};
     /**
-     * The ID of the worker reporting the WorkItem status.  If this does not
-     * match the ID of the worker which the Dataflow service believes currently
-     * has the lease on the WorkItem, the report will be dropped (with an error
-     * response).
+     * The ID of the worker reporting the WorkItem status.  If this does not match the ID of the worker which the Dataflow service believes currently has the lease on the WorkItem, the report will be dropped (with an error response).
      */
     workerId?: string;
     /**
-     * The order is unimportant, except that the order of the
-     * WorkItemServiceState messages in the ReportWorkItemStatusResponse
-     * corresponds to the order of WorkItemStatus messages here.
+     * The order is unimportant, except that the order of the WorkItemServiceState messages in the ReportWorkItemStatusResponse corresponds to the order of WorkItemStatus messages here.
      */
     workItemStatuses?: Schema$WorkItemStatus[];
   }
@@ -2010,17 +1727,12 @@ export namespace dataflow_v1b3 {
      */
     unifiedWorkerResponse?: {[key: string]: any};
     /**
-     * A set of messages indicating the service-side state for each WorkItem
-     * whose status was reported, in the same order as the WorkItemStatus
-     * messages in the ReportWorkItemStatusRequest which resulting in this
-     * response.
+     * A set of messages indicating the service-side state for each WorkItem whose status was reported, in the same order as the WorkItemStatus messages in the ReportWorkItemStatusRequest which resulting in this response.
      */
     workItemServiceStates?: Schema$WorkItemServiceState[];
   }
   /**
-   * Worker metrics exported from workers. This contains resource utilization
-   * metrics accumulated from a variety of sources. For more information, see
-   * go/df-resource-signals.
+   * Worker metrics exported from workers. This contains resource utilization metrics accumulated from a variety of sources. For more information, see go/df-resource-signals.
    */
   export interface Schema$ResourceUtilizationReport {
     /**
@@ -2041,27 +1753,23 @@ export namespace dataflow_v1b3 {
      */
     additionalExperiments?: string[];
     /**
-     * Additional user labels attached to the job.
+     * Additional user labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page.
      */
     additionalUserLabels?: {[key: string]: string};
     /**
-     * Whether to bypass the safety checks for the job&#39;s temporary
-     * directory. Use with caution.
+     * Whether to bypass the safety checks for the job&#39;s temporary directory. Use with caution.
      */
     bypassTempDirValidation?: boolean;
     /**
-     * The machine type to use for the job. Defaults to the value from the
-     * template if not specified.
+     * The machine type to use for the job. Defaults to the value from the template if not specified.
      */
     machineType?: string;
     /**
-     * The maximum number of Google Compute Engine instances to be made
-     * available to your pipeline during execution, from 1 to 1000.
+     * The maximum number of Google Compute Engine instances to be made available to your pipeline during execution, from 1 to 1000.
      */
     maxWorkers?: number;
     /**
-     * Network to which VMs will be assigned.  If empty or unspecified, the
-     * service will use the network &quot;default&quot;.
+     * Network to which VMs will be assigned.  If empty or unspecified, the service will use the network &quot;default&quot;.
      */
     network?: string;
     /**
@@ -2073,19 +1781,15 @@ export namespace dataflow_v1b3 {
      */
     serviceAccountEmail?: string;
     /**
-     * Subnetwork to which VMs will be assigned, if desired.  Expected to be of
-     * the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
+     * Subnetwork to which VMs will be assigned, if desired.  Expected to be of the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
      */
     subnetwork?: string;
     /**
-     * The Cloud Storage path to use for temporary files. Must be a valid Cloud
-     * Storage URL, beginning with `gs://`.
+     * The Cloud Storage path to use for temporary files. Must be a valid Cloud Storage URL, beginning with `gs://`.
      */
     tempLocation?: string;
     /**
-     * The Compute Engine [availability
-     * zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones)
-     * for launching worker instances to run your pipeline.
+     * The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline.
      */
     zone?: string;
   }
@@ -2119,9 +1823,7 @@ export namespace dataflow_v1b3 {
      */
     data?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains the job specified by job_id.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -2138,9 +1840,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$SendWorkerMessagesRequest {
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains the job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job.
      */
     location?: string;
     /**
@@ -2174,8 +1874,7 @@ export namespace dataflow_v1b3 {
      */
     outputInfos?: Schema$SeqMapTaskOutputInfo[];
     /**
-     * System-defined name of the stage containing the SeqDo operation. Unique
-     * across the workflow.
+     * System-defined name of the stage containing the SeqDo operation. Unique across the workflow.
      */
     stageName?: string;
     /**
@@ -2222,15 +1921,11 @@ export namespace dataflow_v1b3 {
      */
     kind?: {[key: string]: any};
     /**
-     * The source(s) to read element(s) from to get the value of this side
-     * input. If more than one source, then the elements are taken from the
-     * sources, in the specified order if order matters. At least one source is
-     * required.
+     * The source(s) to read element(s) from to get the value of this side input. If more than one source, then the elements are taken from the sources, in the specified order if order matters. At least one source is required.
      */
     sources?: Schema$Source[];
     /**
-     * The id of the tag the user code will access this side input by; this
-     * should correspond to the tag of some MultiOutputInfo.
+     * The id of the tag the user code will access this side input by; this should correspond to the tag of some MultiOutputInfo.
      */
     tag?: string;
   }
@@ -2268,6 +1963,10 @@ export namespace dataflow_v1b3 {
      */
     sourceJobId?: string;
     /**
+     * State of the snapshot.
+     */
+    state?: string;
+    /**
      * The time after which this snapshot will be automatically deleted.
      */
     ttl?: string;
@@ -2290,13 +1989,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$Source {
     /**
-     * While splitting, sources may specify the produced bundles as differences
-     * against another source, in order to save backend-side memory and allow
-     * bigger jobs. For details, see SourceSplitRequest. To support this use
-     * case, the full set of parameters of the source is logically obtained by
-     * taking the latest explicitly specified value of each parameter in the
-     * order: base_specs (later items win), spec (overrides anything in
-     * base_specs).
+     * While splitting, sources may specify the produced bundles as differences against another source, in order to save backend-side memory and allow bigger jobs. For details, see SourceSplitRequest. To support this use case, the full set of parameters of the source is logically obtained by taking the latest explicitly specified value of each parameter in the order: base_specs (later items win), spec (overrides anything in base_specs).
      */
     baseSpecs?: Array<{[key: string]: any}>;
     /**
@@ -2304,26 +1997,11 @@ export namespace dataflow_v1b3 {
      */
     codec?: {[key: string]: any};
     /**
-     * Setting this value to true hints to the framework that the source
-     * doesn&#39;t need splitting, and using SourceSplitRequest on it would
-     * yield SOURCE_SPLIT_OUTCOME_USE_CURRENT.  E.g. a file splitter may set
-     * this to true when splitting a single file into a set of byte ranges of
-     * appropriate size, and set this to false when splitting a filepattern into
-     * individual files. However, for efficiency, a file splitter may decide to
-     * produce file subranges directly from the filepattern to avoid a splitting
-     * round-trip.  See SourceSplitRequest for an overview of the splitting
-     * process.  This field is meaningful only in the Source objects populated
-     * by the user (e.g. when filling in a DerivedSource). Source objects
-     * supplied by the framework to the user don&#39;t have this field
-     * populated.
+     * Setting this value to true hints to the framework that the source doesn&#39;t need splitting, and using SourceSplitRequest on it would yield SOURCE_SPLIT_OUTCOME_USE_CURRENT.  E.g. a file splitter may set this to true when splitting a single file into a set of byte ranges of appropriate size, and set this to false when splitting a filepattern into individual files. However, for efficiency, a file splitter may decide to produce file subranges directly from the filepattern to avoid a splitting round-trip.  See SourceSplitRequest for an overview of the splitting process.  This field is meaningful only in the Source objects populated by the user (e.g. when filling in a DerivedSource). Source objects supplied by the framework to the user don&#39;t have this field populated.
      */
     doesNotNeedSplitting?: boolean;
     /**
-     * Optionally, metadata for this source can be supplied right away, avoiding
-     * a SourceGetMetadataOperation roundtrip (see SourceOperationRequest). This
-     * field is meaningful only in the Source objects populated by the user
-     * (e.g. when filling in a DerivedSource). Source objects supplied by the
-     * framework to the user don&#39;t have this field populated.
+     * Optionally, metadata for this source can be supplied right away, avoiding a SourceGetMetadataOperation roundtrip (see SourceOperationRequest).  This field is meaningful only in the Source objects populated by the user (e.g. when filling in a DerivedSource). Source objects supplied by the framework to the user don&#39;t have this field populated.
      */
     metadata?: Schema$SourceMetadata;
     /**
@@ -2371,30 +2049,24 @@ export namespace dataflow_v1b3 {
     metadata?: Schema$SourceMetadata;
   }
   /**
-   * Metadata about a Source useful for automatically optimizing and tuning the
-   * pipeline, etc.
+   * Metadata about a Source useful for automatically optimizing and tuning the pipeline, etc.
    */
   export interface Schema$SourceMetadata {
     /**
-     * An estimate of the total size (in bytes) of the data that would be read
-     * from this source.  This estimate is in terms of external storage size,
-     * before any decompression or other processing done by the reader.
+     * An estimate of the total size (in bytes) of the data that would be read from this source.  This estimate is in terms of external storage size, before any decompression or other processing done by the reader.
      */
     estimatedSizeBytes?: string;
     /**
-     * Specifies that the size of this source is known to be infinite (this is a
-     * streaming source).
+     * Specifies that the size of this source is known to be infinite (this is a streaming source).
      */
     infinite?: boolean;
     /**
-     * Whether this source is known to produce key/value pairs with the
-     * (encoded) keys in lexicographically sorted order.
+     * Whether this source is known to produce key/value pairs with the (encoded) keys in lexicographically sorted order.
      */
     producesSortedKeys?: boolean;
   }
   /**
-   * A work item that represents the different operations that can be performed
-   * on a user-defined Source specification.
+   * A work item that represents the different operations that can be performed on a user-defined Source specification.
    */
   export interface Schema$SourceOperationRequest {
     /**
@@ -2406,8 +2078,7 @@ export namespace dataflow_v1b3 {
      */
     name?: string;
     /**
-     * System-defined name for the Read instruction for this source in the
-     * original workflow graph.
+     * System-defined name for the Read instruction for this source in the original workflow graph.
      */
     originalName?: string;
     /**
@@ -2415,20 +2086,16 @@ export namespace dataflow_v1b3 {
      */
     split?: Schema$SourceSplitRequest;
     /**
-     * System-defined name of the stage containing the source operation. Unique
-     * across the workflow.
+     * System-defined name of the stage containing the source operation. Unique across the workflow.
      */
     stageName?: string;
     /**
-     * System-defined name of the Read instruction for this source. Unique
-     * across the workflow.
+     * System-defined name of the Read instruction for this source. Unique across the workflow.
      */
     systemName?: string;
   }
   /**
-   * The result of a SourceOperationRequest, specified in
-   * ReportWorkItemStatusRequest.source_operation when the work item is
-   * completed.
+   * The result of a SourceOperationRequest, specified in ReportWorkItemStatusRequest.source_operation when the work item is completed.
    */
   export interface Schema$SourceOperationResponse {
     /**
@@ -2441,13 +2108,11 @@ export namespace dataflow_v1b3 {
     split?: Schema$SourceSplitResponse;
   }
   /**
-   * Hints for splitting a Source into bundles (parts for parallel processing)
-   * using SourceSplitRequest.
+   * Hints for splitting a Source into bundles (parts for parallel processing) using SourceSplitRequest.
    */
   export interface Schema$SourceSplitOptions {
     /**
-     * The source should be split into a set of bundles where the estimated size
-     * of each is approximately this many bytes.
+     * The source should be split into a set of bundles where the estimated size of each is approximately this many bytes.
      */
     desiredBundleSizeBytes?: string;
     /**
@@ -2456,17 +2121,7 @@ export namespace dataflow_v1b3 {
     desiredShardSizeBytes?: string;
   }
   /**
-   * Represents the operation to split a high-level Source specification into
-   * bundles (parts for parallel processing).  At a high level, splitting of a
-   * source into bundles happens as follows: SourceSplitRequest is applied to
-   * the source. If it returns SOURCE_SPLIT_OUTCOME_USE_CURRENT, no further
-   * splitting happens and the source is used &quot;as is&quot;. Otherwise,
-   * splitting is applied recursively to each produced DerivedSource.  As an
-   * optimization, for any Source, if its does_not_need_splitting is true, the
-   * framework assumes that splitting this source would return
-   * SOURCE_SPLIT_OUTCOME_USE_CURRENT, and doesn&#39;t initiate a
-   * SourceSplitRequest. This applies both to the initial source being split and
-   * to bundles produced from it.
+   * Represents the operation to split a high-level Source specification into bundles (parts for parallel processing).  At a high level, splitting of a source into bundles happens as follows: SourceSplitRequest is applied to the source. If it returns SOURCE_SPLIT_OUTCOME_USE_CURRENT, no further splitting happens and the source is used &quot;as is&quot;. Otherwise, splitting is applied recursively to each produced DerivedSource.  As an optimization, for any Source, if its does_not_need_splitting is true, the framework assumes that splitting this source would return SOURCE_SPLIT_OUTCOME_USE_CURRENT, and doesn&#39;t initiate a SourceSplitRequest. This applies both to the initial source being split and to bundles produced from it.
    */
   export interface Schema$SourceSplitRequest {
     /**
@@ -2483,17 +2138,11 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$SourceSplitResponse {
     /**
-     * If outcome is SPLITTING_HAPPENED, then this is a list of bundles into
-     * which the source was split. Otherwise this field is ignored. This list
-     * can be empty, which means the source represents an empty input.
+     * If outcome is SPLITTING_HAPPENED, then this is a list of bundles into which the source was split. Otherwise this field is ignored. This list can be empty, which means the source represents an empty input.
      */
     bundles?: Schema$DerivedSource[];
     /**
-     * Indicates whether splitting happened and produced a list of bundles. If
-     * this is USE_CURRENT_SOURCE_AS_IS, the current source should be processed
-     * &quot;as is&quot; without splitting. &quot;bundles&quot; is ignored in
-     * this case. If this is SPLITTING_HAPPENED, then &quot;bundles&quot;
-     * contains a list of bundles into which the source was split.
+     * Indicates whether splitting happened and produced a list of bundles. If this is USE_CURRENT_SOURCE_AS_IS, the current source should be processed &quot;as is&quot; without splitting. &quot;bundles&quot; is ignored in this case. If this is SPLITTING_HAPPENED, then &quot;bundles&quot; contains a list of bundles into which the source was split.
      */
     outcome?: string;
     /**
@@ -2532,8 +2181,7 @@ export namespace dataflow_v1b3 {
     projectId?: string;
   }
   /**
-   * A representation of an int64, n, that is immune to precision loss when
-   * encoded in JSON.
+   * A representation of an int64, n, that is immune to precision loss when encoded in JSON.
    */
   export interface Schema$SplitInt64 {
     /**
@@ -2554,8 +2202,7 @@ export namespace dataflow_v1b3 {
      */
     name?: string;
     /**
-     * User name for the original user transform or collection with which this
-     * source is most closely associated.
+     * User name for the original user transform or collection with which this source is most closely associated.
      */
     originalTransformOrCollection?: string;
     /**
@@ -2581,40 +2228,7 @@ export namespace dataflow_v1b3 {
     stateFamily?: string;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for
-   * different programming environments, including REST APIs and RPC APIs. It is
-   * used by [gRPC](https://github.com/grpc). The error model is designed to be:
-   * - Simple to use and understand for most users - Flexible enough to meet
-   * unexpected needs  # Overview  The `Status` message contains three pieces of
-   * data: error code, error message, and error details. The error code should
-   * be an enum value of google.rpc.Code, but it may accept additional error
-   * codes if needed.  The error message should be a developer-facing English
-   * message that helps developers *understand* and *resolve* the error. If a
-   * localized user-facing error message is needed, put the localized message in
-   * the error details or localize it in the client. The optional error details
-   * may contain arbitrary information about the error. There is a predefined
-   * set of error detail types in the package `google.rpc` that can be used for
-   * common error conditions.  # Language mapping  The `Status` message is the
-   * logical representation of the error model, but it is not necessarily the
-   * actual wire format. When the `Status` message is exposed in different
-   * client libraries and different wire protocols, it can be mapped
-   * differently. For example, it will likely be mapped to some exceptions in
-   * Java, but more likely mapped to some error codes in C.  # Other uses  The
-   * error model and the `Status` message can be used in a variety of
-   * environments, either with or without APIs, to provide a consistent
-   * developer experience across different environments.  Example uses of this
-   * error model include:  - Partial errors. If a service needs to return
-   * partial errors to the client,     it may embed the `Status` in the normal
-   * response to indicate the partial     errors.  - Workflow errors. A typical
-   * workflow has multiple steps. Each step may     have a `Status` message for
-   * error reporting.  - Batch operations. If a client uses batch request and
-   * batch response, the     `Status` message should be used directly inside
-   * batch response, one for     each error sub-response.  - Asynchronous
-   * operations. If an API call embeds asynchronous operation     results in its
-   * response, the status of those operations should be     represented directly
-   * using the `Status` message.  - Logging. If some API errors are stored in
-   * logs, the message `Status` could     be used directly after any stripping
-   * needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
    */
   export interface Schema$Status {
     /**
@@ -2622,30 +2236,16 @@ export namespace dataflow_v1b3 {
      */
     code?: number;
     /**
-     * A list of messages that carry the error details.  There is a common set
-     * of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}>;
     /**
-     * A developer-facing error message, which should be in English. Any
-     * user-facing error message should be localized and sent in the
-     * google.rpc.Status.details field, or localized by the client.
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
   }
   /**
-   * Defines a particular step within a Cloud Dataflow job.  A job consists of
-   * multiple steps, each of which performs some specific operation as part of
-   * the overall job.  Data is typically passed from one step to another as part
-   * of the job.  Here&#39;s an example of a sequence of steps which together
-   * implement a Map-Reduce job:    * Read a collection of data from some
-   * source, parsing the     collection&#39;s elements.    * Validate the
-   * elements.    * Apply a user-defined function to map each element to some
-   * value     and extract an element-specific key value.    * Group elements
-   * with the same key into a single element with     that key, transforming a
-   * multiply-keyed collection into a     uniquely-keyed collection.    * Write
-   * the elements out to some data sink.  Note that the Cloud Dataflow service
-   * may be used to run many different types of jobs, not just Map-Reduce.
+   * Defines a particular step within a Cloud Dataflow job.  A job consists of multiple steps, each of which performs some specific operation as part of the overall job.  Data is typically passed from one step to another as part of the job.  Here&#39;s an example of a sequence of steps which together implement a Map-Reduce job:    * Read a collection of data from some source, parsing the     collection&#39;s elements.    * Validate the elements.    * Apply a user-defined function to map each element to some value     and extract an element-specific key value.    * Group elements with the same key into a single element with     that key, transforming a multiply-keyed collection into a     uniquely-keyed collection.    * Write the elements out to some data sink.  Note that the Cloud Dataflow service may be used to run many different types of jobs, not just Map-Reduce.
    */
   export interface Schema$Step {
     /**
@@ -2653,14 +2253,11 @@ export namespace dataflow_v1b3 {
      */
     kind?: string;
     /**
-     * The name that identifies the step. This must be unique for each step with
-     * respect to all other steps in the Cloud Dataflow job.
+     * The name that identifies the step. This must be unique for each step with respect to all other steps in the Cloud Dataflow job.
      */
     name?: string;
     /**
-     * Named properties associated with the step. Each kind of predefined step
-     * has its own required set of properties. Must be provided on Create.  Only
-     * retrieved with JOB_VIEW_ALL.
+     * Named properties associated with the step. Each kind of predefined step has its own required set of properties. Must be provided on Create.  Only retrieved with JOB_VIEW_ALL.
      */
     properties?: {[key: string]: any};
   }
@@ -2698,14 +2295,12 @@ export namespace dataflow_v1b3 {
      */
     systemName?: string;
     /**
-     * Map from user name of stateful transforms in this stage to their state
-     * family.
+     * Map from user name of stateful transforms in this stage to their state family.
      */
     transformUserNameToStateFamily?: {[key: string]: string};
   }
   /**
-   * Describes full or partial data disk assignment information of the
-   * computation ranges.
+   * Describes full or partial data disk assignment information of the computation ranges.
    */
   export interface Schema$StreamingComputationRanges {
     /**
@@ -2718,8 +2313,7 @@ export namespace dataflow_v1b3 {
     rangeAssignments?: Schema$KeyRangeDataDiskAssignment[];
   }
   /**
-   * A task which describes what action should be performed for the specified
-   * streaming computation ranges.
+   * A task which describes what action should be performed for the specified streaming computation ranges.
    */
   export interface Schema$StreamingComputationTask {
     /**
@@ -2752,15 +2346,11 @@ export namespace dataflow_v1b3 {
      */
     userStepToStateFamilyNameMap?: {[key: string]: string};
     /**
-     * If present, the worker must use this endpoint to communicate with
-     * Windmill Service dispatchers, otherwise the worker must continue to use
-     * whatever endpoint it had been using.
+     * If present, the worker must use this endpoint to communicate with Windmill Service dispatchers, otherwise the worker must continue to use whatever endpoint it had been using.
      */
     windmillServiceEndpoint?: string;
     /**
-     * If present, the worker must use this port to communicate with Windmill
-     * Service dispatchers. Only applicable when windmill_service_endpoint is
-     * specified.
+     * If present, the worker must use this port to communicate with Windmill Service dispatchers. Only applicable when windmill_service_endpoint is specified.
      */
     windmillServicePort?: string;
   }
@@ -2773,8 +2363,7 @@ export namespace dataflow_v1b3 {
      */
     drain?: boolean;
     /**
-     * The TCP port on which the worker should listen for messages from other
-     * streaming computation workers.
+     * The TCP port on which the worker should listen for messages from other streaming computation workers.
      */
     receiveWorkPort?: number;
     /**
@@ -2786,8 +2375,7 @@ export namespace dataflow_v1b3 {
      */
     streamingComputationTopology?: Schema$TopologyConfig;
     /**
-     * The TCP port used by the worker to communicate with the Dataflow worker
-     * harness.
+     * The TCP port used by the worker to communicate with the Dataflow worker harness.
      */
     workerHarnessPort?: number;
   }
@@ -2805,8 +2393,7 @@ export namespace dataflow_v1b3 {
     tag?: string;
   }
   /**
-   * Identifies the location of a streaming computation stage, for
-   * stage-to-stage communication.
+   * Identifies the location of a streaming computation stage, for stage-to-stage communication.
    */
   export interface Schema$StreamingStageLocation {
     /**
@@ -2815,8 +2402,7 @@ export namespace dataflow_v1b3 {
     streamId?: string;
   }
   /**
-   * Describes a stream of data, either as input to be processed or as output of
-   * a streaming Dataflow job.
+   * Describes a stream of data, either as input to be processed or as output of a streaming Dataflow job.
    */
   export interface Schema$StreamLocation {
     /**
@@ -2832,8 +2418,7 @@ export namespace dataflow_v1b3 {
      */
     sideInputLocation?: Schema$StreamingSideInputLocation;
     /**
-     * The stream is part of another computation within the current streaming
-     * Dataflow job.
+     * The stream is part of another computation within the current streaming Dataflow job.
      */
     streamingStageLocation?: Schema$StreamingStageLocation;
   }
@@ -2847,14 +2432,11 @@ export namespace dataflow_v1b3 {
     elements?: string[];
   }
   /**
-   * A rich message format, including a human readable string, a key for
-   * identifying the message, and structured data associated with the message
-   * for programmatic consumption.
+   * A rich message format, including a human readable string, a key for identifying the message, and structured data associated with the message for programmatic consumption.
    */
   export interface Schema$StructuredMessage {
     /**
-     * Identifier for this message type.  Used by external systems to
-     * internationalize or personalize message.
+     * Identifier for this message type.  Used by external systems to internationalize or personalize message.
      */
     messageKey?: string;
     /**
@@ -2879,12 +2461,7 @@ export namespace dataflow_v1b3 {
      */
     baseTaskDir?: string;
     /**
-     * The base URL for the taskrunner to use when accessing Google Cloud APIs.
-     * When workers access Google Cloud APIs, they logically do so via relative
-     * URLs.  If this field is specified, it supplies the base URL to use for
-     * resolving these relative URLs.  The normative algorithm used is defined
-     * by RFC 1808, &quot;Relative Uniform Resource Locators&quot;.  If not
-     * specified, the default value is &quot;http://www.googleapis.com/&quot;
+     * The base URL for the taskrunner to use when accessing Google Cloud APIs.  When workers access Google Cloud APIs, they logically do so via relative URLs.  If this field is specified, it supplies the base URL to use for resolving these relative URLs.  The normative algorithm used is defined by RFC 1808, &quot;Relative Uniform Resource Locators&quot;.  If not specified, the default value is &quot;http://www.googleapis.com/&quot;
      */
     baseUrl?: string;
     /**
@@ -2912,20 +2489,15 @@ export namespace dataflow_v1b3 {
      */
     logDir?: string;
     /**
-     * Whether to send taskrunner log info to Google Compute Engine VM serial
-     * console.
+     * Whether to send taskrunner log info to Google Compute Engine VM serial console.
      */
     logToSerialconsole?: boolean;
     /**
-     * Indicates where to put logs.  If this is not specified, the logs will not
-     * be uploaded.  The supported resource type is:  Google Cloud Storage:
-     * storage.googleapis.com/{bucket}/{object}
-     * bucket.storage.googleapis.com/{object}
+     * Indicates where to put logs.  If this is not specified, the logs will not be uploaded.  The supported resource type is:  Google Cloud Storage:   storage.googleapis.com/{bucket}/{object}   bucket.storage.googleapis.com/{object}
      */
     logUploadLocation?: string;
     /**
-     * The OAuth2 scopes to be requested by the taskrunner in order to access
-     * the Cloud Dataflow API.
+     * The OAuth2 scopes to be requested by the taskrunner in order to access the Cloud Dataflow API.
      */
     oauthScopes?: string[];
     /**
@@ -2937,20 +2509,15 @@ export namespace dataflow_v1b3 {
      */
     streamingWorkerMainClass?: string;
     /**
-     * The UNIX group ID on the worker VM to use for tasks launched by
-     * taskrunner; e.g. &quot;wheel&quot;.
+     * The UNIX group ID on the worker VM to use for tasks launched by taskrunner; e.g. &quot;wheel&quot;.
      */
     taskGroup?: string;
     /**
-     * The UNIX user ID on the worker VM to use for tasks launched by
-     * taskrunner; e.g. &quot;root&quot;.
+     * The UNIX user ID on the worker VM to use for tasks launched by taskrunner; e.g. &quot;root&quot;.
      */
     taskUser?: string;
     /**
-     * The prefix of the resources the taskrunner should use for temporary
-     * storage.  The supported resource type is:  Google Cloud Storage:
-     * storage.googleapis.com/{bucket}/{object}
-     * bucket.storage.googleapis.com/{object}
+     * The prefix of the resources the taskrunner should use for temporary storage.  The supported resource type is:  Google Cloud Storage:   storage.googleapis.com/{bucket}/{object}   bucket.storage.googleapis.com/{object}
      */
     tempStoragePrefix?: string;
     /**
@@ -2980,8 +2547,7 @@ export namespace dataflow_v1b3 {
     parameters?: Schema$ParameterMetadata[];
   }
   /**
-   * Global topology of the streaming Dataflow job, including all computations
-   * and their sharded locations.
+   * Global topology of the streaming Dataflow job, including all computations and their sharded locations.
    */
   export interface Schema$TopologyConfig {
     /**
@@ -3035,26 +2601,36 @@ export namespace dataflow_v1b3 {
     outputCollectionName?: string[];
   }
   /**
-   * WorkerHealthReport contains information about the health of a worker.  The
-   * VM should be identified by the labels attached to the WorkerMessage that
-   * this health ping belongs to.
+   * Response to the validation request.
+   */
+  export interface Schema$ValidateResponse {
+    /**
+     * Will be empty if validation succeeds.
+     */
+    errorMessage?: string;
+  }
+  /**
+   * WorkerHealthReport contains information about the health of a worker.  The VM should be identified by the labels attached to the WorkerMessage that this health ping belongs to.
    */
   export interface Schema$WorkerHealthReport {
     /**
-     * The pods running on the worker. See:
-     * http://kubernetes.io/v1.1/docs/api-reference/v1/definitions.html#_v1_pod
-     * This field is used by the worker to send the status of the indvidual
-     * containers running on each worker.
+     * A message describing any unusual health reports.
+     */
+    msg?: string;
+    /**
+     * The pods running on the worker. See: http://kubernetes.io/v1.1/docs/api-reference/v1/definitions.html#_v1_pod  This field is used by the worker to send the status of the indvidual containers running on each worker.
      */
     pods?: Array<{[key: string]: any}>;
     /**
-     * The interval at which the worker is sending health reports. The default
-     * value of 0 should be interpreted as the field is not being explicitly set
-     * by the worker.
+     * The interval at which the worker is sending health reports. The default value of 0 should be interpreted as the field is not being explicitly set by the worker.
      */
     reportInterval?: string;
     /**
-     * Whether the VM is healthy.
+     * Whether the VM is in a permanently broken state. Broken VMs should be abandoned or deleted ASAP to avoid assigning or completing any work.
+     */
+    vmIsBroken?: boolean;
+    /**
+     * Whether the VM is currently healthy.
      */
     vmIsHealthy?: boolean;
     /**
@@ -3063,28 +2639,20 @@ export namespace dataflow_v1b3 {
     vmStartupTime?: string;
   }
   /**
-   * WorkerHealthReportResponse contains information returned to the worker in
-   * response to a health ping.
+   * WorkerHealthReportResponse contains information returned to the worker in response to a health ping.
    */
   export interface Schema$WorkerHealthReportResponse {
     /**
-     * A positive value indicates the worker should change its reporting
-     * interval to the specified value.  The default value of zero means no
-     * change in report rate is requested by the server.
+     * A positive value indicates the worker should change its reporting interval to the specified value.  The default value of zero means no change in report rate is requested by the server.
      */
     reportInterval?: string;
   }
   /**
-   * A report of an event in a worker&#39;s lifecycle. The proto contains one
-   * event, because the worker is expected to asynchronously send each message
-   * immediately after the event. Due to this asynchrony, messages may arrive
-   * out of order (or missing), and it is up to the consumer to interpret. The
-   * timestamp of the event is in the enclosing WorkerMessage proto.
+   * A report of an event in a worker&#39;s lifecycle. The proto contains one event, because the worker is expected to asynchronously send each message immediately after the event. Due to this asynchrony, messages may arrive out of order (or missing), and it is up to the consumer to interpret. The timestamp of the event is in the enclosing WorkerMessage proto.
    */
   export interface Schema$WorkerLifecycleEvent {
     /**
-     * The start time of this container. All events will report this so that
-     * events can be grouped together across container/VM restarts.
+     * The start time of this container. All events will report this so that events can be grouped together across container/VM restarts.
      */
     containerStartTime?: string;
     /**
@@ -3092,8 +2660,7 @@ export namespace dataflow_v1b3 {
      */
     event?: string;
     /**
-     * Other stats that can accompany an event. E.g. {
-     * &quot;downloaded_bytes&quot; : &quot;123456&quot; }
+     * Other stats that can accompany an event. E.g. { &quot;downloaded_bytes&quot; : &quot;123456&quot; }
      */
     metadata?: {[key: string]: string};
   }
@@ -3102,14 +2669,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$WorkerMessage {
     /**
-     * Labels are used to group WorkerMessages. For example, a worker_message
-     * about a particular container might have the labels: { &quot;JOB_ID&quot;:
-     * &quot;2015-04-22&quot;,   &quot;WORKER_ID&quot;:
-     * &quot;wordcount-vm-2015…&quot;   &quot;CONTAINER_TYPE&quot;:
-     * &quot;worker&quot;,   &quot;CONTAINER_ID&quot;: &quot;ac1234def&quot;}
-     * Label tags typically correspond to Label enum values. However, for ease
-     * of development other strings can be used as tags. LABEL_UNSPECIFIED
-     * should not be used here.
+     * Labels are used to group WorkerMessages. For example, a worker_message about a particular container might have the labels: { &quot;JOB_ID&quot;: &quot;2015-04-22&quot;,   &quot;WORKER_ID&quot;: &quot;wordcount-vm-2015…&quot;   &quot;CONTAINER_TYPE&quot;: &quot;worker&quot;,   &quot;CONTAINER_ID&quot;: &quot;ac1234def&quot;} Label tags typically correspond to Label enum values. However, for ease of development other strings can be used as tags. LABEL_UNSPECIFIED should not be used here.
      */
     labels?: {[key: string]: string};
     /**
@@ -3138,44 +2698,20 @@ export namespace dataflow_v1b3 {
     workerShutdownNotice?: Schema$WorkerShutdownNotice;
   }
   /**
-   * A message code is used to report status and error messages to the service.
-   * The message codes are intended to be machine readable. The service will
-   * take care of translating these into user understandable messages if
-   * necessary.  Example use cases:   1. Worker processes reporting successful
-   * startup.   2. Worker processes reporting specific errors (e.g. package
-   * staging      failure).
+   * A message code is used to report status and error messages to the service. The message codes are intended to be machine readable. The service will take care of translating these into user understandable messages if necessary.  Example use cases:   1. Worker processes reporting successful startup.   2. Worker processes reporting specific errors (e.g. package staging      failure).
    */
   export interface Schema$WorkerMessageCode {
     /**
-     * The code is a string intended for consumption by a machine that
-     * identifies the type of message being sent. Examples:  1.
-     * &quot;HARNESS_STARTED&quot; might be used to indicate the worker harness
-     * has      started.  2. &quot;GCS_DOWNLOAD_ERROR&quot; might be used to
-     * indicate an error downloading     a GCS file as part of the boot process
-     * of one of the worker containers.  This is a string and not an enum to
-     * make it easy to add new codes without waiting for an API change.
+     * The code is a string intended for consumption by a machine that identifies the type of message being sent. Examples:  1. &quot;HARNESS_STARTED&quot; might be used to indicate the worker harness has      started.  2. &quot;GCS_DOWNLOAD_ERROR&quot; might be used to indicate an error downloading     a GCS file as part of the boot process of one of the worker containers.  This is a string and not an enum to make it easy to add new codes without waiting for an API change.
      */
     code?: string;
     /**
-     * Parameters contains specific information about the code.  This is a
-     * struct to allow parameters of different types.  Examples:  1. For a
-     * &quot;HARNESS_STARTED&quot; message parameters might provide the name of
-     * the worker and additional data like timing information.  2. For a
-     * &quot;GCS_DOWNLOAD_ERROR&quot; parameters might contain fields listing
-     * the GCS objects being downloaded and fields containing errors.  In
-     * general complex data structures should be avoided. If a worker needs to
-     * send a specific and complicated data structure then please consider
-     * defining a new proto and adding it to the data oneof in
-     * WorkerMessageResponse.  Conventions:  Parameters should only be used for
-     * information that isn&#39;t typically passed  as a label.  hostname and
-     * other worker identifiers should almost always be passed  as labels since
-     * they will be included on most messages.
+     * Parameters contains specific information about the code.  This is a struct to allow parameters of different types.  Examples:  1. For a &quot;HARNESS_STARTED&quot; message parameters might provide the name     of the worker and additional data like timing information.  2. For a &quot;GCS_DOWNLOAD_ERROR&quot; parameters might contain fields listing     the GCS objects being downloaded and fields containing errors.  In general complex data structures should be avoided. If a worker needs to send a specific and complicated data structure then please consider defining a new proto and adding it to the data oneof in WorkerMessageResponse.  Conventions:  Parameters should only be used for information that isn&#39;t typically passed  as a label.  hostname and other worker identifiers should almost always be passed  as labels since they will be included on most messages.
      */
     parameters?: {[key: string]: any};
   }
   /**
-   * A worker_message response allows the server to pass information to the
-   * sender.
+   * A worker_message response allows the server to pass information to the sender.
    */
   export interface Schema$WorkerMessageResponse {
     /**
@@ -3192,11 +2728,7 @@ export namespace dataflow_v1b3 {
     workerShutdownNoticeResponse?: Schema$WorkerShutdownNoticeResponse;
   }
   /**
-   * Describes one particular pool of Cloud Dataflow workers to be instantiated
-   * by the Cloud Dataflow service in order to perform the computations required
-   * by a job.  Note that a workflow job may use multiple pools, in order to
-   * match the various computational requirements of the various stages of the
-   * job.
+   * Describes one particular pool of Cloud Dataflow workers to be instantiated by the Cloud Dataflow service in order to perform the computations required by a job.  Note that a workflow job may use multiple pools, in order to match the various computational requirements of the various stages of the job.
    */
   export interface Schema$WorkerPool {
     /**
@@ -3208,14 +2740,11 @@ export namespace dataflow_v1b3 {
      */
     dataDisks?: Schema$Disk[];
     /**
-     * The default package set to install.  This allows the service to select a
-     * default set of packages which are useful to worker harnesses written in a
-     * particular language.
+     * The default package set to install.  This allows the service to select a default set of packages which are useful to worker harnesses written in a particular language.
      */
     defaultPackageSet?: string;
     /**
-     * Size of root disk for VMs, in GB.  If zero or unspecified, the service
-     * will attempt to choose a reasonable default.
+     * Size of root disk for VMs, in GB.  If zero or unspecified, the service will attempt to choose a reasonable default.
      */
     diskSizeGb?: number;
     /**
@@ -3223,8 +2752,7 @@ export namespace dataflow_v1b3 {
      */
     diskSourceImage?: string;
     /**
-     * Type of root disk for VMs.  If empty or unspecified, the service will
-     * attempt to choose a reasonable default.
+     * Type of root disk for VMs.  If empty or unspecified, the service will attempt to choose a reasonable default.
      */
     diskType?: string;
     /**
@@ -3232,13 +2760,11 @@ export namespace dataflow_v1b3 {
      */
     ipConfiguration?: string;
     /**
-     * The kind of the worker pool; currently only `harness` and `shuffle` are
-     * supported.
+     * The kind of the worker pool; currently only `harness` and `shuffle` are supported.
      */
     kind?: string;
     /**
-     * Machine type (e.g. &quot;n1-standard-1&quot;).  If empty or unspecified,
-     * the service will attempt to choose a reasonable default.
+     * Machine type (e.g. &quot;n1-standard-1&quot;).  If empty or unspecified, the service will attempt to choose a reasonable default.
      */
     machineType?: string;
     /**
@@ -3246,26 +2772,19 @@ export namespace dataflow_v1b3 {
      */
     metadata?: {[key: string]: string};
     /**
-     * Network to which VMs will be assigned.  If empty or unspecified, the
-     * service will use the network &quot;default&quot;.
+     * Network to which VMs will be assigned.  If empty or unspecified, the service will use the network &quot;default&quot;.
      */
     network?: string;
     /**
-     * The number of threads per worker harness. If empty or unspecified, the
-     * service will choose a number of threads (according to the number of cores
-     * on the selected machine type for batch, or 1 by convention for
-     * streaming).
+     * The number of threads per worker harness. If empty or unspecified, the service will choose a number of threads (according to the number of cores on the selected machine type for batch, or 1 by convention for streaming).
      */
     numThreadsPerWorker?: number;
     /**
-     * Number of Google Compute Engine workers in this pool needed to execute
-     * the job.  If zero or unspecified, the service will attempt to choose a
-     * reasonable default.
+     * Number of Google Compute Engine workers in this pool needed to execute the job.  If zero or unspecified, the service will attempt to choose a reasonable default.
      */
     numWorkers?: number;
     /**
-     * The action to take on host maintenance, as defined by the Google Compute
-     * Engine API.
+     * The action to take on host maintenance, as defined by the Google Compute Engine API.
      */
     onHostMaintenance?: string;
     /**
@@ -3277,38 +2796,23 @@ export namespace dataflow_v1b3 {
      */
     poolArgs?: {[key: string]: any};
     /**
-     * Subnetwork to which VMs will be assigned, if desired.  Expected to be of
-     * the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
+     * Subnetwork to which VMs will be assigned, if desired.  Expected to be of the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
      */
     subnetwork?: string;
     /**
-     * Settings passed through to Google Compute Engine workers when using the
-     * standard Dataflow task runner.  Users should ignore this field.
+     * Settings passed through to Google Compute Engine workers when using the standard Dataflow task runner.  Users should ignore this field.
      */
     taskrunnerSettings?: Schema$TaskRunnerSettings;
     /**
-     * Sets the policy for determining when to turndown worker pool. Allowed
-     * values are: `TEARDOWN_ALWAYS`, `TEARDOWN_ON_SUCCESS`, and
-     * `TEARDOWN_NEVER`. `TEARDOWN_ALWAYS` means workers are always torn down
-     * regardless of whether the job succeeds. `TEARDOWN_ON_SUCCESS` means
-     * workers are torn down if the job succeeds. `TEARDOWN_NEVER` means the
-     * workers are never torn down.  If the workers are not torn down by the
-     * service, they will continue to run and use Google Compute Engine VM
-     * resources in the user&#39;s project until they are explicitly terminated
-     * by the user. Because of this, Google recommends using the
-     * `TEARDOWN_ALWAYS` policy except for small, manually supervised test jobs.
-     * If unknown or unspecified, the service will attempt to choose a
-     * reasonable default.
+     * Sets the policy for determining when to turndown worker pool. Allowed values are: `TEARDOWN_ALWAYS`, `TEARDOWN_ON_SUCCESS`, and `TEARDOWN_NEVER`. `TEARDOWN_ALWAYS` means workers are always torn down regardless of whether the job succeeds. `TEARDOWN_ON_SUCCESS` means workers are torn down if the job succeeds. `TEARDOWN_NEVER` means the workers are never torn down.  If the workers are not torn down by the service, they will continue to run and use Google Compute Engine VM resources in the user&#39;s project until they are explicitly terminated by the user. Because of this, Google recommends using the `TEARDOWN_ALWAYS` policy except for small, manually supervised test jobs.  If unknown or unspecified, the service will attempt to choose a reasonable default.
      */
     teardownPolicy?: string;
     /**
-     * Required. Docker container image that executes the Cloud Dataflow worker
-     * harness, residing in Google Container Registry.
+     * Required. Docker container image that executes the Cloud Dataflow worker harness, residing in Google Container Registry.
      */
     workerHarnessContainerImage?: string;
     /**
-     * Zone to run the worker pools in.  If empty or unspecified, the service
-     * will attempt to choose a reasonable default.
+     * Zone to run the worker pools in.  If empty or unspecified, the service will attempt to choose a reasonable default.
      */
     zone?: string;
   }
@@ -3317,12 +2821,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$WorkerSettings {
     /**
-     * The base URL for accessing Google Cloud APIs.  When workers access Google
-     * Cloud APIs, they logically do so via relative URLs.  If this field is
-     * specified, it supplies the base URL to use for resolving these relative
-     * URLs.  The normative algorithm used is defined by RFC 1808,
-     * &quot;Relative Uniform Resource Locators&quot;.  If not specified, the
-     * default value is &quot;http://www.googleapis.com/&quot;
+     * The base URL for accessing Google Cloud APIs.  When workers access Google Cloud APIs, they logically do so via relative URLs.  If this field is specified, it supplies the base URL to use for resolving these relative URLs.  The normative algorithm used is defined by RFC 1808, &quot;Relative Uniform Resource Locators&quot;.  If not specified, the default value is &quot;http://www.googleapis.com/&quot;
      */
     baseUrl?: string;
     /**
@@ -3330,20 +2829,15 @@ export namespace dataflow_v1b3 {
      */
     reportingEnabled?: boolean;
     /**
-     * The Cloud Dataflow service path relative to the root URL, for example,
-     * &quot;dataflow/v1b3/projects&quot;.
+     * The Cloud Dataflow service path relative to the root URL, for example, &quot;dataflow/v1b3/projects&quot;.
      */
     servicePath?: string;
     /**
-     * The Shuffle service path relative to the root URL, for example,
-     * &quot;shuffle/v1beta1&quot;.
+     * The Shuffle service path relative to the root URL, for example, &quot;shuffle/v1beta1&quot;.
      */
     shuffleServicePath?: string;
     /**
-     * The prefix of the resources the system should use for temporary storage.
-     * The supported resource type is:  Google Cloud Storage:
-     * storage.googleapis.com/{bucket}/{object}
-     * bucket.storage.googleapis.com/{object}
+     * The prefix of the resources the system should use for temporary storage.  The supported resource type is:  Google Cloud Storage:    storage.googleapis.com/{bucket}/{object}   bucket.storage.googleapis.com/{object}
      */
     tempStoragePrefix?: string;
     /**
@@ -3352,16 +2846,11 @@ export namespace dataflow_v1b3 {
     workerId?: string;
   }
   /**
-   * Shutdown notification from workers. This is to be sent by the shutdown
-   * script of the worker VM so that the backend knows that the VM is being shut
-   * down.
+   * Shutdown notification from workers. This is to be sent by the shutdown script of the worker VM so that the backend knows that the VM is being shut down.
    */
   export interface Schema$WorkerShutdownNotice {
     /**
-     * The reason for the worker shutdown. Current possible values are:
-     * &quot;UNKNOWN&quot;: shutdown reason is unknown. &quot;PREEMPTION&quot;:
-     * shutdown reason is preemption. Other possible reasons may be added in the
-     * future.
+     * The reason for the worker shutdown. Current possible values are:   &quot;UNKNOWN&quot;: shutdown reason is unknown.   &quot;PREEMPTION&quot;: shutdown reason is preemption. Other possible reasons may be added in the future.
      */
     reason?: string;
   }
@@ -3370,8 +2859,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$WorkerShutdownNoticeResponse {}
   /**
-   * WorkItem represents basic information about a WorkItem to be executed in
-   * the cloud.
+   * WorkItem represents basic information about a WorkItem to be executed in the cloud.
    */
   export interface Schema$WorkItem {
     /**
@@ -3399,8 +2887,7 @@ export namespace dataflow_v1b3 {
      */
     mapTask?: Schema$MapTask;
     /**
-     * Any required packages that need to be fetched in order to execute this
-     * WorkItem.
+     * Any required packages that need to be fetched in order to execute this WorkItem.
      */
     packages?: Schema$Package[];
     /**
@@ -3437,13 +2924,11 @@ export namespace dataflow_v1b3 {
     streamingSetupTask?: Schema$StreamingSetupTask;
   }
   /**
-   * The Dataflow service&#39;s idea of the current state of a WorkItem being
-   * processed by a worker.
+   * The Dataflow service&#39;s idea of the current state of a WorkItem being processed by a worker.
    */
   export interface Schema$WorkItemServiceState {
     /**
-     * Other data returned by the service, specific to the particular worker
-     * harness.
+     * Other data returned by the service, specific to the particular worker harness.
      */
     harnessData?: {[key: string]: any};
     /**
@@ -3451,17 +2936,11 @@ export namespace dataflow_v1b3 {
      */
     leaseExpireTime?: string;
     /**
-     * The short ids that workers should use in subsequent metric updates.
-     * Workers should strive to use short ids whenever possible, but it is ok to
-     * request the short_id again if a worker lost track of it (e.g. if the
-     * worker is recovering from a crash). NOTE: it is possible that the
-     * response may have short ids for a subset of the metrics.
+     * The short ids that workers should use in subsequent metric updates. Workers should strive to use short ids whenever possible, but it is ok to request the short_id again if a worker lost track of it (e.g. if the worker is recovering from a crash). NOTE: it is possible that the response may have short ids for a subset of the metrics.
      */
     metricShortId?: Schema$MetricShortId[];
     /**
-     * The index value to use for the next report sent by the worker. Note: If
-     * the report call fails for whatever reason, the worker should reuse this
-     * index for subsequent report attempts.
+     * The index value to use for the next report sent by the worker. Note: If the report call fails for whatever reason, the worker should reuse this index for subsequent report attempts.
      */
     nextReportIndex?: string;
     /**
@@ -3469,8 +2948,7 @@ export namespace dataflow_v1b3 {
      */
     reportStatusInterval?: string;
     /**
-     * The progress point in the WorkItem where the Dataflow service suggests
-     * that the worker truncate the task.
+     * The progress point in the WorkItem where the Dataflow service suggests that the worker truncate the task.
      */
     splitRequest?: Schema$ApproximateSplitRequest;
     /**
@@ -3499,9 +2977,7 @@ export namespace dataflow_v1b3 {
      */
     dynamicSourceSplit?: Schema$DynamicSourceSplit;
     /**
-     * Specifies errors which occurred during processing.  If errors are
-     * provided, and completed = true, then the WorkItem is considered to have
-     * failed.
+     * Specifies errors which occurred during processing.  If errors are provided, and completed = true, then the WorkItem is considered to have failed.
      */
     errors?: Schema$Status[];
     /**
@@ -3517,16 +2993,7 @@ export namespace dataflow_v1b3 {
      */
     reportedProgress?: Schema$ApproximateReportedProgress;
     /**
-     * The report index.  When a WorkItem is leased, the lease will contain an
-     * initial report index.  When a WorkItem&#39;s status is reported to the
-     * system, the report should be sent with that report index, and the
-     * response will contain the index the worker should use for the next
-     * report.  Reports received with unexpected index values will be rejected
-     * by the service.  In order to preserve idempotency, the worker should not
-     * alter the contents of a report, even if the worker must submit the same
-     * report multiple times before getting back a response.  The worker should
-     * not submit a subsequent report until the response for the previous report
-     * had been received from the service.
+     * The report index.  When a WorkItem is leased, the lease will contain an initial report index.  When a WorkItem&#39;s status is reported to the system, the report should be sent with that report index, and the response will contain the index the worker should use for the next report.  Reports received with unexpected index values will be rejected by the service.  In order to preserve idempotency, the worker should not alter the contents of a report, even if the worker must submit the same report multiple times before getting back a response.  The worker should not submit a subsequent report until the response for the previous report had been received from the service.
      */
     reportIndex?: string;
     /**
@@ -3538,36 +3005,11 @@ export namespace dataflow_v1b3 {
      */
     sourceFork?: Schema$SourceFork;
     /**
-     * If the work item represented a SourceOperationRequest, and the work is
-     * completed, contains the result of the operation.
+     * If the work item represented a SourceOperationRequest, and the work is completed, contains the result of the operation.
      */
     sourceOperationResponse?: Schema$SourceOperationResponse;
     /**
-     * A worker may split an active map task in two parts, &quot;primary&quot;
-     * and &quot;residual&quot;, continuing to process the primary part and
-     * returning the residual part into the pool of available work. This event
-     * is called a &quot;dynamic split&quot; and is critical to the dynamic work
-     * rebalancing feature. The two obtained sub-tasks are called
-     * &quot;parts&quot; of the split. The parts, if concatenated, must
-     * represent the same input as would be read by the current task if the
-     * split did not happen. The exact way in which the original task is
-     * decomposed into the two parts is specified either as a position
-     * demarcating them (stop_position), or explicitly as two DerivedSources, if
-     * this task consumes a user-defined source type (dynamic_source_split). The
-     * &quot;current&quot; task is adjusted as a result of the split: after a
-     * task with range [A, B) sends a stop_position update at C, its range is
-     * considered to be [A, C), e.g.: * Progress should be interpreted relative
-     * to the new range, e.g.   &quot;75% completed&quot; means &quot;75% of [A,
-     * C) completed&quot; * The worker should interpret proposed_stop_position
-     * relative to the   new range, e.g. &quot;split at 68%&quot; should be
-     * interpreted as   &quot;split at 68% of [A, C)&quot;. * If the worker
-     * chooses to split again using stop_position, only   stop_positions in [A,
-     * C) will be accepted. * Etc. dynamic_source_split has similar semantics:
-     * e.g., if a task with source S splits using dynamic_source_split into {P,
-     * R} (where P and R must be together equivalent to S), then subsequent
-     * progress and proposed_stop_position should be interpreted relative to P,
-     * and in a potential subsequent dynamic_source_split into {P&#39;, R&#39;},
-     * P&#39; and R&#39; must be together equivalent to P, etc.
+     * A worker may split an active map task in two parts, &quot;primary&quot; and &quot;residual&quot;, continuing to process the primary part and returning the residual part into the pool of available work. This event is called a &quot;dynamic split&quot; and is critical to the dynamic work rebalancing feature. The two obtained sub-tasks are called &quot;parts&quot; of the split. The parts, if concatenated, must represent the same input as would be read by the current task if the split did not happen. The exact way in which the original task is decomposed into the two parts is specified either as a position demarcating them (stop_position), or explicitly as two DerivedSources, if this task consumes a user-defined source type (dynamic_source_split).  The &quot;current&quot; task is adjusted as a result of the split: after a task with range [A, B) sends a stop_position update at C, its range is considered to be [A, C), e.g.: * Progress should be interpreted relative to the new range, e.g.   &quot;75% completed&quot; means &quot;75% of [A, C) completed&quot; * The worker should interpret proposed_stop_position relative to the   new range, e.g. &quot;split at 68%&quot; should be interpreted as   &quot;split at 68% of [A, C)&quot;. * If the worker chooses to split again using stop_position, only   stop_positions in [A, C) will be accepted. * Etc. dynamic_source_split has similar semantics: e.g., if a task with source S splits using dynamic_source_split into {P, R} (where P and R must be together equivalent to S), then subsequent progress and proposed_stop_position should be interpreted relative to P, and in a potential subsequent dynamic_source_split into {P&#39;, R&#39;}, P&#39; and R&#39; must be together equivalent to P, etc.
      */
     stopPosition?: Schema$Position;
     /**
@@ -3597,12 +3039,94 @@ export namespace dataflow_v1b3 {
     context: APIRequestContext;
     jobs: Resource$Projects$Jobs;
     locations: Resource$Projects$Locations;
+    snapshots: Resource$Projects$Snapshots;
     templates: Resource$Projects$Templates;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.jobs = new Resource$Projects$Jobs(this.context);
       this.locations = new Resource$Projects$Locations(this.context);
+      this.snapshots = new Resource$Projects$Snapshots(this.context);
       this.templates = new Resource$Projects$Templates(this.context);
+    }
+
+    /**
+     * dataflow.projects.deleteSnapshots
+     * @desc Deletes a snapshot.
+     * @alias dataflow.projects.deleteSnapshots
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.location The location that contains this snapshot.
+     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
+     * @param {string=} params.snapshotId The ID of the snapshot.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteSnapshots(
+      params?: Params$Resource$Projects$Deletesnapshots,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeleteSnapshotResponse>;
+    deleteSnapshots(
+      params: Params$Resource$Projects$Deletesnapshots,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
+      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
+    ): void;
+    deleteSnapshots(
+      params: Params$Resource$Projects$Deletesnapshots,
+      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
+    ): void;
+    deleteSnapshots(
+      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
+    ): void;
+    deleteSnapshots(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Deletesnapshots
+        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
+      callback?: BodyResponseCallback<Schema$DeleteSnapshotResponse>
+    ): void | GaxiosPromise<Schema$DeleteSnapshotResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Deletesnapshots;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Deletesnapshots;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/snapshots').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeleteSnapshotResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$DeleteSnapshotResponse>(parameters);
+      }
     }
 
     /**
@@ -3687,6 +3211,26 @@ export namespace dataflow_v1b3 {
     }
   }
 
+  export interface Params$Resource$Projects$Deletesnapshots
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The location that contains this snapshot.
+     */
+    location?: string;
+    /**
+     * The ID of the Cloud Platform project that the snapshot belongs to.
+     */
+    projectId?: string;
+    /**
+     * The ID of the snapshot.
+     */
+    snapshotId?: string;
+  }
   export interface Params$Resource$Projects$Workermessages
     extends StandardParameters {
     /**
@@ -3797,11 +3341,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.jobs.create
-     * @desc Creates a Cloud Dataflow job.  To create a job, we recommend using
-     * `projects.locations.jobs.create` with a [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
-     * Using `projects.jobs.create` is not recommended, as your job will always
-     * start in `us-central1`.
+     * @desc Creates a Cloud Dataflow job.  To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`.
      * @alias dataflow.projects.jobs.create
      * @memberOf! ()
      *
@@ -3877,12 +3417,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.jobs.get
-     * @desc Gets the state of the specified Cloud Dataflow job.  To get the
-     * state of a job, we recommend using `projects.locations.jobs.get` with a
-     * [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
-     * Using `projects.jobs.get` is not recommended, as you can only get the
-     * state of jobs that are running in `us-central1`.
+     * @desc Gets the state of the specified Cloud Dataflow job.  To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`.
      * @alias dataflow.projects.jobs.get
      * @memberOf! ()
      *
@@ -3957,12 +3492,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.jobs.getMetrics
-     * @desc Request the job status.  To request the status of a job, we
-     * recommend using `projects.locations.jobs.getMetrics` with a [regional
-     * endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
-     * Using `projects.jobs.getMetrics` is not recommended, as you can only
-     * request the status of jobs that are running in `us-central1`.
+     * @desc Request the job status.  To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
      * @alias dataflow.projects.jobs.getMetrics
      * @memberOf! ()
      *
@@ -4038,13 +3568,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.jobs.list
-     * @desc List the jobs of a project.  To list the jobs of a project in a
-     * region, we recommend using `projects.locations.jobs.get` with a [regional
-     * endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To
-     * list the all jobs across all regions, use `projects.jobs.aggregated`.
-     * Using `projects.jobs.list` is not recommended, as you can only get the
-     * list of jobs that are running in `us-central1`.
+     * @desc List the jobs of a project.  To list the jobs of a project in a region, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.
      * @alias dataflow.projects.jobs.list
      * @memberOf! ()
      *
@@ -4196,12 +3720,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.jobs.update
-     * @desc Updates the state of an existing Cloud Dataflow job.  To update the
-     * state of an existing job, we recommend using
-     * `projects.locations.jobs.update` with a [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
-     * Using `projects.jobs.update` is not recommended, as you can only update
-     * the state of jobs that are running in `us-central1`.
+     * @desc Updates the state of an existing Cloud Dataflow job.  To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.
      * @alias dataflow.projects.jobs.update
      * @memberOf! ()
      *
@@ -4287,20 +3806,15 @@ export namespace dataflow_v1b3 {
      */
     filter?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains this job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
     /**
-     * If there are many jobs, limit response to at most this many. The actual
-     * number of jobs returned will be the lesser of max_responses and an
-     * unspecified server-defined limit.
+     * If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      */
     pageSize?: number;
     /**
-     * Set this to the 'next_page_token' field of a previous response to request
-     * additional results in a long list.
+     * Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
      */
     pageToken?: string;
     /**
@@ -4308,8 +3822,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * Level of information requested in response. Default is
-     * `JOB_VIEW_SUMMARY`.
+     * Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
      */
     view?: string;
   }
@@ -4321,9 +3834,7 @@ export namespace dataflow_v1b3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains this job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
     /**
@@ -4356,9 +3867,7 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains this job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
     /**
@@ -4382,9 +3891,7 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains the job specified by job_id.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -4392,8 +3899,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * Return only metric data that has changed since this time. Default is to
-     * return all information about all metrics for the job.
+     * Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
      */
     startTime?: string;
   }
@@ -4409,20 +3915,15 @@ export namespace dataflow_v1b3 {
      */
     filter?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains this job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
     /**
-     * If there are many jobs, limit response to at most this many. The actual
-     * number of jobs returned will be the lesser of max_responses and an
-     * unspecified server-defined limit.
+     * If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      */
     pageSize?: number;
     /**
-     * Set this to the 'next_page_token' field of a previous response to request
-     * additional results in a long list.
+     * Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
      */
     pageToken?: string;
     /**
@@ -4430,8 +3931,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * Level of information requested in response. Default is
-     * `JOB_VIEW_SUMMARY`.
+     * Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
      */
     view?: string;
   }
@@ -4468,9 +3968,7 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains this job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
     /**
@@ -4702,12 +4200,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.jobs.messages.list
-     * @desc Request the job status.  To request the status of a job, we
-     * recommend using `projects.locations.jobs.messages.list` with a [regional
-     * endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
-     * Using `projects.jobs.messages.list` is not recommended, as you can only
-     * request the status of jobs that are running in `us-central1`.
+     * @desc Request the job status.  To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
      * @alias dataflow.projects.jobs.messages.list
      * @memberOf! ()
      *
@@ -4796,8 +4289,7 @@ export namespace dataflow_v1b3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Return only messages with timestamps < end_time. The default is now (i.e.
-     * return up to the latest messages available).
+     * Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
      */
     endTime?: string;
     /**
@@ -4805,9 +4297,7 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains the job specified by job_id.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -4815,14 +4305,11 @@ export namespace dataflow_v1b3 {
      */
     minimumImportance?: string;
     /**
-     * If specified, determines the maximum number of messages to return.  If
-     * unspecified, the service may choose an appropriate default, or may return
-     * an arbitrarily large number of results.
+     * If specified, determines the maximum number of messages to return.  If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
      */
     pageSize?: number;
     /**
-     * If supplied, this should be the value of next_page_token returned by an
-     * earlier call. This will cause the next page of results to be returned.
+     * If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
      */
     pageToken?: string;
     /**
@@ -4830,8 +4317,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * If specified, return only messages with timestamps >= start_time. The
-     * default is the job creation time (i.e. beginning of messages).
+     * If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
      */
     startTime?: string;
   }
@@ -5052,10 +4538,14 @@ export namespace dataflow_v1b3 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     jobs: Resource$Projects$Locations$Jobs;
+    snapshots: Resource$Projects$Locations$Snapshots;
+    sql: Resource$Projects$Locations$Sql;
     templates: Resource$Projects$Locations$Templates;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.jobs = new Resource$Projects$Locations$Jobs(this.context);
+      this.snapshots = new Resource$Projects$Locations$Snapshots(this.context);
+      this.sql = new Resource$Projects$Locations$Sql(this.context);
       this.templates = new Resource$Projects$Locations$Templates(this.context);
     }
 
@@ -5151,9 +4641,7 @@ export namespace dataflow_v1b3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains the job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job.
      */
     location?: string;
     /**
@@ -5185,11 +4673,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.locations.jobs.create
-     * @desc Creates a Cloud Dataflow job.  To create a job, we recommend using
-     * `projects.locations.jobs.create` with a [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
-     * Using `projects.jobs.create` is not recommended, as your job will always
-     * start in `us-central1`.
+     * @desc Creates a Cloud Dataflow job.  To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`.
      * @alias dataflow.projects.locations.jobs.create
      * @memberOf! ()
      *
@@ -5264,12 +4748,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.locations.jobs.get
-     * @desc Gets the state of the specified Cloud Dataflow job.  To get the
-     * state of a job, we recommend using `projects.locations.jobs.get` with a
-     * [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
-     * Using `projects.jobs.get` is not recommended, as you can only get the
-     * state of jobs that are running in `us-central1`.
+     * @desc Gets the state of the specified Cloud Dataflow job.  To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`.
      * @alias dataflow.projects.locations.jobs.get
      * @memberOf! ()
      *
@@ -5344,12 +4823,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.locations.jobs.getMetrics
-     * @desc Request the job status.  To request the status of a job, we
-     * recommend using `projects.locations.jobs.getMetrics` with a [regional
-     * endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
-     * Using `projects.jobs.getMetrics` is not recommended, as you can only
-     * request the status of jobs that are running in `us-central1`.
+     * @desc Request the job status.  To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
      * @alias dataflow.projects.locations.jobs.getMetrics
      * @memberOf! ()
      *
@@ -5426,13 +4900,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.locations.jobs.list
-     * @desc List the jobs of a project.  To list the jobs of a project in a
-     * region, we recommend using `projects.locations.jobs.get` with a [regional
-     * endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To
-     * list the all jobs across all regions, use `projects.jobs.aggregated`.
-     * Using `projects.jobs.list` is not recommended, as you can only get the
-     * list of jobs that are running in `us-central1`.
+     * @desc List the jobs of a project.  To list the jobs of a project in a region, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.
      * @alias dataflow.projects.locations.jobs.list
      * @memberOf! ()
      *
@@ -5585,12 +5053,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.locations.jobs.update
-     * @desc Updates the state of an existing Cloud Dataflow job.  To update the
-     * state of an existing job, we recommend using
-     * `projects.locations.jobs.update` with a [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
-     * Using `projects.jobs.update` is not recommended, as you can only update
-     * the state of jobs that are running in `us-central1`.
+     * @desc Updates the state of an existing Cloud Dataflow job.  To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.
      * @alias dataflow.projects.locations.jobs.update
      * @memberOf! ()
      *
@@ -5672,9 +5135,7 @@ export namespace dataflow_v1b3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains this job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
     /**
@@ -5707,9 +5168,7 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains this job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
     /**
@@ -5733,9 +5192,7 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains the job specified by job_id.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -5743,8 +5200,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * Return only metric data that has changed since this time. Default is to
-     * return all information about all metrics for the job.
+     * Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
      */
     startTime?: string;
   }
@@ -5760,20 +5216,15 @@ export namespace dataflow_v1b3 {
      */
     filter?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains this job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
     /**
-     * If there are many jobs, limit response to at most this many. The actual
-     * number of jobs returned will be the lesser of max_responses and an
-     * unspecified server-defined limit.
+     * If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      */
     pageSize?: number;
     /**
-     * Set this to the 'next_page_token' field of a previous response to request
-     * additional results in a long list.
+     * Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
      */
     pageToken?: string;
     /**
@@ -5781,8 +5232,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * Level of information requested in response. Default is
-     * `JOB_VIEW_SUMMARY`.
+     * Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
      */
     view?: string;
   }
@@ -5823,9 +5273,7 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains this job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
     /**
@@ -6020,9 +5468,7 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains the job specified by job_id.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -6047,9 +5493,7 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains the job specified by job_id.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -6071,12 +5515,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.locations.jobs.messages.list
-     * @desc Request the job status.  To request the status of a job, we
-     * recommend using `projects.locations.jobs.messages.list` with a [regional
-     * endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
-     * Using `projects.jobs.messages.list` is not recommended, as you can only
-     * request the status of jobs that are running in `us-central1`.
+     * @desc Request the job status.  To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
      * @alias dataflow.projects.locations.jobs.messages.list
      * @memberOf! ()
      *
@@ -6166,8 +5605,7 @@ export namespace dataflow_v1b3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Return only messages with timestamps < end_time. The default is now (i.e.
-     * return up to the latest messages available).
+     * Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
      */
     endTime?: string;
     /**
@@ -6175,9 +5613,7 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains the job specified by job_id.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -6185,14 +5621,11 @@ export namespace dataflow_v1b3 {
      */
     minimumImportance?: string;
     /**
-     * If specified, determines the maximum number of messages to return.  If
-     * unspecified, the service may choose an appropriate default, or may return
-     * an arbitrarily large number of results.
+     * If specified, determines the maximum number of messages to return.  If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
      */
     pageSize?: number;
     /**
-     * If supplied, this should be the value of next_page_token returned by an
-     * earlier call. This will cause the next page of results to be returned.
+     * If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
      */
     pageToken?: string;
     /**
@@ -6200,8 +5633,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * If specified, return only messages with timestamps >= start_time. The
-     * default is the job creation time (i.e. beginning of messages).
+     * If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
      */
     startTime?: string;
   }
@@ -6390,9 +5822,7 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains the WorkItem's job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
      */
     location?: string;
     /**
@@ -6417,9 +5847,7 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
-     * contains the WorkItem's job.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
      */
     location?: string;
     /**
@@ -6431,6 +5859,403 @@ export namespace dataflow_v1b3 {
      * Request body metadata
      */
     requestBody?: Schema$ReportWorkItemStatusRequest;
+  }
+
+  export class Resource$Projects$Locations$Snapshots {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dataflow.projects.locations.snapshots.delete
+     * @desc Deletes a snapshot.
+     * @alias dataflow.projects.locations.snapshots.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.location The location that contains this snapshot.
+     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
+     * @param {string} params.snapshotId The ID of the snapshot.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Projects$Locations$Snapshots$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeleteSnapshotResponse>;
+    delete(
+      params: Params$Resource$Projects$Locations$Snapshots$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
+      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Snapshots$Delete,
+      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Snapshots$Delete
+        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
+      callback?: BodyResponseCallback<Schema$DeleteSnapshotResponse>
+    ): void | GaxiosPromise<Schema$DeleteSnapshotResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Snapshots$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Snapshots$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/snapshots/{snapshotId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'location', 'snapshotId'],
+        pathParams: ['location', 'projectId', 'snapshotId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeleteSnapshotResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$DeleteSnapshotResponse>(parameters);
+      }
+    }
+
+    /**
+     * dataflow.projects.locations.snapshots.get
+     * @desc Gets information about a snapshot.
+     * @alias dataflow.projects.locations.snapshots.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.location The location that contains this snapshot.
+     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
+     * @param {string} params.snapshotId The ID of the snapshot.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Locations$Snapshots$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Snapshot>;
+    get(
+      params: Params$Resource$Projects$Locations$Snapshots$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Snapshots$Get,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Snapshot>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Snapshots$Get
+        | BodyResponseCallback<Schema$Snapshot>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback?: BodyResponseCallback<Schema$Snapshot>
+    ): void | GaxiosPromise<Schema$Snapshot> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Snapshots$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Snapshots$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/snapshots/{snapshotId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'location', 'snapshotId'],
+        pathParams: ['location', 'projectId', 'snapshotId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Snapshot>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Snapshot>(parameters);
+      }
+    }
+
+    /**
+     * dataflow.projects.locations.snapshots.list
+     * @desc Lists snapshots.
+     * @alias dataflow.projects.locations.snapshots.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.location The location to list snapshots in.
+     * @param {string} params.projectId The project ID to list snapshots for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Locations$Snapshots$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSnapshotsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Snapshots$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Snapshots$List,
+      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSnapshotsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Snapshots$List
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void | GaxiosPromise<Schema$ListSnapshotsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Snapshots$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Snapshots$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/snapshots'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'location'],
+        pathParams: ['location', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSnapshotsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Snapshots$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The location that contains this snapshot.
+     */
+    location?: string;
+    /**
+     * The ID of the Cloud Platform project that the snapshot belongs to.
+     */
+    projectId?: string;
+    /**
+     * The ID of the snapshot.
+     */
+    snapshotId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Snapshots$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The location that contains this snapshot.
+     */
+    location?: string;
+    /**
+     * The ID of the Cloud Platform project that the snapshot belongs to.
+     */
+    projectId?: string;
+    /**
+     * The ID of the snapshot.
+     */
+    snapshotId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Snapshots$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The location to list snapshots in.
+     */
+    location?: string;
+    /**
+     * The project ID to list snapshots for.
+     */
+    projectId?: string;
+  }
+
+  export class Resource$Projects$Locations$Sql {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dataflow.projects.locations.sql.validate
+     * @desc Validates a GoogleSQL query for Cloud Dataflow syntax. Will always confirm the given query parses correctly, and if able to look up schema information from DataCatalog, will validate that the query analyzes properly as well.
+     * @alias dataflow.projects.locations.sql.validate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
+     * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
+     * @param {string=} params.query The sql query to validate.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    validate(
+      params?: Params$Resource$Projects$Locations$Sql$Validate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ValidateResponse>;
+    validate(
+      params: Params$Resource$Projects$Locations$Sql$Validate,
+      options: MethodOptions | BodyResponseCallback<Schema$ValidateResponse>,
+      callback: BodyResponseCallback<Schema$ValidateResponse>
+    ): void;
+    validate(
+      params: Params$Resource$Projects$Locations$Sql$Validate,
+      callback: BodyResponseCallback<Schema$ValidateResponse>
+    ): void;
+    validate(callback: BodyResponseCallback<Schema$ValidateResponse>): void;
+    validate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sql$Validate
+        | BodyResponseCallback<Schema$ValidateResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ValidateResponse>,
+      callback?: BodyResponseCallback<Schema$ValidateResponse>
+    ): void | GaxiosPromise<Schema$ValidateResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sql$Validate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Sql$Validate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/sql:validate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'location'],
+        pathParams: ['location', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ValidateResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ValidateResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Sql$Validate
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
+     */
+    location?: string;
+    /**
+     * Required. The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+    /**
+     * The sql query to validate.
+     */
+    query?: string;
   }
 
   export class Resource$Projects$Locations$Templates {
@@ -6681,9 +6506,7 @@ export namespace dataflow_v1b3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
-     * which to direct the request.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      */
     location?: string;
     /**
@@ -6704,14 +6527,11 @@ export namespace dataflow_v1b3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. A Cloud Storage path to the template from which to create the
-     * job. Must be valid Cloud Storage URL, beginning with 'gs://'.
+     * Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      */
     gcsPath?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
-     * which to direct the request.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      */
     location?: string;
     /**
@@ -6731,24 +6551,19 @@ export namespace dataflow_v1b3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Path to dynamic template spec file on GCS. The file must be a Json
-     * serialized DynamicTemplateFieSpec object.
+     * Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
      */
     'dynamicTemplate.gcsPath'?: string;
     /**
-     * Cloud Storage path for staging dependencies. Must be a valid Cloud
-     * Storage URL, beginning with `gs://`.
+     * Cloud Storage path for staging dependencies. Must be a valid Cloud Storage URL, beginning with `gs://`.
      */
     'dynamicTemplate.stagingLocation'?: string;
     /**
-     * A Cloud Storage path to the template from which to create the job. Must
-     * be valid Cloud Storage URL, beginning with 'gs://'.
+     * A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      */
     gcsPath?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
-     * which to direct the request.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      */
     location?: string;
     /**
@@ -6756,8 +6571,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * If true, the request is validated but not actually executed. Defaults to
-     * false.
+     * If true, the request is validated but not actually executed. Defaults to false.
      */
     validateOnly?: boolean;
 
@@ -6765,6 +6579,200 @@ export namespace dataflow_v1b3 {
      * Request body metadata
      */
     requestBody?: Schema$LaunchTemplateParameters;
+  }
+
+  export class Resource$Projects$Snapshots {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dataflow.projects.snapshots.get
+     * @desc Gets information about a snapshot.
+     * @alias dataflow.projects.snapshots.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.location The location that contains this snapshot.
+     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
+     * @param {string} params.snapshotId The ID of the snapshot.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Snapshots$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Snapshot>;
+    get(
+      params: Params$Resource$Projects$Snapshots$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Snapshots$Get,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Snapshot>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Snapshots$Get
+        | BodyResponseCallback<Schema$Snapshot>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback?: BodyResponseCallback<Schema$Snapshot>
+    ): void | GaxiosPromise<Schema$Snapshot> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Snapshots$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snapshots$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1b3/projects/{projectId}/snapshots/{snapshotId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'snapshotId'],
+        pathParams: ['projectId', 'snapshotId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Snapshot>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Snapshot>(parameters);
+      }
+    }
+
+    /**
+     * dataflow.projects.snapshots.list
+     * @desc Lists snapshots.
+     * @alias dataflow.projects.snapshots.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.location The location to list snapshots in.
+     * @param {string} params.projectId The project ID to list snapshots for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Snapshots$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSnapshotsResponse>;
+    list(
+      params: Params$Resource$Projects$Snapshots$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Snapshots$List,
+      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSnapshotsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Snapshots$List
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void | GaxiosPromise<Schema$ListSnapshotsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Snapshots$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snapshots$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/snapshots').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSnapshotsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Snapshots$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The location that contains this snapshot.
+     */
+    location?: string;
+    /**
+     * The ID of the Cloud Platform project that the snapshot belongs to.
+     */
+    projectId?: string;
+    /**
+     * The ID of the snapshot.
+     */
+    snapshotId?: string;
+  }
+  export interface Params$Resource$Projects$Snapshots$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The location to list snapshots in.
+     */
+    location?: string;
+    /**
+     * The project ID to list snapshots for.
+     */
+    projectId?: string;
   }
 
   export class Resource$Projects$Templates {
@@ -7030,14 +7038,11 @@ export namespace dataflow_v1b3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. A Cloud Storage path to the template from which to create the
-     * job. Must be valid Cloud Storage URL, beginning with 'gs://'.
+     * Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      */
     gcsPath?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
-     * which to direct the request.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      */
     location?: string;
     /**
@@ -7057,24 +7062,19 @@ export namespace dataflow_v1b3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Path to dynamic template spec file on GCS. The file must be a Json
-     * serialized DynamicTemplateFieSpec object.
+     * Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
      */
     'dynamicTemplate.gcsPath'?: string;
     /**
-     * Cloud Storage path for staging dependencies. Must be a valid Cloud
-     * Storage URL, beginning with `gs://`.
+     * Cloud Storage path for staging dependencies. Must be a valid Cloud Storage URL, beginning with `gs://`.
      */
     'dynamicTemplate.stagingLocation'?: string;
     /**
-     * A Cloud Storage path to the template from which to create the job. Must
-     * be valid Cloud Storage URL, beginning with 'gs://'.
+     * A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      */
     gcsPath?: string;
     /**
-     * The [regional endpoint]
-     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
-     * which to direct the request.
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      */
     location?: string;
     /**
@@ -7082,8 +7082,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * If true, the request is validated but not actually executed. Defaults to
-     * false.
+     * If true, the request is validated but not actually executed. Defaults to false.
      */
     validateOnly?: boolean;
 

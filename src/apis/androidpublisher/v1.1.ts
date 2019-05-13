@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace androidpublisher_v1_1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace androidpublisher_v1_1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -96,7 +93,10 @@ export namespace androidpublisher_v1_1 {
     purchases: Resource$Purchases;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.inapppurchases = new Resource$Inapppurchases(this.context);
       this.purchases = new Resource$Purchases(this.context);
@@ -104,23 +104,19 @@ export namespace androidpublisher_v1_1 {
   }
 
   /**
-   * An InappPurchase resource indicates the status of a user&#39;s inapp
-   * product purchase.
+   * An InappPurchase resource indicates the status of a user&#39;s inapp product purchase.
    */
   export interface Schema$InappPurchase {
     /**
-     * The consumption state of the inapp product. Possible values are:   - Yet
-     * to be consumed  - Consumed
+     * The consumption state of the inapp product. Possible values are:   - Yet to be consumed  - Consumed
      */
     consumptionState?: number;
     /**
-     * A developer-specified string that contains supplemental information about
-     * an order.
+     * A developer-specified string that contains supplemental information about an order.
      */
     developerPayload?: string;
     /**
-     * This kind represents an inappPurchase object in the androidpublisher
-     * service.
+     * This kind represents an inappPurchase object in the androidpublisher service.
      */
     kind?: string;
     /**
@@ -128,47 +124,36 @@ export namespace androidpublisher_v1_1 {
      */
     orderId?: string;
     /**
-     * The purchase state of the order. Possible values are:   - Purchased  -
-     * Canceled
+     * The purchase state of the order. Possible values are:   - Purchased  - Canceled
      */
     purchaseState?: number;
     /**
-     * The time the product was purchased, in milliseconds since the epoch (Jan
-     * 1, 1970).
+     * The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970).
      */
     purchaseTime?: string;
     /**
-     * The type of purchase of the inapp product. This field is only set if this
-     * purchase was not made using the standard in-app billing flow. Possible
-     * values are:   - Test (i.e. purchased from a license testing account)  -
-     * Promo (i.e. purchased using a promo code)  - Rewarded (i.e. from watching
-     * a video ad instead of paying)
+     * The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)  - Promo (i.e. purchased using a promo code)  - Rewarded (i.e. from watching a video ad instead of paying)
      */
     purchaseType?: number;
   }
   /**
-   * A SubscriptionPurchase resource indicates the status of a user&#39;s
-   * subscription purchase.
+   * A SubscriptionPurchase resource indicates the status of a user&#39;s subscription purchase.
    */
   export interface Schema$SubscriptionPurchase {
     /**
-     * Whether the subscription will automatically be renewed when it reaches
-     * its current expiry time.
+     * Whether the subscription will automatically be renewed when it reaches its current expiry time.
      */
     autoRenewing?: boolean;
     /**
-     * Time at which the subscription was granted, in milliseconds since the
-     * Epoch.
+     * Time at which the subscription was granted, in milliseconds since the Epoch.
      */
     initiationTimestampMsec?: string;
     /**
-     * This kind represents a subscriptionPurchase object in the
-     * androidpublisher service.
+     * This kind represents a subscriptionPurchase object in the androidpublisher service.
      */
     kind?: string;
     /**
-     * Time at which the subscription will expire, in milliseconds since the
-     * Epoch.
+     * Time at which the subscription will expire, in milliseconds since the Epoch.
      */
     validUntilTimestampMsec?: string;
   }
@@ -264,8 +249,7 @@ export namespace androidpublisher_v1_1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The package name of the application the inapp product was sold in (for
-     * example, 'com.some.thing').
+     * The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      */
     packageName?: string;
     /**
@@ -273,8 +257,7 @@ export namespace androidpublisher_v1_1 {
      */
     productId?: string;
     /**
-     * The token provided to the user's device when the inapp product was
-     * purchased.
+     * The token provided to the user's device when the inapp product was purchased.
      */
     token?: string;
   }
@@ -287,8 +270,7 @@ export namespace androidpublisher_v1_1 {
 
     /**
      * androidpublisher.purchases.cancel
-     * @desc Cancels a user's subscription purchase. The subscription remains
-     * valid until its expiration time.
+     * @desc Cancels a user's subscription purchase. The subscription remains valid until its expiration time.
      * @alias androidpublisher.purchases.cancel
      * @memberOf! ()
      *
@@ -361,8 +343,7 @@ export namespace androidpublisher_v1_1 {
 
     /**
      * androidpublisher.purchases.get
-     * @desc Checks whether a user's subscription purchase is valid and returns
-     * its expiry time.
+     * @desc Checks whether a user's subscription purchase is valid and returns its expiry time.
      * @alias androidpublisher.purchases.get
      * @memberOf! ()
      *
@@ -445,8 +426,7 @@ export namespace androidpublisher_v1_1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The package name of the application for which this subscription was
-     * purchased (for example, 'com.some.thing').
+     * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
     /**
@@ -454,8 +434,7 @@ export namespace androidpublisher_v1_1 {
      */
     subscriptionId?: string;
     /**
-     * The token provided to the user's device when the subscription was
-     * purchased.
+     * The token provided to the user's device when the subscription was purchased.
      */
     token?: string;
   }
@@ -466,8 +445,7 @@ export namespace androidpublisher_v1_1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The package name of the application for which this subscription was
-     * purchased (for example, 'com.some.thing').
+     * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
     /**
@@ -475,8 +453,7 @@ export namespace androidpublisher_v1_1 {
      */
     subscriptionId?: string;
     /**
-     * The token provided to the user's device when the subscription was
-     * purchased.
+     * The token provided to the user's device when the subscription was purchased.
      */
     token?: string;
   }

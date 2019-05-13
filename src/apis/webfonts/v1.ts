@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace webfonts_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace webfonts_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -78,9 +75,7 @@ export namespace webfonts_v1 {
   /**
    * Google Fonts Developer API
    *
-   * Accesses the metadata for all families served by Google Fonts, providing a
-   * list of families currently available (including available styles and a list
-   * of supported script subsets).
+   * Accesses the metadata for all families served by Google Fonts, providing a list of families currently available (including available styles and a list of supported script subsets).
    *
    * @example
    * const {google} = require('googleapis');
@@ -97,7 +92,10 @@ export namespace webfonts_v1 {
     webfonts: Resource$Webfonts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.webfonts = new Resource$Webfonts(this.context);
     }
@@ -113,8 +111,7 @@ export namespace webfonts_v1 {
      */
     family?: string;
     /**
-     * The font files (with all supported scripts) for each one of the available
-     * variants, as a key : value map.
+     * The font files (with all supported scripts) for each one of the available variants, as a key : value map.
      */
     files?: {[key: string]: string};
     /**
@@ -122,8 +119,7 @@ export namespace webfonts_v1 {
      */
     kind?: string;
     /**
-     * The date (format &quot;yyyy-MM-dd&quot;) the font was modified for the
-     * last time.
+     * The date (format &quot;yyyy-MM-dd&quot;) the font was modified for the last time.
      */
     lastModified?: string;
     /**
@@ -158,8 +154,7 @@ export namespace webfonts_v1 {
 
     /**
      * webfonts.webfonts.list
-     * @desc Retrieves the list of fonts currently served by the Google Fonts
-     * Developer API
+     * @desc Retrieves the list of fonts currently served by the Google Fonts Developer API
      * @alias webfonts.webfonts.list
      * @memberOf! ()
      *

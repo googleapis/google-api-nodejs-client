@@ -14,9 +14,8 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-
-import {content_v2} from './v2';
 import {content_v2_1} from './v2.1';
+import {content_v2} from './v2';
 
 export const VERSIONS = {
   'v2.1': content_v2_1.Content,

@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace webmasters_v3 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace webmasters_v3 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,21 +92,16 @@ export namespace webmasters_v3 {
     searchanalytics: Resource$Searchanalytics;
     sitemaps: Resource$Sitemaps;
     sites: Resource$Sites;
-    urlcrawlerrorscounts: Resource$Urlcrawlerrorscounts;
-    urlcrawlerrorssamples: Resource$Urlcrawlerrorssamples;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.searchanalytics = new Resource$Searchanalytics(this.context);
       this.sitemaps = new Resource$Sitemaps(this.context);
       this.sites = new Resource$Sites(this.context);
-      this.urlcrawlerrorscounts = new Resource$Urlcrawlerrorscounts(
-        this.context
-      );
-      this.urlcrawlerrorssamples = new Resource$Urlcrawlerrorssamples(
-        this.context
-      );
     }
   }
 
@@ -131,42 +123,23 @@ export namespace webmasters_v3 {
   }
   export interface Schema$SearchAnalyticsQueryRequest {
     /**
-     * [Optional; Default is &quot;auto&quot;] How data is aggregated. If
-     * aggregated by property, all data for the same property is aggregated; if
-     * aggregated by page, all data is aggregated by canonical URI. If you
-     * filter or group by page, choose AUTO; otherwise you can aggregate either
-     * by property or by page, depending on how you want your data calculated;
-     * see  the help documentation to learn how data is calculated differently
-     * by site versus by page.  Note: If you group or filter by page, you cannot
-     * aggregate by property.  If you specify any value other than AUTO, the
-     * aggregation type in the result will match the requested type, or if you
-     * request an invalid type, you will get an error. The API will never change
-     * your aggregation type if the requested type is invalid.
+     * [Optional; Default is &quot;auto&quot;] How data is aggregated. If aggregated by property, all data for the same property is aggregated; if aggregated by page, all data is aggregated by canonical URI. If you filter or group by page, choose AUTO; otherwise you can aggregate either by property or by page, depending on how you want your data calculated; see  the help documentation to learn how data is calculated differently by site versus by page.  Note: If you group or filter by page, you cannot aggregate by property.  If you specify any value other than AUTO, the aggregation type in the result will match the requested type, or if you request an invalid type, you will get an error. The API will never change your aggregation type if the requested type is invalid.
      */
     aggregationType?: string;
     /**
-     * [Optional] Zero or more filters to apply to the dimension grouping
-     * values; for example, &#39;query contains &quot;buy&quot;&#39; to see only
-     * data where the query string contains the substring &quot;buy&quot; (not
-     * case-sensitive). You can filter by a dimension without grouping by it.
+     * [Optional] Zero or more filters to apply to the dimension grouping values; for example, &#39;query contains &quot;buy&quot;&#39; to see only data where the query string contains the substring &quot;buy&quot; (not case-sensitive). You can filter by a dimension without grouping by it.
      */
     dimensionFilterGroups?: Schema$ApiDimensionFilterGroup[];
     /**
-     * [Optional] Zero or more dimensions to group results by. Dimensions are
-     * the group-by values in the Search Analytics page. Dimensions are combined
-     * to create a unique row key for each row. Results are grouped in the order
-     * that you supply these dimensions.
+     * [Optional] Zero or more dimensions to group results by. Dimensions are the group-by values in the Search Analytics page. Dimensions are combined to create a unique row key for each row. Results are grouped in the order that you supply these dimensions.
      */
     dimensions?: string[];
     /**
-     * [Required] End date of the requested date range, in YYYY-MM-DD format, in
-     * PST (UTC - 8:00). Must be greater than or equal to the start date. This
-     * value is included in the range.
+     * [Required] End date of the requested date range, in YYYY-MM-DD format, in PST (UTC - 8:00). Must be greater than or equal to the start date. This value is included in the range.
      */
     endDate?: string;
     /**
-     * [Optional; Default is 1000] The maximum number of rows to return. Must be
-     * a number from 1 to 5,000 (inclusive).
+     * [Optional; Default is 1000] The maximum number of rows to return. Must be a number from 1 to 5,000 (inclusive).
      */
     rowLimit?: number;
     /**
@@ -174,21 +147,16 @@ export namespace webmasters_v3 {
      */
     searchType?: string;
     /**
-     * [Required] Start date of the requested date range, in YYYY-MM-DD format,
-     * in PST time (UTC - 8:00). Must be less than or equal to the end date.
-     * This value is included in the range.
+     * [Required] Start date of the requested date range, in YYYY-MM-DD format, in PST time (UTC - 8:00). Must be less than or equal to the end date. This value is included in the range.
      */
     startDate?: string;
     /**
-     * [Optional; Default is 0] Zero-based index of the first row in the
-     * response. Must be a non-negative number.
+     * [Optional; Default is 0] Zero-based index of the first row in the response. Must be a non-negative number.
      */
     startRow?: number;
   }
   /**
-   * A list of rows, one per result, grouped by key. Metrics in each row are
-   * aggregated for all data grouped by that key either by page or property, as
-   * specified by the aggregation type parameter.
+   * A list of rows, one per result, grouped by key. Metrics in each row are aggregated for all data grouped by that key either by page or property, as specified by the aggregation type parameter.
    */
   export interface Schema$SearchAnalyticsQueryResponse {
     /**
@@ -205,8 +173,7 @@ export namespace webmasters_v3 {
    */
   export interface Schema$SitemapsListResponse {
     /**
-     * Contains detailed information about a specific URL submitted as a
-     * sitemap.
+     * Contains detailed information about a specific URL submitted as a sitemap.
      */
     sitemap?: Schema$WmxSitemap[];
   }
@@ -215,104 +182,12 @@ export namespace webmasters_v3 {
    */
   export interface Schema$SitesListResponse {
     /**
-     * Contains permission level information about a Search Console site. For
-     * more information, see Permissions in Search Console.
+     * Contains permission level information about a Search Console site. For more information, see Permissions in Search Console.
      */
     siteEntry?: Schema$WmxSite[];
   }
   /**
-   * An entry in a URL crawl errors time series.
-   */
-  export interface Schema$UrlCrawlErrorCount {
-    /**
-     * The error count at the given timestamp.
-     */
-    count?: string;
-    /**
-     * The date and time when the crawl attempt took place, in RFC 3339 format.
-     */
-    timestamp?: string;
-  }
-  /**
-   * Number of errors per day for a specific error type (defined by platform and
-   * category).
-   */
-  export interface Schema$UrlCrawlErrorCountsPerType {
-    /**
-     * The crawl error type.
-     */
-    category?: string;
-    /**
-     * The error count entries time series.
-     */
-    entries?: Schema$UrlCrawlErrorCount[];
-    /**
-     * The general type of Googlebot that made the request (see list of
-     * Googlebot user-agents for the user-agents used).
-     */
-    platform?: string;
-  }
-  /**
-   * A time series of the number of URL crawl errors per error category and
-   * platform.
-   */
-  export interface Schema$UrlCrawlErrorsCountsQueryResponse {
-    /**
-     * The time series of the number of URL crawl errors per error category and
-     * platform.
-     */
-    countPerTypes?: Schema$UrlCrawlErrorCountsPerType[];
-  }
-  /**
-   * Contains information about specific crawl errors.
-   */
-  export interface Schema$UrlCrawlErrorsSample {
-    /**
-     * The time the error was first detected, in RFC 3339 format.
-     */
-    first_detected?: string;
-    /**
-     * The time when the URL was last crawled, in RFC 3339 format.
-     */
-    last_crawled?: string;
-    /**
-     * The URL of an error, relative to the site.
-     */
-    pageUrl?: string;
-    /**
-     * The HTTP response code, if any.
-     */
-    responseCode?: number;
-    /**
-     * Additional details about the URL, set only when calling get().
-     */
-    urlDetails?: Schema$UrlSampleDetails;
-  }
-  /**
-   * List of crawl error samples.
-   */
-  export interface Schema$UrlCrawlErrorsSamplesListResponse {
-    /**
-     * Information about the sample URL and its crawl error.
-     */
-    urlCrawlErrorSample?: Schema$UrlCrawlErrorsSample[];
-  }
-  /**
-   * Additional details about the URL, set only when calling get().
-   */
-  export interface Schema$UrlSampleDetails {
-    /**
-     * List of sitemaps pointing at this URL.
-     */
-    containingSitemaps?: string[];
-    /**
-     * A sample set of URLs linking to this URL.
-     */
-    linkedFromUrls?: string[];
-  }
-  /**
-   * Contains permission level information about a Search Console site. For more
-   * information, see  Permissions in Search Console.
+   * Contains permission level information about a Search Console site. For more information, see  Permissions in Search Console.
    */
   export interface Schema$WmxSite {
     /**
@@ -333,8 +208,7 @@ export namespace webmasters_v3 {
      */
     contents?: Schema$WmxSitemapContent[];
     /**
-     * Number of errors in the sitemap. These are issues with the sitemap itself
-     * that need to be fixed before it can be processed correctly.
+     * Number of errors in the sitemap. These are issues with the sitemap itself that need to be fixed before it can be processed correctly.
      */
     errors?: string;
     /**
@@ -346,13 +220,11 @@ export namespace webmasters_v3 {
      */
     isSitemapsIndex?: boolean;
     /**
-     * Date &amp; time in which this sitemap was last downloaded. Date format is
-     * in RFC 3339 format (yyyy-mm-dd).
+     * Date &amp; time in which this sitemap was last downloaded. Date format is in RFC 3339 format (yyyy-mm-dd).
      */
     lastDownloaded?: string;
     /**
-     * Date &amp; time in which this sitemap was submitted. Date format is in
-     * RFC 3339 format (yyyy-mm-dd).
+     * Date &amp; time in which this sitemap was submitted. Date format is in RFC 3339 format (yyyy-mm-dd).
      */
     lastSubmitted?: string;
     /**
@@ -364,8 +236,7 @@ export namespace webmasters_v3 {
      */
     type?: string;
     /**
-     * Number of warnings for the sitemap. These are generally non-critical
-     * issues with URLs in the sitemaps.
+     * Number of warnings for the sitemap. These are generally non-critical issues with URLs in the sitemaps.
      */
     warnings?: string;
   }
@@ -374,8 +245,7 @@ export namespace webmasters_v3 {
    */
   export interface Schema$WmxSitemapContent {
     /**
-     * The number of URLs from the sitemap that were indexed (of the content
-     * type).
+     * The number of URLs from the sitemap that were indexed (of the content type).
      */
     indexed?: string;
     /**
@@ -396,12 +266,7 @@ export namespace webmasters_v3 {
 
     /**
      * webmasters.searchanalytics.query
-     * @desc Query your data with filters and parameters that you define.
-     * Returns zero or more rows grouped by the row keys that you define. You
-     * must define a date range of one or more days.  When date is one of the
-     * group by values, any days without data are omitted from the result list.
-     * If you need to know which days have data, issue a broad date range query
-     * grouped by date for any metric, and see which day rows are returned.
+     * @desc Query your data with filters and parameters that you define. Returns zero or more rows grouped by the row keys that you define. You must define a date range of one or more days.  When date is one of the group by values, any days without data are omitted from the result list. If you need to know which days have data, issue a broad date range query grouped by date for any metric, and see which day rows are returned.
      * @alias webmasters.searchanalytics.query
      * @memberOf! ()
      *
@@ -653,8 +518,7 @@ export namespace webmasters_v3 {
 
     /**
      * webmasters.sitemaps.list
-     * @desc Lists the sitemaps-entries submitted for this site, or included in
-     * the sitemap index file (if sitemapIndex is specified in the request).
+     * @desc Lists the sitemaps-entries submitted for this site, or included in the sitemap index file (if sitemapIndex is specified in the request).
      * @alias webmasters.sitemaps.list
      * @memberOf! ()
      *
@@ -807,8 +671,7 @@ export namespace webmasters_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The URL of the actual sitemap. For example:
-     * http://www.example.com/sitemap.xml
+     * The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
      */
     feedpath?: string;
     /**
@@ -823,8 +686,7 @@ export namespace webmasters_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The URL of the actual sitemap. For example:
-     * http://www.example.com/sitemap.xml
+     * The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
      */
     feedpath?: string;
     /**
@@ -839,8 +701,7 @@ export namespace webmasters_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A URL of a site's sitemap index. For example:
-     * http://www.example.com/sitemapindex.xml
+     * A URL of a site's sitemap index. For example: http://www.example.com/sitemapindex.xml
      */
     sitemapIndex?: string;
     /**
@@ -855,8 +716,7 @@ export namespace webmasters_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The URL of the sitemap to add. For example:
-     * http://www.example.com/sitemap.xml
+     * The URL of the sitemap to add. For example: http://www.example.com/sitemap.xml
      */
     feedpath?: string;
     /**
@@ -1173,10 +1033,7 @@ export namespace webmasters_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The URI of the property as defined in Search Console. Examples:
-     * http://www.example.com/ or android-app://com.example/ Note: for
-     * property-sets, use the URI that starts with sc-set: which is used in
-     * Search Console URLs.
+     * The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/ Note: for property-sets, use the URI that starts with sc-set: which is used in Search Console URLs.
      */
     siteUrl?: string;
   }
@@ -1187,10 +1044,7 @@ export namespace webmasters_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The URI of the property as defined in Search Console. Examples:
-     * http://www.example.com/ or android-app://com.example/ Note: for
-     * property-sets, use the URI that starts with sc-set: which is used in
-     * Search Console URLs.
+     * The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/ Note: for property-sets, use the URI that starts with sc-set: which is used in Search Console URLs.
      */
     siteUrl?: string;
   }
@@ -1199,448 +1053,5 @@ export namespace webmasters_v3 {
      * Auth client or API Key for the request
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
-
-  export class Resource$Urlcrawlerrorscounts {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * webmasters.urlcrawlerrorscounts.query
-     * @desc Retrieves a time series of the number of URL crawl errors per error
-     * category and platform.
-     * @alias webmasters.urlcrawlerrorscounts.query
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.category The crawl error category. For example: serverError. If not specified, returns results for all categories.
-     * @param {boolean=} params.latestCountsOnly If true, returns only the latest crawl error counts.
-     * @param {string=} params.platform The user agent type (platform) that made the request. For example: web. If not specified, returns results for all platforms.
-     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    query(
-      params?: Params$Resource$Urlcrawlerrorscounts$Query,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$UrlCrawlErrorsCountsQueryResponse>;
-    query(
-      params: Params$Resource$Urlcrawlerrorscounts$Query,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
-      callback: BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>
-    ): void;
-    query(
-      params: Params$Resource$Urlcrawlerrorscounts$Query,
-      callback: BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>
-    ): void;
-    query(
-      callback: BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>
-    ): void;
-    query(
-      paramsOrCallback?:
-        | Params$Resource$Urlcrawlerrorscounts$Query
-        | BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
-      callback?: BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>
-    ): void | GaxiosPromise<Schema$UrlCrawlErrorsCountsQueryResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Urlcrawlerrorscounts$Query;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Urlcrawlerrorscounts$Query;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsCounts/query'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['siteUrl'],
-        pathParams: ['siteUrl'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$UrlCrawlErrorsCountsQueryResponse>(
-          parameters,
-          callback
-        );
-      } else {
-        return createAPIRequest<Schema$UrlCrawlErrorsCountsQueryResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Urlcrawlerrorscounts$Query
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The crawl error category. For example: serverError. If not specified,
-     * returns results for all categories.
-     */
-    category?: string;
-    /**
-     * If true, returns only the latest crawl error counts.
-     */
-    latestCountsOnly?: boolean;
-    /**
-     * The user agent type (platform) that made the request. For example: web.
-     * If not specified, returns results for all platforms.
-     */
-    platform?: string;
-    /**
-     * The site's URL, including protocol. For example: http://www.example.com/
-     */
-    siteUrl?: string;
-  }
-
-  export class Resource$Urlcrawlerrorssamples {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * webmasters.urlcrawlerrorssamples.get
-     * @desc Retrieves details about crawl errors for a site's sample URL.
-     * @alias webmasters.urlcrawlerrorssamples.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.category The crawl error category. For example: authPermissions
-     * @param {string} params.platform The user agent type (platform) that made the request. For example: web
-     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-     * @param {string} params.url The relative path (without the site) of the sample URL. It must be one of the URLs returned by list(). For example, for the URL https://www.example.com/pagename on the site https://www.example.com/, the url value is pagename
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params?: Params$Resource$Urlcrawlerrorssamples$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$UrlCrawlErrorsSample>;
-    get(
-      params: Params$Resource$Urlcrawlerrorssamples$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
-      callback: BodyResponseCallback<Schema$UrlCrawlErrorsSample>
-    ): void;
-    get(
-      params: Params$Resource$Urlcrawlerrorssamples$Get,
-      callback: BodyResponseCallback<Schema$UrlCrawlErrorsSample>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$UrlCrawlErrorsSample>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Urlcrawlerrorssamples$Get
-        | BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
-      callback?: BodyResponseCallback<Schema$UrlCrawlErrorsSample>
-    ): void | GaxiosPromise<Schema$UrlCrawlErrorsSample> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Urlcrawlerrorssamples$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Urlcrawlerrorssamples$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['siteUrl', 'url', 'category', 'platform'],
-        pathParams: ['siteUrl', 'url'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$UrlCrawlErrorsSample>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$UrlCrawlErrorsSample>(parameters);
-      }
-    }
-
-    /**
-     * webmasters.urlcrawlerrorssamples.list
-     * @desc Lists a site's sample URLs for the specified crawl error category
-     * and platform.
-     * @alias webmasters.urlcrawlerrorssamples.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.category The crawl error category. For example: authPermissions
-     * @param {string} params.platform The user agent type (platform) that made the request. For example: web
-     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params?: Params$Resource$Urlcrawlerrorssamples$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$UrlCrawlErrorsSamplesListResponse>;
-    list(
-      params: Params$Resource$Urlcrawlerrorssamples$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
-      callback: BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>
-    ): void;
-    list(
-      params: Params$Resource$Urlcrawlerrorssamples$List,
-      callback: BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Urlcrawlerrorssamples$List
-        | BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
-      callback?: BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>
-    ): void | GaxiosPromise<Schema$UrlCrawlErrorsSamplesListResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Urlcrawlerrorssamples$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Urlcrawlerrorssamples$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['siteUrl', 'category', 'platform'],
-        pathParams: ['siteUrl'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$UrlCrawlErrorsSamplesListResponse>(
-          parameters,
-          callback
-        );
-      } else {
-        return createAPIRequest<Schema$UrlCrawlErrorsSamplesListResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * webmasters.urlcrawlerrorssamples.markAsFixed
-     * @desc Marks the provided site's sample URL as fixed, and removes it from
-     * the samples list.
-     * @alias webmasters.urlcrawlerrorssamples.markAsFixed
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.category The crawl error category. For example: authPermissions
-     * @param {string} params.platform The user agent type (platform) that made the request. For example: web
-     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-     * @param {string} params.url The relative path (without the site) of the sample URL. It must be one of the URLs returned by list(). For example, for the URL https://www.example.com/pagename on the site https://www.example.com/, the url value is pagename
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    markAsFixed(
-      params?: Params$Resource$Urlcrawlerrorssamples$Markasfixed,
-      options?: MethodOptions
-    ): GaxiosPromise<void>;
-    markAsFixed(
-      params: Params$Resource$Urlcrawlerrorssamples$Markasfixed,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
-    ): void;
-    markAsFixed(
-      params: Params$Resource$Urlcrawlerrorssamples$Markasfixed,
-      callback: BodyResponseCallback<void>
-    ): void;
-    markAsFixed(callback: BodyResponseCallback<void>): void;
-    markAsFixed(
-      paramsOrCallback?:
-        | Params$Resource$Urlcrawlerrorssamples$Markasfixed
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Urlcrawlerrorssamples$Markasfixed;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Urlcrawlerrorssamples$Markasfixed;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['siteUrl', 'url', 'category', 'platform'],
-        pathParams: ['siteUrl', 'url'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<void>(parameters, callback);
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Urlcrawlerrorssamples$Get
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The crawl error category. For example: authPermissions
-     */
-    category?: string;
-    /**
-     * The user agent type (platform) that made the request. For example: web
-     */
-    platform?: string;
-    /**
-     * The site's URL, including protocol. For example: http://www.example.com/
-     */
-    siteUrl?: string;
-    /**
-     * The relative path (without the site) of the sample URL. It must be one of
-     * the URLs returned by list(). For example, for the URL
-     * https://www.example.com/pagename on the site https://www.example.com/,
-     * the url value is pagename
-     */
-    url?: string;
-  }
-  export interface Params$Resource$Urlcrawlerrorssamples$List
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The crawl error category. For example: authPermissions
-     */
-    category?: string;
-    /**
-     * The user agent type (platform) that made the request. For example: web
-     */
-    platform?: string;
-    /**
-     * The site's URL, including protocol. For example: http://www.example.com/
-     */
-    siteUrl?: string;
-  }
-  export interface Params$Resource$Urlcrawlerrorssamples$Markasfixed
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The crawl error category. For example: authPermissions
-     */
-    category?: string;
-    /**
-     * The user agent type (platform) that made the request. For example: web
-     */
-    platform?: string;
-    /**
-     * The site's URL, including protocol. For example: http://www.example.com/
-     */
-    siteUrl?: string;
-    /**
-     * The relative path (without the site) of the sample URL. It must be one of
-     * the URLs returned by list(). For example, for the URL
-     * https://www.example.com/pagename on the site https://www.example.com/,
-     * the url value is pagename
-     */
-    url?: string;
   }
 }

@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace customsearch_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace customsearch_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,7 +92,10 @@ export namespace customsearch_v1 {
     cse: Resource$Cse;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.cse = new Resource$Cse(this.context);
     }
@@ -213,8 +213,7 @@ export namespace customsearch_v1 {
 
     /**
      * search.cse.list
-     * @desc Returns metadata about the search performed, metadata about the
-     * custom search engine used for the search, and the search results.
+     * @desc Returns metadata about the search performed, metadata about the custom search engine used for the search, and the search results.
      * @alias search.cse.list
      * @memberOf! ()
      *
@@ -338,13 +337,11 @@ export namespace customsearch_v1 {
      */
     exactTerms?: string;
     /**
-     * Identifies a word or phrase that should not appear in any documents in
-     * the search results
+     * Identifies a word or phrase that should not appear in any documents in the search results
      */
     excludeTerms?: string;
     /**
-     * Returns images of a specified type. Some of the allowed values are: bmp,
-     * gif, png, jpg, svg, pdf, ...
+     * Returns images of a specified type. Some of the allowed values are: bmp, gif, png, jpg, svg, pdf, ...
      */
     fileType?: string;
     /**
@@ -360,8 +357,7 @@ export namespace customsearch_v1 {
      */
     googlehost?: string;
     /**
-     * Creates a range in form as_nlo value..as_nhi value and attempts to append
-     * it to query
+     * Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
      */
     highRange?: string;
     /**
@@ -373,33 +369,27 @@ export namespace customsearch_v1 {
      */
     hq?: string;
     /**
-     * Returns black and white, grayscale, or color images: mono, gray, and
-     * color.
+     * Returns black and white, grayscale, or color images: mono, gray, and color.
      */
     imgColorType?: string;
     /**
-     * Returns images of a specific dominant color: red, orange, yellow, green,
-     * teal, blue, purple, pink, white, gray, black and brown.
+     * Returns images of a specific dominant color: red, orange, yellow, green, teal, blue, purple, pink, white, gray, black and brown.
      */
     imgDominantColor?: string;
     /**
-     * Returns images of a specified size, where size can be one of: icon,
-     * small, medium, large, xlarge, xxlarge, and huge.
+     * Returns images of a specified size, where size can be one of: icon, small, medium, large, xlarge, xxlarge, and huge.
      */
     imgSize?: string;
     /**
-     * Returns images of a type, which can be one of: clipart, face, lineart,
-     * news, and photo.
+     * Returns images of a type, which can be one of: clipart, face, lineart, news, and photo.
      */
     imgType?: string;
     /**
-     * Specifies that all search results should contain a link to a particular
-     * URL
+     * Specifies that all search results should contain a link to a particular URL
      */
     linkSite?: string;
     /**
-     * Creates a range in form as_nlo value..as_nhi value and attempts to append
-     * it to query
+     * Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
      */
     lowRange?: string;
     /**
@@ -411,9 +401,7 @@ export namespace customsearch_v1 {
      */
     num?: number;
     /**
-     * Provides additional search terms to check for in a document, where each
-     * document in the search results must contain at least one of the
-     * additional search terms
+     * Provides additional search terms to check for in a document, where each document in the search results must contain at least one of the additional search terms
      */
     orTerms?: string;
     /**
@@ -421,14 +409,11 @@ export namespace customsearch_v1 {
      */
     q?: string;
     /**
-     * Specifies that all search results should be pages that are related to the
-     * specified URL
+     * Specifies that all search results should be pages that are related to the specified URL
      */
     relatedSite?: string;
     /**
-     * Filters based on licensing. Supported values include: cc_publicdomain,
-     * cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and
-     * combinations of these.
+     * Filters based on licensing. Supported values include: cc_publicdomain, cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and combinations of these.
      */
     rights?: string;
     /**
@@ -444,8 +429,7 @@ export namespace customsearch_v1 {
      */
     siteSearch?: string;
     /**
-     * Controls whether to include or exclude results from the site named in the
-     * as_sitesearch parameter
+     * Controls whether to include or exclude results from the site named in the as_sitesearch parameter
      */
     siteSearchFilter?: string;
     /**
@@ -466,9 +450,7 @@ export namespace customsearch_v1 {
 
     /**
      * search.cse.siterestrict.list
-     * @desc Returns metadata about the search performed, metadata about the
-     * custom search engine used for the search, and the search results. Uses a
-     * small set of url patterns.
+     * @desc Returns metadata about the search performed, metadata about the custom search engine used for the search, and the search results. Uses a small set of url patterns.
      * @alias search.cse.siterestrict.list
      * @memberOf! ()
      *
@@ -597,13 +579,11 @@ export namespace customsearch_v1 {
      */
     exactTerms?: string;
     /**
-     * Identifies a word or phrase that should not appear in any documents in
-     * the search results
+     * Identifies a word or phrase that should not appear in any documents in the search results
      */
     excludeTerms?: string;
     /**
-     * Returns images of a specified type. Some of the allowed values are: bmp,
-     * gif, png, jpg, svg, pdf, ...
+     * Returns images of a specified type. Some of the allowed values are: bmp, gif, png, jpg, svg, pdf, ...
      */
     fileType?: string;
     /**
@@ -619,8 +599,7 @@ export namespace customsearch_v1 {
      */
     googlehost?: string;
     /**
-     * Creates a range in form as_nlo value..as_nhi value and attempts to append
-     * it to query
+     * Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
      */
     highRange?: string;
     /**
@@ -632,33 +611,27 @@ export namespace customsearch_v1 {
      */
     hq?: string;
     /**
-     * Returns black and white, grayscale, or color images: mono, gray, and
-     * color.
+     * Returns black and white, grayscale, or color images: mono, gray, and color.
      */
     imgColorType?: string;
     /**
-     * Returns images of a specific dominant color: red, orange, yellow, green,
-     * teal, blue, purple, pink, white, gray, black and brown.
+     * Returns images of a specific dominant color: red, orange, yellow, green, teal, blue, purple, pink, white, gray, black and brown.
      */
     imgDominantColor?: string;
     /**
-     * Returns images of a specified size, where size can be one of: icon,
-     * small, medium, large, xlarge, xxlarge, and huge.
+     * Returns images of a specified size, where size can be one of: icon, small, medium, large, xlarge, xxlarge, and huge.
      */
     imgSize?: string;
     /**
-     * Returns images of a type, which can be one of: clipart, face, lineart,
-     * news, and photo.
+     * Returns images of a type, which can be one of: clipart, face, lineart, news, and photo.
      */
     imgType?: string;
     /**
-     * Specifies that all search results should contain a link to a particular
-     * URL
+     * Specifies that all search results should contain a link to a particular URL
      */
     linkSite?: string;
     /**
-     * Creates a range in form as_nlo value..as_nhi value and attempts to append
-     * it to query
+     * Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
      */
     lowRange?: string;
     /**
@@ -670,9 +643,7 @@ export namespace customsearch_v1 {
      */
     num?: number;
     /**
-     * Provides additional search terms to check for in a document, where each
-     * document in the search results must contain at least one of the
-     * additional search terms
+     * Provides additional search terms to check for in a document, where each document in the search results must contain at least one of the additional search terms
      */
     orTerms?: string;
     /**
@@ -680,14 +651,11 @@ export namespace customsearch_v1 {
      */
     q?: string;
     /**
-     * Specifies that all search results should be pages that are related to the
-     * specified URL
+     * Specifies that all search results should be pages that are related to the specified URL
      */
     relatedSite?: string;
     /**
-     * Filters based on licensing. Supported values include: cc_publicdomain,
-     * cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and
-     * combinations of these.
+     * Filters based on licensing. Supported values include: cc_publicdomain, cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and combinations of these.
      */
     rights?: string;
     /**
@@ -703,8 +671,7 @@ export namespace customsearch_v1 {
      */
     siteSearch?: string;
     /**
-     * Controls whether to include or exclude results from the site named in the
-     * as_sitesearch parameter
+     * Controls whether to include or exclude results from the site named in the as_sitesearch parameter
      */
     siteSearchFilter?: string;
     /**

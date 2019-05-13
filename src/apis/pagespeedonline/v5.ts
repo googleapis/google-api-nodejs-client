@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace pagespeedonline_v5 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace pagespeedonline_v5 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -78,8 +75,7 @@ export namespace pagespeedonline_v5 {
   /**
    * PageSpeed Insights API
    *
-   * Analyzes the performance of a web page and provides tailored suggestions to
-   * make that page faster.
+   * Analyzes the performance of a web page and provides tailored suggestions to make that page faster.
    *
    * @example
    * const {google} = require('googleapis');
@@ -96,7 +92,10 @@ export namespace pagespeedonline_v5 {
     pagespeedapi: Resource$Pagespeedapi;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.pagespeedapi = new Resource$Pagespeedapi(this.context);
     }
@@ -237,14 +236,22 @@ export namespace pagespeedonline_v5 {
      */
     requestedUrl?: string;
     /**
-     * A top-level error message that, if present, indicates a serious enough
-     * problem that this Lighthouse result may need to be discarded.
+     * A top-level error message that, if present, indicates a serious enough problem that this Lighthouse result may need to be discarded.
      */
     runtimeError?: {code?: string; message?: string};
     /**
      * List of all run warnings in the LHR. Will always output to at least `[]`.
      */
     runWarnings?: any[];
+    /**
+     * The Stack Pack advice strings.
+     */
+    stackPacks?: Array<{
+      descriptions?: {[key: string]: string};
+      iconDataURL?: string;
+      id?: string;
+      title?: string;
+    }>;
     /**
      * Timing information for this LHR.
      */
@@ -283,8 +290,7 @@ export namespace pagespeedonline_v5 {
      */
     captchaResult?: string;
     /**
-     * Canonicalized and final URL for the document, after following page
-     * redirects (if any).
+     * Canonicalized and final URL for the document, after following page redirects (if any).
      */
     id?: string;
     /**
@@ -317,9 +323,7 @@ export namespace pagespeedonline_v5 {
 
     /**
      * pagespeedonline.pagespeedapi.runpagespeed
-     * @desc Runs PageSpeed analysis on the page at the specified URL, and
-     * returns PageSpeed scores, a list of suggestions to make that page faster,
-     * and other information.
+     * @desc Runs PageSpeed analysis on the page at the specified URL, and returns PageSpeed scores, a list of suggestions to make that page faster, and other information.
      * @alias pagespeedonline.pagespeedapi.runpagespeed
      * @memberOf! ()
      *
@@ -414,8 +418,7 @@ export namespace pagespeedonline_v5 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A Lighthouse category to run; if none are given, only Performance
-     * category will be run
+     * A Lighthouse category to run; if none are given, only Performance category will be run
      */
     category?: string[];
     /**
@@ -423,8 +426,7 @@ export namespace pagespeedonline_v5 {
      */
     locale?: string;
     /**
-     * The analysis strategy (desktop or mobile) to use, and desktop is the
-     * default
+     * The analysis strategy (desktop or mobile) to use, and desktop is the default
      */
     strategy?: string;
     /**

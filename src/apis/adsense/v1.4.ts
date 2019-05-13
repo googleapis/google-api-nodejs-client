@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace adsense_v1_4 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace adsense_v1_4 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -78,8 +75,7 @@ export namespace adsense_v1_4 {
   /**
    * AdSense Management API
    *
-   * Accesses AdSense publishers&#39; inventory and generates performance
-   * reports.
+   * Accesses AdSense publishers&#39; inventory and generates performance reports.
    *
    * @example
    * const {google} = require('googleapis');
@@ -105,7 +101,10 @@ export namespace adsense_v1_4 {
     urlchannels: Resource$Urlchannels;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.accounts = new Resource$Accounts(this.context);
       this.adclients = new Resource$Adclients(this.context);
@@ -161,9 +160,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through accounts. To retrieve the next
-     * page of results, set the next request&#39;s &quot;pageToken&quot; value
-     * to this.
+     * Continuation token used to page through accounts. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
@@ -181,8 +178,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string;
     /**
-     * This ad client&#39;s product code, which corresponds to the PRODUCT_CODE
-     * report dimension.
+     * This ad client&#39;s product code, which corresponds to the PRODUCT_CODE report dimension.
      */
     productCode?: string;
     /**
@@ -204,9 +200,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through ad clients. To retrieve the next
-     * page of results, set the next request&#39;s &quot;pageToken&quot; value
-     * to this.
+     * Continuation token used to page through ad clients. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
@@ -230,8 +224,7 @@ export namespace adsense_v1_4 {
   }
   export interface Schema$AdsenseReportsGenerateResponse {
     /**
-     * The averages of the report. This is the same length as any other row in
-     * the report; cells corresponding to dimension columns are empty.
+     * The averages of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
      */
     averages?: string[];
     /**
@@ -239,9 +232,7 @@ export namespace adsense_v1_4 {
      */
     endDate?: string;
     /**
-     * The header information of the columns requested in the report. This is a
-     * list of headers; one for each dimension in the request, followed by one
-     * for each metric in the request.
+     * The header information of the columns requested in the report. This is a list of headers; one for each dimension in the request, followed by one for each metric in the request.
      */
     headers?: Array<{currency?: string; name?: string; type?: string}>;
     /**
@@ -249,10 +240,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string;
     /**
-     * The output rows of the report. Each row is a list of cells; one for each
-     * dimension in the request, followed by one for each metric in the request.
-     * The dimension cells contain strings, and the metric cells contain
-     * numbers.
+     * The output rows of the report. Each row is a list of cells; one for each dimension in the request, followed by one for each metric in the request. The dimension cells contain strings, and the metric cells contain numbers.
      */
     rows?: string[][];
     /**
@@ -260,14 +248,11 @@ export namespace adsense_v1_4 {
      */
     startDate?: string;
     /**
-     * The total number of rows matched by the report request. Fewer rows may be
-     * returned in the response due to being limited by the row count requested
-     * or the report row limit.
+     * The total number of rows matched by the report request. Fewer rows may be returned in the response due to being limited by the row count requested or the report row limit.
      */
     totalMatchedRows?: string;
     /**
-     * The totals of the report. This is the same length as any other row in the
-     * report; cells corresponding to dimension columns are empty.
+     * The totals of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
      */
     totals?: string[];
     /**
@@ -277,9 +262,7 @@ export namespace adsense_v1_4 {
   }
   export interface Schema$AdStyle {
     /**
-     * The colors which are included in the style. These are represented as six
-     * hexadecimal characters, similar to HTML color codes, but without the
-     * leading hash.
+     * The colors which are included in the style. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash.
      */
     colors?: {
       background?: string;
@@ -289,8 +272,7 @@ export namespace adsense_v1_4 {
       url?: string;
     };
     /**
-     * The style of the corners in the ad (deprecated: never populated,
-     * ignored).
+     * The style of the corners in the ad (deprecated: never populated, ignored).
      */
     corners?: string;
     /**
@@ -308,8 +290,7 @@ export namespace adsense_v1_4 {
      */
     code?: string;
     /**
-     * Settings specific to content ads (AFC) and highend mobile content ads
-     * (AFMC - deprecated).
+     * Settings specific to content ads (AFC) and highend mobile content ads (AFMC - deprecated).
      */
     contentAdsSettings?: {
       backupOption?: {color?: string; type?: string; url?: string};
@@ -330,8 +311,7 @@ export namespace adsense_v1_4 {
       type?: string;
     };
     /**
-     * Unique identifier of this ad unit. This should be considered an opaque
-     * identifier; it is not safe to rely on it being in any particular format.
+     * Unique identifier of this ad unit. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
      */
     id?: string;
     /**
@@ -352,16 +332,11 @@ export namespace adsense_v1_4 {
      */
     name?: string;
     /**
-     * ID of the saved ad style which holds this ad unit&#39;s style
-     * information.
+     * ID of the saved ad style which holds this ad unit&#39;s style information.
      */
     savedStyleId?: string;
     /**
-     * Status of this ad unit. Possible values are: NEW: Indicates that the ad
-     * unit was created within the last seven days and does not yet have any
-     * activity associated with it.  ACTIVE: Indicates that there has been
-     * activity on this ad unit in the last seven days.  INACTIVE: Indicates
-     * that there has been no activity on this ad unit in the last seven days.
+     * Status of this ad unit. Possible values are: NEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.  ACTIVE: Indicates that there has been activity on this ad unit in the last seven days.  INACTIVE: Indicates that there has been no activity on this ad unit in the last seven days.
      */
     status?: string;
   }
@@ -379,16 +354,13 @@ export namespace adsense_v1_4 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through ad units. To retrieve the next
-     * page of results, set the next request&#39;s &quot;pageToken&quot; value
-     * to this.
+     * Continuation token used to page through ad units. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
   export interface Schema$Alert {
     /**
-     * Unique identifier of this alert. This should be considered an opaque
-     * identifier; it is not safe to rely on it being in any particular format.
+     * Unique identifier of this alert. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
      */
     id?: string;
     /**
@@ -408,9 +380,7 @@ export namespace adsense_v1_4 {
      */
     severity?: string;
     /**
-     * Type of this alert. Possible values: SELF_HOLD, MIGRATED_TO_BILLING3,
-     * ADDRESS_PIN_VERIFICATION, PHONE_PIN_VERIFICATION, CORPORATE_ENTITY,
-     * GRAYLISTED_PUBLISHER, API_HOLD.
+     * Type of this alert. Possible values: SELF_HOLD, MIGRATED_TO_BILLING3, ADDRESS_PIN_VERIFICATION, PHONE_PIN_VERIFICATION, CORPORATE_ENTITY, GRAYLISTED_PUBLISHER, API_HOLD.
      */
     type?: string;
   }
@@ -430,9 +400,7 @@ export namespace adsense_v1_4 {
      */
     code?: string;
     /**
-     * Unique identifier of this custom channel. This should be considered an
-     * opaque identifier; it is not safe to rely on it being in any particular
-     * format.
+     * Unique identifier of this custom channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
      */
     id?: string;
     /**
@@ -467,9 +435,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through custom channels. To retrieve the
-     * next page of results, set the next request&#39;s &quot;pageToken&quot;
-     * value to this.
+     * Continuation token used to page through custom channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
@@ -498,15 +464,13 @@ export namespace adsense_v1_4 {
      */
     paymentAmountCurrencyCode?: string;
     /**
-     * The date this payment was/will be credited to the user, or none if the
-     * payment threshold has not been met.
+     * The date this payment was/will be credited to the user, or none if the payment threshold has not been met.
      */
     paymentDate?: string;
   }
   export interface Schema$Payments {
     /**
-     * The list of Payments for the account. One or both of a) the account&#39;s
-     * most recent payment; and b) the account&#39;s upcoming payment.
+     * The list of Payments for the account. One or both of a) the account&#39;s most recent payment; and b) the account&#39;s upcoming payment.
      */
     items?: Schema$Payment[];
     /**
@@ -516,19 +480,15 @@ export namespace adsense_v1_4 {
   }
   export interface Schema$ReportingMetadataEntry {
     /**
-     * For metrics this is a list of dimension IDs which the metric is
-     * compatible with, for dimensions it is a list of compatibility groups the
-     * dimension belongs to.
+     * For metrics this is a list of dimension IDs which the metric is compatible with, for dimensions it is a list of compatibility groups the dimension belongs to.
      */
     compatibleDimensions?: string[];
     /**
-     * The names of the metrics the dimension or metric this reporting metadata
-     * entry describes is compatible with.
+     * The names of the metrics the dimension or metric this reporting metadata entry describes is compatible with.
      */
     compatibleMetrics?: string[];
     /**
-     * Unique identifier of this reporting metadata entry, corresponding to the
-     * name of the appropriate dimension or metric.
+     * Unique identifier of this reporting metadata entry, corresponding to the name of the appropriate dimension or metric.
      */
     id?: string;
     /**
@@ -536,22 +496,15 @@ export namespace adsense_v1_4 {
      */
     kind?: string;
     /**
-     * The names of the dimensions which the dimension or metric this reporting
-     * metadata entry describes requires to also be present in order for the
-     * report to be valid. Omitting these will not cause an error or warning,
-     * but may result in data which cannot be correctly interpreted.
+     * The names of the dimensions which the dimension or metric this reporting metadata entry describes requires to also be present in order for the report to be valid. Omitting these will not cause an error or warning, but may result in data which cannot be correctly interpreted.
      */
     requiredDimensions?: string[];
     /**
-     * The names of the metrics which the dimension or metric this reporting
-     * metadata entry describes requires to also be present in order for the
-     * report to be valid. Omitting these will not cause an error or warning,
-     * but may result in data which cannot be correctly interpreted.
+     * The names of the metrics which the dimension or metric this reporting metadata entry describes requires to also be present in order for the report to be valid. Omitting these will not cause an error or warning, but may result in data which cannot be correctly interpreted.
      */
     requiredMetrics?: string[];
     /**
-     * The codes of the projects supported by the dimension or metric this
-     * reporting metadata entry describes.
+     * The codes of the projects supported by the dimension or metric this reporting metadata entry describes.
      */
     supportedProducts?: string[];
   }
@@ -561,9 +514,7 @@ export namespace adsense_v1_4 {
      */
     adStyle?: Schema$AdStyle;
     /**
-     * Unique identifier of this saved ad style. This should be considered an
-     * opaque identifier; it is not safe to rely on it being in any particular
-     * format.
+     * Unique identifier of this saved ad style. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
      */
     id?: string;
     /**
@@ -589,9 +540,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through ad units. To retrieve the next
-     * page of results, set the next request&#39;s &quot;pageToken&quot; value
-     * to this.
+     * Continuation token used to page through ad units. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
@@ -623,17 +572,13 @@ export namespace adsense_v1_4 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through saved reports. To retrieve the
-     * next page of results, set the next request&#39;s &quot;pageToken&quot;
-     * value to this.
+     * Continuation token used to page through saved reports. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
   export interface Schema$UrlChannel {
     /**
-     * Unique identifier of this URL channel. This should be considered an
-     * opaque identifier; it is not safe to rely on it being in any particular
-     * format.
+     * Unique identifier of this URL channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
      */
     id?: string;
     /**
@@ -641,8 +586,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string;
     /**
-     * URL Pattern of this URL channel. Does not include &quot;http://&quot; or
-     * &quot;https://&quot;. Example: www.example.com/home
+     * URL Pattern of this URL channel. Does not include &quot;http://&quot; or &quot;https://&quot;. Example: www.example.com/home
      */
     urlPattern?: string;
   }
@@ -660,9 +604,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through URL channels. To retrieve the
-     * next page of results, set the next request&#39;s &quot;pageToken&quot;
-     * value to this.
+     * Continuation token used to page through URL channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
@@ -856,14 +798,11 @@ export namespace adsense_v1_4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of accounts to include in the response, used for
-     * paging.
+     * The maximum number of accounts to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through accounts. To retrieve the next
-     * page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through accounts. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -1051,14 +990,11 @@ export namespace adsense_v1_4 {
      */
     accountId?: string;
     /**
-     * The maximum number of ad clients to include in the response, used for
-     * paging.
+     * The maximum number of ad clients to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through ad clients. To retrieve the
-     * next page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -1075,8 +1011,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.accounts.adunits.get
-     * @desc Gets the specified ad unit in the specified ad client for the
-     * specified account.
+     * @desc Gets the specified ad unit in the specified ad client for the specified account.
      * @alias adsense.accounts.adunits.get
      * @memberOf! ()
      *
@@ -1224,8 +1159,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.accounts.adunits.list
-     * @desc List all ad units in the specified ad client for the specified
-     * account.
+     * @desc List all ad units in the specified ad client for the specified account.
      * @alias adsense.accounts.adunits.list
      * @memberOf! ()
      *
@@ -1360,14 +1294,11 @@ export namespace adsense_v1_4 {
      */
     includeInactive?: boolean;
     /**
-     * The maximum number of ad units to include in the response, used for
-     * paging.
+     * The maximum number of ad units to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through ad units. To retrieve the next
-     * page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -1477,14 +1408,11 @@ export namespace adsense_v1_4 {
      */
     adUnitId?: string;
     /**
-     * The maximum number of custom channels to include in the response, used
-     * for paging.
+     * The maximum number of custom channels to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through custom channels. To retrieve
-     * the next page, set this parameter to the value of "nextPageToken" from
-     * the previous response.
+     * A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -1497,8 +1425,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.accounts.alerts.delete
-     * @desc Dismiss (delete) the specified alert from the specified publisher
-     * AdSense account.
+     * @desc Dismiss (delete) the specified alert from the specified publisher AdSense account.
      * @alias adsense.accounts.alerts.delete
      * @memberOf! ()
      *
@@ -1669,9 +1596,7 @@ export namespace adsense_v1_4 {
      */
     accountId?: string;
     /**
-     * The locale to use for translating alert messages. The account locale will
-     * be used if this is not supplied. The AdSense default (English) will be
-     * used if the supplied locale is invalid or unsupported.
+     * The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
      */
     locale?: string;
   }
@@ -1686,8 +1611,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.accounts.customchannels.get
-     * @desc Get the specified custom channel from the specified ad client for
-     * the specified account.
+     * @desc Get the specified custom channel from the specified ad client for the specified account.
      * @alias adsense.accounts.customchannels.get
      * @memberOf! ()
      *
@@ -1763,8 +1687,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.accounts.customchannels.list
-     * @desc List all custom channels in the specified ad client for the
-     * specified account.
+     * @desc List all custom channels in the specified ad client for the specified account.
      * @alias adsense.accounts.customchannels.list
      * @memberOf! ()
      *
@@ -1876,14 +1799,11 @@ export namespace adsense_v1_4 {
      */
     adClientId?: string;
     /**
-     * The maximum number of custom channels to include in the response, used
-     * for paging.
+     * The maximum number of custom channels to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through custom channels. To retrieve
-     * the next page, set this parameter to the value of "nextPageToken" from
-     * the previous response.
+     * A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -1996,14 +1916,11 @@ export namespace adsense_v1_4 {
      */
     includeInactive?: boolean;
     /**
-     * The maximum number of ad units to include in the response, used for
-     * paging.
+     * The maximum number of ad units to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through ad units. To retrieve the next
-     * page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -2109,9 +2026,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.accounts.reports.generate
-     * @desc Generate an AdSense report based on the report request sent in the
-     * query parameters. Returns the result as JSON; to retrieve output in CSV
-     * format specify "alt=csv" as a query parameter.
+     * @desc Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
      * @alias adsense.accounts.reports.generate
      * @memberOf! ()
      *
@@ -2215,8 +2130,7 @@ export namespace adsense_v1_4 {
      */
     accountId?: string;
     /**
-     * Optional currency to use when reporting on monetary metrics. Defaults to
-     * the account's currency if not set.
+     * Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
      */
     currency?: string;
     /**
@@ -2232,8 +2146,7 @@ export namespace adsense_v1_4 {
      */
     filter?: string[];
     /**
-     * Optional locale to use for translating report output to a local language.
-     * Defaults to "en_US" if not specified.
+     * Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
      */
     locale?: string;
     /**
@@ -2245,9 +2158,7 @@ export namespace adsense_v1_4 {
      */
     metric?: string[];
     /**
-     * The name of a dimension or metric to sort the resulting report on,
-     * optionally prefixed with "+" to sort ascending or "-" to sort descending.
-     * If no prefix is specified, the column is sorted ascending.
+     * The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
      */
     sort?: string[];
     /**
@@ -2259,8 +2170,7 @@ export namespace adsense_v1_4 {
      */
     startIndex?: number;
     /**
-     * Whether the report should be generated in the AdSense account's local
-     * timezone. If false default PST/PDT timezone will be used.
+     * Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
      */
     useTimezoneReporting?: boolean;
   }
@@ -2273,8 +2183,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.accounts.reports.saved.generate
-     * @desc Generate an AdSense report based on the saved report ID sent in the
-     * query parameters.
+     * @desc Generate an AdSense report based on the saved report ID sent in the query parameters.
      * @alias adsense.accounts.reports.saved.generate
      * @memberOf! ()
      *
@@ -2447,8 +2356,7 @@ export namespace adsense_v1_4 {
      */
     accountId?: string;
     /**
-     * Optional locale to use for translating report output to a local language.
-     * Defaults to "en_US" if not specified.
+     * Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
      */
     locale?: string;
     /**
@@ -2476,14 +2384,11 @@ export namespace adsense_v1_4 {
      */
     accountId?: string;
     /**
-     * The maximum number of saved reports to include in the response, used for
-     * paging.
+     * The maximum number of saved reports to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through saved reports. To retrieve the
-     * next page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -2673,14 +2578,11 @@ export namespace adsense_v1_4 {
      */
     accountId?: string;
     /**
-     * The maximum number of saved ad styles to include in the response, used
-     * for paging.
+     * The maximum number of saved ad styles to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through saved ad styles. To retrieve
-     * the next page, set this parameter to the value of "nextPageToken" from
-     * the previous response.
+     * A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -2693,8 +2595,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.accounts.urlchannels.list
-     * @desc List all URL channels in the specified ad client for the specified
-     * account.
+     * @desc List all URL channels in the specified ad client for the specified account.
      * @alias adsense.accounts.urlchannels.list
      * @memberOf! ()
      *
@@ -2786,14 +2687,11 @@ export namespace adsense_v1_4 {
      */
     adClientId?: string;
     /**
-     * The maximum number of URL channels to include in the response, used for
-     * paging.
+     * The maximum number of URL channels to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through URL channels. To retrieve the
-     * next page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -2886,14 +2784,11 @@ export namespace adsense_v1_4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of ad clients to include in the response, used for
-     * paging.
+     * The maximum number of ad clients to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through ad clients. To retrieve the
-     * next page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -3053,8 +2948,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.adunits.list
-     * @desc List all ad units in the specified ad client for this AdSense
-     * account.
+     * @desc List all ad units in the specified ad client for this AdSense account.
      * @alias adsense.adunits.list
      * @memberOf! ()
      *
@@ -3172,14 +3066,11 @@ export namespace adsense_v1_4 {
      */
     includeInactive?: boolean;
     /**
-     * The maximum number of ad units to include in the response, used for
-     * paging.
+     * The maximum number of ad units to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through ad units. To retrieve the next
-     * page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -3284,14 +3175,11 @@ export namespace adsense_v1_4 {
      */
     adUnitId?: string;
     /**
-     * The maximum number of custom channels to include in the response, used
-     * for paging.
+     * The maximum number of custom channels to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through custom channels. To retrieve
-     * the next page, set this parameter to the value of "nextPageToken" from
-     * the previous response.
+     * A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -3304,8 +3192,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.alerts.delete
-     * @desc Dismiss (delete) the specified alert from the publisher's AdSense
-     * account.
+     * @desc Dismiss (delete) the specified alert from the publisher's AdSense account.
      * @alias adsense.alerts.delete
      * @memberOf! ()
      *
@@ -3464,9 +3351,7 @@ export namespace adsense_v1_4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The locale to use for translating alert messages. The account locale will
-     * be used if this is not supplied. The AdSense default (English) will be
-     * used if the supplied locale is invalid or unsupported.
+     * The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
      */
     locale?: string;
   }
@@ -3556,8 +3441,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.customchannels.list
-     * @desc List all custom channels in the specified ad client for this
-     * AdSense account.
+     * @desc List all custom channels in the specified ad client for this AdSense account.
      * @alias adsense.customchannels.list
      * @memberOf! ()
      *
@@ -3659,14 +3543,11 @@ export namespace adsense_v1_4 {
      */
     adClientId?: string;
     /**
-     * The maximum number of custom channels to include in the response, used
-     * for paging.
+     * The maximum number of custom channels to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through custom channels. To retrieve
-     * the next page, set this parameter to the value of "nextPageToken" from
-     * the previous response.
+     * A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -3774,14 +3655,11 @@ export namespace adsense_v1_4 {
      */
     includeInactive?: boolean;
     /**
-     * The maximum number of ad units to include in the response, used for
-     * paging.
+     * The maximum number of ad units to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through ad units. To retrieve the next
-     * page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -3805,8 +3683,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.metadata.dimensions.list
-     * @desc List the metadata for the dimensions available to this AdSense
-     * account.
+     * @desc List the metadata for the dimensions available to this AdSense account.
      * @alias adsense.metadata.dimensions.list
      * @memberOf! ()
      *
@@ -3892,8 +3769,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.metadata.metrics.list
-     * @desc List the metadata for the metrics available to this AdSense
-     * account.
+     * @desc List the metadata for the metrics available to this AdSense account.
      * @alias adsense.metadata.metrics.list
      * @memberOf! ()
      *
@@ -4065,9 +3941,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.reports.generate
-     * @desc Generate an AdSense report based on the report request sent in the
-     * query parameters. Returns the result as JSON; to retrieve output in CSV
-     * format specify "alt=csv" as a query parameter.
+     * @desc Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
      * @alias adsense.reports.generate
      * @memberOf! ()
      *
@@ -4170,8 +4044,7 @@ export namespace adsense_v1_4 {
      */
     accountId?: string[];
     /**
-     * Optional currency to use when reporting on monetary metrics. Defaults to
-     * the account's currency if not set.
+     * Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
      */
     currency?: string;
     /**
@@ -4187,8 +4060,7 @@ export namespace adsense_v1_4 {
      */
     filter?: string[];
     /**
-     * Optional locale to use for translating report output to a local language.
-     * Defaults to "en_US" if not specified.
+     * Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
      */
     locale?: string;
     /**
@@ -4200,9 +4072,7 @@ export namespace adsense_v1_4 {
      */
     metric?: string[];
     /**
-     * The name of a dimension or metric to sort the resulting report on,
-     * optionally prefixed with "+" to sort ascending or "-" to sort descending.
-     * If no prefix is specified, the column is sorted ascending.
+     * The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
      */
     sort?: string[];
     /**
@@ -4214,8 +4084,7 @@ export namespace adsense_v1_4 {
      */
     startIndex?: number;
     /**
-     * Whether the report should be generated in the AdSense account's local
-     * timezone. If false default PST/PDT timezone will be used.
+     * Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
      */
     useTimezoneReporting?: boolean;
   }
@@ -4228,8 +4097,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.reports.saved.generate
-     * @desc Generate an AdSense report based on the saved report ID sent in the
-     * query parameters.
+     * @desc Generate an AdSense report based on the saved report ID sent in the query parameters.
      * @alias adsense.reports.saved.generate
      * @memberOf! ()
      *
@@ -4397,8 +4265,7 @@ export namespace adsense_v1_4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional locale to use for translating report output to a local language.
-     * Defaults to "en_US" if not specified.
+     * Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
      */
     locale?: string;
     /**
@@ -4422,14 +4289,11 @@ export namespace adsense_v1_4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of saved reports to include in the response, used for
-     * paging.
+     * The maximum number of saved reports to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through saved reports. To retrieve the
-     * next page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -4609,14 +4473,11 @@ export namespace adsense_v1_4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of saved ad styles to include in the response, used
-     * for paging.
+     * The maximum number of saved ad styles to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through saved ad styles. To retrieve
-     * the next page, set this parameter to the value of "nextPageToken" from
-     * the previous response.
+     * A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -4629,8 +4490,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.urlchannels.list
-     * @desc List all URL channels in the specified ad client for this AdSense
-     * account.
+     * @desc List all URL channels in the specified ad client for this AdSense account.
      * @alias adsense.urlchannels.list
      * @memberOf! ()
      *
@@ -4714,14 +4574,11 @@ export namespace adsense_v1_4 {
      */
     adClientId?: string;
     /**
-     * The maximum number of URL channels to include in the response, used for
-     * paging.
+     * The maximum number of URL channels to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through URL channels. To retrieve the
-     * next page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }

@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -78,9 +75,7 @@ export namespace adexchangebuyer_v1_3 {
   /**
    * Ad Exchange Buyer API
    *
-   * Accesses your bidding-account information, submits creatives for
-   * validation, finds available direct deals, and retrieves performance
-   * reports.
+   * Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
    *
    * @example
    * const {google} = require('googleapis');
@@ -103,7 +98,10 @@ export namespace adexchangebuyer_v1_3 {
     pretargetingConfig: Resource$Pretargetingconfig;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.accounts = new Resource$Accounts(this.context);
       this.billingInfo = new Resource$Billinginfo(this.context);
@@ -128,8 +126,7 @@ export namespace adexchangebuyer_v1_3 {
       url?: string;
     }>;
     /**
-     * The nid parameter value used in cookie match requests. Please contact
-     * your technical account manager if you need to change this.
+     * The nid parameter value used in cookie match requests. Please contact your technical account manager if you need to change this.
      */
     cookieMatchingNid?: string;
     /**
@@ -145,25 +142,20 @@ export namespace adexchangebuyer_v1_3 {
      */
     kind?: string;
     /**
-     * The maximum number of active creatives that an account can have, where a
-     * creative is active if it was inserted or bid with in the last 30 days.
-     * Please contact your technical account manager if you need to change this.
+     * The maximum number of active creatives that an account can have, where a creative is active if it was inserted or bid with in the last 30 days. Please contact your technical account manager if you need to change this.
      */
     maximumActiveCreatives?: number;
     /**
-     * The sum of all bidderLocation.maximumQps values cannot exceed this.
-     * Please contact your technical account manager if you need to change this.
+     * The sum of all bidderLocation.maximumQps values cannot exceed this. Please contact your technical account manager if you need to change this.
      */
     maximumTotalQps?: number;
     /**
-     * The number of creatives that this account inserted or bid with in the
-     * last 30 days.
+     * The number of creatives that this account inserted or bid with in the last 30 days.
      */
     numberActiveCreatives?: number;
   }
   /**
-   * An account feed lists Ad Exchange buyer accounts that the user has access
-   * to. Each entry in the feed corresponds to a single buyer account.
+   * An account feed lists Ad Exchange buyer accounts that the user has access to. Each entry in the feed corresponds to a single buyer account.
    */
   export interface Schema$AccountsList {
     /**
@@ -188,9 +180,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     accountName?: string;
     /**
-     * A list of adgroup IDs associated with this particular account. These IDs
-     * may show up as part of a realtime bidding BidRequest, which indicates a
-     * bid request for this account.
+     * A list of adgroup IDs associated with this particular account. These IDs may show up as part of a realtime bidding BidRequest, which indicates a bid request for this account.
      */
     billingId?: string[];
     /**
@@ -199,8 +189,7 @@ export namespace adexchangebuyer_v1_3 {
     kind?: string;
   }
   /**
-   * A billing info feed lists Billing Info the Ad Exchange buyer account has
-   * access to. Each entry in the feed corresponds to a single billing info.
+   * A billing info feed lists Billing Info the Ad Exchange buyer account has access to. Each entry in the feed corresponds to a single billing info.
    */
   export interface Schema$BillingInfoList {
     /**
@@ -221,13 +210,11 @@ export namespace adexchangebuyer_v1_3 {
      */
     accountId?: string;
     /**
-     * The billing id to determine which adgroup to provide budget information
-     * for. This is required for get and update requests.
+     * The billing id to determine which adgroup to provide budget information for. This is required for get and update requests.
      */
     billingId?: string;
     /**
-     * The daily budget amount in unit amount of the account currency to apply
-     * for the billingId provided. This is required for update requests.
+     * The daily budget amount in unit amount of the account currency to apply for the billingId provided. This is required for update requests.
      */
     budgetAmount?: string;
     /**
@@ -252,8 +239,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     accountId?: number;
     /**
-     * Detected advertiser id, if any. Read-only. This field should not be set
-     * in requests.
+     * Detected advertiser id, if any. Read-only. This field should not be set in requests.
      */
     advertiserId?: string[];
     /**
@@ -265,9 +251,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     agencyId?: string;
     /**
-     * The last upload timestamp of this creative if it was uploaded via API.
-     * Read-only. The value of this field is generated, and will be ignored for
-     * uploads. (formatted RFC 3339 timestamp).
+     * The last upload timestamp of this creative if it was uploaded via API. Read-only. The value of this field is generated, and will be ignored for uploads. (formatted RFC 3339 timestamp).
      */
     apiUploadTimestamp?: string;
     /**
@@ -283,21 +267,15 @@ export namespace adexchangebuyer_v1_3 {
      */
     clickThroughUrl?: string[];
     /**
-     * Shows any corrections that were applied to this creative. Read-only. This
-     * field should not be set in requests.
+     * Shows any corrections that were applied to this creative. Read-only. This field should not be set in requests.
      */
     corrections?: Array<{details?: string[]; reason?: string}>;
     /**
-     * The reasons for disapproval, if any. Note that not all disapproval
-     * reasons may be categorized, so it is possible for the creative to have a
-     * status of DISAPPROVED with an empty list for disapproval_reasons. In this
-     * case, please reach out to your TAM to help debug the issue. Read-only.
-     * This field should not be set in requests.
+     * The reasons for disapproval, if any. Note that not all disapproval reasons may be categorized, so it is possible for the creative to have a status of DISAPPROVED with an empty list for disapproval_reasons. In this case, please reach out to your TAM to help debug the issue. Read-only. This field should not be set in requests.
      */
     disapprovalReasons?: Array<{details?: string[]; reason?: string}>;
     /**
-     * The filtering reasons for the creative. Read-only. This field should not
-     * be set in requests.
+     * The filtering reasons for the creative. Read-only. This field should not be set in requests.
      */
     filteringReasons?: {
       date?: string;
@@ -308,8 +286,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     height?: number;
     /**
-     * The HTML snippet that displays the ad when inserted in the web page. If
-     * set, videoURL should not be set.
+     * The HTML snippet that displays the ad when inserted in the web page. If set, videoURL should not be set.
      */
     HTMLSnippet?: string;
     /**
@@ -338,23 +315,19 @@ export namespace adexchangebuyer_v1_3 {
       store?: string;
     };
     /**
-     * Detected product categories, if any. Read-only. This field should not be
-     * set in requests.
+     * Detected product categories, if any. Read-only. This field should not be set in requests.
      */
     productCategories?: number[];
     /**
-     * All restricted categories for the ads that may be shown from this
-     * snippet.
+     * All restricted categories for the ads that may be shown from this snippet.
      */
     restrictedCategories?: number[];
     /**
-     * Detected sensitive categories, if any. Read-only. This field should not
-     * be set in requests.
+     * Detected sensitive categories, if any. Read-only. This field should not be set in requests.
      */
     sensitiveCategories?: number[];
     /**
-     * Creative serving status. Read-only. This field should not be set in
-     * requests.
+     * Creative serving status. Read-only. This field should not be set in requests.
      */
     status?: string;
     /**
@@ -362,13 +335,11 @@ export namespace adexchangebuyer_v1_3 {
      */
     vendorType?: number[];
     /**
-     * The version for this creative. Read-only. This field should not be set in
-     * requests.
+     * The version for this creative. Read-only. This field should not be set in requests.
      */
     version?: number;
     /**
-     * The URL to fetch a video ad. If set, HTMLSnippet and the nativeAd should
-     * not be set.
+     * The URL to fetch a video ad. If set, HTMLSnippet and the nativeAd should not be set.
      */
     videoURL?: string;
     /**
@@ -377,9 +348,7 @@ export namespace adexchangebuyer_v1_3 {
     width?: number;
   }
   /**
-   * The creatives feed lists the active creatives for the Ad Exchange buyer
-   * accounts that the user has access to. Each entry in the feed corresponds to
-   * a single creative.
+   * The creatives feed lists the active creatives for the Ad Exchange buyer accounts that the user has access to. Each entry in the feed corresponds to a single creative.
    */
   export interface Schema$CreativesList {
     /**
@@ -391,9 +360,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through creatives. To retrieve the next
-     * page of results, set the next request&#39;s &quot;pageToken&quot; value
-     * to this.
+     * Continuation token used to page through creatives. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
@@ -414,13 +381,11 @@ export namespace adexchangebuyer_v1_3 {
      */
     allowsAlcohol?: boolean;
     /**
-     * The account id that this deal was negotiated for. It is either the buyer
-     * or the client that this deal was negotiated on behalf of.
+     * The account id that this deal was negotiated for. It is either the buyer or the client that this deal was negotiated on behalf of.
      */
     buyerAccountId?: string;
     /**
-     * The currency code that applies to the fixed_cpm value. If not set then
-     * assumed to be USD.
+     * The currency code that applies to the fixed_cpm value. If not set then assumed to be USD.
      */
     currencyCode?: string;
     /**
@@ -428,16 +393,11 @@ export namespace adexchangebuyer_v1_3 {
      */
     dealTier?: string;
     /**
-     * End time for when this deal stops being active. If not set then this deal
-     * is valid until manually disabled by the publisher. In seconds since the
-     * epoch.
+     * End time for when this deal stops being active. If not set then this deal is valid until manually disabled by the publisher. In seconds since the epoch.
      */
     endTime?: string;
     /**
-     * The fixed price for this direct deal. In cpm micros of currency according
-     * to currency_code. If set, then this deal is eligible for the fixed price
-     * tier of buying (highest priority, pay exactly the configured fixed
-     * price).
+     * The fixed price for this direct deal. In cpm micros of currency according to currency_code. If set, then this deal is eligible for the fixed price tier of buying (highest priority, pay exactly the configured fixed price).
      */
     fixedCpm?: string;
     /**
@@ -453,15 +413,11 @@ export namespace adexchangebuyer_v1_3 {
      */
     name?: string;
     /**
-     * The minimum price for this direct deal. In cpm micros of currency
-     * according to currency_code. If set, then this deal is eligible for the
-     * private exchange tier of buying (below fixed price priority, run as a
-     * second price auction).
+     * The minimum price for this direct deal. In cpm micros of currency according to currency_code. If set, then this deal is eligible for the private exchange tier of buying (below fixed price priority, run as a second price auction).
      */
     privateExchangeMinCpm?: string;
     /**
-     * If true, the publisher has opted to have their blocks ignored when a
-     * creative is bid with for this deal.
+     * If true, the publisher has opted to have their blocks ignored when a creative is bid with for this deal.
      */
     publisherBlocksOverriden?: boolean;
     /**
@@ -469,15 +425,12 @@ export namespace adexchangebuyer_v1_3 {
      */
     sellerNetwork?: string;
     /**
-     * Start time for when this deal becomes active. If not set then this deal
-     * is active immediately upon creation. In seconds since the epoch.
+     * Start time for when this deal becomes active. If not set then this deal is active immediately upon creation. In seconds since the epoch.
      */
     startTime?: string;
   }
   /**
-   * A direct deals feed lists Direct Deals the Ad Exchange buyer account has
-   * access to. This includes direct deals set up for the buyer account as well
-   * as its merged stream seats.
+   * A direct deals feed lists Direct Deals the Ad Exchange buyer account has access to. This includes direct deals set up for the buyer account as well as its merged stream seats.
    */
   export interface Schema$DirectDealsList {
     /**
@@ -502,8 +455,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     bidRequestRate?: number;
     /**
-     * Rate of various prefiltering statuses per match. Please refer to the
-     * callout-status-codes.txt file for different statuses.
+     * Rate of various prefiltering statuses per match. Please refer to the callout-status-codes.txt file for different statuses.
      */
     calloutStatusRate?: any[];
     /**
@@ -511,13 +463,11 @@ export namespace adexchangebuyer_v1_3 {
      */
     cookieMatcherStatusRate?: any[];
     /**
-     * Rate of ads with a given status. Please refer to the
-     * creative-status-codes.txt file for different statuses.
+     * Rate of ads with a given status. Please refer to the creative-status-codes.txt file for different statuses.
      */
     creativeStatusRate?: any[];
     /**
-     * The number of bid responses that were filtered due to a policy violation
-     * or other errors.
+     * The number of bid responses that were filtered due to a policy violation or other errors.
      */
     filteredBidRate?: number;
     /**
@@ -533,18 +483,15 @@ export namespace adexchangebuyer_v1_3 {
      */
     kind?: string;
     /**
-     * The 50th percentile round trip latency(ms) as perceived from Google
-     * servers for the duration period covered by the report.
+     * The 50th percentile round trip latency(ms) as perceived from Google servers for the duration period covered by the report.
      */
     latency50thPercentile?: number;
     /**
-     * The 85th percentile round trip latency(ms) as perceived from Google
-     * servers for the duration period covered by the report.
+     * The 85th percentile round trip latency(ms) as perceived from Google servers for the duration period covered by the report.
      */
     latency85thPercentile?: number;
     /**
-     * The 95th percentile round trip latency(ms) as perceived from Google
-     * servers for the duration period covered by the report.
+     * The 95th percentile round trip latency(ms) as perceived from Google servers for the duration period covered by the report.
      */
     latency95thPercentile?: number;
     /**
@@ -576,8 +523,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     region?: string;
     /**
-     * The number of properly formed bid responses received by our servers
-     * within the deadline.
+     * The number of properly formed bid responses received by our servers within the deadline.
      */
     successfulRequestRate?: number;
     /**
@@ -585,8 +531,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     timestamp?: string;
     /**
-     * The number of bid responses that were unsuccessful due to timeouts,
-     * incorrect formatting, etc.
+     * The number of bid responses that were unsuccessful due to timeouts, incorrect formatting, etc.
      */
     unsuccessfulRequestRate?: number;
   }
@@ -605,13 +550,11 @@ export namespace adexchangebuyer_v1_3 {
   }
   export interface Schema$PretargetingConfig {
     /**
-     * The id for billing purposes, provided for reference. Leave this field
-     * blank for insert requests; the id will be generated automatically.
+     * The id for billing purposes, provided for reference. Leave this field blank for insert requests; the id will be generated automatically.
      */
     billingId?: string;
     /**
-     * The config id; generated automatically. Leave this field blank for insert
-     * requests.
+     * The config id; generated automatically. Leave this field blank for insert requests.
      */
     configId?: string;
     /**
@@ -619,18 +562,15 @@ export namespace adexchangebuyer_v1_3 {
      */
     configName?: string;
     /**
-     * List must contain exactly one of PRETARGETING_CREATIVE_TYPE_HTML or
-     * PRETARGETING_CREATIVE_TYPE_VIDEO.
+     * List must contain exactly one of PRETARGETING_CREATIVE_TYPE_HTML or PRETARGETING_CREATIVE_TYPE_VIDEO.
      */
     creativeType?: string[];
     /**
-     * Requests which allow one of these (width, height) pairs will match. All
-     * pairs must be supported ad dimensions.
+     * Requests which allow one of these (width, height) pairs will match. All pairs must be supported ad dimensions.
      */
     dimensions?: Array<{height?: string; width?: string}>;
     /**
-     * Requests with any of these content labels will not match. Values are from
-     * content-labels.txt in the downloadable files section.
+     * Requests with any of these content labels will not match. Values are from content-labels.txt in the downloadable files section.
      */
     excludedContentLabels?: string[];
     /**
@@ -646,8 +586,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     excludedUserLists?: string[];
     /**
-     * Requests containing any of these vertical ids will not match. Values are
-     * from the publisher-verticals.txt file in the downloadable files section.
+     * Requests containing any of these vertical ids will not match. Values are from the publisher-verticals.txt file in the downloadable files section.
      */
     excludedVerticals?: string[];
     /**
@@ -659,8 +598,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     isActive?: boolean;
     /**
-     * The kind of the resource, i.e.
-     * &quot;adexchangebuyer#pretargetingConfig&quot;.
+     * The kind of the resource, i.e. &quot;adexchangebuyer#pretargetingConfig&quot;.
      */
     kind?: string;
     /**
@@ -668,18 +606,15 @@ export namespace adexchangebuyer_v1_3 {
      */
     languages?: string[];
     /**
-     * Requests containing any of these mobile carrier ids will match. Values
-     * are from mobile-carriers.csv in the downloadable files section.
+     * Requests containing any of these mobile carrier ids will match. Values are from mobile-carriers.csv in the downloadable files section.
      */
     mobileCarriers?: string[];
     /**
-     * Requests containing any of these mobile device ids will match. Values are
-     * from mobile-devices.csv in the downloadable files section.
+     * Requests containing any of these mobile device ids will match. Values are from mobile-devices.csv in the downloadable files section.
      */
     mobileDevices?: string[];
     /**
-     * Requests containing any of these mobile operating system version ids will
-     * match. Values are from mobile-os.csv in the downloadable files section.
+     * Requests containing any of these mobile operating system version ids will match. Values are from mobile-os.csv in the downloadable files section.
      */
     mobileOperatingSystemVersions?: string[];
     /**
@@ -687,16 +622,11 @@ export namespace adexchangebuyer_v1_3 {
      */
     placements?: Array<{token?: string; type?: string}>;
     /**
-     * Requests matching any of these platforms will match. Possible values are
-     * PRETARGETING_PLATFORM_MOBILE, PRETARGETING_PLATFORM_DESKTOP, and
-     * PRETARGETING_PLATFORM_TABLET.
+     * Requests matching any of these platforms will match. Possible values are PRETARGETING_PLATFORM_MOBILE, PRETARGETING_PLATFORM_DESKTOP, and PRETARGETING_PLATFORM_TABLET.
      */
     platforms?: string[];
     /**
-     * Creative attributes should be declared here if all creatives
-     * corresponding to this pretargeting configuration have that creative
-     * attribute. Values are from pretargetable-creative-attributes.txt in the
-     * downloadable files section.
+     * Creative attributes should be declared here if all creatives corresponding to this pretargeting configuration have that creative attribute. Values are from pretargetable-creative-attributes.txt in the downloadable files section.
      */
     supportedCreativeAttributes?: string[];
     /**
@@ -704,8 +634,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     userLists?: string[];
     /**
-     * Requests that allow any of these vendor ids will match. Values are from
-     * vendors.txt in the downloadable files section.
+     * Requests that allow any of these vendor ids will match. Values are from vendors.txt in the downloadable files section.
      */
     vendorTypes?: string[];
     /**
@@ -1076,8 +1005,7 @@ export namespace adexchangebuyer_v1_3 {
 
     /**
      * adexchangebuyer.billingInfo.get
-     * @desc Returns the billing information for one account specified by
-     * account ID.
+     * @desc Returns the billing information for one account specified by account ID.
      * @alias adexchangebuyer.billingInfo.get
      * @memberOf! ()
      *
@@ -1149,8 +1077,7 @@ export namespace adexchangebuyer_v1_3 {
 
     /**
      * adexchangebuyer.billingInfo.list
-     * @desc Retrieves a list of billing information for all accounts of the
-     * authenticated user.
+     * @desc Retrieves a list of billing information for all accounts of the authenticated user.
      * @alias adexchangebuyer.billingInfo.list
      * @memberOf! ()
      *
@@ -1247,8 +1174,7 @@ export namespace adexchangebuyer_v1_3 {
 
     /**
      * adexchangebuyer.budget.get
-     * @desc Returns the budget information for the adgroup specified by the
-     * accountId and billingId.
+     * @desc Returns the budget information for the adgroup specified by the accountId and billingId.
      * @alias adexchangebuyer.budget.get
      * @memberOf! ()
      *
@@ -1320,9 +1246,7 @@ export namespace adexchangebuyer_v1_3 {
 
     /**
      * adexchangebuyer.budget.patch
-     * @desc Updates the budget amount for the budget of the adgroup specified
-     * by the accountId and billingId, with the budget amount in the request.
-     * This method supports patch semantics.
+     * @desc Updates the budget amount for the budget of the adgroup specified by the accountId and billingId, with the budget amount in the request. This method supports patch semantics.
      * @alias adexchangebuyer.budget.patch
      * @memberOf! ()
      *
@@ -1395,8 +1319,7 @@ export namespace adexchangebuyer_v1_3 {
 
     /**
      * adexchangebuyer.budget.update
-     * @desc Updates the budget amount for the budget of the adgroup specified
-     * by the accountId and billingId, with the budget amount in the request.
+     * @desc Updates the budget amount for the budget of the adgroup specified by the accountId and billingId, with the budget amount in the request.
      * @alias adexchangebuyer.budget.update
      * @memberOf! ()
      *
@@ -1532,8 +1455,7 @@ export namespace adexchangebuyer_v1_3 {
 
     /**
      * adexchangebuyer.creatives.get
-     * @desc Gets the status for a single creative. A creative will be available
-     * 30-40 minutes after submission.
+     * @desc Gets the status for a single creative. A creative will be available 30-40 minutes after submission.
      * @alias adexchangebuyer.creatives.get
      * @memberOf! ()
      *
@@ -1676,8 +1598,7 @@ export namespace adexchangebuyer_v1_3 {
 
     /**
      * adexchangebuyer.creatives.list
-     * @desc Retrieves a list of the authenticated user's active creatives. A
-     * creative will be available 30-40 minutes after submission.
+     * @desc Retrieves a list of the authenticated user's active creatives. A creative will be available 30-40 minutes after submission.
      * @alias adexchangebuyer.creatives.list
      * @memberOf! ()
      *
@@ -1790,19 +1711,15 @@ export namespace adexchangebuyer_v1_3 {
      */
     accountId?: number[];
     /**
-     * When specified, only creatives for the given buyer creative ids are
-     * returned.
+     * When specified, only creatives for the given buyer creative ids are returned.
      */
     buyerCreativeId?: string[];
     /**
-     * Maximum number of entries returned on one result page. If not set, the
-     * default is 100. Optional.
+     * Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through ad clients. To retrieve the
-     * next page, set this parameter to the value of "nextPageToken" from the
-     * previous response. Optional.
+     * A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
      */
     pageToken?: string;
     /**
@@ -2084,14 +2001,11 @@ export namespace adexchangebuyer_v1_3 {
      */
     endDateTime?: string;
     /**
-     * Maximum number of entries returned on one result page. If not set, the
-     * default is 100. Optional.
+     * Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through performance reports. To
-     * retrieve the next page, set this parameter to the value of
-     * "nextPageToken" from the previous response. Optional.
+     * A continuation token, used to page through performance reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
      */
     pageToken?: string;
     /**
@@ -2330,8 +2244,7 @@ export namespace adexchangebuyer_v1_3 {
 
     /**
      * adexchangebuyer.pretargetingConfig.list
-     * @desc Retrieves a list of the authenticated user's pretargeting
-     * configurations.
+     * @desc Retrieves a list of the authenticated user's pretargeting configurations.
      * @alias adexchangebuyer.pretargetingConfig.list
      * @memberOf! ()
      *
@@ -2406,8 +2319,7 @@ export namespace adexchangebuyer_v1_3 {
 
     /**
      * adexchangebuyer.pretargetingConfig.patch
-     * @desc Updates an existing pretargeting config. This method supports patch
-     * semantics.
+     * @desc Updates an existing pretargeting config. This method supports patch semantics.
      * @alias adexchangebuyer.pretargetingConfig.patch
      * @memberOf! ()
      *

@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace analytics_v3 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace analytics_v3 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -99,7 +96,10 @@ export namespace analytics_v3 {
     userDeletion: Resource$Userdeletion;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.data = new Resource$Data(this.context);
       this.management = new Resource$Management(this.context);
@@ -114,8 +114,7 @@ export namespace analytics_v3 {
    */
   export interface Schema$Account {
     /**
-     * Child link for an account entry. Points to the list of web properties for
-     * this account.
+     * Child link for an account entry. Points to the list of web properties for this account.
      */
     childLink?: {href?: string; type?: string};
     /**
@@ -173,10 +172,7 @@ export namespace analytics_v3 {
     name?: string;
   }
   /**
-   * An account collection provides a list of Analytics accounts to which a user
-   * has access. The account collection is the entry point to all management
-   * information. Each resource in the collection corresponds to a single
-   * Analytics account.
+   * An account collection provides a list of Analytics accounts to which a user has access. The account collection is the entry point to all management information. Each resource in the collection corresponds to a single Analytics account.
    */
   export interface Schema$Accounts {
     /**
@@ -184,10 +180,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$Account[];
     /**
-     * The maximum number of entries the response can contain, regardless of the
-     * actual number of entries returned. Its value ranges from 1 to 1000 with a
-     * value of 1000 by default, or otherwise specified by the max-results query
-     * parameter.
+     * The maximum number of entries the response can contain, regardless of the actual number of entries returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -203,13 +196,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the entries, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the entries, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * results in the response.
+     * The total number of results for the query, regardless of the number of results in the response.
      */
     totalResults?: number;
     /**
@@ -218,9 +209,7 @@ export namespace analytics_v3 {
     username?: string;
   }
   /**
-   * An AccountSummary collection lists a summary of accounts, properties and
-   * views (profiles) to which the user has access. Each resource in the
-   * collection corresponds to a single AccountSummary.
+   * An AccountSummary collection lists a summary of accounts, properties and views (profiles) to which the user has access. Each resource in the collection corresponds to a single AccountSummary.
    */
   export interface Schema$AccountSummaries {
     /**
@@ -228,10 +217,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$AccountSummary[];
     /**
-     * The maximum number of resources the response can contain, regardless of
-     * the actual number of resources returned. Its value ranges from 1 to 1000
-     * with a value of 1000 by default, or otherwise specified by the
-     * max-results query parameter.
+     * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -247,13 +233,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the resources, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * results in the response.
+     * The total number of results for the query, regardless of the number of results in the response.
      */
     totalResults?: number;
     /**
@@ -262,8 +246,7 @@ export namespace analytics_v3 {
     username?: string;
   }
   /**
-   * JSON template for an Analytics AccountSummary. An AccountSummary is a
-   * lightweight tree comprised of properties/profiles.
+   * JSON template for an Analytics AccountSummary. An AccountSummary is a lightweight tree comprised of properties/profiles.
    */
   export interface Schema$AccountSummary {
     /**
@@ -288,9 +271,7 @@ export namespace analytics_v3 {
     webProperties?: Schema$WebPropertySummary[];
   }
   /**
-   * JSON template for an Analytics account ticket. The account ticket consists
-   * of the ticket ID and the basic information for the account, property and
-   * profile.
+   * JSON template for an Analytics account ticket. The account ticket consists of the ticket ID and the basic information for the account, property and profile.
    */
   export interface Schema$AccountTicket {
     /**
@@ -310,8 +291,7 @@ export namespace analytics_v3 {
      */
     profile?: Schema$Profile;
     /**
-     * Redirect URI where the user will be sent after accepting Terms of
-     * Service. Must be configured in APIs console as a callback URL.
+     * Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in APIs console as a callback URL.
      */
     redirectUri?: string;
     /**
@@ -320,10 +300,7 @@ export namespace analytics_v3 {
     webproperty?: Schema$Webproperty;
   }
   /**
-   * JSON template for an Analytics account tree requests. The account tree
-   * request is used in the provisioning api to create an account, property, and
-   * view (profile). It contains the basic information required to make these
-   * fields.
+   * JSON template for an Analytics account tree requests. The account tree request is used in the provisioning api to create an account, property, and view (profile). It contains the basic information required to make these fields.
    */
   export interface Schema$AccountTreeRequest {
     accountName?: string;
@@ -337,9 +314,7 @@ export namespace analytics_v3 {
     websiteUrl?: string;
   }
   /**
-   * JSON template for an Analytics account tree response. The account tree
-   * response is used in the provisioning api to return the result of creating
-   * an account, property, and view (profile).
+   * JSON template for an Analytics account tree response. The account tree response is used in the provisioning api to return the result of creating an account, property, and view (profile).
    */
   export interface Schema$AccountTreeResponse {
     /**
@@ -364,8 +339,7 @@ export namespace analytics_v3 {
    */
   export interface Schema$AdWordsAccount {
     /**
-     * True if auto-tagging is enabled on the Google Ads account. Read-only
-     * after the insert operation.
+     * True if auto-tagging is enabled on the Google Ads account. Read-only after the insert operation.
      */
     autoTaggingEnabled?: boolean;
     /**
@@ -412,8 +386,7 @@ export namespace analytics_v3 {
      */
     attributeNames?: string[];
     /**
-     * Etag of collection. This etag can be compared with the last response etag
-     * to check if response has changed.
+     * Etag of collection. This etag can be compared with the last response etag to check if response has changed.
      */
     etag?: string;
     /**
@@ -460,8 +433,7 @@ export namespace analytics_v3 {
      */
     name?: string;
     /**
-     * Parent link for this custom data source. Points to the web property to
-     * which this custom data source belongs.
+     * Parent link for this custom data source. Points to the web property to which this custom data source belongs.
      */
     parentLink?: {href?: string; type?: string};
     /**
@@ -489,15 +461,12 @@ export namespace analytics_v3 {
      */
     uploadType?: string;
     /**
-     * Web property ID of the form UA-XXXXX-YY to which this custom data source
-     * belongs.
+     * Web property ID of the form UA-XXXXX-YY to which this custom data source belongs.
      */
     webPropertyId?: string;
   }
   /**
-   * Lists Analytics custom data sources to which the user has access. Each
-   * resource in the collection corresponds to a single Analytics custom data
-   * source.
+   * Lists Analytics custom data sources to which the user has access. Each resource in the collection corresponds to a single Analytics custom data source.
    */
   export interface Schema$CustomDataSources {
     /**
@@ -505,10 +474,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$CustomDataSource[];
     /**
-     * The maximum number of resources the response can contain, regardless of
-     * the actual number of resources returned. Its value ranges from 1 to 1000
-     * with a value of 1000 by default, or otherwise specified by the
-     * max-results query parameter.
+     * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -524,13 +490,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the resources, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * results in the response.
+     * The total number of results for the query, regardless of the number of results in the response.
      */
     totalResults?: number;
     /**
@@ -563,8 +527,7 @@ export namespace analytics_v3 {
      */
     index?: number;
     /**
-     * Kind value for a custom dimension. Set to
-     * &quot;analytics#customDimension&quot;. It is a read-only field.
+     * Kind value for a custom dimension. Set to &quot;analytics#customDimension&quot;. It is a read-only field.
      */
     kind?: string;
     /**
@@ -572,8 +535,7 @@ export namespace analytics_v3 {
      */
     name?: string;
     /**
-     * Parent link for the custom dimension. Points to the property to which the
-     * custom dimension belongs.
+     * Parent link for the custom dimension. Points to the property to which the custom dimension belongs.
      */
     parentLink?: {href?: string; type?: string};
     /**
@@ -594,9 +556,7 @@ export namespace analytics_v3 {
     webPropertyId?: string;
   }
   /**
-   * A custom dimension collection lists Analytics custom dimensions to which
-   * the user has access. Each resource in the collection corresponds to a
-   * single Analytics custom dimension.
+   * A custom dimension collection lists Analytics custom dimensions to which the user has access. Each resource in the collection corresponds to a single Analytics custom dimension.
    */
   export interface Schema$CustomDimensions {
     /**
@@ -604,10 +564,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$CustomDimension[];
     /**
-     * The maximum number of resources the response can contain, regardless of
-     * the actual number of resources returned. Its value ranges from 1 to 1000
-     * with a value of 1000 by default, or otherwise specified by the
-     * max-results query parameter.
+     * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -623,13 +580,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the resources, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * results in the response.
+     * The total number of results for the query, regardless of the number of results in the response.
      */
     totalResults?: number;
     /**
@@ -662,8 +617,7 @@ export namespace analytics_v3 {
      */
     index?: number;
     /**
-     * Kind value for a custom metric. Set to
-     * &quot;analytics#customMetric&quot;. It is a read-only field.
+     * Kind value for a custom metric. Set to &quot;analytics#customMetric&quot;. It is a read-only field.
      */
     kind?: string;
     /**
@@ -679,8 +633,7 @@ export namespace analytics_v3 {
      */
     name?: string;
     /**
-     * Parent link for the custom metric. Points to the property to which the
-     * custom metric belongs.
+     * Parent link for the custom metric. Points to the property to which the custom metric belongs.
      */
     parentLink?: {href?: string; type?: string};
     /**
@@ -705,9 +658,7 @@ export namespace analytics_v3 {
     webPropertyId?: string;
   }
   /**
-   * A custom metric collection lists Analytics custom metrics to which the user
-   * has access. Each resource in the collection corresponds to a single
-   * Analytics custom metric.
+   * A custom metric collection lists Analytics custom metrics to which the user has access. Each resource in the collection corresponds to a single Analytics custom metric.
    */
   export interface Schema$CustomMetrics {
     /**
@@ -715,10 +666,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$CustomMetric[];
     /**
-     * The maximum number of resources the response can contain, regardless of
-     * the actual number of resources returned. Its value ranges from 1 to 1000
-     * with a value of 1000 by default, or otherwise specified by the
-     * max-results query parameter.
+     * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -734,13 +682,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the resources, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * results in the response.
+     * The total number of results for the query, regardless of the number of results in the response.
      */
     totalResults?: number;
     /**
@@ -753,8 +699,7 @@ export namespace analytics_v3 {
    */
   export interface Schema$EntityAdWordsLink {
     /**
-     * A list of Google Ads client accounts. These cannot be MCC accounts. This
-     * field is required when creating a Google Ads link. It cannot be empty.
+     * A list of Google Ads client accounts. These cannot be MCC accounts. This field is required when creating a Google Ads link. It cannot be empty.
      */
     adWordsAccounts?: Schema$AdWordsAccount[];
     /**
@@ -783,8 +728,7 @@ export namespace analytics_v3 {
     selfLink?: string;
   }
   /**
-   * An entity Google Ads link collection provides a list of GA-Google Ads links
-   * Each resource in this collection corresponds to a single link.
+   * An entity Google Ads link collection provides a list of GA-Google Ads links Each resource in this collection corresponds to a single link.
    */
   export interface Schema$EntityAdWordsLinks {
     /**
@@ -792,10 +736,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$EntityAdWordsLink[];
     /**
-     * The maximum number of entries the response can contain, regardless of the
-     * actual number of entries returned. Its value ranges from 1 to 1000 with a
-     * value of 1000 by default, or otherwise specified by the max-results query
-     * parameter.
+     * The maximum number of entries the response can contain, regardless of the actual number of entries returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -811,24 +752,20 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the entries, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the entries, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * results in the response.
+     * The total number of results for the query, regardless of the number of results in the response.
      */
     totalResults?: number;
   }
   /**
-   * JSON template for an Analytics Entity-User Link. Returns permissions that a
-   * user has for an entity.
+   * JSON template for an Analytics Entity-User Link. Returns permissions that a user has for an entity.
    */
   export interface Schema$EntityUserLink {
     /**
-     * Entity for this link. It can be an account, a web property, or a view
-     * (profile).
+     * Entity for this link. It can be an account, a web property, or a view (profile).
      */
     entity?: {
       accountRef?: Schema$AccountRef;
@@ -857,8 +794,7 @@ export namespace analytics_v3 {
     userRef?: Schema$UserRef;
   }
   /**
-   * An entity user link collection provides a list of Analytics ACL links Each
-   * resource in this collection corresponds to a single link.
+   * An entity user link collection provides a list of Analytics ACL links Each resource in this collection corresponds to a single link.
    */
   export interface Schema$EntityUserLinks {
     /**
@@ -866,10 +802,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$EntityUserLink[];
     /**
-     * The maximum number of entries the response can contain, regardless of the
-     * actual number of entries returned. Its value ranges from 1 to 1000 with a
-     * value of 1000 by default, or otherwise specified by the max-results query
-     * parameter.
+     * The maximum number of entries the response can contain, regardless of the actual number of entries returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -885,13 +818,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the entries, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the entries, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * results in the response.
+     * The total number of results for the query, regardless of the number of results in the response.
      */
     totalResults?: number;
   }
@@ -912,22 +843,15 @@ export namespace analytics_v3 {
      */
     description?: string;
     /**
-     * If true, the end user will be able to edit the experiment via the Google
-     * Analytics user interface.
+     * If true, the end user will be able to edit the experiment via the Google Analytics user interface.
      */
     editableInGaUi?: boolean;
     /**
-     * The ending time of the experiment (the time the status changed from
-     * RUNNING to ENDED). This field is present only if the experiment has
-     * ended. This field is read-only.
+     * The ending time of the experiment (the time the status changed from RUNNING to ENDED). This field is present only if the experiment has ended. This field is read-only.
      */
     endTime?: string;
     /**
-     * Boolean specifying whether to distribute traffic evenly across all
-     * variations. If the value is False, content experiments follows the
-     * default behavior of adjusting traffic dynamically based on variation
-     * performance. Optional -- defaults to False. This field may not be changed
-     * for an experiment whose status is ENDED.
+     * Boolean specifying whether to distribute traffic evenly across all variations. If the value is False, content experiments follows the default behavior of adjusting traffic dynamically based on variation performance. Optional -- defaults to False. This field may not be changed for an experiment whose status is ENDED.
      */
     equalWeighting?: boolean;
     /**
@@ -935,8 +859,7 @@ export namespace analytics_v3 {
      */
     id?: string;
     /**
-     * Internal ID for the web property to which this experiment belongs. This
-     * field is read-only.
+     * Internal ID for the web property to which this experiment belongs. This field is read-only.
      */
     internalWebPropertyId?: string;
     /**
@@ -944,58 +867,35 @@ export namespace analytics_v3 {
      */
     kind?: string;
     /**
-     * An integer number in [3, 90]. Specifies the minimum length of the
-     * experiment. Can be changed for a running experiment. This field may not
-     * be changed for an experiments whose status is ENDED.
+     * An integer number in [3, 90]. Specifies the minimum length of the experiment. Can be changed for a running experiment. This field may not be changed for an experiments whose status is ENDED.
      */
     minimumExperimentLengthInDays?: number;
     /**
-     * Experiment name. This field may not be changed for an experiment whose
-     * status is ENDED. This field is required when creating an experiment.
+     * Experiment name. This field may not be changed for an experiment whose status is ENDED. This field is required when creating an experiment.
      */
     name?: string;
     /**
-     * The metric that the experiment is optimizing. Valid values:
-     * &quot;ga:goal(n)Completions&quot;, &quot;ga:adsenseAdsClicks&quot;,
-     * &quot;ga:adsenseAdsViewed&quot;, &quot;ga:adsenseRevenue&quot;,
-     * &quot;ga:bounces&quot;, &quot;ga:pageviews&quot;,
-     * &quot;ga:sessionDuration&quot;, &quot;ga:transactions&quot;,
-     * &quot;ga:transactionRevenue&quot;. This field is required if status is
-     * &quot;RUNNING&quot; and servingFramework is one of &quot;REDIRECT&quot;
-     * or &quot;API&quot;.
+     * The metric that the experiment is optimizing. Valid values: &quot;ga:goal(n)Completions&quot;, &quot;ga:adsenseAdsClicks&quot;, &quot;ga:adsenseAdsViewed&quot;, &quot;ga:adsenseRevenue&quot;, &quot;ga:bounces&quot;, &quot;ga:pageviews&quot;, &quot;ga:sessionDuration&quot;, &quot;ga:transactions&quot;, &quot;ga:transactionRevenue&quot;. This field is required if status is &quot;RUNNING&quot; and servingFramework is one of &quot;REDIRECT&quot; or &quot;API&quot;.
      */
     objectiveMetric?: string;
     /**
-     * Whether the objectiveMetric should be minimized or maximized. Possible
-     * values: &quot;MAXIMUM&quot;, &quot;MINIMUM&quot;. Optional--defaults to
-     * &quot;MAXIMUM&quot;. Cannot be specified without objectiveMetric. Cannot
-     * be modified when status is &quot;RUNNING&quot; or &quot;ENDED&quot;.
+     * Whether the objectiveMetric should be minimized or maximized. Possible values: &quot;MAXIMUM&quot;, &quot;MINIMUM&quot;. Optional--defaults to &quot;MAXIMUM&quot;. Cannot be specified without objectiveMetric. Cannot be modified when status is &quot;RUNNING&quot; or &quot;ENDED&quot;.
      */
     optimizationType?: string;
     /**
-     * Parent link for an experiment. Points to the view (profile) to which this
-     * experiment belongs.
+     * Parent link for an experiment. Points to the view (profile) to which this experiment belongs.
      */
     parentLink?: {href?: string; type?: string};
     /**
-     * View (Profile) ID to which this experiment belongs. This field is
-     * read-only.
+     * View (Profile) ID to which this experiment belongs. This field is read-only.
      */
     profileId?: string;
     /**
-     * Why the experiment ended. Possible values: &quot;STOPPED_BY_USER&quot;,
-     * &quot;WINNER_FOUND&quot;, &quot;EXPERIMENT_EXPIRED&quot;,
-     * &quot;ENDED_WITH_NO_WINNER&quot;, &quot;GOAL_OBJECTIVE_CHANGED&quot;.
-     * &quot;ENDED_WITH_NO_WINNER&quot; means that the experiment didn&#39;t
-     * expire but no winner was projected to be found. If the experiment status
-     * is changed via the API to ENDED this field is set to STOPPED_BY_USER.
-     * This field is read-only.
+     * Why the experiment ended. Possible values: &quot;STOPPED_BY_USER&quot;, &quot;WINNER_FOUND&quot;, &quot;EXPERIMENT_EXPIRED&quot;, &quot;ENDED_WITH_NO_WINNER&quot;, &quot;GOAL_OBJECTIVE_CHANGED&quot;. &quot;ENDED_WITH_NO_WINNER&quot; means that the experiment didn&#39;t expire but no winner was projected to be found. If the experiment status is changed via the API to ENDED this field is set to STOPPED_BY_USER. This field is read-only.
      */
     reasonExperimentEnded?: string;
     /**
-     * Boolean specifying whether variations URLS are rewritten to match those
-     * of the original. This field may not be changed for an experiments whose
-     * status is ENDED.
+     * Boolean specifying whether variations URLS are rewritten to match those of the original. This field may not be changed for an experiments whose status is ENDED.
      */
     rewriteVariationUrlsAsOriginal?: boolean;
     /**
@@ -1003,41 +903,23 @@ export namespace analytics_v3 {
      */
     selfLink?: string;
     /**
-     * The framework used to serve the experiment variations and evaluate the
-     * results. One of:   - REDIRECT: Google Analytics redirects traffic to
-     * different variation pages, reports the chosen variation and evaluates the
-     * results. - API: Google Analytics chooses and reports the variation to
-     * serve and evaluates the results; the caller is responsible for serving
-     * the selected variation. - EXTERNAL: The variations will be served
-     * externally and the chosen variation reported to Google Analytics. The
-     * caller is responsible for serving the selected variation and evaluating
-     * the results.
+     * The framework used to serve the experiment variations and evaluate the results. One of:   - REDIRECT: Google Analytics redirects traffic to different variation pages, reports the chosen variation and evaluates the results. - API: Google Analytics chooses and reports the variation to serve and evaluates the results; the caller is responsible for serving the selected variation. - EXTERNAL: The variations will be served externally and the chosen variation reported to Google Analytics. The caller is responsible for serving the selected variation and evaluating the results.
      */
     servingFramework?: string;
     /**
-     * The snippet of code to include on the control page(s). This field is
-     * read-only.
+     * The snippet of code to include on the control page(s). This field is read-only.
      */
     snippet?: string;
     /**
-     * The starting time of the experiment (the time the status changed from
-     * READY_TO_RUN to RUNNING). This field is present only if the experiment
-     * has started. This field is read-only.
+     * The starting time of the experiment (the time the status changed from READY_TO_RUN to RUNNING). This field is present only if the experiment has started. This field is read-only.
      */
     startTime?: string;
     /**
-     * Experiment status. Possible values: &quot;DRAFT&quot;,
-     * &quot;READY_TO_RUN&quot;, &quot;RUNNING&quot;, &quot;ENDED&quot;.
-     * Experiments can be created in the &quot;DRAFT&quot;,
-     * &quot;READY_TO_RUN&quot; or &quot;RUNNING&quot; state. This field is
-     * required when creating an experiment.
+     * Experiment status. Possible values: &quot;DRAFT&quot;, &quot;READY_TO_RUN&quot;, &quot;RUNNING&quot;, &quot;ENDED&quot;. Experiments can be created in the &quot;DRAFT&quot;, &quot;READY_TO_RUN&quot; or &quot;RUNNING&quot; state. This field is required when creating an experiment.
      */
     status?: string;
     /**
-     * A floating-point number in (0, 1]. Specifies the fraction of the traffic
-     * that participates in the experiment. Can be changed for a running
-     * experiment. This field may not be changed for an experiments whose status
-     * is ENDED.
+     * A floating-point number in (0, 1]. Specifies the fraction of the traffic that participates in the experiment. Can be changed for a running experiment. This field may not be changed for an experiments whose status is ENDED.
      */
     trafficCoverage?: number;
     /**
@@ -1045,10 +927,7 @@ export namespace analytics_v3 {
      */
     updated?: string;
     /**
-     * Array of variations. The first variation in the array is the original.
-     * The number of variations may not change once an experiment is in the
-     * RUNNING state. At least two variations are required before status can be
-     * set to RUNNING.
+     * Array of variations. The first variation in the array is the original. The number of variations may not change once an experiment is in the RUNNING state. At least two variations are required before status can be set to RUNNING.
      */
     variations?: Array<{
       name?: string;
@@ -1058,26 +937,20 @@ export namespace analytics_v3 {
       won?: boolean;
     }>;
     /**
-     * Web property ID to which this experiment belongs. The web property ID is
-     * of the form UA-XXXXX-YY. This field is read-only.
+     * Web property ID to which this experiment belongs. The web property ID is of the form UA-XXXXX-YY. This field is read-only.
      */
     webPropertyId?: string;
     /**
-     * A floating-point number in (0, 1). Specifies the necessary confidence
-     * level to choose a winner. This field may not be changed for an
-     * experiments whose status is ENDED.
+     * A floating-point number in (0, 1). Specifies the necessary confidence level to choose a winner. This field may not be changed for an experiments whose status is ENDED.
      */
     winnerConfidenceLevel?: number;
     /**
-     * Boolean specifying whether a winner has been found for this experiment.
-     * This field is read-only.
+     * Boolean specifying whether a winner has been found for this experiment. This field is read-only.
      */
     winnerFound?: boolean;
   }
   /**
-   * An experiment collection lists Analytics experiments to which the user has
-   * access. Each view (profile) can have a set of experiments. Each resource in
-   * the Experiment collection corresponds to a single Analytics experiment.
+   * An experiment collection lists Analytics experiments to which the user has access. Each view (profile) can have a set of experiments. Each resource in the Experiment collection corresponds to a single Analytics experiment.
    */
   export interface Schema$Experiments {
     /**
@@ -1085,10 +958,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$Experiment[];
     /**
-     * The maximum number of resources the response can contain, regardless of
-     * the actual number of resources returned. Its value ranges from 1 to 1000
-     * with a value of 1000 by default, or otherwise specified by the
-     * max-results query parameter.
+     * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -1104,13 +974,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the resources, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * resources in the result.
+     * The total number of results for the query, regardless of the number of resources in the result.
      */
     totalResults?: number;
     /**
@@ -1173,8 +1041,7 @@ export namespace analytics_v3 {
      */
     name?: string;
     /**
-     * Parent link for this filter. Points to the account to which this filter
-     * belongs.
+     * Parent link for this filter. Points to the account to which this filter belongs.
      */
     parentLink?: {href?: string; type?: string};
     /**
@@ -1192,8 +1059,7 @@ export namespace analytics_v3 {
      */
     selfLink?: string;
     /**
-     * Type of this filter. Possible values are INCLUDE, EXCLUDE, LOWERCASE,
-     * UPPERCASE, SEARCH_AND_REPLACE and ADVANCED.
+     * Type of this filter. Possible values are INCLUDE, EXCLUDE, LOWERCASE, UPPERCASE, SEARCH_AND_REPLACE and ADVANCED.
      */
     type?: string;
     /**
@@ -1218,42 +1084,11 @@ export namespace analytics_v3 {
      */
     expressionValue?: string;
     /**
-     * Field to filter. Possible values:   - Content and Traffic   -
-     * PAGE_REQUEST_URI,  - PAGE_HOSTNAME,  - PAGE_TITLE,  - REFERRAL,  -
-     * COST_DATA_URI (Campaign target URL),  - HIT_TYPE,  -
-     * INTERNAL_SEARCH_TERM,  - INTERNAL_SEARCH_TYPE,  -
-     * SOURCE_PROPERTY_TRACKING_ID,    - Campaign or AdGroup   -
-     * CAMPAIGN_SOURCE,  - CAMPAIGN_MEDIUM,  - CAMPAIGN_NAME,  -
-     * CAMPAIGN_AD_GROUP,  - CAMPAIGN_TERM,  - CAMPAIGN_CONTENT,  -
-     * CAMPAIGN_CODE,  - CAMPAIGN_REFERRAL_PATH,    - E-Commerce   -
-     * TRANSACTION_COUNTRY,  - TRANSACTION_REGION,  - TRANSACTION_CITY,  -
-     * TRANSACTION_AFFILIATION (Store or order location),  - ITEM_NAME,  -
-     * ITEM_CODE,  - ITEM_VARIATION,  - TRANSACTION_ID,  -
-     * TRANSACTION_CURRENCY_CODE,  - PRODUCT_ACTION_TYPE,    - Audience/Users -
-     * BROWSER,  - BROWSER_VERSION,  - BROWSER_SIZE,  - PLATFORM,  -
-     * PLATFORM_VERSION,  - LANGUAGE,  - SCREEN_RESOLUTION,  - SCREEN_COLORS,  -
-     * JAVA_ENABLED (Boolean Field),  - FLASH_VERSION,  - GEO_SPEED (Connection
-     * speed),  - VISITOR_TYPE,  - GEO_ORGANIZATION (ISP organization),  -
-     * GEO_DOMAIN,  - GEO_IP_ADDRESS,  - GEO_IP_VERSION,    - Location   -
-     * GEO_COUNTRY,  - GEO_REGION,  - GEO_CITY,    - Event   - EVENT_CATEGORY,
-     * - EVENT_ACTION,  - EVENT_LABEL,    - Other   - CUSTOM_FIELD_1,  -
-     * CUSTOM_FIELD_2,  - USER_DEFINED_VALUE,    - Application   - APP_ID,  -
-     * APP_INSTALLER_ID,  - APP_NAME,  - APP_VERSION,  - SCREEN,  - IS_APP
-     * (Boolean Field),  - IS_FATAL_EXCEPTION (Boolean Field),  -
-     * EXCEPTION_DESCRIPTION,    - Mobile device   - IS_MOBILE (Boolean Field,
-     * Deprecated. Use DEVICE_CATEGORY=mobile),  - IS_TABLET (Boolean Field,
-     * Deprecated. Use DEVICE_CATEGORY=tablet),  - DEVICE_CATEGORY,  -
-     * MOBILE_HAS_QWERTY_KEYBOARD (Boolean Field),  - MOBILE_HAS_NFC_SUPPORT
-     * (Boolean Field),  - MOBILE_HAS_CELLULAR_RADIO (Boolean Field),  -
-     * MOBILE_HAS_WIFI_SUPPORT (Boolean Field),  - MOBILE_BRAND_NAME,  -
-     * MOBILE_MODEL_NAME,  - MOBILE_MARKETING_NAME,  - MOBILE_POINTING_METHOD,
-     * - Social   - SOCIAL_NETWORK,  - SOCIAL_ACTION,  - SOCIAL_ACTION_TARGET,
-     * - Custom dimension   - CUSTOM_DIMENSION (See accompanying field index),
+     * Field to filter. Possible values:   - Content and Traffic   - PAGE_REQUEST_URI,  - PAGE_HOSTNAME,  - PAGE_TITLE,  - REFERRAL,  - COST_DATA_URI (Campaign target URL),  - HIT_TYPE,  - INTERNAL_SEARCH_TERM,  - INTERNAL_SEARCH_TYPE,  - SOURCE_PROPERTY_TRACKING_ID,    - Campaign or AdGroup   - CAMPAIGN_SOURCE,  - CAMPAIGN_MEDIUM,  - CAMPAIGN_NAME,  - CAMPAIGN_AD_GROUP,  - CAMPAIGN_TERM,  - CAMPAIGN_CONTENT,  - CAMPAIGN_CODE,  - CAMPAIGN_REFERRAL_PATH,    - E-Commerce   - TRANSACTION_COUNTRY,  - TRANSACTION_REGION,  - TRANSACTION_CITY,  - TRANSACTION_AFFILIATION (Store or order location),  - ITEM_NAME,  - ITEM_CODE,  - ITEM_VARIATION,  - TRANSACTION_ID,  - TRANSACTION_CURRENCY_CODE,  - PRODUCT_ACTION_TYPE,    - Audience/Users   - BROWSER,  - BROWSER_VERSION,  - BROWSER_SIZE,  - PLATFORM,  - PLATFORM_VERSION,  - LANGUAGE,  - SCREEN_RESOLUTION,  - SCREEN_COLORS,  - JAVA_ENABLED (Boolean Field),  - FLASH_VERSION,  - GEO_SPEED (Connection speed),  - VISITOR_TYPE,  - GEO_ORGANIZATION (ISP organization),  - GEO_DOMAIN,  - GEO_IP_ADDRESS,  - GEO_IP_VERSION,    - Location   - GEO_COUNTRY,  - GEO_REGION,  - GEO_CITY,    - Event   - EVENT_CATEGORY,  - EVENT_ACTION,  - EVENT_LABEL,    - Other   - CUSTOM_FIELD_1,  - CUSTOM_FIELD_2,  - USER_DEFINED_VALUE,    - Application   - APP_ID,  - APP_INSTALLER_ID,  - APP_NAME,  - APP_VERSION,  - SCREEN,  - IS_APP (Boolean Field),  - IS_FATAL_EXCEPTION (Boolean Field),  - EXCEPTION_DESCRIPTION,    - Mobile device   - IS_MOBILE (Boolean Field, Deprecated. Use DEVICE_CATEGORY=mobile),  - IS_TABLET (Boolean Field, Deprecated. Use DEVICE_CATEGORY=tablet),  - DEVICE_CATEGORY,  - MOBILE_HAS_QWERTY_KEYBOARD (Boolean Field),  - MOBILE_HAS_NFC_SUPPORT (Boolean Field),  - MOBILE_HAS_CELLULAR_RADIO (Boolean Field),  - MOBILE_HAS_WIFI_SUPPORT (Boolean Field),  - MOBILE_BRAND_NAME,  - MOBILE_MODEL_NAME,  - MOBILE_MARKETING_NAME,  - MOBILE_POINTING_METHOD,    - Social   - SOCIAL_NETWORK,  - SOCIAL_ACTION,  - SOCIAL_ACTION_TARGET,    - Custom dimension   - CUSTOM_DIMENSION (See accompanying field index),
      */
     field?: string;
     /**
-     * The Index of the custom dimension. Set only if the field is a is
-     * CUSTOM_DIMENSION.
+     * The Index of the custom dimension. Set only if the field is a is CUSTOM_DIMENSION.
      */
     fieldIndex?: number;
     /**
@@ -1261,10 +1096,7 @@ export namespace analytics_v3 {
      */
     kind?: string;
     /**
-     * Match type for this filter. Possible values are BEGINS_WITH, EQUAL,
-     * ENDS_WITH, CONTAINS, or MATCHES. GEO_DOMAIN, GEO_IP_ADDRESS,
-     * PAGE_REQUEST_URI, or PAGE_HOSTNAME filters can use any match type; all
-     * other filters must use MATCHES.
+     * Match type for this filter. Possible values are BEGINS_WITH, EQUAL, ENDS_WITH, CONTAINS, or MATCHES. GEO_DOMAIN, GEO_IP_ADDRESS, PAGE_REQUEST_URI, or PAGE_HOSTNAME filters can use any match type; all other filters must use MATCHES.
      */
     matchType?: string;
   }
@@ -1294,8 +1126,7 @@ export namespace analytics_v3 {
     name?: string;
   }
   /**
-   * A filter collection lists filters created by users in an Analytics account.
-   * Each resource in the collection corresponds to a filter.
+   * A filter collection lists filters created by users in an Analytics account. Each resource in the collection corresponds to a filter.
    */
   export interface Schema$Filters {
     /**
@@ -1303,10 +1134,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$Filter[];
     /**
-     * The maximum number of resources the response can contain, regardless of
-     * the actual number of resources returned. Its value ranges from 1 to 1,000
-     * with a value of 1000 by default, or otherwise specified by the
-     * max-results query parameter.
+     * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1,000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -1322,13 +1150,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the resources, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * results in the response.
+     * The total number of results for the query, regardless of the number of results in the response.
      */
     totalResults?: number;
     /**
@@ -1341,8 +1167,7 @@ export namespace analytics_v3 {
    */
   export interface Schema$GaData {
     /**
-     * Column headers that list dimension names followed by the metric names.
-     * The order of dimensions and metrics is same as specified in the request.
+     * Column headers that list dimension names followed by the metric names. The order of dimensions and metrics is same as specified in the request.
      */
     columnHeaders?: Array<{
       columnType?: string;
@@ -1366,10 +1191,7 @@ export namespace analytics_v3 {
      */
     id?: string;
     /**
-     * The maximum number of rows the response can contain, regardless of the
-     * actual number of rows returned. Its value ranges from 1 to 10,000 with a
-     * value of 1000 by default, or otherwise specified by the max-results query
-     * parameter.
+     * The maximum number of rows the response can contain, regardless of the actual number of rows returned. Its value ranges from 1 to 10,000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -1385,8 +1207,7 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * Information for the view (profile), for which the Analytics data was
-     * requested.
+     * Information for the view (profile), for which the Analytics data was requested.
      */
     profileInfo?: {
       accountId?: string;
@@ -1413,9 +1234,7 @@ export namespace analytics_v3 {
       'start-index'?: number;
     };
     /**
-     * Analytics data rows, where each row contains a list of dimension values
-     * followed by the metric values. The order of dimensions and metrics is
-     * same as specified in the request.
+     * Analytics data rows, where each row contains a list of dimension values followed by the metric values. The order of dimensions and metrics is same as specified in the request.
      */
     rows?: string[][];
     /**
@@ -1431,14 +1250,11 @@ export namespace analytics_v3 {
      */
     selfLink?: string;
     /**
-     * The total number of rows for the query, regardless of the number of rows
-     * in the response.
+     * The total number of rows for the query, regardless of the number of rows in the response.
      */
     totalResults?: number;
     /**
-     * Total values for the requested metrics over all the results, not just the
-     * results returned in this response. The order of the metric totals is same
-     * as the metric order specified in the request.
+     * Total values for the requested metrics over all the results, not just the results returned in this response. The order of the metric totals is same as the metric order specified in the request.
      */
     totalsForAllResults?: {[key: string]: string};
   }
@@ -1488,8 +1304,7 @@ export namespace analytics_v3 {
      */
     name?: string;
     /**
-     * Parent link for a goal. Points to the view (profile) to which this goal
-     * belongs.
+     * Parent link for a goal. Points to the view (profile) to which this goal belongs.
      */
     parentLink?: {href?: string; type?: string};
     /**
@@ -1501,8 +1316,7 @@ export namespace analytics_v3 {
      */
     selfLink?: string;
     /**
-     * Goal type. Possible values are URL_DESTINATION, VISIT_TIME_ON_SITE,
-     * VISIT_NUM_PAGES, AND EVENT.
+     * Goal type. Possible values are URL_DESTINATION, VISIT_TIME_ON_SITE, VISIT_NUM_PAGES, AND EVENT.
      */
     type?: string;
     /**
@@ -1535,15 +1349,12 @@ export namespace analytics_v3 {
       comparisonValue?: string;
     };
     /**
-     * Web property ID to which this goal belongs. The web property ID is of the
-     * form UA-XXXXX-YY.
+     * Web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.
      */
     webPropertyId?: string;
   }
   /**
-   * A goal collection lists Analytics goals to which the user has access. Each
-   * view (profile) can have a set of goals. Each resource in the Goal
-   * collection corresponds to a single Analytics goal.
+   * A goal collection lists Analytics goals to which the user has access. Each view (profile) can have a set of goals. Each resource in the Goal collection corresponds to a single Analytics goal.
    */
   export interface Schema$Goals {
     /**
@@ -1551,10 +1362,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$Goal[];
     /**
-     * The maximum number of resources the response can contain, regardless of
-     * the actual number of resources returned. Its value ranges from 1 to 1000
-     * with a value of 1000 by default, or otherwise specified by the
-     * max-results query parameter.
+     * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -1570,13 +1378,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the resources, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * resources in the result.
+     * The total number of results for the query, regardless of the number of resources in the result.
      */
     totalResults?: number;
     /**
@@ -1606,17 +1412,11 @@ export namespace analytics_v3 {
    */
   export interface Schema$IncludeConditions {
     /**
-     * The look-back window lets you specify a time frame for evaluating the
-     * behavior that qualifies users for your audience. For example, if your
-     * filters include users from Central Asia, and Transactions Greater than 2,
-     * and you set the look-back window to 14 days, then any user from Central
-     * Asia whose cumulative transactions exceed 2 during the last 14 days is
-     * added to the audience.
+     * The look-back window lets you specify a time frame for evaluating the behavior that qualifies users for your audience. For example, if your filters include users from Central Asia, and Transactions Greater than 2, and you set the look-back window to 14 days, then any user from Central Asia whose cumulative transactions exceed 2 during the last 14 days is added to the audience.
      */
     daysToLookBack?: number;
     /**
-     * Boolean indicating whether this segment is a smart list.
-     * https://support.google.com/analytics/answer/4628577
+     * Boolean indicating whether this segment is a smart list. https://support.google.com/analytics/answer/4628577
      */
     isSmartList?: boolean;
     /**
@@ -1649,8 +1449,7 @@ export namespace analytics_v3 {
      */
     id?: string;
     /**
-     * Internal ID for the web property to which this linked foreign account
-     * belongs.
+     * Internal ID for the web property to which this linked foreign account belongs.
      */
     internalWebPropertyId?: string;
     /**
@@ -1658,8 +1457,7 @@ export namespace analytics_v3 {
      */
     kind?: string;
     /**
-     * The foreign account ID. For example the an Google Ads `linkedAccountId`
-     * has the following format XXX-XXX-XXXX.
+     * The foreign account ID. For example the an Google Ads `linkedAccountId` has the following format XXX-XXX-XXXX.
      */
     linkedAccountId?: string;
     /**
@@ -1671,13 +1469,11 @@ export namespace analytics_v3 {
      */
     status?: string;
     /**
-     * The type of the foreign account. For example, `ADWORDS_LINKS`,
-     * `DBM_LINKS`, `MCC_LINKS` or `OPTIMIZE`.
+     * The type of the foreign account. For example, `ADWORDS_LINKS`, `DBM_LINKS`, `MCC_LINKS` or `OPTIMIZE`.
      */
     type?: string;
     /**
-     * Web property ID of the form UA-XXXXX-YY to which this linked foreign
-     * account belongs.
+     * Web property ID of the form UA-XXXXX-YY to which this linked foreign account belongs.
      */
     webPropertyId?: string;
   }
@@ -1686,8 +1482,7 @@ export namespace analytics_v3 {
    */
   export interface Schema$McfData {
     /**
-     * Column headers that list dimension names followed by the metric names.
-     * The order of dimensions and metrics is same as specified in the request.
+     * Column headers that list dimension names followed by the metric names. The order of dimensions and metrics is same as specified in the request.
      */
     columnHeaders?: Array<{
       columnType?: string;
@@ -1703,10 +1498,7 @@ export namespace analytics_v3 {
      */
     id?: string;
     /**
-     * The maximum number of rows the response can contain, regardless of the
-     * actual number of rows returned. Its value ranges from 1 to 10,000 with a
-     * value of 1000 by default, or otherwise specified by the max-results query
-     * parameter.
+     * The maximum number of rows the response can contain, regardless of the actual number of rows returned. Its value ranges from 1 to 10,000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -1722,8 +1514,7 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * Information for the view (profile), for which the Analytics data was
-     * requested.
+     * Information for the view (profile), for which the Analytics data was requested.
      */
     profileInfo?: {
       accountId?: string;
@@ -1750,9 +1541,7 @@ export namespace analytics_v3 {
       'start-index'?: number;
     };
     /**
-     * Analytics data rows, where each row contains a list of dimension values
-     * followed by the metric values. The order of dimensions and metrics is
-     * same as specified in the request.
+     * Analytics data rows, where each row contains a list of dimension values followed by the metric values. The order of dimensions and metrics is same as specified in the request.
      */
     rows?: Array<
       Array<{
@@ -1776,14 +1565,11 @@ export namespace analytics_v3 {
      */
     selfLink?: string;
     /**
-     * The total number of rows for the query, regardless of the number of rows
-     * in the response.
+     * The total number of rows for the query, regardless of the number of rows in the response.
      */
     totalResults?: number;
     /**
-     * Total values for the requested metrics over all the results, not just the
-     * results returned in this response. The order of the metric totals is same
-     * as the metric order specified in the request.
+     * Total values for the requested metrics over all the results, not just the results returned in this response. The order of the metric totals is same as the metric order specified in the request.
      */
     totalsForAllResults?: {[key: string]: string};
   }
@@ -1800,8 +1586,7 @@ export namespace analytics_v3 {
      */
     botFilteringEnabled?: boolean;
     /**
-     * Child link for this view (profile). Points to the list of goals for this
-     * view (profile).
+     * Child link for this view (profile). Points to the list of goals for this view (profile).
      */
     childLink?: {href?: string; type?: string};
     /**
@@ -1809,11 +1594,7 @@ export namespace analytics_v3 {
      */
     created?: string;
     /**
-     * The currency type associated with this view (profile), defaults to USD.
-     * The supported values are: USD, JPY, EUR, GBP, AUD, KRW, BRL, CNY, DKK,
-     * RUB, SEK, NOK, PLN, TRY, TWD, HKD, THB, IDR, ARS, MXN, VND, PHP, INR,
-     * CHF, CAD, CZK, NZD, HUF, BGN, LTL, ZAR, UAH, AED, BOB, CLP, COP, EGP,
-     * HRK, ILS, MAD, MYR, PEN, PKR, RON, RSD, SAR, SGD, VEF, LVL
+     * The currency type associated with this view (profile), defaults to USD. The supported values are: USD, JPY, EUR, GBP, AUD, KRW, BRL, CNY, DKK, RUB, SEK, NOK, PLN, TRY, TWD, HKD, THB, IDR, ARS, MXN, VND, PHP, INR, CHF, CAD, CZK, NZD, HUF, BGN, LTL, ZAR, UAH, AED, BOB, CLP, COP, EGP, HRK, ILS, MAD, MYR, PEN, PKR, RON, RSD, SAR, SGD, VEF, LVL
      */
     currency?: string;
     /**
@@ -1825,9 +1606,7 @@ export namespace analytics_v3 {
      */
     eCommerceTracking?: boolean;
     /**
-     * Indicates whether enhanced ecommerce tracking is enabled for this view
-     * (profile). This property can only be enabled if ecommerce tracking is
-     * enabled.
+     * Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled.
      */
     enhancedECommerceTracking?: boolean;
     /**
@@ -1851,8 +1630,7 @@ export namespace analytics_v3 {
      */
     name?: string;
     /**
-     * Parent link for this view (profile). Points to the web property to which
-     * this view (profile) belongs.
+     * Parent link for this view (profile). Points to the web property to which this view (profile) belongs.
      */
     parentLink?: {href?: string; type?: string};
     /**
@@ -1876,18 +1654,15 @@ export namespace analytics_v3 {
      */
     starred?: boolean;
     /**
-     * Whether or not Analytics will strip search category parameters from the
-     * URLs in your reports.
+     * Whether or not Analytics will strip search category parameters from the URLs in your reports.
      */
     stripSiteSearchCategoryParameters?: boolean;
     /**
-     * Whether or not Analytics will strip search query parameters from the URLs
-     * in your reports.
+     * Whether or not Analytics will strip search query parameters from the URLs in your reports.
      */
     stripSiteSearchQueryParameters?: boolean;
     /**
-     * Time zone for which this view (profile) has been configured. Time zones
-     * are identified by strings from the TZ database.
+     * Time zone for which this view (profile) has been configured. Time zones are identified by strings from the TZ database.
      */
     timezone?: string;
     /**
@@ -1899,8 +1674,7 @@ export namespace analytics_v3 {
      */
     updated?: string;
     /**
-     * Web property ID of the form UA-XXXXX-YY to which this view (profile)
-     * belongs.
+     * Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.
      */
     webPropertyId?: string;
     /**
@@ -1929,17 +1703,7 @@ export namespace analytics_v3 {
      */
     profileRef?: Schema$ProfileRef;
     /**
-     * The rank of this profile filter link relative to the other filters linked
-     * to the same profile. For readonly (i.e., list and get) operations, the
-     * rank always starts at 1. For write (i.e., create, update, or delete)
-     * operations, you may specify a value between 0 and 255 inclusively, [0,
-     * 255]. In order to insert a link at the end of the list, either don&#39;t
-     * specify a rank or set a rank to a number greater than the largest rank in
-     * the list. In order to insert a link to the beginning of the list specify
-     * a rank that is less than or equal to 1. The new link will move all
-     * existing filters with the same or lower rank down the list. After the
-     * link is inserted/updated/deleted all profile filter links will be
-     * renumbered starting at 1.
+     * The rank of this profile filter link relative to the other filters linked to the same profile. For readonly (i.e., list and get) operations, the rank always starts at 1. For write (i.e., create, update, or delete) operations, you may specify a value between 0 and 255 inclusively, [0, 255]. In order to insert a link at the end of the list, either don&#39;t specify a rank or set a rank to a number greater than the largest rank in the list. In order to insert a link to the beginning of the list specify a rank that is less than or equal to 1. The new link will move all existing filters with the same or lower rank down the list. After the link is inserted/updated/deleted all profile filter links will be renumbered starting at 1.
      */
     rank?: number;
     /**
@@ -1948,9 +1712,7 @@ export namespace analytics_v3 {
     selfLink?: string;
   }
   /**
-   * A profile filter link collection lists profile filter links between
-   * profiles and filters. Each resource in the collection corresponds to a
-   * profile filter link.
+   * A profile filter link collection lists profile filter links between profiles and filters. Each resource in the collection corresponds to a profile filter link.
    */
   export interface Schema$ProfileFilterLinks {
     /**
@@ -1958,10 +1720,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$ProfileFilterLink[];
     /**
-     * The maximum number of resources the response can contain, regardless of
-     * the actual number of resources returned. Its value ranges from 1 to 1,000
-     * with a value of 1000 by default, or otherwise specified by the
-     * max-results query parameter.
+     * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1,000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -1977,13 +1736,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the resources, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * results in the response.
+     * The total number of results for the query, regardless of the number of results in the response.
      */
     totalResults?: number;
     /**
@@ -2020,15 +1777,12 @@ export namespace analytics_v3 {
      */
     name?: string;
     /**
-     * Web property ID of the form UA-XXXXX-YY to which this view (profile)
-     * belongs.
+     * Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.
      */
     webPropertyId?: string;
   }
   /**
-   * A view (profile) collection lists Analytics views (profiles) to which the
-   * user has access. Each resource in the collection corresponds to a single
-   * Analytics view (profile).
+   * A view (profile) collection lists Analytics views (profiles) to which the user has access. Each resource in the collection corresponds to a single Analytics view (profile).
    */
   export interface Schema$Profiles {
     /**
@@ -2036,10 +1790,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$Profile[];
     /**
-     * The maximum number of resources the response can contain, regardless of
-     * the actual number of resources returned. Its value ranges from 1 to 1000
-     * with a value of 1000 by default, or otherwise specified by the
-     * max-results query parameter.
+     * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -2055,13 +1806,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the resources, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * results in the response.
+     * The total number of results for the query, regardless of the number of results in the response.
      */
     totalResults?: number;
     /**
@@ -2070,8 +1819,7 @@ export namespace analytics_v3 {
     username?: string;
   }
   /**
-   * JSON template for an Analytics ProfileSummary. ProfileSummary returns basic
-   * information (i.e., summary) for a profile.
+   * JSON template for an Analytics ProfileSummary. ProfileSummary returns basic information (i.e., summary) for a profile.
    */
   export interface Schema$ProfileSummary {
     /**
@@ -2100,8 +1848,7 @@ export namespace analytics_v3 {
    */
   export interface Schema$RealtimeData {
     /**
-     * Column headers that list dimension names followed by the metric names.
-     * The order of dimensions and metrics is same as specified in the request.
+     * Column headers that list dimension names followed by the metric names. The order of dimensions and metrics is same as specified in the request.
      */
     columnHeaders?: Array<{
       columnType?: string;
@@ -2117,8 +1864,7 @@ export namespace analytics_v3 {
      */
     kind?: string;
     /**
-     * Information for the view (profile), for which the real time data was
-     * requested.
+     * Information for the view (profile), for which the real time data was requested.
      */
     profileInfo?: {
       accountId?: string;
@@ -2140,9 +1886,7 @@ export namespace analytics_v3 {
       sort?: string[];
     };
     /**
-     * Real time data rows, where each row contains a list of dimension values
-     * followed by the metric values. The order of dimensions and metrics is
-     * same as specified in the request.
+     * Real time data rows, where each row contains a list of dimension values followed by the metric values. The order of dimensions and metrics is same as specified in the request.
      */
     rows?: string[][];
     /**
@@ -2150,14 +1894,11 @@ export namespace analytics_v3 {
      */
     selfLink?: string;
     /**
-     * The total number of rows for the query, regardless of the number of rows
-     * in the response.
+     * The total number of rows for the query, regardless of the number of rows in the response.
      */
     totalResults?: number;
     /**
-     * Total values for the requested metrics over all the results, not just the
-     * results returned in this response. The order of the metric totals is same
-     * as the metric order specified in the request.
+     * Total values for the requested metrics over all the results, not just the results returned in this response. The order of the metric totals is same as the metric order specified in the request.
      */
     totalsForAllResults?: {[key: string]: string};
   }
@@ -2170,8 +1911,7 @@ export namespace analytics_v3 {
      */
     accountId?: string;
     /**
-     * The simple audience definition that will cause a user to be added to an
-     * audience.
+     * The simple audience definition that will cause a user to be added to an audience.
      */
     audienceDefinition?: {includeConditions?: Schema$IncludeConditions};
     /**
@@ -2191,8 +1931,7 @@ export namespace analytics_v3 {
      */
     id?: string;
     /**
-     * Internal ID for the web property to which this remarketing audience
-     * belongs.
+     * Internal ID for the web property to which this remarketing audience belongs.
      */
     internalWebPropertyId?: string;
     /**
@@ -2200,8 +1939,7 @@ export namespace analytics_v3 {
      */
     kind?: string;
     /**
-     * The linked ad accounts associated with this remarketing audience. A
-     * remarketing audience can have only one linkedAdAccount currently.
+     * The linked ad accounts associated with this remarketing audience. A remarketing audience can have only one linkedAdAccount currently.
      */
     linkedAdAccounts?: Schema$LinkedForeignAccount[];
     /**
@@ -2213,8 +1951,7 @@ export namespace analytics_v3 {
      */
     name?: string;
     /**
-     * A state based audience definition that will cause a user to be added or
-     * removed from an audience.
+     * A state based audience definition that will cause a user to be added or removed from an audience.
      */
     stateBasedAudienceDefinition?: {
       excludeConditions?: {exclusionDuration?: string; segment?: string};
@@ -2225,15 +1962,12 @@ export namespace analytics_v3 {
      */
     updated?: string;
     /**
-     * Web property ID of the form UA-XXXXX-YY to which this remarketing
-     * audience belongs.
+     * Web property ID of the form UA-XXXXX-YY to which this remarketing audience belongs.
      */
     webPropertyId?: string;
   }
   /**
-   * A remarketing audience collection lists Analytics remarketing audiences to
-   * which the user has access. Each resource in the collection corresponds to a
-   * single Analytics remarketing audience.
+   * A remarketing audience collection lists Analytics remarketing audiences to which the user has access. Each resource in the collection corresponds to a single Analytics remarketing audience.
    */
   export interface Schema$RemarketingAudiences {
     /**
@@ -2241,10 +1975,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$RemarketingAudience[];
     /**
-     * The maximum number of resources the response can contain, regardless of
-     * the actual number of resources returned. Its value ranges from 1 to 1000
-     * with a value of 1000 by default, or otherwise specified by the
-     * max-results query parameter.
+     * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -2260,13 +1991,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the resources, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * results in the response.
+     * The total number of results for the query, regardless of the number of results in the response.
      */
     totalResults?: number;
     /**
@@ -2299,8 +2028,7 @@ export namespace analytics_v3 {
      */
     name?: string;
     /**
-     * Segment ID. Can be used with the &#39;segment&#39; parameter in Core
-     * Reporting API.
+     * Segment ID. Can be used with the &#39;segment&#39; parameter in Core Reporting API.
      */
     segmentId?: string;
     /**
@@ -2308,8 +2036,7 @@ export namespace analytics_v3 {
      */
     selfLink?: string;
     /**
-     * Type for a segment. Possible values are &quot;BUILT_IN&quot; or
-     * &quot;CUSTOM&quot;.
+     * Type for a segment. Possible values are &quot;BUILT_IN&quot; or &quot;CUSTOM&quot;.
      */
     type?: string;
     /**
@@ -2318,8 +2045,7 @@ export namespace analytics_v3 {
     updated?: string;
   }
   /**
-   * An segment collection lists Analytics segments that the user has access to.
-   * Each resource in the collection corresponds to a single Analytics segment.
+   * An segment collection lists Analytics segments that the user has access to. Each resource in the collection corresponds to a single Analytics segment.
    */
   export interface Schema$Segments {
     /**
@@ -2327,10 +2053,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$Segment[];
     /**
-     * The maximum number of resources the response can contain, regardless of
-     * the actual number of resources returned. Its value ranges from 1 to 1000
-     * with a value of 1000 by default, or otherwise specified by the
-     * max-results query parameter.
+     * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -2346,13 +2069,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the resources, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * results in the response.
+     * The total number of results for the query, regardless of the number of results in the response.
      */
     totalResults?: number;
     /**
@@ -2381,10 +2102,7 @@ export namespace analytics_v3 {
      */
     dimensions?: string;
     /**
-     * The type of download you need to use for the report data file. Possible
-     * values include `GOOGLE_DRIVE` and `GOOGLE_CLOUD_STORAGE`. If the value is
-     * `GOOGLE_DRIVE`, see the `driveDownloadDetails` field. If the value is
-     * `GOOGLE_CLOUD_STORAGE`, see the `cloudStorageDownloadDetails` field.
+     * The type of download you need to use for the report data file. Possible values include `GOOGLE_DRIVE` and `GOOGLE_CLOUD_STORAGE`. If the value is `GOOGLE_DRIVE`, see the `driveDownloadDetails` field. If the value is `GOOGLE_CLOUD_STORAGE`, see the `cloudStorageDownloadDetails` field.
      */
     downloadType?: string;
     /**
@@ -2428,8 +2146,7 @@ export namespace analytics_v3 {
      */
     'start-date'?: string;
     /**
-     * Status of this unsampled report. Possible values are PENDING, COMPLETED,
-     * or FAILED.
+     * Status of this unsampled report. Possible values are PENDING, COMPLETED, or FAILED.
      */
     status?: string;
     /**
@@ -2441,16 +2158,12 @@ export namespace analytics_v3 {
      */
     updated?: string;
     /**
-     * Web property ID to which this unsampled report belongs. The web property
-     * ID is of the form UA-XXXXX-YY.
+     * Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.
      */
     webPropertyId?: string;
   }
   /**
-   * An unsampled report collection lists Analytics unsampled reports to which
-   * the user has access. Each view (profile) can have a set of unsampled
-   * reports. Each resource in the unsampled report collection corresponds to a
-   * single Analytics unsampled report.
+   * An unsampled report collection lists Analytics unsampled reports to which the user has access. Each view (profile) can have a set of unsampled reports. Each resource in the unsampled report collection corresponds to a single Analytics unsampled report.
    */
   export interface Schema$UnsampledReports {
     /**
@@ -2458,10 +2171,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$UnsampledReport[];
     /**
-     * The maximum number of resources the response can contain, regardless of
-     * the actual number of resources returned. Its value ranges from 1 to 1000
-     * with a value of 1000 by default, or otherwise specified by the
-     * max-results query parameter.
+     * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -2477,13 +2187,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the resources, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * resources in the result.
+     * The total number of results for the query, regardless of the number of resources in the result.
      */
     totalResults?: number;
     /**
@@ -2516,8 +2224,7 @@ export namespace analytics_v3 {
      */
     kind?: string;
     /**
-     * Upload status. Possible values: PENDING, COMPLETED, FAILED, DELETING,
-     * DELETED.
+     * Upload status. Possible values: PENDING, COMPLETED, FAILED, DELETING, DELETED.
      */
     status?: string;
     /**
@@ -2526,9 +2233,7 @@ export namespace analytics_v3 {
     uploadTime?: string;
   }
   /**
-   * Upload collection lists Analytics uploads to which the user has access.
-   * Each custom data source can have a set of uploads. Each resource in the
-   * upload collection corresponds to a single Analytics data upload.
+   * Upload collection lists Analytics uploads to which the user has access. Each custom data source can have a set of uploads. Each resource in the upload collection corresponds to a single Analytics data upload.
    */
   export interface Schema$Uploads {
     /**
@@ -2536,10 +2241,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$Upload[];
     /**
-     * The maximum number of resources the response can contain, regardless of
-     * the actual number of resources returned. Its value ranges from 1 to 1000
-     * with a value of 1000 by default, or otherwise specified by the
-     * max-results query parameter.
+     * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -2555,13 +2257,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the resources, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * resources in the result.
+     * The total number of results for the query, regardless of the number of resources in the result.
      */
     totalResults?: number;
   }
@@ -2570,8 +2270,7 @@ export namespace analytics_v3 {
    */
   export interface Schema$UserDeletionRequest {
     /**
-     * This marks the point in time for which all user data before should be
-     * deleted
+     * This marks the point in time for which all user data before should be deleted
      */
     deletionRequestTime?: string;
     /**
@@ -2606,9 +2305,7 @@ export namespace analytics_v3 {
     kind?: string;
   }
   /**
-   * A web property collection lists Analytics web properties to which the user
-   * has access. Each resource in the collection corresponds to a single
-   * Analytics web property.
+   * A web property collection lists Analytics web properties to which the user has access. Each resource in the collection corresponds to a single Analytics web property.
    */
   export interface Schema$Webproperties {
     /**
@@ -2616,10 +2313,7 @@ export namespace analytics_v3 {
      */
     items?: Schema$Webproperty[];
     /**
-     * The maximum number of resources the response can contain, regardless of
-     * the actual number of resources returned. Its value ranges from 1 to 1000
-     * with a value of 1000 by default, or otherwise specified by the
-     * max-results query parameter.
+     * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
     itemsPerPage?: number;
     /**
@@ -2635,13 +2329,11 @@ export namespace analytics_v3 {
      */
     previousLink?: string;
     /**
-     * The starting index of the resources, which is 1 by default or otherwise
-     * specified by the start-index query parameter.
+     * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
     startIndex?: number;
     /**
-     * The total number of results for the query, regardless of the number of
-     * results in the response.
+     * The total number of results for the query, regardless of the number of results in the response.
      */
     totalResults?: number;
     /**
@@ -2658,8 +2350,7 @@ export namespace analytics_v3 {
      */
     accountId?: string;
     /**
-     * Child link for this web property. Points to the list of views (profiles)
-     * for this web property.
+     * Child link for this web property. Points to the list of views (profiles) for this web property.
      */
     childLink?: {href?: string; type?: string};
     /**
@@ -2667,16 +2358,11 @@ export namespace analytics_v3 {
      */
     created?: string;
     /**
-     * Set to true to reset the retention period of the user identifier with
-     * each new event from that user (thus setting the expiration date to
-     * current time plus retention period). Set to false to delete data
-     * associated with the user identifer automatically after the rentention
-     * period. This property cannot be set on insert.
+     * Set to true to reset the retention period of the user identifier with each new event from that user (thus setting the expiration date to current time plus retention period). Set to false to delete data associated with the user identifer automatically after the rentention period. This property cannot be set on insert.
      */
     dataRetentionResetOnNewActivity?: boolean;
     /**
-     * The length of time for which user and event data is retained. This
-     * property cannot be set on insert.
+     * The length of time for which user and event data is retained. This property cannot be set on insert.
      */
     dataRetentionTtl?: string;
     /**
@@ -2708,8 +2394,7 @@ export namespace analytics_v3 {
      */
     name?: string;
     /**
-     * Parent link for this web property. Points to the account to which this
-     * web property belongs.
+     * Parent link for this web property. Points to the account to which this web property belongs.
      */
     parentLink?: {href?: string; type?: string};
     /**
@@ -2767,8 +2452,7 @@ export namespace analytics_v3 {
     name?: string;
   }
   /**
-   * JSON template for an Analytics WebPropertySummary. WebPropertySummary
-   * returns basic information (i.e., summary) for a web property.
+   * JSON template for an Analytics WebPropertySummary. WebPropertySummary returns basic information (i.e., summary) for a web property.
    */
   export interface Schema$WebPropertySummary {
     /**
@@ -2915,29 +2599,23 @@ export namespace analytics_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A comma-separated list of Analytics dimensions. E.g.,
-     * 'ga:browser,ga:city'.
+     * A comma-separated list of Analytics dimensions. E.g., 'ga:browser,ga:city'.
      */
     dimensions?: string;
     /**
-     * End date for fetching Analytics data. Request can should specify an end
-     * date formatted as YYYY-MM-DD, or as a relative date (e.g., today,
-     * yesterday, or 7daysAgo). The default value is yesterday.
+     * End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
      */
     'end-date'?: string;
     /**
-     * A comma-separated list of dimension or metric filters to be applied to
-     * Analytics data.
+     * A comma-separated list of dimension or metric filters to be applied to Analytics data.
      */
     filters?: string;
     /**
-     * Unique table ID for retrieving Analytics data. Table ID is of the form
-     * ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     * Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
      */
     ids?: string;
     /**
-     * The response will include empty rows if this parameter is set to true,
-     * the default is true
+     * The response will include empty rows if this parameter is set to true, the default is true
      */
     'include-empty-rows'?: boolean;
     /**
@@ -2945,8 +2623,7 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * A comma-separated list of Analytics metrics. E.g.,
-     * 'ga:sessions,ga:pageviews'. At least one metric must be specified.
+     * A comma-separated list of Analytics metrics. E.g., 'ga:sessions,ga:pageviews'. At least one metric must be specified.
      */
     metrics?: string;
     /**
@@ -2962,19 +2639,15 @@ export namespace analytics_v3 {
      */
     segment?: string;
     /**
-     * A comma-separated list of dimensions or metrics that determine the sort
-     * order for Analytics data.
+     * A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
      */
     sort?: string;
     /**
-     * Start date for fetching Analytics data. Requests can specify a start date
-     * formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday,
-     * or 7daysAgo). The default value is 7daysAgo.
+     * Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
      */
     'start-date'?: string;
     /**
-     * An index of the first entity to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
   }
@@ -3073,24 +2746,19 @@ export namespace analytics_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A comma-separated list of Multi-Channel Funnels dimensions. E.g.,
-     * 'mcf:source,mcf:medium'.
+     * A comma-separated list of Multi-Channel Funnels dimensions. E.g., 'mcf:source,mcf:medium'.
      */
     dimensions?: string;
     /**
-     * End date for fetching Analytics data. Requests can specify a start date
-     * formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday,
-     * or 7daysAgo). The default value is 7daysAgo.
+     * End date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
      */
     'end-date'?: string;
     /**
-     * A comma-separated list of dimension or metric filters to be applied to
-     * the Analytics data.
+     * A comma-separated list of dimension or metric filters to be applied to the Analytics data.
      */
     filters?: string;
     /**
-     * Unique table ID for retrieving Analytics data. Table ID is of the form
-     * ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     * Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
      */
     ids?: string;
     /**
@@ -3098,9 +2766,7 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * A comma-separated list of Multi-Channel Funnels metrics. E.g.,
-     * 'mcf:totalConversions,mcf:totalConversionValue'. At least one metric must
-     * be specified.
+     * A comma-separated list of Multi-Channel Funnels metrics. E.g., 'mcf:totalConversions,mcf:totalConversionValue'. At least one metric must be specified.
      */
     metrics?: string;
     /**
@@ -3108,19 +2774,15 @@ export namespace analytics_v3 {
      */
     samplingLevel?: string;
     /**
-     * A comma-separated list of dimensions or metrics that determine the sort
-     * order for the Analytics data.
+     * A comma-separated list of dimensions or metrics that determine the sort order for the Analytics data.
      */
     sort?: string;
     /**
-     * Start date for fetching Analytics data. Requests can specify a start date
-     * formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday,
-     * or 7daysAgo). The default value is 7daysAgo.
+     * Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
      */
     'start-date'?: string;
     /**
-     * An index of the first entity to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
   }
@@ -3219,18 +2881,15 @@ export namespace analytics_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A comma-separated list of real time dimensions. E.g.,
-     * 'rt:medium,rt:city'.
+     * A comma-separated list of real time dimensions. E.g., 'rt:medium,rt:city'.
      */
     dimensions?: string;
     /**
-     * A comma-separated list of dimension or metric filters to be applied to
-     * real time data.
+     * A comma-separated list of dimension or metric filters to be applied to real time data.
      */
     filters?: string;
     /**
-     * Unique table ID for retrieving real time data. Table ID is of the form
-     * ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     * Unique table ID for retrieving real time data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
      */
     ids?: string;
     /**
@@ -3238,13 +2897,11 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * A comma-separated list of real time metrics. E.g., 'rt:activeUsers'. At
-     * least one metric must be specified.
+     * A comma-separated list of real time metrics. E.g., 'rt:activeUsers'. At least one metric must be specified.
      */
     metrics?: string;
     /**
-     * A comma-separated list of dimensions or metrics that determine the sort
-     * order for real time data.
+     * A comma-separated list of dimensions or metrics that determine the sort order for real time data.
      */
     sort?: string;
   }
@@ -3408,8 +3065,7 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * An index of the first account to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
   }
@@ -3422,8 +3078,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.accountSummaries.list
-     * @desc Lists account summaries (lightweight tree comprised of
-     * accounts/properties/profiles) to which the user has access.
+     * @desc Lists account summaries (lightweight tree comprised of accounts/properties/profiles) to which the user has access.
      * @alias analytics.management.accountSummaries.list
      * @memberOf! ()
      *
@@ -3504,13 +3159,11 @@ export namespace analytics_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of account summaries to include in this response,
-     * where the largest acceptable value is 1000.
+     * The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
      */
     'max-results'?: number;
     /**
-     * An index of the first entity to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
   }
@@ -3871,8 +3524,7 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * An index of the first account-user link to retrieve. Use this parameter
-     * as a pagination mechanism along with the max-results parameter.
+     * An index of the first account-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
   }
@@ -4095,8 +3747,7 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * A 1-based index of the first custom data source to retrieve. Use this
-     * parameter as a pagination mechanism along with the max-results parameter.
+     * A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
@@ -4342,8 +3993,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.customDimensions.patch
-     * @desc Updates an existing custom dimension. This method supports patch
-     * semantics.
+     * @desc Updates an existing custom dimension. This method supports patch semantics.
      * @alias analytics.management.customDimensions.patch
      * @memberOf! ()
      *
@@ -4555,8 +4205,7 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * An index of the first entity to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
@@ -4580,8 +4229,7 @@ export namespace analytics_v3 {
      */
     customDimensionId?: string;
     /**
-     * Force the update and ignore any warnings related to the custom dimension
-     * being linked to a custom data source / data set.
+     * Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
      */
     ignoreCustomDataSourceLinks?: boolean;
     /**
@@ -4610,8 +4258,7 @@ export namespace analytics_v3 {
      */
     customDimensionId?: string;
     /**
-     * Force the update and ignore any warnings related to the custom dimension
-     * being linked to a custom data source / data set.
+     * Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
      */
     ignoreCustomDataSourceLinks?: boolean;
     /**
@@ -4862,8 +4509,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.customMetrics.patch
-     * @desc Updates an existing custom metric. This method supports patch
-     * semantics.
+     * @desc Updates an existing custom metric. This method supports patch semantics.
      * @alias analytics.management.customMetrics.patch
      * @memberOf! ()
      *
@@ -5075,8 +4721,7 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * An index of the first entity to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
@@ -5100,8 +4745,7 @@ export namespace analytics_v3 {
      */
     customMetricId?: string;
     /**
-     * Force the update and ignore any warnings related to the custom metric
-     * being linked to a custom data source / data set.
+     * Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
      */
     ignoreCustomDataSourceLinks?: boolean;
     /**
@@ -5130,8 +4774,7 @@ export namespace analytics_v3 {
      */
     customMetricId?: string;
     /**
-     * Force the update and ignore any warnings related to the custom metric
-     * being linked to a custom data source / data set.
+     * Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
      */
     ignoreCustomDataSourceLinks?: boolean;
     /**
@@ -5470,8 +5113,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.experiments.patch
-     * @desc Update an existing experiment. This method supports patch
-     * semantics.
+     * @desc Update an existing experiment. This method supports patch semantics.
      * @alias analytics.management.experiments.patch
      * @memberOf! ()
      *
@@ -5729,8 +5371,7 @@ export namespace analytics_v3 {
      */
     profileId?: string;
     /**
-     * An index of the first experiment to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
@@ -6308,8 +5949,7 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * An index of the first entity to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
   }
@@ -6798,8 +6438,7 @@ export namespace analytics_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Account ID to retrieve goals for. Can either be a specific account ID or
-     * '~all', which refers to all the accounts that user has access to.
+     * Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
      */
     accountId?: string;
     /**
@@ -6807,20 +6446,15 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * View (Profile) ID to retrieve goals for. Can either be a specific view
-     * (profile) ID or '~all', which refers to all the views (profiles) that
-     * user has access to.
+     * View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
      */
     profileId?: string;
     /**
-     * An index of the first goal to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
-     * Web property ID to retrieve goals for. Can either be a specific web
-     * property ID or '~all', which refers to all the web properties that user
-     * has access to.
+     * Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
      */
     webPropertyId?: string;
   }
@@ -7198,8 +6832,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.profileFilterLinks.patch
-     * @desc Update an existing profile filter link. This method supports patch
-     * semantics.
+     * @desc Update an existing profile filter link. This method supports patch semantics.
      * @alias analytics.management.profileFilterLinks.patch
      * @memberOf! ()
      *
@@ -7443,19 +7076,15 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * Profile ID to retrieve filter links for. Can either be a specific profile
-     * ID or '~all', which refers to all the profiles that user has access to.
+     * Profile ID to retrieve filter links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
      */
     profileId?: string;
     /**
-     * An index of the first entity to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
-     * Web property Id for profile filter links for. Can either be a specific
-     * web property ID or '~all', which refers to all the web properties that
-     * user has access to.
+     * Web property Id for profile filter links for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
      */
     webPropertyId?: string;
   }
@@ -7823,8 +7452,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.profiles.patch
-     * @desc Updates an existing view (profile). This method supports patch
-     * semantics.
+     * @desc Updates an existing view (profile). This method supports patch semantics.
      * @alias analytics.management.profiles.patch
      * @memberOf! ()
      *
@@ -8042,9 +7670,7 @@ export namespace analytics_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Account ID for the view (profiles) to retrieve. Can either be a specific
-     * account ID or '~all', which refers to all the accounts to which the user
-     * has access.
+     * Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
      */
     accountId?: string;
     /**
@@ -8052,14 +7678,11 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * An index of the first entity to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
-     * Web property ID for the views (profiles) to retrieve. Can either be a
-     * specific web property ID or '~all', which refers to all the web
-     * properties to which the user has access.
+     * Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
      */
     webPropertyId?: string;
   }
@@ -8352,8 +7975,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.profileUserLinks.update
-     * @desc Updates permissions for an existing user on the given view
-     * (profile).
+     * @desc Updates permissions for an existing user on the given view (profile).
      * @alias analytics.management.profileUserLinks.update
      * @memberOf! ()
      *
@@ -8495,20 +8117,15 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * View (Profile) ID to retrieve the profile-user links for. Can either be a
-     * specific profile ID or '~all', which refers to all the profiles that user
-     * has access to.
+     * View (Profile) ID to retrieve the profile-user links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
      */
     profileId?: string;
     /**
-     * An index of the first profile-user link to retrieve. Use this parameter
-     * as a pagination mechanism along with the max-results parameter.
+     * An index of the first profile-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
-     * Web Property ID which the given view (profile) belongs to. Can either be
-     * a specific web property ID or '~all', which refers to all the web
-     * properties that user has access to.
+     * Web Property ID which the given view (profile) belongs to. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
      */
     webPropertyId?: string;
   }
@@ -8856,8 +8473,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.remarketingAudience.patch
-     * @desc Updates an existing remarketing audience. This method supports
-     * patch semantics.
+     * @desc Updates an existing remarketing audience. This method supports patch semantics.
      * @alias analytics.management.remarketingAudience.patch
      * @memberOf! ()
      *
@@ -9087,8 +8703,7 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * An index of the first entity to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
@@ -9243,8 +8858,7 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * An index of the first segment to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
   }
@@ -9664,8 +9278,7 @@ export namespace analytics_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Account ID to retrieve unsampled reports for. Must be a specific account
-     * ID, ~all is not supported.
+     * Account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.
      */
     accountId?: string;
     /**
@@ -9673,18 +9286,15 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * View (Profile) ID to retrieve unsampled reports for. Must be a specific
-     * view (profile) ID, ~all is not supported.
+     * View (Profile) ID to retrieve unsampled reports for. Must be a specific view (profile) ID, ~all is not supported.
      */
     profileId?: string;
     /**
-     * An index of the first unsampled report to retrieve. Use this parameter as
-     * a pagination mechanism along with the max-results parameter.
+     * An index of the first unsampled report to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
-     * Web property ID to retrieve unsampled reports for. Must be a specific web
-     * property ID, ~all is not supported.
+     * Web property ID to retrieve unsampled reports for. Must be a specific web property ID, ~all is not supported.
      */
     webPropertyId?: string;
   }
@@ -10082,8 +9692,7 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * A 1-based index of the first upload to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * A 1-based index of the first upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
@@ -10210,9 +9819,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webproperties.insert
-     * @desc Create a new property if the account has fewer than 20 properties.
-     * Web properties are visible in the Google Analytics interface only if they
-     * have at least one profile.
+     * @desc Create a new property if the account has fewer than 20 properties. Web properties are visible in the Google Analytics interface only if they have at least one profile.
      * @alias analytics.management.webproperties.insert
      * @memberOf! ()
      *
@@ -10363,8 +9970,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webproperties.patch
-     * @desc Updates an existing web property. This method supports patch
-     * semantics.
+     * @desc Updates an existing web property. This method supports patch semantics.
      * @alias analytics.management.webproperties.patch
      * @memberOf! ()
      *
@@ -10556,9 +10162,7 @@ export namespace analytics_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Account ID to retrieve web properties for. Can either be a specific
-     * account ID or '~all', which refers to all the accounts that user has
-     * access to.
+     * Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
      */
     accountId?: string;
     /**
@@ -10566,8 +10170,7 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * An index of the first entity to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
   }
@@ -10700,8 +10303,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webPropertyAdWordsLinks.get
-     * @desc Returns a web property-Google Ads link to which the user has
-     * access.
+     * @desc Returns a web property-Google Ads link to which the user has access.
      * @alias analytics.management.webPropertyAdWordsLinks.get
      * @memberOf! ()
      *
@@ -10934,8 +10536,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webPropertyAdWordsLinks.patch
-     * @desc Updates an existing webProperty-Google Ads link. This method
-     * supports patch semantics.
+     * @desc Updates an existing webProperty-Google Ads link. This method supports patch semantics.
      * @alias analytics.management.webPropertyAdWordsLinks.patch
      * @memberOf! ()
      *
@@ -11169,13 +10770,11 @@ export namespace analytics_v3 {
      */
     accountId?: string;
     /**
-     * The maximum number of webProperty-Google Ads links to include in this
-     * response.
+     * The maximum number of webProperty-Google Ads links to include in this response.
      */
     'max-results'?: number;
     /**
-     * An index of the first webProperty-Google Ads link to retrieve. Use this
-     * parameter as a pagination mechanism along with the max-results parameter.
+     * An index of the first webProperty-Google Ads link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
@@ -11602,14 +11201,11 @@ export namespace analytics_v3 {
      */
     'max-results'?: number;
     /**
-     * An index of the first webProperty-user link to retrieve. Use this
-     * parameter as a pagination mechanism along with the max-results parameter.
+     * An index of the first webProperty-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
-     * Web Property ID for the webProperty-user links to retrieve. Can either be
-     * a specific web property ID or '~all', which refers to all the web
-     * properties that user has access to.
+     * Web Property ID for the webProperty-user links to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
      */
     webPropertyId?: string;
   }
@@ -11734,8 +11330,7 @@ export namespace analytics_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core
-     * Reporting API
+     * Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core Reporting API
      */
     reportType?: string;
   }

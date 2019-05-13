@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace pagespeedonline_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace pagespeedonline_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -78,8 +75,7 @@ export namespace pagespeedonline_v1 {
   /**
    * PageSpeed Insights API
    *
-   * Analyzes the performance of a web page and provides tailored suggestions to
-   * make that page faster.
+   * Analyzes the performance of a web page and provides tailored suggestions to make that page faster.
    *
    * @example
    * const {google} = require('googleapis');
@@ -96,7 +92,10 @@ export namespace pagespeedonline_v1 {
     pagespeedapi: Resource$Pagespeedapi;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.pagespeedapi = new Resource$Pagespeedapi(this.context);
     }
@@ -108,8 +107,7 @@ export namespace pagespeedonline_v1 {
      */
     captchaResult?: string;
     /**
-     * Localized PageSpeed results. Contains a ruleResults entry for each
-     * PageSpeed rule instantiated and run by the server.
+     * Localized PageSpeed results. Contains a ruleResults entry for each PageSpeed rule instantiated and run by the server.
      */
     formattedResults?: {
       locale?: string;
@@ -137,13 +135,11 @@ export namespace pagespeedonline_v1 {
       };
     };
     /**
-     * Canonicalized and final URL for the document, after following page
-     * redirects (if any).
+     * Canonicalized and final URL for the document, after following page redirects (if any).
      */
     id?: string;
     /**
-     * List of rules that were specified in the request, but which the server
-     * did not know how to instantiate.
+     * List of rules that were specified in the request, but which the server did not know how to instantiate.
      */
     invalidRules?: string[];
     /**
@@ -151,8 +147,7 @@ export namespace pagespeedonline_v1 {
      */
     kind?: string;
     /**
-     * Summary statistics for the page, such as number of JavaScript bytes,
-     * number of HTML bytes, etc.
+     * Summary statistics for the page, such as number of JavaScript bytes, number of HTML bytes, etc.
      */
     pageStats?: {
       cssResponseBytes?: string;
@@ -170,14 +165,11 @@ export namespace pagespeedonline_v1 {
       totalRequestBytes?: string;
     };
     /**
-     * Response code for the document. 200 indicates a normal page load. 4xx/5xx
-     * indicates an error.
+     * Response code for the document. 200 indicates a normal page load. 4xx/5xx indicates an error.
      */
     responseCode?: number;
     /**
-     * The PageSpeed Score (0-100), which indicates how much faster a page could
-     * be. A high score indicates little room for improvement, while a lower
-     * score indicates more room for improvement.
+     * The PageSpeed Score (0-100), which indicates how much faster a page could be. A high score indicates little room for improvement, while a lower score indicates more room for improvement.
      */
     score?: number;
     /**
@@ -207,9 +199,7 @@ export namespace pagespeedonline_v1 {
 
     /**
      * pagespeedonline.pagespeedapi.runpagespeed
-     * @desc Runs PageSpeed analysis on the page at the specified URL, and
-     * returns a PageSpeed score, a list of suggestions to make that page
-     * faster, and other information.
+     * @desc Runs PageSpeed analysis on the page at the specified URL, and returns a PageSpeed score, a list of suggestions to make that page faster, and other information.
      * @alias pagespeedonline.pagespeedapi.runpagespeed
      * @memberOf! ()
      *
@@ -293,8 +283,7 @@ export namespace pagespeedonline_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Indicates if third party resources should be filtered out before
-     * PageSpeed analysis.
+     * Indicates if third party resources should be filtered out before PageSpeed analysis.
      */
     filter_third_party_resources?: boolean;
     /**

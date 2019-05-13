@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace cloudtrace_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace cloudtrace_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,11 +91,7 @@ export namespace cloudtrace_v1 {
   /**
    * Stackdriver Trace API
    *
-   * Sends application trace data to Stackdriver Trace for viewing. Trace data
-   * is collected for all App Engine applications by default. Trace data from
-   * other applications can be provided using this API. This library is used to
-   * interact with the Trace API directly. If you are looking to instrument your
-   * application for Stackdriver Trace, we recommend using OpenCensus.
+   * Sends application trace data to Stackdriver Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Trace API directly. If you are looking to instrument your application for Stackdriver Trace, we recommend using OpenCensus.
    *
    * @example
    * const {google} = require('googleapis');
@@ -116,18 +108,17 @@ export namespace cloudtrace_v1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -135,9 +126,7 @@ export namespace cloudtrace_v1 {
    */
   export interface Schema$ListTracesResponse {
     /**
-     * If defined, indicates that there are more traces that match the request
-     * and that this value should be passed to the next request to continue
-     * retrieving additional traces.
+     * If defined, indicates that there are more traces that match the request and that this value should be passed to the next request to continue retrieving additional traces.
      */
     nextPageToken?: string;
     /**
@@ -146,9 +135,7 @@ export namespace cloudtrace_v1 {
     traces?: Schema$Trace[];
   }
   /**
-   * A trace describes how long it takes for an application to perform an
-   * operation. It consists of a set of spans, each of which represent a single
-   * timed event within the operation.
+   * A trace describes how long it takes for an application to perform an operation. It consists of a set of spans, each of which represent a single timed event within the operation.
    */
   export interface Schema$Trace {
     /**
@@ -160,9 +147,7 @@ export namespace cloudtrace_v1 {
      */
     spans?: Schema$TraceSpan[];
     /**
-     * Globally unique identifier for the trace. This identifier is a 128-bit
-     * numeric value formatted as a 32-byte hex string. For example,
-     * `382d4f4c6b7bb2f4a972559d9085001d`.
+     * Globally unique identifier for the trace. This identifier is a 128-bit numeric value formatted as a 32-byte hex string. For example, `382d4f4c6b7bb2f4a972559d9085001d`.
      */
     traceId?: string;
   }
@@ -176,11 +161,7 @@ export namespace cloudtrace_v1 {
     traces?: Schema$Trace[];
   }
   /**
-   * A span represents a single timed event within a trace. Spans can be nested
-   * and form a trace tree. Often, a trace contains a root span that describes
-   * the end-to-end latency of an operation and, optionally, one or more
-   * subspans for its suboperations. Spans do not need to be contiguous. There
-   * may be gaps between spans in a trace.
+   * A span represents a single timed event within a trace. Spans can be nested and form a trace tree. Often, a trace contains a root span that describes the end-to-end latency of an operation and, optionally, one or more subspans for its suboperations. Spans do not need to be contiguous. There may be gaps between spans in a trace.
    */
   export interface Schema$TraceSpan {
     /**
@@ -188,36 +169,15 @@ export namespace cloudtrace_v1 {
      */
     endTime?: string;
     /**
-     * Distinguishes between spans generated in a particular context. For
-     * example, two spans with the same name may be distinguished using
-     * `RPC_CLIENT` and `RPC_SERVER` to identify queueing latency associated
-     * with the span.
+     * Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `RPC_CLIENT` and `RPC_SERVER` to identify queueing latency associated with the span.
      */
     kind?: string;
     /**
-     * Collection of labels associated with the span. Label keys must be less
-     * than 128 bytes. Label values must be less than 16 kilobytes (10MB for
-     * `/stacktrace` values).  Some predefined label keys exist, or you may
-     * create your own. When creating your own, we recommend the following
-     * formats:  * `/category/product/key` for agents of well-known products
-     * (e.g.   `/db/mongodb/read_size`). * `short_host/path/key` for
-     * domain-specific keys (e.g.   `foo.com/myproduct/bar`)  Predefined labels
-     * include:  *   `/agent` *   `/component` *   `/error/message` *
-     * `/error/name` *   `/http/client_city` *   `/http/client_country` *
-     * `/http/client_protocol` *   `/http/client_region` *   `/http/host` *
-     * `/http/method` *   `/http/path` *   `/http/redirected_url` *
-     * `/http/request/size` *   `/http/response/size` *   `/http/route` *
-     * `/http/status_code` *   `/http/url` *   `/http/user_agent` *   `/pid` *
-     * `/stacktrace` *   `/tid`
+     * Collection of labels associated with the span. Label keys must be less than 128 bytes. Label values must be less than 16 kilobytes (10MB for `/stacktrace` values).  Some predefined label keys exist, or you may create your own. When creating your own, we recommend the following formats:  * `/category/product/key` for agents of well-known products (e.g.   `/db/mongodb/read_size`). * `short_host/path/key` for domain-specific keys (e.g.   `foo.com/myproduct/bar`)  Predefined labels include:  *   `/agent` *   `/component` *   `/error/message` *   `/error/name` *   `/http/client_city` *   `/http/client_country` *   `/http/client_protocol` *   `/http/client_region` *   `/http/host` *   `/http/method` *   `/http/path` *   `/http/redirected_url` *   `/http/request/size` *   `/http/response/size` *   `/http/route` *   `/http/status_code` *   `/http/url` *   `/http/user_agent` *   `/pid` *   `/stacktrace` *   `/tid`
      */
     labels?: {[key: string]: string};
     /**
-     * Name of the span. Must be less than 128 bytes. The span name is sanitized
-     * and displayed in the Stackdriver Trace tool in the Google Cloud Platform
-     * Console. The name may be a method name or some other per-call site name.
-     * For the same executable and the same call point, a best practice is to
-     * use a consistent name, which makes it easier to correlate cross-trace
-     * spans.
+     * Name of the span. Must be less than 128 bytes. The span name is sanitized and displayed in the Stackdriver Trace tool in the Google Cloud Platform Console. The name may be a method name or some other per-call site name. For the same executable and the same call point, a best practice is to use a consistent name, which makes it easier to correlate cross-trace spans.
      */
     name?: string;
     /**
@@ -225,8 +185,7 @@ export namespace cloudtrace_v1 {
      */
     parentSpanId?: string;
     /**
-     * Identifier for the span. Must be a 64-bit integer other than 0 and unique
-     * within a trace. For example, `2205310701640571284`.
+     * Identifier for the span. Must be a 64-bit integer other than 0 and unique within a trace. For example, `2205310701640571284`.
      */
     spanId?: string;
     /**
@@ -245,25 +204,19 @@ export namespace cloudtrace_v1 {
 
     /**
      * cloudtrace.projects.patchTraces
-     * @desc Sends new traces to Stackdriver Trace or updates existing traces.
-     * If the ID of a trace that you send matches that of an existing trace, any
-     * fields in the existing trace and its spans are overwritten by the
-     * provided values, and any new fields provided are merged with the existing
-     * trace data. If the ID does not match, a new trace is created.
+     * @desc Sends new traces to Stackdriver Trace or updates existing traces. If the ID of a trace that you send matches that of an existing trace, any fields in the existing trace and its spans are overwritten by the provided values, and any new fields provided are merged with the existing trace data. If the ID does not match, a new trace is created.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Stackdriver Trace API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudtrace
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -276,8 +229,7 @@ export namespace cloudtrace_v1 {
      *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
+     *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
@@ -298,10 +250,9 @@ export namespace cloudtrace_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -410,14 +361,12 @@ export namespace cloudtrace_v1 {
      * // 1. If not already done, enable the Stackdriver Trace API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudtrace
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -452,10 +401,9 @@ export namespace cloudtrace_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -531,22 +479,19 @@ export namespace cloudtrace_v1 {
 
     /**
      * cloudtrace.projects.traces.list
-     * @desc Returns of a list of traces that match the specified filter
-     * conditions.
+     * @desc Returns of a list of traces that match the specified filter conditions.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Stackdriver Trace API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudtrace
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -572,8 +517,8 @@ export namespace cloudtrace_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < tracesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `tracesPage`: console.log(JSON.stringify(tracesPage[i], null, 2));
+     *       // TODO: Change code below to process each resource in `tracesPage`:
+     *       console.log(JSON.stringify(tracesPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -591,10 +536,9 @@ export namespace cloudtrace_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -702,53 +646,23 @@ export namespace cloudtrace_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * End of the time interval (inclusive) during which the trace data was
-     * collected from the application.
+     * End of the time interval (inclusive) during which the trace data was collected from the application.
      */
     endTime?: string;
     /**
-     * An optional filter against labels for the request.  By default, searches
-     * use prefix matching. To specify exact match, prepend a plus symbol (`+`)
-     * to the search term. Multiple terms are ANDed. Syntax:  *
-     * `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root span
-     * starts with `NAME_PREFIX`. *   `+root:NAME` or `+NAME`: Return traces
-     * where any root span's name is     exactly `NAME`. *   `span:NAME_PREFIX`:
-     * Return traces where any span starts with     `NAME_PREFIX`. *
-     * `+span:NAME`: Return traces where any span's name is exactly     `NAME`.
-     * *   `latency:DURATION`: Return traces whose overall latency is greater or
-     * equal to than `DURATION`. Accepted units are nanoseconds     (`ns`),
-     * milliseconds (`ms`), and seconds (`s`). Default is `ms`. For     example,
-     * `latency:24ms` returns traces whose overall latency     is greater than
-     * or equal to 24 milliseconds. *   `label:LABEL_KEY`: Return all traces
-     * containing the specified     label key (exact match, case-sensitive)
-     * regardless of the key:value     pair's value (including empty values). *
-     * `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified
-     * label key (exact match, case-sensitive) whose value starts with
-     * `VALUE_PREFIX`. Both a key and a value must be specified. *
-     * `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair exactly
-     * matching the specified text. Both a key and a value must be specified. *
-     * `method:VALUE`: Equivalent to `/http/method:VALUE`. *   `url:VALUE`:
-     * Equivalent to `/http/url:VALUE`.
+     * An optional filter against labels for the request.  By default, searches use prefix matching. To specify exact match, prepend a plus symbol (`+`) to the search term. Multiple terms are ANDed. Syntax:  *   `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root     span starts with `NAME_PREFIX`. *   `+root:NAME` or `+NAME`: Return traces where any root span's name is     exactly `NAME`. *   `span:NAME_PREFIX`: Return traces where any span starts with     `NAME_PREFIX`. *   `+span:NAME`: Return traces where any span's name is exactly     `NAME`. *   `latency:DURATION`: Return traces whose overall latency is     greater or equal to than `DURATION`. Accepted units are nanoseconds     (`ns`), milliseconds (`ms`), and seconds (`s`). Default is `ms`. For     example, `latency:24ms` returns traces whose overall latency     is greater than or equal to 24 milliseconds. *   `label:LABEL_KEY`: Return all traces containing the specified     label key (exact match, case-sensitive) regardless of the key:value     pair's value (including empty values). *   `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified     label key (exact match, case-sensitive) whose value starts with     `VALUE_PREFIX`. Both a key and a value must be specified. *   `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair     exactly matching the specified text. Both a key and a value must be     specified. *   `method:VALUE`: Equivalent to `/http/method:VALUE`. *   `url:VALUE`: Equivalent to `/http/url:VALUE`.
      */
     filter?: string;
     /**
-     * Field used to sort the returned traces. Optional. Can be one of the
-     * following:  *   `trace_id` *   `name` (`name` field of root span in the
-     * trace) *   `duration` (difference between `end_time` and `start_time`
-     * fields of      the root span) *   `start` (`start_time` field of the root
-     * span)  Descending order can be specified by appending `desc` to the sort
-     * field (for example, `name desc`).  Only one sort field is permitted.
+     * Field used to sort the returned traces. Optional. Can be one of the following:  *   `trace_id` *   `name` (`name` field of root span in the trace) *   `duration` (difference between `end_time` and `start_time` fields of      the root span) *   `start` (`start_time` field of the root span)  Descending order can be specified by appending `desc` to the sort field (for example, `name desc`).  Only one sort field is permitted.
      */
     orderBy?: string;
     /**
-     * Maximum number of traces to return. If not specified or <= 0, the
-     * implementation selects a reasonable value.  The implementation may return
-     * fewer traces than the requested page size. Optional.
+     * Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value.  The implementation may return fewer traces than the requested page size. Optional.
      */
     pageSize?: number;
     /**
-     * Token identifying the page of results to return. If provided, use the
-     * value of the `next_page_token` field from a previous request. Optional.
+     * Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request. Optional.
      */
     pageToken?: string;
     /**
@@ -756,13 +670,11 @@ export namespace cloudtrace_v1 {
      */
     projectId?: string;
     /**
-     * Start of the time interval (inclusive) during which the trace data was
-     * collected from the application.
+     * Start of the time interval (inclusive) during which the trace data was collected from the application.
      */
     startTime?: string;
     /**
-     * Type of data returned for traces in the list. Optional. Default is
-     * `MINIMAL`.
+     * Type of data returned for traces in the list. Optional. Default is `MINIMAL`.
      */
     view?: string;
   }

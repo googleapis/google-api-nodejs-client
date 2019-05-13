@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace licensing_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace licensing_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,7 +92,10 @@ export namespace licensing_v1 {
     licenseAssignments: Resource$Licenseassignments;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.licenseAssignments = new Resource$Licenseassignments(this.context);
     }
@@ -164,8 +164,7 @@ export namespace licensing_v1 {
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
   }
@@ -788,18 +787,15 @@ export namespace licensing_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * CustomerId represents the customer for whom licenseassignments are
-     * queried
+     * CustomerId represents the customer for whom licenseassignments are queried
      */
     customerId?: string;
     /**
-     * Maximum number of campaigns to return at one time. Must be positive.
-     * Optional. Default value is 100.
+     * Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
      */
     maxResults?: number;
     /**
-     * Token to fetch the next page.Optional. By default server will return
-     * first page
+     * Token to fetch the next page.Optional. By default server will return first page
      */
     pageToken?: string;
     /**
@@ -815,18 +811,15 @@ export namespace licensing_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * CustomerId represents the customer for whom licenseassignments are
-     * queried
+     * CustomerId represents the customer for whom licenseassignments are queried
      */
     customerId?: string;
     /**
-     * Maximum number of campaigns to return at one time. Must be positive.
-     * Optional. Default value is 100.
+     * Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
      */
     maxResults?: number;
     /**
-     * Token to fetch the next page.Optional. By default server will return
-     * first page
+     * Token to fetch the next page.Optional. By default server will return first page
      */
     pageToken?: string;
     /**

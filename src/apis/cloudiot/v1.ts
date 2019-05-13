@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace cloudiot_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace cloudiot_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace cloudiot_v1 {
   /**
    * Cloud IoT API
    *
-   * Registers and manages IoT (Internet of Things) devices that connect to the
-   * Google Cloud Platform.
+   * Registers and manages IoT (Internet of Things) devices that connect to the Google Cloud Platform.
    *
    * @example
    * const {google} = require('googleapis');
@@ -113,7 +108,10 @@ export namespace cloudiot_v1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
@@ -124,14 +122,11 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$BindDeviceToGatewayRequest {
     /**
-     * The device to associate with the specified gateway. The value of
-     * `device_id` can be either the device numeric ID or the user-defined
-     * device identifier.
+     * The device to associate with the specified gateway. The value of `device_id` can be either the device numeric ID or the user-defined device identifier.
      */
     deviceId?: string;
     /**
-     * The value of `gateway_id` can be either the device numeric ID or the
-     * user-defined device identifier.
+     * The value of `gateway_id` can be either the device numeric ID or the user-defined device identifier.
      */
     gatewayId?: string;
   }
@@ -144,30 +139,15 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied
-     * condition will not allow user access via current binding. Different
-     * bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource.
-     * `members` can have the following values:  * `allUsers`: A special
-     * identifier that represents anyone who is    on the internet; with or
-     * without a Google account.  * `allAuthenticatedUsers`: A special
-     * identifier that represents anyone    who is authenticated with a Google
-     * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com` .
-     * * `serviceAccount:{emailid}`: An email address that represents a service
-     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
-     * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
-     * (primary) that represents all the    users of that domain. For example,
-     * `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
-     * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`.
+     * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -176,26 +156,15 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$Device {
     /**
-     * If a device is blocked, connections or requests from this device will
-     * fail. Can be used to temporarily prevent the device from connecting if,
-     * for example, the sensor is generating bad data and needs maintenance.
+     * If a device is blocked, connections or requests from this device will fail. Can be used to temporarily prevent the device from connecting if, for example, the sensor is generating bad data and needs maintenance.
      */
     blocked?: boolean;
     /**
-     * The most recent device configuration, which is eventually sent from Cloud
-     * IoT Core to the device. If not present on creation, the configuration
-     * will be initialized with an empty payload and version value of `1`. To
-     * update this field after creation, use the
-     * `DeviceManager.ModifyCloudToDeviceConfig` method.
+     * The most recent device configuration, which is eventually sent from Cloud IoT Core to the device. If not present on creation, the configuration will be initialized with an empty payload and version value of `1`. To update this field after creation, use the `DeviceManager.ModifyCloudToDeviceConfig` method.
      */
     config?: Schema$DeviceConfig;
     /**
-     * The credentials used to authenticate this device. To allow credential
-     * rotation without interruption, multiple device credentials can be bound
-     * to this device. No more than 3 credentials can be bound to a single
-     * device at a time. When new credentials are added to a device, they are
-     * verified against the registry credentials. For details, see the
-     * description of the `DeviceRegistry.credentials` field.
+     * The credentials used to authenticate this device. To allow credential rotation without interruption, multiple device credentials can be bound to this device. No more than 3 credentials can be bound to a single device at a time. When new credentials are added to a device, they are verified against the registry credentials. For details, see the description of the `DeviceRegistry.credentials` field.
      */
     credentials?: Schema$DeviceCredential[];
     /**
@@ -203,86 +172,55 @@ export namespace cloudiot_v1 {
      */
     gatewayConfig?: Schema$GatewayConfig;
     /**
-     * The user-defined device identifier. The device ID must be unique within a
-     * device registry.
+     * The user-defined device identifier. The device ID must be unique within a device registry.
      */
     id?: string;
     /**
-     * [Output only] The last time a cloud-to-device config version
-     * acknowledgment was received from the device. This field is only for
-     * configurations sent through MQTT.
+     * [Output only] The last time a cloud-to-device config version acknowledgment was received from the device. This field is only for configurations sent through MQTT.
      */
     lastConfigAckTime?: string;
     /**
-     * [Output only] The last time a cloud-to-device config version was sent to
-     * the device.
+     * [Output only] The last time a cloud-to-device config version was sent to the device.
      */
     lastConfigSendTime?: string;
     /**
-     * [Output only] The error message of the most recent error, such as a
-     * failure to publish to Cloud Pub/Sub. &#39;last_error_time&#39; is the
-     * timestamp of this field. If no errors have occurred, this field has an
-     * empty message and the status code 0 == OK. Otherwise, this field is
-     * expected to have a status code other than OK.
+     * [Output only] The error message of the most recent error, such as a failure to publish to Cloud Pub/Sub. &#39;last_error_time&#39; is the timestamp of this field. If no errors have occurred, this field has an empty message and the status code 0 == OK. Otherwise, this field is expected to have a status code other than OK.
      */
     lastErrorStatus?: Schema$Status;
     /**
-     * [Output only] The time the most recent error occurred, such as a failure
-     * to publish to Cloud Pub/Sub. This field is the timestamp of
-     * &#39;last_error_status&#39;.
+     * [Output only] The time the most recent error occurred, such as a failure to publish to Cloud Pub/Sub. This field is the timestamp of &#39;last_error_status&#39;.
      */
     lastErrorTime?: string;
     /**
-     * [Output only] The last time a telemetry event was received. Timestamps
-     * are periodically collected and written to storage; they may be stale by a
-     * few minutes.
+     * [Output only] The last time a telemetry event was received. Timestamps are periodically collected and written to storage; they may be stale by a few minutes.
      */
     lastEventTime?: string;
     /**
-     * [Output only] The last time an MQTT `PINGREQ` was received. This field
-     * applies only to devices connecting through MQTT. MQTT clients usually
-     * only send `PINGREQ` messages if the connection is idle, and no other
-     * messages have been sent. Timestamps are periodically collected and
-     * written to storage; they may be stale by a few minutes.
+     * [Output only] The last time an MQTT `PINGREQ` was received. This field applies only to devices connecting through MQTT. MQTT clients usually only send `PINGREQ` messages if the connection is idle, and no other messages have been sent. Timestamps are periodically collected and written to storage; they may be stale by a few minutes.
      */
     lastHeartbeatTime?: string;
     /**
-     * [Output only] The last time a state event was received. Timestamps are
-     * periodically collected and written to storage; they may be stale by a few
-     * minutes.
+     * [Output only] The last time a state event was received. Timestamps are periodically collected and written to storage; they may be stale by a few minutes.
      */
     lastStateTime?: string;
     /**
-     * **Beta Feature**  The logging verbosity for device activity. If
-     * unspecified, DeviceRegistry.log_level will be used.
+     * **Beta Feature**  The logging verbosity for device activity. If unspecified, DeviceRegistry.log_level will be used.
      */
     logLevel?: string;
     /**
-     * The metadata key-value pairs assigned to the device. This metadata is not
-     * interpreted or indexed by Cloud IoT Core. It can be used to add
-     * contextual information for the device.  Keys must conform to the regular
-     * expression a-zA-Z+ and be less than 128 bytes in length.  Values are
-     * free-form strings. Each value must be less than or equal to 32 KB in
-     * size.  The total size of all keys and values must be less than 256 KB,
-     * and the maximum number of key-value pairs is 500.
+     * The metadata key-value pairs assigned to the device. This metadata is not interpreted or indexed by Cloud IoT Core. It can be used to add contextual information for the device.  Keys must conform to the regular expression a-zA-Z+ and be less than 128 bytes in length.  Values are free-form strings. Each value must be less than or equal to 32 KB in size.  The total size of all keys and values must be less than 256 KB, and the maximum number of key-value pairs is 500.
      */
     metadata?: {[key: string]: string};
     /**
-     * The resource path name. For example,
-     * `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or
-     * `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * When `name` is populated as a response from the service, it always ends
-     * in the device numeric ID.
+     * The resource path name. For example, `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`. When `name` is populated as a response from the service, it always ends in the device numeric ID.
      */
     name?: string;
     /**
-     * [Output only] A server-defined unique numeric ID for the device. This is
-     * a more compact way to identify devices, and it is globally unique.
+     * [Output only] A server-defined unique numeric ID for the device. This is a more compact way to identify devices, and it is globally unique.
      */
     numId?: string;
     /**
-     * [Output only] The state most recently received from the device. If no
-     * state has been reported, this field is not present.
+     * [Output only] The state most recently received from the device. If no state has been reported, this field is not present.
      */
     state?: Schema$DeviceState;
   }
@@ -295,27 +233,15 @@ export namespace cloudiot_v1 {
      */
     binaryData?: string;
     /**
-     * [Output only] The time at which this configuration version was updated in
-     * Cloud IoT Core. This timestamp is set by the server.
+     * [Output only] The time at which this configuration version was updated in Cloud IoT Core. This timestamp is set by the server.
      */
     cloudUpdateTime?: string;
     /**
-     * [Output only] The time at which Cloud IoT Core received the
-     * acknowledgment from the device, indicating that the device has received
-     * this configuration version. If this field is not present, the device has
-     * not yet acknowledged that it received this version. Note that when the
-     * config was sent to the device, many config versions may have been
-     * available in Cloud IoT Core while the device was disconnected, and on
-     * connection, only the latest version is sent to the device. Some versions
-     * may never be sent to the device, and therefore are never acknowledged.
-     * This timestamp is set by Cloud IoT Core.
+     * [Output only] The time at which Cloud IoT Core received the acknowledgment from the device, indicating that the device has received this configuration version. If this field is not present, the device has not yet acknowledged that it received this version. Note that when the config was sent to the device, many config versions may have been available in Cloud IoT Core while the device was disconnected, and on connection, only the latest version is sent to the device. Some versions may never be sent to the device, and therefore are never acknowledged. This timestamp is set by Cloud IoT Core.
      */
     deviceAckTime?: string;
     /**
-     * [Output only] The version of this update. The version number is assigned
-     * by the server, and is always greater than 0 after device creation. The
-     * version must be 0 on the `CreateDevice` request if a `config` is
-     * specified; the response of `CreateDevice` will always have a value of 1.
+     * [Output only] The version of this update. The version number is assigned by the server, and is always greater than 0 after device creation. The version must be 0 on the `CreateDevice` request if a `config` is specified; the response of `CreateDevice` will always have a value of 1.
      */
     version?: string;
   }
@@ -324,23 +250,11 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$DeviceCredential {
     /**
-     * [Optional] The time at which this credential becomes invalid. This
-     * credential will be ignored for new client authentication requests after
-     * this timestamp; however, it will not be automatically deleted.
+     * [Optional] The time at which this credential becomes invalid. This credential will be ignored for new client authentication requests after this timestamp; however, it will not be automatically deleted.
      */
     expirationTime?: string;
     /**
-     * A public key used to verify the signature of JSON Web Tokens (JWTs). When
-     * adding a new device credential, either via device creation or via
-     * modifications, this public key credential may be required to be signed by
-     * one of the registry level certificates. More specifically, if the
-     * registry contains at least one certificate, any new device credential
-     * must be signed by one of the registry certificates. As a result, when the
-     * registry contains certificates, only X.509 certificates are accepted as
-     * device credentials. However, if the registry does not contain a
-     * certificate, self-signed certificates and public keys will be accepted.
-     * New device credentials must be different from every registry-level
-     * certificate.
+     * A public key used to verify the signature of JSON Web Tokens (JWTs). When adding a new device credential, either via device creation or via modifications, this public key credential may be required to be signed by one of the registry level certificates. More specifically, if the registry contains at least one certificate, any new device credential must be signed by one of the registry certificates. As a result, when the registry contains certificates, only X.509 certificates are accepted as device credentials. However, if the registry does not contain a certificate, self-signed certificates and public keys will be accepted. New device credentials must be different from every registry-level certificate.
      */
     publicKey?: Schema$PublicKeyCredential;
   }
@@ -349,28 +263,11 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$DeviceRegistry {
     /**
-     * The credentials used to verify the device credentials. No more than 10
-     * credentials can be bound to a single registry at a time. The verification
-     * process occurs at the time of device creation or update. If this field is
-     * empty, no verification is performed. Otherwise, the credentials of a
-     * newly created device or added credentials of an updated device should be
-     * signed with one of these registry credentials.  Note, however, that
-     * existing devices will never be affected by modifications to this list of
-     * credentials: after a device has been successfully created in a registry,
-     * it should be able to connect even if its registry credentials are
-     * revoked, deleted, or modified.
+     * The credentials used to verify the device credentials. No more than 10 credentials can be bound to a single registry at a time. The verification process occurs at the time of device creation or update. If this field is empty, no verification is performed. Otherwise, the credentials of a newly created device or added credentials of an updated device should be signed with one of these registry credentials.  Note, however, that existing devices will never be affected by modifications to this list of credentials: after a device has been successfully created in a registry, it should be able to connect even if its registry credentials are revoked, deleted, or modified.
      */
     credentials?: Schema$RegistryCredential[];
     /**
-     * The configuration for notification of telemetry events received from the
-     * device. All telemetry events that were successfully published by the
-     * device and acknowledged by Cloud IoT Core are guaranteed to be delivered
-     * to Cloud Pub/Sub. If multiple configurations match a message, only the
-     * first matching configuration is used. If you try to publish a device
-     * telemetry event using MQTT without specifying a Cloud Pub/Sub topic for
-     * the device&#39;s registry, the connection closes automatically. If you
-     * try to do so using an HTTP connection, an error is returned. Up to 10
-     * configurations may be provided.
+     * The configuration for notification of telemetry events received from the device. All telemetry events that were successfully published by the device and acknowledged by Cloud IoT Core are guaranteed to be delivered to Cloud Pub/Sub. If multiple configurations match a message, only the first matching configuration is used. If you try to publish a device telemetry event using MQTT without specifying a Cloud Pub/Sub topic for the device&#39;s registry, the connection closes automatically. If you try to do so using an HTTP connection, an error is returned. Up to 10 configurations may be provided.
      */
     eventNotificationConfigs?: Schema$EventNotificationConfig[];
     /**
@@ -382,9 +279,7 @@ export namespace cloudiot_v1 {
      */
     id?: string;
     /**
-     * **Beta Feature**  The default logging verbosity for activity from devices
-     * in this registry. The verbosity level can be overridden by
-     * Device.log_level.
+     * **Beta Feature**  The default logging verbosity for activity from devices in this registry. The verbosity level can be overridden by Device.log_level.
      */
     logLevel?: string;
     /**
@@ -392,17 +287,11 @@ export namespace cloudiot_v1 {
      */
     mqttConfig?: Schema$MqttConfig;
     /**
-     * The resource path name. For example,
-     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     * The resource path name. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
     name?: string;
     /**
-     * The configuration for notification of new states received from the
-     * device. State updates are guaranteed to be stored in the state history,
-     * but notifications to Cloud Pub/Sub are not guaranteed. For example, if
-     * permissions are misconfigured or the specified topic doesn&#39;t exist,
-     * no notification will be published but the state will still be stored in
-     * Cloud IoT Core.
+     * The configuration for notification of new states received from the device. State updates are guaranteed to be stored in the state history, but notifications to Cloud Pub/Sub are not guaranteed. For example, if permissions are misconfigured or the specified topic doesn&#39;t exist, no notification will be published but the state will still be stored in Cloud IoT Core.
      */
     stateNotificationConfig?: Schema$StateNotificationConfig;
   }
@@ -415,17 +304,12 @@ export namespace cloudiot_v1 {
      */
     binaryData?: string;
     /**
-     * [Output only] The time at which this state version was updated in Cloud
-     * IoT Core.
+     * [Output only] The time at which this state version was updated in Cloud IoT Core.
      */
     updateTime?: string;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -433,44 +317,32 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$EventNotificationConfig {
     /**
-     * A Cloud Pub/Sub topic name. For example,
-     * `projects/myProject/topics/deviceEvents`.
+     * A Cloud Pub/Sub topic name. For example, `projects/myProject/topics/deviceEvents`.
      */
     pubsubTopicName?: string;
     /**
-     * If the subfolder name matches this string exactly, this configuration
-     * will be used. The string must not include the leading &#39;/&#39;
-     * character. If empty, all strings are matched. This field is used only for
-     * telemetry events; subfolders are not supported for state changes.
+     * If the subfolder name matches this string exactly, this configuration will be used. The string must not include the leading &#39;/&#39; character. If empty, all strings are matched. This field is used only for telemetry events; subfolders are not supported for state changes.
      */
     subfolderMatches?: string;
   }
   /**
-   * Represents an expression text. Example:      title: &quot;User account
-   * presence&quot;     description: &quot;Determines whether the request has a
-   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which
-     * describes the expression, e.g. when hovered over it in a UI.
+     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string;
     /**
-     * Textual representation of an expression in Common Expression Language
-     * syntax.  The application context of the containing message determines
-     * which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
     expression?: string;
     /**
-     * An optional string indicating the location of the expression for error
-     * reporting, e.g. a file name and a position in the file.
+     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string;
     /**
-     * An optional title for the expression, i.e. a short string describing its
-     * purpose. This can be used e.g. in UIs which allow to enter the
-     * expression.
+     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string;
   }
@@ -479,8 +351,7 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$GatewayConfig {
     /**
-     * Indicates how to authorize and/or authenticate devices to access the
-     * gateway.
+     * Indicates how to authorize and/or authenticate devices to access the gateway.
      */
     gatewayAuthMethod?: string;
     /**
@@ -492,8 +363,7 @@ export namespace cloudiot_v1 {
      */
     lastAccessedGatewayId?: string;
     /**
-     * [Output only] The most recent time at which the device accessed the
-     * gateway specified in `last_accessed_gateway`.
+     * [Output only] The most recent time at which the device accessed the gateway specified in `last_accessed_gateway`.
      */
     lastAccessedGatewayTime?: string;
   }
@@ -506,8 +376,7 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$HttpConfig {
     /**
-     * If enabled, allows devices to use DeviceService via the HTTP protocol.
-     * Otherwise, any requests to DeviceService will fail for this registry.
+     * If enabled, allows devices to use DeviceService via the HTTP protocol. Otherwise, any requests to DeviceService will fail for this registry.
      */
     httpEnabledState?: string;
   }
@@ -516,8 +385,7 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$ListDeviceConfigVersionsResponse {
     /**
-     * The device configuration for the last few versions. Versions are listed
-     * in decreasing order, starting from the most recent one.
+     * The device configuration for the last few versions. Versions are listed in decreasing order, starting from the most recent one.
      */
     deviceConfigs?: Schema$DeviceConfig[];
   }
@@ -530,9 +398,7 @@ export namespace cloudiot_v1 {
      */
     deviceRegistries?: Schema$DeviceRegistry[];
     /**
-     * If not empty, indicates that there may be more registries that match the
-     * request; this value should be passed in a new
-     * `ListDeviceRegistriesRequest`.
+     * If not empty, indicates that there may be more registries that match the request; this value should be passed in a new `ListDeviceRegistriesRequest`.
      */
     nextPageToken?: string;
   }
@@ -545,8 +411,7 @@ export namespace cloudiot_v1 {
      */
     devices?: Schema$Device[];
     /**
-     * If not empty, indicates that there may be more devices that match the
-     * request; this value should be passed in a new `ListDevicesRequest`.
+     * If not empty, indicates that there may be more devices that match the request; this value should be passed in a new `ListDevicesRequest`.
      */
     nextPageToken?: string;
   }
@@ -555,8 +420,7 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$ListDeviceStatesResponse {
     /**
-     * The last few device states. States are listed in descending order of
-     * server update time, starting from the most recent one.
+     * The last few device states. States are listed in descending order of server update time, starting from the most recent one.
      */
     deviceStates?: Schema$DeviceState[];
   }
@@ -569,11 +433,7 @@ export namespace cloudiot_v1 {
      */
     binaryData?: string;
     /**
-     * The version number to update. If this value is zero, it will not check
-     * the version number of the server and will always update the current
-     * version; otherwise, this update will fail if the version number found on
-     * the server does not match this version number. This is used to support
-     * multiple simultaneous updates without losing data.
+     * The version number to update. If this value is zero, it will not check the version number of the server and will always update the current version; otherwise, this update will fail if the version number found on the server does not match this version number. This is used to support multiple simultaneous updates without losing data.
      */
     versionToUpdate?: string;
   }
@@ -582,47 +442,20 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$MqttConfig {
     /**
-     * If enabled, allows connections using the MQTT protocol. Otherwise, MQTT
-     * connections to this registry will fail.
+     * If enabled, allows connections using the MQTT protocol. Otherwise, MQTT connections to this registry will fail.
      */
     mqttEnabledState?: string;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to
-   * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `binding` binds a list of `members` to
-   * a `role`, where the members can be user accounts, Google groups, Google
-   * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
-   * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
-   * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
-   * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
-   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
-   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
-   * Example**      bindings:     - members:       - user:mike@example.com -
-   * group:admins@example.com       - domain:google.com       -
-   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
-   * roles/owner     - members:       - user:sean@example.com       role:
-   * roles/viewer   For a description of IAM and its features, see the [IAM
-   * developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members
-     * will result in an error.
+     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a policy from overwriting each other. It
-     * is strongly suggested that systems make use of the `etag` in the
-     * read-modify-write cycle to perform policy updates in order to avoid race
-     * conditions: An `etag` is returned in the response to `getIamPolicy`, and
-     * systems are expected to put that etag in the request to `setIamPolicy` to
-     * ensure that their change will be applied to the same version of the
-     * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
-     * existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
      */
     etag?: string;
     /**
@@ -678,12 +511,7 @@ export namespace cloudiot_v1 {
      */
     binaryData?: string;
     /**
-     * Optional subfolder for the command. If empty, the command will be
-     * delivered to the /devices/{device-id}/commands topic, otherwise it will
-     * be delivered to the /devices/{device-id}/commands/{subfolder} topic.
-     * Multi-level subfolders are allowed. This field must not have more than
-     * 256 characters, and must not contain any MQTT wildcards (&quot;+&quot; or
-     * &quot;#&quot;) or null characters.
+     * Optional subfolder for the command. If empty, the command will be delivered to the /devices/{device-id}/commands topic, otherwise it will be delivered to the /devices/{device-id}/commands/{subfolder} topic. Multi-level subfolders are allowed. This field must not have more than 256 characters, and must not contain any MQTT wildcards (&quot;+&quot; or &quot;#&quot;) or null characters.
      */
     subfolder?: string;
   }
@@ -696,10 +524,7 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size
-     * of the policy is limited to a few 10s of KB. An empty policy is a valid
-     * policy but certain Cloud Platform services (such as Projects) might
-     * reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
   }
@@ -708,46 +533,12 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$StateNotificationConfig {
     /**
-     * A Cloud Pub/Sub topic name. For example,
-     * `projects/myProject/topics/deviceEvents`.
+     * A Cloud Pub/Sub topic name. For example, `projects/myProject/topics/deviceEvents`.
      */
     pubsubTopicName?: string;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for
-   * different programming environments, including REST APIs and RPC APIs. It is
-   * used by [gRPC](https://github.com/grpc). The error model is designed to be:
-   * - Simple to use and understand for most users - Flexible enough to meet
-   * unexpected needs  # Overview  The `Status` message contains three pieces of
-   * data: error code, error message, and error details. The error code should
-   * be an enum value of google.rpc.Code, but it may accept additional error
-   * codes if needed.  The error message should be a developer-facing English
-   * message that helps developers *understand* and *resolve* the error. If a
-   * localized user-facing error message is needed, put the localized message in
-   * the error details or localize it in the client. The optional error details
-   * may contain arbitrary information about the error. There is a predefined
-   * set of error detail types in the package `google.rpc` that can be used for
-   * common error conditions.  # Language mapping  The `Status` message is the
-   * logical representation of the error model, but it is not necessarily the
-   * actual wire format. When the `Status` message is exposed in different
-   * client libraries and different wire protocols, it can be mapped
-   * differently. For example, it will likely be mapped to some exceptions in
-   * Java, but more likely mapped to some error codes in C.  # Other uses  The
-   * error model and the `Status` message can be used in a variety of
-   * environments, either with or without APIs, to provide a consistent
-   * developer experience across different environments.  Example uses of this
-   * error model include:  - Partial errors. If a service needs to return
-   * partial errors to the client,     it may embed the `Status` in the normal
-   * response to indicate the partial     errors.  - Workflow errors. A typical
-   * workflow has multiple steps. Each step may     have a `Status` message for
-   * error reporting.  - Batch operations. If a client uses batch request and
-   * batch response, the     `Status` message should be used directly inside
-   * batch response, one for     each error sub-response.  - Asynchronous
-   * operations. If an API call embeds asynchronous operation     results in its
-   * response, the status of those operations should be     represented directly
-   * using the `Status` message.  - Logging. If some API errors are stored in
-   * logs, the message `Status` could     be used directly after any stripping
-   * needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
    */
   export interface Schema$Status {
     /**
@@ -755,14 +546,11 @@ export namespace cloudiot_v1 {
      */
     code?: number;
     /**
-     * A list of messages that carry the error details.  There is a common set
-     * of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}>;
     /**
-     * A developer-facing error message, which should be in English. Any
-     * user-facing error message should be localized and sent in the
-     * google.rpc.Status.details field, or localized by the client.
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
   }
@@ -771,10 +559,7 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with
-     * wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
-     * For more information see [IAM
-     * Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[];
   }
@@ -783,8 +568,7 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$TestIamPermissionsResponse {
     /**
-     * A subset of `TestPermissionsRequest.permissions` that the caller is
-     * allowed.
+     * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[];
   }
@@ -793,14 +577,11 @@ export namespace cloudiot_v1 {
    */
   export interface Schema$UnbindDeviceFromGatewayRequest {
     /**
-     * The device to disassociate from the specified gateway. The value of
-     * `device_id` can be either the device numeric ID or the user-defined
-     * device identifier.
+     * The device to disassociate from the specified gateway. The value of `device_id` can be either the device numeric ID or the user-defined device identifier.
      */
     deviceId?: string;
     /**
-     * The value of `gateway_id` can be either the device numeric ID or the
-     * user-defined device identifier.
+     * The value of `gateway_id` can be either the device numeric ID or the user-defined device identifier.
      */
     gatewayId?: string;
   }
@@ -1171,8 +952,7 @@ export namespace cloudiot_v1 {
 
     /**
      * cloudiot.projects.locations.registries.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @alias cloudiot.projects.locations.registries.getIamPolicy
      * @memberOf! ()
      *
@@ -1403,8 +1183,7 @@ export namespace cloudiot_v1 {
 
     /**
      * cloudiot.projects.locations.registries.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias cloudiot.projects.locations.registries.setIamPolicy
      * @memberOf! ()
      *
@@ -1477,9 +1256,7 @@ export namespace cloudiot_v1 {
 
     /**
      * cloudiot.projects.locations.registries.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.
      * @alias cloudiot.projects.locations.registries.testIamPermissions
      * @memberOf! ()
      *
@@ -1652,8 +1429,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the registry. For example,
-     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     * The name of the registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
     parent?: string;
 
@@ -1670,8 +1446,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The project and cloud region where this device registry must be created.
-     * For example, `projects/example-project/locations/us-central1`.
+     * The project and cloud region where this device registry must be created. For example, `projects/example-project/locations/us-central1`.
      */
     parent?: string;
 
@@ -1688,8 +1463,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the device registry. For example,
-     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     * The name of the device registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
     name?: string;
   }
@@ -1701,8 +1475,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the device registry. For example,
-     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     * The name of the device registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
     name?: string;
   }
@@ -1714,8 +1487,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -1732,21 +1504,15 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of registries to return in the response. If this value
-     * is zero, the service will select a default size. A call may return fewer
-     * objects than requested. A non-empty `next_page_token` in the response
-     * indicates that more data is available.
+     * The maximum number of registries to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListDeviceRegistriesResponse`; indicates
-     * that this is a continuation of a prior `ListDeviceRegistries` call and
-     * the system should return the next page of data.
+     * The value returned by the last `ListDeviceRegistriesResponse`; indicates that this is a continuation of a prior `ListDeviceRegistries` call and the system should return the next page of data.
      */
     pageToken?: string;
     /**
-     * The project and cloud region path. For example,
-     * `projects/example-project/locations/us-central1`.
+     * The project and cloud region path. For example, `projects/example-project/locations/us-central1`.
      */
     parent?: string;
   }
@@ -1758,16 +1524,11 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource path name. For example,
-     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     * The resource path name. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
     name?: string;
     /**
-     * Only updates the `device_registry` fields indicated by this mask. The
-     * field mask must not be empty, and it must not contain fields that are
-     * immutable or only set by the server. Mutable top-level fields:
-     * `event_notification_config`, `http_config`, `mqtt_config`, and
-     * `state_notification_config`.
+     * Only updates the `device_registry` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: `event_notification_config`, `http_config`, `mqtt_config`, and `state_notification_config`.
      */
     updateMask?: string;
 
@@ -1784,8 +1545,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -1802,8 +1562,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -1820,8 +1579,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the registry. For example,
-     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     * The name of the registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
     parent?: string;
 
@@ -2141,11 +1899,8 @@ export namespace cloudiot_v1 {
 
     /**
      * cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig
-     * @desc Modifies the configuration for the device, which is eventually sent
-     * from the Cloud IoT Core servers. Returns the modified configuration
-     * version and its metadata.
-     * @alias
-     * cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig
+     * @desc Modifies the configuration for the device, which is eventually sent from the Cloud IoT Core servers. Returns the modified configuration version and its metadata.
+     * @alias cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -2292,19 +2047,7 @@ export namespace cloudiot_v1 {
 
     /**
      * cloudiot.projects.locations.registries.devices.sendCommandToDevice
-     * @desc Sends a command to the specified device. In order for a device to
-     * be able to receive commands, it must: 1) be connected to Cloud IoT Core
-     * using the MQTT protocol, and 2) be subscribed to the group of MQTT topics
-     * specified by    /devices/{device-id}/commands/#. This subscription will
-     * receive commands    at the top-level topic /devices/{device-id}/commands
-     * as well as commands    for subfolders, like
-     * /devices/{device-id}/commands/subfolder.    Note that subscribing to
-     * specific subfolders is not supported. If the command could not be
-     * delivered to the device, this method will return an error; in particular,
-     * if the device is not subscribed, this method will return
-     * FAILED_PRECONDITION. Otherwise, this method will return OK. If the
-     * subscription is QoS 1, at least once delivery will be guaranteed; for QoS
-     * 0, no acknowledgment will be expected from the device.
+     * @desc Sends a command to the specified device. In order for a device to be able to receive commands, it must: 1) be connected to Cloud IoT Core using the MQTT protocol, and 2) be subscribed to the group of MQTT topics specified by    /devices/{device-id}/commands/#. This subscription will receive commands    at the top-level topic /devices/{device-id}/commands as well as commands    for subfolders, like /devices/{device-id}/commands/subfolder.    Note that subscribing to specific subfolders is not supported. If the command could not be delivered to the device, this method will return an error; in particular, if the device is not subscribed, this method will return FAILED_PRECONDITION. Otherwise, this method will return OK. If the subscription is QoS 1, at least once delivery will be guaranteed; for QoS 0, no acknowledgment will be expected from the device.
      * @alias cloudiot.projects.locations.registries.devices.sendCommandToDevice
      * @memberOf! ()
      *
@@ -2393,9 +2136,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the device registry where this device should be created. For
-     * example,
-     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     * The name of the device registry where this device should be created. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
     parent?: string;
 
@@ -2412,10 +2153,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the device. For example,
-     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     * or
-     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
   }
@@ -2427,15 +2165,11 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The fields of the `Device` resource to be returned in the response. If
-     * the field mask is unset or empty, all fields are returned.
+     * The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned.
      */
     fieldMask?: string;
     /**
-     * The name of the device. For example,
-     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     * or
-     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
   }
@@ -2447,57 +2181,39 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A list of device string IDs. For example, `['device0', 'device12']`. If
-     * empty, this field is ignored. Maximum IDs: 10,000
+     * A list of device string IDs. For example, `['device0', 'device12']`. If empty, this field is ignored. Maximum IDs: 10,000
      */
     deviceIds?: string[];
     /**
-     * A list of device numeric IDs. If empty, this field is ignored. Maximum
-     * IDs: 10,000.
+     * A list of device numeric IDs. If empty, this field is ignored. Maximum IDs: 10,000.
      */
     deviceNumIds?: string[];
     /**
-     * The fields of the `Device` resource to be returned in the response. The
-     * fields `id` and `num_id` are always returned, along with any other fields
-     * specified.
+     * The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified.
      */
     fieldMask?: string;
     /**
-     * If set, returns only the gateways with which the specified device is
-     * associated. The device ID can be numeric (`num_id`) or the user-defined
-     * string (`id`). For example, if `456` is specified, returns only the
-     * gateways to which the device with `num_id` 456 is bound.
+     * If set, returns only the gateways with which the specified device is associated. The device ID can be numeric (`num_id`) or the user-defined string (`id`). For example, if `456` is specified, returns only the gateways to which the device with `num_id` 456 is bound.
      */
     'gatewayListOptions.associationsDeviceId'?: string;
     /**
-     * If set, only devices associated with the specified gateway are returned.
-     * The gateway ID can be numeric (`num_id`) or the user-defined string
-     * (`id`). For example, if `123` is specified, only devices bound to the
-     * gateway with `num_id` 123 are returned.
+     * If set, only devices associated with the specified gateway are returned. The gateway ID can be numeric (`num_id`) or the user-defined string (`id`). For example, if `123` is specified, only devices bound to the gateway with `num_id` 123 are returned.
      */
     'gatewayListOptions.associationsGatewayId'?: string;
     /**
-     * If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY`
-     * is specified, only non-gateway devices are returned. If
-     * `GATEWAY_TYPE_UNSPECIFIED` is specified, all devices are returned.
+     * If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY` is specified, only non-gateway devices are returned. If `GATEWAY_TYPE_UNSPECIFIED` is specified, all devices are returned.
      */
     'gatewayListOptions.gatewayType'?: string;
     /**
-     * The maximum number of devices to return in the response. If this value is
-     * zero, the service will select a default size. A call may return fewer
-     * objects than requested. A non-empty `next_page_token` in the response
-     * indicates that more data is available.
+     * The maximum number of devices to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListDevicesResponse`; indicates that this
-     * is a continuation of a prior `ListDevices` call and the system should
-     * return the next page of data.
+     * The value returned by the last `ListDevicesResponse`; indicates that this is a continuation of a prior `ListDevices` call and the system should return the next page of data.
      */
     pageToken?: string;
     /**
-     * The device registry path. Required. For example,
-     * `projects/my-project/locations/us-central1/registries/my-registry`.
+     * The device registry path. Required. For example, `projects/my-project/locations/us-central1/registries/my-registry`.
      */
     parent?: string;
   }
@@ -2509,10 +2225,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the device. For example,
-     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     * or
-     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
 
@@ -2529,18 +2242,11 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource path name. For example,
-     * `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or
-     * `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * When `name` is populated as a response from the service, it always ends
-     * in the device numeric ID.
+     * The resource path name. For example, `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`. When `name` is populated as a response from the service, it always ends in the device numeric ID.
      */
     name?: string;
     /**
-     * Only updates the `device` fields indicated by this mask. The field mask
-     * must not be empty, and it must not contain fields that are immutable or
-     * only set by the server. Mutable top-level fields: `credentials`,
-     * `blocked`, and `metadata`
+     * Only updates the `device` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      */
     updateMask?: string;
 
@@ -2557,10 +2263,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the device. For example,
-     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     * or
-     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
 
@@ -2578,8 +2281,7 @@ export namespace cloudiot_v1 {
 
     /**
      * cloudiot.projects.locations.registries.devices.configVersions.list
-     * @desc Lists the last few versions of the device configuration in
-     * descending order (i.e.: newest first).
+     * @desc Lists the last few versions of the device configuration in descending order (i.e.: newest first).
      * @alias cloudiot.projects.locations.registries.devices.configVersions.list
      * @memberOf! ()
      *
@@ -2670,16 +2372,11 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the device. For example,
-     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     * or
-     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
     /**
-     * The number of versions to list. Versions are listed in decreasing order
-     * of the version number. The maximum number of versions retained is 10. If
-     * this value is zero, it will return all the versions available.
+     * The number of versions to list. Versions are listed in decreasing order of the version number. The maximum number of versions retained is 10. If this value is zero, it will return all the versions available.
      */
     numVersions?: number;
   }
@@ -2692,8 +2389,7 @@ export namespace cloudiot_v1 {
 
     /**
      * cloudiot.projects.locations.registries.devices.states.list
-     * @desc Lists the last few versions of the device state in descending order
-     * (i.e.: newest first).
+     * @desc Lists the last few versions of the device state in descending order (i.e.: newest first).
      * @alias cloudiot.projects.locations.registries.devices.states.list
      * @memberOf! ()
      *
@@ -2774,16 +2470,11 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the device. For example,
-     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     * or
-     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
     /**
-     * The number of states to list. States are listed in descending order of
-     * update time. The maximum number of states retained is 10. If this value
-     * is zero, it will return all the states available.
+     * The number of states to list. States are listed in descending order of update time. The maximum number of states retained is 10. If this value is zero, it will return all the states available.
      */
     numStates?: number;
   }
@@ -2882,8 +2573,7 @@ export namespace cloudiot_v1 {
 
     /**
      * cloudiot.projects.locations.registries.groups.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @alias cloudiot.projects.locations.registries.groups.getIamPolicy
      * @memberOf! ()
      *
@@ -2956,8 +2646,7 @@ export namespace cloudiot_v1 {
 
     /**
      * cloudiot.projects.locations.registries.groups.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias cloudiot.projects.locations.registries.groups.setIamPolicy
      * @memberOf! ()
      *
@@ -3030,9 +2719,7 @@ export namespace cloudiot_v1 {
 
     /**
      * cloudiot.projects.locations.registries.groups.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.
      * @alias cloudiot.projects.locations.registries.groups.testIamPermissions
      * @memberOf! ()
      *
@@ -3115,8 +2802,7 @@ export namespace cloudiot_v1 {
     /**
      * cloudiot.projects.locations.registries.groups.unbindDeviceFromGateway
      * @desc Deletes the association between the device and the gateway.
-     * @alias
-     * cloudiot.projects.locations.registries.groups.unbindDeviceFromGateway
+     * @alias cloudiot.projects.locations.registries.groups.unbindDeviceFromGateway
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -3206,8 +2892,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the registry. For example,
-     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     * The name of the registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
     parent?: string;
 
@@ -3224,8 +2909,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3242,8 +2926,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3260,8 +2943,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3278,8 +2960,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the registry. For example,
-     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     * The name of the registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
     parent?: string;
 
@@ -3457,11 +3138,8 @@ export namespace cloudiot_v1 {
 
     /**
      * cloudiot.projects.locations.registries.groups.devices.modifyCloudToDeviceConfig
-     * @desc Modifies the configuration for the device, which is eventually sent
-     * from the Cloud IoT Core servers. Returns the modified configuration
-     * version and its metadata.
-     * @alias
-     * cloudiot.projects.locations.registries.groups.devices.modifyCloudToDeviceConfig
+     * @desc Modifies the configuration for the device, which is eventually sent from the Cloud IoT Core servers. Returns the modified configuration version and its metadata.
+     * @alias cloudiot.projects.locations.registries.groups.devices.modifyCloudToDeviceConfig
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -3608,21 +3286,8 @@ export namespace cloudiot_v1 {
 
     /**
      * cloudiot.projects.locations.registries.groups.devices.sendCommandToDevice
-     * @desc Sends a command to the specified device. In order for a device to
-     * be able to receive commands, it must: 1) be connected to Cloud IoT Core
-     * using the MQTT protocol, and 2) be subscribed to the group of MQTT topics
-     * specified by    /devices/{device-id}/commands/#. This subscription will
-     * receive commands    at the top-level topic /devices/{device-id}/commands
-     * as well as commands    for subfolders, like
-     * /devices/{device-id}/commands/subfolder.    Note that subscribing to
-     * specific subfolders is not supported. If the command could not be
-     * delivered to the device, this method will return an error; in particular,
-     * if the device is not subscribed, this method will return
-     * FAILED_PRECONDITION. Otherwise, this method will return OK. If the
-     * subscription is QoS 1, at least once delivery will be guaranteed; for QoS
-     * 0, no acknowledgment will be expected from the device.
-     * @alias
-     * cloudiot.projects.locations.registries.groups.devices.sendCommandToDevice
+     * @desc Sends a command to the specified device. In order for a device to be able to receive commands, it must: 1) be connected to Cloud IoT Core using the MQTT protocol, and 2) be subscribed to the group of MQTT topics specified by    /devices/{device-id}/commands/#. This subscription will receive commands    at the top-level topic /devices/{device-id}/commands as well as commands    for subfolders, like /devices/{device-id}/commands/subfolder.    Note that subscribing to specific subfolders is not supported. If the command could not be delivered to the device, this method will return an error; in particular, if the device is not subscribed, this method will return FAILED_PRECONDITION. Otherwise, this method will return OK. If the subscription is QoS 1, at least once delivery will be guaranteed; for QoS 0, no acknowledgment will be expected from the device.
+     * @alias cloudiot.projects.locations.registries.groups.devices.sendCommandToDevice
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -3710,15 +3375,11 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The fields of the `Device` resource to be returned in the response. If
-     * the field mask is unset or empty, all fields are returned.
+     * The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned.
      */
     fieldMask?: string;
     /**
-     * The name of the device. For example,
-     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     * or
-     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
   }
@@ -3730,57 +3391,39 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A list of device string IDs. For example, `['device0', 'device12']`. If
-     * empty, this field is ignored. Maximum IDs: 10,000
+     * A list of device string IDs. For example, `['device0', 'device12']`. If empty, this field is ignored. Maximum IDs: 10,000
      */
     deviceIds?: string[];
     /**
-     * A list of device numeric IDs. If empty, this field is ignored. Maximum
-     * IDs: 10,000.
+     * A list of device numeric IDs. If empty, this field is ignored. Maximum IDs: 10,000.
      */
     deviceNumIds?: string[];
     /**
-     * The fields of the `Device` resource to be returned in the response. The
-     * fields `id` and `num_id` are always returned, along with any other fields
-     * specified.
+     * The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified.
      */
     fieldMask?: string;
     /**
-     * If set, returns only the gateways with which the specified device is
-     * associated. The device ID can be numeric (`num_id`) or the user-defined
-     * string (`id`). For example, if `456` is specified, returns only the
-     * gateways to which the device with `num_id` 456 is bound.
+     * If set, returns only the gateways with which the specified device is associated. The device ID can be numeric (`num_id`) or the user-defined string (`id`). For example, if `456` is specified, returns only the gateways to which the device with `num_id` 456 is bound.
      */
     'gatewayListOptions.associationsDeviceId'?: string;
     /**
-     * If set, only devices associated with the specified gateway are returned.
-     * The gateway ID can be numeric (`num_id`) or the user-defined string
-     * (`id`). For example, if `123` is specified, only devices bound to the
-     * gateway with `num_id` 123 are returned.
+     * If set, only devices associated with the specified gateway are returned. The gateway ID can be numeric (`num_id`) or the user-defined string (`id`). For example, if `123` is specified, only devices bound to the gateway with `num_id` 123 are returned.
      */
     'gatewayListOptions.associationsGatewayId'?: string;
     /**
-     * If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY`
-     * is specified, only non-gateway devices are returned. If
-     * `GATEWAY_TYPE_UNSPECIFIED` is specified, all devices are returned.
+     * If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY` is specified, only non-gateway devices are returned. If `GATEWAY_TYPE_UNSPECIFIED` is specified, all devices are returned.
      */
     'gatewayListOptions.gatewayType'?: string;
     /**
-     * The maximum number of devices to return in the response. If this value is
-     * zero, the service will select a default size. A call may return fewer
-     * objects than requested. A non-empty `next_page_token` in the response
-     * indicates that more data is available.
+     * The maximum number of devices to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListDevicesResponse`; indicates that this
-     * is a continuation of a prior `ListDevices` call and the system should
-     * return the next page of data.
+     * The value returned by the last `ListDevicesResponse`; indicates that this is a continuation of a prior `ListDevices` call and the system should return the next page of data.
      */
     pageToken?: string;
     /**
-     * The device registry path. Required. For example,
-     * `projects/my-project/locations/us-central1/registries/my-registry`.
+     * The device registry path. Required. For example, `projects/my-project/locations/us-central1/registries/my-registry`.
      */
     parent?: string;
   }
@@ -3792,10 +3435,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the device. For example,
-     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     * or
-     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
 
@@ -3812,18 +3452,11 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource path name. For example,
-     * `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or
-     * `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * When `name` is populated as a response from the service, it always ends
-     * in the device numeric ID.
+     * The resource path name. For example, `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`. When `name` is populated as a response from the service, it always ends in the device numeric ID.
      */
     name?: string;
     /**
-     * Only updates the `device` fields indicated by this mask. The field mask
-     * must not be empty, and it must not contain fields that are immutable or
-     * only set by the server. Mutable top-level fields: `credentials`,
-     * `blocked`, and `metadata`
+     * Only updates the `device` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      */
     updateMask?: string;
 
@@ -3840,10 +3473,7 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the device. For example,
-     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     * or
-     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
 
@@ -3861,10 +3491,8 @@ export namespace cloudiot_v1 {
 
     /**
      * cloudiot.projects.locations.registries.groups.devices.configVersions.list
-     * @desc Lists the last few versions of the device configuration in
-     * descending order (i.e.: newest first).
-     * @alias
-     * cloudiot.projects.locations.registries.groups.devices.configVersions.list
+     * @desc Lists the last few versions of the device configuration in descending order (i.e.: newest first).
+     * @alias cloudiot.projects.locations.registries.groups.devices.configVersions.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -3954,16 +3582,11 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the device. For example,
-     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     * or
-     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
     /**
-     * The number of versions to list. Versions are listed in decreasing order
-     * of the version number. The maximum number of versions retained is 10. If
-     * this value is zero, it will return all the versions available.
+     * The number of versions to list. Versions are listed in decreasing order of the version number. The maximum number of versions retained is 10. If this value is zero, it will return all the versions available.
      */
     numVersions?: number;
   }
@@ -3976,8 +3599,7 @@ export namespace cloudiot_v1 {
 
     /**
      * cloudiot.projects.locations.registries.groups.devices.states.list
-     * @desc Lists the last few versions of the device state in descending order
-     * (i.e.: newest first).
+     * @desc Lists the last few versions of the device state in descending order (i.e.: newest first).
      * @alias cloudiot.projects.locations.registries.groups.devices.states.list
      * @memberOf! ()
      *
@@ -4058,16 +3680,11 @@ export namespace cloudiot_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the device. For example,
-     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     * or
-     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
     /**
-     * The number of states to list. States are listed in descending order of
-     * update time. The maximum number of states retained is 10. If this value
-     * is zero, it will return all the states available.
+     * The number of states to list. States are listed in descending order of update time. The maximum number of states retained is 10. If this value is zero, it will return all the states available.
      */
     numStates?: number;
   }

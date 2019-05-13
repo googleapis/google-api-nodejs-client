@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace bigtableadmin_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace bigtableadmin_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -112,37 +108,33 @@ export namespace bigtableadmin_v1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
   }
 
   /**
-   * A resizable group of nodes in a particular cloud location, capable of
-   * serving all Tables in the parent Instance.
+   * A resizable group of nodes in a particular cloud location, capable of serving all Tables in the parent Instance.
    */
   export interface Schema$Cluster {
     /**
-     * (`CreationOnly`) The type of storage used by this cluster to serve its
-     * parent instance&#39;s tables, unless explicitly overridden.
+     * (`CreationOnly`) The type of storage used by this cluster to serve its parent instance&#39;s tables, unless explicitly overridden.
      */
     defaultStorageType?: string;
     /**
-     * (`CreationOnly`) The location where this cluster&#39;s nodes and storage
-     * reside. For best performance, clients should be located as close as
-     * possible to this cluster. Currently only zones are supported, so values
-     * should be of the form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
+     * (`CreationOnly`) The location where this cluster&#39;s nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
      */
     location?: string;
     /**
-     * (`OutputOnly`) The unique name of the cluster. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/a-z*`.
+     * (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/a-z*`.
      */
     name?: string;
     /**
-     * The number of nodes allocated to this cluster. More nodes enable higher
-     * throughput and more consistent performance.
+     * The number of nodes allocated to this cluster. More nodes enable higher throughput and more consistent performance.
      */
     serveNodes?: number;
     /**
@@ -167,13 +159,7 @@ export namespace bigtableadmin_v1 {
      */
     requestTime?: string;
     /**
-     * Keys: the full `name` of each table that existed in the instance when
-     * CreateCluster was first called, i.e.
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * Any table added to the instance by a later API call will be created in
-     * the new cluster by that API call, not this one.  Values: information on
-     * how much of a table&#39;s data has been copied to the newly-created
-     * cluster so far.
+     * Keys: the full `name` of each table that existed in the instance when CreateCluster was first called, i.e. `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`. Any table added to the instance by a later API call will be created in the new cluster by that API call, not this one.  Values: information on how much of a table&#39;s data has been copied to the newly-created cluster so far.
      */
     tables?: {[key: string]: Schema$TableProgress};
   }
@@ -186,15 +172,11 @@ export namespace bigtableadmin_v1 {
      */
     cluster?: Schema$Cluster;
     /**
-     * The ID to be used when referring to the new cluster within its instance,
-     * e.g., just `mycluster` rather than
-     * `projects/myproject/instances/myinstance/clusters/mycluster`.
+     * The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
      */
     clusterId?: string;
     /**
-     * The unique name of the instance in which to create the new cluster.
-     * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
+     * The unique name of the instance in which to create the new cluster. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
      */
     parent?: string;
   }
@@ -207,8 +189,7 @@ export namespace bigtableadmin_v1 {
      */
     finishTime?: string;
     /**
-     * The request that prompted the initiation of this CreateInstance
-     * operation.
+     * The request that prompted the initiation of this CreateInstance operation.
      */
     originalRequest?: Schema$CreateInstanceRequest;
     /**
@@ -221,11 +202,7 @@ export namespace bigtableadmin_v1 {
    */
   export interface Schema$CreateInstanceRequest {
     /**
-     * The clusters to be created within the instance, mapped by desired cluster
-     * ID, e.g., just `mycluster` rather than
-     * `projects/myproject/instances/myinstance/clusters/mycluster`. Fields
-     * marked `OutputOnly` must be left blank. Currently, at most two clusters
-     * can be specified.
+     * The clusters to be created within the instance, mapped by desired cluster ID, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`. Fields marked `OutputOnly` must be left blank. Currently, at most two clusters can be specified.
      */
     clusters?: {[key: string]: Schema$Cluster};
     /**
@@ -233,43 +210,28 @@ export namespace bigtableadmin_v1 {
      */
     instance?: Schema$Instance;
     /**
-     * The ID to be used when referring to the new instance within its project,
-     * e.g., just `myinstance` rather than
-     * `projects/myproject/instances/myinstance`.
+     * The ID to be used when referring to the new instance within its project, e.g., just `myinstance` rather than `projects/myproject/instances/myinstance`.
      */
     instanceId?: string;
     /**
-     * The unique name of the project in which to create the new instance.
-     * Values are of the form `projects/&lt;project&gt;`.
+     * The unique name of the project in which to create the new instance. Values are of the form `projects/&lt;project&gt;`.
      */
     parent?: string;
   }
   /**
-   * A collection of Bigtable Tables and the resources that serve them. All
-   * tables in an instance are served from all Clusters in the instance.
+   * A collection of Bigtable Tables and the resources that serve them. All tables in an instance are served from all Clusters in the instance.
    */
   export interface Schema$Instance {
     /**
-     * The descriptive name for this instance as it appears in UIs. Can be
-     * changed at any time, but should be kept globally unique to avoid
-     * confusion.
+     * The descriptive name for this instance as it appears in UIs. Can be changed at any time, but should be kept globally unique to avoid confusion.
      */
     displayName?: string;
     /**
-     * Labels are a flexible and lightweight mechanism for organizing cloud
-     * resources into groups that reflect a customer&#39;s organizational needs
-     * and deployment strategies. They can be used to filter resources and
-     * aggregate metrics.  * Label keys must be between 1 and 63 characters long
-     * and must conform to   the regular expression: `\p{Ll}\p{Lo}{0,62}`. *
-     * Label values must be between 0 and 63 characters long and must conform to
-     * the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`. * No more than 64
-     * labels can be associated with a given resource. * Keys and values must
-     * both be under 128 bytes.
+     * Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer&#39;s organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics.  * Label keys must be between 1 and 63 characters long and must conform to   the regular expression: `\p{Ll}\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to   the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
      */
     labels?: {[key: string]: string};
     /**
-     * (`OutputOnly`) The unique name of the instance. Values are of the form
-     * `projects/&lt;project&gt;/instances/a-z+[a-z0-9]`.
+     * (`OutputOnly`) The unique name of the instance. Values are of the form `projects/&lt;project&gt;/instances/a-z+[a-z0-9]`.
      */
     name?: string;
     /**
@@ -299,13 +261,11 @@ export namespace bigtableadmin_v1 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For
-     * example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
      */
     displayName?: string;
     /**
-     * Cross-service attributes for the location. For example
-     * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: {[key: string]: string};
     /**
@@ -313,13 +273,11 @@ export namespace bigtableadmin_v1 {
      */
     locationId?: string;
     /**
-     * Service-specific metadata. For example the available capacity at the
-     * given location.
+     * Service-specific metadata. For example the available capacity at the given location.
      */
     metadata?: {[key: string]: any};
     /**
-     * Resource name for the location, which may vary between implementations.
-     * For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
     name?: string;
   }
@@ -332,8 +290,7 @@ export namespace bigtableadmin_v1 {
      */
     instance?: Schema$Instance;
     /**
-     * The subset of Instance fields which should be replaced. Must be
-     * explicitly set.
+     * The subset of Instance fields which should be replaced. Must be explicitly set.
      */
     updateMask?: string;
   }
@@ -342,9 +299,7 @@ export namespace bigtableadmin_v1 {
    */
   export interface Schema$TableProgress {
     /**
-     * Estimate of the number of bytes copied so far for this table. This will
-     * eventually reach &#39;estimated_size_bytes&#39; unless the table copy is
-     * CANCELLED.
+     * Estimate of the number of bytes copied so far for this table. This will eventually reach &#39;estimated_size_bytes&#39; unless the table copy is CANCELLED.
      */
     estimatedCopiedBytes?: string;
     /**
@@ -383,8 +338,7 @@ export namespace bigtableadmin_v1 {
      */
     finishTime?: string;
     /**
-     * The request that prompted the initiation of this UpdateInstance
-     * operation.
+     * The request that prompted the initiation of this UpdateInstance operation.
      */
     originalRequest?: Schema$PartialUpdateInstanceRequest;
     /**

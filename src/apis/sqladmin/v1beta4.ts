@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace sqladmin_v1beta4 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace sqladmin_v1beta4 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -78,8 +75,7 @@ export namespace sqladmin_v1beta4 {
   /**
    * Cloud SQL Admin API
    *
-   * Creates and manages Cloud SQL instances, which provide fully managed MySQL
-   * or PostgreSQL databases.
+   * Creates and manages Cloud SQL instances, which provide fully managed MySQL or PostgreSQL databases.
    *
    * @example
    * const {google} = require('googleapis');
@@ -103,7 +99,10 @@ export namespace sqladmin_v1beta4 {
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.backupRuns = new Resource$Backupruns(this.context);
       this.databases = new Resource$Databases(this.context);
@@ -121,8 +120,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$AclEntry {
     /**
-     * The time when this access control entry expires in RFC 3339 format, for
-     * example 2012-11-15T16:19:00.094Z.
+     * The time when this access control entry expires in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
     expirationTime?: string;
     /**
@@ -156,8 +154,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$BackupConfiguration {
     /**
-     * Whether binary log is enabled. If backup configuration is disabled,
-     * binary log must be disabled as well.
+     * Whether binary log is enabled. If backup configuration is disabled, binary log must be disabled as well.
      */
     binaryLogEnabled?: boolean;
     /**
@@ -169,12 +166,15 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
+     * The location of the backup.
+     */
+    location?: string;
+    /**
      * Reserved for future use.
      */
     replicationLogArchivingEnabled?: boolean;
     /**
-     * Start time for the daily backup configuration in UTC timezone in the 24
-     * hour format - HH:MM.
+     * Start time for the daily backup configuration in UTC timezone in the 24 hour format - HH:MM.
      */
     startTime?: string;
   }
@@ -187,23 +187,19 @@ export namespace sqladmin_v1beta4 {
      */
     description?: string;
     /**
-     * The time the backup operation completed in UTC timezone in RFC 3339
-     * format, for example 2012-11-15T16:19:00.094Z.
+     * The time the backup operation completed in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
     endTime?: string;
     /**
-     * The time the run was enqueued in UTC timezone in RFC 3339 format, for
-     * example 2012-11-15T16:19:00.094Z.
+     * The time the run was enqueued in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
     enqueuedTime?: string;
     /**
-     * Information about why the backup operation failed. This is only present
-     * if the run has the FAILED status.
+     * Information about why the backup operation failed. This is only present if the run has the FAILED status.
      */
     error?: Schema$OperationError;
     /**
-     * The identifier for this backup run. Unique only for a specific Cloud SQL
-     * instance.
+     * The identifier for this backup run. Unique only for a specific Cloud SQL instance.
      */
     id?: string;
     /**
@@ -215,12 +211,15 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
+     * The location of the backup.
+     */
+    location?: string;
+    /**
      * The URI of this resource.
      */
     selfLink?: string;
     /**
-     * The time the backup operation actually started in UTC timezone in RFC
-     * 3339 format, for example 2012-11-15T16:19:00.094Z.
+     * The time the backup operation actually started in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
     startTime?: string;
     /**
@@ -228,13 +227,11 @@ export namespace sqladmin_v1beta4 {
      */
     status?: string;
     /**
-     * The type of this run; can be either &quot;AUTOMATED&quot; or
-     * &quot;ON_DEMAND&quot;.
+     * The type of this run; can be either &quot;AUTOMATED&quot; or &quot;ON_DEMAND&quot;.
      */
     type?: string;
     /**
-     * The start time of the backup window during which this the backup was
-     * attempted in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
+     * The start time of the backup window during which this the backup was attempted in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
     windowStartTime?: string;
   }
@@ -243,8 +240,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$BackupRunsListResponse {
     /**
-     * A list of backup runs in reverse chronological order of the enqueued
-     * time.
+     * A list of backup runs in reverse chronological order of the enqueued time.
      */
     items?: Schema$BackupRun[];
     /**
@@ -252,8 +248,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
   }
@@ -279,9 +274,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$CloneContext {
     /**
-     * Binary log coordinates, if specified, identify the position up to which
-     * the source instance should be cloned. If not specified, the source
-     * instance is cloned up to the most recent binary log coordinates.
+     * Binary log coordinates, if specified, identify the position up to which the source instance should be cloned. If not specified, the source instance is cloned up to the most recent binary log coordinates.
      */
     binLogCoordinates?: Schema$BinLogCoordinates;
     /**
@@ -310,8 +303,7 @@ export namespace sqladmin_v1beta4 {
      */
     collation?: string;
     /**
-     * This field is deprecated and will be removed from a future version of the
-     * API.
+     * This field is deprecated and will be removed from a future version of the API.
      */
     etag?: string;
     /**
@@ -323,13 +315,11 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * The name of the database in the Cloud SQL instance. This does not include
-     * the project ID or instance name.
+     * The name of the database in the Cloud SQL instance. This does not include the project ID or instance name.
      */
     name?: string;
     /**
-     * The project ID of the project containing the Cloud SQL database. The
-     * Google apps domain is prefixed if applicable.
+     * The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable.
      */
     project?: string;
     /**
@@ -342,15 +332,11 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$DatabaseFlags {
     /**
-     * The name of the flag. These flags are passed at instance startup, so
-     * include both server options and system variables for MySQL. Flags should
-     * be specified with underscores, not hyphens. For more information, see
-     * Configuring Database Flags in the Cloud SQL documentation.
+     * The name of the flag. These flags are passed at instance startup, so include both server options and system variables for MySQL. Flags should be specified with underscores, not hyphens. For more information, see Configuring Database Flags in the Cloud SQL documentation.
      */
     name?: string;
     /**
-     * The value of the flag. Booleans should be set to on for true and off for
-     * false. This field must be omitted if the flag doesn&#39;t take a value.
+     * The value of the flag. Booleans should be set to on for true and off for false. This field must be omitted if the flag doesn&#39;t take a value.
      */
     value?: string;
   }
@@ -359,11 +345,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$DatabaseInstance {
     /**
-     * FIRST_GEN: First Generation instance. MySQL only. SECOND_GEN: Second
-     * Generation instance or PostgreSQL instance. EXTERNAL: A database server
-     * that is not managed by Google. This property is read-only; use the tier
-     * property in the settings object to determine the database type and Second
-     * or First Generation.
+     * FIRST_GEN: First Generation instance. MySQL only. SECOND_GEN: Second Generation instance or PostgreSQL instance. EXTERNAL: A database server that is not managed by Google. This property is read-only; use the tier property in the settings object to determine the database type and Second or First Generation.
      */
     backendType?: string;
     /**
@@ -371,52 +353,35 @@ export namespace sqladmin_v1beta4 {
      */
     connectionName?: string;
     /**
-     * The current disk usage of the instance in bytes. This property has been
-     * deprecated. Users should use the
-     * &quot;cloudsql.googleapis.com/database/disk/bytes_used&quot; metric in
-     * Cloud Monitoring API instead. Please see this announcement for details.
+     * The current disk usage of the instance in bytes. This property has been deprecated. Users should use the &quot;cloudsql.googleapis.com/database/disk/bytes_used&quot; metric in Cloud Monitoring API instead. Please see this announcement for details.
      */
     currentDiskSize?: string;
     /**
-     * The database engine type and version. The databaseVersion field can not
-     * be changed after instance creation. MySQL Second Generation instances:
-     * MYSQL_5_7 (default) or MYSQL_5_6. PostgreSQL instances: POSTGRES_9_6
-     * (default) or POSTGRES_11 Beta. MySQL First Generation instances:
-     * MYSQL_5_6 (default) or MYSQL_5_5
+     * The database engine type and version. The databaseVersion field can not be changed after instance creation. MySQL Second Generation instances: MYSQL_5_7 (default) or MYSQL_5_6. PostgreSQL instances: POSTGRES_9_6 (default) or POSTGRES_11 Beta. MySQL First Generation instances: MYSQL_5_6 (default) or MYSQL_5_5
      */
     databaseVersion?: string;
     /**
-     * Disk encryption configuration specific to an instance. Applies only to
-     * Second Generation instances.
+     * Disk encryption configuration specific to an instance. Applies only to Second Generation instances.
      */
     diskEncryptionConfiguration?: Schema$DiskEncryptionConfiguration;
     /**
-     * Disk encryption status specific to an instance. Applies only to Second
-     * Generation instances.
+     * Disk encryption status specific to an instance. Applies only to Second Generation instances.
      */
     diskEncryptionStatus?: Schema$DiskEncryptionStatus;
     /**
-     * This field is deprecated and will be removed from a future version of the
-     * API. Use the settings.settingsVersion field instead.
+     * This field is deprecated and will be removed from a future version of the API. Use the settings.settingsVersion field instead.
      */
     etag?: string;
     /**
-     * The name and status of the failover replica. This property is applicable
-     * only to Second Generation instances.
+     * The name and status of the failover replica. This property is applicable only to Second Generation instances.
      */
     failoverReplica?: {available?: boolean; name?: string};
     /**
-     * The Compute Engine zone that the instance is currently serving from. This
-     * value could be different from the zone that was specified when the
-     * instance was created if the instance has failed over to its secondary
-     * zone.
+     * The Compute Engine zone that the instance is currently serving from. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary zone.
      */
     gceZone?: string;
     /**
-     * The instance type. This can be one of the following. CLOUD_SQL_INSTANCE:
-     * A Cloud SQL instance that is not replicating from a master.
-     * ON_PREMISES_INSTANCE: An instance running on the customer&#39;s premises.
-     * READ_REPLICA_INSTANCE: A Cloud SQL instance configured as a read-replica.
+     * The instance type. This can be one of the following. CLOUD_SQL_INSTANCE: A Cloud SQL instance that is not replicating from a master. ON_PREMISES_INSTANCE: An instance running on the customer&#39;s premises. READ_REPLICA_INSTANCE: A Cloud SQL instance configured as a read-replica.
      */
     instanceType?: string;
     /**
@@ -424,8 +389,7 @@ export namespace sqladmin_v1beta4 {
      */
     ipAddresses?: Schema$IpMapping[];
     /**
-     * The IPv6 address assigned to the instance. This property is applicable
-     * only to First Generation instances.
+     * The IPv6 address assigned to the instance. This property is applicable only to First Generation instances.
      */
     ipv6Address?: string;
     /**
@@ -433,8 +397,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * The name of the instance which will act as master in the replication
-     * setup.
+     * The name of the instance which will act as master in the replication setup.
      */
     masterInstanceName?: string;
     /**
@@ -450,16 +413,11 @@ export namespace sqladmin_v1beta4 {
      */
     onPremisesConfiguration?: Schema$OnPremisesConfiguration;
     /**
-     * The project ID of the project containing the Cloud SQL instance. The
-     * Google apps domain is prefixed if applicable.
+     * The project ID of the project containing the Cloud SQL instance. The Google apps domain is prefixed if applicable.
      */
     project?: string;
     /**
-     * The geographical region. Can be us-central (FIRST_GEN instances only),
-     * us-central1 (SECOND_GEN instances only), asia-east1 or europe-west1.
-     * Defaults to us-central or us-central1 depending on the instance type
-     * (First Generation or Second Generation). The region can not be changed
-     * after instance creation.
+     * The geographical region. Can be us-central (FIRST_GEN instances only), us-central1 (SECOND_GEN instances only), asia-east1 or europe-west1. Defaults to us-central or us-central1 depending on the instance type (First Generation or Second Generation). The region can not be changed after instance creation.
      */
     region?: string;
     /**
@@ -483,8 +441,7 @@ export namespace sqladmin_v1beta4 {
      */
     serverCaCert?: Schema$SslCert;
     /**
-     * The service account email address assigned to the instance. This property
-     * is applicable only to Second Generation instances.
+     * The service account email address assigned to the instance. This property is applicable only to Second Generation instances.
      */
     serviceAccountEmailAddress?: string;
     /**
@@ -492,12 +449,7 @@ export namespace sqladmin_v1beta4 {
      */
     settings?: Schema$Settings;
     /**
-     * The current serving state of the Cloud SQL instance. This can be one of
-     * the following. RUNNABLE: The instance is running, or is ready to run when
-     * accessed. SUSPENDED: The instance is not available, for example due to
-     * problems with billing. PENDING_CREATE: The instance is being created.
-     * MAINTENANCE: The instance is down for maintenance. FAILED: The instance
-     * creation failed. UNKNOWN_STATE: The state of the instance is unknown.
+     * The current serving state of the Cloud SQL instance. This can be one of the following. RUNNABLE: The instance is running, or is ready to run when accessed. SUSPENDED: The instance is not available, for example due to problems with billing. PENDING_CREATE: The instance is being created. MAINTENANCE: The instance is down for maintenance. FAILED: The instance creation failed. UNKNOWN_STATE: The state of the instance is unknown.
      */
     state?: string;
     /**
@@ -527,12 +479,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * MySQL specific configuration when replicating from a MySQL on-premises
-     * master. Replication configuration information such as the username,
-     * password, certificates, and keys are not stored in the instance metadata.
-     * The configuration information is used only to set up the replication
-     * connection and is stored by MySQL in a file named master.info in the data
-     * directory.
+     * MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named master.info in the data directory.
      */
     mysqlReplicaConfiguration?: Schema$DemoteMasterMySqlReplicaConfiguration;
   }
@@ -545,23 +492,15 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * The name of the instance which will act as on-premises master in the
-     * replication setup.
+     * The name of the instance which will act as on-premises master in the replication setup.
      */
     masterInstanceName?: string;
     /**
-     * Configuration specific to read-replicas replicating from the on-premises
-     * master.
+     * Configuration specific to read-replicas replicating from the on-premises master.
      */
     replicaConfiguration?: Schema$DemoteMasterConfiguration;
     /**
-     * Verify GTID consistency for demote operation. Default value: True. Second
-     * Generation instances only. Setting this flag to false enables you to
-     * bypass GTID consistency check between on-premises master and Cloud SQL
-     * instance during the demotion operation but also exposes you to the risk
-     * of future replication failures. Change the value only if you know the
-     * reason for the GTID divergence and are confident that doing so will not
-     * cause any replication issues.
+     * Verify GTID consistency for demote operation. Default value: True. Second Generation instances only. Setting this flag to false enables you to bypass GTID consistency check between on-premises master and Cloud SQL instance during the demotion operation but also exposes you to the risk of future replication failures. Change the value only if you know the reason for the GTID divergence and are confident that doing so will not cause any replication issues.
      */
     verifyGtidConsistency?: boolean;
   }
@@ -578,9 +517,7 @@ export namespace sqladmin_v1beta4 {
      */
     clientCertificate?: string;
     /**
-     * PEM representation of the slave&#39;s private key. The corresponsing
-     * public key is encoded in the client&#39;s certificate. The format of the
-     * slave&#39;s private key can be either PKCS #1 or PKCS #8.
+     * PEM representation of the slave&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate. The format of the slave&#39;s private key can be either PKCS #1 or PKCS #8.
      */
     clientKey?: string;
     /**
@@ -631,19 +568,11 @@ export namespace sqladmin_v1beta4 {
      */
     csvExportOptions?: {selectQuery?: string};
     /**
-     * Databases to be exported. MySQL instances: If fileType is SQL and no
-     * database is specified, all databases are exported, except for the mysql
-     * system database. If fileType is CSV, you can specify one database, either
-     * by using this property or by using the csvExportOptions.selectQuery
-     * property, which takes precedence over this property. PostgreSQL
-     * instances: Specify exactly one database to be exported. If fileType is
-     * CSV, this database must match the database used in the
-     * csvExportOptions.selectQuery property.
+     * Databases to be exported. MySQL instances: If fileType is SQL and no database is specified, all databases are exported, except for the mysql system database. If fileType is CSV, you can specify one database, either by using this property or by using the csvExportOptions.selectQuery property, which takes precedence over this property. PostgreSQL instances: Specify exactly one database to be exported. If fileType is CSV, this database must match the database used in the csvExportOptions.selectQuery property.
      */
     databases?: string[];
     /**
-     * The file type for the specified uri. SQL: The file contains SQL
-     * statements. CSV: The file contains CSV data.
+     * The file type for the specified uri. SQL: The file contains SQL statements. CSV: The file contains CSV data.
      */
     fileType?: string;
     /**
@@ -659,11 +588,7 @@ export namespace sqladmin_v1beta4 {
       tables?: string[];
     };
     /**
-     * The path to the file in Google Cloud Storage where the export will be
-     * stored. The URI is in the form gs://bucketName/fileName. If the file
-     * already exists, the requests succeeds, but the operation fails. If
-     * fileType is SQL and the filename ends with .gz, the contents are
-     * compressed.
+     * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form gs://bucketName/fileName. If the file already exists, the requests succeeds, but the operation fails. If fileType is SQL and the filename ends with .gz, the contents are compressed.
      */
     uri?: string;
   }
@@ -676,8 +601,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * The current settings version of this instance. Request will be rejected
-     * if this version doesn&#39;t match the current settings version.
+     * The current settings version of this instance. Request will be rejected if this version doesn&#39;t match the current settings version.
      */
     settingsVersion?: string;
   }
@@ -690,9 +614,7 @@ export namespace sqladmin_v1beta4 {
      */
     allowedStringValues?: string[];
     /**
-     * The database version this flag applies to. Can be MYSQL_5_5, MYSQL_5_6,
-     * or MYSQL_5_7. MYSQL_5_7 is applicable only to Second Generation
-     * instances.
+     * The database version this flag applies to. Can be MYSQL_5_5, MYSQL_5_6, or MYSQL_5_7. MYSQL_5_7 is applicable only to Second Generation instances.
      */
     appliesTo?: string[];
     /**
@@ -712,19 +634,15 @@ export namespace sqladmin_v1beta4 {
      */
     minValue?: string;
     /**
-     * This is the name of the flag. Flag names always use underscores, not
-     * hyphens, e.g. max_allowed_packet
+     * This is the name of the flag. Flag names always use underscores, not hyphens, e.g. max_allowed_packet
      */
     name?: string;
     /**
-     * Indicates whether changing this flag will trigger a database restart.
-     * Only applicable to Second Generation instances.
+     * Indicates whether changing this flag will trigger a database restart. Only applicable to Second Generation instances.
      */
     requiresRestart?: boolean;
     /**
-     * The type of the flag. Flags are typed to being BOOLEAN, STRING, INTEGER
-     * or NONE. NONE is used for flags which do not take a value, such as
-     * skip_grant_tables.
+     * The type of the flag. Flags are typed to being BOOLEAN, STRING, INTEGER or NONE. NONE is used for flags which do not take a value, such as skip_grant_tables.
      */
     type?: string;
   }
@@ -750,15 +668,11 @@ export namespace sqladmin_v1beta4 {
      */
     csvImportOptions?: {columns?: string[]; table?: string};
     /**
-     * The target database for the import. If fileType is SQL, this field is
-     * required only if the import file does not specify a database, and is
-     * overridden by any database specification in the import file. If fileType
-     * is CSV, one database must be specified.
+     * The target database for the import. If fileType is SQL, this field is required only if the import file does not specify a database, and is overridden by any database specification in the import file. If fileType is CSV, one database must be specified.
      */
     database?: string;
     /**
-     * The file type for the specified uri. SQL: The file contains SQL
-     * statements. CSV: The file contains CSV data.
+     * The file type for the specified uri. SQL: The file contains SQL statements. CSV: The file contains CSV data.
      */
     fileType?: string;
     /**
@@ -770,10 +684,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * Path to the import file in Cloud Storage, in the form
-     * gs://bucketName/fileName. Compressed gzip files (.gz) are supported when
-     * fileType is SQL. The instance must have write permissions to the bucket
-     * and read access to the file.
+     * Path to the import file in Cloud Storage, in the form gs://bucketName/fileName. Compressed gzip files (.gz) are supported when fileType is SQL. The instance must have write permissions to the bucket and read access to the file.
      */
     uri?: string;
   }
@@ -835,8 +746,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -890,9 +800,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$IpConfiguration {
     /**
-     * The list of external networks that are allowed to connect to the instance
-     * using the IP. In CIDR notation, also known as &#39;slash&#39; notation
-     * (e.g. 192.168.100.0/24).
+     * The list of external networks that are allowed to connect to the instance using the IP. In CIDR notation, also known as &#39;slash&#39; notation (e.g. 192.168.100.0/24).
      */
     authorizedNetworks?: Schema$AclEntry[];
     /**
@@ -900,10 +808,7 @@ export namespace sqladmin_v1beta4 {
      */
     ipv4Enabled?: boolean;
     /**
-     * The resource link for the VPC network from which the Cloud SQL instance
-     * is accessible for private IP. For example,
-     * /projects/myProject/global/networks/default. This setting can be updated,
-     * but it cannot be removed after it is set.
+     * The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, /projects/myProject/global/networks/default. This setting can be updated, but it cannot be removed after it is set.
      */
     privateNetwork?: string;
     /**
@@ -920,29 +825,20 @@ export namespace sqladmin_v1beta4 {
      */
     ipAddress?: string;
     /**
-     * The due time for this IP to be retired in RFC 3339 format, for example
-     * 2012-11-15T16:19:00.094Z. This field is only available when the IP is
-     * scheduled to be retired.
+     * The due time for this IP to be retired in RFC 3339 format, for example 2012-11-15T16:19:00.094Z. This field is only available when the IP is scheduled to be retired.
      */
     timeToRetire?: string;
     /**
-     * The type of this IP address. A PRIMARY address is an address that can
-     * accept incoming connections. An OUTGOING address is the source address of
-     * connections originating from the instance, if supported.
+     * The type of this IP address. A PRIMARY address is an address that can accept incoming connections. An OUTGOING address is the source address of connections originating from the instance, if supported.
      */
     type?: string;
   }
   /**
-   * Preferred location. This specifies where a Cloud SQL instance should
-   * preferably be located, either in a specific Compute Engine zone, or
-   * co-located with an App Engine application. Note that if the preferred
-   * location is not available, the instance will be located as close as
-   * possible within the region. Only one location may be specified.
+   * Preferred location. This specifies where a Cloud SQL instance should preferably be located, either in a specific Compute Engine zone, or co-located with an App Engine application. Note that if the preferred location is not available, the instance will be located as close as possible within the region. Only one location may be specified.
    */
   export interface Schema$LocationPreference {
     /**
-     * The AppEngine application to follow, it must be in the same region as the
-     * Cloud SQL instance.
+     * The AppEngine application to follow, it must be in the same region as the Cloud SQL instance.
      */
     followGaeApplication?: string;
     /**
@@ -950,14 +846,12 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * The preferred Compute Engine zone (e.g. us-central1-a, us-central1-b,
-     * etc.).
+     * The preferred Compute Engine zone (e.g. us-central1-a, us-central1-b, etc.).
      */
     zone?: string;
   }
   /**
-   * Maintenance window. This specifies when a v2 Cloud SQL instance should
-   * preferably be restarted for system maintenance purposes.
+   * Maintenance window. This specifies when a v2 Cloud SQL instance should preferably be restarted for system maintenance purposes.
    */
   export interface Schema$MaintenanceWindow {
     /**
@@ -973,8 +867,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * Maintenance timing setting: canary (Earlier) or stable (Later).  Learn
-     * more.
+     * Maintenance timing setting: canary (Earlier) or stable (Later).  Learn more.
      */
     updateTrack?: string;
   }
@@ -991,22 +884,15 @@ export namespace sqladmin_v1beta4 {
      */
     clientCertificate?: string;
     /**
-     * PEM representation of the slave&#39;s private key. The corresponsing
-     * public key is encoded in the client&#39;s certificate.
+     * PEM representation of the slave&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate.
      */
     clientKey?: string;
     /**
-     * Seconds to wait between connect retries. MySQL&#39;s default is 60
-     * seconds.
+     * Seconds to wait between connect retries. MySQL&#39;s default is 60 seconds.
      */
     connectRetryInterval?: number;
     /**
-     * Path to a SQL dump file in Google Cloud Storage from which the slave
-     * instance is to be created. The URI is in the form
-     * gs://bucketName/fileName. Compressed gzip files (.gz) are also supported.
-     * Dumps should have the binlog co-ordinates from which replication should
-     * begin. This can be accomplished by setting --master-data to 1 when using
-     * mysqldump.
+     * Path to a SQL dump file in Google Cloud Storage from which the slave instance is to be created. The URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz) are also supported. Dumps should have the binlog co-ordinates from which replication should begin. This can be accomplished by setting --master-data to 1 when using mysqldump.
      */
     dumpFilePath?: string;
     /**
@@ -1030,8 +916,7 @@ export namespace sqladmin_v1beta4 {
      */
     username?: string;
     /**
-     * Whether or not to check the master&#39;s Common Name value in the
-     * certificate that it sends during the SSL handshake.
+     * Whether or not to check the master&#39;s Common Name value in the certificate that it sends during the SSL handshake.
      */
     verifyServerCertificate?: boolean;
   }
@@ -1049,19 +934,15 @@ export namespace sqladmin_v1beta4 {
     kind?: string;
   }
   /**
-   * An Operation resource. For successful operations that return an Operation
-   * resource, only the fields relevant to the operation are populated in the
-   * resource.
+   * An Operation resource. For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource.
    */
   export interface Schema$Operation {
     /**
-     * The time this operation finished in UTC timezone in RFC 3339 format, for
-     * example 2012-11-15T16:19:00.094Z.
+     * The time this operation finished in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
     endTime?: string;
     /**
-     * If errors occurred during processing of this operation, this field will
-     * be populated.
+     * If errors occurred during processing of this operation, this field will be populated.
      */
     error?: Schema$OperationErrors;
     /**
@@ -1073,8 +954,7 @@ export namespace sqladmin_v1beta4 {
      */
     importContext?: Schema$ImportContext;
     /**
-     * The time this operation was enqueued in UTC timezone in RFC 3339 format,
-     * for example 2012-11-15T16:19:00.094Z.
+     * The time this operation was enqueued in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
     insertTime?: string;
     /**
@@ -1082,15 +962,11 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * An identifier that uniquely identifies the operation. You can use this
-     * identifier to retrieve the Operations resource that has information about
-     * the operation.
+     * An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
      */
     name?: string;
     /**
-     * The type of the operation. Valid values are CREATE, DELETE, UPDATE,
-     * RESTART, IMPORT, EXPORT, BACKUP_VOLUME, RESTORE_VOLUME, CREATE_USER,
-     * DELETE_USER, CREATE_DATABASE, DELETE_DATABASE .
+     * The type of the operation. Valid values are CREATE, DELETE, UPDATE, RESTART, IMPORT, EXPORT, BACKUP_VOLUME, RESTORE_VOLUME, CREATE_USER, DELETE_USER, CREATE_DATABASE, DELETE_DATABASE .
      */
     operationType?: string;
     /**
@@ -1098,13 +974,11 @@ export namespace sqladmin_v1beta4 {
      */
     selfLink?: string;
     /**
-     * The time this operation actually started in UTC timezone in RFC 3339
-     * format, for example 2012-11-15T16:19:00.094Z.
+     * The time this operation actually started in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
     startTime?: string;
     /**
-     * The status of an operation. Valid values are PENDING, RUNNING, DONE,
-     * UNKNOWN.
+     * The status of an operation. Valid values are PENDING, RUNNING, DONE, UNKNOWN.
      */
     status?: string;
     /**
@@ -1164,8 +1038,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
   }
@@ -1174,11 +1047,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$ReplicaConfiguration {
     /**
-     * Specifies if the replica is the failover target. If the field is set to
-     * true the replica will be designated as a failover replica. In case the
-     * master instance fails, the replica instance will be promoted as the new
-     * master instance. Only one replica can be specified as failover target,
-     * and the replica has to be in different zone with the master instance.
+     * Specifies if the replica is the failover target. If the field is set to true the replica will be designated as a failover replica. In case the master instance fails, the replica instance will be promoted as the new master instance. Only one replica can be specified as failover target, and the replica has to be in different zone with the master instance.
      */
     failoverTarget?: boolean;
     /**
@@ -1186,12 +1055,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * MySQL specific configuration when replicating from a MySQL on-premises
-     * master. Replication configuration information such as the username,
-     * password, certificates, and keys are not stored in the instance metadata.
-     * The configuration information is used only to set up the replication
-     * connection and is stored by MySQL in a file named master.info in the data
-     * directory.
+     * MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named master.info in the data directory.
      */
     mysqlReplicaConfiguration?: Schema$MySqlReplicaConfiguration;
   }
@@ -1221,9 +1085,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * The fingerprint of the next version to be rotated to. If left
-     * unspecified, will be rotated to the most recently added server CA
-     * version.
+     * The fingerprint of the next version to be rotated to. If left unspecified, will be rotated to the most recently added server CA version.
      */
     nextVersion?: string;
   }
@@ -1232,28 +1094,15 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$Settings {
     /**
-     * The activation policy specifies when the instance is activated; it is
-     * applicable only when the instance state is RUNNABLE. Valid values:
-     * ALWAYS: The instance is on, and remains so even in the absence of
-     * connection requests. NEVER: The instance is off; it is not activated,
-     * even if a connection request arrives. ON_DEMAND: First Generation
-     * instances only. The instance responds to incoming requests, and turns
-     * itself off when not in use. Instances with PER_USE pricing turn off after
-     * 15 minutes of inactivity. Instances with PER_PACKAGE pricing turn off
-     * after 12 hours of inactivity.
+     * The activation policy specifies when the instance is activated; it is applicable only when the instance state is RUNNABLE. Valid values: ALWAYS: The instance is on, and remains so even in the absence of connection requests. NEVER: The instance is off; it is not activated, even if a connection request arrives. ON_DEMAND: First Generation instances only. The instance responds to incoming requests, and turns itself off when not in use. Instances with PER_USE pricing turn off after 15 minutes of inactivity. Instances with PER_PACKAGE pricing turn off after 12 hours of inactivity.
      */
     activationPolicy?: string;
     /**
-     * The App Engine app IDs that can access this instance. First Generation
-     * instances only.
+     * The App Engine app IDs that can access this instance. First Generation instances only.
      */
     authorizedGaeApplications?: string[];
     /**
-     * Availability type (PostgreSQL instances only). Potential values: ZONAL:
-     * The instance serves data from only one zone. Outages in that zone affect
-     * data accessibility. REGIONAL: The instance can serve data from more than
-     * one zone in a region (it is highly available). For more information, see
-     * Overview of the High Availability Configuration.
+     * Availability type (PostgreSQL instances only). Potential values: ZONAL: The instance serves data from only one zone. Outages in that zone affect data accessibility. REGIONAL: The instance can serve data from more than one zone in a region (it is highly available). For more information, see Overview of the High Availability Configuration.
      */
     availabilityType?: string;
     /**
@@ -1261,9 +1110,7 @@ export namespace sqladmin_v1beta4 {
      */
     backupConfiguration?: Schema$BackupConfiguration;
     /**
-     * Configuration specific to read replica instances. Indicates whether
-     * database flags for crash-safe replication are enabled. This property is
-     * only applicable to First Generation instances.
+     * Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled. This property is only applicable to First Generation instances.
      */
     crashSafeReplicationEnabled?: boolean;
     /**
@@ -1271,25 +1118,19 @@ export namespace sqladmin_v1beta4 {
      */
     databaseFlags?: Schema$DatabaseFlags[];
     /**
-     * Configuration specific to read replica instances. Indicates whether
-     * replication is enabled or not.
+     * Configuration specific to read replica instances. Indicates whether replication is enabled or not.
      */
     databaseReplicationEnabled?: boolean;
     /**
-     * The size of data disk, in GB. The data disk size minimum is 10GB. Not
-     * used for First Generation instances.
+     * The size of data disk, in GB. The data disk size minimum is 10GB. Not used for First Generation instances.
      */
     dataDiskSizeGb?: string;
     /**
-     * The type of data disk: PD_SSD (default) or PD_HDD. Not used for First
-     * Generation instances.
+     * The type of data disk: PD_SSD (default) or PD_HDD. Not used for First Generation instances.
      */
     dataDiskType?: string;
     /**
-     * The settings for IP Management. This allows to enable or disable the
-     * instance IP and manage which external networks can connect to the
-     * instance. The IPv4 address cannot be disabled for Second Generation
-     * instances.
+     * The settings for IP Management. This allows to enable or disable the instance IP and manage which external networks can connect to the instance. The IPv4 address cannot be disabled for Second Generation instances.
      */
     ipConfiguration?: Schema$IpConfiguration;
     /**
@@ -1297,58 +1138,39 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * The location preference settings. This allows the instance to be located
-     * as near as possible to either an App Engine app or Compute Engine zone
-     * for better performance. App Engine co-location is only applicable to
-     * First Generation instances.
+     * The location preference settings. This allows the instance to be located as near as possible to either an App Engine app or Compute Engine zone for better performance. App Engine co-location is only applicable to First Generation instances.
      */
     locationPreference?: Schema$LocationPreference;
     /**
-     * The maintenance window for this instance. This specifies when the
-     * instance can be restarted for maintenance purposes. Not used for First
-     * Generation instances.
+     * The maintenance window for this instance. This specifies when the instance can be restarted for maintenance purposes. Not used for First Generation instances.
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
     /**
-     * The pricing plan for this instance. This can be either PER_USE or
-     * PACKAGE. Only PER_USE is supported for Second Generation instances.
+     * The pricing plan for this instance. This can be either PER_USE or PACKAGE. Only PER_USE is supported for Second Generation instances.
      */
     pricingPlan?: string;
     /**
-     * The type of replication this instance uses. This can be either
-     * ASYNCHRONOUS or SYNCHRONOUS. This property is only applicable to First
-     * Generation instances.
+     * The type of replication this instance uses. This can be either ASYNCHRONOUS or SYNCHRONOUS. This property is only applicable to First Generation instances.
      */
     replicationType?: string;
     /**
-     * The version of instance settings. This is a required field for update
-     * method to make sure concurrent updates are handled properly. During
-     * update, use the most recent settingsVersion value for this instance and
-     * do not try to update this value.
+     * The version of instance settings. This is a required field for update method to make sure concurrent updates are handled properly. During update, use the most recent settingsVersion value for this instance and do not try to update this value.
      */
     settingsVersion?: string;
     /**
-     * Configuration to increase storage size automatically. The default value
-     * is true. Not used for First Generation instances.
+     * Configuration to increase storage size automatically. The default value is true. Not used for First Generation instances.
      */
     storageAutoResize?: boolean;
     /**
-     * The maximum size to which storage capacity can be automatically
-     * increased. The default value is 0, which specifies that there is no
-     * limit. Not used for First Generation instances.
+     * The maximum size to which storage capacity can be automatically increased. The default value is 0, which specifies that there is no limit. Not used for First Generation instances.
      */
     storageAutoResizeLimit?: string;
     /**
-     * The tier (or machine type) for this instance, for example
-     * db-n1-standard-1 (MySQL instances) or db-custom-1-3840 (PostgreSQL
-     * instances). For MySQL instances, this property determines whether the
-     * instance is First or Second Generation. For more information, see
-     * Instance Settings.
+     * The tier (or machine type) for this instance, for example db-n1-standard-1 (MySQL instances) or db-custom-1-3840 (PostgreSQL instances). For MySQL instances, this property determines whether the instance is First or Second Generation. For more information, see Instance Settings.
      */
     tier?: string;
     /**
-     * User-provided labels, represented as a dictionary where each label is a
-     * single key value pair.
+     * User-provided labels, represented as a dictionary where each label is a single key value pair.
      */
     userLabels?: {[key: string]: string};
   }
@@ -1369,13 +1191,11 @@ export namespace sqladmin_v1beta4 {
      */
     commonName?: string;
     /**
-     * The time when the certificate was created in RFC 3339 format, for example
-     * 2012-11-15T16:19:00.094Z
+     * The time when the certificate was created in RFC 3339 format, for example 2012-11-15T16:19:00.094Z
      */
     createTime?: string;
     /**
-     * The time when the certificate expires in RFC 3339 format, for example
-     * 2012-11-15T16:19:00.094Z.
+     * The time when the certificate expires in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
     expirationTime?: string;
     /**
@@ -1404,8 +1224,7 @@ export namespace sqladmin_v1beta4 {
      */
     certInfo?: Schema$SslCert;
     /**
-     * The private key for the client cert, in pem format. Keep private in order
-     * to protect your security.
+     * The private key for the client cert, in pem format. Keep private in order to protect your security.
      */
     certPrivateKey?: string;
   }
@@ -1423,8 +1242,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$SslCertsInsertRequest {
     /**
-     * User supplied name. Must be a distinct name from the other certificates
-     * for this instance.
+     * User supplied name. Must be a distinct name from the other certificates for this instance.
      */
     commonName?: string;
   }
@@ -1433,9 +1251,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$SslCertsInsertResponse {
     /**
-     * The new client certificate and private key. For First Generation
-     * instances, the new certificate does not take effect until the instance is
-     * restarted.
+     * The new client certificate and private key. For First Generation instances, the new certificate does not take effect until the instance is restarted.
      */
     clientCert?: Schema$SslCertDetail;
     /**
@@ -1447,9 +1263,7 @@ export namespace sqladmin_v1beta4 {
      */
     operation?: Schema$Operation;
     /**
-     * The server Certificate Authority&#39;s certificate. If this is missing
-     * you can force a new one to be generated by calling resetSslConfig method
-     * on instances resource.
+     * The server Certificate Authority&#39;s certificate. If this is missing you can force a new one to be generated by calling resetSslConfig method on instances resource.
      */
     serverCaCert?: Schema$SslCert;
   }
@@ -1487,8 +1301,7 @@ export namespace sqladmin_v1beta4 {
      */
     region?: string[];
     /**
-     * An identifier for the machine type, for example, db-n1-standard-1. For
-     * related information, see Pricing.
+     * An identifier for the machine type, for example, db-n1-standard-1. For related information, see Pricing.
      */
     tier?: string;
   }
@@ -1514,8 +1327,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * The type of log to truncate. Valid values are MYSQL_GENERAL_TABLE and
-     * MYSQL_SLOW_TABLE.
+     * The type of log to truncate. Valid values are MYSQL_GENERAL_TABLE and MYSQL_SLOW_TABLE.
      */
     logType?: string;
   }
@@ -1524,20 +1336,15 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$User {
     /**
-     * This field is deprecated and will be removed from a future version of the
-     * API.
+     * This field is deprecated and will be removed from a future version of the API.
      */
     etag?: string;
     /**
-     * The host name from which the user can connect. For insert operations,
-     * host defaults to an empty string. For update operations, host is
-     * specified as part of the request URL. The host name cannot be updated
-     * after insertion.
+     * The host name from which the user can connect. For insert operations, host defaults to an empty string. For update operations, host is specified as part of the request URL. The host name cannot be updated after insertion.
      */
     host?: string;
     /**
-     * The name of the Cloud SQL instance. This does not include the project ID.
-     * Can be omitted for update since it is already specified on the URL.
+     * The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for update since it is already specified on the URL.
      */
     instance?: string;
     /**
@@ -1545,8 +1352,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * The name of the user in the Cloud SQL instance. Can be omitted for update
-     * since it is already specified in the URL.
+     * The name of the user in the Cloud SQL instance. Can be omitted for update since it is already specified in the URL.
      */
     name?: string;
     /**
@@ -1554,9 +1360,7 @@ export namespace sqladmin_v1beta4 {
      */
     password?: string;
     /**
-     * The project ID of the project containing the Cloud SQL database. The
-     * Google apps domain is prefixed if applicable. Can be omitted for update
-     * since it is already specified on the URL.
+     * The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for update since it is already specified on the URL.
      */
     project?: string;
   }
@@ -1573,9 +1377,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * An identifier that uniquely identifies the operation. You can use this
-     * identifier to retrieve the Operations resource that has information about
-     * the operation.
+     * An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
      */
     nextPageToken?: string;
   }
@@ -1739,8 +1541,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.backupRuns.insert
-     * @desc Creates a new backup run on demand. This method is applicable only
-     * to Second Generation instances.
+     * @desc Creates a new backup run on demand. This method is applicable only to Second Generation instances.
      * @alias sql.backupRuns.insert
      * @memberOf! ()
      *
@@ -1816,9 +1617,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.backupRuns.list
-     * @desc Lists all backup runs associated with a given instance and
-     * configuration in the reverse chronological order of the backup initiation
-     * time.
+     * @desc Lists all backup runs associated with a given instance and configuration in the reverse chronological order of the backup initiation time.
      * @alias sql.backupRuns.list
      * @memberOf! ()
      *
@@ -1903,8 +1702,7 @@ export namespace sqladmin_v1beta4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the Backup Run to delete. To find a Backup Run ID, use the list
-     * method.
+     * The ID of the Backup Run to delete. To find a Backup Run ID, use the list method.
      */
     id?: string;
     /**
@@ -1971,8 +1769,7 @@ export namespace sqladmin_v1beta4 {
      */
     maxResults?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**
@@ -2064,8 +1861,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.databases.get
-     * @desc Retrieves a resource containing information about a database inside
-     * a Cloud SQL instance.
+     * @desc Retrieves a resource containing information about a database inside a Cloud SQL instance.
      * @alias sql.databases.get
      * @memberOf! ()
      *
@@ -2138,8 +1934,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.databases.insert
-     * @desc Inserts a resource containing information about a database inside a
-     * Cloud SQL instance.
+     * @desc Inserts a resource containing information about a database inside a Cloud SQL instance.
      * @alias sql.databases.insert
      * @memberOf! ()
      *
@@ -2290,8 +2085,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.databases.patch
-     * @desc Updates a resource containing information about a database inside a
-     * Cloud SQL instance. This method supports patch semantics.
+     * @desc Updates a resource containing information about a database inside a Cloud SQL instance. This method supports patch semantics.
      * @alias sql.databases.patch
      * @memberOf! ()
      *
@@ -2367,8 +2161,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.databases.update
-     * @desc Updates a resource containing information about a database inside a
-     * Cloud SQL instance.
+     * @desc Updates a resource containing information about a database inside a Cloud SQL instance.
      * @alias sql.databases.update
      * @memberOf! ()
      *
@@ -2649,8 +2442,7 @@ export namespace sqladmin_v1beta4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Database type and version you want to retrieve flags for. By default,
-     * this method returns flags for all database types and versions.
+     * Database type and version you want to retrieve flags for. By default, this method returns flags for all database types and versions.
      */
     databaseVersion?: string;
   }
@@ -2663,11 +2455,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.addServerCa
-     * @desc Add a new trusted Certificate Authority (CA) version for the
-     * specified instance. Required to prepare for a certificate rotation. If a
-     * CA version was previously added but never used in a certificate rotation,
-     * this operation replaces that version. There cannot be more than one CA
-     * version waiting to be rotated in.
+     * @desc Add a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in.
      * @alias sql.instances.addServerCa
      * @memberOf! ()
      *
@@ -2890,8 +2678,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.demoteMaster
-     * @desc Demotes the stand-alone instance to be a Cloud SQL read replica for
-     * an external database server.
+     * @desc Demotes the stand-alone instance to be a Cloud SQL read replica for an external database server.
      * @alias sql.instances.demoteMaster
      * @memberOf! ()
      *
@@ -2967,8 +2754,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.export
-     * @desc Exports data from a Cloud SQL instance to a Cloud Storage bucket as
-     * a SQL dump or CSV file.
+     * @desc Exports data from a Cloud SQL instance to a Cloud Storage bucket as a SQL dump or CSV file.
      * @alias sql.instances.export
      * @memberOf! ()
      *
@@ -3119,8 +2905,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.get
-     * @desc Retrieves a resource containing information about a Cloud SQL
-     * instance.
+     * @desc Retrieves a resource containing information about a Cloud SQL instance.
      * @alias sql.instances.get
      * @memberOf! ()
      *
@@ -3193,8 +2978,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.import
-     * @desc Imports data into a Cloud SQL instance from a SQL dump or CSV file in
-     * Cloud Storage.
+     * @desc Imports data into a Cloud SQL instance from a SQL dump or CSV file in Cloud Storage.
      * @alias sql.instances.import
      * @memberOf! ()
      *
@@ -3342,8 +3126,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.list
-     * @desc Lists instances under a given project in the alphabetical order of
-     * the instance name.
+     * @desc Lists instances under a given project in the alphabetical order of the instance name.
      * @alias sql.instances.list
      * @memberOf! ()
      *
@@ -3420,11 +3203,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.listServerCas
-     * @desc Lists all of the trusted Certificate Authorities (CAs) for the
-     * specified instance. There can be up to three CAs listed: the CA that was
-     * used to sign the certificate that is currently in use, a CA that has been
-     * added but not yet used to sign a certificate, and a CA used to sign a
-     * certificate that has previously rotated out.
+     * @desc Lists all of the trusted Certificate Authorities (CAs) for the specified instance. There can be up to three CAs listed: the CA that was used to sign the certificate that is currently in use, a CA that has been added but not yet used to sign a certificate, and a CA used to sign a certificate that has previously rotated out.
      * @alias sql.instances.listServerCas
      * @memberOf! ()
      *
@@ -3508,10 +3287,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.patch
-     * @desc Updates settings of a Cloud SQL instance. Caution: This is not a
-     * partial update, so you must include values for all the settings that you
-     * want to retain. For partial updates, use patch.. This method supports
-     * patch semantics.
+     * @desc Updates settings of a Cloud SQL instance. Caution: This is not a partial update, so you must include values for all the settings that you want to retain. For partial updates, use patch.. This method supports patch semantics.
      * @alias sql.instances.patch
      * @memberOf! ()
      *
@@ -3585,8 +3361,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.promoteReplica
-     * @desc Promotes the read replica instance to be a stand-alone Cloud SQL
-     * instance.
+     * @desc Promotes the read replica instance to be a stand-alone Cloud SQL instance.
      * @alias sql.instances.promoteReplica
      * @memberOf! ()
      *
@@ -3661,8 +3436,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.resetSslConfig
-     * @desc Deletes all client certificates and generates a new server SSL
-     * certificate for the instance.
+     * @desc Deletes all client certificates and generates a new server SSL certificate for the instance.
      * @alias sql.instances.resetSslConfig
      * @memberOf! ()
      *
@@ -3888,8 +3662,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.rotateServerCa
-     * @desc Rotates the server certificate to one signed by the Certificate
-     * Authority (CA) version previously added with the addServerCA method.
+     * @desc Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method.
      * @alias sql.instances.rotateServerCa
      * @memberOf! ()
      *
@@ -4191,9 +3964,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.update
-     * @desc Updates settings of a Cloud SQL instance. Caution: This is not a
-     * partial update, so you must include values for all the settings that you
-     * want to retain. For partial updates, use patch.
+     * @desc Updates settings of a Cloud SQL instance. Caution: This is not a partial update, so you must include values for all the settings that you want to retain. For partial updates, use patch.
      * @alias sql.instances.update
      * @memberOf! ()
      *
@@ -4289,8 +4060,7 @@ export namespace sqladmin_v1beta4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the Cloud SQL instance to be cloned (source). This does not
-     * include the project ID.
+     * The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
      */
     instance?: string;
     /**
@@ -4422,8 +4192,7 @@ export namespace sqladmin_v1beta4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Project ID of the project to which the newly created Cloud SQL instances
-     * should belong.
+     * Project ID of the project to which the newly created Cloud SQL instances should belong.
      */
     project?: string;
 
@@ -4439,8 +4208,7 @@ export namespace sqladmin_v1beta4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * An expression for filtering the results of the request, such as by name
-     * or label.
+     * An expression for filtering the results of the request, such as by name or label.
      */
     filter?: string;
     /**
@@ -4448,8 +4216,7 @@ export namespace sqladmin_v1beta4 {
      */
     maxResults?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**
@@ -4665,8 +4432,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.operations.get
-     * @desc Retrieves an instance operation that has been performed on an
-     * instance.
+     * @desc Retrieves an instance operation that has been performed on an instance.
      * @alias sql.operations.get
      * @memberOf! ()
      *
@@ -4739,8 +4505,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.operations.list
-     * @desc Lists all instance operations that have been performed on the given
-     * Cloud SQL instance in the reverse chronological order of the start time.
+     * @desc Lists all instance operations that have been performed on the given Cloud SQL instance in the reverse chronological order of the start time.
      * @alias sql.operations.list
      * @memberOf! ()
      *
@@ -4846,8 +4611,7 @@ export namespace sqladmin_v1beta4 {
      */
     maxResults?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**
@@ -4864,10 +4628,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.sslCerts.createEphemeral
-     * @desc Generates a short-lived X509 certificate containing the provided
-     * public key and signed by a private key specific to the target instance.
-     * Users may use the certificate to authenticate as themselves when
-     * connecting to the database.
+     * @desc Generates a short-lived X509 certificate containing the provided public key and signed by a private key specific to the target instance. Users may use the certificate to authenticate as themselves when connecting to the database.
      * @alias sql.sslCerts.createEphemeral
      * @memberOf! ()
      *
@@ -4941,8 +4702,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.sslCerts.delete
-     * @desc Deletes the SSL certificate. For First Generation instances, the
-     * certificate remains valid until the instance is restarted.
+     * @desc Deletes the SSL certificate. For First Generation instances, the certificate remains valid until the instance is restarted.
      * @alias sql.sslCerts.delete
      * @memberOf! ()
      *
@@ -5017,9 +4777,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.sslCerts.get
-     * @desc Retrieves a particular SSL certificate. Does not include the
-     * private key (required for usage). The private key must be saved from the
-     * response to initial creation.
+     * @desc Retrieves a particular SSL certificate. Does not include the private key (required for usage). The private key must be saved from the response to initial creation.
      * @alias sql.sslCerts.get
      * @memberOf! ()
      *
@@ -5092,9 +4850,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.sslCerts.insert
-     * @desc Creates an SSL certificate and returns it along with the private
-     * key and server certificate authority. The new certificate will not be
-     * usable until the instance is restarted.
+     * @desc Creates an SSL certificate and returns it along with the private key and server certificate authority. The new certificate will not be usable until the instance is restarted.
      * @alias sql.sslCerts.insert
      * @memberOf! ()
      *
@@ -5349,8 +5105,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.tiers.list
-     * @desc Lists all available machine types (tiers) for Cloud SQL, for
-     * example, db-n1-standard-1. For related information, see Pricing.
+     * @desc Lists all available machine types (tiers) for Cloud SQL, for example, db-n1-standard-1. For related information, see Pricing.
      * @alias sql.tiers.list
      * @memberOf! ()
      *
