@@ -17,7 +17,7 @@
   ],
   "repository": "googleapis/google-api-nodejs-client",
   "name": "googleapis",
-  "version": "39.2.0",
+  "version": "40.0.0",
   "scripts": {
     "pretest": "npm run compile",
     "prepare": "npm run compile",
