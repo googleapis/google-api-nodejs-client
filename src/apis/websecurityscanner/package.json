@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "gts": "^1.0.0",
-    "null-loader": "^1.0.0",
+    "null-loader": "^2.0.0",
     "ts-loader": "^6.0.0",
     "typedoc": "^0.14.0",
     "typescript": "~3.4.0",
