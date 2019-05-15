@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace pubsub_v1beta1a {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace pubsub_v1beta1a {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace pubsub_v1beta1a {
   /**
    * Cloud Pub/Sub API
    *
-   * Provides reliable, many-to-many, asynchronous messaging between
-   * applications.
+   * Provides reliable, many-to-many, asynchronous messaging between applications.
    *
    * @example
    * const {google} = require('googleapis');
@@ -114,7 +109,10 @@ export namespace pubsub_v1beta1a {
     topics: Resource$Topics;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.subscriptions = new Resource$Subscriptions(this.context);
       this.topics = new Resource$Topics(this.context);
@@ -126,8 +124,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$AcknowledgeRequest {
     /**
-     * The acknowledgment ID for the message being acknowledged. This was
-     * returned by the Pub/Sub system in the Pull response.
+     * The acknowledgment ID for the message being acknowledged. This was returned by the Pub/Sub system in the Pull response.
      */
     ackId?: string[];
     /**
@@ -136,14 +133,7 @@ export namespace pubsub_v1beta1a {
     subscription?: string;
   }
   /**
-   * An empty message that you can re-use to avoid defining duplicated empty
-   * messages in your project. A typical example is to use it as argument or the
-   * return value of a service API. For instance:    service Foo {     rpc Bar
-   * (proto2.Empty) returns (proto2.Empty) { };   };  BEGIN GOOGLE-INTERNAL The
-   * difference between this one and net/rpc/empty-message.proto is that 1) The
-   * generated message here is in proto2 C++ API. 2) The proto2.Empty has
-   * minimum dependencies    (no message_set or net/rpc dependencies) END
-   * GOOGLE-INTERNAL
+   * An empty message that you can re-use to avoid defining duplicated empty messages in your project. A typical example is to use it as argument or the return value of a service API. For instance:    service Foo {     rpc Bar (proto2.Empty) returns (proto2.Empty) { };   };  BEGIN GOOGLE-INTERNAL The difference between this one and net/rpc/empty-message.proto is that 1) The generated message here is in proto2 C++ API. 2) The proto2.Empty has minimum dependencies    (no message_set or net/rpc dependencies) END GOOGLE-INTERNAL
    */
   export interface Schema$Empty {}
   /**
@@ -151,19 +141,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$Label {
     /**
-     * The key of a label is a syntactically valid URL (as per RFC 1738) with
-     * the &quot;scheme&quot; and initial slashes omitted and with the
-     * additional restrictions noted below.  Each key should be globally unique.
-     * The &quot;host&quot; portion is called the &quot;namespace&quot; and is
-     * not necessarily resolvable to a network endpoint.  Instead, the namespace
-     * indicates what system or entity defines the semantics of the label.
-     * Namespaces do not restrict the set of objects to which a label may be
-     * associated.  Keys are defined by the following grammar:    key          =
-     * hostname &quot;/&quot; kpath   kpath        = ksegment *[ &quot;/&quot;
-     * ksegment ]   ksegment     = alphadigit | *[ alphadigit | &quot;-&quot; |
-     * &quot;_&quot; | &quot;.&quot; ]  where &quot;hostname&quot; and
-     * &quot;alphadigit&quot; are defined as in RFC 1738.  Example key:
-     * spanner.google.com/universe
+     * The key of a label is a syntactically valid URL (as per RFC 1738) with the &quot;scheme&quot; and initial slashes omitted and with the additional restrictions noted below.  Each key should be globally unique.  The &quot;host&quot; portion is called the &quot;namespace&quot; and is not necessarily resolvable to a network endpoint.  Instead, the namespace indicates what system or entity defines the semantics of the label.  Namespaces do not restrict the set of objects to which a label may be associated.  Keys are defined by the following grammar:    key          = hostname &quot;/&quot; kpath   kpath        = ksegment *[ &quot;/&quot; ksegment ]   ksegment     = alphadigit | *[ alphadigit | &quot;-&quot; | &quot;_&quot; | &quot;.&quot; ]  where &quot;hostname&quot; and &quot;alphadigit&quot; are defined as in RFC 1738.  Example key:   spanner.google.com/universe
      */
     key?: string;
     /**
@@ -180,9 +158,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$ListSubscriptionsResponse {
     /**
-     * If not empty, indicates that there are more subscriptions that match the
-     * request and this value should be passed to the next
-     * &lt;code&gt;ListSubscriptionsRequest&lt;/code&gt; to continue.
+     * If not empty, indicates that there are more subscriptions that match the request and this value should be passed to the next &lt;code&gt;ListSubscriptionsRequest&lt;/code&gt; to continue.
      */
     nextPageToken?: string;
     /**
@@ -195,9 +171,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$ListTopicsResponse {
     /**
-     * If not empty, indicates that there are more topics that match the
-     * request, and this value should be passed to the next
-     * &lt;code&gt;ListTopicsRequest&lt;/code&gt; to continue.
+     * If not empty, indicates that there are more topics that match the request, and this value should be passed to the next &lt;code&gt;ListTopicsRequest&lt;/code&gt; to continue.
      */
     nextPageToken?: string;
     /**
@@ -210,26 +184,19 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$ModifyAckDeadlineRequest {
     /**
-     * The new ack deadline with respect to the time this request was sent to
-     * the Pub/Sub system. Must be &gt;= 0. For example, if the value is 10, the
-     * new ack deadline will expire 10 seconds after the ModifyAckDeadline call
-     * was made. Specifying zero may immediately make the message available for
-     * another pull request.
+     * The new ack deadline with respect to the time this request was sent to the Pub/Sub system. Must be &gt;= 0. For example, if the value is 10, the new ack deadline will expire 10 seconds after the ModifyAckDeadline call was made. Specifying zero may immediately make the message available for another pull request.
      */
     ackDeadlineSeconds?: number;
     /**
-     * The acknowledgment ID. Either this or ack_ids must be populated, not
-     * both.
+     * The acknowledgment ID. Either this or ack_ids must be populated, not both.
      */
     ackId?: string;
     /**
-     * List of acknowledgment IDs. Either this field or ack_id should be
-     * populated, not both.
+     * List of acknowledgment IDs. Either this field or ack_id should be populated, not both.
      */
     ackIds?: string[];
     /**
-     * Next Index: 5 The name of the subscription from which messages are being
-     * pulled.
+     * Next Index: 5 The name of the subscription from which messages are being pulled.
      */
     subscription?: string;
   }
@@ -238,8 +205,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$ModifyPushConfigRequest {
     /**
-     * An empty &lt;code&gt;push_config&lt;/code&gt; indicates that the Pub/Sub
-     * system should pause pushing messages from the given subscription.
+     * An empty &lt;code&gt;push_config&lt;/code&gt; indicates that the Pub/Sub system should pause pushing messages from the given subscription.
      */
     pushConfig?: Schema$PushConfig;
     /**
@@ -265,9 +231,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$PublishBatchResponse {
     /**
-     * The server-assigned ID of each published message, in the same order as
-     * the messages in the request. IDs are guaranteed to be unique within the
-     * topic.
+     * The server-assigned ID of each published message, in the same order as the messages in the request. IDs are guaranteed to be unique within the topic.
      */
     messageIds?: string[];
   }
@@ -289,9 +253,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$PubsubEvent {
     /**
-     * Indicates that this subscription has been deleted. (Note that pull
-     * subscribers will always receive NOT_FOUND in response in their pull
-     * request on the subscription, rather than seeing this boolean.)
+     * Indicates that this subscription has been deleted. (Note that pull subscribers will always receive NOT_FOUND in response in their pull request on the subscription, rather than seeing this boolean.)
      */
     deleted?: boolean;
     /**
@@ -316,20 +278,15 @@ export namespace pubsub_v1beta1a {
      */
     data?: string;
     /**
-     * Optional list of labels for this message. Keys in this collection must be
-     * unique.
+     * Optional list of labels for this message. Keys in this collection must be unique.
      */
     label?: Schema$Label[];
     /**
-     * ID of this message assigned by the server at publication time. Guaranteed
-     * to be unique within the topic. This value may be read by a subscriber
-     * that receives a PubsubMessage via a Pull call or a push delivery. It must
-     * not be populated by a publisher in a Publish call.
+     * ID of this message assigned by the server at publication time. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a PubsubMessage via a Pull call or a push delivery. It must not be populated by a publisher in a Publish call.
      */
     messageId?: string;
     /**
-     * The time at which the message was published. The time is milliseconds
-     * since the UNIX epoch.
+     * The time at which the message was published. The time is milliseconds since the UNIX epoch.
      */
     publishTime?: string;
   }
@@ -338,16 +295,11 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$PullBatchRequest {
     /**
-     * The maximum number of PubsubEvents returned for this request. The Pub/Sub
-     * system may return fewer than the number of events specified.
+     * The maximum number of PubsubEvents returned for this request. The Pub/Sub system may return fewer than the number of events specified.
      */
     maxEvents?: number;
     /**
-     * If this is specified as true the system will respond immediately even if
-     * it is not able to return a message in the Pull response. Otherwise the
-     * system is allowed to wait until at least one message is available rather
-     * than returning no messages. The client may cancel the request if it does
-     * not wish to wait any longer for the response.
+     * If this is specified as true the system will respond immediately even if it is not able to return a message in the Pull response. Otherwise the system is allowed to wait until at least one message is available rather than returning no messages. The client may cancel the request if it does not wish to wait any longer for the response.
      */
     returnImmediately?: boolean;
     /**
@@ -360,10 +312,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$PullBatchResponse {
     /**
-     * Received Pub/Sub messages or status events. The Pub/Sub system will
-     * return zero messages if there are no more messages available in the
-     * backlog. The Pub/Sub system may return fewer than the max_events
-     * requested even if there are more messages available in the backlog.
+     * Received Pub/Sub messages or status events. The Pub/Sub system will return zero messages if there are no more messages available in the backlog. The Pub/Sub system may return fewer than the max_events requested even if there are more messages available in the backlog.
      */
     pullResponses?: Schema$PullResponse[];
   }
@@ -372,11 +321,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$PullRequest {
     /**
-     * If this is specified as true the system will respond immediately even if
-     * it is not able to return a message in the Pull response. Otherwise the
-     * system is allowed to wait until at least one message is available rather
-     * than returning FAILED_PRECONDITION. The client may cancel the request if
-     * it does not wish to wait any longer for the response.
+     * If this is specified as true the system will respond immediately even if it is not able to return a message in the Pull response. Otherwise the system is allowed to wait until at least one message is available rather than returning FAILED_PRECONDITION. The client may cancel the request if it does not wish to wait any longer for the response.
      */
     returnImmediately?: boolean;
     /**
@@ -385,8 +330,7 @@ export namespace pubsub_v1beta1a {
     subscription?: string;
   }
   /**
-   * Either a &lt;code&gt;PubsubMessage&lt;/code&gt; or a truncation event. One
-   * of these two must be populated.
+   * Either a &lt;code&gt;PubsubMessage&lt;/code&gt; or a truncation event. One of these two must be populated.
    */
   export interface Schema$PullResponse {
     /**
@@ -403,9 +347,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$PushConfig {
     /**
-     * A URL locating the endpoint to which messages should be pushed. For
-     * example, a Webhook endpoint might use
-     * &quot;https://example.com/push&quot;.
+     * A URL locating the endpoint to which messages should be pushed. For example, a Webhook endpoint might use &quot;https://example.com/push&quot;.
      */
     pushEndpoint?: string;
   }
@@ -414,21 +356,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$Subscription {
     /**
-     * For either push or pull delivery, the value is the maximum time after a
-     * subscriber receives a message before the subscriber should acknowledge or
-     * Nack the message. If the Ack deadline for a message passes without an Ack
-     * or a Nack, the Pub/Sub system will eventually redeliver the message. If a
-     * subscriber acknowledges after the deadline, the Pub/Sub system may accept
-     * the Ack, but it is possible that the message has been already delivered
-     * again. Multiple Acks to the message are allowed and will succeed.  For
-     * push delivery, this value is used to set the request timeout for the call
-     * to the push endpoint.  For pull delivery, this value is used as the
-     * initial value for the Ack deadline. It may be overridden for each message
-     * using its corresponding ack_id with
-     * &lt;code&gt;ModifyAckDeadline&lt;/code&gt;. While a message is
-     * outstanding (i.e. it has been delivered to a pull subscriber and the
-     * subscriber has not yet Acked or Nacked), the Pub/Sub system will not
-     * deliver that message to another pull subscriber (on a best-effort basis).
+     * For either push or pull delivery, the value is the maximum time after a subscriber receives a message before the subscriber should acknowledge or Nack the message. If the Ack deadline for a message passes without an Ack or a Nack, the Pub/Sub system will eventually redeliver the message. If a subscriber acknowledges after the deadline, the Pub/Sub system may accept the Ack, but it is possible that the message has been already delivered again. Multiple Acks to the message are allowed and will succeed.  For push delivery, this value is used to set the request timeout for the call to the push endpoint.  For pull delivery, this value is used as the initial value for the Ack deadline. It may be overridden for each message using its corresponding ack_id with &lt;code&gt;ModifyAckDeadline&lt;/code&gt;. While a message is outstanding (i.e. it has been delivered to a pull subscriber and the subscriber has not yet Acked or Nacked), the Pub/Sub system will not deliver that message to another pull subscriber (on a best-effort basis).
      */
     ackDeadlineSeconds?: number;
     /**
@@ -436,8 +364,7 @@ export namespace pubsub_v1beta1a {
      */
     name?: string;
     /**
-     * If push delivery is used with this subscription, this field is used to
-     * configure it.
+     * If push delivery is used with this subscription, this field is used to configure it.
      */
     pushConfig?: Schema$PushConfig;
     /**
@@ -463,11 +390,7 @@ export namespace pubsub_v1beta1a {
 
     /**
      * pubsub.subscriptions.acknowledge
-     * @desc Acknowledges a particular received message: the Pub/Sub system can
-     * remove the given message from the subscription. Acknowledging a message
-     * whose Ack deadline has expired may succeed, but the message could have
-     * been already redelivered. Acknowledging a message more than once will not
-     * result in an error. This is only used for messages received via pull.
+     * @desc Acknowledges a particular received message: the Pub/Sub system can remove the given message from the subscription. Acknowledging a message whose Ack deadline has expired may succeed, but the message could have been already redelivered. Acknowledging a message more than once will not result in an error. This is only used for messages received via pull.
      * @alias pubsub.subscriptions.acknowledge
      * @memberOf! ()
      *
@@ -539,11 +462,7 @@ export namespace pubsub_v1beta1a {
 
     /**
      * pubsub.subscriptions.create
-     * @desc Creates a subscription on a given topic for a given subscriber. If
-     * the subscription already exists, returns ALREADY_EXISTS. If the
-     * corresponding topic doesn't exist, returns NOT_FOUND.  If the name is not
-     * provided in the request, the server will assign a random name for this
-     * subscription on the same project as the topic.
+     * @desc Creates a subscription on a given topic for a given subscriber. If the subscription already exists, returns ALREADY_EXISTS. If the corresponding topic doesn't exist, returns NOT_FOUND.  If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic.
      * @alias pubsub.subscriptions.create
      * @memberOf! ()
      *
@@ -617,9 +536,7 @@ export namespace pubsub_v1beta1a {
 
     /**
      * pubsub.subscriptions.delete
-     * @desc Deletes an existing subscription. All pending messages in the
-     * subscription are immediately dropped. Calls to Pull after deletion will
-     * return NOT_FOUND.
+     * @desc Deletes an existing subscription. All pending messages in the subscription are immediately dropped. Calls to Pull after deletion will return NOT_FOUND.
      * @alias pubsub.subscriptions.delete
      * @memberOf! ()
      *
@@ -848,8 +765,7 @@ export namespace pubsub_v1beta1a {
 
     /**
      * pubsub.subscriptions.modifyAckDeadline
-     * @desc Modifies the Ack deadline for a message received from a pull
-     * request.
+     * @desc Modifies the Ack deadline for a message received from a pull request.
      * @alias pubsub.subscriptions.modifyAckDeadline
      * @memberOf! ()
      *
@@ -920,11 +836,7 @@ export namespace pubsub_v1beta1a {
 
     /**
      * pubsub.subscriptions.modifyPushConfig
-     * @desc Modifies the <code>PushConfig</code> for a specified subscription.
-     * This method can be used to suspend the flow of messages to an endpoint by
-     * clearing the <code>PushConfig</code> field in the request. Messages will
-     * be accumulated for delivery even if no push configuration is defined or
-     * while the configuration is modified.
+     * @desc Modifies the <code>PushConfig</code> for a specified subscription. This method can be used to suspend the flow of messages to an endpoint by clearing the <code>PushConfig</code> field in the request. Messages will be accumulated for delivery even if no push configuration is defined or while the configuration is modified.
      * @alias pubsub.subscriptions.modifyPushConfig
      * @memberOf! ()
      *
@@ -996,11 +908,7 @@ export namespace pubsub_v1beta1a {
 
     /**
      * pubsub.subscriptions.pull
-     * @desc Pulls a single message from the server. If return_immediately is
-     * true, and no messages are available in the subscription, this method
-     * returns FAILED_PRECONDITION. The system is free to return an UNAVAILABLE
-     * error if no messages are available in a reasonable amount of time (to
-     * reduce system load).
+     * @desc Pulls a single message from the server. If return_immediately is true, and no messages are available in the subscription, this method returns FAILED_PRECONDITION. The system is free to return an UNAVAILABLE error if no messages are available in a reasonable amount of time (to reduce system load).
      * @alias pubsub.subscriptions.pull
      * @memberOf! ()
      *
@@ -1074,10 +982,7 @@ export namespace pubsub_v1beta1a {
 
     /**
      * pubsub.subscriptions.pullBatch
-     * @desc Pulls messages from the server. Returns an empty list if there are
-     * no messages available in the backlog. The system is free to return
-     * UNAVAILABLE if there are too many pull requests outstanding for the given
-     * subscription.
+     * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The system is free to return UNAVAILABLE if there are too many pull requests outstanding for the given subscription.
      * @alias pubsub.subscriptions.pullBatch
      * @memberOf! ()
      *
@@ -1210,8 +1115,7 @@ export namespace pubsub_v1beta1a {
      */
     maxResults?: number;
     /**
-     * The value obtained in the last <code>ListSubscriptionsResponse</code> for
-     * continuation.
+     * The value obtained in the last <code>ListSubscriptionsResponse</code> for continuation.
      */
     pageToken?: string;
     /**
@@ -1344,9 +1248,7 @@ export namespace pubsub_v1beta1a {
 
     /**
      * pubsub.topics.delete
-     * @desc Deletes the topic with the given name. Returns NOT_FOUND if the
-     * topic does not exist. After a topic is deleted, a new topic may be
-     * created with the same name.
+     * @desc Deletes the topic with the given name. Returns NOT_FOUND if the topic does not exist. After a topic is deleted, a new topic may be created with the same name.
      * @alias pubsub.topics.delete
      * @memberOf! ()
      *
@@ -1417,10 +1319,7 @@ export namespace pubsub_v1beta1a {
 
     /**
      * pubsub.topics.get
-     * @desc Gets the configuration of a topic. Since the topic only has the
-     * name attribute, this method is only useful to check the existence of a
-     * topic. If other attributes are added in the future, they will be returned
-     * here.
+     * @desc Gets the configuration of a topic. Since the topic only has the name attribute, this method is only useful to check the existence of a topic. If other attributes are added in the future, they will be returned here.
      * @alias pubsub.topics.get
      * @memberOf! ()
      *
@@ -1563,8 +1462,7 @@ export namespace pubsub_v1beta1a {
 
     /**
      * pubsub.topics.publish
-     * @desc Adds a message to the topic.  Returns NOT_FOUND if the topic does
-     * not exist.
+     * @desc Adds a message to the topic.  Returns NOT_FOUND if the topic does not exist.
      * @alias pubsub.topics.publish
      * @memberOf! ()
      *
@@ -1635,8 +1533,7 @@ export namespace pubsub_v1beta1a {
 
     /**
      * pubsub.topics.publishBatch
-     * @desc Adds one or more messages to the topic. Returns NOT_FOUND if the
-     * topic does not exist.
+     * @desc Adds one or more messages to the topic. Returns NOT_FOUND if the topic does not exist.
      * @alias pubsub.topics.publishBatch
      * @memberOf! ()
      *
@@ -1757,8 +1654,7 @@ export namespace pubsub_v1beta1a {
      */
     maxResults?: number;
     /**
-     * The value obtained in the last <code>ListTopicsResponse</code> for
-     * continuation.
+     * The value obtained in the last <code>ListTopicsResponse</code> for continuation.
      */
     pageToken?: string;
     /**

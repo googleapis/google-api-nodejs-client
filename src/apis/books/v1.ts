@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace books_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace books_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -107,7 +104,10 @@ export namespace books_v1 {
     volumes: Resource$Volumes;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.bookshelves = new Resource$Bookshelves(this.context);
       this.cloudloading = new Resource$Cloudloading(this.context);
@@ -127,13 +127,11 @@ export namespace books_v1 {
 
   export interface Schema$Annotation {
     /**
-     * Anchor text after excerpt. For requests, if the user bookmarked a screen
-     * that has no flowing text on it, then this field should be empty.
+     * Anchor text after excerpt. For requests, if the user bookmarked a screen that has no flowing text on it, then this field should be empty.
      */
     afterSelectedText?: string;
     /**
-     * Anchor text before excerpt. For requests, if the user bookmarked a screen
-     * that has no flowing text on it, then this field should be empty.
+     * Anchor text before excerpt. For requests, if the user bookmarked a screen that has no flowing text on it, then this field should be empty.
      */
     beforeSelectedText?: string;
     /**
@@ -237,8 +235,7 @@ export namespace books_v1 {
      */
     selfLink?: string;
     /**
-     * Timestamp for the last time this data was updated. (RFC 3339 UTC
-     * date-time format).
+     * Timestamp for the last time this data was updated. (RFC 3339 UTC date-time format).
      */
     updated?: string;
     /**
@@ -256,13 +253,11 @@ export namespace books_v1 {
      */
     kind?: string;
     /**
-     * Token to pass in for pagination for the next page. This will not be
-     * present if this request does not have more results.
+     * Token to pass in for pagination for the next page. This will not be present if this request does not have more results.
      */
     nextPageToken?: string;
     /**
-     * Total number of annotations found. This may be greater than the number of
-     * notes returned in this response if results have been paginated.
+     * Total number of annotations found. This may be greater than the number of notes returned in this response if results have been paginated.
      */
     totalItems?: number;
   }
@@ -276,8 +271,7 @@ export namespace books_v1 {
      */
     kind?: string;
     /**
-     * Token to pass in for pagination for the next page. This will not be
-     * present if this request does not have more results.
+     * Token to pass in for pagination for the next page. This will not be present if this request does not have more results.
      */
     nextPageToken?: string;
     /**
@@ -325,8 +319,7 @@ export namespace books_v1 {
      */
     access?: string;
     /**
-     * Created time for this bookshelf (formatted UTC timestamp with millisecond
-     * resolution).
+     * Created time for this bookshelf (formatted UTC timestamp with millisecond resolution).
      */
     created?: string;
     /**
@@ -350,8 +343,7 @@ export namespace books_v1 {
      */
     title?: string;
     /**
-     * Last modified time of this bookshelf (formatted UTC timestamp with
-     * millisecond resolution).
+     * Last modified time of this bookshelf (formatted UTC timestamp with millisecond resolution).
      */
     updated?: string;
     /**
@@ -359,8 +351,7 @@ export namespace books_v1 {
      */
     volumeCount?: number;
     /**
-     * Last time a volume was added or removed from this bookshelf (formatted
-     * UTC timestamp with millisecond resolution).
+     * Last time a volume was added or removed from this bookshelf (formatted UTC timestamp with millisecond resolution).
      */
     volumesLastUpdated?: string;
   }
@@ -405,8 +396,7 @@ export namespace books_v1 {
      */
     message?: string;
     /**
-     * Client nonce for verification. Download access and client-validation
-     * only.
+     * Client nonce for verification. Download access and client-validation only.
      */
     nonce?: string;
     /**
@@ -422,8 +412,7 @@ export namespace books_v1 {
      */
     signature?: string;
     /**
-     * Client app identifier for verification. Download access and
-     * client-validation only.
+     * Client app identifier for verification. Download access and client-validation only.
      */
     source?: string;
     /**
@@ -510,8 +499,7 @@ export namespace books_v1 {
      */
     deviceAllowed?: boolean;
     /**
-     * If restricted, the number of content download licenses already acquired
-     * (including the requesting client, if licensed).
+     * If restricted, the number of content download licenses already acquired (including the requesting client, if licensed).
      */
     downloadsAcquired?: number;
     /**
@@ -523,8 +511,7 @@ export namespace books_v1 {
      */
     kind?: string;
     /**
-     * If restricted, the maximum number of content download licenses for this
-     * volume.
+     * If restricted, the maximum number of content download licenses for this volume.
      */
     maxDownloadDevices?: number;
     /**
@@ -532,14 +519,11 @@ export namespace books_v1 {
      */
     message?: string;
     /**
-     * Client nonce for verification. Download access and client-validation
-     * only.
+     * Client nonce for verification. Download access and client-validation only.
      */
     nonce?: string;
     /**
-     * Error/warning reason code. Additional codes may be added in the future. 0
-     * OK 100 ACCESS_DENIED_PUBLISHER_LIMIT 101 ACCESS_DENIED_LIMIT 200
-     * WARNING_USED_LAST_ACCESS
+     * Error/warning reason code. Additional codes may be added in the future. 0 OK 100 ACCESS_DENIED_PUBLISHER_LIMIT 101 ACCESS_DENIED_LIMIT 200 WARNING_USED_LAST_ACCESS
      */
     reasonCode?: string;
     /**
@@ -551,8 +535,7 @@ export namespace books_v1 {
      */
     signature?: string;
     /**
-     * Client app identifier for verification. Download access and
-     * client-validation only.
+     * Client app identifier for verification. Download access and client-validation only.
      */
     source?: string;
     /**
@@ -655,15 +638,11 @@ export namespace books_v1 {
      */
     selfLink?: string;
     /**
-     * Timestamp for the last time an item in this layer was updated. (RFC 3339
-     * UTC date-time format).
+     * Timestamp for the last time an item in this layer was updated. (RFC 3339 UTC date-time format).
      */
     updated?: string;
     /**
-     * The current version of this layer&#39;s volume annotations. Note that
-     * this version applies only to the data in the
-     * books.layers.volumeAnnotations.* responses. The actual annotation data is
-     * versioned separately.
+     * The current version of this layer&#39;s volume annotations. Note that this version applies only to the data in the books.layers.volumeAnnotations.* responses. The actual annotation data is versioned separately.
      */
     volumeAnnotationsVersion?: string;
     /**
@@ -755,8 +734,7 @@ export namespace books_v1 {
      */
     pdfPosition?: string;
     /**
-     * Timestamp when this reading position was last updated (formatted UTC
-     * timestamp with millisecond resolution).
+     * Timestamp when this reading position was last updated (formatted UTC timestamp with millisecond resolution).
      */
     updated?: string;
     /**
@@ -800,13 +778,11 @@ export namespace books_v1 {
      */
     kind?: string;
     /**
-     * Star rating for this review. Possible values are ONE, TWO, THREE, FOUR,
-     * FIVE or NOT_RATED.
+     * Star rating for this review. Possible values are ONE, TWO, THREE, FOUR, FIVE or NOT_RATED.
      */
     rating?: string;
     /**
-     * Information regarding the source of this review, when the review is not
-     * from a Google Books user.
+     * Information regarding the source of this review, when the review is not from a Google Books user.
      */
     source?: {description?: string; extraDescription?: string; url?: string};
     /**
@@ -814,8 +790,7 @@ export namespace books_v1 {
      */
     title?: string;
     /**
-     * Source type for this review. Possible values are EDITORIAL, WEB_USER or
-     * GOOGLE_USER.
+     * Source type for this review. Possible values are EDITORIAL, WEB_USER or GOOGLE_USER.
      */
     type?: string;
     /**
@@ -863,9 +838,7 @@ export namespace books_v1 {
   }
   export interface Schema$Volume {
     /**
-     * Any information about a volume related to reading or obtaining that
-     * volume text. This information can depend on country (books may be public
-     * domain in one country but not in another, e.g.).
+     * Any information about a volume related to reading or obtaining that volume text. This information can depend on country (books may be public domain in one country but not in another, e.g.).
      */
     accessInfo?: {
       accessViewStatus?: string;
@@ -892,8 +865,7 @@ export namespace books_v1 {
       webReaderLink?: string;
     };
     /**
-     * Opaque identifier for a specific version of a volume resource. (In LITE
-     * projection)
+     * Opaque identifier for a specific version of a volume resource. (In LITE projection)
      */
     etag?: string;
     /**
@@ -915,10 +887,7 @@ export namespace books_v1 {
      */
     recommendedInfo?: {explanation?: string};
     /**
-     * Any information about a volume related to the eBookstore and/or
-     * purchaseability. This information can depend on the country where the
-     * request originates from (i.e. books may not be for sale in certain
-     * countries).
+     * Any information about a volume related to the eBookstore and/or purchaseability. This information can depend on the country where the request originates from (i.e. books may not be for sale in certain countries).
      */
     saleInfo?: {
       buyLink?: string;
@@ -945,8 +914,7 @@ export namespace books_v1 {
      */
     selfLink?: string;
     /**
-     * User specific information related to this volume. (e.g. page this user
-     * last read or whether they purchased this book)
+     * User specific information related to this volume. (e.g. page this user last read or whether they purchased this book)
      */
     userInfo?: {
       acquiredTime?: string;
@@ -1090,8 +1058,7 @@ export namespace books_v1 {
      */
     selfLink?: string;
     /**
-     * Timestamp for the last time this anntoation was updated. (RFC 3339 UTC
-     * date-time format).
+     * Timestamp for the last time this anntoation was updated. (RFC 3339 UTC date-time format).
      */
     updated?: string;
     /**
@@ -1109,8 +1076,7 @@ export namespace books_v1 {
      */
     kind?: string;
     /**
-     * Token to pass in for pagination for the next page. This will not be
-     * present if this request does not have more results.
+     * Token to pass in for pagination for the next page. This will not be present if this request does not have more results.
      */
     nextPageToken?: string;
     /**
@@ -1118,10 +1084,7 @@ export namespace books_v1 {
      */
     totalItems?: number;
     /**
-     * The version string for all of the volume annotations in this layer (not
-     * just the ones in this response). Note: the version string doesn&#39;t
-     * apply to the annotation data, just the information in this response (e.g.
-     * the location of annotations in the book).
+     * The version string for all of the volume annotations in this layer (not just the ones in this response). Note: the version string doesn&#39;t apply to the annotation data, just the information in this response (e.g. the location of annotations in the book).
      */
     version?: string;
   }
@@ -1135,15 +1098,13 @@ export namespace books_v1 {
      */
     kind?: string;
     /**
-     * Total number of volumes found. This might be greater than the number of
-     * volumes returned in this response if results have been paginated.
+     * Total number of volumes found. This might be greater than the number of volumes returned in this response if results have been paginated.
      */
     totalItems?: number;
   }
   export interface Schema$Volumeseriesinfo {
     /**
-     * The display number string. This should be used only for display purposes
-     * and the actual sequence should be inferred from the below orderNumber.
+     * The display number string. This should be used only for display purposes and the actual sequence should be inferred from the below orderNumber.
      */
     bookDisplayNumber?: string;
     /**
@@ -1724,8 +1685,7 @@ export namespace books_v1 {
      */
     drive_document_id?: string;
     /**
-     * The document MIME type. It can be set only if the drive_document_id is
-     * set.
+     * The document MIME type. It can be set only if the drive_document_id is set.
      */
     mime_type?: string;
     /**
@@ -1936,8 +1896,7 @@ export namespace books_v1 {
 
     /**
      * books.familysharing.share
-     * @desc Initiates sharing of the content with the user's family. Empty
-     * response indicates success.
+     * @desc Initiates sharing of the content with the user's family. Empty response indicates success.
      * @alias books.familysharing.share
      * @memberOf! ()
      *
@@ -2011,8 +1970,7 @@ export namespace books_v1 {
 
     /**
      * books.familysharing.unshare
-     * @desc Initiates revoking content that has already been shared with the
-     * user's family. Empty response indicates success.
+     * @desc Initiates revoking content that has already been shared with the user's family. Empty response indicates success.
      * @alias books.familysharing.unshare
      * @memberOf! ()
      *
@@ -2553,8 +2511,7 @@ export namespace books_v1 {
      */
     contentVersion?: string;
     /**
-     * The requested pixel height for any images. If height is provided width
-     * must also be provided.
+     * The requested pixel height for any images. If height is provided width must also be provided.
      */
     h?: number;
     /**
@@ -2562,8 +2519,7 @@ export namespace books_v1 {
      */
     layerId?: string;
     /**
-     * The locale information for the data. ISO-639-1 language and ISO-3166-1
-     * country code. Ex: 'en_US'.
+     * The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      */
     locale?: string;
     /**
@@ -2579,8 +2535,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
     /**
-     * The requested pixel width for any images. If width is provided height
-     * must also be provided.
+     * The requested pixel width for any images. If width is provided height must also be provided.
      */
     w?: number;
   }
@@ -2592,8 +2547,7 @@ export namespace books_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The list of Annotation Data Ids to retrieve. Pagination is ignored if
-     * this is set.
+     * The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
      */
     annotationDataId?: string[];
     /**
@@ -2601,8 +2555,7 @@ export namespace books_v1 {
      */
     contentVersion?: string;
     /**
-     * The requested pixel height for any images. If height is provided width
-     * must also be provided.
+     * The requested pixel height for any images. If height is provided width must also be provided.
      */
     h?: number;
     /**
@@ -2610,8 +2563,7 @@ export namespace books_v1 {
      */
     layerId?: string;
     /**
-     * The locale information for the data. ISO-639-1 language and ISO-3166-1
-     * country code. Ex: 'en_US'.
+     * The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      */
     locale?: string;
     /**
@@ -2631,13 +2583,11 @@ export namespace books_v1 {
      */
     source?: string;
     /**
-     * RFC 3339 timestamp to restrict to items updated prior to this timestamp
-     * (exclusive).
+     * RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
      */
     updatedMax?: string;
     /**
-     * RFC 3339 timestamp to restrict to items updated since this timestamp
-     * (inclusive).
+     * RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
      */
     updatedMin?: string;
     /**
@@ -2645,8 +2595,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
     /**
-     * The requested pixel width for any images. If width is provided height
-     * must also be provided.
+     * The requested pixel width for any images. If width is provided height must also be provided.
      */
     w?: number;
   }
@@ -2839,8 +2788,7 @@ export namespace books_v1 {
      */
     layerId?: string;
     /**
-     * The locale information for the data. ISO-639-1 language and ISO-3166-1
-     * country code. Ex: 'en_US'.
+     * The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      */
     locale?: string;
     /**
@@ -2876,8 +2824,7 @@ export namespace books_v1 {
      */
     layerId?: string;
     /**
-     * The locale information for the data. ISO-639-1 language and ISO-3166-1
-     * country code. Ex: 'en_US'.
+     * The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      */
     locale?: string;
     /**
@@ -2889,8 +2836,7 @@ export namespace books_v1 {
      */
     pageToken?: string;
     /**
-     * Set to true to return deleted annotations. updatedMin must be in the
-     * request to use this. Defaults to false.
+     * Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
      */
     showDeleted?: boolean;
     /**
@@ -2906,13 +2852,11 @@ export namespace books_v1 {
      */
     startPosition?: string;
     /**
-     * RFC 3339 timestamp to restrict to items updated prior to this timestamp
-     * (exclusive).
+     * RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
      */
     updatedMax?: string;
     /**
-     * RFC 3339 timestamp to restrict to items updated since this timestamp
-     * (inclusive).
+     * RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
      */
     updatedMin?: string;
     /**
@@ -3164,8 +3108,7 @@ export namespace books_v1 {
 
     /**
      * books.myconfig.syncVolumeLicenses
-     * @desc Request downloaded content access for specified volumes on the My
-     * eBooks shelf.
+     * @desc Request downloaded content access for specified volumes on the My eBooks shelf.
      * @alias books.myconfig.syncVolumeLicenses
      * @memberOf! ()
      *
@@ -3244,9 +3187,7 @@ export namespace books_v1 {
 
     /**
      * books.myconfig.updateUserSettings
-     * @desc Sets the settings for the user. If a sub-object is specified, it
-     * will overwrite the existing sub-object stored in the server. Unspecified
-     * sub-objects will retain the existing value.
+     * @desc Sets the settings for the user. If a sub-object is specified, it will overwrite the existing sub-object stored in the server. Unspecified sub-objects will retain the existing value.
      * @alias books.myconfig.updateUserSettings
      * @memberOf! ()
      *
@@ -3364,8 +3305,7 @@ export namespace books_v1 {
      */
     cpksver?: string;
     /**
-     * The type of access license to request. If not specified, the default is
-     * BOTH.
+     * The type of access license to request. If not specified, the default is BOTH.
      */
     licenseTypes?: string;
     /**
@@ -3875,8 +3815,7 @@ export namespace books_v1 {
      */
     country?: string;
     /**
-     * Requests that only the summary of the specified layer be provided in the
-     * response.
+     * Requests that only the summary of the specified layer be provided in the response.
      */
     showOnlySummaryInResponse?: boolean;
     /**
@@ -3917,8 +3856,7 @@ export namespace books_v1 {
      */
     pageToken?: string;
     /**
-     * Set to true to return deleted annotations. updatedMin must be in the
-     * request to use this. Defaults to false.
+     * Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
      */
     showDeleted?: boolean;
     /**
@@ -3926,13 +3864,11 @@ export namespace books_v1 {
      */
     source?: string;
     /**
-     * RFC 3339 timestamp to restrict to items updated prior to this timestamp
-     * (exclusive).
+     * RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
      */
     updatedMax?: string;
     /**
-     * RFC 3339 timestamp to restrict to items updated since this timestamp
-     * (inclusive).
+     * RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
      */
     updatedMin?: string;
     /**
@@ -4134,8 +4070,7 @@ export namespace books_v1 {
 
     /**
      * books.mylibrary.bookshelves.get
-     * @desc Retrieves metadata for a specific bookshelf belonging to the
-     * authenticated user.
+     * @desc Retrieves metadata for a specific bookshelf belonging to the authenticated user.
      * @alias books.mylibrary.bookshelves.get
      * @memberOf! ()
      *
@@ -4210,8 +4145,7 @@ export namespace books_v1 {
 
     /**
      * books.mylibrary.bookshelves.list
-     * @desc Retrieves a list of bookshelves belonging to the authenticated
-     * user.
+     * @desc Retrieves a list of bookshelves belonging to the authenticated user.
      * @alias books.mylibrary.bookshelves.list
      * @memberOf! ()
      *
@@ -4520,8 +4454,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
     /**
-     * Position on shelf to move the item (0 puts the item before the current
-     * first item, 1 puts it between the first and the second and so on.)
+     * Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
      */
     volumePosition?: number;
   }
@@ -4982,8 +4915,7 @@ export namespace books_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     * generating notification title and body.
+     * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.
      */
     locale?: string;
     /**
@@ -5159,8 +5091,7 @@ export namespace books_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ISO-639-1 language and ISO-3166-1 country code. Default is en-US if
-     * unset.
+     * ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
      */
     locale?: string;
   }
@@ -5176,13 +5107,11 @@ export namespace books_v1 {
      */
     categoryId?: string[];
     /**
-     * ISO-639-1 language and ISO-3166-1 country code. Default is en-US if
-     * unset.
+     * ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
      */
     locale?: string;
     /**
-     * The maximum allowed maturity rating of returned volumes. Books with a
-     * higher maturity rating are filtered out.
+     * The maximum allowed maturity rating of returned volumes. Books with a higher maturity rating are filtered out.
      */
     maxAllowedMaturityRating?: string;
     /**
@@ -5286,13 +5215,11 @@ export namespace books_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     * generating recommendations.
+     * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
     locale?: string;
     /**
-     * The maximum allowed maturity rating of returned recommendations. Books
-     * with a higher maturity rating are filtered out.
+     * The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      */
     maxAllowedMaturityRating?: string;
     /**
@@ -6074,8 +6001,7 @@ export namespace books_v1 {
      */
     libraryRestrict?: string;
     /**
-     * The maximum allowed maturity rating of returned recommendations. Books
-     * with a higher maturity rating are filtered out.
+     * The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      */
     maxAllowedMaturityRating?: string;
     /**
@@ -6211,13 +6137,11 @@ export namespace books_v1 {
      */
     association?: string;
     /**
-     * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     * generating recommendations.
+     * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
     locale?: string;
     /**
-     * The maximum allowed maturity rating of returned recommendations. Books
-     * with a higher maturity rating are filtered out.
+     * The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      */
     maxAllowedMaturityRating?: string;
     /**
@@ -6331,8 +6255,7 @@ export namespace books_v1 {
      */
     country?: string;
     /**
-     * ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for
-     * generating recommendations.
+     * ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for generating recommendations.
      */
     locale?: string;
     /**
@@ -6340,8 +6263,7 @@ export namespace books_v1 {
      */
     maxResults?: number;
     /**
-     * The processing state of the user uploaded volumes to be returned.
-     * Applicable only if the UPLOADED is specified in the acquireMethod.
+     * The processing state of the user uploaded volumes to be returned. Applicable only if the UPLOADED is specified in the acquireMethod.
      */
     processingState?: string[];
     /**
@@ -6531,13 +6453,11 @@ export namespace books_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     * generating recommendations.
+     * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
     locale?: string;
     /**
-     * The maximum allowed maturity rating of returned recommendations. Books
-     * with a higher maturity rating are filtered out.
+     * The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      */
     maxAllowedMaturityRating?: string;
     /**
@@ -6553,8 +6473,7 @@ export namespace books_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     * generating recommendations.
+     * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
     locale?: string;
     /**
@@ -6663,8 +6582,7 @@ export namespace books_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     * generating recommendations.
+     * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
     locale?: string;
     /**
@@ -6684,8 +6602,7 @@ export namespace books_v1 {
      */
     startIndex?: number;
     /**
-     * The ids of the volumes to be returned. If not specified all that match
-     * the processingState are returned.
+     * The ids of the volumes to be returned. If not specified all that match the processingState are returned.
      */
     volumeId?: string[];
   }

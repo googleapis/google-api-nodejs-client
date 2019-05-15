@@ -4,6 +4,34 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [40.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v39.2.0...v40.0.0) (2019-05-13)
+
+
+### Bug Fixes
+
+* Incorrect case README ([#1706](https://www.github.com/googleapis/google-api-nodejs-client/issues/1706)) ([3e17bd8](https://www.github.com/googleapis/google-api-nodejs-client/commit/3e17bd8))
+* **samples:** fix readline args in youtube upload ([#1676](https://www.github.com/googleapis/google-api-nodejs-client/issues/1676)) ([3db63d6](https://www.github.com/googleapis/google-api-nodejs-client/commit/3db63d6))
+
+
+### Build System
+
+* upgrade engines field to >=8.10.0 ([#1691](https://www.github.com/googleapis/google-api-nodejs-client/issues/1691)) ([8428d5c](https://www.github.com/googleapis/google-api-nodejs-client/commit/8428d5c))
+
+
+### Features
+
+* run the generator ([#1680](https://www.github.com/googleapis/google-api-nodejs-client/issues/1680)) ([6d5a9c8](https://www.github.com/googleapis/google-api-nodejs-client/commit/6d5a9c8))
+* run the generator ([#1709](https://www.github.com/googleapis/google-api-nodejs-client/issues/1709)) ([6817c39](https://www.github.com/googleapis/google-api-nodejs-client/commit/6817c39))
+
+
+### BREAKING CHANGES
+
+* This release has a few breaking changes.
+- Node.js 8.x is now the minimum required version
+- The healthcare/v1alpha API has been removed
+- Uses google-auth-library 4.0
+* upgrade engines field to >=8.10.0 (#1691)
+
 ## v39.2.0
 
 04-03-2019 16:17 PDT
@@ -347,4 +375,3 @@ The following APIs have been added:
 - Use synth templating and update CI ([#1321](https://github.com/google/google-api-nodejs-client/pull/1321))
 - Retry npm install in CI ([#1320](https://github.com/google/google-api-nodejs-client/pull/1320))
 - Add synth.py for automating client library generation ([#1306](https://github.com/google/google-api-nodejs-client/pull/1306))
-

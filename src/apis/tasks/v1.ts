@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace tasks_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace tasks_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -96,7 +93,10 @@ export namespace tasks_v1 {
     tasks: Resource$Tasks;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.tasklists = new Resource$Tasklists(this.context);
       this.tasks = new Resource$Tasks(this.context);
@@ -105,8 +105,7 @@ export namespace tasks_v1 {
 
   export interface Schema$Task {
     /**
-     * Completion date of the task (as a RFC 3339 timestamp). This field is
-     * omitted if the task has not been completed.
+     * Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.
      */
     completed?: string;
     /**
@@ -122,9 +121,7 @@ export namespace tasks_v1 {
      */
     etag?: string;
     /**
-     * Flag indicating whether the task is hidden. This is the case if the task
-     * had been marked completed when the task list was last cleared. The
-     * default is False. This field is read-only.
+     * Flag indicating whether the task is hidden. This is the case if the task had been marked completed when the task list was last cleared. The default is False. This field is read-only.
      */
     hidden?: boolean;
     /**
@@ -144,19 +141,11 @@ export namespace tasks_v1 {
      */
     notes?: string;
     /**
-     * Parent task identifier. This field is omitted if it is a top-level task.
-     * This field is read-only. Use the &quot;move&quot; method to move the task
-     * under a different parent or to the top level.
+     * Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the &quot;move&quot; method to move the task under a different parent or to the top level.
      */
     parent?: string;
     /**
-     * String indicating the position of the task among its sibling tasks under
-     * the same parent task or at the top level. If this string is greater than
-     * another task&#39;s corresponding position string according to
-     * lexicographical ordering, the task is positioned after the other task
-     * under the same parent task (or at the top level). This field is
-     * read-only. Use the &quot;move&quot; method to move the task to another
-     * position.
+     * String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task&#39;s corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the &quot;move&quot; method to move the task to another position.
      */
     position?: string;
     /**
@@ -164,8 +153,7 @@ export namespace tasks_v1 {
      */
     selfLink?: string;
     /**
-     * Status of the task. This is either &quot;needsAction&quot; or
-     * &quot;completed&quot;.
+     * Status of the task. This is either &quot;needsAction&quot; or &quot;completed&quot;.
      */
     status?: string;
     /**
@@ -191,8 +179,7 @@ export namespace tasks_v1 {
      */
     kind?: string;
     /**
-     * URL pointing to this task list. Used to retrieve, update, or delete this
-     * task list.
+     * URL pointing to this task list. Used to retrieve, update, or delete this task list.
      */
     selfLink?: string;
     /**
@@ -391,8 +378,7 @@ export namespace tasks_v1 {
 
     /**
      * tasks.tasklists.insert
-     * @desc Creates a new task list and adds it to the authenticated user's
-     * task lists.
+     * @desc Creates a new task list and adds it to the authenticated user's task lists.
      * @alias tasks.tasklists.insert
      * @memberOf! ()
      *
@@ -537,8 +523,7 @@ export namespace tasks_v1 {
 
     /**
      * tasks.tasklists.patch
-     * @desc Updates the authenticated user's specified task list. This method
-     * supports patch semantics.
+     * @desc Updates the authenticated user's specified task list. This method supports patch semantics.
      * @alias tasks.tasklists.patch
      * @memberOf! ()
      *
@@ -721,8 +706,7 @@ export namespace tasks_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Maximum number of task lists returned on one page. Optional. The default
-     * is 20 (max allowed: 100).
+     * Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      */
     maxResults?: string;
     /**
@@ -771,9 +755,7 @@ export namespace tasks_v1 {
 
     /**
      * tasks.tasks.clear
-     * @desc Clears all completed tasks from the specified task list. The
-     * affected tasks will be marked as 'hidden' and no longer be returned by
-     * default when retrieving all tasks for a task list.
+     * @desc Clears all completed tasks from the specified task list. The affected tasks will be marked as 'hidden' and no longer be returned by default when retrieving all tasks for a task list.
      * @alias tasks.tasks.clear
      * @memberOf! ()
      *
@@ -1143,9 +1125,7 @@ export namespace tasks_v1 {
 
     /**
      * tasks.tasks.move
-     * @desc Moves the specified task to another position in the task list. This
-     * can include putting it as a child task under a new parent and/or move it
-     * to a different position among its sibling tasks.
+     * @desc Moves the specified task to another position in the task list. This can include putting it as a child task under a new parent and/or move it to a different position among its sibling tasks.
      * @alias tasks.tasks.move
      * @memberOf! ()
      *
@@ -1411,13 +1391,11 @@ export namespace tasks_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Parent task identifier. If the task is created at the top level, this
-     * parameter is omitted. Optional.
+     * Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
      */
     parent?: string;
     /**
-     * Previous sibling task identifier. If the task is created at the first
-     * position among its siblings, this parameter is omitted. Optional.
+     * Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
      */
     previous?: string;
     /**
@@ -1437,28 +1415,23 @@ export namespace tasks_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Upper bound for a task's completion date (as a RFC 3339 timestamp) to
-     * filter by. Optional. The default is not to filter by completion date.
+     * Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
      */
     completedMax?: string;
     /**
-     * Lower bound for a task's completion date (as a RFC 3339 timestamp) to
-     * filter by. Optional. The default is not to filter by completion date.
+     * Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
      */
     completedMin?: string;
     /**
-     * Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by.
-     * Optional. The default is not to filter by due date.
+     * Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
      */
     dueMax?: string;
     /**
-     * Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by.
-     * Optional. The default is not to filter by due date.
+     * Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
      */
     dueMin?: string;
     /**
-     * Maximum number of task lists returned on one page. Optional. The default
-     * is 20 (max allowed: 100).
+     * Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      */
     maxResults?: string;
     /**
@@ -1466,18 +1439,15 @@ export namespace tasks_v1 {
      */
     pageToken?: string;
     /**
-     * Flag indicating whether completed tasks are returned in the result.
-     * Optional. The default is True.
+     * Flag indicating whether completed tasks are returned in the result. Optional. The default is True.
      */
     showCompleted?: boolean;
     /**
-     * Flag indicating whether deleted tasks are returned in the result.
-     * Optional. The default is False.
+     * Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
      */
     showDeleted?: boolean;
     /**
-     * Flag indicating whether hidden tasks are returned in the result.
-     * Optional. The default is False.
+     * Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
      */
     showHidden?: boolean;
     /**
@@ -1485,9 +1455,7 @@ export namespace tasks_v1 {
      */
     tasklist?: string;
     /**
-     * Lower bound for a task's last modification time (as a RFC 3339 timestamp)
-     * to filter by. Optional. The default is not to filter by last modification
-     * time.
+     * Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
      */
     updatedMin?: string;
   }
@@ -1498,13 +1466,11 @@ export namespace tasks_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * New parent task identifier. If the task is moved to the top level, this
-     * parameter is omitted. Optional.
+     * New parent task identifier. If the task is moved to the top level, this parameter is omitted. Optional.
      */
     parent?: string;
     /**
-     * New previous sibling task identifier. If the task is moved to the first
-     * position among its siblings, this parameter is omitted. Optional.
+     * New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. Optional.
      */
     previous?: string;
     /**

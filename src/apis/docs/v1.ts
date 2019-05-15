@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace docs_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace docs_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -112,31 +108,29 @@ export namespace docs_v1 {
     documents: Resource$Documents;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.documents = new Resource$Documents(this.context);
     }
   }
 
   /**
-   * A ParagraphElement representing a spot in the text that is dynamically
-   * replaced with content that can change over time, like a page number.
+   * A ParagraphElement representing a spot in the text that is dynamically replaced with content that can change over time, like a page number.
    */
   export interface Schema$AutoText {
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion IDs. An AutoText may have multiple insertion IDs
-     * if it is a nested suggested change. If empty, then this is not a
-     * suggested insertion.
+     * The suggested insertion IDs. An AutoText may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionIds?: string[];
     /**
-     * The suggested text style changes to this AutoText, keyed by suggestion
-     * ID.
+     * The suggested text style changes to this AutoText, keyed by suggestion ID.
      */
     suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle};
     /**
@@ -158,14 +152,11 @@ export namespace docs_v1 {
     color?: Schema$OptionalColor;
   }
   /**
-   * A mask that indicates which of the fields on the base Background have been
-   * changed in this suggestion. For any field set to true, the Backgound has a
-   * new suggested value.
+   * A mask that indicates which of the fields on the base Background have been changed in this suggestion. For any field set to true, the Backgound has a new suggested value.
    */
   export interface Schema$BackgroundSuggestionState {
     /**
-     * Indicates whether the current background color has been modified in this
-     * suggestion.
+     * Indicates whether the current background color has been modified in this suggestion.
      */
     backgroundColorSuggested?: boolean;
   }
@@ -191,8 +182,7 @@ export namespace docs_v1 {
      */
     documentId?: string;
     /**
-     * The reply of the updates. This maps 1:1 with the updates, although
-     * replies to some requests may be empty.
+     * The reply of the updates. This maps 1:1 with the updates, although replies to some requests may be empty.
      */
     replies?: Schema$Response[];
     /**
@@ -201,13 +191,11 @@ export namespace docs_v1 {
     writeControl?: Schema$WriteControl;
   }
   /**
-   * The document body.  The body typically contains the full document contents
-   * except for headers, footers and footnotes.
+   * The document body.  The body typically contains the full document contents except for headers, footers and footnotes.
    */
   export interface Schema$Body {
     /**
-     * The contents of the body.  The indexes for the body&#39;s content begin
-     * at zero.
+     * The contents of the body.  The indexes for the body&#39;s content begin at zero.
      */
     content?: Schema$StructuralElement[];
   }
@@ -229,9 +217,7 @@ export namespace docs_v1 {
     textStyle?: Schema$TextStyle;
   }
   /**
-   * A mask that indicates which of the fields on the base Bullet have been
-   * changed in this suggestion. For any field set to true, there is a new
-   * suggested value.
+   * A mask that indicates which of the fields on the base Bullet have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$BulletSuggestionState {
     /**
@@ -243,8 +229,7 @@ export namespace docs_v1 {
      */
     nestingLevelSuggested?: boolean;
     /**
-     * A mask that indicates which of the fields in text style have been changed
-     * in this suggestion.
+     * A mask that indicates which of the fields in text style have been changed in this suggestion.
      */
     textStyleSuggestionState?: Schema$TextStyleSuggestionState;
   }
@@ -258,30 +243,23 @@ export namespace docs_v1 {
     rgbColor?: Schema$RgbColor;
   }
   /**
-   * A ParagraphElement representing a column break. A column break makes the
-   * subsequent text start at the top of the next column.
+   * A ParagraphElement representing a column break. A column break makes the subsequent text start at the top of the next column.
    */
   export interface Schema$ColumnBreak {
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion IDs. A ColumnBreak may have multiple insertion
-     * IDs if it is a nested suggested change. If empty, then this is not a
-     * suggested insertion.
+     * The suggested insertion IDs. A ColumnBreak may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionIds?: string[];
     /**
-     * The suggested text style changes to this ColumnBreak, keyed by suggestion
-     * ID.
+     * The suggested text style changes to this ColumnBreak, keyed by suggestion ID.
      */
     suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle};
     /**
-     * The text style of this ColumnBreak.  Similar to text content, like text
-     * runs and footnote references, the text style of a column break can affect
-     * content layout as well as the styling of text inserted adjacent to it.
+     * The text style of this ColumnBreak.  Similar to text content, like text runs and footnote references, the text style of a column break can affect content layout as well as the styling of text inserted adjacent to it.
      */
     textStyle?: Schema$TextStyle;
   }
@@ -290,9 +268,7 @@ export namespace docs_v1 {
    */
   export interface Schema$CreateNamedRangeRequest {
     /**
-     * The name of the NamedRange. Names do not need to be unique.  Names must
-     * be at least 1 character and no more than 256 characters, measured in
-     * UTF-16 code units.
+     * The name of the NamedRange. Names do not need to be unique.  Names must be at least 1 character and no more than 256 characters, measured in UTF-16 code units.
      */
     name?: string;
     /**
@@ -310,14 +286,7 @@ export namespace docs_v1 {
     namedRangeId?: string;
   }
   /**
-   * Creates bullets for all of the paragraphs that overlap with the given
-   * range.  The nesting level of each paragraph will be determined by counting
-   * leading tabs in front of each paragraph. To avoid excess space between the
-   * bullet and the corresponding paragraph, these leading tabs are removed by
-   * this request. This may change the indices of parts of the text.  If the
-   * paragraph immediately before paragraphs being updated is in a list with a
-   * matching preset, the paragraphs being updated are added to that preceding
-   * list.
+   * Creates bullets for all of the paragraphs that overlap with the given range.  The nesting level of each paragraph will be determined by counting leading tabs in front of each paragraph. To avoid excess space between the bullet and the corresponding paragraph, these leading tabs are removed by this request. This may change the indices of parts of the text.  If the paragraph immediately before paragraphs being updated is in a list with a matching preset, the paragraphs being updated are added to that preceding list.
    */
   export interface Schema$CreateParagraphBulletsRequest {
     /**
@@ -330,50 +299,32 @@ export namespace docs_v1 {
     range?: Schema$Range;
   }
   /**
-   * The crop properties of an image.  The crop rectangle is represented using
-   * fractional offsets from the original content&#39;s four edges.  - If the
-   * offset is in the interval (0, 1), the corresponding edge of crop rectangle
-   * is positioned inside of the image&#39;s original bounding rectangle. - If
-   * the offset is negative or greater than 1, the corresponding edge of crop
-   * rectangle is positioned outside of the image&#39;s original bounding
-   * rectangle. - If all offsets and rotation angle are 0, the image is not
-   * cropped.
+   * The crop properties of an image.  The crop rectangle is represented using fractional offsets from the original content&#39;s four edges.  - If the offset is in the interval (0, 1), the corresponding edge of crop rectangle is positioned inside of the image&#39;s original bounding rectangle. - If the offset is negative or greater than 1, the corresponding edge of crop rectangle is positioned outside of the image&#39;s original bounding rectangle. - If all offsets and rotation angle are 0, the image is not cropped.
    */
   export interface Schema$CropProperties {
     /**
-     * The clockwise rotation angle of the crop rectangle around its center, in
-     * radians. Rotation is applied after the offsets.
+     * The clockwise rotation angle of the crop rectangle around its center, in radians. Rotation is applied after the offsets.
      */
     angle?: number;
     /**
-     * The offset specifies how far inwards the bottom edge of the crop
-     * rectangle is from the bottom edge of the original content as a fraction
-     * of the original content&#39;s height.
+     * The offset specifies how far inwards the bottom edge of the crop rectangle is from the bottom edge of the original content as a fraction of the original content&#39;s height.
      */
     offsetBottom?: number;
     /**
-     * The offset specifies how far inwards the left edge of the crop rectangle
-     * is from the left edge of the original content as a fraction of the
-     * original content&#39;s width.
+     * The offset specifies how far inwards the left edge of the crop rectangle is from the left edge of the original content as a fraction of the original content&#39;s width.
      */
     offsetLeft?: number;
     /**
-     * The offset specifies how far inwards the right edge of the crop rectangle
-     * is from the right edge of the original content as a fraction of the
-     * original content&#39;s width.
+     * The offset specifies how far inwards the right edge of the crop rectangle is from the right edge of the original content as a fraction of the original content&#39;s width.
      */
     offsetRight?: number;
     /**
-     * The offset specifies how far inwards the top edge of the crop rectangle
-     * is from the top edge of the original content as a fraction of the
-     * original content&#39;s height.
+     * The offset specifies how far inwards the top edge of the crop rectangle is from the top edge of the original content as a fraction of the original content&#39;s height.
      */
     offsetTop?: number;
   }
   /**
-   * A mask that indicates which of the fields on the base CropProperties have
-   * been changed in this suggestion. For any field set to true, there is a new
-   * suggested value.
+   * A mask that indicates which of the fields on the base CropProperties have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$CropPropertiesSuggestionState {
     /**
@@ -402,19 +353,7 @@ export namespace docs_v1 {
    */
   export interface Schema$DeleteContentRangeRequest {
     /**
-     * The range of content to delete.  Deleting text that crosses a paragraph
-     * boundary may result in changes to paragraph styles, lists, positioned
-     * objects and bookmarks as the two paragraphs are merged.  Attempting to
-     * delete certain ranges can result in an invalid document structure in
-     * which case a 400 bad request error is returned.  Some examples of invalid
-     * delete requests include:  * Deleting one code unit of a surrogate pair. *
-     * Deleting the last newline character of a Body, Header,   Footer,
-     * Footnote, TableCell or TableOfContents. * Deleting the start or end of a
-     * Table,   TableOfContents or Equation without deleting the entire element.
-     * * Deleting the newline character before a   Table,   TableOfContents or
-     * SectionBreak without deleting the   element. * Deleting individual rows
-     * or cells of a table. Deleting the content within   a table cell is
-     * allowed.
+     * The range of content to delete.  Deleting text that crosses a paragraph boundary may result in changes to paragraph styles, lists, positioned objects and bookmarks as the two paragraphs are merged.  Attempting to delete certain ranges can result in an invalid document structure in which case a 400 bad request error is returned.  Some examples of invalid delete requests include:  * Deleting one code unit of a surrogate pair. * Deleting the last newline character of a Body, Header,   Footer, Footnote, TableCell or TableOfContents. * Deleting the start or end of a Table,   TableOfContents or Equation without deleting the entire element. * Deleting the newline character before a   Table,   TableOfContents or   SectionBreak without deleting the   element. * Deleting individual rows or cells of a table. Deleting the content within   a table cell is allowed.
      */
     range?: Schema$Range;
   }
@@ -423,8 +362,7 @@ export namespace docs_v1 {
    */
   export interface Schema$DeleteNamedRangeRequest {
     /**
-     * The name of the range(s) to delete. All named ranges with the given name
-     * will be deleted.
+     * The name of the range(s) to delete. All named ranges with the given name will be deleted.
      */
     name?: string;
     /**
@@ -433,9 +371,7 @@ export namespace docs_v1 {
     namedRangeId?: string;
   }
   /**
-   * Deletes bullets from all of the paragraphs that overlap with the given
-   * range.  The nesting level of each paragraph will be visually preserved by
-   * adding indent to the start of the corresponding paragraph.
+   * Deletes bullets from all of the paragraphs that overlap with the given range.  The nesting level of each paragraph will be visually preserved by adding indent to the start of the corresponding paragraph.
    */
   export interface Schema$DeleteParagraphBulletsRequest {
     /**
@@ -457,11 +393,7 @@ export namespace docs_v1 {
    */
   export interface Schema$DeleteTableColumnRequest {
     /**
-     * The reference table cell location from which the column will be deleted.
-     * The column this cell spans will be deleted. If this is a merged cell that
-     * spans multiple columns, all columns that the cell spans will be deleted.
-     * If no columns remain in the table after this deletion, the whole table is
-     * deleted.
+     * The reference table cell location from which the column will be deleted.  The column this cell spans will be deleted. If this is a merged cell that spans multiple columns, all columns that the cell spans will be deleted. If no columns remain in the table after this deletion, the whole table is deleted.
      */
     tableCellLocation?: Schema$TableCellLocation;
   }
@@ -470,10 +402,7 @@ export namespace docs_v1 {
    */
   export interface Schema$DeleteTableRowRequest {
     /**
-     * The reference table cell location from which the row will be deleted. The
-     * row this cell spans will be deleted. If this is a merged cell that spans
-     * multiple rows, all rows that the cell spans will be deleted. If no rows
-     * remain in the table after this deletion, the whole table is deleted.
+     * The reference table cell location from which the row will be deleted.  The row this cell spans will be deleted. If this is a merged cell that spans multiple rows, all rows that the cell spans will be deleted. If no rows remain in the table after this deletion, the whole table is deleted.
      */
     tableCellLocation?: Schema$TableCellLocation;
   }
@@ -539,34 +468,21 @@ export namespace docs_v1 {
      */
     positionedObjects?: {[key: string]: Schema$PositionedObject};
     /**
-     * The revision ID of the document. Can be used in update requests to
-     * specify which revision of a document to apply updates to and how the
-     * request should behave if the document has been edited since that
-     * revision. Only populated if the user has edit access to the document. The
-     * format of the revision ID may change over time, so it should be treated
-     * opaquely. A returned revision ID is only guaranteed to be valid for 24
-     * hours after it has been returned and cannot be shared across users. If
-     * the revision ID is unchanged between calls, then the document has not
-     * changed. Conversely, a changed ID (for the same document and user)
-     * usually means the document has been updated; however, a changed ID can
-     * also be due to internal factors such as ID format changes.
+     * The revision ID of the document. Can be used in update requests to specify which revision of a document to apply updates to and how the request should behave if the document has been edited since that revision. Only populated if the user has edit access to the document.  The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the document has not changed. Conversely, a changed ID (for the same document and user) usually means the document has been updated; however, a changed ID can also be due to internal factors such as ID format changes.
      */
     revisionId?: string;
     /**
-     * The suggested changes to the style of the document, keyed by suggestion
-     * ID.
+     * The suggested changes to the style of the document, keyed by suggestion ID.
      */
     suggestedDocumentStyleChanges?: {
       [key: string]: Schema$SuggestedDocumentStyle;
     };
     /**
-     * The suggested changes to the named styles of the document, keyed by
-     * suggestion ID.
+     * The suggested changes to the named styles of the document, keyed by suggestion ID.
      */
     suggestedNamedStylesChanges?: {[key: string]: Schema$SuggestedNamedStyles};
     /**
-     * The suggestions view mode applied to the document.  Note: When editing a
-     * document, changes must be based on a document with SUGGESTIONS_INLINE.
+     * The suggestions view mode applied to the document.  Note: When editing a document, changes must be based on a document with SUGGESTIONS_INLINE.
      */
     suggestionsViewMode?: string;
     /**
@@ -591,33 +507,19 @@ export namespace docs_v1 {
      */
     defaultHeaderId?: string;
     /**
-     * The ID of the footer used only for even pages. The value of
-     * use_even_page_header_footer determines whether to use the
-     * default_footer_id or this value for the footer on even pages. If not set,
-     * there is no even page footer.
+     * The ID of the footer used only for even pages. The value of use_even_page_header_footer determines whether to use the default_footer_id or this value for the footer on even pages. If not set, there is no even page footer.
      */
     evenPageFooterId?: string;
     /**
-     * The ID of the header used only for even pages. The value of
-     * use_even_page_header_footer determines whether to use the
-     * default_header_id or this value for the header on even pages. If not set,
-     * there is no even page header.
+     * The ID of the header used only for even pages. The value of use_even_page_header_footer determines whether to use the default_header_id or this value for the header on even pages. If not set, there is no even page header.
      */
     evenPageHeaderId?: string;
     /**
-     * The ID of the footer used only for the first page. If not set then a
-     * unique footer for the first page does not exist. The value of
-     * use_first_page_header_footer determines whether to use the
-     * default_footer_id or this value for the footer on the first page. If not
-     * set, there is no first page footer.
+     * The ID of the footer used only for the first page. If not set then a unique footer for the first page does not exist. The value of use_first_page_header_footer determines whether to use the default_footer_id or this value for the footer on the first page. If not set, there is no first page footer.
      */
     firstPageFooterId?: string;
     /**
-     * The ID of the header used only for the first page. If not set then a
-     * unique header for the first page does not exist. The value of
-     * use_first_page_header_footer determines whether to use the
-     * default_header_id or this value for the header on the first page. If not
-     * set, there is no first page header.
+     * The ID of the header used only for the first page. If not set then a unique header for the first page does not exist. The value of use_first_page_header_footer determines whether to use the default_header_id or this value for the header on the first page. If not set, there is no first page header.
      */
     firstPageHeaderId?: string;
     /**
@@ -645,25 +547,20 @@ export namespace docs_v1 {
      */
     pageSize?: Schema$Size;
     /**
-     * Indicates whether to use the even page header / footer IDs for the even
-     * pages.
+     * Indicates whether to use the even page header / footer IDs for the even pages.
      */
     useEvenPageHeaderFooter?: boolean;
     /**
-     * Indicates whether to use the first page header / footer IDs for the first
-     * page.
+     * Indicates whether to use the first page header / footer IDs for the first page.
      */
     useFirstPageHeaderFooter?: boolean;
   }
   /**
-   * A mask that indicates which of the fields on the base DocumentStyle have
-   * been changed in this suggestion. For any field set to true, there is a new
-   * suggested value.
+   * A mask that indicates which of the fields on the base DocumentStyle have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$DocumentStyleSuggestionState {
     /**
-     * A mask that indicates which of the fields in background have been changed
-     * in this suggestion.
+     * A mask that indicates which of the fields in background have been changed in this suggestion.
      */
     backgroundSuggestionState?: Schema$BackgroundSuggestionState;
     /**
@@ -711,8 +608,7 @@ export namespace docs_v1 {
      */
     pageNumberStartSuggested?: boolean;
     /**
-     * A mask that indicates which of the fields in size have been changed in
-     * this suggestion.
+     * A mask that indicates which of the fields in size have been changed in this suggestion.
      */
     pageSizeSuggestionState?: Schema$SizeSuggestionState;
     /**
@@ -720,8 +616,7 @@ export namespace docs_v1 {
      */
     useEvenPageHeaderFooterSuggested?: boolean;
     /**
-     * Indicates if there was a suggested change to
-     * use_first_page_header_footer.
+     * Indicates if there was a suggested change to use_first_page_header_footer.
      */
     useFirstPageHeaderFooterSuggested?: boolean;
   }
@@ -730,9 +625,7 @@ export namespace docs_v1 {
    */
   export interface Schema$EmbeddedDrawingProperties {}
   /**
-   * A mask that indicates which of the fields on the base
-   * EmbeddedDrawingProperties have been changed in this suggestion. For any
-   * field set to true, there is a new suggested value.
+   * A mask that indicates which of the fields on the base EmbeddedDrawingProperties have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$EmbeddedDrawingPropertiesSuggestionState {}
   /**
@@ -740,8 +633,7 @@ export namespace docs_v1 {
    */
   export interface Schema$EmbeddedObject {
     /**
-     * The description of the embedded object. The `title` and `description` are
-     * both combined to display alt text.
+     * The description of the embedded object. The `title` and `description` are both combined to display alt text.
      */
     description?: string;
     /**
@@ -757,9 +649,7 @@ export namespace docs_v1 {
      */
     imageProperties?: Schema$ImageProperties;
     /**
-     * A reference to the external linked source content. For example, it
-     * contains a reference to the source Sheets chart when the embedded object
-     * is a linked chart.  If unset, then the embedded object is not linked.
+     * A reference to the external linked source content. For example, it contains a reference to the source Sheets chart when the embedded object is a linked chart.  If unset, then the embedded object is not linked.
      */
     linkedContentReference?: Schema$LinkedContentReference;
     /**
@@ -783,8 +673,7 @@ export namespace docs_v1 {
      */
     size?: Schema$Size;
     /**
-     * The title of the embedded object. The `title` and `description` are both
-     * combined to display alt text.
+     * The title of the embedded object. The `title` and `description` are both combined to display alt text.
      */
     title?: string;
   }
@@ -810,9 +699,7 @@ export namespace docs_v1 {
     width?: Schema$Dimension;
   }
   /**
-   * A mask that indicates which of the fields on the base EmbeddedObjectBorder
-   * have been changed in this suggestion. For any field set to true, there is a
-   * new suggested value.
+   * A mask that indicates which of the fields on the base EmbeddedObjectBorder have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$EmbeddedObjectBorderSuggestionState {
     /**
@@ -833,9 +720,7 @@ export namespace docs_v1 {
     widthSuggested?: boolean;
   }
   /**
-   * A mask that indicates which of the fields on the base EmbeddedObject have
-   * been changed in this suggestion. For any field set to true, there is a new
-   * suggested value.
+   * A mask that indicates which of the fields on the base EmbeddedObject have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$EmbeddedObjectSuggestionState {
     /**
@@ -843,23 +728,19 @@ export namespace docs_v1 {
      */
     descriptionSuggested?: boolean;
     /**
-     * A mask that indicates which of the fields in embedded_drawing_properties
-     * have been changed in this suggestion.
+     * A mask that indicates which of the fields in embedded_drawing_properties have been changed in this suggestion.
      */
     embeddedDrawingPropertiesSuggestionState?: Schema$EmbeddedDrawingPropertiesSuggestionState;
     /**
-     * A mask that indicates which of the fields in embedded_object_border have
-     * been changed in this suggestion.
+     * A mask that indicates which of the fields in embedded_object_border have been changed in this suggestion.
      */
     embeddedObjectBorderSuggestionState?: Schema$EmbeddedObjectBorderSuggestionState;
     /**
-     * A mask that indicates which of the fields in image_properties have been
-     * changed in this suggestion.
+     * A mask that indicates which of the fields in image_properties have been changed in this suggestion.
      */
     imagePropertiesSuggestionState?: Schema$ImagePropertiesSuggestionState;
     /**
-     * A mask that indicates which of the fields in linked_content_reference
-     * have been changed in this suggestion.
+     * A mask that indicates which of the fields in linked_content_reference have been changed in this suggestion.
      */
     linkedContentReferenceSuggestionState?: Schema$LinkedContentReferenceSuggestionState;
     /**
@@ -879,8 +760,7 @@ export namespace docs_v1 {
      */
     marginTopSuggested?: boolean;
     /**
-     * A mask that indicates which of the fields in size have been changed in
-     * this suggestion.
+     * A mask that indicates which of the fields in size have been changed in this suggestion.
      */
     sizeSuggestionState?: Schema$SizeSuggestionState;
     /**
@@ -889,13 +769,11 @@ export namespace docs_v1 {
     titleSuggested?: boolean;
   }
   /**
-   * Location at the end of a body, header, footer or footnote. The location is
-   * immediately before the last newline in the document segment.
+   * Location at the end of a body, header, footer or footnote. The location is immediately before the last newline in the document segment.
    */
   export interface Schema$EndOfSegmentLocation {
     /**
-     * The ID of the header, footer or footnote the location is in. An empty
-     * segment ID signifies the document&#39;s body.
+     * The ID of the header, footer or footnote the location is in. An empty segment ID signifies the document&#39;s body.
      */
     segmentId?: string;
   }
@@ -904,14 +782,11 @@ export namespace docs_v1 {
    */
   export interface Schema$Equation {
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion IDs. A Equation may have multiple insertion IDs
-     * if it is a nested suggested change. If empty, then this is not a
-     * suggested insertion.
+     * The suggested insertion IDs. A Equation may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionIds?: string[];
   }
@@ -920,8 +795,7 @@ export namespace docs_v1 {
    */
   export interface Schema$Footer {
     /**
-     * The contents of the footer.  The indexes for a footer&#39;s content begin
-     * at zero.
+     * The contents of the footer.  The indexes for a footer&#39;s content begin at zero.
      */
     content?: Schema$StructuralElement[];
     /**
@@ -934,8 +808,7 @@ export namespace docs_v1 {
    */
   export interface Schema$Footnote {
     /**
-     * The contents of the footnote.  The indexes for a footnote&#39;s content
-     * begin at zero.
+     * The contents of the footnote.  The indexes for a footnote&#39;s content begin at zero.
      */
     content?: Schema$StructuralElement[];
     /**
@@ -944,14 +817,11 @@ export namespace docs_v1 {
     footnoteId?: string;
   }
   /**
-   * A ParagraphElement representing a footnote reference. A footnote reference
-   * is the inline content rendered with a number and is used to identify the
-   * footnote.
+   * A ParagraphElement representing a footnote reference. A footnote reference is the inline content rendered with a number and is used to identify the footnote.
    */
   export interface Schema$FootnoteReference {
     /**
-     * The ID of the footnote that contains the content of this footnote
-     * reference.
+     * The ID of the footnote that contains the content of this footnote reference.
      */
     footnoteId?: string;
     /**
@@ -959,19 +829,15 @@ export namespace docs_v1 {
      */
     footnoteNumber?: string;
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion IDs. A FootnoteReference may have multiple
-     * insertion IDs if it is a nested suggested change. If empty, then this is
-     * not a suggested insertion.
+     * The suggested insertion IDs. A FootnoteReference may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionIds?: string[];
     /**
-     * The suggested text style changes to this FootnoteReference, keyed by
-     * suggestion ID.
+     * The suggested text style changes to this FootnoteReference, keyed by suggestion ID.
      */
     suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle};
     /**
@@ -984,8 +850,7 @@ export namespace docs_v1 {
    */
   export interface Schema$Header {
     /**
-     * The contents of the header.  The indexes for a header&#39;s content begin
-     * at zero.
+     * The contents of the header.  The indexes for a header&#39;s content begin at zero.
      */
     content?: Schema$StructuralElement[];
     /**
@@ -998,26 +863,19 @@ export namespace docs_v1 {
    */
   export interface Schema$HorizontalRule {
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion IDs. A HorizontalRule may have multiple insertion
-     * IDs if it is a nested suggested change. If empty, then this is not a
-     * suggested insertion.
+     * The suggested insertion IDs. A HorizontalRule may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionIds?: string[];
     /**
-     * The suggested text style changes to this HorizontalRule, keyed by
-     * suggestion ID.
+     * The suggested text style changes to this HorizontalRule, keyed by suggestion ID.
      */
     suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle};
     /**
-     * The text style of this HorizontalRule.  Similar to text content, like
-     * text runs and footnote references, the text style of a horizontal rule
-     * can affect content layout as well as the styling of text inserted
-     * adjacent to it.
+     * The text style of this HorizontalRule.  Similar to text content, like text runs and footnote references, the text style of a horizontal rule can affect content layout as well as the styling of text inserted adjacent to it.
      */
     textStyle?: Schema$TextStyle;
   }
@@ -1030,42 +888,32 @@ export namespace docs_v1 {
      */
     angle?: number;
     /**
-     * The brightness effect of the image. The value should be in the interval
-     * [-1.0, 1.0], where 0 means no effect.
+     * The brightness effect of the image. The value should be in the interval [-1.0, 1.0], where 0 means no effect.
      */
     brightness?: number;
     /**
-     * A URI to the image with a default lifetime of 30 minutes. This URI is
-     * tagged with the account of the requester. Anyone with the URI effectively
-     * accesses the image as the original requester. Access to the image may be
-     * lost if the document&#39;s sharing settings change.
+     * A URI to the image with a default lifetime of 30 minutes. This URI is tagged with the account of the requester. Anyone with the URI effectively accesses the image as the original requester. Access to the image may be lost if the document&#39;s sharing settings change.
      */
     contentUri?: string;
     /**
-     * The contrast effect of the image. The value should be in the interval
-     * [-1.0, 1.0], where 0 means no effect.
+     * The contrast effect of the image. The value should be in the interval [-1.0, 1.0], where 0 means no effect.
      */
     contrast?: number;
     /**
-     * The crop properties of the image.  After cropping, the image will be
-     * stretched to fit in its container.
+     * The crop properties of the image.  After cropping, the image will be stretched to fit in its container.
      */
     cropProperties?: Schema$CropProperties;
     /**
-     * The source URI is the URI used to insert the image. The source URI can be
-     * empty.
+     * The source URI is the URI used to insert the image. The source URI can be empty.
      */
     sourceUri?: string;
     /**
-     * The transparency effect of the image. The value should be in the interval
-     * [0.0, 1.0], where 0 means no effect and 1 means completely transparent.
+     * The transparency effect of the image. The value should be in the interval [0.0, 1.0], where 0 means no effect and 1 means completely transparent.
      */
     transparency?: number;
   }
   /**
-   * A mask that indicates which of the fields on the base ImageProperties have
-   * been changed in this suggestion. For any field set to true, there is a new
-   * suggested value.
+   * A mask that indicates which of the fields on the base ImageProperties have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$ImagePropertiesSuggestionState {
     /**
@@ -1085,8 +933,7 @@ export namespace docs_v1 {
      */
     contrastSuggested?: boolean;
     /**
-     * A mask that indicates which of the fields in crop_properties have been
-     * changed in this suggestion.
+     * A mask that indicates which of the fields in crop_properties have been changed in this suggestion.
      */
     cropPropertiesSuggestionState?: Schema$CropPropertiesSuggestionState;
     /**
@@ -1099,8 +946,7 @@ export namespace docs_v1 {
     transparencySuggested?: boolean;
   }
   /**
-   * An object that appears inline with text. An InlineObject contains an
-   * EmbeddedObject such as an image.
+   * An object that appears inline with text. An InlineObject contains an EmbeddedObject such as an image.
    */
   export interface Schema$InlineObject {
     /**
@@ -1112,20 +958,17 @@ export namespace docs_v1 {
      */
     objectId?: string;
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested changes to the inline object properties, keyed by
-     * suggestion ID.
+     * The suggested changes to the inline object properties, keyed by suggestion ID.
      */
     suggestedInlineObjectPropertiesChanges?: {
       [key: string]: Schema$SuggestedInlineObjectProperties;
     };
     /**
-     * The suggested insertion ID. If empty, then this is not a suggested
-     * insertion.
+     * The suggested insertion ID. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionId?: string;
   }
@@ -1138,26 +981,19 @@ export namespace docs_v1 {
      */
     inlineObjectId?: string;
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion IDs. An InlineObjectElement may have multiple
-     * insertion IDs if it is a nested suggested change. If empty, then this is
-     * not a suggested insertion.
+     * The suggested insertion IDs. An InlineObjectElement may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionIds?: string[];
     /**
-     * The suggested text style changes to this InlineObject, keyed by
-     * suggestion ID.
+     * The suggested text style changes to this InlineObject, keyed by suggestion ID.
      */
     suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle};
     /**
-     * The text style of this InlineObjectElement.  Similar to text content,
-     * like text runs and footnote references, the text style of an inline
-     * object element can affect content layout as well as the styling of text
-     * inserted adjacent to it.
+     * The text style of this InlineObjectElement.  Similar to text content, like text runs and footnote references, the text style of an inline object element can affect content layout as well as the styling of text inserted adjacent to it.
      */
     textStyle?: Schema$TextStyle;
   }
@@ -1171,14 +1007,11 @@ export namespace docs_v1 {
     embeddedObject?: Schema$EmbeddedObject;
   }
   /**
-   * A mask that indicates which of the fields on the base
-   * InlineObjectProperties have been changed in this suggestion. For any field
-   * set to true, there is a new suggested value.
+   * A mask that indicates which of the fields on the base InlineObjectProperties have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$InlineObjectPropertiesSuggestionState {
     /**
-     * A mask that indicates which of the fields in embedded_object have been
-     * changed in this suggestion.
+     * A mask that indicates which of the fields in embedded_object have been changed in this suggestion.
      */
     embeddedObjectSuggestionState?: Schema$EmbeddedObjectSuggestionState;
   }
@@ -1187,36 +1020,19 @@ export namespace docs_v1 {
    */
   export interface Schema$InsertInlineImageRequest {
     /**
-     * Inserts the text at the end of a header, footer or the document body.
-     * Inline images cannot be inserted inside a footnote.
+     * Inserts the text at the end of a header, footer or the document body.  Inline images cannot be inserted inside a footnote.
      */
     endOfSegmentLocation?: Schema$EndOfSegmentLocation;
     /**
-     * Inserts the image at a specific index in the document.  The image must be
-     * inserted inside the bounds of an existing Paragraph. For instance, it
-     * cannot be inserted at a table&#39;s start index (i.e. between the table
-     * and its preceding paragraph).  Inline images cannot be inserted inside a
-     * footnote or equation.
+     * Inserts the image at a specific index in the document.  The image must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table&#39;s start index (i.e. between the table and its preceding paragraph).  Inline images cannot be inserted inside a footnote or equation.
      */
     location?: Schema$Location;
     /**
-     * The size that the image should appear as in the document. This property
-     * is optional and the final size of the image in the document is determined
-     * by the following rules:  * If neither width nor height is specified, then
-     * a default size of the  image is calculated based on its resolution.  * If
-     * one dimension is specified then the other dimension is calculated to
-     * preserve the aspect ratio of the image.  * If both width and height are
-     * specified, the image is scaled to fit  within the provided dimensions
-     * while maintaining its aspect ratio.
+     * The size that the image should appear as in the document. This property is optional and the final size of the image in the document is determined by the following rules:  * If neither width nor height is specified, then a default size of the  image is calculated based on its resolution.  * If one dimension is specified then the other dimension is calculated to  preserve the aspect ratio of the image.  * If both width and height are specified, the image is scaled to fit  within the provided dimensions while maintaining its aspect ratio.
      */
     objectSize?: Schema$Size;
     /**
-     * The image URI.  The image is fetched once at insertion time and a copy is
-     * stored for display inside the document. Images must be less than 50MB in
-     * size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or
-     * GIF format.  The provided URI can be at most 2 kB in length. The URI
-     * itself is saved with the image, and exposed via the
-     * ImageProperties.content_uri field.
+     * The image URI.  The image is fetched once at insertion time and a copy is stored for display inside the document. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format.  The provided URI can be at most 2 kB in length. The URI itself is saved with the image, and exposed via the ImageProperties.content_uri field.
      */
     uri?: string;
   }
@@ -1243,25 +1059,29 @@ export namespace docs_v1 {
    */
   export interface Schema$InsertPageBreakRequest {
     /**
-     * Inserts the page break at the end of the document body.  Page breaks
-     * cannot be inserted inside a footnote, header or footer. Since page breaks
-     * can only be inserted inside the body, the segment ID field must be empty.
+     * Inserts the page break at the end of the document body.  Page breaks cannot be inserted inside a footnote, header or footer. Since page breaks can only be inserted inside the body, the segment ID field must be empty.
      */
     endOfSegmentLocation?: Schema$EndOfSegmentLocation;
     /**
-     * Inserts the page break at a specific index in the document.  The page
-     * break must be inserted inside the bounds of an existing Paragraph. For
-     * instance, it cannot be inserted at a table&#39;s start index (i.e.
-     * between the table and its preceding paragraph).  Page breaks cannot be
-     * inserted inside a table, equation, footnote, header or footer. Since page
-     * breaks can only be inserted inside the body, the segment ID field must be
-     * empty.
+     * Inserts the page break at a specific index in the document.  The page break must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table&#39;s start index (i.e. between the table and its preceding paragraph).  Page breaks cannot be inserted inside a table, equation, footnote, header or footer. Since page breaks can only be inserted inside the body, the segment ID field must be empty.
      */
     location?: Schema$Location;
   }
   /**
-   * Inserts a table at the specified location.  A newline character will be
-   * inserted before the inserted table.
+   * Inserts an empty column into a table.
+   */
+  export interface Schema$InsertTableColumnRequest {
+    /**
+     * Whether to insert new column to the right of the reference cell location.  - `True`: insert to the right. - `False`: insert to the left.
+     */
+    insertRight?: boolean;
+    /**
+     * The reference table cell location from which columns will be inserted.  A new column will be inserted to the left (or right) of the column where the reference cell is. If the reference cell is a merged cell, a new column will be inserted to the left (or right) of the merged cell.
+     */
+    tableCellLocation?: Schema$TableCellLocation;
+  }
+  /**
+   * Inserts a table at the specified location.  A newline character will be inserted before the inserted table.
    */
   export interface Schema$InsertTableRequest {
     /**
@@ -1269,19 +1089,11 @@ export namespace docs_v1 {
      */
     columns?: number;
     /**
-     * Inserts the table at the end of the given header, footer or document
-     * body. A newline character will be inserted before the inserted table.
-     * Tables cannot be inserted inside a footnote.
+     * Inserts the table at the end of the given header, footer or document body. A newline character will be inserted before the inserted table.  Tables cannot be inserted inside a footnote.
      */
     endOfSegmentLocation?: Schema$EndOfSegmentLocation;
     /**
-     * Inserts the table at a specific model index.  A newline character will be
-     * inserted before the inserted table, therefore the table start index will
-     * be at the specified location index + 1.  The table must be inserted
-     * inside the bounds of an existing Paragraph. For instance, it cannot be
-     * inserted at a table&#39;s start index (i.e. between an existing table and
-     * its preceding paragraph).  Tables cannot be inserted inside a footnote or
-     * equation.
+     * Inserts the table at a specific model index.  A newline character will be inserted before the inserted table, therefore the table start index will be at the specified location index + 1.  The table must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table&#39;s start index (i.e. between an existing table and its preceding paragraph).  Tables cannot be inserted inside a footnote or equation.
      */
     location?: Schema$Location;
     /**
@@ -1294,15 +1106,11 @@ export namespace docs_v1 {
    */
   export interface Schema$InsertTableRowRequest {
     /**
-     * Whether to insert new row below the reference cell location.  - `True`:
-     * insert below the cell. - `False`: insert above the cell.
+     * Whether to insert new row below the reference cell location.  - `True`: insert below the cell. - `False`: insert above the cell.
      */
     insertBelow?: boolean;
     /**
-     * The reference table cell location from which rows will be inserted.  A
-     * new row will be inserted above (or below) the row where the reference
-     * cell is. If the reference cell is a merged cell, a new row will be
-     * inserted above (or below) the merged cell.
+     * The reference table cell location from which rows will be inserted.  A new row will be inserted above (or below) the row where the reference cell is. If the reference cell is a merged cell, a new row will be inserted above (or below) the merged cell.
      */
     tableCellLocation?: Schema$TableCellLocation;
   }
@@ -1311,29 +1119,15 @@ export namespace docs_v1 {
    */
   export interface Schema$InsertTextRequest {
     /**
-     * Inserts the text at the end of a header, footer, footnote or the document
-     * body.
+     * Inserts the text at the end of a header, footer, footnote or the document body.
      */
     endOfSegmentLocation?: Schema$EndOfSegmentLocation;
     /**
-     * Inserts the text at a specific index in the document.  Text must be
-     * inserted inside the bounds of an existing Paragraph. For instance, text
-     * cannot be inserted at a table&#39;s start index (i.e. between the table
-     * and its preceding paragraph). The text must be inserted in the preceding
-     * paragraph.
+     * Inserts the text at a specific index in the document.  Text must be inserted inside the bounds of an existing Paragraph. For instance, text cannot be inserted at a table&#39;s start index (i.e. between the table and its preceding paragraph). The text must be inserted in the preceding paragraph.
      */
     location?: Schema$Location;
     /**
-     * The text to be inserted.  Inserting a newline character will implicitly
-     * create a new Paragraph at that index. The paragraph style of the new
-     * paragraph will be copied from the paragraph at the current insertion
-     * index, including lists and bullets.  Text styles for inserted text will
-     * be determined automatically, generally preserving the styling of
-     * neighboring text. In most cases, the text style for the inserted text
-     * will match the text immediately before the insertion index.  Some control
-     * characters (U+0000-U+0008, U+000C-U+001F) and characters from the Unicode
-     * Basic Multilingual Plane Private Use Area (U+E000-U+F8FF) will be
-     * stripped out of the inserted text.
+     * The text to be inserted.  Inserting a newline character will implicitly create a new Paragraph at that index. The paragraph style of the new paragraph will be copied from the paragraph at the current insertion index, including lists and bullets.  Text styles for inserted text will be determined automatically, generally preserving the styling of neighboring text. In most cases, the text style for the inserted text will match the text immediately before the insertion index.  Some control characters (U+0000-U+0008, U+000C-U+001F) and characters from the Unicode Basic Multilingual Plane Private Use Area (U+E000-U+F8FF) will be stripped out of the inserted text.
      */
     text?: string;
   }
@@ -1364,21 +1158,16 @@ export namespace docs_v1 {
     sheetsChartReference?: Schema$SheetsChartReference;
   }
   /**
-   * A mask that indicates which of the fields on the base
-   * LinkedContentReference have been changed in this suggestion. For any field
-   * set to true, there is a new suggested value.
+   * A mask that indicates which of the fields on the base LinkedContentReference have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$LinkedContentReferenceSuggestionState {
     /**
-     * A mask that indicates which of the fields in sheets_chart_reference have
-     * been changed in this suggestion.
+     * A mask that indicates which of the fields in sheets_chart_reference have been changed in this suggestion.
      */
     sheetsChartReferenceSuggestionState?: Schema$SheetsChartReferenceSuggestionState;
   }
   /**
-   * A List represents the list attributes for a group of paragraphs that all
-   * belong to the same list. A paragraph that is part of a list has a reference
-   * to the list&#39;s ID in its bullet.
+   * A List represents the list attributes for a group of paragraphs that all belong to the same list. A paragraph that is part of a list has a reference to the list&#39;s ID in its bullet.
    */
   export interface Schema$List {
     /**
@@ -1386,13 +1175,11 @@ export namespace docs_v1 {
      */
     listProperties?: Schema$ListProperties;
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this list.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this list.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion ID. If empty, then this is not a suggested
-     * insertion.
+     * The suggested insertion ID. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionId?: string;
     /**
@@ -1403,30 +1190,20 @@ export namespace docs_v1 {
     };
   }
   /**
-   * The properties of a list which describe the look and feel of bullets
-   * belonging to paragraphs associated with a list.
+   * The properties of a list which describe the look and feel of bullets belonging to paragraphs associated with a list.
    */
   export interface Schema$ListProperties {
     /**
-     * Describes the properties of the bullets at the associated level.  A list
-     * has at most nine levels of nesting with nesting level 0 corresponding to
-     * the top-most level and nesting level 8 corresponding to the most nested
-     * level. The nesting levels are returned in ascending order with the least
-     * nested returned first.
+     * Describes the properties of the bullets at the associated level.  A list has at most nine levels of nesting with nesting level 0 corresponding to the top-most level and nesting level 8 corresponding to the most nested level. The nesting levels are returned in ascending order with the least nested returned first.
      */
     nestingLevels?: Schema$NestingLevel[];
   }
   /**
-   * A mask that indicates which of the fields on the base ListProperties have
-   * been changed in this suggestion. For any field set to true, there is a new
-   * suggested value.
+   * A mask that indicates which of the fields on the base ListProperties have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$ListPropertiesSuggestionState {
     /**
-     * A mask that indicates which of the fields on the corresponding
-     * NestingLevel in nesting_levels have been changed in this suggestion.  The
-     * nesting level suggestion states are returned in ascending order of the
-     * nesting level with the least nested returned first.
+     * A mask that indicates which of the fields on the corresponding NestingLevel in nesting_levels have been changed in this suggestion.  The nesting level suggestion states are returned in ascending order of the nesting level with the least nested returned first.
      */
     nestingLevelsSuggestionStates?: Schema$NestingLevelSuggestionState[];
   }
@@ -1435,26 +1212,16 @@ export namespace docs_v1 {
    */
   export interface Schema$Location {
     /**
-     * The zero-based index, in UTF-16 code units.  The index is relative to the
-     * beginning of the segment specified by segment_id.
+     * The zero-based index, in UTF-16 code units.  The index is relative to the beginning of the segment specified by segment_id.
      */
     index?: number;
     /**
-     * The ID of the header, footer or footnote the location is in. An empty
-     * segment ID signifies the document&#39;s body.
+     * The ID of the header, footer or footnote the location is in. An empty segment ID signifies the document&#39;s body.
      */
     segmentId?: string;
   }
   /**
-   * A collection of Ranges with the same named range ID.  Named ranges allow
-   * developers to associate parts of a document with an arbitrary user-defined
-   * label so their contents can be programmatically read or edited at a later
-   * time. A document can contain multiple named ranges with the same name, but
-   * every named range has a unique ID.  A named range is created with a single
-   * Range, and content inserted inside a named range generally expands that
-   * range. However, certain document changes can cause the range to be split
-   * into multiple ranges.  Named ranges are not private. All applications and
-   * collaborators that have access to the document can see its named ranges.
+   * A collection of Ranges with the same named range ID.  Named ranges allow developers to associate parts of a document with an arbitrary user-defined label so their contents can be programmatically read or edited at a later time. A document can contain multiple named ranges with the same name, but every named range has a unique ID.  A named range is created with a single Range, and content inserted inside a named range generally expands that range. However, certain document changes can cause the range to be split into multiple ranges.  Named ranges are not private. All applications and collaborators that have access to the document can see its named ranges.
    */
   export interface Schema$NamedRange {
     /**
@@ -1471,8 +1238,7 @@ export namespace docs_v1 {
     ranges?: Schema$Range[];
   }
   /**
-   * A collection of all the NamedRanges in the document that share a given
-   * name.
+   * A collection of all the NamedRanges in the document that share a given name.
    */
   export interface Schema$NamedRanges {
     /**
@@ -1485,9 +1251,7 @@ export namespace docs_v1 {
     namedRanges?: Schema$NamedRange[];
   }
   /**
-   * A named style. Paragraphs in the document can inherit their TextStyle and
-   * ParagraphStyle from this named style when they have the same named style
-   * type.
+   * A named style. Paragraphs in the document can inherit their TextStyle and ParagraphStyle from this named style when they have the same named style type.
    */
   export interface Schema$NamedStyle {
     /**
@@ -1504,13 +1268,11 @@ export namespace docs_v1 {
     textStyle?: Schema$TextStyle;
   }
   /**
-   * The named styles. Paragraphs in the document can inherit their TextStyle
-   * and ParagraphStyle from these named styles.
+   * The named styles. Paragraphs in the document can inherit their TextStyle and ParagraphStyle from these named styles.
    */
   export interface Schema$NamedStyles {
     /**
-     * The named styles.  There is an entry for each of the possible named style
-     * types.
+     * The named styles.  There is an entry for each of the possible named style types.
      */
     styles?: Schema$NamedStyle[];
   }
@@ -1519,10 +1281,7 @@ export namespace docs_v1 {
    */
   export interface Schema$NamedStylesSuggestionState {
     /**
-     * A mask that indicates which of the fields on the corresponding NamedStyle
-     * in styles have been changed in this suggestion.  The order of these named
-     * style suggestion states match the order of the corresponding named style
-     * within the named styles suggestion.
+     * A mask that indicates which of the fields on the corresponding NamedStyle in styles have been changed in this suggestion.  The order of these named style suggestion states match the order of the corresponding named style within the named styles suggestion.
      */
     stylesSuggestionStates?: Schema$NamedStyleSuggestionState[];
   }
@@ -1531,92 +1290,48 @@ export namespace docs_v1 {
    */
   export interface Schema$NamedStyleSuggestionState {
     /**
-     * The named style type that this suggestion state corresponds to.  This
-     * field is provided as a convenience for matching the
-     * NamedStyleSuggestionState with its corresponding NamedStyle.
+     * The named style type that this suggestion state corresponds to.  This field is provided as a convenience for matching the NamedStyleSuggestionState with its corresponding NamedStyle.
      */
     namedStyleType?: string;
     /**
-     * A mask that indicates which of the fields in paragraph style have been
-     * changed in this suggestion.
+     * A mask that indicates which of the fields in paragraph style have been changed in this suggestion.
      */
     paragraphStyleSuggestionState?: Schema$ParagraphStyleSuggestionState;
     /**
-     * A mask that indicates which of the fields in text style have been changed
-     * in this suggestion.
+     * A mask that indicates which of the fields in text style have been changed in this suggestion.
      */
     textStyleSuggestionState?: Schema$TextStyleSuggestionState;
   }
   /**
-   * Contains properties describing the look and feel of a list bullet at a
-   * given level of nesting.
+   * Contains properties describing the look and feel of a list bullet at a given level of nesting.
    */
   export interface Schema$NestingLevel {
     /**
-     * The alignment of the bullet within the space allotted for rendering the
-     * bullet.
+     * The alignment of the bullet within the space allotted for rendering the bullet.
      */
     bulletAlignment?: string;
     /**
-     * The format string used by bullets at this level of nesting.  The glyph
-     * format contains one or more placeholders, and these placeholder are
-     * replaced with the appropriate values depending on the glyph_type or
-     * glyph_symbol. The placeholders follow the pattern `%[nesting_level]`.
-     * Furthermore, placeholders can have prefixes and suffixes. Thus, the glyph
-     * format follows the pattern
-     * `&lt;prefix&gt;%[nesting_level]&lt;suffix&gt;`. Note that the prefix and
-     * suffix are optional and can be arbitrary strings.  For example, the glyph
-     * format `%0.` indicates that the rendered glyph will replace the
-     * placeholder with the corresponding glyph for nesting level 0 followed by
-     * a period as the suffix. So a list with a glyph type of UPPER_ALPHA and
-     * glyph format `%0.` at nesting level 0 will result in a list with rendered
-     * glyphs &lt;p&gt;`A.` &lt;p&gt;`B.` &lt;p&gt;`C.`  The glyph format can
-     * contain placeholders for the current nesting level as well as
-     * placeholders for parent nesting levels. For example, a list can have a
-     * glyph format of `%0.` at nesting level 0 and a glyph format of `%0.%1.`
-     * at nesting level 1. Assuming both nesting levels have DECIMAL glyph
-     * types, this would result in a list with rendered glyphs &lt;p&gt;`1.`
-     * &lt;p&gt;`2.` &lt;p&gt;`  2.1.` &lt;p&gt;`  2.2.` &lt;p&gt;`3.`  For
-     * nesting levels that are ordered, the string that replaces a placeholder
-     * in the glyph format for a particular paragraph depends on the
-     * paragraph&#39;s order within the list.
+     * The format string used by bullets at this level of nesting.  The glyph format contains one or more placeholders, and these placeholder are replaced with the appropriate values depending on the glyph_type or glyph_symbol. The placeholders follow the pattern `%[nesting_level]`. Furthermore, placeholders can have prefixes and suffixes. Thus, the glyph format follows the pattern `&lt;prefix&gt;%[nesting_level]&lt;suffix&gt;`. Note that the prefix and suffix are optional and can be arbitrary strings.  For example, the glyph format `%0.` indicates that the rendered glyph will replace the placeholder with the corresponding glyph for nesting level 0 followed by a period as the suffix. So a list with a glyph type of UPPER_ALPHA and glyph format `%0.` at nesting level 0 will result in a list with rendered glyphs &lt;p&gt;`A.` &lt;p&gt;`B.` &lt;p&gt;`C.`  The glyph format can contain placeholders for the current nesting level as well as placeholders for parent nesting levels. For example, a list can have a glyph format of `%0.` at nesting level 0 and a glyph format of `%0.%1.` at nesting level 1. Assuming both nesting levels have DECIMAL glyph types, this would result in a list with rendered glyphs &lt;p&gt;`1.` &lt;p&gt;`2.` &lt;p&gt;`  2.1.` &lt;p&gt;`  2.2.` &lt;p&gt;`3.`  For nesting levels that are ordered, the string that replaces a placeholder in the glyph format for a particular paragraph depends on the paragraph&#39;s order within the list.
      */
     glyphFormat?: string;
     /**
-     * A custom glyph symbol used by bullets when paragraphs at this level of
-     * nesting are unordered.  The glyph symbol replaces placeholders within the
-     * glyph_format. For example, if the glyph_symbol is the solid circle
-     * corresponding to Unicode U+25cf code point and the glyph_format is `%0`,
-     * the rendered glyph would be the solid circle.
+     * A custom glyph symbol used by bullets when paragraphs at this level of nesting are unordered.  The glyph symbol replaces placeholders within the glyph_format. For example, if the glyph_symbol is the solid circle corresponding to Unicode U+25cf code point and the glyph_format is `%0`, the rendered glyph would be the solid circle.
      */
     glyphSymbol?: string;
     /**
-     * The type of glyph used by bullets when paragraphs at this level of
-     * nesting are ordered.  The glyph type determines the type of glyph used to
-     * replace placeholders within the glyph_format when paragraphs at this
-     * level of nesting are ordered. For example, if the nesting level is 0, the
-     * glyph_format is `%0.` and the glyph type is DECIMAL, then the rendered
-     * glyph would replace the placeholder `%0` in the glyph format with a
-     * number corresponding to list item&#39;s order within the list.
+     * The type of glyph used by bullets when paragraphs at this level of nesting are ordered.  The glyph type determines the type of glyph used to replace placeholders within the glyph_format when paragraphs at this level of nesting are ordered. For example, if the nesting level is 0, the glyph_format is `%0.` and the glyph type is DECIMAL, then the rendered glyph would replace the placeholder `%0` in the glyph format with a number corresponding to list item&#39;s order within the list.
      */
     glyphType?: string;
     /**
-     * The amount of indentation for the first line of paragraphs at this level
-     * of nesting.
+     * The amount of indentation for the first line of paragraphs at this level of nesting.
      */
     indentFirstLine?: Schema$Dimension;
     /**
-     * The amount of indentation for paragraphs at this level of nesting.
-     * Applied to the side that corresponds to the start of the text, based on
-     * the paragraph&#39;s content direction.
+     * The amount of indentation for paragraphs at this level of nesting. Applied to the side that corresponds to the start of the text, based on the paragraph&#39;s content direction.
      */
     indentStart?: Schema$Dimension;
     /**
-     * The number of the first list item at this nesting level.  A value of 0 is
-     * treated as a value of 1 for lettered lists and roman numeraled lists,
-     * i.e. for values of both 0 and 1, lettered and roman numeraled lists will
-     * begin at `a` and `i` respectively.  This value is ignored for nesting
-     * levels with unordered glyphs.
+     * The number of the first list item at this nesting level.  A value of 0 is treated as a value of 1 for lettered lists and roman numeraled lists, i.e. for values of both 0 and 1, lettered and roman numeraled lists will begin at `a` and `i` respectively.  This value is ignored for nesting levels with unordered glyphs.
      */
     startNumber?: number;
     /**
@@ -1625,9 +1340,7 @@ export namespace docs_v1 {
     textStyle?: Schema$TextStyle;
   }
   /**
-   * A mask that indicates which of the fields on the base NestingLevel have
-   * been changed in this suggestion. For any field set to true, there is a new
-   * suggested value.
+   * A mask that indicates which of the fields on the base NestingLevel have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$NestingLevelSuggestionState {
     /**
@@ -1659,8 +1372,7 @@ export namespace docs_v1 {
      */
     startNumberSuggested?: boolean;
     /**
-     * A mask that indicates which of the fields in text style have been changed
-     * in this suggestion.
+     * A mask that indicates which of the fields in text style have been changed in this suggestion.
      */
     textStyleSuggestionState?: Schema$TextStyleSuggestionState;
   }
@@ -1678,47 +1390,37 @@ export namespace docs_v1 {
    */
   export interface Schema$OptionalColor {
     /**
-     * If set, this will be used as an opaque color. If unset, this represents a
-     * transparent color.
+     * If set, this will be used as an opaque color. If unset, this represents a transparent color.
      */
     color?: Schema$Color;
   }
   /**
-   * A ParagraphElement representing a page break. A page break makes the
-   * subsequent text start at the top of the next page.
+   * A ParagraphElement representing a page break. A page break makes the subsequent text start at the top of the next page.
    */
   export interface Schema$PageBreak {
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion IDs. A PageBreak may have multiple insertion IDs
-     * if it is a nested suggested change. If empty, then this is not a
-     * suggested insertion.
+     * The suggested insertion IDs. A PageBreak may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionIds?: string[];
     /**
-     * The suggested text style changes to this PageBreak, keyed by suggestion
-     * ID.
+     * The suggested text style changes to this PageBreak, keyed by suggestion ID.
      */
     suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle};
     /**
-     * The text style of this PageBreak.  Similar to text content, like text
-     * runs and footnote references, the text style of a page break can affect
-     * content layout as well as the styling of text inserted adjacent to it.
+     * The text style of this PageBreak.  Similar to text content, like text runs and footnote references, the text style of a page break can affect content layout as well as the styling of text inserted adjacent to it.
      */
     textStyle?: Schema$TextStyle;
   }
   /**
-   * A StructuralElement representing a paragraph. A paragraph is a range of
-   * content that is terminated with a newline character.
+   * A StructuralElement representing a paragraph. A paragraph is a range of content that is terminated with a newline character.
    */
   export interface Schema$Paragraph {
     /**
-     * The bullet for this paragraph. If not present, the paragraph does not
-     * belong to a list.
+     * The bullet for this paragraph. If not present, the paragraph does not belong to a list.
      */
     bullet?: Schema$Bullet;
     /**
@@ -1738,15 +1440,13 @@ export namespace docs_v1 {
      */
     suggestedBulletChanges?: {[key: string]: Schema$SuggestedBullet};
     /**
-     * The suggested paragraph style changes to this paragraph, keyed by
-     * suggestion ID.
+     * The suggested paragraph style changes to this paragraph, keyed by suggestion ID.
      */
     suggestedParagraphStyleChanges?: {
       [key: string]: Schema$SuggestedParagraphStyle;
     };
     /**
-     * The IDs of the positioned objects that are suggested to be attached to
-     * this paragraph, keyed by suggestion ID.
+     * The IDs of the positioned objects that are suggested to be attached to this paragraph, keyed by suggestion ID.
      */
     suggestedPositionedObjectIds?: {[key: string]: Schema$ObjectReferences};
   }
@@ -1784,8 +1484,7 @@ export namespace docs_v1 {
      */
     columnBreak?: Schema$ColumnBreak;
     /**
-     * The zero-base end index of this paragraph element, exclusive, in UTF-16
-     * code units.
+     * The zero-base end index of this paragraph element, exclusive, in UTF-16 code units.
      */
     endIndex?: number;
     /**
@@ -1809,8 +1508,7 @@ export namespace docs_v1 {
      */
     pageBreak?: Schema$PageBreak;
     /**
-     * The zero-based start index of this paragraph element, in UTF-16 code
-     * units.
+     * The zero-based start index of this paragraph element, in UTF-16 code units.
      */
     startIndex?: number;
     /**
@@ -1819,17 +1517,7 @@ export namespace docs_v1 {
     textRun?: Schema$TextRun;
   }
   /**
-   * Styles that apply to a whole paragraph.  Inherited paragraph styles are
-   * represented as unset fields in this message. A paragraph style&#39;s parent
-   * depends on where the paragraph style is defined:    * The ParagraphStyle on
-   * a Paragraph     inherits from the paragraph&#39;s corresponding named style
-   * type.   * The ParagraphStyle on a named style     inherits from the normal
-   * text named style.   * The ParagraphStyle of the normal text named style
-   * inherits     from the default paragraph style in the Docs editor.   * The
-   * ParagraphStyle on a Paragraph     element that is contained in a table may
-   * inherit its paragraph style from     the table style.  If the paragraph
-   * style does not inherit from a parent, unsetting fields will revert the
-   * style to a value matching the defaults in the Docs editor.
+   * Styles that apply to a whole paragraph.  Inherited paragraph styles are represented as unset fields in this message. A paragraph style&#39;s parent depends on where the paragraph style is defined:    * The ParagraphStyle on a Paragraph     inherits from the paragraph&#39;s corresponding named style type.   * The ParagraphStyle on a named style     inherits from the normal text named style.   * The ParagraphStyle of the normal text named style inherits     from the default paragraph style in the Docs editor.   * The ParagraphStyle on a Paragraph     element that is contained in a table may inherit its paragraph style from     the table style.  If the paragraph style does not inherit from a parent, unsetting fields will revert the style to a value matching the defaults in the Docs editor.
    */
   export interface Schema$ParagraphStyle {
     /**
@@ -1837,112 +1525,75 @@ export namespace docs_v1 {
      */
     alignment?: string;
     /**
-     * Whether to avoid widows and orphans for the paragraph. If unset, the
-     * value is inherited from the parent.
+     * Whether to avoid widows and orphans for the paragraph. If unset, the value is inherited from the parent.
      */
     avoidWidowAndOrphan?: boolean;
     /**
-     * The border between this paragraph and the next and previous paragraphs.
-     * If unset, the value is inherited from the parent.  The between border is
-     * rendered when the adjacent paragraph has the same border and indent
-     * properties.  Paragraph borders cannot be partially updated. When making
-     * changes to a paragraph border the new border must be specified in its
-     * entirety.
+     * The border between this paragraph and the next and previous paragraphs. If unset, the value is inherited from the parent.  The between border is rendered when the adjacent paragraph has the same border and indent properties.  Paragraph borders cannot be partially updated. When making changes to a paragraph border the new border must be specified in its entirety.
      */
     borderBetween?: Schema$ParagraphBorder;
     /**
-     * The border at the bottom of this paragraph. If unset, the value is
-     * inherited from the parent.  The bottom border is rendered when the
-     * paragraph below has different border and indent properties.  Paragraph
-     * borders cannot be partially updated. When making changes to a paragraph
-     * border the new border must be specified in its entirety.
+     * The border at the bottom of this paragraph. If unset, the value is inherited from the parent.  The bottom border is rendered when the paragraph below has different border and indent properties.  Paragraph borders cannot be partially updated. When making changes to a paragraph border the new border must be specified in its entirety.
      */
     borderBottom?: Schema$ParagraphBorder;
     /**
-     * The border to the left of this paragraph. If unset, the value is
-     * inherited from the parent.  Paragraph borders cannot be partially
-     * updated. When making changes to a paragraph border the new border must be
-     * specified in its entirety.
+     * The border to the left of this paragraph. If unset, the value is inherited from the parent.  Paragraph borders cannot be partially updated. When making changes to a paragraph border the new border must be specified in its entirety.
      */
     borderLeft?: Schema$ParagraphBorder;
     /**
-     * The border to the right of this paragraph. If unset, the value is
-     * inherited from the parent.  Paragraph borders cannot be partially
-     * updated. When making changes to a paragraph border the new border must be
-     * specified in its entirety.
+     * The border to the right of this paragraph. If unset, the value is inherited from the parent.  Paragraph borders cannot be partially updated. When making changes to a paragraph border the new border must be specified in its entirety.
      */
     borderRight?: Schema$ParagraphBorder;
     /**
-     * The border at the top of this paragraph. If unset, the value is inherited
-     * from the parent.  The top border is rendered when the paragraph above has
-     * different border and indent properties.  Paragraph borders cannot be
-     * partially updated. When making changes to a paragraph border the new
-     * border must be specified in its entirety.
+     * The border at the top of this paragraph. If unset, the value is inherited from the parent.  The top border is rendered when the paragraph above has different border and indent properties.  Paragraph borders cannot be partially updated. When making changes to a paragraph border the new border must be specified in its entirety.
      */
     borderTop?: Schema$ParagraphBorder;
     /**
-     * The text direction of this paragraph. If unset, the value defaults to
-     * LEFT_TO_RIGHT since paragraph direction is not inherited.
+     * The text direction of this paragraph. If unset, the value defaults to LEFT_TO_RIGHT since paragraph direction is not inherited.
      */
     direction?: string;
     /**
-     * The heading ID of the paragraph. If empty, then this paragraph is not a
-     * heading. This property is read-only.
+     * The heading ID of the paragraph. If empty, then this paragraph is not a heading. This property is read-only.
      */
     headingId?: string;
     /**
-     * The amount of indentation for the paragraph on the side that corresponds
-     * to the end of the text, based on the current paragraph direction. If
-     * unset, the value is inherited from the parent.
+     * The amount of indentation for the paragraph on the side that corresponds to the end of the text, based on the current paragraph direction. If unset, the value is inherited from the parent.
      */
     indentEnd?: Schema$Dimension;
     /**
-     * The amount of indentation for the first line of the paragraph. If unset,
-     * the value is inherited from the parent.
+     * The amount of indentation for the first line of the paragraph. If unset, the value is inherited from the parent.
      */
     indentFirstLine?: Schema$Dimension;
     /**
-     * The amount of indentation for the paragraph on the side that corresponds
-     * to the start of the text, based on the current paragraph direction. If
-     * unset, the value is inherited from the parent.
+     * The amount of indentation for the paragraph on the side that corresponds to the start of the text, based on the current paragraph direction. If unset, the value is inherited from the parent.
      */
     indentStart?: Schema$Dimension;
     /**
-     * Whether all lines of the paragraph should be laid out on the same page or
-     * column if possible. If unset, the value is inherited from the parent.
+     * Whether all lines of the paragraph should be laid out on the same page or column if possible. If unset, the value is inherited from the parent.
      */
     keepLinesTogether?: boolean;
     /**
-     * Whether at least a part of this paragraph should be laid out on the same
-     * page or column as the next paragraph if possible. If unset, the value is
-     * inherited from the parent.
+     * Whether at least a part of this paragraph should be laid out on the same page or column as the next paragraph if possible. If unset, the value is inherited from the parent.
      */
     keepWithNext?: boolean;
     /**
-     * The amount of space between lines, as a percentage of normal, where
-     * normal is represented as 100.0. If unset, the value is inherited from the
-     * parent.
+     * The amount of space between lines, as a percentage of normal, where normal is represented as 100.0. If unset, the value is inherited from the parent.
      */
     lineSpacing?: number;
     /**
-     * The named style type of the paragraph.  Since updating the named style
-     * type affects other properties within ParagraphStyle, the named style type
-     * is applied before the other properties are updated.
+     * The named style type of the paragraph.  Since updating the named style type affects other properties within ParagraphStyle, the named style type is applied before the other properties are updated.
      */
     namedStyleType?: string;
     /**
-     * The shading of the paragraph. If unset, the value is inherited from the
-     * parent.
+     * The shading of the paragraph. If unset, the value is inherited from the parent.
      */
     shading?: Schema$Shading;
     /**
-     * The amount of extra space above the paragraph. If unset, the value is
-     * inherited from the parent.
+     * The amount of extra space above the paragraph. If unset, the value is inherited from the parent.
      */
     spaceAbove?: Schema$Dimension;
     /**
-     * The amount of extra space below the paragraph. If unset, the value is
-     * inherited from the parent.
+     * The amount of extra space below the paragraph. If unset, the value is inherited from the parent.
      */
     spaceBelow?: Schema$Dimension;
     /**
@@ -1950,15 +1601,12 @@ export namespace docs_v1 {
      */
     spacingMode?: string;
     /**
-     * A list of the tab stops for this paragraph. The list of tab stops is not
-     * inherited. This property is read-only.
+     * A list of the tab stops for this paragraph. The list of tab stops is not inherited. This property is read-only.
      */
     tabStops?: Schema$TabStop[];
   }
   /**
-   * A mask that indicates which of the fields on the base ParagraphStyle have
-   * been changed in this suggestion. For any field set to true, there is a new
-   * suggested value.
+   * A mask that indicates which of the fields on the base ParagraphStyle have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$ParagraphStyleSuggestionState {
     /**
@@ -2026,8 +1674,7 @@ export namespace docs_v1 {
      */
     namedStyleTypeSuggested?: boolean;
     /**
-     * A mask that indicates which of the fields in shading have been changed in
-     * this suggestion.
+     * A mask that indicates which of the fields in shading have been changed in this suggestion.
      */
     shadingSuggestionState?: Schema$ShadingSuggestionState;
     /**
@@ -2044,9 +1691,7 @@ export namespace docs_v1 {
     spacingModeSuggested?: boolean;
   }
   /**
-   * An object that is tethered to a Paragraph and positioned relative to the
-   * beginning of the paragraph. A PositionedObject contains an EmbeddedObject
-   * such as an image.
+   * An object that is tethered to a Paragraph and positioned relative to the beginning of the paragraph. A PositionedObject contains an EmbeddedObject such as an image.
    */
   export interface Schema$PositionedObject {
     /**
@@ -2058,26 +1703,22 @@ export namespace docs_v1 {
      */
     positionedObjectProperties?: Schema$PositionedObjectProperties;
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion ID. If empty, then this is not a suggested
-     * insertion.
+     * The suggested insertion ID. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionId?: string;
     /**
-     * The suggested changes to the positioned object properties, keyed by
-     * suggestion ID.
+     * The suggested changes to the positioned object properties, keyed by suggestion ID.
      */
     suggestedPositionedObjectPropertiesChanges?: {
       [key: string]: Schema$SuggestedPositionedObjectProperties;
     };
   }
   /**
-   * The positioning of a PositionedObject. The positioned object is positioned
-   * relative to the beginning of the Paragraph it is tethered to.
+   * The positioning of a PositionedObject. The positioned object is positioned relative to the beginning of the Paragraph it is tethered to.
    */
   export interface Schema$PositionedObjectPositioning {
     /**
@@ -2085,24 +1726,16 @@ export namespace docs_v1 {
      */
     layout?: string;
     /**
-     * The offset of the left edge of the positioned object relative to the
-     * beginning of the Paragraph it is tethered to. The exact positioning of
-     * the object can depend on other content in the document and the
-     * document&#39;s styling.
+     * The offset of the left edge of the positioned object relative to the beginning of the Paragraph it is tethered to. The exact positioning of the object can depend on other content in the document and the document&#39;s styling.
      */
     leftOffset?: Schema$Dimension;
     /**
-     * The offset of the top edge of the positioned object relative to the
-     * beginning of the Paragraph it is tethered to. The exact positioning of
-     * the object can depend on other content in the document and the
-     * document&#39;s styling.
+     * The offset of the top edge of the positioned object relative to the beginning of the Paragraph it is tethered to. The exact positioning of the object can depend on other content in the document and the document&#39;s styling.
      */
     topOffset?: Schema$Dimension;
   }
   /**
-   * A mask that indicates which of the fields on the base
-   * PositionedObjectPositioning have been changed in this suggestion. For any
-   * field set to true, there is a new suggested value.
+   * A mask that indicates which of the fields on the base PositionedObjectPositioning have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$PositionedObjectPositioningSuggestionState {
     /**
@@ -2127,25 +1760,20 @@ export namespace docs_v1 {
      */
     embeddedObject?: Schema$EmbeddedObject;
     /**
-     * The positioning of this positioned object relative to the newline of the
-     * Paragraph that references this positioned object.
+     * The positioning of this positioned object relative to the newline of the Paragraph that references this positioned object.
      */
     positioning?: Schema$PositionedObjectPositioning;
   }
   /**
-   * A mask that indicates which of the fields on the base
-   * PositionedObjectProperties have been changed in this suggestion. For any
-   * field set to true, there is a new suggested value.
+   * A mask that indicates which of the fields on the base PositionedObjectProperties have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$PositionedObjectPropertiesSuggestionState {
     /**
-     * A mask that indicates which of the fields in embedded_object have been
-     * changed in this suggestion.
+     * A mask that indicates which of the fields in embedded_object have been changed in this suggestion.
      */
     embeddedObjectSuggestionState?: Schema$EmbeddedObjectSuggestionState;
     /**
-     * A mask that indicates which of the fields in positioning have been
-     * changed in this suggestion.
+     * A mask that indicates which of the fields in positioning have been changed in this suggestion.
      */
     positioningSuggestionState?: Schema$PositionedObjectPositioningSuggestionState;
   }
@@ -2154,21 +1782,15 @@ export namespace docs_v1 {
    */
   export interface Schema$Range {
     /**
-     * The zero-based end index of this range, exclusive, in UTF-16 code units.
-     * In all current uses, an end index must be provided. This field is an
-     * Int32Value in order to accommodate future use cases with open-ended
-     * ranges.
+     * The zero-based end index of this range, exclusive, in UTF-16 code units.  In all current uses, an end index must be provided. This field is an Int32Value in order to accommodate future use cases with open-ended ranges.
      */
     endIndex?: number;
     /**
-     * The ID of the header, footer or footnote that this range is contained in.
-     * An empty segment ID signifies the document&#39;s body.
+     * The ID of the header, footer or footnote that this range is contained in. An empty segment ID signifies the document&#39;s body.
      */
     segmentId?: string;
     /**
-     * The zero-based start index of this range, in UTF-16 code units.  In all
-     * current uses, a start index must be provided. This field is an Int32Value
-     * in order to accommodate future use cases with open-ended ranges.
+     * The zero-based start index of this range, in UTF-16 code units.  In all current uses, a start index must be provided. This field is an Int32Value in order to accommodate future use cases with open-ended ranges.
      */
     startIndex?: number;
   }
@@ -2243,6 +1865,10 @@ export namespace docs_v1 {
      */
     insertTable?: Schema$InsertTableRequest;
     /**
+     * Inserts an empty column into a table.
+     */
+    insertTableColumn?: Schema$InsertTableColumnRequest;
+    /**
      * Inserts an empty row into a table.
      */
     insertTableRow?: Schema$InsertTableRowRequest;
@@ -2258,6 +1884,14 @@ export namespace docs_v1 {
      * Updates the paragraph style at the specified range.
      */
     updateParagraphStyle?: Schema$UpdateParagraphStyleRequest;
+    /**
+     * Updates the properties of columns in a table.
+     */
+    updateTableColumnProperties?: Schema$UpdateTableColumnPropertiesRequest;
+    /**
+     * Updates the row style in a table.
+     */
+    updateTableRowStyle?: Schema$UpdateTableRowStyleRequest;
     /**
      * Updates the text style at the specified range.
      */
@@ -2302,10 +1936,7 @@ export namespace docs_v1 {
     red?: number;
   }
   /**
-   * A StructuralElement representing a section break. A section is a range of
-   * content which has the same SectionStyle. A section break represents the
-   * start of a new section, and the section style applies to the section after
-   * the section break.  The document body always begins with a section break.
+   * A StructuralElement representing a section break. A section is a range of content which has the same SectionStyle. A section break represents the start of a new section, and the section style applies to the section after the section break.  The document body always begins with a section break.
    */
   export interface Schema$SectionBreak {
     /**
@@ -2313,14 +1944,11 @@ export namespace docs_v1 {
      */
     sectionStyle?: Schema$SectionStyle;
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion IDs. A SectionBreak may have multiple insertion
-     * IDs if it is a nested suggested change. If empty, then this is not a
-     * suggested insertion.
+     * The suggested insertion IDs. A SectionBreak may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionIds?: string[];
   }
@@ -2342,18 +1970,15 @@ export namespace docs_v1 {
    */
   export interface Schema$SectionStyle {
     /**
-     * The section&#39;s columns properties.  If empty, the section contains one
-     * column with the default properties in the Docs editor.
+     * The section&#39;s columns properties.  If empty, the section contains one column with the default properties in the Docs editor.
      */
     columnProperties?: Schema$SectionColumnProperties[];
     /**
-     * The style of column separators.  This style can be set even when there is
-     * one column in the section.
+     * The style of column separators.  This style can be set even when there is one column in the section.
      */
     columnSeparatorStyle?: string;
     /**
-     * The content direction of this section. If unset, the value defaults to
-     * LEFT_TO_RIGHT.
+     * The content direction of this section. If unset, the value defaults to LEFT_TO_RIGHT.
      */
     contentDirection?: string;
   }
@@ -2367,9 +1992,7 @@ export namespace docs_v1 {
     backgroundColor?: Schema$OptionalColor;
   }
   /**
-   * A mask that indicates which of the fields on the base Shading have been
-   * changed in this suggested change. For any field set to true, there is a new
-   * suggested value.
+   * A mask that indicates which of the fields on the base Shading have been changed in this suggested change. For any field set to true, there is a new suggested value.
    */
   export interface Schema$ShadingSuggestionState {
     /**
@@ -2382,8 +2005,7 @@ export namespace docs_v1 {
    */
   export interface Schema$SheetsChartReference {
     /**
-     * The ID of the specific chart in the Google Sheets spreadsheet that is
-     * embedded.
+     * The ID of the specific chart in the Google Sheets spreadsheet that is embedded.
      */
     chartId?: number;
     /**
@@ -2392,9 +2014,7 @@ export namespace docs_v1 {
     spreadsheetId?: string;
   }
   /**
-   * A mask that indicates which of the fields on the base SheetsChartReference
-   * have been changed in this suggestion. For any field set to true, there is a
-   * new suggested value.
+   * A mask that indicates which of the fields on the base SheetsChartReference have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$SheetsChartReferenceSuggestionState {
     /**
@@ -2420,9 +2040,7 @@ export namespace docs_v1 {
     width?: Schema$Dimension;
   }
   /**
-   * A mask that indicates which of the fields on the base Size have been
-   * changed in this suggestion. For any field set to true, the Size has a new
-   * suggested value.
+   * A mask that indicates which of the fields on the base Size have been changed in this suggestion. For any field set to true, the Size has a new suggested value.
    */
   export interface Schema$SizeSuggestionState {
     /**
@@ -2435,13 +2053,11 @@ export namespace docs_v1 {
     widthSuggested?: boolean;
   }
   /**
-   * A StructuralElement describes content that provides structure to the
-   * document.
+   * A StructuralElement describes content that provides structure to the document.
    */
   export interface Schema$StructuralElement {
     /**
-     * The zero-based end index of this structural element, exclusive, in UTF-16
-     * code units.
+     * The zero-based end index of this structural element, exclusive, in UTF-16 code units.
      */
     endIndex?: number;
     /**
@@ -2453,8 +2069,7 @@ export namespace docs_v1 {
      */
     sectionBreak?: Schema$SectionBreak;
     /**
-     * The zero-based start index of this structural element, in UTF-16 code
-     * units.
+     * The zero-based start index of this structural element, in UTF-16 code units.
      */
     startIndex?: number;
     /**
@@ -2471,8 +2086,7 @@ export namespace docs_v1 {
    */
   export interface Schema$SubstringMatchCriteria {
     /**
-     * Indicates whether the search should respect case:  - `True`: the search
-     * is case sensitive. - `False`: the search is case insensitive.
+     * Indicates whether the search should respect case:  - `True`: the search is case sensitive. - `False`: the search is case insensitive.
      */
     matchCase?: boolean;
     /**
@@ -2485,14 +2099,11 @@ export namespace docs_v1 {
    */
   export interface Schema$SuggestedBullet {
     /**
-     * A Bullet that only includes the changes made in this suggestion. This can
-     * be used along with the bullet_suggestion_state to see which fields have
-     * changed and their new values.
+     * A Bullet that only includes the changes made in this suggestion. This can be used along with the bullet_suggestion_state to see which fields have changed and their new values.
      */
     bullet?: Schema$Bullet;
     /**
-     * A mask that indicates which of the fields on the base Bullet have been
-     * changed in this suggestion.
+     * A mask that indicates which of the fields on the base Bullet have been changed in this suggestion.
      */
     bulletSuggestionState?: Schema$BulletSuggestionState;
   }
@@ -2501,14 +2112,11 @@ export namespace docs_v1 {
    */
   export interface Schema$SuggestedDocumentStyle {
     /**
-     * A DocumentStyle that only includes the changes made in this suggestion.
-     * This can be used along with the document_style_suggestion_state to see
-     * which fields have changed and their new values.
+     * A DocumentStyle that only includes the changes made in this suggestion. This can be used along with the document_style_suggestion_state to see which fields have changed and their new values.
      */
     documentStyle?: Schema$DocumentStyle;
     /**
-     * A mask that indicates which of the fields on the base DocumentStyle have
-     * been changed in this suggestion.
+     * A mask that indicates which of the fields on the base DocumentStyle have been changed in this suggestion.
      */
     documentStyleSuggestionState?: Schema$DocumentStyleSuggestionState;
   }
@@ -2517,15 +2125,11 @@ export namespace docs_v1 {
    */
   export interface Schema$SuggestedInlineObjectProperties {
     /**
-     * An InlineObjectProperties that only includes the changes made in this
-     * suggestion. This can be used along with the
-     * inline_object_properties_suggestion_state to see which fields have
-     * changed and their new values.
+     * An InlineObjectProperties that only includes the changes made in this suggestion. This can be used along with the inline_object_properties_suggestion_state to see which fields have changed and their new values.
      */
     inlineObjectProperties?: Schema$InlineObjectProperties;
     /**
-     * A mask that indicates which of the fields on the base
-     * InlineObjectProperties have been changed in this suggestion.
+     * A mask that indicates which of the fields on the base InlineObjectProperties have been changed in this suggestion.
      */
     inlineObjectPropertiesSuggestionState?: Schema$InlineObjectPropertiesSuggestionState;
   }
@@ -2534,14 +2138,11 @@ export namespace docs_v1 {
    */
   export interface Schema$SuggestedListProperties {
     /**
-     * A ListProperties that only includes the changes made in this suggestion.
-     * This can be used along with the list_properties_suggestion_state to see
-     * which fields have changed and their new values.
+     * A ListProperties that only includes the changes made in this suggestion. This can be used along with the list_properties_suggestion_state to see which fields have changed and their new values.
      */
     listProperties?: Schema$ListProperties;
     /**
-     * A mask that indicates which of the fields on the base ListProperties have
-     * been changed in this suggestion.
+     * A mask that indicates which of the fields on the base ListProperties have been changed in this suggestion.
      */
     listPropertiesSuggestionState?: Schema$ListPropertiesSuggestionState;
   }
@@ -2550,14 +2151,11 @@ export namespace docs_v1 {
    */
   export interface Schema$SuggestedNamedStyles {
     /**
-     * A NamedStyles that only includes the changes made in this suggestion.
-     * This can be used along with the named_styles_suggestion_state to see
-     * which fields have changed and their new values.
+     * A NamedStyles that only includes the changes made in this suggestion. This can be used along with the named_styles_suggestion_state to see which fields have changed and their new values.
      */
     namedStyles?: Schema$NamedStyles;
     /**
-     * A mask that indicates which of the fields on the base NamedStyles have
-     * been changed in this suggestion.
+     * A mask that indicates which of the fields on the base NamedStyles have been changed in this suggestion.
      */
     namedStylesSuggestionState?: Schema$NamedStylesSuggestionState;
   }
@@ -2566,14 +2164,11 @@ export namespace docs_v1 {
    */
   export interface Schema$SuggestedParagraphStyle {
     /**
-     * A ParagraphStyle that only includes the changes made in this suggestion.
-     * This can be used along with the paragraph_suggestion_state to see which
-     * fields have changed and their new values.
+     * A ParagraphStyle that only includes the changes made in this suggestion. This can be used along with the paragraph_suggestion_state to see which fields have changed and their new values.
      */
     paragraphStyle?: Schema$ParagraphStyle;
     /**
-     * A mask that indicates which of the fields on the base ParagraphStyle have
-     * been changed in this suggestion.
+     * A mask that indicates which of the fields on the base ParagraphStyle have been changed in this suggestion.
      */
     paragraphStyleSuggestionState?: Schema$ParagraphStyleSuggestionState;
   }
@@ -2582,15 +2177,11 @@ export namespace docs_v1 {
    */
   export interface Schema$SuggestedPositionedObjectProperties {
     /**
-     * A PositionedObjectProperties that only includes the changes made in this
-     * suggestion. This can be used along with the
-     * positioned_object_properties_suggestion_state to see which fields have
-     * changed and their new values.
+     * A PositionedObjectProperties that only includes the changes made in this suggestion. This can be used along with the positioned_object_properties_suggestion_state to see which fields have changed and their new values.
      */
     positionedObjectProperties?: Schema$PositionedObjectProperties;
     /**
-     * A mask that indicates which of the fields on the base
-     * PositionedObjectProperties have been changed in this suggestion.
+     * A mask that indicates which of the fields on the base PositionedObjectProperties have been changed in this suggestion.
      */
     positionedObjectPropertiesSuggestionState?: Schema$PositionedObjectPropertiesSuggestionState;
   }
@@ -2599,14 +2190,11 @@ export namespace docs_v1 {
    */
   export interface Schema$SuggestedTableCellStyle {
     /**
-     * A TableCellStyle that only includes the changes made in this suggestion.
-     * This can be used along with the table_cell_style_suggestion_state to see
-     * which fields have changed and their new values.
+     * A TableCellStyle that only includes the changes made in this suggestion. This can be used along with the table_cell_style_suggestion_state to see which fields have changed and their new values.
      */
     tableCellStyle?: Schema$TableCellStyle;
     /**
-     * A mask that indicates which of the fields on the base TableCellStyle have
-     * been changed in this suggestion.
+     * A mask that indicates which of the fields on the base TableCellStyle have been changed in this suggestion.
      */
     tableCellStyleSuggestionState?: Schema$TableCellStyleSuggestionState;
   }
@@ -2615,14 +2203,11 @@ export namespace docs_v1 {
    */
   export interface Schema$SuggestedTableRowStyle {
     /**
-     * A TableRowStyle that only includes the changes made in this suggestion.
-     * This can be used along with the table_row_style_suggestion_state to see
-     * which fields have changed and their new values.
+     * A TableRowStyle that only includes the changes made in this suggestion. This can be used along with the table_row_style_suggestion_state to see which fields have changed and their new values.
      */
     tableRowStyle?: Schema$TableRowStyle;
     /**
-     * A mask that indicates which of the fields on the base TableRowStyle have
-     * been changed in this suggestion.
+     * A mask that indicates which of the fields on the base TableRowStyle have been changed in this suggestion.
      */
     tableRowStyleSuggestionState?: Schema$TableRowStyleSuggestionState;
   }
@@ -2631,14 +2216,11 @@ export namespace docs_v1 {
    */
   export interface Schema$SuggestedTextStyle {
     /**
-     * A TextStyle that only includes the changes made in this suggestion. This
-     * can be used along with the text_style_suggestion_state to see which
-     * fields have changed and their new values.
+     * A TextStyle that only includes the changes made in this suggestion. This can be used along with the text_style_suggestion_state to see which fields have changed and their new values.
      */
     textStyle?: Schema$TextStyle;
     /**
-     * A mask that indicates which of the fields on the base TextStyle have been
-     * changed in this suggestion.
+     * A mask that indicates which of the fields on the base TextStyle have been changed in this suggestion.
      */
     textStyleSuggestionState?: Schema$TextStyleSuggestionState;
   }
@@ -2647,8 +2229,7 @@ export namespace docs_v1 {
    */
   export interface Schema$Table {
     /**
-     * Number of columns in the table.  It is possible for a table to be
-     * non-rectangular, so some rows may have a different number of cells.
+     * Number of columns in the table.  It is possible for a table to be non-rectangular, so some rows may have a different number of cells.
      */
     columns?: number;
     /**
@@ -2656,14 +2237,11 @@ export namespace docs_v1 {
      */
     rows?: number;
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion IDs. A Table may have multiple insertion IDs if
-     * it is a nested suggested change. If empty, then this is not a suggested
-     * insertion.
+     * The suggested insertion IDs. A Table may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionIds?: string[];
     /**
@@ -2692,14 +2270,11 @@ export namespace docs_v1 {
      */
     startIndex?: number;
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion IDs. A TableCell may have multiple insertion IDs
-     * if it is a nested suggested change. If empty, then this is not a
-     * suggested insertion.
+     * The suggested insertion IDs. A TableCell may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionIds?: string[];
     /**
@@ -2714,8 +2289,7 @@ export namespace docs_v1 {
     tableCellStyle?: Schema$TableCellStyle;
   }
   /**
-   * A border around a table cell.  Table cell borders cannot be transparent. To
-   * hide a table cell border, make its width 0.
+   * A border around a table cell.  Table cell borders cannot be transparent. To hide a table cell border, make its width 0.
    */
   export interface Schema$TableCellBorder {
     /**
@@ -2736,13 +2310,11 @@ export namespace docs_v1 {
    */
   export interface Schema$TableCellLocation {
     /**
-     * The zero-based column index. For example, the second column in the table
-     * has a column index of 1.
+     * The zero-based column index. For example, the second column in the table has a column index of 1.
      */
     columnIndex?: number;
     /**
-     * The zero-based row index. For example, the second row in the table has a
-     * row index of 1.
+     * The zero-based row index. For example, the second row in the table has a row index of 1.
      */
     rowIndex?: number;
     /**
@@ -2751,9 +2323,7 @@ export namespace docs_v1 {
     tableStartLocation?: Schema$Location;
   }
   /**
-   * The style of a TableCell.  Inherited table cell styles are represented as
-   * unset fields in this message. A table cell style can inherit from the
-   * table&#39;s style.
+   * The style of a TableCell.  Inherited table cell styles are represented as unset fields in this message. A table cell style can inherit from the table&#39;s style.
    */
   export interface Schema$TableCellStyle {
     /**
@@ -2781,8 +2351,7 @@ export namespace docs_v1 {
      */
     columnSpan?: number;
     /**
-     * The alignment of the content in the table cell. The default alignment
-     * matches the alignment for newly created table cells in the Docs editor.
+     * The alignment of the content in the table cell. The default alignment matches the alignment for newly created table cells in the Docs editor.
      */
     contentAlignment?: string;
     /**
@@ -2807,9 +2376,7 @@ export namespace docs_v1 {
     rowSpan?: number;
   }
   /**
-   * A mask that indicates which of the fields on the base TableCellStyle have
-   * been changed in this suggestion. For any field set to true, there is a new
-   * suggested value.
+   * A mask that indicates which of the fields on the base TableCellStyle have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$TableCellStyleSuggestionState {
     /**
@@ -2866,8 +2433,7 @@ export namespace docs_v1 {
    */
   export interface Schema$TableColumnProperties {
     /**
-     * The width of the column. Set when the column&#39;s `width_type` is
-     * FIXED_WIDTH.
+     * The width of the column. Set when the column&#39;s `width_type` is FIXED_WIDTH.
      */
     width?: Schema$Dimension;
     /**
@@ -2884,14 +2450,11 @@ export namespace docs_v1 {
      */
     content?: Schema$StructuralElement[];
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion IDs. A TableOfContents may have multiple
-     * insertion IDs if it is a nested suggested change. If empty, then this is
-     * not a suggested insertion.
+     * The suggested insertion IDs. A TableOfContents may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionIds?: string[];
   }
@@ -2908,14 +2471,11 @@ export namespace docs_v1 {
      */
     startIndex?: number;
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion IDs. A TableRow may have multiple insertion IDs
-     * if it is a nested suggested change. If empty, then this is not a
-     * suggested insertion.
+     * The suggested insertion IDs. A TableRow may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionIds?: string[];
     /**
@@ -2925,9 +2485,7 @@ export namespace docs_v1 {
       [key: string]: Schema$SuggestedTableRowStyle;
     };
     /**
-     * The contents and style of each cell in this row.  It is possible for a
-     * table to be non-rectangular, so some rows may have a different number of
-     * cells than other rows in the same table.
+     * The contents and style of each cell in this row.  It is possible for a table to be non-rectangular, so some rows may have a different number of cells than other rows in the same table.
      */
     tableCells?: Schema$TableCell[];
     /**
@@ -2940,16 +2498,12 @@ export namespace docs_v1 {
    */
   export interface Schema$TableRowStyle {
     /**
-     * The minimum height of the row. The row will be rendered in the Docs
-     * editor at a height equal to or greater than this value in order to show
-     * all the content in the row&#39;s cells.
+     * The minimum height of the row. The row will be rendered in the Docs editor at a height equal to or greater than this value in order to show all the content in the row&#39;s cells.
      */
     minRowHeight?: Schema$Dimension;
   }
   /**
-   * A mask that indicates which of the fields on the base TableRowStyle have
-   * been changed in this suggestion. For any field set to true, there is a new
-   * suggested value.
+   * A mask that indicates which of the fields on the base TableRowStyle have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$TableRowStyleSuggestionState {
     /**
@@ -2962,9 +2516,7 @@ export namespace docs_v1 {
    */
   export interface Schema$TableStyle {
     /**
-     * The properties of each column.  Note that in Docs, tables contain rows
-     * and rows contain cells, similar to HTML. So the properties for a row can
-     * be found on the row&#39;s table_row_style.
+     * The properties of each column.  Note that in Docs, tables contain rows and rows contain cells, similar to HTML. So the properties for a row can be found on the row&#39;s table_row_style.
      */
     tableColumnProperties?: Schema$TableColumnProperties[];
   }
@@ -2982,24 +2534,19 @@ export namespace docs_v1 {
     offset?: Schema$Dimension;
   }
   /**
-   * A ParagraphElement that represents a run of text that all has the same
-   * styling.
+   * A ParagraphElement that represents a run of text that all has the same styling.
    */
   export interface Schema$TextRun {
     /**
-     * The text of this run.  Any non-text elements in the run are replaced with
-     * the Unicode character U+E907.
+     * The text of this run.  Any non-text elements in the run are replaced with the Unicode character U+E907.
      */
     content?: string;
     /**
-     * The suggested deletion IDs. If empty, then there are no suggested
-     * deletions of this content.
+     * The suggested deletion IDs. If empty, then there are no suggested deletions of this content.
      */
     suggestedDeletionIds?: string[];
     /**
-     * The suggested insertion IDs. A TextRun may have multiple insertion IDs if
-     * it is a nested suggested change. If empty, then this is not a suggested
-     * insertion.
+     * The suggested insertion IDs. A TextRun may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionIds?: string[];
     /**
@@ -3012,29 +2559,15 @@ export namespace docs_v1 {
     textStyle?: Schema$TextStyle;
   }
   /**
-   * Represents the styling that can be applied to text.  Inherited text styles
-   * are represented as unset fields in this message. A text style&#39;s parent
-   * depends on where the text style is defined:    * The TextStyle of text in a
-   * Paragraph     inherits from the paragraph&#39;s corresponding named style
-   * type.   * The TextStyle on a named style     inherits from the normal text
-   * named style.   * The TextStyle of the normal text named style inherits from
-   * the default text style in the Docs editor.   * The TextStyle on a Paragraph
-   * element     that is contained in a table may inherit its text style from
-   * the table     style.  If the text style does not inherit from a parent,
-   * unsetting fields will revert the style to a value matching the defaults in
-   * the Docs editor.
+   * Represents the styling that can be applied to text.  Inherited text styles are represented as unset fields in this message. A text style&#39;s parent depends on where the text style is defined:    * The TextStyle of text in a Paragraph     inherits from the paragraph&#39;s corresponding named style type.   * The TextStyle on a named style     inherits from the normal text named style.   * The TextStyle of the normal text named style inherits     from the default text style in the Docs editor.   * The TextStyle on a Paragraph element     that is contained in a table may inherit its text style from the table     style.  If the text style does not inherit from a parent, unsetting fields will revert the style to a value matching the defaults in the Docs editor.
    */
   export interface Schema$TextStyle {
     /**
-     * The background color of the text. If set, the color is either an RGB
-     * color or transparent, depending on the `color` field.
+     * The background color of the text. If set, the color is either an RGB color or transparent, depending on the `color` field.
      */
     backgroundColor?: Schema$OptionalColor;
     /**
-     * The text&#39;s vertical offset from its normal position.  Text with
-     * `SUPERSCRIPT` or `SUBSCRIPT` baseline offsets is automatically rendered
-     * in a smaller font size, computed based on the `font_size` field. The
-     * `font_size` itself is not affected by changes in this field.
+     * The text&#39;s vertical offset from its normal position.  Text with `SUPERSCRIPT` or `SUBSCRIPT` baseline offsets is automatically rendered in a smaller font size, computed based on the `font_size` field. The `font_size` itself is not affected by changes in this field.
      */
     baselineOffset?: string;
     /**
@@ -3046,8 +2579,7 @@ export namespace docs_v1 {
      */
     fontSize?: Schema$Dimension;
     /**
-     * The foreground color of the text. If set, the color is either an RGB
-     * color or transparent, depending on the `color` field.
+     * The foreground color of the text. If set, the color is either an RGB color or transparent, depending on the `color` field.
      */
     foregroundColor?: Schema$OptionalColor;
     /**
@@ -3055,22 +2587,7 @@ export namespace docs_v1 {
      */
     italic?: boolean;
     /**
-     * The hyperlink destination of the text. If unset, there is no link. Links
-     * are not inherited from parent text.  Changing the link in an update
-     * request causes some other changes to the text style of the range:  * When
-     * setting a link, the text foreground color will be updated to the default
-     * link color and the text will be underlined. If these fields are modified
-     * in the same request, those values will be used instead of the   link
-     * defaults. * Setting a link on a text range that overlaps with an existing
-     * link will   also update the existing link to point to the new URL. *
-     * Links are not settable on newline characters. As a result, setting a link
-     * on a text range that crosses a paragraph boundary, such as
-     * `&quot;ABCx/123&quot;`,   will separate the newline character(s) into
-     * their own text runs. The   link will be applied separately to the runs
-     * before and after the newline. * Removing a link will update the text
-     * style of the range to match the   style of the preceding text (or the
-     * default text styles if the preceding   text is another link) unless
-     * different styles are being set in the same   request.
+     * The hyperlink destination of the text. If unset, there is no link. Links are not inherited from parent text.  Changing the link in an update request causes some other changes to the text style of the range:  * When setting a link, the text foreground color will be updated to the   default link color and the text will be underlined. If these fields are   modified in the same request, those values will be used instead of the   link defaults. * Setting a link on a text range that overlaps with an existing link will   also update the existing link to point to the new URL. * Links are not settable on newline characters. As a result, setting a link   on a text range that crosses a paragraph boundary, such as `&quot;ABCx/123&quot;`,   will separate the newline character(s) into their own text runs. The   link will be applied separately to the runs before and after the newline. * Removing a link will update the text style of the range to match the   style of the preceding text (or the default text styles if the preceding   text is another link) unless different styles are being set in the same   request.
      */
     link?: Schema$Link;
     /**
@@ -3086,20 +2603,12 @@ export namespace docs_v1 {
      */
     underline?: boolean;
     /**
-     * The font family and rendered weight of the text.  If an update request
-     * specifies values for both `weighted_font_family` and `bold`, the
-     * `weighted_font_family` is applied first, then `bold`.  If
-     * `weighted_font_family#weight` is not set, it defaults to `400`.  If
-     * `weighted_font_family` is set, then `weighted_font_family#font_family`
-     * must also be set with a non-empty value. Otherwise, a 400 bad request
-     * error is returned.
+     * The font family and rendered weight of the text.  If an update request specifies values for both `weighted_font_family` and `bold`, the `weighted_font_family` is applied first, then `bold`.  If `weighted_font_family#weight` is not set, it defaults to `400`.  If `weighted_font_family` is set, then `weighted_font_family#font_family` must also be set with a non-empty value. Otherwise, a 400 bad request error is returned.
      */
     weightedFontFamily?: Schema$WeightedFontFamily;
   }
   /**
-   * A mask that indicates which of the fields on the base TextStyle have been
-   * changed in this suggestion. For any field set to true, there is a new
-   * suggested value.
+   * A mask that indicates which of the fields on the base TextStyle have been changed in this suggestion. For any field set to true, there is a new suggested value.
    */
   export interface Schema$TextStyleSuggestionState {
     /**
@@ -3152,18 +2661,11 @@ export namespace docs_v1 {
    */
   export interface Schema$UpdateParagraphStyleRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified.
-     * The root `paragraph_style` is implied and should not be specified.  For
-     * example, to update the paragraph style&#39;s alignment property, set
-     * `fields` to `&quot;alignment&quot;`.  To reset a property to its default
-     * value, include its field name in the field mask but leave the field
-     * itself unset.
+     * The fields that should be updated.  At least one field must be specified. The root `paragraph_style` is implied and should not be specified.  For example, to update the paragraph style&#39;s alignment property, set `fields` to `&quot;alignment&quot;`.  To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string;
     /**
-     * The styles to set on the paragraphs.  Certain paragraph style changes may
-     * cause other changes in order to mirror the behavior of the Docs editor.
-     * See the documentation of ParagraphStyle for more information.
+     * The styles to set on the paragraphs.  Certain paragraph style changes may cause other changes in order to mirror the behavior of the Docs editor. See the documentation of ParagraphStyle for more information.
      */
     paragraphStyle?: Schema$ParagraphStyle;
     /**
@@ -3172,31 +2674,61 @@ export namespace docs_v1 {
     range?: Schema$Range;
   }
   /**
+   * Updates the TableColumnProperties of columns in a table.
+   */
+  export interface Schema$UpdateTableColumnPropertiesRequest {
+    /**
+     * The list of zero-based column indices whose property should be updated. If no indices are specified, all columns will be updated.
+     */
+    columnIndices?: number[];
+    /**
+     * The fields that should be updated.  At least one field must be specified. The root `tableColumnProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the column width, set `fields` to `&quot;width&quot;`.
+     */
+    fields?: string;
+    /**
+     * The table column properties to update.  If the value of `table_column_properties#width` is less than 5 points (5/72 inch), a 400 bad request error is returned.
+     */
+    tableColumnProperties?: Schema$TableColumnProperties;
+    /**
+     * The location where the table starts in the document.
+     */
+    tableStartLocation?: Schema$Location;
+  }
+  /**
+   * Updates the TableRowStyle of rows in a table.
+   */
+  export interface Schema$UpdateTableRowStyleRequest {
+    /**
+     * The fields that should be updated.  At least one field must be specified. The root `tableRowStyle` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the minimum row height, set `fields` to `&quot;min_row_height&quot;`.
+     */
+    fields?: string;
+    /**
+     * The list of zero-based row indices whose style should be updated. If no indices are specified, all rows will be updated.
+     */
+    rowIndices?: number[];
+    /**
+     * The styles to be set on the rows.
+     */
+    tableRowStyle?: Schema$TableRowStyle;
+    /**
+     * The location where the table starts in the document.
+     */
+    tableStartLocation?: Schema$Location;
+  }
+  /**
    * Update the styling of text.
    */
   export interface Schema$UpdateTextStyleRequest {
     /**
-     * The fields that should be updated.  At least one field must be specified.
-     * The root `text_style` is implied and should not be specified. A single
-     * `&quot;*&quot;` can be used as short-hand for listing every field.  For
-     * example, to update the text style to bold, set `fields` to
-     * `&quot;bold&quot;`.  To reset a property to its default value, include
-     * its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated.  At least one field must be specified. The root `text_style` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example, to update the text style to bold, set `fields` to `&quot;bold&quot;`.  To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string;
     /**
-     * The range of text to style.  The range may be extended to include
-     * adjacent newlines.  If the range fully contains a paragraph belonging to
-     * a list, the paragraph&#39;s bullet is also updated with the matching text
-     * style.
+     * The range of text to style.  The range may be extended to include adjacent newlines.  If the range fully contains a paragraph belonging to a list, the paragraph&#39;s bullet is also updated with the matching text style.
      */
     range?: Schema$Range;
     /**
-     * The styles to set on the text.  If the value for a particular style
-     * matches that of the parent, that style will be set to inherit.  Certain
-     * text style changes may cause other changes in order to to mirror the
-     * behavior of the Docs editor. See the documentation of TextStyle for more
-     * information.
+     * The styles to set on the text.  If the value for a particular style matches that of the parent, that style will be set to inherit.  Certain text style changes may cause other changes in order to to mirror the behavior of the Docs editor. See the documentation of TextStyle for more information.
      */
     textStyle?: Schema$TextStyle;
   }
@@ -3205,26 +2737,11 @@ export namespace docs_v1 {
    */
   export interface Schema$WeightedFontFamily {
     /**
-     * The font family of the text.  The font family can be any font from the
-     * Font menu in Docs or from [Google Fonts] (https://fonts.google.com/). If
-     * the font name is unrecognized, the text is rendered in `Arial`.
+     * The font family of the text.  The font family can be any font from the Font menu in Docs or from [Google Fonts] (https://fonts.google.com/). If the font name is unrecognized, the text is rendered in `Arial`.
      */
     fontFamily?: string;
     /**
-     * The weight of the font. This field can have any value that is a multiple
-     * of `100` between `100` and `900`, inclusive. This range corresponds to
-     * the numerical values described in the CSS 2.1 Specification,
-     * [section 15.6](https://www.w3.org/TR/CSS21/fonts.html#font-boldness),
-     * with non-numerical values disallowed.  The default value is `400`
-     * (&quot;normal&quot;).  The font weight makes up just one component of the
-     * rendered font weight. The rendered weight is determined by a combination
-     * of the `weight` and the text style&#39;s resolved `bold` value, after
-     * accounting for inheritance:  * If the text is bold and the weight is less
-     * than `400`, the rendered   weight is 400. * If the text is bold and the
-     * weight is greater than or equal to `400` but   is less than `700`, the
-     * rendered weight is `700`. * If the weight is greater than or equal to
-     * `700`, the rendered weight is   equal to the weight. * If the text is not
-     * bold, the rendered weight is equal to the weight.
+     * The weight of the font. This field can have any value that is a multiple of `100` between `100` and `900`, inclusive. This range corresponds to the numerical values described in the CSS 2.1 Specification, [section 15.6](https://www.w3.org/TR/CSS21/fonts.html#font-boldness), with non-numerical values disallowed.  The default value is `400` (&quot;normal&quot;).  The font weight makes up just one component of the rendered font weight. The rendered weight is determined by a combination of the `weight` and the text style&#39;s resolved `bold` value, after accounting for inheritance:  * If the text is bold and the weight is less than `400`, the rendered   weight is 400. * If the text is bold and the weight is greater than or equal to `400` but   is less than `700`, the rendered weight is `700`. * If the weight is greater than or equal to `700`, the rendered weight is   equal to the weight. * If the text is not bold, the rendered weight is equal to the weight.
      */
     weight?: number;
   }
@@ -3233,29 +2750,11 @@ export namespace docs_v1 {
    */
   export interface Schema$WriteControl {
     /**
-     * The revision ID of the document that the write request will be applied
-     * to. If this is not the latest revision of the document, the request will
-     * not be processed and will return a 400 bad request error.  When a
-     * required revision ID is returned in a response, it indicates the revision
-     * ID of the document after the request was applied.
+     * The revision ID of the document that the write request will be applied to. If this is not the latest revision of the document, the request will not be processed and will return a 400 bad request error.  When a required revision ID is returned in a response, it indicates the revision ID of the document after the request was applied.
      */
     requiredRevisionId?: string;
     /**
-     * The target revision ID of the document that the write request will be
-     * applied to.  If collaborator changes have occurred after the document was
-     * read using the API, the changes produced by this write request will be
-     * transformed against the collaborator changes. This results in a new
-     * revision of the document which incorporates both the changes in the
-     * request and the collaborator changes, and the Docs server will resolve
-     * conflicting changes. When using `target_revision_id`, the API client can
-     * be thought of as another collaborator of the document.  The target
-     * revision ID may only be used to write to recent versions of a document.
-     * If the target revision is too far behind the latest revision, the request
-     * will not be processed and will return a 400 bad request error and the
-     * request should be retried after reading the latest version of the
-     * document. In most cases a `revision_id` will remain valid for use as a
-     * target revision for several minutes after it is read, but for
-     * frequently-edited documents this window may be shorter.
+     * The target revision ID of the document that the write request will be applied to.  If collaborator changes have occurred after the document was read using the API, the changes produced by this write request will be transformed against the collaborator changes. This results in a new revision of the document which incorporates both the changes in the request and the collaborator changes, and the Docs server will resolve conflicting changes. When using `target_revision_id`, the API client can be thought of as another collaborator of the document.  The target revision ID may only be used to write to recent versions of a document. If the target revision is too far behind the latest revision, the request will not be processed and will return a 400 bad request error and the request should be retried after reading the latest version of the document. In most cases a `revision_id` will remain valid for use as a target revision for several minutes after it is read, but for frequently-edited documents this window may be shorter.
      */
     targetRevisionId?: string;
   }
@@ -3268,20 +2767,7 @@ export namespace docs_v1 {
 
     /**
      * docs.documents.batchUpdate
-     * @desc Applies one or more updates to the document.  Each request is
-     * validated before being applied. If any request is not valid, then the
-     * entire request will fail and nothing will be applied.  Some requests have
-     * replies to give you some information about how they are applied. Other
-     * requests do not need to return information; these each return an empty
-     * reply. The order of replies matches that of the requests.  For example,
-     * suppose you call batchUpdate with four updates, and only the third one
-     * returns information. The response would have two empty replies, the reply
-     * to the third request, and another empty reply, in that order.  Because
-     * other users may be editing the document, the document might not exactly
-     * reflect your changes: your changes may be altered with respect to
-     * collaborator changes. If there are no collaborators, the document should
-     * reflect your changes. In any case, the updates in your request are
-     * guaranteed to be applied together atomically.
+     * @desc Applies one or more updates to the document.  Each request is validated before being applied. If any request is not valid, then the entire request will fail and nothing will be applied.  Some requests have replies to give you some information about how they are applied. Other requests do not need to return information; these each return an empty reply. The order of replies matches that of the requests.  For example, suppose you call batchUpdate with four updates, and only the third one returns information. The response would have two empty replies, the reply to the third request, and another empty reply, in that order.  Because other users may be editing the document, the document might not exactly reflect your changes: your changes may be altered with respect to collaborator changes. If there are no collaborators, the document should reflect your changes. In any case, the updates in your request are guaranteed to be applied together atomically.
      * @alias docs.documents.batchUpdate
      * @memberOf! ()
      *
@@ -3363,9 +2849,7 @@ export namespace docs_v1 {
 
     /**
      * docs.documents.create
-     * @desc Creates a blank document using the title given in the request.
-     * Other fields in the request, including any provided content, are ignored.
-     * Returns the created document.
+     * @desc Creates a blank document using the title given in the request. Other fields in the request, including any provided content, are ignored.  Returns the created document.
      * @alias docs.documents.create
      * @memberOf! ()
      *
@@ -3543,9 +3027,7 @@ export namespace docs_v1 {
      */
     documentId?: string;
     /**
-     * The suggestions view mode to apply to the document. This allows viewing
-     * the document with all suggestions inline, accepted or rejected. If one is
-     * not specified, DEFAULT_FOR_CURRENT_ACCESS is used.
+     * The suggestions view mode to apply to the document. This allows viewing the document with all suggestions inline, accepted or rejected. If one is not specified, DEFAULT_FOR_CURRENT_ACCESS is used.
      */
     suggestionsViewMode?: string;
   }

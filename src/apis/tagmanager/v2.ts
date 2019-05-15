@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace tagmanager_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace tagmanager_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,7 +92,10 @@ export namespace tagmanager_v2 {
     accounts: Resource$Accounts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.accounts = new Resource$Accounts(this.context);
     }
@@ -110,8 +110,7 @@ export namespace tagmanager_v2 {
      */
     accountId?: string;
     /**
-     * The fingerprint of the GTM Account as computed at storage time. This
-     * value is recomputed whenever the account is modified.
+     * The fingerprint of the GTM Account as computed at storage time. This value is recomputed whenever the account is modified.
      */
     fingerprint?: string;
     /**
@@ -123,11 +122,7 @@ export namespace tagmanager_v2 {
      */
     path?: string;
     /**
-     * Whether the account shares data anonymously with Google and others. This
-     * flag enables benchmarking by sharing your data in an anonymous form.
-     * Google will remove all identifiable information about your website,
-     * combine the data with hundreds of other anonymous sites and report
-     * aggregate trends in the benchmarking service.
+     * Whether the account shares data anonymously with Google and others. This flag enables benchmarking by sharing your data in an anonymous form. Google will remove all identifiable information about your website, combine the data with hundreds of other anonymous sites and report aggregate trends in the benchmarking service.
      */
     shareData?: boolean;
     /**
@@ -140,16 +135,12 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$AccountAccess {
     /**
-     * Whether the user has no access, user access, or admin access to an
-     * account.
+     * Whether the user has no access, user access, or admin access to an account.
      */
     permission?: string;
   }
   /**
-   * Built-in variables are a special category of variables that are pre-created
-   * and non-customizable. They provide common functionality like accessing
-   * propeties of the gtm data layer, monitoring clicks, or accessing elements
-   * of a page URL.
+   * Built-in variables are a special category of variables that are pre-created and non-customizable. They provide common functionality like accessing propeties of the gtm data layer, monitoring clicks, or accessing elements of a page URL.
    */
   export interface Schema$BuiltInVariable {
     /**
@@ -161,8 +152,7 @@ export namespace tagmanager_v2 {
      */
     containerId?: string;
     /**
-     * Name of the built-in variable to be used to refer to the built-in
-     * variable.
+     * Name of the built-in variable to be used to refer to the built-in variable.
      */
     name?: string;
     /**
@@ -183,15 +173,7 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$Condition {
     /**
-     * A list of named parameters (key/value), depending on the condition&#39;s
-     * type. Notes:  - For binary operators, include parameters named arg0 and
-     * arg1 for specifying the left and right operands, respectively.  - At this
-     * time, the left operand (arg0) must be a reference to a variable.  - For
-     * case-insensitive Regex matching, include a boolean parameter named
-     * ignore_case that is set to true. If not specified or set to any other
-     * value, the matching will be case sensitive.  - To negate an operator,
-     * include a boolean parameter named negate boolean parameter that is set to
-     * true.
+     * A list of named parameters (key/value), depending on the condition&#39;s type. Notes:  - For binary operators, include parameters named arg0 and arg1 for specifying the left and right operands, respectively.  - At this time, the left operand (arg0) must be a reference to a variable.  - For case-insensitive Regex matching, include a boolean parameter named ignore_case that is set to true. If not specified or set to any other value, the matching will be case sensitive.  - To negate an operator, include a boolean parameter named negate boolean parameter that is set to true.
      */
     parameter?: Schema$Parameter[];
     /**
@@ -200,8 +182,7 @@ export namespace tagmanager_v2 {
     type?: string;
   }
   /**
-   * Represents a Google Tag Manager Container, which specifies the platform
-   * tags will run on, manages workspaces, and retains container versions.
+   * Represents a Google Tag Manager Container, which specifies the platform tags will run on, manages workspaces, and retains container versions.
    */
   export interface Schema$Container {
     /**
@@ -217,8 +198,7 @@ export namespace tagmanager_v2 {
      */
     domainName?: string[];
     /**
-     * The fingerprint of the GTM Container as computed at storage time. This
-     * value is recomputed whenever the account is modified.
+     * The fingerprint of the GTM Container as computed at storage time. This value is recomputed whenever the account is modified.
      */
     fingerprint?: string;
     /**
@@ -242,8 +222,7 @@ export namespace tagmanager_v2 {
      */
     tagManagerUrl?: string;
     /**
-     * List of Usage Contexts for the Container. Valid values include: web,
-     * android, or ios.
+     * List of Usage Contexts for the Container. Valid values include: web, android, or ios.
      */
     usageContext?: string[];
   }
@@ -297,8 +276,7 @@ export namespace tagmanager_v2 {
      */
     description?: string;
     /**
-     * The fingerprint of the GTM Container Version as computed at storage time.
-     * This value is recomputed whenever the container version is modified.
+     * The fingerprint of the GTM Container Version as computed at storage time. This value is recomputed whenever the container version is modified.
      */
     fingerprint?: string;
     /**
@@ -423,14 +401,11 @@ export namespace tagmanager_v2 {
      */
     containerVersion?: Schema$ContainerVersion;
     /**
-     * Auto generated workspace path created as a result of version creation.
-     * This field should only be populated if the created version was not a
-     * quick preview.
+     * Auto generated workspace path created as a result of version creation. This field should only be populated if the created version was not a quick preview.
      */
     newWorkspacePath?: string;
     /**
-     * Whether version creation failed when syncing the workspace to the latest
-     * container version.
+     * Whether version creation failed when syncing the workspace to the latest container version.
      */
     syncStatus?: Schema$SyncStatus;
   }
@@ -447,8 +422,7 @@ export namespace tagmanager_v2 {
      */
     containerId?: string;
     /**
-     * The fingerprint of the GTM Custom Template as computed at storage time.
-     * This value is recomputed whenever the template is modified.
+     * The fingerprint of the GTM Custom Template as computed at storage time. This value is recomputed whenever the template is modified.
      */
     fingerprint?: string;
     /**
@@ -477,8 +451,7 @@ export namespace tagmanager_v2 {
     workspaceId?: string;
   }
   /**
-   * A workspace entity that may represent a tag, trigger, variable, or folder
-   * in addition to its status in the workspace.
+   * A workspace entity that may represent a tag, trigger, variable, or folder in addition to its status in the workspace.
    */
   export interface Schema$Entity {
     /**
@@ -503,9 +476,7 @@ export namespace tagmanager_v2 {
     variable?: Schema$Variable;
   }
   /**
-   * Represents a Google Tag Manager Environment. Note that a user can create,
-   * delete and update environments of type USER, but can only update the
-   * enable_debug and url fields of environments of other types.
+   * Represents a Google Tag Manager Environment. Note that a user can create, delete and update environments of type USER, but can only update the enable_debug and url fields of environments of other types.
    */
   export interface Schema$Environment {
     /**
@@ -529,8 +500,7 @@ export namespace tagmanager_v2 {
      */
     containerVersionId?: string;
     /**
-     * The environment description. Can be set or changed only on USER type
-     * environments.
+     * The environment description. Can be set or changed only on USER type environments.
      */
     description?: string;
     /**
@@ -542,13 +512,11 @@ export namespace tagmanager_v2 {
      */
     environmentId?: string;
     /**
-     * The fingerprint of the GTM environment as computed at storage time. This
-     * value is recomputed whenever the environment is modified.
+     * The fingerprint of the GTM environment as computed at storage time. This value is recomputed whenever the environment is modified.
      */
     fingerprint?: string;
     /**
-     * The environment display name. Can be set or changed only on USER type
-     * environments.
+     * The environment display name. Can be set or changed only on USER type environments.
      */
     name?: string;
     /**
@@ -585,8 +553,7 @@ export namespace tagmanager_v2 {
      */
     containerId?: string;
     /**
-     * The fingerprint of the GTM Folder as computed at storage time. This value
-     * is recomputed whenever the folder is modified.
+     * The fingerprint of the GTM Folder as computed at storage time. This value is recomputed whenever the folder is modified.
      */
     fingerprint?: string;
     /**
@@ -636,8 +603,7 @@ export namespace tagmanager_v2 {
     variable?: Schema$Variable[];
   }
   /**
-   * The changes that have occurred in the workspace since the base container
-   * version.
+   * The changes that have occurred in the workspace since the base container version.
    */
   export interface Schema$GetWorkspaceStatusResponse {
     /**
@@ -807,15 +773,11 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$MergeConflict {
     /**
-     * The base version entity (since the latest sync operation) that has
-     * conflicting changes compared to the workspace. If this field is missing,
-     * it means the workspace entity is deleted from the base version.
+     * The base version entity (since the latest sync operation) that has conflicting changes compared to the workspace. If this field is missing, it means the workspace entity is deleted from the base version.
      */
     entityInBaseVersion?: Schema$Entity;
     /**
-     * The workspace entity that has conflicting changes compared to the base
-     * version. If an entity is deleted in a workspace, it will still appear
-     * with a deleted change status.
+     * The workspace entity that has conflicting changes compared to the base version. If an entity is deleted in a workspace, it will still appear with a deleted change status.
      */
     entityInWorkspace?: Schema$Entity;
   }
@@ -824,8 +786,7 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$Parameter {
     /**
-     * The named key that uniquely identifies a parameter. Required for
-     * top-level parameters, as well as map values. Ignored for list values.
+     * The named key that uniquely identifies a parameter. Required for top-level parameters, as well as map values. Ignored for list values.
      */
     key?: string;
     /**
@@ -833,23 +794,15 @@ export namespace tagmanager_v2 {
      */
     list?: Schema$Parameter[];
     /**
-     * This map parameter&#39;s parameters (must have keys; keys must be
-     * unique).
+     * This map parameter&#39;s parameters (must have keys; keys must be unique).
      */
     map?: Schema$Parameter[];
     /**
-     * The parameter type. Valid values are:  - boolean: The value represents a
-     * boolean, represented as &#39;true&#39; or &#39;false&#39;  - integer: The
-     * value represents a 64-bit signed integer value, in base 10  - list: A
-     * list of parameters should be specified  - map: A map of parameters should
-     * be specified  - template: The value represents any text; this can include
-     * variable references (even variable references that might return
-     * non-string types)
+     * The parameter type. Valid values are:  - boolean: The value represents a boolean, represented as &#39;true&#39; or &#39;false&#39;  - integer: The value represents a 64-bit signed integer value, in base 10  - list: A list of parameters should be specified  - map: A map of parameters should be specified  - template: The value represents any text; this can include variable references (even variable references that might return non-string types)
      */
     type?: string;
     /**
-     * A parameter&#39;s value (may contain variable references such as
-     * &quot;{{myVariable}}&quot;) as appropriate to the specified type.
+     * A parameter&#39;s value (may contain variable references such as &quot;{{myVariable}}&quot;) as appropriate to the specified type.
      */
     value?: string;
   }
@@ -879,8 +832,7 @@ export namespace tagmanager_v2 {
      */
     containerVersion?: Schema$ContainerVersion;
     /**
-     * Whether quick previewing failed when syncing the workspace to the latest
-     * container version.
+     * Whether quick previewing failed when syncing the workspace to the latest container version.
      */
     syncStatus?: Schema$SyncStatus;
   }
@@ -898,9 +850,7 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$RevertFolderResponse {
     /**
-     * Folder as it appears in the latest container version since the last
-     * workspace synchronization operation. If no folder is present, that means
-     * the folder was deleted in the latest container version.
+     * Folder as it appears in the latest container version since the last workspace synchronization operation. If no folder is present, that means the folder was deleted in the latest container version.
      */
     folder?: Schema$Folder;
   }
@@ -909,9 +859,7 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$RevertTagResponse {
     /**
-     * Tag as it appears in the latest container version since the last
-     * workspace synchronization operation. If no tag is present, that means the
-     * tag was deleted in the latest container version.
+     * Tag as it appears in the latest container version since the last workspace synchronization operation. If no tag is present, that means the tag was deleted in the latest container version.
      */
     tag?: Schema$Tag;
   }
@@ -920,9 +868,7 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$RevertTriggerResponse {
     /**
-     * Trigger as it appears in the latest container version since the last
-     * workspace synchronization operation. If no trigger is present, that means
-     * the trigger was deleted in the latest container version.
+     * Trigger as it appears in the latest container version since the last workspace synchronization operation. If no trigger is present, that means the trigger was deleted in the latest container version.
      */
     trigger?: Schema$Trigger;
   }
@@ -931,9 +877,7 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$RevertVariableResponse {
     /**
-     * Variable as it appears in the latest container version since the last
-     * workspace synchronization operation. If no variable is present, that
-     * means the variable was deleted in the latest container version.
+     * Variable as it appears in the latest container version since the last workspace synchronization operation. If no variable is present, that means the variable was deleted in the latest container version.
      */
     variable?: Schema$Variable;
   }
@@ -942,21 +886,16 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$RevertZoneResponse {
     /**
-     * Zone as it appears in the latest container version since the last
-     * workspace synchronization operation. If no zone is present, that means
-     * the zone was deleted in the latest container version.
+     * Zone as it appears in the latest container version since the last workspace synchronization operation. If no zone is present, that means the zone was deleted in the latest container version.
      */
     zone?: Schema$Zone;
   }
   /**
-   * Represents a reference to atag that fires before another tag in order to
-   * set up dependencies.
+   * Represents a reference to atag that fires before another tag in order to set up dependencies.
    */
   export interface Schema$SetupTag {
     /**
-     * If true, fire the main tag if and only if the setup tag fires
-     * successfully. If false, fire the main tag regardless of setup tag firing
-     * status.
+     * If true, fire the main tag if and only if the setup tag fires successfully. If false, fire the main tag regardless of setup tag firing status.
      */
     stopOnSetupFailure?: boolean;
     /**
@@ -978,14 +917,11 @@ export namespace tagmanager_v2 {
     syncError?: boolean;
   }
   /**
-   * A response after synchronizing the workspace to the latest container
-   * version.
+   * A response after synchronizing the workspace to the latest container version.
    */
   export interface Schema$SyncWorkspaceResponse {
     /**
-     * The merge conflict after sync. If this field is not empty, the sync is
-     * still treated as successful. But a version cannot be created until all
-     * conflicts are resolved.
+     * The merge conflict after sync. If this field is not empty, the sync is still treated as successful. But a version cannot be created until all conflicts are resolved.
      */
     mergeConflict?: Schema$MergeConflict[];
     /**
@@ -1002,13 +938,11 @@ export namespace tagmanager_v2 {
      */
     accountId?: string;
     /**
-     * Blocking rule IDs. If any of the listed rules evaluate to true, the tag
-     * will not fire.
+     * Blocking rule IDs. If any of the listed rules evaluate to true, the tag will not fire.
      */
     blockingRuleId?: string[];
     /**
-     * Blocking trigger IDs. If any of the listed triggers evaluate to true, the
-     * tag will not fire.
+     * Blocking trigger IDs. If any of the listed triggers evaluate to true, the tag will not fire.
      */
     blockingTriggerId?: string[];
     /**
@@ -1016,23 +950,19 @@ export namespace tagmanager_v2 {
      */
     containerId?: string;
     /**
-     * The fingerprint of the GTM Tag as computed at storage time. This value is
-     * recomputed whenever the tag is modified.
+     * The fingerprint of the GTM Tag as computed at storage time. This value is recomputed whenever the tag is modified.
      */
     fingerprint?: string;
     /**
-     * Firing rule IDs. A tag will fire when any of the listed rules are true
-     * and all of its blockingRuleIds (if any specified) are false.
+     * Firing rule IDs. A tag will fire when any of the listed rules are true and all of its blockingRuleIds (if any specified) are false.
      */
     firingRuleId?: string[];
     /**
-     * Firing trigger IDs. A tag will fire when any of the listed triggers are
-     * true and all of its blockingTriggerIds (if any specified) are false.
+     * Firing trigger IDs. A tag will fire when any of the listed triggers are true and all of its blockingTriggerIds (if any specified) are false.
      */
     firingTriggerId?: string[];
     /**
-     * If set to true, this tag will only fire in the live environment (e.g. not
-     * in preview or debug mode).
+     * If set to true, this tag will only fire in the live environment (e.g. not in preview or debug mode).
      */
     liveOnly?: boolean;
     /**
@@ -1060,10 +990,7 @@ export namespace tagmanager_v2 {
      */
     paused?: boolean;
     /**
-     * User defined numeric priority of the tag. Tags are fired asynchronously
-     * in order of priority. Tags with higher numeric value fire first. A
-     * tag&#39;s priority can be a positive or negative value. The default value
-     * is 0.
+     * User defined numeric priority of the tag. Tags are fired asynchronously in order of priority. Tags with higher numeric value fire first. A tag&#39;s priority can be a positive or negative value. The default value is 0.
      */
     priority?: Schema$Parameter;
     /**
@@ -1104,14 +1031,11 @@ export namespace tagmanager_v2 {
     workspaceId?: string;
   }
   /**
-   * Represents a tag that fires after another tag in order to tear down
-   * dependencies.
+   * Represents a tag that fires after another tag in order to tear down dependencies.
    */
   export interface Schema$TeardownTag {
     /**
-     * If true, fire the teardown tag if and only if the main tag fires
-     * successfully. If false, fire the teardown tag regardless of main tag
-     * firing status.
+     * If true, fire the teardown tag if and only if the main tag fires successfully. If false, fire the teardown tag regardless of main tag firing status.
      */
     stopTeardownOnFailure?: boolean;
     /**
@@ -1120,67 +1044,15 @@ export namespace tagmanager_v2 {
     tagName?: string;
   }
   /**
-   * A Timestamp represents a point in time independent of any time zone or
-   * local calendar, encoded as a count of seconds and fractions of seconds at
-   * nanosecond resolution. The count is relative to an epoch at UTC midnight on
-   * January 1, 1970, in the proleptic Gregorian calendar which extends the
-   * Gregorian calendar backwards to year one.  All minutes are 60 seconds long.
-   * Leap seconds are &quot;smeared&quot; so that no leap second table is needed
-   * for interpretation, using a [24-hour linear
-   * smear](https://developers.google.com/time/smear).  The range is from
-   * 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to
-   * that range, we ensure that we can convert to and from [RFC
-   * 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.  # Examples
-   * Example 1: Compute Timestamp from POSIX `time()`.  Timestamp timestamp;
-   * timestamp.set_seconds(time(NULL)); timestamp.set_nanos(0);  Example 2:
-   * Compute Timestamp from POSIX `gettimeofday()`.  struct timeval tv;
-   * gettimeofday(&amp;tv, NULL);  Timestamp timestamp;
-   * timestamp.set_seconds(tv.tv_sec); timestamp.set_nanos(tv.tv_usec * 1000);
-   * Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
-   * FILETIME ft; GetSystemTimeAsFileTime(&amp;ft); UINT64 ticks =
-   * (((UINT64)ft.dwHighDateTime) &lt;&lt; 32) | ft.dwLowDateTime;  // A Windows
-   * tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z // is
-   * 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z. Timestamp
-   * timestamp; timestamp.set_seconds((INT64) ((ticks / 10000000) -
-   * 11644473600LL)); timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
-   * Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.  long
-   * millis = System.currentTimeMillis();  Timestamp timestamp =
-   * Timestamp.newBuilder().setSeconds(millis / 1000) .setNanos((int) ((millis %
-   * 1000) * 1000000)).build();    Example 5: Compute Timestamp from current
-   * time in Python.  timestamp = Timestamp() timestamp.GetCurrentTime()  # JSON
-   * Mapping  In JSON format, the Timestamp type is encoded as a string in the
-   * [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
-   * format is &quot;{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z&quot;
-   * where {year} is always expressed using four digits while {month}, {day},
-   * {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
-   * seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
-   * are optional. The &quot;Z&quot; suffix indicates the timezone
-   * (&quot;UTC&quot;); the timezone is required. A proto3 JSON serializer
-   * should always use UTC (as indicated by &quot;Z&quot;) when printing the
-   * Timestamp type and a proto3 JSON parser should be able to accept both UTC
-   * and other timezones (as indicated by an offset).  For example,
-   * &quot;2017-01-15T01:30:15.01Z&quot; encodes 15.01 seconds past 01:30 UTC on
-   * January 15, 2017.  In JavaScript, one can convert a Date object to this
-   * format using the standard
-   * [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
-   * method. In Python, a standard `datetime.datetime` object can be converted
-   * to this format using
-   * [`strftime`](https://docs.python.org/2/library/time.html#time.strftime)
-   * with the time format spec &#39;%Y-%m-%dT%H:%M:%S.%fZ&#39;. Likewise, in
-   * Java, one can use the Joda Time&#39;s [`ISODateTimeFormat.dateTime()`](
-   * http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D
-   * ) to obtain a formatter capable of generating timestamps in this format.
+   * A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one.  All minutes are 60 seconds long. Leap seconds are &quot;smeared&quot; so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear).  The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.  # Examples  Example 1: Compute Timestamp from POSIX `time()`.  Timestamp timestamp; timestamp.set_seconds(time(NULL)); timestamp.set_nanos(0);  Example 2: Compute Timestamp from POSIX `gettimeofday()`.  struct timeval tv; gettimeofday(&amp;tv, NULL);  Timestamp timestamp; timestamp.set_seconds(tv.tv_sec); timestamp.set_nanos(tv.tv_usec * 1000);  Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.  FILETIME ft; GetSystemTimeAsFileTime(&amp;ft); UINT64 ticks = (((UINT64)ft.dwHighDateTime) &lt;&lt; 32) | ft.dwLowDateTime;  // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z. Timestamp timestamp; timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL)); timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));  Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.  long millis = System.currentTimeMillis();  Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000) .setNanos((int) ((millis % 1000) * 1000000)).build();    Example 5: Compute Timestamp from current time in Python.  timestamp = Timestamp() timestamp.GetCurrentTime()  # JSON Mapping  In JSON format, the Timestamp type is encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the format is &quot;{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z&quot; where {year} is always expressed using four digits while {month}, {day}, {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution), are optional. The &quot;Z&quot; suffix indicates the timezone (&quot;UTC&quot;); the timezone is required. A proto3 JSON serializer should always use UTC (as indicated by &quot;Z&quot;) when printing the Timestamp type and a proto3 JSON parser should be able to accept both UTC and other timezones (as indicated by an offset).  For example, &quot;2017-01-15T01:30:15.01Z&quot; encodes 15.01 seconds past 01:30 UTC on January 15, 2017.  In JavaScript, one can convert a Date object to this format using the standard [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString) method. In Python, a standard `datetime.datetime` object can be converted to this format using [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with the time format spec &#39;%Y-%m-%dT%H:%M:%S.%fZ&#39;. Likewise, in Java, one can use the Joda Time&#39;s [`ISODateTimeFormat.dateTime()`]( http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D ) to obtain a formatter capable of generating timestamps in this format.
    */
   export interface Schema$Timestamp {
     /**
-     * Non-negative fractions of a second at nanosecond resolution. Negative
-     * second values with fractions must still have non-negative nanos values
-     * that count forward in time. Must be from 0 to 999,999,999 inclusive.
+     * Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
      */
     nanos?: number;
     /**
-     * Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z.
-     * Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
+     * Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
      */
     seconds?: string;
   }
@@ -1197,9 +1069,7 @@ export namespace tagmanager_v2 {
      */
     autoEventFilter?: Schema$Condition[];
     /**
-     * Whether or not we should only fire tags if the form submit or link click
-     * event is not cancelled by some other event handler (e.g. because of
-     * validation). Only valid for Form Submission and Link Click triggers.
+     * Whether or not we should only fire tags if the form submit or link click event is not cancelled by some other event handler (e.g. because of validation). Only valid for Form Submission and Link Click triggers.
      */
     checkValidation?: Schema$Parameter;
     /**
@@ -1207,13 +1077,11 @@ export namespace tagmanager_v2 {
      */
     containerId?: string;
     /**
-     * A visibility trigger minimum continuous visible time (in milliseconds).
-     * Only valid for AMP Visibility trigger.
+     * A visibility trigger minimum continuous visible time (in milliseconds). Only valid for AMP Visibility trigger.
      */
     continuousTimeMinMilliseconds?: Schema$Parameter;
     /**
-     * Used in the case of custom event, which is fired iff all Conditions are
-     * true.
+     * Used in the case of custom event, which is fired iff all Conditions are true.
      */
     customEventFilter?: Schema$Condition[];
     /**
@@ -1225,35 +1093,27 @@ export namespace tagmanager_v2 {
      */
     filter?: Schema$Condition[];
     /**
-     * The fingerprint of the GTM Trigger as computed at storage time. This
-     * value is recomputed whenever the trigger is modified.
+     * The fingerprint of the GTM Trigger as computed at storage time. This value is recomputed whenever the trigger is modified.
      */
     fingerprint?: string;
     /**
-     * List of integer percentage values for scroll triggers. The trigger will
-     * fire when each percentage is reached when the view is scrolled
-     * horizontally. Only valid for AMP scroll triggers.
+     * List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled horizontally. Only valid for AMP scroll triggers.
      */
     horizontalScrollPercentageList?: Schema$Parameter;
     /**
-     * Time between triggering recurring Timer Events (in milliseconds). Only
-     * valid for Timer triggers.
+     * Time between triggering recurring Timer Events (in milliseconds). Only valid for Timer triggers.
      */
     interval?: Schema$Parameter;
     /**
-     * Time between Timer Events to fire (in seconds). Only valid for AMP Timer
-     * trigger.
+     * Time between Timer Events to fire (in seconds). Only valid for AMP Timer trigger.
      */
     intervalSeconds?: Schema$Parameter;
     /**
-     * Limit of the number of GTM events this Timer Trigger will fire. If no
-     * limit is set, we will continue to fire GTM events until the user leaves
-     * the page. Only valid for Timer triggers.
+     * Limit of the number of GTM events this Timer Trigger will fire. If no limit is set, we will continue to fire GTM events until the user leaves the page. Only valid for Timer triggers.
      */
     limit?: Schema$Parameter;
     /**
-     * Max time to fire Timer Events (in seconds). Only valid for AMP Timer
-     * trigger.
+     * Max time to fire Timer Events (in seconds). Only valid for AMP Timer trigger.
      */
     maxTimerLengthSeconds?: Schema$Parameter;
     /**
@@ -1277,8 +1137,7 @@ export namespace tagmanager_v2 {
      */
     path?: string;
     /**
-     * A click trigger CSS selector (i.e. &quot;a&quot;, &quot;button&quot;
-     * etc.). Only valid for AMP Click trigger.
+     * A click trigger CSS selector (i.e. &quot;a&quot;, &quot;button&quot; etc.). Only valid for AMP Click trigger.
      */
     selector?: Schema$Parameter;
     /**
@@ -1286,8 +1145,7 @@ export namespace tagmanager_v2 {
      */
     tagManagerUrl?: string;
     /**
-     * A visibility trigger minimum total visible time (in milliseconds). Only
-     * valid for AMP Visibility trigger.
+     * A visibility trigger minimum total visible time (in milliseconds). Only valid for AMP Visibility trigger.
      */
     totalTimeMinMilliseconds?: Schema$Parameter;
     /**
@@ -1299,46 +1157,31 @@ export namespace tagmanager_v2 {
      */
     type?: string;
     /**
-     * Globally unique id of the trigger that auto-generates this (a Form
-     * Submit, Link Click or Timer listener) if any. Used to make incompatible
-     * auto-events work together with trigger filtering based on trigger ids.
-     * This value is populated during output generation since the tags implied
-     * by triggers don&#39;t exist until then. Only valid for Form Submit, Link
-     * Click and Timer triggers.
+     * Globally unique id of the trigger that auto-generates this (a Form Submit, Link Click or Timer listener) if any. Used to make incompatible auto-events work together with trigger filtering based on trigger ids. This value is populated during output generation since the tags implied by triggers don&#39;t exist until then. Only valid for Form Submit, Link Click and Timer triggers.
      */
     uniqueTriggerId?: Schema$Parameter;
     /**
-     * List of integer percentage values for scroll triggers. The trigger will
-     * fire when each percentage is reached when the view is scrolled
-     * vertically. Only valid for AMP scroll triggers.
+     * List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled vertically. Only valid for AMP scroll triggers.
      */
     verticalScrollPercentageList?: Schema$Parameter;
     /**
-     * A visibility trigger CSS selector (i.e. &quot;#id&quot;). Only valid for
-     * AMP Visibility trigger.
+     * A visibility trigger CSS selector (i.e. &quot;#id&quot;). Only valid for AMP Visibility trigger.
      */
     visibilitySelector?: Schema$Parameter;
     /**
-     * A visibility trigger maximum percent visibility. Only valid for AMP
-     * Visibility trigger.
+     * A visibility trigger maximum percent visibility. Only valid for AMP Visibility trigger.
      */
     visiblePercentageMax?: Schema$Parameter;
     /**
-     * A visibility trigger minimum percent visibility. Only valid for AMP
-     * Visibility trigger.
+     * A visibility trigger minimum percent visibility. Only valid for AMP Visibility trigger.
      */
     visiblePercentageMin?: Schema$Parameter;
     /**
-     * Whether or not we should delay the form submissions or link opening until
-     * all of the tags have fired (by preventing the default action and later
-     * simulating the default action). Only valid for Form Submission and Link
-     * Click triggers.
+     * Whether or not we should delay the form submissions or link opening until all of the tags have fired (by preventing the default action and later simulating the default action). Only valid for Form Submission and Link Click triggers.
      */
     waitForTags?: Schema$Parameter;
     /**
-     * How long to wait (in milliseconds) for tags to fire when
-     * &#39;waits_for_tags&#39; above evaluates to true. Only valid for Form
-     * Submission and Link Click triggers.
+     * How long to wait (in milliseconds) for tags to fire when &#39;waits_for_tags&#39; above evaluates to true. Only valid for Form Submission and Link Click triggers.
      */
     waitForTagsTimeout?: Schema$Parameter;
     /**
@@ -1384,22 +1227,15 @@ export namespace tagmanager_v2 {
      */
     containerId?: string;
     /**
-     * For mobile containers only: A list of trigger IDs for disabling
-     * conditional variables; the variable is enabled if one of the enabling
-     * trigger is true while all the disabling trigger are false. Treated as an
-     * unordered set.
+     * For mobile containers only: A list of trigger IDs for disabling conditional variables; the variable is enabled if one of the enabling trigger is true while all the disabling trigger are false. Treated as an unordered set.
      */
     disablingTriggerId?: string[];
     /**
-     * For mobile containers only: A list of trigger IDs for enabling
-     * conditional variables; the variable is enabled if one of the enabling
-     * triggers is true while all the disabling triggers are false. Treated as
-     * an unordered set.
+     * For mobile containers only: A list of trigger IDs for enabling conditional variables; the variable is enabled if one of the enabling triggers is true while all the disabling triggers are false. Treated as an unordered set.
      */
     enablingTriggerId?: string[];
     /**
-     * The fingerprint of the GTM Variable as computed at storage time. This
-     * value is recomputed whenever the variable is modified.
+     * The fingerprint of the GTM Variable as computed at storage time. This value is recomputed whenever the variable is modified.
      */
     fingerprint?: string;
     /**
@@ -1453,8 +1289,7 @@ export namespace tagmanager_v2 {
   }
   export interface Schema$VariableFormatValue {
     /**
-     * The option to convert a string-type variable value to either lowercase or
-     * uppercase.
+     * The option to convert a string-type variable value to either lowercase or uppercase.
      */
     caseConversionType?: string;
     /**
@@ -1491,8 +1326,7 @@ export namespace tagmanager_v2 {
      */
     description?: string;
     /**
-     * The fingerprint of the GTM Workspace as computed at storage time. This
-     * value is recomputed whenever the workspace is modified.
+     * The fingerprint of the GTM Workspace as computed at storage time. This value is recomputed whenever the workspace is modified.
      */
     fingerprint?: string;
     /**
@@ -1533,8 +1367,7 @@ export namespace tagmanager_v2 {
      */
     containerId?: string;
     /**
-     * The fingerprint of the GTM Zone as computed at storage time. This value
-     * is recomputed whenever the zone is modified.
+     * The fingerprint of the GTM Zone as computed at storage time. This value is recomputed whenever the zone is modified.
      */
     fingerprint?: string;
     /**
@@ -1575,8 +1408,7 @@ export namespace tagmanager_v2 {
      */
     condition?: Schema$Condition[];
     /**
-     * Custom evaluation trigger IDs. A zone will evaluate its boundary
-     * conditions when any of the listed triggers are true.
+     * Custom evaluation trigger IDs. A zone will evaluate its boundary conditions when any of the listed triggers are true.
      */
     customEvaluationTriggerId?: string[];
   }
@@ -1868,8 +1700,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the account
-     * in storage.
+     * When provided, this fingerprint must match the fingerprint of the account in storage.
      */
     fingerprint?: string;
     /**
@@ -2303,8 +2134,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Container's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}
+     * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     path?: string;
   }
@@ -2316,8 +2146,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Container's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}
+     * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     path?: string;
   }
@@ -2345,13 +2174,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * container in storage.
+     * When provided, this fingerprint must match the fingerprint of the container in storage.
      */
     fingerprint?: string;
     /**
-     * GTM Container's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}
+     * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     path?: string;
 
@@ -2825,8 +2652,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Container's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}
+     * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
 
@@ -2843,8 +2669,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Environment's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/environments/{environment_id}
+     * GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
     path?: string;
   }
@@ -2856,8 +2681,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Environment's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/environments/{environment_id}
+     * GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
     path?: string;
   }
@@ -2873,8 +2697,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Container's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}
+     * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
   }
@@ -2886,8 +2709,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Environment's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/environments/{environment_id}
+     * GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
     path?: string;
 
@@ -2904,13 +2726,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * environment in storage.
+     * When provided, this fingerprint must match the fingerprint of the environment in storage.
      */
     fingerprint?: string;
     /**
-     * GTM Environment's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/environments/{environment_id}
+     * GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
     path?: string;
 
@@ -3233,8 +3053,7 @@ export namespace tagmanager_v2 {
 
     /**
      * tagmanager.accounts.containers.versions.set_latest
-     * @desc Sets the latest version used for synchronization of workspaces when
-     * detecting conflicts and errors.
+     * @desc Sets the latest version used for synchronization of workspaces when detecting conflicts and errors.
      * @alias tagmanager.accounts.containers.versions.set_latest
      * @memberOf! ()
      *
@@ -3465,8 +3284,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM ContainerVersion's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     * GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
     path?: string;
   }
@@ -3478,13 +3296,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The GTM ContainerVersion ID. Specify published to retrieve the currently
-     * published version.
+     * The GTM ContainerVersion ID. Specify published to retrieve the currently published version.
      */
     containerVersionId?: string;
     /**
-     * GTM ContainerVersion's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     * GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
     path?: string;
   }
@@ -3496,8 +3312,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Container's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}
+     * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
   }
@@ -3509,13 +3324,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * container version in storage.
+     * When provided, this fingerprint must match the fingerprint of the container version in storage.
      */
     fingerprint?: string;
     /**
-     * GTM ContainerVersion's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     * GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
     path?: string;
   }
@@ -3527,8 +3340,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM ContainerVersion's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     * GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
     path?: string;
   }
@@ -3540,8 +3352,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM ContainerVersion's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     * GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
     path?: string;
   }
@@ -3553,13 +3364,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * container version in storage.
+     * When provided, this fingerprint must match the fingerprint of the container version in storage.
      */
     fingerprint?: string;
     /**
-     * GTM ContainerVersion's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     * GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
     path?: string;
 
@@ -3744,8 +3553,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Container's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}
+     * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
   }
@@ -3765,8 +3573,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Container's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}
+     * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
   }
@@ -3878,9 +3685,7 @@ export namespace tagmanager_v2 {
 
     /**
      * tagmanager.accounts.containers.workspaces.create_version
-     * @desc Creates a Container Version from the entities present in the
-     * workspace, deletes the workspace, and sets the base container version to
-     * the newly created version.
+     * @desc Creates a Container Version from the entities present in the workspace, deletes the workspace, and sets the base container version to the newly created version.
      * @alias tagmanager.accounts.containers.workspaces.create_version
      * @memberOf! ()
      *
@@ -4268,8 +4073,7 @@ export namespace tagmanager_v2 {
 
     /**
      * tagmanager.accounts.containers.workspaces.quick_preview
-     * @desc Quick previews a workspace by creating a fake container version
-     * from all entities in the provided workspace.
+     * @desc Quick previews a workspace by creating a fake container version from all entities in the provided workspace.
      * @alias tagmanager.accounts.containers.workspaces.quick_preview
      * @memberOf! ()
      *
@@ -4347,8 +4151,7 @@ export namespace tagmanager_v2 {
 
     /**
      * tagmanager.accounts.containers.workspaces.resolve_conflict
-     * @desc Resolves a merge conflict for a workspace entity by updating it to
-     * the resolved entity passed in the request.
+     * @desc Resolves a merge conflict for a workspace entity by updating it to the resolved entity passed in the request.
      * @alias tagmanager.accounts.containers.workspaces.resolve_conflict
      * @memberOf! ()
      *
@@ -4422,9 +4225,7 @@ export namespace tagmanager_v2 {
 
     /**
      * tagmanager.accounts.containers.workspaces.sync
-     * @desc Syncs a workspace to the latest container version by updating all
-     * unmodified workspace entities and displaying conflicts for modified
-     * entities.
+     * @desc Syncs a workspace to the latest container version by updating all unmodified workspace entities and displaying conflicts for modified entities.
      * @alias tagmanager.accounts.containers.workspaces.sync
      * @memberOf! ()
      *
@@ -4583,8 +4384,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM parent Container's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}
+     * GTM parent Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
 
@@ -4601,8 +4401,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
 
@@ -4619,8 +4418,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
   }
@@ -4632,8 +4430,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
   }
@@ -4645,8 +4442,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
   }
@@ -4662,8 +4458,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM parent Container's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}
+     * GTM parent Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
   }
@@ -4675,8 +4470,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
   }
@@ -4688,13 +4482,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * entity_in_workspace in the merge conflict.
+     * When provided, this fingerprint must match the fingerprint of the entity_in_workspace in the merge conflict.
      */
     fingerprint?: string;
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
 
@@ -4711,8 +4503,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
   }
@@ -4724,13 +4515,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * workspace in storage.
+     * When provided, this fingerprint must match the fingerprint of the workspace in storage.
      */
     fingerprint?: string;
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
 
@@ -4749,8 +4538,7 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.create
      * @desc Creates one or more GTM Built-In Variables.
-     * @alias
-     * tagmanager.accounts.containers.workspaces.built_in_variables.create
+     * @alias tagmanager.accounts.containers.workspaces.built_in_variables.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -4833,8 +4621,7 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.delete
      * @desc Deletes one or more GTM Built-In Variables.
-     * @alias
-     * tagmanager.accounts.containers.workspaces.built_in_variables.delete
+     * @alias tagmanager.accounts.containers.workspaces.built_in_variables.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -4992,8 +4779,7 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.revert
      * @desc Reverts changes to a GTM Built-In Variables in a GTM Workspace.
-     * @alias
-     * tagmanager.accounts.containers.workspaces.built_in_variables.revert
+     * @alias tagmanager.accounts.containers.workspaces.built_in_variables.revert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5082,8 +4868,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
     /**
@@ -5099,8 +4884,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM BuiltInVariable's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables
+     * GTM BuiltInVariable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables
      */
     path?: string;
     /**
@@ -5120,8 +4904,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
   }
@@ -5133,8 +4916,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM BuiltInVariable's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables
+     * GTM BuiltInVariable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables
      */
     path?: string;
     /**
@@ -5519,8 +5301,7 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder
      * @desc Moves entities to a GTM Folder.
-     * @alias
-     * tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder
+     * @alias tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5752,8 +5533,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
 
@@ -5770,8 +5550,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Folder's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     * GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
     path?: string;
   }
@@ -5787,8 +5566,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Folder's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     * GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
     path?: string;
   }
@@ -5800,8 +5578,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Folder's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     * GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
     path?: string;
   }
@@ -5817,8 +5594,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
   }
@@ -5830,8 +5606,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Folder's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     * GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
     path?: string;
     /**
@@ -5860,13 +5635,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the tag in
-     * storage.
+     * When provided, this fingerprint must match the fingerprint of the tag in storage.
      */
     fingerprint?: string;
     /**
-     * GTM Folder's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     * GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
     path?: string;
   }
@@ -5878,13 +5651,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the folder
-     * in storage.
+     * When provided, this fingerprint must match the fingerprint of the folder in storage.
      */
     fingerprint?: string;
     /**
-     * GTM Folder's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     * GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
     path?: string;
 
@@ -6350,8 +6121,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
 
@@ -6368,8 +6138,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Tag's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
+     * GTM Tag's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
      */
     path?: string;
   }
@@ -6381,8 +6150,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Tag's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
+     * GTM Tag's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
      */
     path?: string;
   }
@@ -6398,8 +6166,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
   }
@@ -6411,13 +6178,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of thetag in
-     * storage.
+     * When provided, this fingerprint must match the fingerprint of thetag in storage.
      */
     fingerprint?: string;
     /**
-     * GTM Tag's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
+     * GTM Tag's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
      */
     path?: string;
   }
@@ -6429,13 +6194,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the tag in
-     * storage.
+     * When provided, this fingerprint must match the fingerprint of the tag in storage.
      */
     fingerprint?: string;
     /**
-     * GTM Tag's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
+     * GTM Tag's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
      */
     path?: string;
 
@@ -6905,8 +6668,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Workspaces's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspaces's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
 
@@ -6923,8 +6685,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Trigger's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
+     * GTM Trigger's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
      */
     path?: string;
   }
@@ -6936,8 +6697,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Trigger's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
+     * GTM Trigger's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
      */
     path?: string;
   }
@@ -6953,8 +6713,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspaces's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspaces's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
   }
@@ -6966,13 +6725,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the trigger
-     * in storage.
+     * When provided, this fingerprint must match the fingerprint of the trigger in storage.
      */
     fingerprint?: string;
     /**
-     * GTM Trigger's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
+     * GTM Trigger's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
      */
     path?: string;
   }
@@ -6984,13 +6741,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the trigger
-     * in storage.
+     * When provided, this fingerprint must match the fingerprint of the trigger in storage.
      */
     fingerprint?: string;
     /**
-     * GTM Trigger's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
+     * GTM Trigger's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
      */
     path?: string;
 
@@ -7460,8 +7215,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
 
@@ -7478,8 +7232,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Variable's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
+     * GTM Variable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
      */
     path?: string;
   }
@@ -7491,8 +7244,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Variable's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
+     * GTM Variable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
      */
     path?: string;
   }
@@ -7508,8 +7260,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
   }
@@ -7521,13 +7272,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * variable in storage.
+     * When provided, this fingerprint must match the fingerprint of the variable in storage.
      */
     fingerprint?: string;
     /**
-     * GTM Variable's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
+     * GTM Variable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
      */
     path?: string;
   }
@@ -7539,13 +7288,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * variable in storage.
+     * When provided, this fingerprint must match the fingerprint of the variable in storage.
      */
     fingerprint?: string;
     /**
-     * GTM Variable's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
+     * GTM Variable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
      */
     path?: string;
 
@@ -8011,8 +7758,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
 
@@ -8029,8 +7775,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Zone's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     * GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
      */
     path?: string;
   }
@@ -8042,8 +7787,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM Zone's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     * GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
      */
     path?: string;
   }
@@ -8059,8 +7803,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
   }
@@ -8072,13 +7815,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the zone in
-     * storage.
+     * When provided, this fingerprint must match the fingerprint of the zone in storage.
      */
     fingerprint?: string;
     /**
-     * GTM Zone's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     * GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
      */
     path?: string;
   }
@@ -8090,13 +7831,11 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When provided, this fingerprint must match the fingerprint of the zone in
-     * storage.
+     * When provided, this fingerprint must match the fingerprint of the zone in storage.
      */
     fingerprint?: string;
     /**
-     * GTM Zone's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     * GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
      */
     path?: string;
 
@@ -8188,8 +7927,7 @@ export namespace tagmanager_v2 {
 
     /**
      * tagmanager.accounts.user_permissions.delete
-     * @desc Removes a user from the account, revoking access to it and all of
-     * its containers.
+     * @desc Removes a user from the account, revoking access to it and all of its containers.
      * @alias tagmanager.accounts.user_permissions.delete
      * @memberOf! ()
      *
@@ -8335,8 +8073,7 @@ export namespace tagmanager_v2 {
 
     /**
      * tagmanager.accounts.user_permissions.list
-     * @desc List all users that have access to the account along with Account
-     * and Container user access granted to each of them.
+     * @desc List all users that have access to the account along with Account and Container user access granted to each of them.
      * @alias tagmanager.accounts.user_permissions.list
      * @memberOf! ()
      *
@@ -8516,8 +8253,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM UserPermission's API relative path. Example:
-     * accounts/{account_id}/user_permissions/{user_permission_id}
+     * GTM UserPermission's API relative path. Example: accounts/{account_id}/user_permissions/{user_permission_id}
      */
     path?: string;
   }
@@ -8529,8 +8265,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM UserPermission's API relative path. Example:
-     * accounts/{account_id}/user_permissions/{user_permission_id}
+     * GTM UserPermission's API relative path. Example: accounts/{account_id}/user_permissions/{user_permission_id}
      */
     path?: string;
   }
@@ -8558,8 +8293,7 @@ export namespace tagmanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * GTM UserPermission's API relative path. Example:
-     * accounts/{account_id}/user_permissions/{user_permission_id}
+     * GTM UserPermission's API relative path. Example: accounts/{account_id}/user_permissions/{user_permission_id}
      */
     path?: string;
 

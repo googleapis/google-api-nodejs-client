@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace tagmanager_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace tagmanager_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,7 +92,10 @@ export namespace tagmanager_v1 {
     accounts: Resource$Accounts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.accounts = new Resource$Accounts(this.context);
     }
@@ -110,8 +110,7 @@ export namespace tagmanager_v1 {
      */
     accountId?: string;
     /**
-     * The fingerprint of the GTM Account as computed at storage time. This
-     * value is recomputed whenever the account is modified.
+     * The fingerprint of the GTM Account as computed at storage time. This value is recomputed whenever the account is modified.
      */
     fingerprint?: string;
     /**
@@ -128,8 +127,7 @@ export namespace tagmanager_v1 {
    */
   export interface Schema$AccountAccess {
     /**
-     * List of Account permissions. Valid account permissions are read and
-     * manage.
+     * List of Account permissions. Valid account permissions are read and manage.
      */
     permission?: string[];
   }
@@ -138,15 +136,7 @@ export namespace tagmanager_v1 {
    */
   export interface Schema$Condition {
     /**
-     * A list of named parameters (key/value), depending on the condition&#39;s
-     * type. Notes:  - For binary operators, include parameters named arg0 and
-     * arg1 for specifying the left and right operands, respectively.  - At this
-     * time, the left operand (arg0) must be a reference to a variable.  - For
-     * case-insensitive Regex matching, include a boolean parameter named
-     * ignore_case that is set to true. If not specified or set to any other
-     * value, the matching will be case sensitive.  - To negate an operator,
-     * include a boolean parameter named negate boolean parameter that is set to
-     * true.
+     * A list of named parameters (key/value), depending on the condition&#39;s type. Notes:  - For binary operators, include parameters named arg0 and arg1 for specifying the left and right operands, respectively.  - At this time, the left operand (arg0) must be a reference to a variable.  - For case-insensitive Regex matching, include a boolean parameter named ignore_case that is set to true. If not specified or set to any other value, the matching will be case sensitive.  - To negate an operator, include a boolean parameter named negate boolean parameter that is set to true.
      */
     parameter?: Schema$Parameter[];
     /**
@@ -171,17 +161,11 @@ export namespace tagmanager_v1 {
      */
     domainName?: string[];
     /**
-     * List of enabled built-in variables. Valid values include: pageUrl,
-     * pageHostname, pagePath, referrer, event, clickElement, clickClasses,
-     * clickId, clickTarget, clickUrl, clickText, formElement, formClasses,
-     * formId, formTarget, formUrl, formText, errorMessage, errorUrl, errorLine,
-     * newHistoryFragment, oldHistoryFragment, newHistoryState, oldHistoryState,
-     * historySource, containerVersion, debugMode, randomNumber, containerId.
+     * List of enabled built-in variables. Valid values include: pageUrl, pageHostname, pagePath, referrer, event, clickElement, clickClasses, clickId, clickTarget, clickUrl, clickText, formElement, formClasses, formId, formTarget, formUrl, formText, errorMessage, errorUrl, errorLine, newHistoryFragment, oldHistoryFragment, newHistoryState, oldHistoryState, historySource, containerVersion, debugMode, randomNumber, containerId.
      */
     enabledBuiltInVariable?: string[];
     /**
-     * The fingerprint of the GTM Container as computed at storage time. This
-     * value is recomputed whenever the account is modified.
+     * The fingerprint of the GTM Container as computed at storage time. This value is recomputed whenever the account is modified.
      */
     fingerprint?: string;
     /**
@@ -205,8 +189,7 @@ export namespace tagmanager_v1 {
      */
     timeZoneId?: string;
     /**
-     * List of Usage Contexts for the Container. Valid values include: web,
-     * android, ios.
+     * List of Usage Contexts for the Container. Valid values include: web, android, ios.
      */
     usageContext?: string[];
   }
@@ -219,8 +202,7 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
     /**
-     * List of Container permissions. Valid container permissions are: read,
-     * edit, delete, publish.
+     * List of Container permissions. Valid container permissions are: read, edit, delete, publish.
      */
     permission?: string[];
   }
@@ -249,8 +231,7 @@ export namespace tagmanager_v1 {
      */
     deleted?: boolean;
     /**
-     * The fingerprint of the GTM Container Version as computed at storage time.
-     * This value is recomputed whenever the container version is modified.
+     * The fingerprint of the GTM Container Version as computed at storage time. This value is recomputed whenever the container version is modified.
      */
     fingerprint?: string;
     /**
@@ -344,8 +325,7 @@ export namespace tagmanager_v1 {
      */
     notes?: string;
     /**
-     * The creation of this version may be for quick preview and shouldn&#39;t
-     * be saved.
+     * The creation of this version may be for quick preview and shouldn&#39;t be saved.
      */
     quickPreview?: boolean;
   }
@@ -363,9 +343,7 @@ export namespace tagmanager_v1 {
     containerVersion?: Schema$ContainerVersion;
   }
   /**
-   * Represents a Google Tag Manager Environment. Note that a user can create,
-   * delete and update environments of type USER, but can only update the
-   * enable_debug and url fields of environments of other types.
+   * Represents a Google Tag Manager Environment. Note that a user can create, delete and update environments of type USER, but can only update the enable_debug and url fields of environments of other types.
    */
   export interface Schema$Environment {
     /**
@@ -386,8 +364,7 @@ export namespace tagmanager_v1 {
     containerId?: string;
     containerVersionId?: string;
     /**
-     * The environment description. Can be set or changed only on USER type
-     * environments.
+     * The environment description. Can be set or changed only on USER type environments.
      */
     description?: string;
     /**
@@ -399,13 +376,11 @@ export namespace tagmanager_v1 {
      */
     environmentId?: string;
     /**
-     * The fingerprint of the GTM environment as computed at storage time. This
-     * value is recomputed whenever the environment is modified.
+     * The fingerprint of the GTM environment as computed at storage time. This value is recomputed whenever the environment is modified.
      */
     fingerprint?: string;
     /**
-     * The environment display name. Can be set or changed only on USER type
-     * environments.
+     * The environment display name. Can be set or changed only on USER type environments.
      */
     name?: string;
     /**
@@ -430,8 +405,7 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
     /**
-     * The fingerprint of the GTM Folder as computed at storage time. This value
-     * is recomputed whenever the folder is modified.
+     * The fingerprint of the GTM Folder as computed at storage time. This value is recomputed whenever the folder is modified.
      */
     fingerprint?: string;
     /**
@@ -558,20 +532,15 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
     /**
-     * For mobile containers only: A list of rule IDs for disabling conditional
-     * macros; the macro is enabled if one of the enabling rules is true while
-     * all the disabling rules are false. Treated as an unordered set.
+     * For mobile containers only: A list of rule IDs for disabling conditional macros; the macro is enabled if one of the enabling rules is true while all the disabling rules are false. Treated as an unordered set.
      */
     disablingRuleId?: string[];
     /**
-     * For mobile containers only: A list of rule IDs for enabling conditional
-     * macros; the macro is enabled if one of the enabling rules is true while
-     * all the disabling rules are false. Treated as an unordered set.
+     * For mobile containers only: A list of rule IDs for enabling conditional macros; the macro is enabled if one of the enabling rules is true while all the disabling rules are false. Treated as an unordered set.
      */
     enablingRuleId?: string[];
     /**
-     * The fingerprint of the GTM Macro as computed at storage time. This value
-     * is recomputed whenever the macro is modified.
+     * The fingerprint of the GTM Macro as computed at storage time. This value is recomputed whenever the macro is modified.
      */
     fingerprint?: string;
     /**
@@ -612,8 +581,7 @@ export namespace tagmanager_v1 {
    */
   export interface Schema$Parameter {
     /**
-     * The named key that uniquely identifies a parameter. Required for
-     * top-level parameters, as well as map values. Ignored for list values.
+     * The named key that uniquely identifies a parameter. Required for top-level parameters, as well as map values. Ignored for list values.
      */
     key?: string;
     /**
@@ -621,23 +589,15 @@ export namespace tagmanager_v1 {
      */
     list?: Schema$Parameter[];
     /**
-     * This map parameter&#39;s parameters (must have keys; keys must be
-     * unique).
+     * This map parameter&#39;s parameters (must have keys; keys must be unique).
      */
     map?: Schema$Parameter[];
     /**
-     * The parameter type. Valid values are:  - boolean: The value represents a
-     * boolean, represented as &#39;true&#39; or &#39;false&#39;  - integer: The
-     * value represents a 64-bit signed integer value, in base 10  - list: A
-     * list of parameters should be specified  - map: A map of parameters should
-     * be specified  - template: The value represents any text; this can include
-     * variable references (even variable references that might return
-     * non-string types)
+     * The parameter type. Valid values are:  - boolean: The value represents a boolean, represented as &#39;true&#39; or &#39;false&#39;  - integer: The value represents a 64-bit signed integer value, in base 10  - list: A list of parameters should be specified  - map: A map of parameters should be specified  - template: The value represents any text; this can include variable references (even variable references that might return non-string types)
      */
     type?: string;
     /**
-     * A parameter&#39;s value (may contain variable references such as
-     * &quot;{{myVariable}}&quot;) as appropriate to the specified type.
+     * A parameter&#39;s value (may contain variable references such as &quot;{{myVariable}}&quot;) as appropriate to the specified type.
      */
     value?: string;
   }
@@ -663,8 +623,7 @@ export namespace tagmanager_v1 {
      */
     accountId?: string;
     /**
-     * The list of conditions that make up this rule (implicit AND between
-     * them).
+     * The list of conditions that make up this rule (implicit AND between them).
      */
     condition?: Schema$Condition[];
     /**
@@ -672,8 +631,7 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
     /**
-     * The fingerprint of the GTM Rule as computed at storage time. This value
-     * is recomputed whenever the rule is modified.
+     * The fingerprint of the GTM Rule as computed at storage time. This value is recomputed whenever the rule is modified.
      */
     fingerprint?: string;
     /**
@@ -691,9 +649,7 @@ export namespace tagmanager_v1 {
   }
   export interface Schema$SetupTag {
     /**
-     * If true, fire the main tag if and only if the setup tag fires
-     * successfully. If false, fire the main tag regardless of setup tag firing
-     * status.
+     * If true, fire the main tag if and only if the setup tag fires successfully. If false, fire the main tag regardless of setup tag firing status.
      */
     stopOnSetupFailure?: boolean;
     /**
@@ -710,13 +666,11 @@ export namespace tagmanager_v1 {
      */
     accountId?: string;
     /**
-     * Blocking rule IDs. If any of the listed rules evaluate to true, the tag
-     * will not fire.
+     * Blocking rule IDs. If any of the listed rules evaluate to true, the tag will not fire.
      */
     blockingRuleId?: string[];
     /**
-     * Blocking trigger IDs. If any of the listed triggers evaluate to true, the
-     * tag will not fire.
+     * Blocking trigger IDs. If any of the listed triggers evaluate to true, the tag will not fire.
      */
     blockingTriggerId?: string[];
     /**
@@ -724,23 +678,19 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
     /**
-     * The fingerprint of the GTM Tag as computed at storage time. This value is
-     * recomputed whenever the tag is modified.
+     * The fingerprint of the GTM Tag as computed at storage time. This value is recomputed whenever the tag is modified.
      */
     fingerprint?: string;
     /**
-     * Firing rule IDs. A tag will fire when any of the listed rules are true
-     * and all of its blockingRuleIds (if any specified) are false.
+     * Firing rule IDs. A tag will fire when any of the listed rules are true and all of its blockingRuleIds (if any specified) are false.
      */
     firingRuleId?: string[];
     /**
-     * Firing trigger IDs. A tag will fire when any of the listed triggers are
-     * true and all of its blockingTriggerIds (if any specified) are false.
+     * Firing trigger IDs. A tag will fire when any of the listed triggers are true and all of its blockingTriggerIds (if any specified) are false.
      */
     firingTriggerId?: string[];
     /**
-     * If set to true, this tag will only fire in the live environment (e.g. not
-     * in preview or debug mode).
+     * If set to true, this tag will only fire in the live environment (e.g. not in preview or debug mode).
      */
     liveOnly?: boolean;
     /**
@@ -764,10 +714,7 @@ export namespace tagmanager_v1 {
      */
     paused?: boolean;
     /**
-     * User defined numeric priority of the tag. Tags are fired asynchronously
-     * in order of priority. Tags with higher numeric value fire first. A
-     * tag&#39;s priority can be a positive or negative value. The default value
-     * is 0.
+     * User defined numeric priority of the tag. Tags are fired asynchronously in order of priority. Tags with higher numeric value fire first. A tag&#39;s priority can be a positive or negative value. The default value is 0.
      */
     priority?: Schema$Parameter;
     /**
@@ -801,9 +748,7 @@ export namespace tagmanager_v1 {
   }
   export interface Schema$TeardownTag {
     /**
-     * If true, fire the teardown tag if and only if the main tag fires
-     * successfully. If false, fire the teardown tag regardless of main tag
-     * firing status.
+     * If true, fire the teardown tag if and only if the main tag fires successfully. If false, fire the teardown tag regardless of main tag firing status.
      */
     stopTeardownOnFailure?: boolean;
     /**
@@ -824,9 +769,7 @@ export namespace tagmanager_v1 {
      */
     autoEventFilter?: Schema$Condition[];
     /**
-     * Whether or not we should only fire tags if the form submit or link click
-     * event is not cancelled by some other event handler (e.g. because of
-     * validation). Only valid for Form Submission and Link Click triggers.
+     * Whether or not we should only fire tags if the form submit or link click event is not cancelled by some other event handler (e.g. because of validation). Only valid for Form Submission and Link Click triggers.
      */
     checkValidation?: Schema$Parameter;
     /**
@@ -834,13 +777,11 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
     /**
-     * A visibility trigger minimum continuous visible time (in milliseconds).
-     * Only valid for AMP Visibility trigger.
+     * A visibility trigger minimum continuous visible time (in milliseconds). Only valid for AMP Visibility trigger.
      */
     continuousTimeMinMilliseconds?: Schema$Parameter;
     /**
-     * Used in the case of custom event, which is fired iff all Conditions are
-     * true.
+     * Used in the case of custom event, which is fired iff all Conditions are true.
      */
     customEventFilter?: Schema$Condition[];
     /**
@@ -852,35 +793,27 @@ export namespace tagmanager_v1 {
      */
     filter?: Schema$Condition[];
     /**
-     * The fingerprint of the GTM Trigger as computed at storage time. This
-     * value is recomputed whenever the trigger is modified.
+     * The fingerprint of the GTM Trigger as computed at storage time. This value is recomputed whenever the trigger is modified.
      */
     fingerprint?: string;
     /**
-     * List of integer percentage values for scroll triggers. The trigger will
-     * fire when each percentage is reached when the view is scrolled
-     * horizontally. Only valid for AMP scroll triggers.
+     * List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled horizontally. Only valid for AMP scroll triggers.
      */
     horizontalScrollPercentageList?: Schema$Parameter;
     /**
-     * Time between triggering recurring Timer Events (in milliseconds). Only
-     * valid for Timer triggers.
+     * Time between triggering recurring Timer Events (in milliseconds). Only valid for Timer triggers.
      */
     interval?: Schema$Parameter;
     /**
-     * Time between Timer Events to fire (in seconds). Only valid for AMP Timer
-     * trigger.
+     * Time between Timer Events to fire (in seconds). Only valid for AMP Timer trigger.
      */
     intervalSeconds?: Schema$Parameter;
     /**
-     * Limit of the number of GTM events this Timer Trigger will fire. If no
-     * limit is set, we will continue to fire GTM events until the user leaves
-     * the page. Only valid for Timer triggers.
+     * Limit of the number of GTM events this Timer Trigger will fire. If no limit is set, we will continue to fire GTM events until the user leaves the page. Only valid for Timer triggers.
      */
     limit?: Schema$Parameter;
     /**
-     * Max time to fire Timer Events (in seconds). Only valid for AMP Timer
-     * trigger.
+     * Max time to fire Timer Events (in seconds). Only valid for AMP Timer trigger.
      */
     maxTimerLengthSeconds?: Schema$Parameter;
     /**
@@ -896,13 +829,11 @@ export namespace tagmanager_v1 {
      */
     parentFolderId?: string;
     /**
-     * A click trigger CSS selector (i.e. &quot;a&quot;, &quot;button&quot;
-     * etc.). Only valid for AMP Click trigger.
+     * A click trigger CSS selector (i.e. &quot;a&quot;, &quot;button&quot; etc.). Only valid for AMP Click trigger.
      */
     selector?: Schema$Parameter;
     /**
-     * A visibility trigger minimum total visible time (in milliseconds). Only
-     * valid for AMP Visibility trigger.
+     * A visibility trigger minimum total visible time (in milliseconds). Only valid for AMP Visibility trigger.
      */
     totalTimeMinMilliseconds?: Schema$Parameter;
     /**
@@ -914,46 +845,31 @@ export namespace tagmanager_v1 {
      */
     type?: string;
     /**
-     * Globally unique id of the trigger that auto-generates this (a Form
-     * Submit, Link Click or Timer listener) if any. Used to make incompatible
-     * auto-events work together with trigger filtering based on trigger ids.
-     * This value is populated during output generation since the tags implied
-     * by triggers don&#39;t exist until then. Only valid for Form Submit, Link
-     * Click and Timer triggers.
+     * Globally unique id of the trigger that auto-generates this (a Form Submit, Link Click or Timer listener) if any. Used to make incompatible auto-events work together with trigger filtering based on trigger ids. This value is populated during output generation since the tags implied by triggers don&#39;t exist until then. Only valid for Form Submit, Link Click and Timer triggers.
      */
     uniqueTriggerId?: Schema$Parameter;
     /**
-     * List of integer percentage values for scroll triggers. The trigger will
-     * fire when each percentage is reached when the view is scrolled
-     * vertically. Only valid for AMP scroll triggers.
+     * List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled vertically. Only valid for AMP scroll triggers.
      */
     verticalScrollPercentageList?: Schema$Parameter;
     /**
-     * A visibility trigger CSS selector (i.e. &quot;#id&quot;). Only valid for
-     * AMP Visibility trigger.
+     * A visibility trigger CSS selector (i.e. &quot;#id&quot;). Only valid for AMP Visibility trigger.
      */
     visibilitySelector?: Schema$Parameter;
     /**
-     * A visibility trigger maximum percent visibility. Only valid for AMP
-     * Visibility trigger.
+     * A visibility trigger maximum percent visibility. Only valid for AMP Visibility trigger.
      */
     visiblePercentageMax?: Schema$Parameter;
     /**
-     * A visibility trigger minimum percent visibility. Only valid for AMP
-     * Visibility trigger.
+     * A visibility trigger minimum percent visibility. Only valid for AMP Visibility trigger.
      */
     visiblePercentageMin?: Schema$Parameter;
     /**
-     * Whether or not we should delay the form submissions or link opening until
-     * all of the tags have fired (by preventing the default action and later
-     * simulating the default action). Only valid for Form Submission and Link
-     * Click triggers.
+     * Whether or not we should delay the form submissions or link opening until all of the tags have fired (by preventing the default action and later simulating the default action). Only valid for Form Submission and Link Click triggers.
      */
     waitForTags?: Schema$Parameter;
     /**
-     * How long to wait (in milliseconds) for tags to fire when
-     * &#39;waits_for_tags&#39; above evaluates to true. Only valid for Form
-     * Submission and Link Click triggers.
+     * How long to wait (in milliseconds) for tags to fire when &#39;waits_for_tags&#39; above evaluates to true. Only valid for Form Submission and Link Click triggers.
      */
     waitForTagsTimeout?: Schema$Parameter;
   }
@@ -995,22 +911,15 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
     /**
-     * For mobile containers only: A list of trigger IDs for disabling
-     * conditional variables; the variable is enabled if one of the enabling
-     * trigger is true while all the disabling trigger are false. Treated as an
-     * unordered set.
+     * For mobile containers only: A list of trigger IDs for disabling conditional variables; the variable is enabled if one of the enabling trigger is true while all the disabling trigger are false. Treated as an unordered set.
      */
     disablingTriggerId?: string[];
     /**
-     * For mobile containers only: A list of trigger IDs for enabling
-     * conditional variables; the variable is enabled if one of the enabling
-     * triggers is true while all the disabling triggers are false. Treated as
-     * an unordered set.
+     * For mobile containers only: A list of trigger IDs for enabling conditional variables; the variable is enabled if one of the enabling triggers is true while all the disabling triggers are false. Treated as an unordered set.
      */
     enablingTriggerId?: string[];
     /**
-     * The fingerprint of the GTM Variable as computed at storage time. This
-     * value is recomputed whenever the variable is modified.
+     * The fingerprint of the GTM Variable as computed at storage time. This value is recomputed whenever the variable is modified.
      */
     fingerprint?: string;
     /**
@@ -1304,8 +1213,7 @@ export namespace tagmanager_v1 {
      */
     accountId?: string;
     /**
-     * When provided, this fingerprint must match the fingerprint of the account
-     * in storage.
+     * When provided, this fingerprint must match the fingerprint of the account in storage.
      */
     fingerprint?: string;
 
@@ -1795,8 +1703,7 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
     /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * container in storage.
+     * When provided, this fingerprint must match the fingerprint of the container in storage.
      */
     fingerprint?: string;
 
@@ -2291,8 +2198,7 @@ export namespace tagmanager_v1 {
      */
     environmentId?: string;
     /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * environment in storage.
+     * When provided, this fingerprint must match the fingerprint of the environment in storage.
      */
     fingerprint?: string;
 
@@ -2779,8 +2685,7 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
     /**
-     * When provided, this fingerprint must match the fingerprint of the folder
-     * in storage.
+     * When provided, this fingerprint must match the fingerprint of the folder in storage.
      */
     fingerprint?: string;
     /**
@@ -3604,8 +3509,7 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
     /**
-     * When provided, this fingerprint must match the fingerprint of the tag in
-     * storage.
+     * When provided, this fingerprint must match the fingerprint of the tag in storage.
      */
     fingerprint?: string;
     /**
@@ -4094,8 +3998,7 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
     /**
-     * When provided, this fingerprint must match the fingerprint of the trigger
-     * in storage.
+     * When provided, this fingerprint must match the fingerprint of the trigger in storage.
      */
     fingerprint?: string;
     /**
@@ -4584,8 +4487,7 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
     /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * variable in storage.
+     * When provided, this fingerprint must match the fingerprint of the variable in storage.
      */
     fingerprint?: string;
     /**
@@ -5014,10 +4916,7 @@ export namespace tagmanager_v1 {
 
     /**
      * tagmanager.accounts.containers.versions.restore
-     * @desc Restores a Container Version. This will overwrite the container's
-     * current configuration (including its variables, triggers and tags). The
-     * operation will not have any effect on the version that is being served
-     * (i.e. the published version).
+     * @desc Restores a Container Version. This will overwrite the container's current configuration (including its variables, triggers and tags). The operation will not have any effect on the version that is being served (i.e. the published version).
      * @alias tagmanager.accounts.containers.versions.restore
      * @memberOf! ()
      *
@@ -5303,8 +5202,7 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
     /**
-     * The GTM Container Version ID. Specify published to retrieve the currently
-     * published version.
+     * The GTM Container Version ID. Specify published to retrieve the currently published version.
      */
     containerVersionId?: string;
   }
@@ -5352,8 +5250,7 @@ export namespace tagmanager_v1 {
      */
     containerVersionId?: string;
     /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * container version in storage.
+     * When provided, this fingerprint must match the fingerprint of the container version in storage.
      */
     fingerprint?: string;
   }
@@ -5417,8 +5314,7 @@ export namespace tagmanager_v1 {
      */
     containerVersionId?: string;
     /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * container version in storage.
+     * When provided, this fingerprint must match the fingerprint of the container version in storage.
      */
     fingerprint?: string;
 
@@ -5510,8 +5406,7 @@ export namespace tagmanager_v1 {
 
     /**
      * tagmanager.accounts.permissions.delete
-     * @desc Removes a user from the account, revoking access to it and all of
-     * its containers.
+     * @desc Removes a user from the account, revoking access to it and all of its containers.
      * @alias tagmanager.accounts.permissions.delete
      * @memberOf! ()
      *
@@ -5659,8 +5554,7 @@ export namespace tagmanager_v1 {
 
     /**
      * tagmanager.accounts.permissions.list
-     * @desc List all users that have access to the account along with Account
-     * and Container Permissions granted to each of them.
+     * @desc List all users that have access to the account along with Account and Container Permissions granted to each of them.
      * @alias tagmanager.accounts.permissions.list
      * @memberOf! ()
      *

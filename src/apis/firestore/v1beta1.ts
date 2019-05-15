@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace firestore_v1beta1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace firestore_v1beta1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace firestore_v1beta1 {
   /**
    * Cloud Firestore API
    *
-   * Accesses the NoSQL document database built for automatic scaling, high
-   * performance, and ease of application development.
+   * Accesses the NoSQL document database built for automatic scaling, high performance, and ease of application development.
    *
    * @example
    * const {google} = require('googleapis');
@@ -113,7 +108,10 @@ export namespace firestore_v1beta1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
@@ -133,27 +131,19 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$BatchGetDocumentsRequest {
     /**
-     * The names of the documents to retrieve. In the format:
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * The request will fail if any of the document is not a child resource of
-     * the given `database`. Duplicate names will be elided.
+     * The names of the documents to retrieve. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. The request will fail if any of the document is not a child resource of the given `database`. Duplicate names will be elided.
      */
     documents?: string[];
     /**
-     * The fields to return. If not set, returns all fields.  If a document has
-     * a field that is not present in this mask, that field will not be returned
-     * in the response.
+     * The fields to return. If not set, returns all fields.  If a document has a field that is not present in this mask, that field will not be returned in the response.
      */
     mask?: Schema$DocumentMask;
     /**
-     * Starts a new transaction and reads the documents. Defaults to a read-only
-     * transaction. The new transaction ID will be returned as the first
-     * response in the stream.
+     * Starts a new transaction and reads the documents. Defaults to a read-only transaction. The new transaction ID will be returned as the first response in the stream.
      */
     newTransaction?: Schema$TransactionOptions;
     /**
-     * Reads documents as they were at the given time. This may not be older
-     * than 60 seconds.
+     * Reads documents as they were at the given time. This may not be older than 60 seconds.
      */
     readTime?: string;
     /**
@@ -170,20 +160,15 @@ export namespace firestore_v1beta1 {
      */
     found?: Schema$Document;
     /**
-     * A document name that was requested but does not exist. In the format:
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * A document name that was requested but does not exist. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
     missing?: string;
     /**
-     * The time at which the document was read. This may be monotically
-     * increasing, in this case the previous documents in the result stream are
-     * guaranteed not to have changed between their read_time and this one.
+     * The time at which the document was read. This may be monotically increasing, in this case the previous documents in the result stream are guaranteed not to have changed between their read_time and this one.
      */
     readTime?: string;
     /**
-     * The transaction that was started as part of this request. Will only be
-     * set in the first response, and only if
-     * BatchGetDocumentsRequest.new_transaction was set in the request.
+     * The transaction that was started as part of this request. Will only be set in the first response, and only if BatchGetDocumentsRequest.new_transaction was set in the request.
      */
     transaction?: string;
   }
@@ -210,9 +195,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$CollectionSelector {
     /**
-     * When false, selects only collections that are immediate children of the
-     * `parent` specified in the containing `RunQueryRequest`. When true,
-     * selects all descendant collections.
+     * When false, selects only collections that are immediate children of the `parent` specified in the containing `RunQueryRequest`. When true, selects all descendant collections.
      */
     allDescendants?: boolean;
     /**
@@ -242,8 +225,7 @@ export namespace firestore_v1beta1 {
      */
     commitTime?: string;
     /**
-     * The result of applying the writes.  This i-th write result corresponds to
-     * the i-th write in the request.
+     * The result of applying the writes.  This i-th write result corresponds to the i-th write in the request.
      */
     writeResults?: Schema$WriteResult[];
   }
@@ -265,14 +247,11 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$Cursor {
     /**
-     * If the position is just before or just after the given values, relative
-     * to the sort order defined by the query.
+     * If the position is just before or just after the given values, relative to the sort order defined by the query.
      */
     before?: boolean;
     /**
-     * The values that represent a position, in the order they appear in the
-     * order by clause of a query.  Can contain fewer values than specified in
-     * the order by clause.
+     * The values that represent a position, in the order they appear in the order by clause of a query.  Can contain fewer values than specified in the order by clause.
      */
     values?: Schema$Value[];
   }
@@ -281,54 +260,28 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$Document {
     /**
-     * Output only. The time at which the document was created.  This value
-     * increases monotonically when a document is deleted then recreated. It can
-     * also be compared to values from other documents and the `read_time` of a
-     * query.
+     * Output only. The time at which the document was created.  This value increases monotonically when a document is deleted then recreated. It can also be compared to values from other documents and the `read_time` of a query.
      */
     createTime?: string;
     /**
-     * The document&#39;s fields.  The map keys represent field names.  A simple
-     * field name contains only characters `a` to `z`, `A` to `Z`, `0` to `9`,
-     * or `_`, and must not start with `0` to `9`. For example, `foo_bar_17`.
-     * Field names matching the regular expression `__.*__` are reserved.
-     * Reserved field names are forbidden except in certain documented contexts.
-     * The map keys, represented as UTF-8, must not exceed 1,500 bytes and
-     * cannot be empty.  Field paths may be used in other contexts to refer to
-     * structured fields defined here. For `map_value`, the field path is
-     * represented by the simple or quoted field names of the containing fields,
-     * delimited by `.`. For example, the structured field `&quot;foo&quot; : {
-     * map_value: { &quot;x&amp;y&quot; : { string_value: &quot;hello&quot; }}}`
-     * would be represented by the field path `foo.x&amp;y`.  Within a field
-     * path, a quoted field name starts and ends with `` ` `` and may contain
-     * any character. Some characters, including `` ` ``, must be escaped using
-     * a `\`. For example, `` `x&amp;y` `` represents `x&amp;y` and ``
-     * `bak\`tik` `` represents `` bak`tik ``.
+     * The document&#39;s fields.  The map keys represent field names.  A simple field name contains only characters `a` to `z`, `A` to `Z`, `0` to `9`, or `_`, and must not start with `0` to `9`. For example, `foo_bar_17`.  Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty.  Field paths may be used in other contexts to refer to structured fields defined here. For `map_value`, the field path is represented by the simple or quoted field names of the containing fields, delimited by `.`. For example, the structured field `&quot;foo&quot; : { map_value: { &quot;x&amp;y&quot; : { string_value: &quot;hello&quot; }}}` would be represented by the field path `foo.x&amp;y`.  Within a field path, a quoted field name starts and ends with `` ` `` and may contain any character. Some characters, including `` ` ``, must be escaped using a `\`. For example, `` `x&amp;y` `` represents `x&amp;y` and `` `bak\`tik` `` represents `` bak`tik ``.
      */
     fields?: {[key: string]: Schema$Value};
     /**
-     * The resource name of the document, for example
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * The resource name of the document, for example `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
     name?: string;
     /**
-     * Output only. The time at which the document was last changed.  This value
-     * is initially set to the `create_time` then increases monotonically with
-     * each change to the document. It can also be compared to values from other
-     * documents and the `read_time` of a query.
+     * Output only. The time at which the document was last changed.  This value is initially set to the `create_time` then increases monotonically with each change to the document. It can also be compared to values from other documents and the `read_time` of a query.
      */
     updateTime?: string;
   }
   /**
-   * A Document has changed.  May be the result of multiple writes, including
-   * deletes, that ultimately resulted in a new value for the Document. Multiple
-   * DocumentChange messages may be returned for the same logical change, if
-   * multiple targets are affected.
+   * A Document has changed.  May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document.  Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected.
    */
   export interface Schema$DocumentChange {
     /**
-     * The new state of the Document.  If `mask` is set, contains only fields
-     * that were updated or added.
+     * The new state of the Document.  If `mask` is set, contains only fields that were updated or added.
      */
     document?: Schema$Document;
     /**
@@ -341,10 +294,7 @@ export namespace firestore_v1beta1 {
     targetIds?: number[];
   }
   /**
-   * A Document has been deleted.  May be the result of multiple writes,
-   * including updates, the last of which deleted the Document.  Multiple
-   * DocumentDelete messages may be returned for the same logical delete, if
-   * multiple targets are affected.
+   * A Document has been deleted.  May be the result of multiple writes, including updates, the last of which deleted the Document.  Multiple DocumentDelete messages may be returned for the same logical delete, if multiple targets are affected.
    */
   export interface Schema$DocumentDelete {
     /**
@@ -352,8 +302,7 @@ export namespace firestore_v1beta1 {
      */
     document?: string;
     /**
-     * The read timestamp at which the delete was observed.  Greater or equal to
-     * the `commit_time` of the delete.
+     * The read timestamp at which the delete was observed.  Greater or equal to the `commit_time` of the delete.
      */
     readTime?: string;
     /**
@@ -362,25 +311,16 @@ export namespace firestore_v1beta1 {
     removedTargetIds?: number[];
   }
   /**
-   * A set of field paths on a document. Used to restrict a get or update
-   * operation on a document to a subset of its fields. This is different from
-   * standard field masks, as this is always scoped to a Document, and takes in
-   * account the dynamic nature of Value.
+   * A set of field paths on a document. Used to restrict a get or update operation on a document to a subset of its fields. This is different from standard field masks, as this is always scoped to a Document, and takes in account the dynamic nature of Value.
    */
   export interface Schema$DocumentMask {
     /**
-     * The list of field paths in the mask. See Document.fields for a field path
-     * syntax reference.
+     * The list of field paths in the mask. See Document.fields for a field path syntax reference.
      */
     fieldPaths?: string[];
   }
   /**
-   * A Document has been removed from the view of the targets.  Sent if the
-   * document is no longer relevant to a target and is out of view. Can be sent
-   * instead of a DocumentDelete or a DocumentChange if the server can not send
-   * the new value of the document.  Multiple DocumentRemove messages may be
-   * returned for the same logical write or delete, if multiple targets are
-   * affected.
+   * A Document has been removed from the view of the targets.  Sent if the document is no longer relevant to a target and is out of view. Can be sent instead of a DocumentDelete or a DocumentChange if the server can not send the new value of the document.  Multiple DocumentRemove messages may be returned for the same logical write or delete, if multiple targets are affected.
    */
   export interface Schema$DocumentRemove {
     /**
@@ -388,8 +328,7 @@ export namespace firestore_v1beta1 {
      */
     document?: string;
     /**
-     * The read timestamp at which the remove was observed.  Greater or equal to
-     * the `commit_time` of the change/delete/remove.
+     * The read timestamp at which the remove was observed.  Greater or equal to the `commit_time` of the change/delete/remove.
      */
     readTime?: string;
     /**
@@ -402,10 +341,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$DocumentsTarget {
     /**
-     * The names of the documents to retrieve. In the format:
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * The request will fail if any of the document is not a child resource of
-     * the given `database`. Duplicate names will be elided.
+     * The names of the documents to retrieve. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. The request will fail if any of the document is not a child resource of the given `database`. Duplicate names will be elided.
      */
     documents?: string[];
   }
@@ -418,17 +354,12 @@ export namespace firestore_v1beta1 {
      */
     document?: string;
     /**
-     * The list of transformations to apply to the fields of the document, in
-     * order. This must not be empty.
+     * The list of transformations to apply to the fields of the document, in order. This must not be empty.
      */
     fieldTransforms?: Schema$FieldTransform[];
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -436,9 +367,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$ExistenceFilter {
     /**
-     * The total count of documents that match target_id.  If different from the
-     * count of documents in the client that match, the client must manually
-     * determine which documents no longer match the target.
+     * The total count of documents that match target_id.  If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target.
      */
     count?: number;
     /**
@@ -474,65 +403,27 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$FieldTransform {
     /**
-     * Append the given elements in order if they are not already present in the
-     * current field value. If the field is not an array, or if the field does
-     * not yet exist, it is first set to the empty array.  Equivalent numbers of
-     * different types (e.g. 3L and 3.0) are considered equal when checking if a
-     * value is missing. NaN is equal to NaN, and Null is equal to Null. If the
-     * input contains multiple equivalent values, only the first will be
-     * considered.  The corresponding transform_result will be the null value.
+     * Append the given elements in order if they are not already present in the current field value. If the field is not an array, or if the field does not yet exist, it is first set to the empty array.  Equivalent numbers of different types (e.g. 3L and 3.0) are considered equal when checking if a value is missing. NaN is equal to NaN, and Null is equal to Null. If the input contains multiple equivalent values, only the first will be considered.  The corresponding transform_result will be the null value.
      */
     appendMissingElements?: Schema$ArrayValue;
     /**
-     * The path of the field. See Document.fields for the field path syntax
-     * reference.
+     * The path of the field. See Document.fields for the field path syntax reference.
      */
     fieldPath?: string;
     /**
-     * Adds the given value to the field&#39;s current value.  This must be an
-     * integer or a double value. If the field is not an integer or double, or
-     * if the field does not yet exist, the transformation will set the field to
-     * the given value. If either of the given value or the current field value
-     * are doubles, both values will be interpreted as doubles. Double
-     * arithmetic and representation of double values follow IEEE 754 semantics.
-     * If there is positive/negative integer overflow, the field is resolved to
-     * the largest magnitude positive/negative integer.
+     * Adds the given value to the field&#39;s current value.  This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the given value. If either of the given value or the current field value are doubles, both values will be interpreted as doubles. Double arithmetic and representation of double values follow IEEE 754 semantics. If there is positive/negative integer overflow, the field is resolved to the largest magnitude positive/negative integer.
      */
     increment?: Schema$Value;
     /**
-     * Sets the field to the maximum of its current value and the given value.
-     * This must be an integer or a double value. If the field is not an integer
-     * or double, or if the field does not yet exist, the transformation will
-     * set the field to the given value. If a maximum operation is applied where
-     * the field and the input value are of mixed types (that is - one is an
-     * integer and one is a double) the field takes on the type of the larger
-     * operand. If the operands are equivalent (e.g. 3 and 3.0), the field does
-     * not change. 0, 0.0, and -0.0 are all zero. The maximum of a zero stored
-     * value and zero input value is always the stored value. The maximum of any
-     * numeric value x and NaN is NaN.
+     * Sets the field to the maximum of its current value and the given value.  This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the given value. If a maximum operation is applied where the field and the input value are of mixed types (that is - one is an integer and one is a double) the field takes on the type of the larger operand. If the operands are equivalent (e.g. 3 and 3.0), the field does not change. 0, 0.0, and -0.0 are all zero. The maximum of a zero stored value and zero input value is always the stored value. The maximum of any numeric value x and NaN is NaN.
      */
     maximum?: Schema$Value;
     /**
-     * Sets the field to the minimum of its current value and the given value.
-     * This must be an integer or a double value. If the field is not an integer
-     * or double, or if the field does not yet exist, the transformation will
-     * set the field to the input value. If a minimum operation is applied where
-     * the field and the input value are of mixed types (that is - one is an
-     * integer and one is a double) the field takes on the type of the smaller
-     * operand. If the operands are equivalent (e.g. 3 and 3.0), the field does
-     * not change. 0, 0.0, and -0.0 are all zero. The minimum of a zero stored
-     * value and zero input value is always the stored value. The minimum of any
-     * numeric value x and NaN is NaN.
+     * Sets the field to the minimum of its current value and the given value.  This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the input value. If a minimum operation is applied where the field and the input value are of mixed types (that is - one is an integer and one is a double) the field takes on the type of the smaller operand. If the operands are equivalent (e.g. 3 and 3.0), the field does not change. 0, 0.0, and -0.0 are all zero. The minimum of a zero stored value and zero input value is always the stored value. The minimum of any numeric value x and NaN is NaN.
      */
     minimum?: Schema$Value;
     /**
-     * Remove all of the given elements from the array in the field. If the
-     * field is not an array, or if the field does not yet exist, it is set to
-     * the empty array.  Equivalent numbers of the different types (e.g. 3L
-     * and 3.0) are considered equal when deciding whether an element should be
-     * removed. NaN is equal to NaN, and Null is equal to Null. This will remove
-     * all equivalent values if there are duplicates.  The corresponding
-     * transform_result will be the null value.
+     * Remove all of the given elements from the array in the field. If the field is not an array, or if the field does not yet exist, it is set to the empty array.  Equivalent numbers of the different types (e.g. 3L and 3.0) are considered equal when deciding whether an element should be removed. NaN is equal to NaN, and Null is equal to Null. This will remove all equivalent values if there are duplicates.  The corresponding transform_result will be the null value.
      */
     removeAllFromArray?: Schema$ArrayValue;
     /**
@@ -566,8 +457,7 @@ export namespace firestore_v1beta1 {
      */
     collectionIds?: string[];
     /**
-     * The time the operation ended, either successfully or otherwise. Unset if
-     * the operation is still active.
+     * The time the operation ended, either successfully or otherwise. Unset if the operation is still active.
      */
     endTime?: string;
     /**
@@ -600,14 +490,7 @@ export namespace firestore_v1beta1 {
      */
     collectionIds?: string[];
     /**
-     * The output URI. Currently only supports Google Cloud Storage URIs of the
-     * form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the
-     * name of the Google Cloud Storage bucket and `NAMESPACE_PATH` is an
-     * optional Google Cloud Storage namespace path. When choosing a name, be
-     * sure to consider Google Cloud Storage naming guidelines:
-     * https://cloud.google.com/storage/docs/naming. If the URI is a bucket
-     * (without a namespace path), a prefix will be generated based on the start
-     * time.
+     * The output URI. Currently only supports Google Cloud Storage URIs of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Google Cloud Storage bucket and `NAMESPACE_PATH` is an optional Google Cloud Storage namespace path. When choosing a name, be sure to consider Google Cloud Storage naming guidelines: https://cloud.google.com/storage/docs/naming. If the URI is a bucket (without a namespace path), a prefix will be generated based on the start time.
      */
     outputUriPrefix?: string;
   }
@@ -616,9 +499,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$GoogleFirestoreAdminV1beta1ExportDocumentsResponse {
     /**
-     * Location of the output files. This can be used to begin an import into
-     * Cloud Firestore (this project or another project) after the operation
-     * completes successfully.
+     * Location of the output files. This can be used to begin an import into Cloud Firestore (this project or another project) after the operation completes successfully.
      */
     outputUriPrefix?: string;
   }
@@ -631,8 +512,7 @@ export namespace firestore_v1beta1 {
      */
     collectionIds?: string[];
     /**
-     * The time the operation ended, either successfully or otherwise. Unset if
-     * the operation is still active.
+     * The time the operation ended, either successfully or otherwise. Unset if the operation is still active.
      */
     endTime?: string;
     /**
@@ -661,15 +541,11 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$GoogleFirestoreAdminV1beta1ImportDocumentsRequest {
     /**
-     * Which collection ids to import. Unspecified means all collections
-     * included in the import.
+     * Which collection ids to import. Unspecified means all collections included in the import.
      */
     collectionIds?: string[];
     /**
-     * Location of the exported files. This must match the output_uri_prefix of
-     * an ExportDocumentsResponse from an export that has completed
-     * successfully. See:
-     * google.firestore.admin.v1beta1.ExportDocumentsResponse.output_uri_prefix.
+     * Location of the exported files. This must match the output_uri_prefix of an ExportDocumentsResponse from an export that has completed successfully. See: google.firestore.admin.v1beta1.ExportDocumentsResponse.output_uri_prefix.
      */
     inputUriPrefix?: string;
   }
@@ -699,10 +575,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$GoogleFirestoreAdminV1beta1IndexField {
     /**
-     * The path of the field. Must match the field path specification described
-     * by google.firestore.v1beta1.Document.fields. Special field path
-     * `__name__` may be used by itself or at the end of a path. `__type__` may
-     * be used only at the end of path.
+     * The path of the field. Must match the field path specification described by google.firestore.v1beta1.Document.fields. Special field path `__name__` may be used by itself or at the end of a path. `__type__` may be used only at the end of path.
      */
     fieldPath?: string;
     /**
@@ -711,14 +584,11 @@ export namespace firestore_v1beta1 {
     mode?: string;
   }
   /**
-   * Metadata for index operations. This metadata populates the metadata field
-   * of google.longrunning.Operation.
+   * Metadata for index operations. This metadata populates the metadata field of google.longrunning.Operation.
    */
   export interface Schema$GoogleFirestoreAdminV1beta1IndexOperationMetadata {
     /**
-     * True if the [google.longrunning.Operation] was cancelled. If the
-     * cancellation is in progress, cancelled will be true but
-     * google.longrunning.Operation.done will be false.
+     * True if the [google.longrunning.Operation] was cancelled. If the cancellation is in progress, cancelled will be true but google.longrunning.Operation.done will be false.
      */
     cancelled?: boolean;
     /**
@@ -726,13 +596,11 @@ export namespace firestore_v1beta1 {
      */
     documentProgress?: Schema$GoogleFirestoreAdminV1beta1Progress;
     /**
-     * The time the operation ended, either successfully or otherwise. Unset if
-     * the operation is still active.
+     * The time the operation ended, either successfully or otherwise. Unset if the operation is still active.
      */
     endTime?: string;
     /**
-     * The index resource that this operation is acting on. For example:
-     * `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
+     * The index resource that this operation is acting on. For example: `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
      */
     index?: string;
     /**
@@ -766,25 +634,20 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$GoogleFirestoreAdminV1beta1Progress {
     /**
-     * An estimate of how much work has been completed. Note that this may be
-     * greater than `work_estimated`.
+     * An estimate of how much work has been completed. Note that this may be greater than `work_estimated`.
      */
     workCompleted?: string;
     /**
-     * An estimate of how much work needs to be performed. Zero if the work
-     * estimate is unavailable. May change as work progresses.
+     * An estimate of how much work needs to be performed. Zero if the work estimate is unavailable. May change as work progresses.
      */
     workEstimated?: string;
   }
   /**
-   * This resource represents a long-running operation that is the result of a
-   * network API call.
+   * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$GoogleLongrunningOperation {
     /**
-     * If the value is `false`, it means the operation is still in progress. If
-     * `true`, the operation is completed, and either `error` or `response` is
-     * available.
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
     done?: boolean;
     /**
@@ -792,35 +655,20 @@ export namespace firestore_v1beta1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically
-     * contains progress information and common metadata such as create time.
-     * Some services might not provide such metadata.  Any method that returns a
-     * long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any};
     /**
-     * The server-assigned name, which is only unique within the same service
-     * that originally returns it. If you use the default HTTP mapping, the
-     * `name` should have the format of `operations/some/unique/name`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
      */
     name?: string;
     /**
-     * The normal response of the operation in case of success.  If the original
-     * method returns no data on success, such as `Delete`, the response is
-     * `google.protobuf.Empty`.  If the original method is standard
-     * `Get`/`Create`/`Update`, the response should be the resource.  For other
-     * methods, the response should have the type `XxxResponse`, where `Xxx` is
-     * the original method name.  For example, if the original method name is
-     * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any};
   }
   /**
-   * An object representing a latitude/longitude pair. This is expressed as a
-   * pair of doubles representing degrees latitude and degrees longitude. Unless
-   * specified otherwise, this must conform to the &lt;a
-   * href=&quot;http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf&quot;&gt;WGS84
-   * standard&lt;/a&gt;. Values must be within normalized ranges.
+   * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the &lt;a href=&quot;http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf&quot;&gt;WGS84 standard&lt;/a&gt;. Values must be within normalized ranges.
    */
   export interface Schema$LatLng {
     /**
@@ -901,14 +749,11 @@ export namespace firestore_v1beta1 {
      */
     documentDelete?: Schema$DocumentDelete;
     /**
-     * A Document has been removed from a target (because it is no longer
-     * relevant to that target).
+     * A Document has been removed from a target (because it is no longer relevant to that target).
      */
     documentRemove?: Schema$DocumentRemove;
     /**
-     * A filter to apply to the set of documents previously returned for the
-     * given target.  Returned when documents may have been removed from the
-     * given target, but the exact documents are unknown.
+     * A filter to apply to the set of documents previously returned for the given target.  Returned when documents may have been removed from the given target, but the exact documents are unknown.
      */
     filter?: Schema$ExistenceFilter;
     /**
@@ -921,10 +766,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$MapValue {
     /**
-     * The map&#39;s fields.  The map keys represent field names. Field names
-     * matching the regular expression `__.*__` are reserved. Reserved field
-     * names are forbidden except in certain documented contexts. The map keys,
-     * represented as UTF-8, must not exceed 1,500 bytes and cannot be empty.
+     * The map&#39;s fields.  The map keys represent field names. Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty.
      */
     fields?: {[key: string]: Schema$Value};
   }
@@ -946,13 +788,11 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$Precondition {
     /**
-     * When set to `true`, the target document must exist. When set to `false`,
-     * the target document must not exist.
+     * When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
      */
     exists?: boolean;
     /**
-     * When set, the target document must exist and have been last updated at
-     * that time.
+     * When set, the target document must exist and have been last updated at that time.
      */
     updateTime?: string;
   }
@@ -961,8 +801,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$Projection {
     /**
-     * The fields to return.  If empty, all fields are returned. To only return
-     * the name of the document, use `[&#39;__name__&#39;]`.
+     * The fields to return.  If empty, all fields are returned. To only return the name of the document, use `[&#39;__name__&#39;]`.
      */
     fields?: Schema$FieldReference[];
   }
@@ -971,11 +810,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$QueryTarget {
     /**
-     * The parent resource name. In the format:
-     * `projects/{project_id}/databases/{database_id}/documents` or
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * For example: `projects/my-project/databases/my-database/documents` or
-     * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
     parent?: string;
     /**
@@ -1015,14 +850,11 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$RunQueryRequest {
     /**
-     * Starts a new transaction and reads the documents. Defaults to a read-only
-     * transaction. The new transaction ID will be returned as the first
-     * response in the stream.
+     * Starts a new transaction and reads the documents. Defaults to a read-only transaction. The new transaction ID will be returned as the first response in the stream.
      */
     newTransaction?: Schema$TransactionOptions;
     /**
-     * Reads documents as they were at the given time. This may not be older
-     * than 60 seconds.
+     * Reads documents as they were at the given time. This may not be older than 60 seconds.
      */
     readTime?: string;
     /**
@@ -1043,61 +875,20 @@ export namespace firestore_v1beta1 {
      */
     document?: Schema$Document;
     /**
-     * The time at which the document was read. This may be monotonically
-     * increasing; in this case, the previous documents in the result stream are
-     * guaranteed not to have changed between their `read_time` and this one. If
-     * the query returns no results, a response with `read_time` and no
-     * `document` will be sent, and this represents the time at which the query
-     * was run.
+     * The time at which the document was read. This may be monotonically increasing; in this case, the previous documents in the result stream are guaranteed not to have changed between their `read_time` and this one.  If the query returns no results, a response with `read_time` and no `document` will be sent, and this represents the time at which the query was run.
      */
     readTime?: string;
     /**
-     * The number of results that have been skipped due to an offset between the
-     * last response and the current response.
+     * The number of results that have been skipped due to an offset between the last response and the current response.
      */
     skippedResults?: number;
     /**
-     * The transaction that was started as part of this request. Can only be set
-     * in the first response, and only if RunQueryRequest.new_transaction was
-     * set in the request. If set, no other fields will be set in this response.
+     * The transaction that was started as part of this request. Can only be set in the first response, and only if RunQueryRequest.new_transaction was set in the request. If set, no other fields will be set in this response.
      */
     transaction?: string;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for
-   * different programming environments, including REST APIs and RPC APIs. It is
-   * used by [gRPC](https://github.com/grpc). The error model is designed to be:
-   * - Simple to use and understand for most users - Flexible enough to meet
-   * unexpected needs  # Overview  The `Status` message contains three pieces of
-   * data: error code, error message, and error details. The error code should
-   * be an enum value of google.rpc.Code, but it may accept additional error
-   * codes if needed.  The error message should be a developer-facing English
-   * message that helps developers *understand* and *resolve* the error. If a
-   * localized user-facing error message is needed, put the localized message in
-   * the error details or localize it in the client. The optional error details
-   * may contain arbitrary information about the error. There is a predefined
-   * set of error detail types in the package `google.rpc` that can be used for
-   * common error conditions.  # Language mapping  The `Status` message is the
-   * logical representation of the error model, but it is not necessarily the
-   * actual wire format. When the `Status` message is exposed in different
-   * client libraries and different wire protocols, it can be mapped
-   * differently. For example, it will likely be mapped to some exceptions in
-   * Java, but more likely mapped to some error codes in C.  # Other uses  The
-   * error model and the `Status` message can be used in a variety of
-   * environments, either with or without APIs, to provide a consistent
-   * developer experience across different environments.  Example uses of this
-   * error model include:  - Partial errors. If a service needs to return
-   * partial errors to the client,     it may embed the `Status` in the normal
-   * response to indicate the partial     errors.  - Workflow errors. A typical
-   * workflow has multiple steps. Each step may     have a `Status` message for
-   * error reporting.  - Batch operations. If a client uses batch request and
-   * batch response, the     `Status` message should be used directly inside
-   * batch response, one for     each error sub-response.  - Asynchronous
-   * operations. If an API call embeds asynchronous operation     results in its
-   * response, the status of those operations should be     represented directly
-   * using the `Status` message.  - Logging. If some API errors are stored in
-   * logs, the message `Status` could     be used directly after any stripping
-   * needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
    */
   export interface Schema$Status {
     /**
@@ -1105,14 +896,11 @@ export namespace firestore_v1beta1 {
      */
     code?: number;
     /**
-     * A list of messages that carry the error details.  There is a common set
-     * of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}>;
     /**
-     * A developer-facing error message, which should be in English. Any
-     * user-facing error message should be localized and sent in the
-     * google.rpc.Status.details field, or localized by the client.
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
   }
@@ -1129,27 +917,15 @@ export namespace firestore_v1beta1 {
      */
     from?: Schema$CollectionSelector[];
     /**
-     * The maximum number of results to return.  Applies after all other
-     * constraints. Must be &gt;= 0 if specified.
+     * The maximum number of results to return.  Applies after all other constraints. Must be &gt;= 0 if specified.
      */
     limit?: number;
     /**
-     * The number of results to skip.  Applies before limit, but after all other
-     * constraints. Must be &gt;= 0 if specified.
+     * The number of results to skip.  Applies before limit, but after all other constraints. Must be &gt;= 0 if specified.
      */
     offset?: number;
     /**
-     * The order to apply to the query results.  Firestore guarantees a stable
-     * ordering through the following rules:   * Any field required to appear in
-     * `order_by`, that is not already    specified in `order_by`, is appended
-     * to the order in field name order    by default.  * If an order on
-     * `__name__` is not specified, it is appended by default.  Fields are
-     * appended with the same sort direction as the last order specified, or
-     * &#39;ASCENDING&#39; if no order was specified. For example:   * `SELECT *
-     * FROM Foo ORDER BY A` becomes    `SELECT * FROM Foo ORDER BY A, __name__`
-     * * `SELECT * FROM Foo ORDER BY A DESC` becomes    `SELECT * FROM Foo ORDER
-     * BY A DESC, __name__ DESC`  * `SELECT * FROM Foo WHERE A &gt; 1` becomes
-     * `SELECT * FROM Foo WHERE A &gt; 1 ORDER BY A, __name__`
+     * The order to apply to the query results.  Firestore guarantees a stable ordering through the following rules:   * Any field required to appear in `order_by`, that is not already    specified in `order_by`, is appended to the order in field name order    by default.  * If an order on `__name__` is not specified, it is appended by default.  Fields are appended with the same sort direction as the last order specified, or &#39;ASCENDING&#39; if no order was specified. For example:   * `SELECT * FROM Foo ORDER BY A` becomes    `SELECT * FROM Foo ORDER BY A, __name__`  * `SELECT * FROM Foo ORDER BY A DESC` becomes    `SELECT * FROM Foo ORDER BY A DESC, __name__ DESC`  * `SELECT * FROM Foo WHERE A &gt; 1` becomes    `SELECT * FROM Foo WHERE A &gt; 1 ORDER BY A, __name__`
      */
     orderBy?: Schema$Order[];
     /**
@@ -1182,21 +958,15 @@ export namespace firestore_v1beta1 {
      */
     query?: Schema$QueryTarget;
     /**
-     * Start listening after a specific `read_time`.  The client must know the
-     * state of matching documents at this time.
+     * Start listening after a specific `read_time`.  The client must know the state of matching documents at this time.
      */
     readTime?: string;
     /**
-     * A resume token from a prior TargetChange for an identical target.  Using
-     * a resume token with a different target is unsupported and may fail.
+     * A resume token from a prior TargetChange for an identical target.  Using a resume token with a different target is unsupported and may fail.
      */
     resumeToken?: string;
     /**
-     * A client provided target ID.  If not set, the server will assign an ID
-     * for the target.  Used for resuming a target without changing IDs. The IDs
-     * can either be client-assigned or be server-assigned in a previous stream.
-     * All targets with client provided IDs must be added before adding a target
-     * that needs a server-assigned id.
+     * A client provided target ID.  If not set, the server will assign an ID for the target.  Used for resuming a target without changing IDs. The IDs can either be client-assigned or be server-assigned in a previous stream. All targets with client provided IDs must be added before adding a target that needs a server-assigned id.
      */
     targetId?: number;
   }
@@ -1209,18 +979,11 @@ export namespace firestore_v1beta1 {
      */
     cause?: Schema$Status;
     /**
-     * The consistent `read_time` for the given `target_ids` (omitted when the
-     * target_ids are not at a consistent snapshot).  The stream is guaranteed
-     * to send a `read_time` with `target_ids` empty whenever the entire stream
-     * reaches a new consistent snapshot. ADD, CURRENT, and RESET messages are
-     * guaranteed to (eventually) result in a new consistent snapshot (while
-     * NO_CHANGE and REMOVE messages are not).  For a given stream, `read_time`
-     * is guaranteed to be monotonically increasing.
+     * The consistent `read_time` for the given `target_ids` (omitted when the target_ids are not at a consistent snapshot).  The stream is guaranteed to send a `read_time` with `target_ids` empty whenever the entire stream reaches a new consistent snapshot. ADD, CURRENT, and RESET messages are guaranteed to (eventually) result in a new consistent snapshot (while NO_CHANGE and REMOVE messages are not).  For a given stream, `read_time` is guaranteed to be monotonically increasing.
      */
     readTime?: string;
     /**
-     * A token that can be used to resume the stream for the given `target_ids`,
-     * or all targets if `target_ids` is empty.  Not set on every target change.
+     * A token that can be used to resume the stream for the given `target_ids`, or all targets if `target_ids` is empty.  Not set on every target change.
      */
     resumeToken?: string;
     /**
@@ -1228,12 +991,7 @@ export namespace firestore_v1beta1 {
      */
     targetChangeType?: string;
     /**
-     * The target IDs of targets that have changed.  If empty, the change
-     * applies to all targets.  For `target_change_type=ADD`, the order of the
-     * target IDs matches the order of the requests to add the targets. This
-     * allows clients to unambiguously associate server-assigned target IDs with
-     * added targets.  For other states, the order of the target IDs is not
-     * defined.
+     * The target IDs of targets that have changed.  If empty, the change applies to all targets.  For `target_change_type=ADD`, the order of the target IDs matches the order of the requests to add the targets. This allows clients to unambiguously associate server-assigned target IDs with added targets.  For other states, the order of the target IDs is not defined.
      */
     targetIds?: number[];
   }
@@ -1268,8 +1026,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$Value {
     /**
-     * An array value.  Cannot directly contain another array value, though can
-     * contain an map which contains another array.
+     * An array value.  Cannot directly contain another array value, though can contain an map which contains another array.
      */
     arrayValue?: Schema$ArrayValue;
     /**
@@ -1277,8 +1034,7 @@ export namespace firestore_v1beta1 {
      */
     booleanValue?: boolean;
     /**
-     * A bytes value.  Must not exceed 1 MiB - 89 bytes. Only the first 1,500
-     * bytes are considered by queries.
+     * A bytes value.  Must not exceed 1 MiB - 89 bytes. Only the first 1,500 bytes are considered by queries.
      */
     bytesValue?: string;
     /**
@@ -1302,19 +1058,15 @@ export namespace firestore_v1beta1 {
      */
     nullValue?: string;
     /**
-     * A reference to a document. For example:
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * A reference to a document. For example: `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
     referenceValue?: string;
     /**
-     * A string value.  The string, represented as UTF-8, must not exceed 1 MiB
-     * - 89 bytes. Only the first 1,500 bytes of the UTF-8 representation are
-     * considered by queries.
+     * A string value.  The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes. Only the first 1,500 bytes of the UTF-8 representation are considered by queries.
      */
     stringValue?: string;
     /**
-     * A timestamp value.  Precise only to microseconds. When stored, any
-     * additional precision is rounded down.
+     * A timestamp value.  Precise only to microseconds. When stored, any additional precision is rounded down.
      */
     timestampValue?: string;
   }
@@ -1323,19 +1075,15 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$Write {
     /**
-     * An optional precondition on the document.  The write will fail if this is
-     * set and not met by the target document.
+     * An optional precondition on the document.  The write will fail if this is set and not met by the target document.
      */
     currentDocument?: Schema$Precondition;
     /**
-     * A document name to delete. In the format:
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * A document name to delete. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
     delete?: string;
     /**
-     * Applies a transformation to a document. At most one `transform` per
-     * document is allowed in a given request. An `update` cannot follow a
-     * `transform` on the same document in a given request.
+     * Applies a transformation to a document. At most one `transform` per document is allowed in a given request. An `update` cannot follow a `transform` on the same document in a given request.
      */
     transform?: Schema$DocumentTransform;
     /**
@@ -1343,23 +1091,12 @@ export namespace firestore_v1beta1 {
      */
     update?: Schema$Document;
     /**
-     * The fields to update in this write.  This field can be set only when the
-     * operation is `update`. If the mask is not set for an `update` and the
-     * document exists, any existing data will be overwritten. If the mask is
-     * set and the document on the server has fields not covered by the mask,
-     * they are left unchanged. Fields referenced in the mask, but not present
-     * in the input document, are deleted from the document on the server. The
-     * field paths in this mask must not contain a reserved field name.
+     * The fields to update in this write.  This field can be set only when the operation is `update`. If the mask is not set for an `update` and the document exists, any existing data will be overwritten. If the mask is set and the document on the server has fields not covered by the mask, they are left unchanged. Fields referenced in the mask, but not present in the input document, are deleted from the document on the server. The field paths in this mask must not contain a reserved field name.
      */
     updateMask?: Schema$DocumentMask;
   }
   /**
-   * The request for Firestore.Write.  The first request creates a stream, or
-   * resumes an existing one from a token.  When creating a new stream, the
-   * server replies with a response containing only an ID and a token, to use in
-   * the next request.  When resuming a stream, the server first streams any
-   * responses later than the given token, then a response containing only an
-   * up-to-date token, to use in the next request.
+   * The request for Firestore.Write.  The first request creates a stream, or resumes an existing one from a token.  When creating a new stream, the server replies with a response containing only an ID and a token, to use in the next request.  When resuming a stream, the server first streams any responses later than the given token, then a response containing only an up-to-date token, to use in the next request.
    */
   export interface Schema$WriteRequest {
     /**
@@ -1367,25 +1104,15 @@ export namespace firestore_v1beta1 {
      */
     labels?: {[key: string]: string};
     /**
-     * The ID of the write stream to resume. This may only be set in the first
-     * message. When left empty, a new write stream will be created.
+     * The ID of the write stream to resume. This may only be set in the first message. When left empty, a new write stream will be created.
      */
     streamId?: string;
     /**
-     * A stream token that was previously sent by the server.  The client should
-     * set this field to the token from the most recent WriteResponse it has
-     * received. This acknowledges that the client has received responses up to
-     * this token. After sending this token, earlier tokens may not be used
-     * anymore.  The server may close the stream if there are too many
-     * unacknowledged responses.  Leave this field unset when creating a new
-     * stream. To resume a stream at a specific point, set this field and the
-     * `stream_id` field.  Leave this field unset when creating a new stream.
+     * A stream token that was previously sent by the server.  The client should set this field to the token from the most recent WriteResponse it has received. This acknowledges that the client has received responses up to this token. After sending this token, earlier tokens may not be used anymore.  The server may close the stream if there are too many unacknowledged responses.  Leave this field unset when creating a new stream. To resume a stream at a specific point, set this field and the `stream_id` field.  Leave this field unset when creating a new stream.
      */
     streamToken?: string;
     /**
-     * The writes to apply.  Always executed atomically and in order. This must
-     * be empty on the first request. This may be empty on the last request.
-     * This must not be empty on all other requests.
+     * The writes to apply.  Always executed atomically and in order. This must be empty on the first request. This may be empty on the last request. This must not be empty on all other requests.
      */
     writes?: Schema$Write[];
   }
@@ -1398,19 +1125,15 @@ export namespace firestore_v1beta1 {
      */
     commitTime?: string;
     /**
-     * The ID of the stream. Only set on the first message, when a new stream
-     * was created.
+     * The ID of the stream. Only set on the first message, when a new stream was created.
      */
     streamId?: string;
     /**
-     * A token that represents the position of this response in the stream. This
-     * can be used by a client to resume the stream at this point.  This field
-     * is always set.
+     * A token that represents the position of this response in the stream. This can be used by a client to resume the stream at this point.  This field is always set.
      */
     streamToken?: string;
     /**
-     * The result of applying the writes.  This i-th write result corresponds to
-     * the i-th write in the request.
+     * The result of applying the writes.  This i-th write result corresponds to the i-th write in the request.
      */
     writeResults?: Schema$WriteResult[];
   }
@@ -1419,14 +1142,11 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$WriteResult {
     /**
-     * The results of applying each DocumentTransform.FieldTransform, in the
-     * same order.
+     * The results of applying each DocumentTransform.FieldTransform, in the same order.
      */
     transformResults?: Schema$Value[];
     /**
-     * The last update time of the document after applying the write. Not set
-     * after a `delete`.  If the write did not actually change the document,
-     * this will be the previous update_time.
+     * The last update time of the document after applying the write. Not set after a `delete`.  If the write did not actually change the document, this will be the previous update_time.
      */
     updateTime?: string;
   }
@@ -1452,14 +1172,7 @@ export namespace firestore_v1beta1 {
 
     /**
      * firestore.projects.databases.exportDocuments
-     * @desc Exports a copy of all or a subset of documents from Google Cloud
-     * Firestore to another storage system, such as Google Cloud Storage. Recent
-     * updates to documents may not be reflected in the export. The export
-     * occurs in the background and its progress can be monitored and managed
-     * via the Operation resource that is created. The output of an export may
-     * only be used once the associated operation is done. If an export
-     * operation is cancelled before completion it may leave partial data behind
-     * in Google Cloud Storage.
+     * @desc Exports a copy of all or a subset of documents from Google Cloud Firestore to another storage system, such as Google Cloud Storage. Recent updates to documents may not be reflected in the export. The export occurs in the background and its progress can be monitored and managed via the Operation resource that is created. The output of an export may only be used once the associated operation is done. If an export operation is cancelled before completion it may leave partial data behind in Google Cloud Storage.
      * @alias firestore.projects.databases.exportDocuments
      * @memberOf! ()
      *
@@ -1541,12 +1254,7 @@ export namespace firestore_v1beta1 {
 
     /**
      * firestore.projects.databases.importDocuments
-     * @desc Imports documents into Google Cloud Firestore. Existing documents
-     * with the same name are overwritten. The import occurs in the background
-     * and its progress can be monitored and managed via the Operation resource
-     * that is created. If an ImportDocuments operation is cancelled, it is
-     * possible that a subset of the data has already been imported to Cloud
-     * Firestore.
+     * @desc Imports documents into Google Cloud Firestore. Existing documents with the same name are overwritten. The import occurs in the background and its progress can be monitored and managed via the Operation resource that is created. If an ImportDocuments operation is cancelled, it is possible that a subset of the data has already been imported to Cloud Firestore.
      * @alias firestore.projects.databases.importDocuments
      * @memberOf! ()
      *
@@ -1635,8 +1343,7 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Database to export. Should be of the form:
-     * `projects/{project_id}/databases/{database_id}`.
+     * Database to export. Should be of the form: `projects/{project_id}/databases/{database_id}`.
      */
     name?: string;
 
@@ -1653,8 +1360,7 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Database to import into. Should be of the form:
-     * `projects/{project_id}/databases/{database_id}`.
+     * Database to import into. Should be of the form: `projects/{project_id}/databases/{database_id}`.
      */
     name?: string;
 
@@ -1672,8 +1378,7 @@ export namespace firestore_v1beta1 {
 
     /**
      * firestore.projects.databases.documents.batchGet
-     * @desc Gets multiple documents.  Documents returned by this method are not
-     * guaranteed to be returned in the same order that they were requested.
+     * @desc Gets multiple documents.  Documents returned by this method are not guaranteed to be returned in the same order that they were requested.
      * @alias firestore.projects.databases.documents.batchGet
      * @memberOf! ()
      *
@@ -2672,8 +2377,7 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The database name. In the format:
-     * `projects/{project_id}/databases/{database_id}`.
+     * The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      */
     database?: string;
 
@@ -2690,8 +2394,7 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The database name. In the format:
-     * `projects/{project_id}/databases/{database_id}`.
+     * The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      */
     database?: string;
 
@@ -2708,8 +2411,7 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The database name. In the format:
-     * `projects/{project_id}/databases/{database_id}`.
+     * The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      */
     database?: string;
 
@@ -2726,24 +2428,19 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The collection ID, relative to `parent`, to list. For example:
-     * `chatrooms`.
+     * The collection ID, relative to `parent`, to list. For example: `chatrooms`.
      */
     collectionId?: string;
     /**
-     * The client-assigned document ID to use for this document.  Optional. If
-     * not specified, an ID will be assigned by the service.
+     * The client-assigned document ID to use for this document.  Optional. If not specified, an ID will be assigned by the service.
      */
     documentId?: string;
     /**
-     * The list of field paths in the mask. See Document.fields for a field path
-     * syntax reference.
+     * The list of field paths in the mask. See Document.fields for a field path syntax reference.
      */
     'mask.fieldPaths'?: string[];
     /**
-     * The parent resource. For example:
-     * `projects/{project_id}/databases/{database_id}/documents` or
-     * `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
+     * The parent resource. For example: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
      */
     parent?: string;
 
@@ -2760,18 +2457,15 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When set to `true`, the target document must exist. When set to `false`,
-     * the target document must not exist.
+     * When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
      */
     'currentDocument.exists'?: boolean;
     /**
-     * When set, the target document must exist and have been last updated at
-     * that time.
+     * When set, the target document must exist and have been last updated at that time.
      */
     'currentDocument.updateTime'?: string;
     /**
-     * The resource name of the Document to delete. In the format:
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * The resource name of the Document to delete. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
     name?: string;
   }
@@ -2783,18 +2477,15 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The list of field paths in the mask. See Document.fields for a field path
-     * syntax reference.
+     * The list of field paths in the mask. See Document.fields for a field path syntax reference.
      */
     'mask.fieldPaths'?: string[];
     /**
-     * The resource name of the Document to get. In the format:
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * The resource name of the Document to get. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
     name?: string;
     /**
-     * Reads the version of the document at the given time. This may not be
-     * older than 60 seconds.
+     * Reads the version of the document at the given time. This may not be older than 60 seconds.
      */
     readTime?: string;
     /**
@@ -2810,13 +2501,11 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The collection ID, relative to `parent`, to list. For example:
-     * `chatrooms` or `messages`.
+     * The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
      */
     collectionId?: string;
     /**
-     * The list of field paths in the mask. See Document.fields for a field path
-     * syntax reference.
+     * The list of field paths in the mask. See Document.fields for a field path syntax reference.
      */
     'mask.fieldPaths'?: string[];
     /**
@@ -2828,29 +2517,19 @@ export namespace firestore_v1beta1 {
      */
     pageSize?: number;
     /**
-     * The `next_page_token` value returned from a previous List request, if
-     * any.
+     * The `next_page_token` value returned from a previous List request, if any.
      */
     pageToken?: string;
     /**
-     * The parent resource name. In the format:
-     * `projects/{project_id}/databases/{database_id}/documents` or
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * For example: `projects/my-project/databases/my-database/documents` or
-     * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
     parent?: string;
     /**
-     * Reads documents as they were at the given time. This may not be older
-     * than 60 seconds.
+     * Reads documents as they were at the given time. This may not be older than 60 seconds.
      */
     readTime?: string;
     /**
-     * If the list should show missing documents. A missing document is a
-     * document that does not exist but has sub-documents. These documents will
-     * be returned with a key but will not have fields, Document.create_time, or
-     * Document.update_time set.  Requests with `show_missing` may not specify
-     * `where` or `order_by`.
+     * If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set.  Requests with `show_missing` may not specify `where` or `order_by`.
      */
     showMissing?: boolean;
     /**
@@ -2866,10 +2545,7 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The parent document. In the format:
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * For example:
-     * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * The parent document. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
     parent?: string;
 
@@ -2886,8 +2562,7 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The database name. In the format:
-     * `projects/{project_id}/databases/{database_id}`.
+     * The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      */
     database?: string;
 
@@ -2904,28 +2579,23 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When set to `true`, the target document must exist. When set to `false`,
-     * the target document must not exist.
+     * When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
      */
     'currentDocument.exists'?: boolean;
     /**
-     * When set, the target document must exist and have been last updated at
-     * that time.
+     * When set, the target document must exist and have been last updated at that time.
      */
     'currentDocument.updateTime'?: string;
     /**
-     * The list of field paths in the mask. See Document.fields for a field path
-     * syntax reference.
+     * The list of field paths in the mask. See Document.fields for a field path syntax reference.
      */
     'mask.fieldPaths'?: string[];
     /**
-     * The resource name of the document, for example
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * The resource name of the document, for example `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
     name?: string;
     /**
-     * The list of field paths in the mask. See Document.fields for a field path
-     * syntax reference.
+     * The list of field paths in the mask. See Document.fields for a field path syntax reference.
      */
     'updateMask.fieldPaths'?: string[];
 
@@ -2942,8 +2612,7 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The database name. In the format:
-     * `projects/{project_id}/databases/{database_id}`.
+     * The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      */
     database?: string;
 
@@ -2960,11 +2629,7 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The parent resource name. In the format:
-     * `projects/{project_id}/databases/{database_id}/documents` or
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * For example: `projects/my-project/databases/my-database/documents` or
-     * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
     parent?: string;
 
@@ -2981,9 +2646,7 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The database name. In the format:
-     * `projects/{project_id}/databases/{database_id}`. This is only required in
-     * the first message.
+     * The database name. In the format: `projects/{project_id}/databases/{database_id}`. This is only required in the first message.
      */
     database?: string;
 
@@ -3001,15 +2664,7 @@ export namespace firestore_v1beta1 {
 
     /**
      * firestore.projects.databases.indexes.create
-     * @desc Creates the specified index. A newly created index's initial state
-     * is `CREATING`. On completion of the returned
-     * google.longrunning.Operation, the state will be `READY`. If the index
-     * already exists, the call will return an `ALREADY_EXISTS` status.  During
-     * creation, the process could result in an error, in which case the index
-     * will move to the `ERROR` state. The process can be recovered by fixing
-     * the data that caused the error, removing the index with delete, then
-     * re-creating the index with create.  Indexes with a single field cannot be
-     * created.
+     * @desc Creates the specified index. A newly created index's initial state is `CREATING`. On completion of the returned google.longrunning.Operation, the state will be `READY`. If the index already exists, the call will return an `ALREADY_EXISTS` status.  During creation, the process could result in an error, in which case the index will move to the `ERROR` state. The process can be recovered by fixing the data that caused the error, removing the index with delete, then re-creating the index with create.  Indexes with a single field cannot be created.
      * @alias firestore.projects.databases.indexes.create
      * @memberOf! ()
      *
@@ -3349,8 +3004,7 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the database this index will apply to. For example:
-     * `projects/{project_id}/databases/{database_id}`
+     * The name of the database this index will apply to. For example: `projects/{project_id}/databases/{database_id}`
      */
     parent?: string;
 
@@ -3367,8 +3021,7 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The index name. For example:
-     * `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
+     * The index name. For example: `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
      */
     name?: string;
   }
@@ -3380,8 +3033,7 @@ export namespace firestore_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the index. For example:
-     * `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
+     * The name of the index. For example: `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
      */
     name?: string;
   }
@@ -3405,8 +3057,7 @@ export namespace firestore_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The database name. For example:
-     * `projects/{project_id}/databases/{database_id}`
+     * The database name. For example: `projects/{project_id}/databases/{database_id}`
      */
     parent?: string;
   }

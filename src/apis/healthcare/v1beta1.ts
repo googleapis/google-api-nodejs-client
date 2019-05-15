@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace healthcare_v1beta1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace healthcare_v1beta1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -112,34 +108,17 @@ export namespace healthcare_v1beta1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
   }
 
   /**
-   * Specifies the audit configuration for a service. The configuration
-   * determines which permission types are logged, and what identities, if any,
-   * are exempted from logging. An AuditConfig must have one or more
-   * AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a
-   * specific service, the union of the two AuditConfigs is used for that
-   * service: the log_types specified in each AuditConfig are enabled, and the
-   * exempted_members in each AuditLogConfig are exempted.  Example Policy with
-   * multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {
-   * &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;:
-   * [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,
-   * &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, {
-   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {
-   * &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ] },
-   * {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;
-   * &quot;audit_log_configs&quot;: [             { &quot;log_type&quot;:
-   * &quot;DATA_READ&quot;,             },             { &quot;log_type&quot;:
-   * &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [
-   * &quot;user:bar@gmail.com&quot;               ]             }           ] }
-   * ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and
-   * ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging,
-   * and bar@gmail.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:foo@gmail.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:bar@gmail.com&quot;               ]             }           ]         }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -147,25 +126,16 @@ export namespace healthcare_v1beta1 {
      */
     auditLogConfigs?: Schema$AuditLogConfig[];
     /**
-     * Specifies a service that will be enabled for audit logging. For example,
-     * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
-     * special value that covers all services.
+     * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
     service?: string;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example: {
-   * &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;:
-   * &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [
-   * &quot;user:foo@gmail.com&quot;           ]         },         {
-   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This
-   * enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while
-   * exempting foo@gmail.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:foo@gmail.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
-     * Specifies the identities that do not cause logging for this type of
-     * permission. Follows the same format of Binding.members.
+     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
     exemptedMembers?: string[];
     /**
@@ -178,30 +148,15 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied
-     * condition will not allow user access via current binding. Different
-     * bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource.
-     * `members` can have the following values:  * `allUsers`: A special
-     * identifier that represents anyone who is    on the internet; with or
-     * without a Google account.  * `allAuthenticatedUsers`: A special
-     * identifier that represents anyone    who is authenticated with a Google
-     * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com` .
-     * * `serviceAccount:{emailid}`: An email address that represents a service
-     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
-     * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
-     * (primary) that represents all the    users of that domain. For example,
-     * `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
-     * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`.
+     * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -210,8 +165,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$CharacterMaskConfig {
     /**
-     * Character to mask the sensitive values. If not supplied, defaults to
-     * &quot;*&quot;.
+     * Character to mask the sensitive values. If not supplied, defaults to &quot;*&quot;.
      */
     maskingCharacter?: string;
   }
@@ -225,57 +179,38 @@ export namespace healthcare_v1beta1 {
     message?: Schema$Message;
   }
   /**
-   * Pseudonymization method that generates surrogates via cryptographic
-   * hashing. Uses SHA-256. Outputs a base64-encoded representation of the
-   * hashed output (for example,
-   * `L7k0BHmF1ha5U3NfGykjro4xWi1MPVQPjhMAZbSV9mM=`).
+   * Pseudonymization method that generates surrogates via cryptographic hashing. Uses SHA-256. Outputs a base64-encoded representation of the hashed output (for example, `L7k0BHmF1ha5U3NfGykjro4xWi1MPVQPjhMAZbSV9mM=`).
    */
   export interface Schema$CryptoHashConfig {
     /**
-     * An AES 128/192/256 bit key. Causes the hash to be computed based on this
-     * key. A default key is generated for each DeidentifyDataset operation and
-     * is used wherever crypto_key is not specified.
+     * An AES 128/192/256 bit key. Causes the hash to be computed based on this key. A default key is generated for each DeidentifyDataset operation and is used wherever crypto_key is not specified.
      */
     cryptoKey?: string;
   }
   /**
-   * A message representing a health dataset.  A health dataset represents a
-   * collection of healthcare data pertaining to one or more patients. This may
-   * include multiple modalities of healthcare data, such as electronic medical
-   * records or medical imaging data.
+   * A message representing a health dataset.  A health dataset represents a collection of healthcare data pertaining to one or more patients. This may include multiple modalities of healthcare data, such as electronic medical records or medical imaging data.
    */
   export interface Schema$Dataset {
     /**
-     * Output only. Resource name of the dataset, of the form
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.
+     * Output only. Resource name of the dataset, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.
      */
     name?: string;
     /**
-     * The default timezone used by this dataset. Must be a either a valid IANA
-     * time zone name such as &quot;America/New_York&quot; or empty, which
-     * defaults to UTC. This is used for parsing times in resources (e.g., HL7
-     * messages) where no explicit timezone is specified.
+     * The default timezone used by this dataset. Must be a either a valid IANA time zone name such as &quot;America/New_York&quot; or empty, which defaults to UTC. This is used for parsing times in resources (e.g., HL7 messages) where no explicit timezone is specified.
      */
     timeZone?: string;
   }
   /**
-   * Shift a date forward or backward in time by a random amount which is
-   * consistent for a given patient and crypto key combination.
+   * Shift a date forward or backward in time by a random amount which is consistent for a given patient and crypto key combination.
    */
   export interface Schema$DateShiftConfig {
     /**
-     * An AES 128/192/256 bit key. Causes the shift to be computed based on this
-     * key and the patient ID. A default key is generated for each
-     * DeidentifyDataset operation and is used wherever crypto_key is not
-     * specified.
+     * An AES 128/192/256 bit key. Causes the shift to be computed based on this key and the patient ID. A default key is generated for each DeidentifyDataset operation and is used wherever crypto_key is not specified.
      */
     cryptoKey?: string;
   }
   /**
-   * Configures de-id options specific to different types of content. Each
-   * submessage customizes the handling of an
-   * https://tools.ietf.org/html/rfc6838 media type or subtype. Configs are
-   * applied in a nested manner at runtime.
+   * Configures de-id options specific to different types of content. Each submessage customizes the handling of an https://tools.ietf.org/html/rfc6838 media type or subtype. Configs are applied in a nested manner at runtime.
    */
   export interface Schema$DeidentifyConfig {
     /**
@@ -287,13 +222,11 @@ export namespace healthcare_v1beta1 {
      */
     fhir?: Schema$FhirConfig;
     /**
-     * Configures de-identification of image pixels wherever they are found in
-     * the source_dataset.
+     * Configures de-identification of image pixels wherever they are found in the source_dataset.
      */
     image?: Schema$ImageConfig;
     /**
-     * Configures de-identification of text wherever it is found in the
-     * source_dataset.
+     * Configures de-identification of text wherever it is found in the source_dataset.
      */
     text?: Schema$TextConfig;
   }
@@ -306,10 +239,7 @@ export namespace healthcare_v1beta1 {
      */
     config?: Schema$DeidentifyConfig;
     /**
-     * The name of the dataset resource to create and write the redacted data to
-     * (e.g.,   * The destination dataset must not exist.  * The destination
-     * dataset must be in the same project as the source    dataset.
-     * De-identifying data across multiple projects is not supported.
+     * The name of the dataset resource to create and write the redacted data to (e.g.,   * The destination dataset must not exist.  * The destination dataset must be in the same project as the source    dataset. De-identifying data across multiple projects is not supported.
      */
     destinationDataset?: string;
   }
@@ -369,19 +299,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$DicomStore {
     /**
-     * User-supplied key-value pairs used to organize DICOM stores.  Label keys
-     * must be between 1 and 63 characters long, have a UTF-8 encoding of
-     * maximum 128 bytes, and must conform to the following PCRE regular
-     * expression: \p{Ll}\p{Lo}{0,62}  Label values are optional, must be
-     * between 1 and 63 characters long, have a UTF-8 encoding of maximum 128
-     * bytes, and must conform to the following PCRE regular expression:
-     * [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated
-     * with a given store.
+     * User-supplied key-value pairs used to organize DICOM stores.  Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}  Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated with a given store.
      */
     labels?: {[key: string]: string};
     /**
-     * Output only. Resource name of the DICOM store, of the form
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     * Output only. Resource name of the DICOM store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      */
     name?: string;
     /**
@@ -390,17 +312,11 @@ export namespace healthcare_v1beta1 {
     notificationConfig?: Schema$NotificationConfig;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * Structure to describe the error encountered during batch operation on one
-   * resource. This is used both for sample errors in operation response, and
-   * for format of errors in error reports.
+   * Structure to describe the error encountered during batch operation on one resource. This is used both for sample errors in operation response, and for format of errors in error reports.
    */
   export interface Schema$ErrorDetail {
     /**
@@ -413,22 +329,15 @@ export namespace healthcare_v1beta1 {
     resource?: string;
   }
   /**
-   * Exports data from the specified DICOM store. If a given resource (e.g., a
-   * DICOM object with the same SOPInstance UID) already exists in the output,
-   * it is overwritten with the version in the source dataset. Exported DICOM
-   * data will persist when the DICOM store from which it was exported is
-   * deleted.
+   * Exports data from the specified DICOM store. If a given resource (e.g., a DICOM object with the same SOPInstance UID) already exists in the output, it is overwritten with the version in the source dataset. Exported DICOM data will persist when the DICOM store from which it was exported is deleted.
    */
   export interface Schema$ExportDicomDataRequest {
     /**
-     * The BigQuery output destination.  For now, only exporting to a dataset in
-     * the current project is supported  The BigQuery location requires two IAM
-     * roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
+     * The BigQuery output destination.  For now, only exporting to a dataset in the current project is supported  The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1DicomBigQueryDestination;
     /**
-     * The Cloud Storage output destination.  The Cloud Storage location
-     * requires the `roles/storage.objectAdmin` Cloud IAM role.
+     * The Cloud Storage output destination.  The Cloud Storage location requires the `roles/storage.objectAdmin` Cloud IAM role.
      */
     gcsDestination?: Schema$GoogleCloudHealthcareV1beta1DicomGcsDestination;
   }
@@ -437,46 +346,32 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ExportResourcesRequest {
     /**
-     * The BigQuery output destination.  The BigQuery location requires two IAM
-     * roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.  The
-     * output will be one BigQuery table per resource type.
+     * The BigQuery output destination.  The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.  The output will be one BigQuery table per resource type.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1FhirBigQueryDestination;
     /**
-     * The Cloud Storage output destination.  The Cloud Storage location
-     * requires the `roles/storage.objectAdmin` Cloud IAM role.  The exported
-     * outputs are organized by FHIR resource types. The server will create one
-     * object per resource type. Each object contains newline delimited JSON,
-     * and each line is a FHIR resource.
+     * The Cloud Storage output destination.  The Cloud Storage location requires the `roles/storage.objectAdmin` Cloud IAM role.  The exported outputs are organized by FHIR resource types. The server will create one object per resource type. Each object contains newline delimited JSON, and each line is a FHIR resource.
      */
     gcsDestination?: Schema$GoogleCloudHealthcareV1beta1FhirRestGcsDestination;
   }
   /**
-   * Represents an expression text. Example:      title: &quot;User account
-   * presence&quot;     description: &quot;Determines whether the request has a
-   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which
-     * describes the expression, e.g. when hovered over it in a UI.
+     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string;
     /**
-     * Textual representation of an expression in Common Expression Language
-     * syntax.  The application context of the containing message determines
-     * which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
     expression?: string;
     /**
-     * An optional string indicating the location of the expression for error
-     * reporting, e.g. a file name and a position in the file.
+     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string;
     /**
-     * An optional title for the expression, i.e. a short string describing its
-     * purpose. This can be used e.g. in UIs which allow to enter the
-     * expression.
+     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string;
   }
@@ -485,9 +380,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$FhirConfig {
     /**
-     * Specifies FHIR paths to match and how to transform them. Any field that
-     * is not matched by a FieldMetadata will be passed through to the output
-     * dataset unmodified. All extensions are removed in the output.
+     * Specifies FHIR paths to match and how to transform them. Any field that is not matched by a FieldMetadata will be passed through to the output dataset unmodified. All extensions are removed in the output.
      */
     fieldMetadataList?: Schema$FieldMetadata[];
   }
@@ -496,74 +389,36 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$FhirStore {
     /**
-     * Whether to disable referential integrity in this FHIR store. This field
-     * is immutable after FHIR store creation. The default value is false,
-     * meaning that the API will enforce referential integrity and fail the
-     * requests that will result in inconsistent state in the FHIR store. When
-     * this field is set to true, the API will skip referential integrity check.
-     * Consequently, operations that rely on references, such as
-     * GetPatientEverything, will not return all the results if broken
-     * references exist.
+     * Whether to disable referential integrity in this FHIR store. This field is immutable after FHIR store creation. The default value is false, meaning that the API will enforce referential integrity and fail the requests that will result in inconsistent state in the FHIR store. When this field is set to true, the API will skip referential integrity check. Consequently, operations that rely on references, such as GetPatientEverything, will not return all the results if broken references exist.
      */
     disableReferentialIntegrity?: boolean;
     /**
-     * Whether to disable resource versioning for this FHIR store. This field
-     * can not be changed after the creation of FHIR store. If set to false,
-     * which is the default behavior, all write operations will cause historical
-     * versions to be recorded automatically. The historical versions can be
-     * fetched through the history APIs, but cannot be updated. If set to true,
-     * no historical versions will be kept. The server will send back errors for
-     * attempts to read the historical versions.
+     * Whether to disable resource versioning for this FHIR store. This field can not be changed after the creation of FHIR store. If set to false, which is the default behavior, all write operations will cause historical versions to be recorded automatically. The historical versions can be fetched through the history APIs, but cannot be updated. If set to true, no historical versions will be kept. The server will send back errors for attempts to read the historical versions.
      */
     disableResourceVersioning?: boolean;
     /**
-     * Whether to allow the bulk import API to accept history bundles and
-     * directly insert historical resource versions into the FHIR store.
-     * Importing resource histories creates resource interactions that appear to
-     * have occurred in the past, which clients may not want to allow. If set to
-     * false, history bundles within an import will fail with an error.
+     * Whether to allow the bulk import API to accept history bundles and directly insert historical resource versions into the FHIR store. Importing resource histories creates resource interactions that appear to have occurred in the past, which clients may not want to allow. If set to false, history bundles within an import will fail with an error.
      */
     enableHistoryImport?: boolean;
     /**
-     * Whether this FHIR store has the [updateCreate
-     * capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate).
-     * This determines if the client can use an Update operation to create a new
-     * resource with a client-specified ID. If false, all IDs are
-     * server-assigned through the Create operation and attempts to Update a
-     * non-existent resource will return errors. Please treat the audit logs
-     * with appropriate levels of care if client-specified resource IDs contain
-     * sensitive data such as patient identifiers, those IDs will be part of the
-     * FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub
-     * notifications.
+     * Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to Update a non-existent resource will return errors. Please treat the audit logs with appropriate levels of care if client-specified resource IDs contain sensitive data such as patient identifiers, those IDs will be part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications.
      */
     enableUpdateCreate?: boolean;
     /**
-     * User-supplied key-value pairs used to organize FHIR stores.  Label keys
-     * must be between 1 and 63 characters long, have a UTF-8 encoding of
-     * maximum 128 bytes, and must conform to the following PCRE regular
-     * expression: \p{Ll}\p{Lo}{0,62}  Label values are optional, must be
-     * between 1 and 63 characters long, have a UTF-8 encoding of maximum 128
-     * bytes, and must conform to the following PCRE regular expression:
-     * [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated
-     * with a given store.
+     * User-supplied key-value pairs used to organize FHIR stores.  Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}  Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated with a given store.
      */
     labels?: {[key: string]: string};
     /**
-     * Output only. Resource name of the FHIR store, of the form
-     * `projects/{project_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
+     * Output only. Resource name of the FHIR store, of the form `projects/{project_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
      */
     name?: string;
     /**
-     * If non-empty, publish all resource modifications of this FHIR store to
-     * this destination. The Cloud Pub/Sub message attributes will contain a map
-     * with a string describing the action that has triggered the notification,
-     * e.g. &quot;action&quot;:&quot;CreateResource&quot;.
+     * If non-empty, publish all resource modifications of this FHIR store to this destination. The Cloud Pub/Sub message attributes will contain a map with a string describing the action that has triggered the notification, e.g. &quot;action&quot;:&quot;CreateResource&quot;.
      */
     notificationConfig?: Schema$NotificationConfig;
   }
   /**
-   * Specifies FHIR paths to match, and how to handle de-identification of
-   * matching fields.
+   * Specifies FHIR paths to match, and how to handle de-identification of matching fields.
    */
   export interface Schema$FieldMetadata {
     /**
@@ -571,14 +426,7 @@ export namespace healthcare_v1beta1 {
      */
     action?: string;
     /**
-     * List of paths to FHIR fields to be redacted. Each path is a
-     * period-separated list where each component is either a field name or FHIR
-     * type name, for example: Patient, HumanName. For &quot;choice&quot; types
-     * (those defined in the FHIR spec with the form: field[x]) we use two
-     * separate components. e.g. &quot;deceasedAge.unit&quot; is matched by
-     * &quot;Deceased.Age.unit&quot;. Supported types are:
-     * AdministrativeGenderCode, Code, Date, DateTime, Decimal, HumanName, Id,
-     * LanguageCode, Markdown, MimeTypeCode, Oid, String, Uri, Uuid, Xhtml.
+     * List of paths to FHIR fields to be redacted. Each path is a period-separated list where each component is either a field name or FHIR type name, for example: Patient, HumanName. For &quot;choice&quot; types (those defined in the FHIR spec with the form: field[x]) we use two separate components. e.g. &quot;deceasedAge.unit&quot; is matched by &quot;Deceased.Age.unit&quot;. Supported types are: AdministrativeGenderCode, Code, Date, DateTime, Decimal, HumanName, Id, LanguageCode, Markdown, MimeTypeCode, Oid, String, Uri, Uuid, Xhtml.
      */
     paths?: string[];
   }
@@ -587,42 +435,24 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1DicomBigQueryDestination {
     /**
-     * If the destination table already exists and this flag is `TRUE`, the
-     * table will be overwritten by the contents of the DICOM store. If the flag
-     * is not set and the destination table already exists, the export call
-     * returns an error.
+     * If the destination table already exists and this flag is `TRUE`, the table will be overwritten by the contents of the DICOM store. If the flag is not set and the destination table already exists, the export call returns an error.
      */
     force?: boolean;
     /**
-     * BigQuery URI to a table, up to 2000 characters long, in the format
-     * `bq://projectId.bqDatasetId.tableId`
+     * BigQuery URI to a table, up to 2000 characters long, in the format `bq://projectId.bqDatasetId.tableId`
      */
     tableUri?: string;
   }
   /**
-   * The Cloud Storage location where the output should be written, and the
-   * export configuration.
+   * The Cloud Storage location where the output should be written, and the export configuration.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1DicomGcsDestination {
     /**
-     * MIME types supported by DICOM spec. Each file will be written in the
-     * following format:
-     * `.../{study_id}/{series_id}/{instance_id}[/{frame_number}].{extension}`
-     * The frame_number component will exist only for multi-frame instances.
-     * Refer to the DICOM conformance statement for permissible MIME types:
-     * https://cloud.google.com/healthcare/docs/dicom#wado-rs  The following
-     * extensions will be used for output files:   application/dicom -&gt; .dcm
-     * image/jpeg -&gt; .jpg   image/png -&gt; .png  If unspecified, the
-     * instances will be exported in their original DICOM format.
+     * MIME types supported by DICOM spec. Each file will be written in the following format: `.../{study_id}/{series_id}/{instance_id}[/{frame_number}].{extension}` The frame_number component will exist only for multi-frame instances.  Refer to the DICOM conformance statement for permissible MIME types: https://cloud.google.com/healthcare/docs/dicom#wado-rs  The following extensions will be used for output files:   application/dicom -&gt; .dcm   image/jpeg -&gt; .jpg   image/png -&gt; .png  If unspecified, the instances will be exported in their original DICOM format.
      */
     mimeType?: string;
     /**
-     * The Cloud Storage destination to export to.  URI for a Cloud Storage
-     * directory where result files should be written (in the format
-     * `gs://{bucket-id}/{path/to/destination/dir}`). If there is no trailing
-     * slash, the service will append one when composing the object path. The
-     * user is responsible for creating the Cloud Storage bucket referenced in
-     * `uri_prefix`.
+     * The Cloud Storage destination to export to.  URI for a Cloud Storage directory where result files should be written (in the format `gs://{bucket-id}/{path/to/destination/dir}`). If there is no trailing slash, the service will append one when composing the object path. The user is responsible for creating the Cloud Storage bucket referenced in `uri_prefix`.
      */
     uriPrefix?: string;
   }
@@ -631,19 +461,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1DicomGcsSource {
     /**
-     * Points to a Cloud Storage URI containing file(s) with content only. The
-     * URI must be in the following format: `gs://{bucket_id}/{object_id}`. The
-     * URI can include wildcards in `object_id` and thus identify multiple
-     * files. Supported wildcards:  &#39;*&#39; to match 0 or more non-separator
-     * characters  &#39;**&#39; to match 0 or more characters (including
-     * separators). Must be used at       the end of a path and with no other
-     * wildcards in the       path. Can also be used with a file extension (such
-     * as .dcm), which       imports all files with the extension in the
-     * specified directory and       its sub-directories. For example,
-     * `gs://my-bucket/my-directory/**.dcm` imports all files with .dcm
-     * extensions in `my-directory/` and its sub-directories.  &#39;?&#39; to
-     * match 1 character All other URI formats are invalid. Files matching the
-     * wildcard are expected to contain content only, no metadata.
+     * Points to a Cloud Storage URI containing file(s) with content only. The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards:  &#39;*&#39; to match 0 or more non-separator characters  &#39;**&#39; to match 0 or more characters (including separators). Must be used at       the end of a path and with no other wildcards in the       path. Can also be used with a file extension (such as .dcm), which       imports all files with the extension in the specified directory and       its sub-directories. For example,       `gs://my-bucket/my-directory/**.dcm` imports all files with .dcm       extensions in `my-directory/` and its sub-directories.  &#39;?&#39; to match 1 character All other URI formats are invalid. Files matching the wildcard are expected to contain content only, no metadata.
      */
     uri?: string;
   }
@@ -652,8 +470,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1FhirBigQueryDestination {
     /**
-     * BigQuery URI to a dataset, up to 2000 characters long, in the format
-     * `bq://projectId.bqDatasetId`
+     * BigQuery URI to a dataset, up to 2000 characters long, in the format `bq://projectId.bqDatasetId`
      */
     datasetUri?: string;
     /**
@@ -662,15 +479,11 @@ export namespace healthcare_v1beta1 {
     schemaConfig?: Schema$SchemaConfig;
   }
   /**
-   * Final response of exporting resources. This structure will be included in
-   * the response to describe the detailed outcome. It will only be included
-   * when the operation finishes.
+   * Final response of exporting resources. This structure will be included in the response to describe the detailed outcome. It will only be included when the operation finishes.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1FhirRestExportResourcesResponse {
     /**
-     * The name of the FHIR store where resources have been exported, in the
-     * format
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
+     * The name of the FHIR store where resources have been exported, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
      */
     fhirStore?: string;
     /**
@@ -683,11 +496,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1FhirRestGcsDestination {
     /**
-     * URI for a Cloud Storage directory where result files should be written
-     * (in the format `gs://{bucket-id}/{path/to/destination/dir}`). If there is
-     * no trailing slash, the service will append one when composing the object
-     * path. The user is responsible for creating the Cloud Storage bucket
-     * referenced in `uri_prefix`.
+     * URI for a Cloud Storage directory where result files should be written (in the format `gs://{bucket-id}/{path/to/destination/dir}`). If there is no trailing slash, the service will append one when composing the object path. The user is responsible for creating the Cloud Storage bucket referenced in `uri_prefix`.
      */
     uriPrefix?: string;
   }
@@ -696,25 +505,12 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1FhirRestGcsSource {
     /**
-     * Points to a Cloud Storage URI containing file(s) to import.  The URI must
-     * be in the following format: `gs://{bucket_id}/{object_id}`. The URI can
-     * include wildcards in `object_id` and thus identify multiple files.
-     * Supported wildcards:  *  `*` to match 0 or more non-separator characters
-     * *  `**` to match 0 or more characters (including separators). Must be
-     * used at the end of a path and with no other wildcards in the path. Can
-     * also be used with a file extension (such as .ndjson), which imports all
-     * files with the extension in the specified directory and its
-     * sub-directories. For example, `gs://my-bucket/my-directory/**.ndjson`
-     * imports all files with `.ndjson` extensions in `my-directory/` and its
-     * sub-directories. *  `?` to match 1 character  Files matching the wildcard
-     * are expected to contain content only, no metadata.
+     * Points to a Cloud Storage URI containing file(s) to import.  The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards:  *  `*` to match 0 or more non-separator characters *  `**` to match 0 or more characters (including separators). Must be used at the end of a path and with no other wildcards in the path. Can also be used with a file extension (such as .ndjson), which imports all files with the extension in the specified directory and its sub-directories. For example, `gs://my-bucket/my-directory/**.ndjson` imports all files with `.ndjson` extensions in `my-directory/` and its sub-directories. *  `?` to match 1 character  Files matching the wildcard are expected to contain content only, no metadata.
      */
     uri?: string;
   }
   /**
-   * Error response of importing resources. This structure will be included in
-   * the error details to describe the detailed error. It will only be included
-   * when the operation finishes with some failure.
+   * Error response of importing resources. This structure will be included in the error details to describe the detailed error. It will only be included when the operation finishes with some failure.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1FhirRestImportResourcesErrorDetails {
     /**
@@ -722,14 +518,11 @@ export namespace healthcare_v1beta1 {
      */
     errorCount?: string;
     /**
-     * The name of the FHIR store where resources have been imported, in the
-     * format
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
+     * The name of the FHIR store where resources have been imported, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
      */
     fhirStore?: string;
     /**
-     * The total number of resources included in the source data. This is the
-     * sum of the success and error counts.
+     * The total number of resources included in the source data. This is the sum of the success and error counts.
      */
     inputSize?: string;
     /**
@@ -738,15 +531,11 @@ export namespace healthcare_v1beta1 {
     successCount?: string;
   }
   /**
-   * Final response of importing resources. This structure will be included in
-   * the response to describe the detailed outcome. It will only be included
-   * when the operation finishes successfully.
+   * Final response of importing resources. This structure will be included in the response to describe the detailed outcome. It will only be included when the operation finishes successfully.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1FhirRestImportResourcesResponse {
     /**
-     * The name of the FHIR store where the resources have been imported, in the
-     * format
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
+     * The name of the FHIR store where the resources have been imported, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
      */
     fhirStore?: string;
     /**
@@ -759,57 +548,28 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$Hl7V2Store {
     /**
-     * User-supplied key-value pairs used to organize HL7v2 stores.  Label keys
-     * must be between 1 and 63 characters long, have a UTF-8 encoding of
-     * maximum 128 bytes, and must conform to the following PCRE regular
-     * expression: \p{Ll}\p{Lo}{0,62}  Label values are optional, must be
-     * between 1 and 63 characters long, have a UTF-8 encoding of maximum 128
-     * bytes, and must conform to the following PCRE regular expression:
-     * [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated
-     * with a given store.
+     * User-supplied key-value pairs used to organize HL7v2 stores.  Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}  Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated with a given store.
      */
     labels?: {[key: string]: string};
     /**
-     * Output only. Resource name of the HL7v2 store, of the form
-     * `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.
+     * Output only. Resource name of the HL7v2 store, of the form `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.
      */
     name?: string;
     /**
-     * The notification destination all messages (both Ingest &amp; Create) are
-     * published on. Only the message name is sent as part of the notification.
-     * If this is unset, no notifications will be sent. Supplied by the client.
+     * The notification destination all messages (both Ingest &amp; Create) are published on. Only the message name is sent as part of the notification. If this is unset, no notifications will be sent. Supplied by the client.
      */
     notificationConfig?: Schema$NotificationConfig;
     /**
-     * The configuration for the parser. It determines how the server parses the
-     * messages.
+     * The configuration for the parser. It determines how the server parses the messages.
      */
     parserConfig?: Schema$ParserConfig;
   }
   /**
-   * Message that represents an arbitrary HTTP body. It should only be used for
-   * payload formats that can&#39;t be represented as JSON, such as raw binary
-   * or an HTML page.   This message can be used both in streaming and
-   * non-streaming API methods in the request as well as the response.  It can
-   * be used as a top-level request field, which is convenient if one wants to
-   * extract parameters from either the URL or HTTP template into the request
-   * fields and also want access to the raw HTTP body.  Example:      message
-   * GetResourceRequest {       // A unique request id.       string request_id
-   * = 1;        // The raw HTTP body is bound to this field.
-   * google.api.HttpBody http_body = 2;     }      service ResourceService { rpc
-   * GetResource(GetResourceRequest) returns (google.api.HttpBody);       rpc
-   * UpdateResource(google.api.HttpBody) returns       (google.protobuf.Empty);
-   * }  Example with streaming methods:      service CaldavService {       rpc
-   * GetCalendar(stream google.api.HttpBody)         returns (stream
-   * google.api.HttpBody);       rpc UpdateCalendar(stream google.api.HttpBody)
-   * returns (stream google.api.HttpBody);     }  Use of this type only changes
-   * how the request and response bodies are handled, all other features will
-   * continue to work unchanged.
+   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can&#39;t be represented as JSON, such as raw binary or an HTML page.   This message can be used both in streaming and non-streaming API methods in the request as well as the response.  It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body.  Example:      message GetResourceRequest {       // A unique request id.       string request_id = 1;        // The raw HTTP body is bound to this field.       google.api.HttpBody http_body = 2;     }      service ResourceService {       rpc GetResource(GetResourceRequest) returns (google.api.HttpBody);       rpc UpdateResource(google.api.HttpBody) returns       (google.protobuf.Empty);     }  Example with streaming methods:      service CaldavService {       rpc GetCalendar(stream google.api.HttpBody)         returns (stream google.api.HttpBody);       rpc UpdateCalendar(stream google.api.HttpBody)         returns (stream google.api.HttpBody);     }  Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
    */
   export interface Schema$HttpBody {
     /**
-     * The HTTP Content-Type header value specifying the content type of the
-     * body.
+     * The HTTP Content-Type header value specifying the content type of the body.
      */
     contentType?: string;
     /**
@@ -817,8 +577,7 @@ export namespace healthcare_v1beta1 {
      */
     data?: string;
     /**
-     * Application specific response metadata. Must be set in the first response
-     * for streaming APIs.
+     * Application specific response metadata. Must be set in the first response for streaming APIs.
      */
     extensions?: Array<{[key: string]: any}>;
   }
@@ -836,23 +595,16 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ImportDicomDataErrorDetails {
     /**
-     * Deprecated. Use only for debugging purposes.  Contains sample errors
-     * encountered in imports of individual resources (for example, a Cloud
-     * Storage object).
+     * Deprecated. Use only for debugging purposes.  Contains sample errors encountered in imports of individual resources (for example, a Cloud Storage object).
      */
     sampleErrors?: Schema$ErrorDetail[];
   }
   /**
-   * Imports data into the specified DICOM store. Returns an error if any of the
-   * files to import are not DICOM files. This API will accept duplicate DICOM
-   * instances, by simply ignoring the newly pushed instance (it will not
-   * overwrite).
+   * Imports data into the specified DICOM store. Returns an error if any of the files to import are not DICOM files. This API will accept duplicate DICOM instances, by simply ignoring the newly pushed instance (it will not overwrite).
    */
   export interface Schema$ImportDicomDataRequest {
     /**
-     * Cloud Storage source data location and import configuration.  The Cloud
-     * Storage location requires the `roles/storage.objectViewer` Cloud IAM
-     * role.
+     * Cloud Storage source data location and import configuration.  The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1beta1DicomGcsSource;
   }
@@ -865,20 +617,12 @@ export namespace healthcare_v1beta1 {
      */
     contentStructure?: string;
     /**
-     * Cloud Storage source data location and import configuration.  The Cloud
-     * Storage location requires the `roles/storage.objectViewer` Cloud IAM
-     * role.  Each Cloud Storage object should be a text file that contains
-     * newline delimited JSON structures conforming to FHIR standard.  To
-     * improve performance, use multiple Cloud Storage objects where each object
-     * contains a subset of all of the newline-delimited JSON structures. You
-     * can select all of the objects using the uri as the prefix. The maximum
-     * number of objects is 1,000.
+     * Cloud Storage source data location and import configuration.  The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.  Each Cloud Storage object should be a text file that contains newline delimited JSON structures conforming to FHIR standard.  To improve performance, use multiple Cloud Storage objects where each object contains a subset of all of the newline-delimited JSON structures. You can select all of the objects using the uri as the prefix. The maximum number of objects is 1,000.
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1beta1FhirRestGcsSource;
   }
   /**
-   * A transformation to apply to text that is identified as a specific
-   * info_type.
+   * A transformation to apply to text that is identified as a specific info_type.
    */
   export interface Schema$InfoTypeTransformation {
     /**
@@ -894,8 +638,7 @@ export namespace healthcare_v1beta1 {
      */
     dateShiftConfig?: Schema$DateShiftConfig;
     /**
-     * InfoTypes to apply this transformation to. If this is not specified, the
-     * transformation applies to any info_type.
+     * InfoTypes to apply this transformation to. If this is not specified, the transformation applies to any info_type.
      */
     infoTypes?: string[];
     /**
@@ -917,8 +660,7 @@ export namespace healthcare_v1beta1 {
     message?: Schema$Message;
   }
   /**
-   * Acknowledges that a message has been ingested into the specified HL7v2
-   * store.
+   * Acknowledges that a message has been ingested into the specified HL7v2 store.
    */
   export interface Schema$IngestMessageResponse {
     /**
@@ -939,8 +681,7 @@ export namespace healthcare_v1beta1 {
      */
     datasets?: Schema$Dataset[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -949,13 +690,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ListDicomStoresResponse {
     /**
-     * The returned DICOM stores. Won&#39;t be more DICOM stores than the value
-     * of page_size in the request.
+     * The returned DICOM stores. Won&#39;t be more DICOM stores than the value of page_size in the request.
      */
     dicomStores?: Schema$DicomStore[];
     /**
-     * Token to retrieve the next page of results or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -964,13 +703,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ListFhirStoresResponse {
     /**
-     * The returned FHIR stores. Won&#39;t be more FHIR stores than the value of
-     * page_size in the request.
+     * The returned FHIR stores. Won&#39;t be more FHIR stores than the value of page_size in the request.
      */
     fhirStores?: Schema$FhirStore[];
     /**
-     * Token to retrieve the next page of results or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -979,13 +716,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ListHl7V2StoresResponse {
     /**
-     * The returned HL7v2 stores. Won&#39;t be more HL7v2 stores than the value
-     * of page_size in the request.
+     * The returned HL7v2 stores. Won&#39;t be more HL7v2 stores than the value of page_size in the request.
      */
     hl7V2Stores?: Schema$Hl7V2Store[];
     /**
-     * Token to retrieve the next page of results or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -1007,13 +742,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ListMessagesResponse {
     /**
-     * The returned message names. Won&#39;t be more values than the value of
-     * page_size in the request.
+     * The returned message names. Won&#39;t be more values than the value of page_size in the request.
      */
     messages?: string[];
     /**
-     * Token to retrieve the next page of results or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -1035,13 +768,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For
-     * example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
      */
     displayName?: string;
     /**
-     * Cross-service attributes for the location. For example
-     * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: {[key: string]: string};
     /**
@@ -1049,20 +780,16 @@ export namespace healthcare_v1beta1 {
      */
     locationId?: string;
     /**
-     * Service-specific metadata. For example the available capacity at the
-     * given location.
+     * Service-specific metadata. For example the available capacity at the given location.
      */
     metadata?: {[key: string]: any};
     /**
-     * Resource name for the location, which may vary between implementations.
-     * For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
     name?: string;
   }
   /**
-   * A complete HL7v2 message. See
-   * http://www.hl7.org/implement/standards/index.cfm?ref=common for details on
-   * the standard.
+   * A complete HL7v2 message. See http://www.hl7.org/implement/standards/index.cfm?ref=common for details on the standard.
    */
   export interface Schema$Message {
     /**
@@ -1074,14 +801,7 @@ export namespace healthcare_v1beta1 {
      */
     data?: string;
     /**
-     * User-supplied key-value pairs used to organize HL7v2 stores.  Label keys
-     * must be between 1 and 63 characters long, have a UTF-8 encoding of
-     * maximum 128 bytes, and must conform to the following PCRE regular
-     * expression: \p{Ll}\p{Lo}{0,62}  Label values are optional, must be
-     * between 1 and 63 characters long, have a UTF-8 encoding of maximum 128
-     * bytes, and must conform to the following PCRE regular expression:
-     * [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated
-     * with a given store.
+     * User-supplied key-value pairs used to organize HL7v2 stores.  Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}  Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated with a given store.
      */
     labels?: {[key: string]: string};
     /**
@@ -1089,9 +809,7 @@ export namespace healthcare_v1beta1 {
      */
     messageType?: string;
     /**
-     * Resource name of the Message, of the form
-     * `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`.
-     * Assigned by the server.
+     * Resource name of the Message, of the form `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.
      */
     name?: string;
     /**
@@ -1099,8 +817,7 @@ export namespace healthcare_v1beta1 {
      */
     parsedData?: Schema$ParsedData;
     /**
-     * All patient IDs listed in the PID-2, PID-3, and PID-4 segments of this
-     * message.
+     * All patient IDs listed in the PID-2, PID-3, and PID-4 segments of this message.
      */
     patientIds?: Schema$PatientId[];
     /**
@@ -1117,30 +834,16 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$NotificationConfig {
     /**
-     * The [Cloud Pub/Sub](https://cloud.google.com/pubsub/docs/) topic that
-     * notifications of changes are published on. Supplied by the client.
-     * PubsubMessage.Data will contain the resource name.
-     * PubsubMessage.MessageId is the ID of this message. It is guaranteed to be
-     * unique within the topic. PubsubMessage.PublishTime is the time at which
-     * the message was published. Notifications are only sent if the topic is
-     * non-empty. [Topic
-     * names](https://cloud.google.com/pubsub/docs/overview#names) must be
-     * scoped to a project. cloud-healthcare@system.gserviceaccount.com must
-     * have publisher permissions on the given Cloud Pub/Sub topic. Not having
-     * adequate permissions will cause the calls that send notifications to
-     * fail.
+     * The [Cloud Pub/Sub](https://cloud.google.com/pubsub/docs/) topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. [Topic names](https://cloud.google.com/pubsub/docs/overview#names) must be scoped to a project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
      */
     pubsubTopic?: string;
   }
   /**
-   * This resource represents a long-running operation that is the result of a
-   * network API call.
+   * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
     /**
-     * If the value is `false`, it means the operation is still in progress. If
-     * `true`, the operation is completed, and either `error` or `response` is
-     * available.
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
     done?: boolean;
     /**
@@ -1148,32 +851,20 @@ export namespace healthcare_v1beta1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically
-     * contains progress information and common metadata such as create time.
-     * Some services might not provide such metadata.  Any method that returns a
-     * long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any};
     /**
-     * The server-assigned name, which is only unique within the same service
-     * that originally returns it. If you use the default HTTP mapping, the
-     * `name` should have the format of `operations/some/unique/name`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
     name?: string;
     /**
-     * The normal response of the operation in case of success.  If the original
-     * method returns no data on success, such as `Delete`, the response is
-     * `google.protobuf.Empty`.  If the original method is standard
-     * `Get`/`Create`/`Update`, the response should be the resource.  For other
-     * methods, the response should have the type `XxxResponse`, where `Xxx` is
-     * the original method name.  For example, if the original method name is
-     * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any};
   }
   /**
-   * OperationMetadata provides information about the operation execution.
-   * Returned in the long-running operation&#39;s metadata field.
+   * OperationMetadata provides information about the operation execution. Returned in the long-running operation&#39;s metadata field.
    */
   export interface Schema$OperationMetadata {
     /**
@@ -1197,8 +888,7 @@ export namespace healthcare_v1beta1 {
     segments?: Schema$Segment[];
   }
   /**
-   * The configuration for the parser. It determines how the server parses the
-   * messages.
+   * The configuration for the parser. It determines how the server parses the messages.
    */
   export interface Schema$ParserConfig {
     /**
@@ -1206,8 +896,7 @@ export namespace healthcare_v1beta1 {
      */
     allowNullHeader?: boolean;
     /**
-     * Byte(s) to be used as the segment terminator. If this is unset,
-     * &#39;\r&#39; will be used as segment terminator.
+     * Byte(s) to be used as the segment terminator. If this is unset, &#39;\r&#39; will be used as segment terminator.
      */
     segmentTerminator?: string;
   }
@@ -1225,24 +914,7 @@ export namespace healthcare_v1beta1 {
     value?: string;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to
-   * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `binding` binds a list of `members` to
-   * a `role`, where the members can be user accounts, Google groups, Google
-   * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
-   * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
-   * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
-   * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
-   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
-   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
-   * Example**      bindings:     - members:       - user:mike@example.com -
-   * group:admins@example.com       - domain:google.com       -
-   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
-   * roles/owner     - members:       - user:sean@example.com       role:
-   * roles/viewer   For a description of IAM and its features, see the [IAM
-   * developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -1250,20 +922,11 @@ export namespace healthcare_v1beta1 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members
-     * will result in an error.
+     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a policy from overwriting each other. It
-     * is strongly suggested that systems make use of the `etag` in the
-     * read-modify-write cycle to perform policy updates in order to avoid race
-     * conditions: An `etag` is returned in the response to `getIamPolicy`, and
-     * systems are expected to put that etag in the request to `setIamPolicy` to
-     * ensure that their change will be applied to the same version of the
-     * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
-     * existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
      */
     etag?: string;
     /**
@@ -1289,33 +952,23 @@ export namespace healthcare_v1beta1 {
     success?: string;
   }
   /**
-   * Define how to redact sensitive values. Default behaviour is erase, e.g.
-   * &quot;My name is Jake.&quot; becomes &quot;My name is .&quot;
+   * Define how to redact sensitive values. Default behaviour is erase, e.g. &quot;My name is Jake.&quot; becomes &quot;My name is .&quot;
    */
   export interface Schema$RedactConfig {}
   /**
-   * When using the INSPECT_AND_TRANSFORM action, each match is replaced with
-   * the name of the info_type. For example, &quot;My name is Jake&quot; becomes
-   * &quot;My name is [PERSON_NAME].&quot; The TRANSFORM action is equivalent to
-   * redacting.
+   * When using the INSPECT_AND_TRANSFORM action, each match is replaced with the name of the info_type. For example, &quot;My name is Jake&quot; becomes &quot;My name is [PERSON_NAME].&quot; The TRANSFORM action is equivalent to redacting.
    */
   export interface Schema$ReplaceWithInfoTypeConfig {}
   /**
-   * Configuration for the FHIR BigQuery schema. Determines how the server
-   * generates the schema.
+   * Configuration for the FHIR BigQuery schema. Determines how the server generates the schema.
    */
   export interface Schema$SchemaConfig {
     /**
-     * The depth for all recursive structures in the output analytics schema.
-     * For example, `concept` in the CodeSystem resource is a recursive
-     * structure; when the depth is 2, the CodeSystem table will have a column
-     * called `concept.concept` but not `concept.concept.concept`. If not
-     * specified or set to 0, the server will use the default value 2.
+     * The depth for all recursive structures in the output analytics schema. For example, `concept` in the CodeSystem resource is a recursive structure; when the depth is 2, the CodeSystem table will have a column called `concept.concept` but not `concept.concept.concept`. If not specified or set to 0, the server will use the default value 2.
      */
     recursiveStructureDepth?: string;
     /**
-     * Specifies the output schema type. If unspecified, the default is
-     * `LOSSLESS`.
+     * Specifies the output schema type. If unspecified, the default is `LOSSLESS`.
      */
     schemaType?: string;
   }
@@ -1324,7 +977,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$SearchResourcesRequest {
     /**
-     * The type of the resource to search.
+     * The FHIR resource type to search, such as Patient or Observation. For a complete list, see the [FHIR Resource Index](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html).
      */
     resourceType?: string;
   }
@@ -1333,15 +986,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$Segment {
     /**
-     * A mapping from the positional location to the value. The key string uses
-     * zero-based indexes separated by dots to identify Fields, components and
-     * sub-components. A bracket notation is also used to identify different
-     * instances of a repeated field. Regex for key:
-     * (\d+)(\[\d+\])?(.\d+)?(.\d+)?  Examples of (key, value) pairs: - (0.1,
-     * &quot;foo&quot;): Component 1 of Field 0 has the value &quot;foo&quot;. -
-     * (1.1.2, &quot;bar&quot;): Sub-component 2 of Component 1 of field 1 has
-     * the value &quot;bar&quot;. - (1[2].1, &quot;baz&quot;): Component 1 of
-     * Instance 2 of Field 1, which is repeated, has the value &quot;baz&quot;.
+     * A mapping from the positional location to the value. The key string uses zero-based indexes separated by dots to identify Fields, components and sub-components. A bracket notation is also used to identify different instances of a repeated field. Regex for key: (\d+)(\[\d+\])?(.\d+)?(.\d+)?  Examples of (key, value) pairs: - (0.1, &quot;foo&quot;): Component 1 of Field 0 has the value &quot;foo&quot;. - (1.1.2, &quot;bar&quot;): Sub-component 2 of Component 1 of field 1 has the value &quot;bar&quot;. - (1[2].1, &quot;baz&quot;): Component 1 of Instance 2 of Field 1, which is repeated, has the value &quot;baz&quot;.
      */
     fields?: {[key: string]: string};
     /**
@@ -1349,8 +994,7 @@ export namespace healthcare_v1beta1 {
      */
     segmentId?: string;
     /**
-     * Set ID for segments that can be in a set. This can be empty if it is
-     * missing or it is not applicable.
+     * Set ID for segments that can be in a set. This can be empty if it is missing or it is not applicable.
      */
     setId?: string;
   }
@@ -1359,55 +1003,16 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size
-     * of the policy is limited to a few 10s of KB. An empty policy is a valid
-     * policy but certain Cloud Platform services (such as Projects) might
-     * reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify.
-     * Only the fields in the mask will be modified. If no mask is provided, the
-     * following default mask is used: paths: &quot;bindings, etag&quot; This
-     * field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
      */
     updateMask?: string;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for
-   * different programming environments, including REST APIs and RPC APIs. It is
-   * used by [gRPC](https://github.com/grpc). The error model is designed to be:
-   * - Simple to use and understand for most users - Flexible enough to meet
-   * unexpected needs  # Overview  The `Status` message contains three pieces of
-   * data: error code, error message, and error details. The error code should
-   * be an enum value of google.rpc.Code, but it may accept additional error
-   * codes if needed.  The error message should be a developer-facing English
-   * message that helps developers *understand* and *resolve* the error. If a
-   * localized user-facing error message is needed, put the localized message in
-   * the error details or localize it in the client. The optional error details
-   * may contain arbitrary information about the error. There is a predefined
-   * set of error detail types in the package `google.rpc` that can be used for
-   * common error conditions.  # Language mapping  The `Status` message is the
-   * logical representation of the error model, but it is not necessarily the
-   * actual wire format. When the `Status` message is exposed in different
-   * client libraries and different wire protocols, it can be mapped
-   * differently. For example, it will likely be mapped to some exceptions in
-   * Java, but more likely mapped to some error codes in C.  # Other uses  The
-   * error model and the `Status` message can be used in a variety of
-   * environments, either with or without APIs, to provide a consistent
-   * developer experience across different environments.  Example uses of this
-   * error model include:  - Partial errors. If a service needs to return
-   * partial errors to the client,     it may embed the `Status` in the normal
-   * response to indicate the partial     errors.  - Workflow errors. A typical
-   * workflow has multiple steps. Each step may     have a `Status` message for
-   * error reporting.  - Batch operations. If a client uses batch request and
-   * batch response, the     `Status` message should be used directly inside
-   * batch response, one for     each error sub-response.  - Asynchronous
-   * operations. If an API call embeds asynchronous operation     results in its
-   * response, the status of those operations should be     represented directly
-   * using the `Status` message.  - Logging. If some API errors are stored in
-   * logs, the message `Status` could     be used directly after any stripping
-   * needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
    */
   export interface Schema$Status {
     /**
@@ -1415,14 +1020,11 @@ export namespace healthcare_v1beta1 {
      */
     code?: number;
     /**
-     * A list of messages that carry the error details.  There is a common set
-     * of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}>;
     /**
-     * A developer-facing error message, which should be in English. Any
-     * user-facing error message should be localized and sent in the
-     * google.rpc.Status.details field, or localized by the client.
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
   }
@@ -1431,11 +1033,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$TagFilterList {
     /**
-     * Tags to be filtered. Tags must be DICOM Data Elements, File Meta
-     * Elements, or Directory Structuring Elements, as defined at:
-     * http://dicom.nema.org/medical/dicom/current/output/html/part06.html#table_6-1,.
-     * They may be provided by &quot;Keyword&quot; or &quot;Tag&quot;. For
-     * example &quot;PatientID&quot;, &quot;0010,0010&quot;.
+     * Tags to be filtered. Tags must be DICOM Data Elements, File Meta Elements, or Directory Structuring Elements, as defined at: http://dicom.nema.org/medical/dicom/current/output/html/part06.html#table_6-1,. They may be provided by &quot;Keyword&quot; or &quot;Tag&quot;. For example &quot;PatientID&quot;, &quot;00100010&quot;.
      */
     tags?: string[];
   }
@@ -1444,10 +1042,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with
-     * wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
-     * For more information see [IAM
-     * Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[];
   }
@@ -1456,8 +1051,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$TestIamPermissionsResponse {
     /**
-     * A subset of `TestPermissionsRequest.permissions` that the caller is
-     * allowed.
+     * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[];
   }
@@ -1695,10 +1289,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.create
-     * @desc Creates a new health dataset. Results are returned through the
-     * Operation interface which returns either an `Operation.response` which
-     * contains a Dataset or `Operation.error`. The metadata field type is
-     * OperationMetadata.
+     * @desc Creates a new health dataset. Results are returned through the Operation interface which returns either an `Operation.response` which contains a Dataset or `Operation.error`. The metadata field type is OperationMetadata.
      * @alias healthcare.projects.locations.datasets.create
      * @memberOf! ()
      *
@@ -1774,10 +1365,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.deidentify
-     * @desc Creates a new dataset containing de-identified data from the source
-     * dataset. The metadata field type is OperationMetadata. If the request is
-     * successful, the response field type is DeidentifySummary. If errors
-     * occur, details field type is DeidentifyErrorDetails.
+     * @desc Creates a new dataset containing de-identified data from the source dataset. The metadata field type is OperationMetadata. If the request is successful, the response field type is DeidentifySummary. If errors occur, details field type is DeidentifyErrorDetails.
      * @alias healthcare.projects.locations.datasets.deidentify
      * @memberOf! ()
      *
@@ -1852,9 +1440,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.delete
-     * @desc Deletes the specified health dataset and all data contained in the
-     * dataset. Deleting a dataset does not affect the sources from which the
-     * dataset was imported (if any).
+     * @desc Deletes the specified health dataset and all data contained in the dataset. Deleting a dataset does not affect the sources from which the dataset was imported (if any).
      * @alias healthcare.projects.locations.datasets.delete
      * @memberOf! ()
      *
@@ -1992,8 +1578,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @alias healthcare.projects.locations.datasets.getIamPolicy
      * @memberOf! ()
      *
@@ -2214,8 +1799,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias healthcare.projects.locations.datasets.setIamPolicy
      * @memberOf! ()
      *
@@ -2288,11 +1872,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
-     * be used for building permission-aware UIs and command-line tools, not for
-     * authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @alias healthcare.projects.locations.datasets.testIamPermissions
      * @memberOf! ()
      *
@@ -2381,13 +1961,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the dataset that is being created. The string must match the
-     * following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
+     * The ID of the dataset that is being created. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
      */
     datasetId?: string;
     /**
-     * The name of the project in which the dataset should be created (e.g.,
-     * `projects/{project_id}/locations/{location_id}`).
+     * The name of the project in which the dataset should be created (e.g., `projects/{project_id}/locations/{location_id}`).
      */
     parent?: string;
 
@@ -2404,8 +1982,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Source dataset resource name. (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`).
+     * Source dataset resource name. (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`).
      */
     sourceDataset?: string;
 
@@ -2422,8 +1999,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the dataset to delete (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`).
+     * The name of the dataset to delete (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`).
      */
     name?: string;
   }
@@ -2435,8 +2011,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the dataset to read (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`).
+     * The name of the dataset to read (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`).
      */
     name?: string;
   }
@@ -2448,8 +2023,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -2461,8 +2035,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of items to return. Capped to 100 if not specified.
-     * May not be larger than 1000.
+     * The maximum number of items to return. Capped to 100 if not specified. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -2470,8 +2043,7 @@ export namespace healthcare_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The name of the project whose datasets should be listed (e.g.,
-     * `projects/{project_id}/locations/{location_id}`).
+     * The name of the project whose datasets should be listed (e.g., `projects/{project_id}/locations/{location_id}`).
      */
     parent?: string;
   }
@@ -2483,14 +2055,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Output only. Resource name of the dataset, of the form
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.
+     * Output only. Resource name of the dataset, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.
      */
     name?: string;
     /**
-     * The update mask applies to the resource. For the `FieldMask` definition,
-     * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -2507,8 +2076,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2525,8 +2093,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2624,8 +2191,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.delete
-     * @desc Deletes the specified DICOM store and removes all images that are
-     * contained within it.
+     * @desc Deletes the specified DICOM store and removes all images that are contained within it.
      * @alias healthcare.projects.locations.datasets.dicomStores.delete
      * @memberOf! ()
      *
@@ -2694,8 +2260,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.export
-     * @desc Exports data to the specified destination by copying it from the
-     * DICOM store. The metadata field type is OperationMetadata.
+     * @desc Exports data to the specified destination by copying it from the DICOM store. The metadata field type is OperationMetadata.
      * @alias healthcare.projects.locations.datasets.dicomStores.export
      * @memberOf! ()
      *
@@ -2841,8 +2406,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @alias healthcare.projects.locations.datasets.dicomStores.getIamPolicy
      * @memberOf! ()
      *
@@ -2914,11 +2478,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.import
-     * @desc Imports data into the DICOM store by copying it from the specified
-     * source. For errors, the Operation will be populated with error details (in
-     * the form of ImportDicomDataErrorDetails in error.details), which will hold
-     * finer-grained error information. The metadata field type is
-     * OperationMetadata.
+     * @desc Imports data into the DICOM store by copying it from the specified source. For errors, the Operation will be populated with error details (in the form of ImportDicomDataErrorDetails in error.details), which will hold finer-grained error information. The metadata field type is OperationMetadata.
      * @alias healthcare.projects.locations.datasets.dicomStores.import
      * @memberOf! ()
      *
@@ -3145,10 +2705,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.searchForInstances
-     * @desc SearchForInstances returns a list of matching instances. See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.searchForInstances
+     * @desc SearchForInstances returns a list of matching instances. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
+     * @alias healthcare.projects.locations.datasets.dicomStores.searchForInstances
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -3219,8 +2777,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.searchForSeries
-     * @desc SearchForSeries returns a list of matching series. See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
+     * @desc SearchForSeries returns a list of matching series. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
      * @alias healthcare.projects.locations.datasets.dicomStores.searchForSeries
      * @memberOf! ()
      *
@@ -3292,10 +2849,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.searchForStudies
-     * @desc SearchForStudies returns a list of matching studies. See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.searchForStudies
+     * @desc SearchForStudies returns a list of matching studies. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
+     * @alias healthcare.projects.locations.datasets.dicomStores.searchForStudies
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -3366,8 +2921,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias healthcare.projects.locations.datasets.dicomStores.setIamPolicy
      * @memberOf! ()
      *
@@ -3440,9 +2994,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.storeInstances
-     * @desc StoreInstances stores DICOM instances associated with study
-     * instance unique identifiers (SUID). See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.6.1.
+     * @desc StoreInstances stores DICOM instances associated with study instance unique identifiers (SUID). See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.6.1.
      * @alias healthcare.projects.locations.datasets.dicomStores.storeInstances
      * @memberOf! ()
      *
@@ -3515,13 +3067,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
-     * be used for building permission-aware UIs and command-line tools, not for
-     * authorization checking. This operation may "fail open" without warning.
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @alias healthcare.projects.locations.datasets.dicomStores.testIamPermissions
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -3609,8 +3156,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the DICOM store that is being created. Any string value up to
-     * 256 characters in length.
+     * The ID of the DICOM store that is being created. Any string value up to 256 characters in length.
      */
     dicomStoreId?: string;
     /**
@@ -3643,9 +3189,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The DICOM store resource name from which the data should be exported
-     * (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The DICOM store resource name from which the data should be exported (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     name?: string;
 
@@ -3674,8 +3218,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -3687,9 +3230,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the DICOM store resource into which the data is imported
-     * (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store resource into which the data is imported (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     name?: string;
 
@@ -3706,19 +3247,15 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Restricts stores returned to those matching a filter. Syntax:
-     * https://cloud.google.com/appengine/docs/standard/python/search/query_strings
-     * Only filtering on labels is supported, for example `labels.key=value`.
+     * Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
      */
     filter?: string;
     /**
-     * Limit on the number of DICOM stores to return in a single response. If
-     * zero the default page size of 100 is used.
+     * Limit on the number of DICOM stores to return in a single response. If zero the default page size of 100 is used.
      */
     pageSize?: number;
     /**
-     * The next_page_token value returned from the previous List request, if
-     * any.
+     * The next_page_token value returned from the previous List request, if any.
      */
     pageToken?: string;
     /**
@@ -3734,14 +3271,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Output only. Resource name of the DICOM store, of the form
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
+     * Output only. Resource name of the DICOM store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      */
     name?: string;
     /**
-     * The update mask applies to the resource. For the `FieldMask` definition,
-     * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -3758,13 +3292,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g., `instances`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `instances`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -3776,13 +3308,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g., `series`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `series`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -3794,13 +3324,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g., `studies`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -3812,8 +3340,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3830,13 +3357,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g., `studies/{study_id}`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
 
@@ -3853,8 +3378,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3876,9 +3400,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.delete
-     * @desc DeleteStudy deletes all instances within the given study. Delete
-     * requests are equivalent to the GET requests specified in the WADO-RS
-     * standard.
+     * @desc DeleteStudy deletes all instances within the given study. Delete requests are equivalent to the GET requests specified in the WADO-RS standard.
      * @alias healthcare.projects.locations.datasets.dicomStores.studies.delete
      * @memberOf! ()
      *
@@ -3950,11 +3472,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.retrieveMetadata
-     * @desc RetrieveStudyMetadata returns instance associated with the given
-     * study presented as metadata with the bulk data removed. See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.6.
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.retrieveMetadata
+     * @desc RetrieveStudyMetadata returns instance associated with the given study presented as metadata with the bulk data removed. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.6.
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.retrieveMetadata
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -4025,10 +3544,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.retrieveStudy
-     * @desc RetrieveStudy returns all instances within the given study. See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.1.
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.retrieveStudy
+     * @desc RetrieveStudy returns all instances within the given study. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.1.
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.retrieveStudy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -4099,10 +3616,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.searchForInstances
-     * @desc SearchForInstances returns a list of matching instances. See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.searchForInstances
+     * @desc SearchForInstances returns a list of matching instances. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.searchForInstances
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -4173,10 +3688,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.searchForSeries
-     * @desc SearchForSeries returns a list of matching series. See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.searchForSeries
+     * @desc SearchForSeries returns a list of matching series. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.searchForSeries
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -4247,11 +3760,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.storeInstances
-     * @desc StoreInstances stores DICOM instances associated with study
-     * instance unique identifiers (SUID). See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.6.1.
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.storeInstances
+     * @desc StoreInstances stores DICOM instances associated with study instance unique identifiers (SUID). See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.6.1.
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.storeInstances
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -4330,13 +3840,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g., `studies/{study_id}`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -4348,13 +3856,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g., `studies/{study_id}/metadata`.
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/metadata`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -4366,13 +3872,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g., `studies/{study_id}`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -4384,13 +3888,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g., `instances`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `instances`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -4402,13 +3904,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g., `series`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `series`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -4420,13 +3920,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g., `studies/{study_id}`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
 
@@ -4448,11 +3946,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.delete
-     * @desc DeleteSeries deletes all instances within the given study and
-     * series. Delete requests are equivalent to the GET requests specified in
-     * the WADO-RS standard.
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.series.delete
+     * @desc DeleteSeries deletes all instances within the given study and series. Delete requests are equivalent to the GET requests specified in the WADO-RS standard.
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.series.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -4523,11 +4018,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveMetadata
-     * @desc RetrieveSeriesMetadata returns instance associated with the given
-     * study and series, presented as metadata with the bulk data removed. See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.6.
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveMetadata
+     * @desc RetrieveSeriesMetadata returns instance associated with the given study and series, presented as metadata with the bulk data removed. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.6.
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveMetadata
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -4598,11 +4090,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveSeries
-     * @desc RetrieveSeries returns all instances within the given study and
-     * series. See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.2.
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveSeries
+     * @desc RetrieveSeries returns all instances within the given study and series. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.2.
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveSeries
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -4673,10 +4162,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.searchForInstances
-     * @desc SearchForInstances returns a list of matching instances. See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.series.searchForInstances
+     * @desc SearchForInstances returns a list of matching instances. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.series.searchForInstances
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -4754,13 +4241,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -4772,14 +4257,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g.,
-     * `studies/{study_id}/series/{series_id}/metadata`.
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/metadata`.
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -4791,13 +4273,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -4809,13 +4289,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g., `instances`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `instances`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -4832,11 +4310,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.delete
-     * @desc DeleteInstance deletes an instance associated with the given study,
-     * series, and SOP Instance UID. Delete requests are equivalent to the GET
-     * requests specified in the WADO-RS standard.
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.delete
+     * @desc DeleteInstance deletes an instance associated with the given study, series, and SOP Instance UID. Delete requests are equivalent to the GET requests specified in the WADO-RS standard.
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.series.instances.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -4907,11 +4382,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveInstance
-     * @desc RetrieveInstance returns instance associated with the given study,
-     * series, and SOP Instance UID. See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.3.
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveInstance
+     * @desc RetrieveInstance returns instance associated with the given study, series, and SOP Instance UID. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.3.
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveInstance
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -4982,12 +4454,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveMetadata
-     * @desc RetrieveInstanceMetadata returns instance associated with the given
-     * study, series, and SOP Instance UID presented as metadata with the bulk
-     * data removed. See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.6.
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveMetadata
+     * @desc RetrieveInstanceMetadata returns instance associated with the given study, series, and SOP Instance UID presented as metadata with the bulk data removed. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.6.
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveMetadata
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5058,12 +4526,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveRendered
-     * @desc RetrieveRenderedInstance returns instance associated with the given
-     * study, series, and SOP Instance UID in an acceptable Rendered Media Type.
-     * See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.8.
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveRendered
+     * @desc RetrieveRenderedInstance returns instance associated with the given study, series, and SOP Instance UID in an acceptable Rendered Media Type. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.8.
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveRendered
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5141,14 +4605,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g.,
-     * `studies/{study_id}/series/{series_id}/instances/{instance_id}`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -5160,14 +4621,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g.,
-     * `studies/{study_id}/series/{series_id}/instance/{instance_id}`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instance/{instance_id}`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -5179,14 +4637,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g.,
-     * `studies/{study_id}/series/{series_id}/instances/{instance_id}/metadata`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}/metadata`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -5198,14 +4653,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g.,
-     * `studies/{study_id}/series/{series_id}/instance/{instance_id}/rendered`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instance/{instance_id}/rendered`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -5218,11 +4670,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveFrames
-     * @desc RetrieveFrames returns instances associated with the given study,
-     * series, SOP Instance UID and frame numbers. See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.4.
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveFrames
+     * @desc RetrieveFrames returns instances associated with the given study, series, SOP Instance UID and frame numbers. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.4.
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveFrames
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5293,12 +4742,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveRendered
-     * @desc RetrieveRenderedFrames returns instances associated with the given
-     * study, series, SOP Instance UID and frame numbers in an acceptable
-     * Rendered Media Type. See
-     * http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.8.
-     * @alias
-     * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveRendered
+     * @desc RetrieveRenderedFrames returns instances associated with the given study, series, SOP Instance UID and frame numbers in an acceptable Rendered Media Type. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.8.
+     * @alias healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveRendered
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5376,14 +4821,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g.,
-     * `studies/{study_id}/series/{series_id}/instance/{instance_id}/frames/{frame_list}`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instance/{instance_id}/frames/{frame_list}`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -5395,14 +4837,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
-     * or QIDO-RS standard (e.g.,
-     * `studies/{study_id}/series/{series_id}/instance/{instance_id}/frames/{frame_list}/rendered`).
+     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instance/{instance_id}/frames/{frame_list}/rendered`).
      */
     dicomWebPath?: string;
     /**
-     * The name of the DICOM store that is being accessed (e.g.,
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      */
     parent?: string;
   }
@@ -5495,8 +4934,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.delete
-     * @desc Deletes the specified FHIR store and removes all resources within
-     * it.
+     * @desc Deletes the specified FHIR store and removes all resources within it.
      * @alias healthcare.projects.locations.datasets.fhirStores.delete
      * @memberOf! ()
      *
@@ -5564,86 +5002,8 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * healthcare.projects.locations.datasets.fhirStores.executeBundle
-     * @desc Executes all the requests in the given Bundle.
-     * @alias healthcare.projects.locations.datasets.fhirStores.executeBundle
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Name of the FHIR store in which this bundle will be executed.
-     * @param {().HttpBody} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    executeBundle(
-      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
-    executeBundle(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle,
-      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
-      callback: BodyResponseCallback<Schema$HttpBody>
-    ): void;
-    executeBundle(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle,
-      callback: BodyResponseCallback<Schema$HttpBody>
-    ): void;
-    executeBundle(callback: BodyResponseCallback<Schema$HttpBody>): void;
-    executeBundle(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle
-        | BodyResponseCallback<Schema$HttpBody>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
-      callback?: BodyResponseCallback<Schema$HttpBody>
-    ): void | GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/fhir').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$HttpBody>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$HttpBody>(parameters);
-      }
-    }
-
-    /**
      * healthcare.projects.locations.datasets.fhirStores.export
-     * @desc Export resources from the FHIR store to the specified destination.
-     * This method returns an Operation that can be used to track the status of
-     * the export by calling GetOperation.  Immediate fatal errors appear in the
-     * error field. Otherwise, when the operation finishes, a detailed response
-     * of type ExportResourcesResponse is returned in the response field. The
-     * metadata field type for this operation is OperationMetadata.
+     * @desc Export resources from the FHIR store to the specified destination.  This method returns an Operation that can be used to track the status of the export by calling GetOperation.  Immediate fatal errors appear in the error field. Otherwise, when the operation finishes, a detailed response of type ExportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
      * @alias healthcare.projects.locations.datasets.fhirStores.export
      * @memberOf! ()
      *
@@ -5789,8 +5149,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @alias healthcare.projects.locations.datasets.fhirStores.getIamPolicy
      * @memberOf! ()
      *
@@ -5862,22 +5221,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.import
-     * @desc Import resources to the FHIR store by loading data from the specified
-     * sources. Each resource must have a client-supplied ID, which is retained by
-     * the server.  The import operation is idempotent. Upon retry, the most recent
-     * data (matching the client-supplied ID) is overwritten, without creating a new
-     * resource version. If partial failures occur during the import, successful
-     * changes are not rolled back.  If history imports are enabled
-     * (enable_history_import is set in the FHIR store's configuration), you can
-     * import historical versions of a resource by supplying a bundle of type
-     * `history`. The historical versions in the bundle must have `lastUpdated`
-     * timestamps. If a current or historical version with the supplied resource ID
-     * already exists, the bundle is rejected.  This method returns an Operation
-     * that can be used to track the status of the import by calling GetOperation.
-     * Immediate fatal errors appear in the error field. Otherwise, when the
-     * operation finishes, a detailed response of type ImportResourcesResponse is
-     * returned in the response field. The metadata field type for this operation is
-     * OperationMetadata.
+     * @desc Import resources to the FHIR store by loading data from the specified sources. Each resource must have a client-supplied ID, which is retained by the server.  The import operation is idempotent. Upon retry, the most recent data (matching the client-supplied ID) is overwritten, without creating a new resource version. If partial failures occur during the import, successful changes are not rolled back.  If history imports are enabled (enable_history_import is set in the FHIR store's configuration), you can import historical versions of a resource by supplying a bundle of type `history`. The historical versions in the bundle must have `lastUpdated` timestamps. If a current or historical version with the supplied resource ID already exists, the bundle is rejected.  This method returns an Operation that can be used to track the status of the import by calling GetOperation.  Immediate fatal errors appear in the error field. Otherwise, when the operation finishes, a detailed response of type ImportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
      * @alias healthcare.projects.locations.datasets.fhirStores.import
      * @memberOf! ()
      *
@@ -6104,8 +5448,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias healthcare.projects.locations.datasets.fhirStores.setIamPolicy
      * @memberOf! ()
      *
@@ -6178,13 +5521,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
-     * be used for building permission-aware UIs and command-line tools, not for
-     * authorization checking. This operation may "fail open" without warning.
-     * @alias
-     * healthcare.projects.locations.datasets.fhirStores.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @alias healthcare.projects.locations.datasets.fhirStores.testIamPermissions
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -6272,8 +5610,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the FHIR store that is being created. The string must match the
-     * following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
+     * The ID of the FHIR store that is being created. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
      */
     fhirStoreId?: string;
     /**
@@ -6298,23 +5635,6 @@ export namespace healthcare_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Name of the FHIR store in which this bundle will be executed.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$HttpBody;
-  }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Export
     extends StandardParameters {
     /**
@@ -6323,9 +5643,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the FHIR store to export resource from. The name should be in
-     * the format of
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
+     * The name of the FHIR store to export resource from. The name should be in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
      */
     name?: string;
 
@@ -6354,8 +5672,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -6367,9 +5684,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the FHIR store to import FHIR resources to. The name should
-     * be in the format of
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
+     * The name of the FHIR store to import FHIR resources to. The name should be in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
      */
     name?: string;
 
@@ -6386,19 +5701,15 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Restricts stores returned to those matching a filter. Syntax:
-     * https://cloud.google.com/appengine/docs/standard/python/search/query_strings
-     * Only filtering on labels is supported, for example `labels.key=value`.
+     * Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
      */
     filter?: string;
     /**
-     * Limit on the number of FHIR stores to return in a single response.  If
-     * zero the default page size of 100 is used.
+     * Limit on the number of FHIR stores to return in a single response.  If zero the default page size of 100 is used.
      */
     pageSize?: number;
     /**
-     * The next_page_token value returned from the previous List request, if
-     * any.
+     * The next_page_token value returned from the previous List request, if any.
      */
     pageToken?: string;
     /**
@@ -6414,14 +5725,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Output only. Resource name of the FHIR store, of the form
-     * `projects/{project_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
+     * Output only. Resource name of the FHIR store, of the form `projects/{project_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
      */
     name?: string;
     /**
-     * The update mask applies to the resource. For the `FieldMask` definition,
-     * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -6438,8 +5746,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -6456,8 +5763,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -6469,71 +5775,123 @@ export namespace healthcare_v1beta1 {
 
   export class Resource$Projects$Locations$Datasets$Fhirstores$Fhir {
     context: APIRequestContext;
-    Observation: Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observation;
-    Patient: Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient;
-    _history: Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.Observation = new Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observation(
-        this.context
-      );
-      this.Patient = new Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient(
-        this.context
-      );
-      this._history = new Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history(
-        this.context
-      );
     }
 
     /**
-     * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalDeleteResource
-     * @desc Deletes FHIR resources matching a search query.  Note: unless
-     * resource versioning is disabled by setting the
-     * disable_resource_versioning flag on the FHIR store, the deleted resources
-     * will be moved to a history repository that can still be retrieved through
-     * GetResourceVersion and related methods, unless they are removed by the
-     * DeleteResourceVersions method.
-     * @alias
-     * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalDeleteResource
+     * healthcare.projects.locations.datasets.fhirStores.fhir.capabilities
+     * @desc Gets the FHIR [capability statement](http://hl7.org/implement/standards/fhir/STU3/capabilitystatement.html) for the store, which contains a description of functionality supported by the server.  Implements the FHIR standard [capabilities interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#capabilities).  On success, the response body will contain a JSON-encoded representation of a `CapabilityStatement` resource.
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.capabilities
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The name of the FHIR store this resource belongs to.
-     * @param {string} params.type The type of the resource to update.
+     * @param {string} params.name Name of the FHIR store to retrieve the capabilities for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    conditionalDeleteResource(
-      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource,
+    capabilities(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    capabilities(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    capabilities(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    capabilities(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    capabilities(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}/fhir/metadata').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalDelete
+     * @desc Deletes FHIR resources that match a search query.  Implements the FHIR standard [conditional delete interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#2.21.0.13.1). If multiple resources match, all of them will be deleted.  Search terms are provided as query parameters following the same pattern as the search method.  Note: Unless resource versioning is disabled by setting the disable_resource_versioning flag on the FHIR store, the deleted resources will be moved to a history repository that can still be retrieved through vread and related methods, unless they are removed by the purge method.
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.conditionalDelete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The name of the FHIR store this resource belongs to.
+     * @param {string} params.type The FHIR resource type to delete, such as Patient or Observation. For a complete list, see the [FHIR Resource Index](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    conditionalDelete(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
-    conditionalDeleteResource(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource,
+    conditionalDelete(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldelete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
       callback: BodyResponseCallback<Schema$Empty>
     ): void;
-    conditionalDeleteResource(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource,
+    conditionalDelete(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldelete,
       callback: BodyResponseCallback<Schema$Empty>
     ): void;
-    conditionalDeleteResource(
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    conditionalDeleteResource(
+    conditionalDelete(callback: BodyResponseCallback<Schema$Empty>): void;
+    conditionalDelete(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldelete
         | BodyResponseCallback<Schema$Empty>,
       optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>
     ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource;
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldelete;
         options = {};
       }
 
@@ -6567,51 +5925,47 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalPatchResource
-     * @desc Updates parts of a resource if the resource exists based on the
-     * search criteria specified via query parameters.
-     * @alias
-     * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalPatchResource
+     * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalPatch
+     * @desc If a resource is found based on the search criteria specified in the query parameters, updates part of that resource by applying the operations specified in a [JSON Patch](http://jsonpatch.com/) document.  Implements the FHIR standard [conditional patch interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#patch).  Search terms are provided as query parameters following the same pattern as the search method.  If the search criteria identify more than one match, the request will return a `412 Precondition Failed` error.  The request body must contain a JSON Patch document, and the request headers must contain `Content-Type: application/json-patch+json`.  On success, the response body will contain a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.conditionalPatch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The name of the FHIR store this resource belongs to.
-     * @param {string} params.type The type of the resource to update.
+     * @param {string} params.type The FHIR resource type to update, such as Patient or Observation. For a complete list, see the [FHIR Resource Index](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html).
      * @param {().HttpBody} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    conditionalPatchResource(
-      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource,
+    conditionalPatch(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$HttpBody>;
-    conditionalPatchResource(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource,
+    conditionalPatch(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatch,
       options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
       callback: BodyResponseCallback<Schema$HttpBody>
     ): void;
-    conditionalPatchResource(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource,
+    conditionalPatch(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatch,
       callback: BodyResponseCallback<Schema$HttpBody>
     ): void;
-    conditionalPatchResource(
-      callback: BodyResponseCallback<Schema$HttpBody>
-    ): void;
-    conditionalPatchResource(
+    conditionalPatch(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    conditionalPatch(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatch
         | BodyResponseCallback<Schema$HttpBody>,
       optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
       callback?: BodyResponseCallback<Schema$HttpBody>
     ): void | GaxiosPromise<Schema$HttpBody> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource;
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatch;
         options = {};
       }
 
@@ -6645,51 +5999,47 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalUpdateResource
-     * @desc Updates the entire resource if the resource exists based on the
-     * search criteria specified via query parameters.
-     * @alias
-     * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalUpdateResource
+     * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalUpdate
+     * @desc If a resource is found based on the search criteria specified in the query parameters, updates the entire contents of that resource.  Implements the FHIR standard [conditional update interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#cond-update).  Search terms are provided as query parameters following the same pattern as the search method.  If the search criteria identify more than one match, the request will return a `412 Precondition Failed` error. If the search criteria identify zero matches, and the supplied resource body contains an `id`, and the FHIR store has enable_update_create set, creates the resource with the client-specified ID. If the search criteria identify zero matches, and the supplied resource body does not contain an `id`, the resource will be created with a server-assigned ID as per the create method.  The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`.  On success, the response body will contain a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.conditionalUpdate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The name of the FHIR store this resource belongs to.
-     * @param {string} params.type The type of the resource to update.
+     * @param {string} params.type The FHIR resource type to update, such as Patient or Observation. For a complete list, see the [FHIR Resource Index](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html). Must match the resource type in the provided content.
      * @param {().HttpBody} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    conditionalUpdateResource(
-      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource,
+    conditionalUpdate(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$HttpBody>;
-    conditionalUpdateResource(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource,
+    conditionalUpdate(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdate,
       options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
       callback: BodyResponseCallback<Schema$HttpBody>
     ): void;
-    conditionalUpdateResource(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource,
+    conditionalUpdate(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdate,
       callback: BodyResponseCallback<Schema$HttpBody>
     ): void;
-    conditionalUpdateResource(
-      callback: BodyResponseCallback<Schema$HttpBody>
-    ): void;
-    conditionalUpdateResource(
+    conditionalUpdate(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    conditionalUpdate(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdate
         | BodyResponseCallback<Schema$HttpBody>,
       optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
       callback?: BodyResponseCallback<Schema$HttpBody>
     ): void | GaxiosPromise<Schema$HttpBody> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource;
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdate;
         options = {};
       }
 
@@ -6723,48 +6073,47 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * healthcare.projects.locations.datasets.fhirStores.fhir.createResource
-     * @desc Creates a FHIR resource.
-     * @alias
-     * healthcare.projects.locations.datasets.fhirStores.fhir.createResource
+     * healthcare.projects.locations.datasets.fhirStores.fhir.create
+     * @desc Creates a FHIR resource.  Implements the FHIR standard [create interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#create), which creates a new resource with a server-assigned resource ID.  Also supports the FHIR standard [conditional create interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#ccreate), specified by supplying an `If-None-Exist` header containing a FHIR search query. If no resources match this search query, the server processes the create operation as normal.  The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`.  On success, the response body will contain a JSON-encoded representation of the resource as it was created on the server, including the server-assigned resource ID and version ID. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The name of the FHIR store this resource belongs to.
-     * @param {string} params.type The type of the resource to create.
+     * @param {string} params.type The FHIR resource type to create, such as Patient or Observation. For a complete list, see the [FHIR Resource Index](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html). Must match the resource type in the provided content.
      * @param {().HttpBody} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createResource(
-      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource,
+    create(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$HttpBody>;
-    createResource(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource,
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create,
       options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
       callback: BodyResponseCallback<Schema$HttpBody>
     ): void;
-    createResource(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource,
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create,
       callback: BodyResponseCallback<Schema$HttpBody>
     ): void;
-    createResource(callback: BodyResponseCallback<Schema$HttpBody>): void;
-    createResource(
+    create(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    create(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create
         | BodyResponseCallback<Schema$HttpBody>,
       optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
       callback?: BodyResponseCallback<Schema$HttpBody>
     ): void | GaxiosPromise<Schema$HttpBody> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource;
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create;
         options = {};
       }
 
@@ -6799,11 +6148,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.delete
-     * @desc Deletes a FHIR resource.  Note: unless resource versioning is
-     * disabled by setting the disable_resource_versioning flag on the FHIR
-     * store, the deleted resources will be moved to a history repository that
-     * can still be retrieved through GetResourceVersion and related methods,
-     * unless they are removed by the DeleteResourceVersions method.
+     * @desc Deletes a FHIR resource.  Implements the FHIR standard [delete interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#delete).  Note: Unless resource versioning is disabled by setting the disable_resource_versioning flag on the FHIR store, the deleted resources will be moved to a history repository that can still be retrieved through vread and related methods, unless they are removed by the purge method.
      * @alias healthcare.projects.locations.datasets.fhirStores.fhir.delete
      * @memberOf! ()
      *
@@ -6871,120 +6216,46 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * healthcare.projects.locations.datasets.fhirStores.fhir.delete$purge
-     * @desc Deletes all the historical versions of a resource (excluding
-     * current version) from the FHIR store. To remove all versions of a
-     * resource, first delete the current version and call this method.
-     * @alias
-     * healthcare.projects.locations.datasets.fhirStores.fhir.delete$purge
+     * healthcare.projects.locations.datasets.fhirStores.fhir.executeBundle
+     * @desc Executes all the requests in the given Bundle.  Implements the FHIR standard [batch/transaction interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#transaction).  Supports all interactions within a bundle, except search. This method accepts Bundles of type `batch` and `transaction`, processing them according to the [batch processing rules](http://hl7.org/implement/standards/fhir/STU3/http.html#2.21.0.17.1) and [transaction processing rules](http://hl7.org/implement/standards/fhir/STU3/http.html#2.21.0.17.2).  The request body must contain a JSON-encoded FHIR `Bundle` resource, and the request headers must contain `Content-Type: application/fhir+json`.  For a batch bundle or a successful transaction the response body will contain a JSON-encoded representation of a `Bundle` resource of type `batch-response` or `transaction-response` containing one entry for each entry in the request, with the outcome of processing the entry. In the case of an error for a transaction bundle, the response body will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.executeBundle
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the resource to purge.
+     * @param {string} params.parent Name of the FHIR store in which this bundle will be executed.
+     * @param {().HttpBody} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete$purge(
-      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
-    delete$purge(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete$purge(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete$purge(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete$purge(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}/$purge').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
-     * healthcare.projects.locations.datasets.fhirStores.fhir.get
-     * @desc Gets a FHIR resource.
-     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the resource to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get,
+    executeBundle(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Executebundle,
       options?: MethodOptions
     ): GaxiosPromise<Schema$HttpBody>;
-    get(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get,
+    executeBundle(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Executebundle,
       options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
       callback: BodyResponseCallback<Schema$HttpBody>
     ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get,
+    executeBundle(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Executebundle,
       callback: BodyResponseCallback<Schema$HttpBody>
     ): void;
-    get(callback: BodyResponseCallback<Schema$HttpBody>): void;
-    get(
+    executeBundle(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    executeBundle(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Executebundle
         | BodyResponseCallback<Schema$HttpBody>,
       optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
       callback?: BodyResponseCallback<Schema$HttpBody>
     ): void | GaxiosPromise<Schema$HttpBody> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get;
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Executebundle;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Executebundle;
         options = {};
       }
 
@@ -6997,7 +6268,86 @@ export namespace healthcare_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+parent}/fhir').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.fhirStores.fhir.history
+     * @desc Lists all the versions of a resource (including the current version and deleted versions) from the FHIR store.  Implements the per-resource form of the FHIR standard [history interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#history).  On success, the response body will contain a JSON-encoded representation of a `Bundle` resource of type `history`, containing the version history sorted from most recent to oldest versions. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.history
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.at Only include resource versions that were current at some point during the time period specified in the date time value. The date parameter format is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm]  Clients may specify any of the following:  *  An entire year: `_at=2019` *  An entire month: `_at=2019-01` *  A specific day: `_at=2019-01-20` *  A specific second: `_at=2018-12-31T23:59:58Z`
+     * @param {integer=} params.count The maximum number of search results on a page. Defaults to 1000.
+     * @param {string} params.name The name of the resource to retrieve.
+     * @param {string=} params.page Used to retrieve the first, previous, next, or last page of resource versions when using pagination. Value should be set to the value of the `link.url` field returned in the response to the previous request, where `link.relation` is "first", "previous", "next" or "last".  Omit `page` if no previous request has been made.
+     * @param {string=} params.since Only include resource versions that were created at or after the given instant in time. The instant in time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz (for example 2015-02-07T13:28:17.239+02:00 or 2017-01-01T00:00:00Z). The time must be specified to the second and include a time zone.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    history(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$History,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    history(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$History,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    history(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$History,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    history(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    history(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$History
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$History;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$History;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}/_history').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
@@ -7015,46 +6365,45 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * healthcare.projects.locations.datasets.fhirStores.fhir.getMetadata
-     * @desc Gets the FHIR capability statement for the store, which contains a
-     * description of functionality supported by the server.
-     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.getMetadata
+     * healthcare.projects.locations.datasets.fhirStores.fhir.Observation-lastn
+     * @desc Retrieves the N most recent `Observation` resources for a subject matching search criteria specified as query parameters, grouped by `Observation.code`, sorted from most recent to oldest.  Implements the FHIR extended operation [Observation-lastn](http://hl7.org/implement/standards/fhir/STU3/observation-operations.html#lastn).  Search terms are provided as query parameters following the same pattern as the search method. This operation accepts an additional query parameter `max`, which specifies N, the maximum number of Observations to return from each group, with a default of 1.  On success, the response body will contain a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the operation. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.Observation-lastn
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the FHIR store to retrieve the capabilities for.
+     * @param {string} params.parent Name of the FHIR store to retrieve resources from.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getMetadata(
-      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata,
+    ObservationLastn(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observationlastn,
       options?: MethodOptions
     ): GaxiosPromise<Schema$HttpBody>;
-    getMetadata(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata,
+    ObservationLastn(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observationlastn,
       options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
       callback: BodyResponseCallback<Schema$HttpBody>
     ): void;
-    getMetadata(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata,
+    ObservationLastn(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observationlastn,
       callback: BodyResponseCallback<Schema$HttpBody>
     ): void;
-    getMetadata(callback: BodyResponseCallback<Schema$HttpBody>): void;
-    getMetadata(
+    ObservationLastn(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    ObservationLastn(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observationlastn
         | BodyResponseCallback<Schema$HttpBody>,
       optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
       callback?: BodyResponseCallback<Schema$HttpBody>
     ): void | GaxiosPromise<Schema$HttpBody> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata;
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observationlastn;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observationlastn;
         options = {};
       }
 
@@ -7067,17 +6416,16 @@ export namespace healthcare_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/fhir/metadata').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (
+              rootUrl + '/v1beta1/{+parent}/fhir/Observation/$lastn'
+            ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
         ),
         params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -7089,7 +6437,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.patch
-     * @desc Updates part of an existing resource.
+     * @desc Updates part of an existing resource by applying the operations specified in a [JSON Patch](http://jsonpatch.com/) document.  Implements the FHIR standard [patch interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#patch).  The request body must contain a JSON Patch document, and the request headers must contain `Content-Type: application/json-patch+json`.  On success, the response body will contain a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
      * @alias healthcare.projects.locations.datasets.fhirStores.fhir.patch
      * @memberOf! ()
      *
@@ -7158,54 +6506,47 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * healthcare.projects.locations.datasets.fhirStores.fhir.searchResources
-     * @desc Searches resources in the given FHIR store.  # Search Parameters
-     * The server's capability statement, retrieved through
-     * GetCapabilityStatement, indicates which search parameters are supported
-     * on each FHIR resource.  # Search Modifiers  Modifier   | Supported
-     * ----------- | --------- `:missing`  | Yes `:exact`    | Yes `:contains` |
-     * Yes `:text`     | Yes `:in`       | Yes `:not-in`   | Yes `:above`    |
-     * Yes `:below`    | Yes `:[type]`   | Yes `:not`      | Yes `:recurse`  |
-     * No
-     * @alias
-     * healthcare.projects.locations.datasets.fhirStores.fhir.searchResources
+     * healthcare.projects.locations.datasets.fhirStores.fhir.Patient-everything
+     * @desc Retrieves all the resources in the patient compartment for a `Patient` resource.  Implements the FHIR extended operation [Patient-everything](http://hl7.org/implement/standards/fhir/STU3/patient-operations.html#everything).  On success, the response body will contain a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the operation. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.Patient-everything
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Name of the FHIR store to retrieve resources from.
-     * @param {string} params.resourceType The type of the resource to search.
+     * @param {string=} params.end The response includes records prior to the end date. If no end date is provided, all records subsequent to the start date are in scope.
+     * @param {string} params.name Name of the `Patient` resource for which the information is required.
+     * @param {string=} params.start The response includes records subsequent to the start date. If no start date is provided, all records prior to the end date are in scope.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    searchResources(
-      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources,
+    PatientEverything(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything,
       options?: MethodOptions
     ): GaxiosPromise<Schema$HttpBody>;
-    searchResources(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources,
+    PatientEverything(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything,
       options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
       callback: BodyResponseCallback<Schema$HttpBody>
     ): void;
-    searchResources(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources,
+    PatientEverything(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything,
       callback: BodyResponseCallback<Schema$HttpBody>
     ): void;
-    searchResources(callback: BodyResponseCallback<Schema$HttpBody>): void;
-    searchResources(
+    PatientEverything(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    PatientEverything(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything
         | BodyResponseCallback<Schema$HttpBody>,
       optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
       callback?: BodyResponseCallback<Schema$HttpBody>
     ): void | GaxiosPromise<Schema$HttpBody> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources;
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything;
         options = {};
       }
 
@@ -7218,7 +6559,7 @@ export namespace healthcare_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/fhir/{+resourceType}').replace(
+            url: (rootUrl + '/v1beta1/{+name}/$everything').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7227,8 +6568,222 @@ export namespace healthcare_v1beta1 {
           options
         ),
         params,
-        requiredParams: ['parent', 'resourceType'],
-        pathParams: ['parent', 'resourceType'],
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.fhirStores.fhir.read
+     * @desc Gets the contents of a FHIR resource.  Implements the FHIR standard [read interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#read).  Also supports the FHIR standard [conditional read interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#cread) specified by supplying an `If-Modified-Since` header with a date/time value or an `If-None-Match` header with an ETag value.  On success, the response body will contain a JSON-encoded representation of the resource. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.read
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the resource to retrieve.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    read(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Read,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    read(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Read,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    read(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Read,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    read(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    read(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Read
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Read;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Read;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.fhirStores.fhir.Resource-purge
+     * @desc Deletes all the historical versions of a resource (excluding the current version) from the FHIR store. To remove all versions of a resource, first delete the current version and then call this method.  This is not a FHIR standard operation.
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.Resource-purge
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the resource to purge.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    ResourcePurge(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcepurge,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    ResourcePurge(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcepurge,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    ResourcePurge(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcepurge,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    ResourcePurge(callback: BodyResponseCallback<Schema$Empty>): void;
+    ResourcePurge(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcepurge
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcepurge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcepurge;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}/$purge').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.fhirStores.fhir.search
+     * @desc Searches for resources in the given FHIR store according to criteria specified as query parameters.  Implements the FHIR standard [search interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#search) using the search semantics described in the [FHIR Search specification](http://hl7.org/implement/standards/fhir/STU3/search.html).  Supports three methods of search defined by the specification:  *  `GET [base]?[parameters]` to search across all resources. *  `GET [base]/[type]?[parameters]` to search resources of a specified type. *  `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method.  The `GET` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters.  On success, the response body will contain a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  # Search Parameters  The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the [FHIR Search Parameter Registry](http://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html).  # Search Modifiers  Modifier   | Supported ----------- | --------- `:missing`  | Yes `:exact`    | Yes `:contains` | Yes `:text`     | Yes `:in`       | Yes `:not-in`   | Yes `:above`    | Yes `:below`    | Yes `:[type]`   | Yes `:not`      | Yes `:recurse`  | No
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.search
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Name of the FHIR store to retrieve resources from.
+     * @param {().SearchResourcesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    search(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    search(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    search(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/fhir/_search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -7240,9 +6795,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.update
-     * @desc Updates the entire resource or creates a new resource with a client
-     * specified ID if the resource does not exist and the FHIR store has
-     * enable_update_create set.
+     * @desc Updates the entire contents of a resource.  Implements the FHIR standard [update interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#update).  If the specified resource does not exist and the FHIR store has enable_update_create set, creates the resource with the client-specified ID.  The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`. The resource must contain an `id` element having an identical value to the ID in the REST path of the request.  On success, the response body will contain a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
      * @alias healthcare.projects.locations.datasets.fhirStores.fhir.update
      * @memberOf! ()
      *
@@ -7311,491 +6864,9 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * healthcare.projects.locations.datasets.fhirStores.fhir._search
-     * @desc Searches resources in the given FHIR store.  # Search Parameters
-     * The server's capability statement, retrieved through
-     * GetCapabilityStatement, indicates which search parameters are supported
-     * on each FHIR resource.  # Search Modifiers  Modifier   | Supported
-     * ----------- | --------- `:missing`  | Yes `:exact`    | Yes `:contains` |
-     * Yes `:text`     | Yes `:in`       | Yes `:not-in`   | Yes `:above`    |
-     * Yes `:below`    | Yes `:[type]`   | Yes `:not`      | Yes `:recurse`  |
-     * No
-     * @alias healthcare.projects.locations.datasets.fhirStores.fhir._search
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Name of the FHIR store to retrieve resources from.
-     * @param {().SearchResourcesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    _search(
-      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
-    _search(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search,
-      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
-      callback: BodyResponseCallback<Schema$HttpBody>
-    ): void;
-    _search(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search,
-      callback: BodyResponseCallback<Schema$HttpBody>
-    ): void;
-    _search(callback: BodyResponseCallback<Schema$HttpBody>): void;
-    _search(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search
-        | BodyResponseCallback<Schema$HttpBody>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
-      callback?: BodyResponseCallback<Schema$HttpBody>
-    ): void | GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/fhir/_search').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$HttpBody>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$HttpBody>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the FHIR store this resource belongs to.
-     */
-    parent?: string;
-    /**
-     * The type of the resource to update.
-     */
-    type?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the FHIR store this resource belongs to.
-     */
-    parent?: string;
-    /**
-     * The type of the resource to update.
-     */
-    type?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$HttpBody;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the FHIR store this resource belongs to.
-     */
-    parent?: string;
-    /**
-     * The type of the resource to update.
-     */
-    type?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$HttpBody;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the FHIR store this resource belongs to.
-     */
-    parent?: string;
-    /**
-     * The type of the resource to create.
-     */
-    type?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$HttpBody;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the resource to delete.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the resource to purge.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the resource to retrieve.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Name of the FHIR store to retrieve the capabilities for.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the resource to update.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$HttpBody;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Name of the FHIR store to retrieve resources from.
-     */
-    parent?: string;
-    /**
-     * The type of the resource to search.
-     */
-    resourceType?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the resource to update.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$HttpBody;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Name of the FHIR store to retrieve resources from.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SearchResourcesRequest;
-  }
-
-  export class Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observation {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * healthcare.projects.locations.datasets.fhirStores.fhir.Observation.get$lastn
-     * @desc Get N most recent observations for patient, grouped by code that
-     * match given query parameters.
-     * @alias
-     * healthcare.projects.locations.datasets.fhirStores.fhir.Observation.get$lastn
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Name of the FHIR store to retrieve resources from.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get$lastn(
-      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observation$Get$lastn,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
-    get$lastn(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observation$Get$lastn,
-      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
-      callback: BodyResponseCallback<Schema$HttpBody>
-    ): void;
-    get$lastn(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observation$Get$lastn,
-      callback: BodyResponseCallback<Schema$HttpBody>
-    ): void;
-    get$lastn(callback: BodyResponseCallback<Schema$HttpBody>): void;
-    get$lastn(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observation$Get$lastn
-        | BodyResponseCallback<Schema$HttpBody>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
-      callback?: BodyResponseCallback<Schema$HttpBody>
-    ): void | GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observation$Get$lastn;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observation$Get$lastn;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1beta1/{+parent}/fhir/Observation/$lastn'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$HttpBody>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$HttpBody>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observation$Get$lastn
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Name of the FHIR store to retrieve resources from.
-     */
-    parent?: string;
-  }
-
-  export class Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * healthcare.projects.locations.datasets.fhirStores.fhir.Patient.get$everything
-     * @desc Gets all the resources in the patient compartment.
-     * @alias
-     * healthcare.projects.locations.datasets.fhirStores.fhir.Patient.get$everything
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.end The response includes records prior to the end date. If no end date is provided, all records subsequent to the start date are in scope.
-     * @param {string} params.name Name of the patient for which the information is required.
-     * @param {string=} params.start The response includes records subsequent to the start date. If no start date is provided, all records prior to the end date are in scope.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get$everything(
-      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
-    get$everything(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything,
-      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
-      callback: BodyResponseCallback<Schema$HttpBody>
-    ): void;
-    get$everything(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything,
-      callback: BodyResponseCallback<Schema$HttpBody>
-    ): void;
-    get$everything(callback: BodyResponseCallback<Schema$HttpBody>): void;
-    get$everything(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything
-        | BodyResponseCallback<Schema$HttpBody>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
-      callback?: BodyResponseCallback<Schema$HttpBody>
-    ): void | GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}/$everything').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$HttpBody>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$HttpBody>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The response includes records prior to the end date. If no end date is
-     * provided, all records subsequent to the start date are in scope.
-     */
-    end?: string;
-    /**
-     * Name of the patient for which the information is required.
-     */
-    name?: string;
-    /**
-     * The response includes records subsequent to the start date. If no start
-     * date is provided, all records prior to the end date are in scope.
-     */
-    start?: string;
-  }
-
-  export class Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * healthcare.projects.locations.datasets.fhirStores.fhir._history.get
-     * @desc Gets a version (current or historical) of FHIR resource by version
-     * id.
-     * @alias
-     * healthcare.projects.locations.datasets.fhirStores.fhir._history.get
+     * healthcare.projects.locations.datasets.fhirStores.fhir.vread
+     * @desc Gets the contents of a version (current or historical) of a FHIR resource by version ID.  Implements the FHIR standard [vread interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#vread).  On success, the response body will contain a JSON-encoded representation of the resource. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.vread
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -7804,34 +6875,34 @@ export namespace healthcare_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(
-      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get,
+    vread(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Vread,
       options?: MethodOptions
     ): GaxiosPromise<Schema$HttpBody>;
-    get(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get,
+    vread(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Vread,
       options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
       callback: BodyResponseCallback<Schema$HttpBody>
     ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get,
+    vread(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Vread,
       callback: BodyResponseCallback<Schema$HttpBody>
     ): void;
-    get(callback: BodyResponseCallback<Schema$HttpBody>): void;
-    get(
+    vread(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    vread(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Vread
         | BodyResponseCallback<Schema$HttpBody>,
       optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
       callback?: BodyResponseCallback<Schema$HttpBody>
     ): void | GaxiosPromise<Schema$HttpBody> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get;
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Vread;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Vread;
         options = {};
       }
 
@@ -7860,87 +6931,264 @@ export namespace healthcare_v1beta1 {
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
-    /**
-     * healthcare.projects.locations.datasets.fhirStores.fhir._history.list
-     * @desc Lists all the versions of a resource (including the current version
-     * and deleted versions) from the FHIR store.
-     * @alias
-     * healthcare.projects.locations.datasets.fhirStores.fhir._history.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.at Only include resource versions that were current at some point during the time period specified in the date time value. The date parameter format is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm] Clients may specify any of the following: An entire year: `_at=2019` An entire month: `_at=2019-01` A specific day: `_at=2019-01-20` A specific second: `_at=2018-12-31T23:59:58Z`
-     * @param {integer=} params.count The maximum number of search results on a page.
-     * @param {string} params.name The name of the resource to retrieve.
-     * @param {string=} params.page Used to retrieve the first, previous, next, or last page of resource versions when using pagination. Value should be set to the value of the `link.url` field returned in the response to the previous request, where `link.relation` is "first", "previous", "next" or "last". Omit `page` if no previous request has been made.
-     * @param {string=} params.since Only include resource versions that were created at or after the given instant in time. The instant in time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz (for example 2015-02-07T13:28:17.239+02:00 or 2017-01-01T00:00:00Z). The time must be specified to the second and include a time zone.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
-    list(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List,
-      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
-      callback: BodyResponseCallback<Schema$HttpBody>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List,
-      callback: BodyResponseCallback<Schema$HttpBody>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$HttpBody>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List
-        | BodyResponseCallback<Schema$HttpBody>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
-      callback?: BodyResponseCallback<Schema$HttpBody>
-    ): void | GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}/_history').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$HttpBody>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$HttpBody>(parameters);
-      }
-    }
   }
 
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the FHIR store to retrieve the capabilities for.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldelete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the FHIR store this resource belongs to.
+     */
+    parent?: string;
+    /**
+     * The FHIR resource type to delete, such as Patient or Observation. For a complete list, see the [FHIR Resource Index](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html).
+     */
+    type?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the FHIR store this resource belongs to.
+     */
+    parent?: string;
+    /**
+     * The FHIR resource type to update, such as Patient or Observation. For a complete list, see the [FHIR Resource Index](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html).
+     */
+    type?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdate
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the FHIR store this resource belongs to.
+     */
+    parent?: string;
+    /**
+     * The FHIR resource type to update, such as Patient or Observation. For a complete list, see the [FHIR Resource Index](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html). Must match the resource type in the provided content.
+     */
+    type?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the FHIR store this resource belongs to.
+     */
+    parent?: string;
+    /**
+     * The FHIR resource type to create, such as Patient or Observation. For a complete list, see the [FHIR Resource Index](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html). Must match the resource type in the provided content.
+     */
+    type?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the resource to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Executebundle
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the FHIR store in which this bundle will be executed.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$History
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Only include resource versions that were current at some point during the time period specified in the date time value. The date parameter format is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm]  Clients may specify any of the following:  *  An entire year: `_at=2019` *  An entire month: `_at=2019-01` *  A specific day: `_at=2019-01-20` *  A specific second: `_at=2018-12-31T23:59:58Z`
+     */
+    at?: string;
+    /**
+     * The maximum number of search results on a page. Defaults to 1000.
+     */
+    count?: number;
+    /**
+     * The name of the resource to retrieve.
+     */
+    name?: string;
+    /**
+     * Used to retrieve the first, previous, next, or last page of resource versions when using pagination. Value should be set to the value of the `link.url` field returned in the response to the previous request, where `link.relation` is "first", "previous", "next" or "last".  Omit `page` if no previous request has been made.
+     */
+    page?: string;
+    /**
+     * Only include resource versions that were created at or after the given instant in time. The instant in time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz (for example 2015-02-07T13:28:17.239+02:00 or 2017-01-01T00:00:00Z). The time must be specified to the second and include a time zone.
+     */
+    since?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Observationlastn
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the FHIR store to retrieve resources from.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the resource to update.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The response includes records prior to the end date. If no end date is provided, all records subsequent to the start date are in scope.
+     */
+    end?: string;
+    /**
+     * Name of the `Patient` resource for which the information is required.
+     */
+    name?: string;
+    /**
+     * The response includes records subsequent to the start date. If no start date is provided, all records prior to the end date are in scope.
+     */
+    start?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Read
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the resource to retrieve.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcepurge
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the resource to purge.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the FHIR store to retrieve resources from.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SearchResourcesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the resource to update.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Vread
     extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -7951,47 +7199,6 @@ export namespace healthcare_v1beta1 {
      * The name of the resource version to retrieve.
      */
     name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Only include resource versions that were current at some point during the
-     * time period specified in the date time value. The date parameter format
-     * is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm] Clients may specify any of the
-     * following: An entire year: `_at=2019` An entire month: `_at=2019-01` A
-     * specific day: `_at=2019-01-20` A specific second:
-     * `_at=2018-12-31T23:59:58Z`
-     */
-    at?: string;
-    /**
-     * The maximum number of search results on a page.
-     */
-    count?: number;
-    /**
-     * The name of the resource to retrieve.
-     */
-    name?: string;
-    /**
-     * Used to retrieve the first, previous, next, or last page of resource
-     * versions when using pagination. Value should be set to the value of the
-     * `link.url` field returned in the response to the previous request, where
-     * `link.relation` is "first", "previous", "next" or "last". Omit `page` if
-     * no previous request has been made.
-     */
-    page?: string;
-    /**
-     * Only include resource versions that were created at or after the given
-     * instant in time. The instant in time uses the format
-     * YYYY-MM-DDThh:mm:ss.sss+zz:zz (for example 2015-02-07T13:28:17.239+02:00
-     * or 2017-01-01T00:00:00Z). The time must be specified to the second and
-     * include a time zone.
-     */
-    since?: string;
   }
 
   export class Resource$Projects$Locations$Datasets$Hl7v2stores {
@@ -8082,8 +7289,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.delete
-     * @desc Deletes the specified HL7v2 store and removes all messages that are
-     * contained within it.
+     * @desc Deletes the specified HL7v2 store and removes all messages that are contained within it.
      * @alias healthcare.projects.locations.datasets.hl7V2Stores.delete
      * @memberOf! ()
      *
@@ -8223,8 +7429,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @alias healthcare.projects.locations.datasets.hl7V2Stores.getIamPolicy
      * @memberOf! ()
      *
@@ -8448,8 +7653,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias healthcare.projects.locations.datasets.hl7V2Stores.setIamPolicy
      * @memberOf! ()
      *
@@ -8522,13 +7726,8 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
-     * be used for building permission-aware UIs and command-line tools, not for
-     * authorization checking. This operation may "fail open" without warning.
-     * @alias
-     * healthcare.projects.locations.datasets.hl7V2Stores.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @alias healthcare.projects.locations.datasets.hl7V2Stores.testIamPermissions
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -8616,8 +7815,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the HL7v2 store that is being created. The string must match
-     * the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
+     * The ID of the HL7v2 store that is being created. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
      */
     hl7V2StoreId?: string;
     /**
@@ -8662,8 +7860,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -8675,19 +7872,15 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Restricts stores returned to those matching a filter. Syntax:
-     * https://cloud.google.com/appengine/docs/standard/python/search/query_strings
-     * Only filtering on labels is supported, for example `labels.key=value`.
+     * Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
      */
     filter?: string;
     /**
-     * Limit on the number of HL7v2 stores to return in a single response. If
-     * zero the default page size of 100 is used.
+     * Limit on the number of HL7v2 stores to return in a single response. If zero the default page size of 100 is used.
      */
     pageSize?: number;
     /**
-     * The next_page_token value returned from the previous List request, if
-     * any.
+     * The next_page_token value returned from the previous List request, if any.
      */
     pageToken?: string;
     /**
@@ -8703,14 +7896,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Output only. Resource name of the HL7v2 store, of the form
-     * `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.
+     * Output only. Resource name of the HL7v2 store, of the form `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.
      */
     name?: string;
     /**
-     * The update mask applies to the resource. For the `FieldMask` definition,
-     * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -8727,8 +7917,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8745,8 +7934,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8764,12 +7952,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.create
-     * @desc Creates a message and sends a notification to the Cloud Pub/Sub
-     * topic. If configured, the MLLP adapter listens to messages created by
-     * this method and sends those back to the hospital. A successful response
-     * indicates the message has been persisted to storage and a Cloud Pub/Sub
-     * notification has been sent. Sending to the hospital by the MLLP adapter
-     * happens asynchronously.
+     * @desc Creates a message and sends a notification to the Cloud Pub/Sub topic. If configured, the MLLP adapter listens to messages created by this method and sends those back to the hospital. A successful response indicates the message has been persisted to storage and a Cloud Pub/Sub notification has been sent. Sending to the hospital by the MLLP adapter happens asynchronously.
      * @alias healthcare.projects.locations.datasets.hl7V2Stores.messages.create
      * @memberOf! ()
      *
@@ -8981,11 +8164,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.ingest
-     * @desc Ingests a new HL7v2 message from the hospital and sends a
-     * notification to the Cloud Pub/Sub topic. Return is an HL7v2 ACK message
-     * if the message was successfully stored. Otherwise an error is returned.
-     * If an identical HL7v2 message is created twice only one resource is
-     * created on the server and no error is reported.
+     * @desc Ingests a new HL7v2 message from the hospital and sends a notification to the Cloud Pub/Sub topic. Return is an HL7v2 ACK message if the message was successfully stored. Otherwise an error is returned.  If an identical HL7v2 message is created twice only one resource is created on the server and no error is reported.
      * @alias healthcare.projects.locations.datasets.hl7V2Stores.messages.ingest
      * @memberOf! ()
      *
@@ -9062,8 +8241,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.list
-     * @desc Lists all the messages in the given HL7v2 store with support for
-     * filtering.
+     * @desc Lists all the messages in the given HL7v2 store with support for filtering.
      * @alias healthcare.projects.locations.datasets.hl7V2Stores.messages.list
      * @memberOf! ()
      *
@@ -9254,8 +8432,7 @@ export namespace healthcare_v1beta1 {
      */
     name?: string;
     /**
-     * Specifies which parts of the Message resource should be returned in the
-     * response.
+     * Specifies which parts of the Message resource should be returned in the response.
      */
     view?: string;
   }
@@ -9284,53 +8461,19 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Restricts messages returned to those matching a filter. Syntax:
-     * https://cloud.google.com/appengine/docs/standard/python/search/query_strings
-     * Fields/functions available for filtering are:  *  `message_type`, from
-     * the MSH-9 segment; for example `NOT message_type = "ADT"` *  `send_date`
-     * or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's
-     * time_zone, from the MSH-7 segment; for example `send_date < "2017-01-02"`
-     * *  `send_time`, the timestamp of when the message was sent, using the
-     * RFC3339 time format for comparisons, from the MSH-7 segment; for example
-     * `send_time < "2017-01-02T00:00:00-05:00"` *  `send_facility`, the care
-     * center that the message came from, from the MSH-4 segment; for example
-     * `send_facility = "ABC"` *  `HL7RegExp(expr)`, which does regular
-     * expression matching of `expr` against the message payload using re2
-     * (http://code.google.com/p/re2/) syntax; for example
-     * `HL7RegExp("^.*\|.*\|EMERG")` *  `PatientId(value, type)`, which matches
-     * if the message lists a patient having an ID of the given value and type
-     * in the PID-2, PID-3, or PID-4 segments; for example `PatientId("123456",
-     * "MRN")` *  `labels.x`, a string value of the label with key `x` as set
-     * using the Message.labels map, for example `labels."priority"="high"`. The
-     * operator `:*` can be used to assert the existence of a label, for example
-     * `labels."priority":*`.  Limitations on conjunctions:  *  Negation on the
-     * patient ID function or the labels field is not supported, for example
-     * these queries are invalid: `NOT PatientId("123456", "MRN")`, `NOT
-     * labels."tag1":*`, `NOT labels."tag2"="val2"`. *  Conjunction of multiple
-     * patient ID functions is not supported, for example this query is invalid:
-     * `PatientId("123456", "MRN") AND PatientId("456789", "MRN")`. *
-     * Conjunction of multiple labels fields is also not supported, for example
-     * this query is invalid: `labels."tag1":* AND labels."tag2"="val2"`. *
-     * Conjunction of one patient ID function, one labels field and conditions
-     * on other fields is supported, for example this query is valid:
-     * `PatientId("123456", "MRN") AND labels."tag1":* AND message_type =
-     * "ADT"`.
+     * Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings  Fields/functions available for filtering are:  *  `message_type`, from the MSH-9 segment; for example `NOT message_type = "ADT"` *  `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment; for example `send_date < "2017-01-02"` *  `send_time`, the timestamp of when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment; for example `send_time < "2017-01-02T00:00:00-05:00"` *  `send_facility`, the care center that the message came from, from the MSH-4 segment; for example `send_facility = "ABC"` *  `HL7RegExp(expr)`, which does regular expression matching of `expr` against the message payload using re2 (http://code.google.com/p/re2/) syntax; for example `HL7RegExp("^.*\|.*\|EMERG")` *  `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments; for example `PatientId("123456", "MRN")` *  `labels.x`, a string value of the label with key `x` as set using the Message.labels map, for example `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label, for example `labels."priority":*`.  Limitations on conjunctions:  *  Negation on the patient ID function or the labels field is not supported, for example these queries are invalid: `NOT PatientId("123456", "MRN")`, `NOT labels."tag1":*`, `NOT labels."tag2"="val2"`. *  Conjunction of multiple patient ID functions is not supported, for example this query is invalid: `PatientId("123456", "MRN") AND PatientId("456789", "MRN")`. *  Conjunction of multiple labels fields is also not supported, for example this query is invalid: `labels."tag1":* AND labels."tag2"="val2"`. *  Conjunction of one patient ID function, one labels field and conditions on other fields is supported, for example this query is valid: `PatientId("123456", "MRN") AND labels."tag1":* AND message_type = "ADT"`.
      */
     filter?: string;
     /**
-     * Orders messages returned by the specified order_by clause. Syntax:
-     * https://cloud.google.com/apis/design/design_patterns#sorting_order Fields
-     * available for ordering are:  *  `send_time`
+     * Orders messages returned by the specified order_by clause. Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order  Fields available for ordering are:  *  `send_time`
      */
     orderBy?: string;
     /**
-     * Limit on the number of messages to return in a single response. If zero
-     * the default page size of 100 is used.
+     * Limit on the number of messages to return in a single response. If zero the default page size of 100 is used.
      */
     pageSize?: number;
     /**
-     * The next_page_token value returned from the previous List request, if
-     * any.
+     * The next_page_token value returned from the previous List request, if any.
      */
     pageToken?: string;
     /**
@@ -9346,18 +8489,11 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name of the Message, of the form
-     * `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`.
-     * Assigned by the server.
+     * Resource name of the Message, of the form `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.
      */
     name?: string;
     /**
-     * The update mask applies to the resource. For the `FieldMask` definition,
-     * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     * Only the `labels` field is allowed to be updated. The labels in the
-     * request will be merged with the existing set of labels. Existing labels
-     * with the same keys will be updated.
+     * The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask Only the `labels` field is allowed to be updated. The labels in the request will be merged with the existing set of labels. Existing labels with the same keys will be updated.
      */
     updateMask?: string;
 
@@ -9375,9 +8511,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use
-     * this method to poll the operation result at intervals as recommended by
-     * the API service.
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @alias healthcare.projects.locations.datasets.operations.get
      * @memberOf! ()
      *
@@ -9448,15 +8582,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.operations.list
-     * @desc Lists operations that match the specified filter in the request. If
-     * the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE:
-     * the `name` binding allows API services to override the binding to use
-     * different resource name schemes, such as `users/x/operations`. To
-     * override the binding, API services can add a binding such as
-     * `"/v1/{name=users/x}/operations"` to their service configuration. For
-     * backwards compatibility, the default name includes the operations
-     * collection id, however overriding users must ensure the name binding is
-     * the parent resource, without the operations collection id.
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @alias healthcare.projects.locations.datasets.operations.list
      * @memberOf! ()
      *

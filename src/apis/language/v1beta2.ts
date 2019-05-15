@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace language_v1beta2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace language_v1beta2 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,9 +91,7 @@ export namespace language_v1beta2 {
   /**
    * Cloud Natural Language API
    *
-   * Provides natural language understanding technologies, such as sentiment
-   * analysis, entity recognition, entity sentiment analysis, and other text
-   * annotations, to developers.
+   * Provides natural language understanding technologies, such as sentiment analysis, entity recognition, entity sentiment analysis, and other text annotations, to developers.
    *
    * @example
    * const {google} = require('googleapis');
@@ -114,7 +108,10 @@ export namespace language_v1beta2 {
     documents: Resource$Documents;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.documents = new Resource$Documents(this.context);
     }
@@ -142,9 +139,7 @@ export namespace language_v1beta2 {
      */
     entities?: Schema$Entity[];
     /**
-     * The language of the text, which will be the same as the language
-     * specified in the request or, if not specified, the automatically-detected
-     * language. See Document.language field for more details.
+     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
      */
     language?: string;
   }
@@ -170,9 +165,7 @@ export namespace language_v1beta2 {
      */
     entities?: Schema$Entity[];
     /**
-     * The language of the text, which will be the same as the language
-     * specified in the request or, if not specified, the automatically-detected
-     * language. See Document.language field for more details.
+     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
      */
     language?: string;
   }
@@ -185,8 +178,7 @@ export namespace language_v1beta2 {
      */
     document?: Schema$Document;
     /**
-     * The encoding type used by the API to calculate sentence offsets for the
-     * sentence sentiment.
+     * The encoding type used by the API to calculate sentence offsets for the sentence sentiment.
      */
     encodingType?: string;
   }
@@ -199,9 +191,7 @@ export namespace language_v1beta2 {
      */
     documentSentiment?: Schema$Sentiment;
     /**
-     * The language of the text, which will be the same as the language
-     * specified in the request or, if not specified, the automatically-detected
-     * language. See Document.language field for more details.
+     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
      */
     language?: string;
     /**
@@ -227,9 +217,7 @@ export namespace language_v1beta2 {
    */
   export interface Schema$AnalyzeSyntaxResponse {
     /**
-     * The language of the text, which will be the same as the language
-     * specified in the request or, if not specified, the automatically-detected
-     * language. See Document.language field for more details.
+     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
      */
     language?: string;
     /**
@@ -242,8 +230,7 @@ export namespace language_v1beta2 {
     tokens?: Schema$Token[];
   }
   /**
-   * The request message for the text annotation API, which can perform multiple
-   * analysis types (sentiment, entities, and syntax) in one call.
+   * The request message for the text annotation API, which can perform multiple analysis types (sentiment, entities, and syntax) in one call.
    */
   export interface Schema$AnnotateTextRequest {
     /**
@@ -268,31 +255,23 @@ export namespace language_v1beta2 {
      */
     categories?: Schema$ClassificationCategory[];
     /**
-     * The overall sentiment for the document. Populated if the user enables
-     * AnnotateTextRequest.Features.extract_document_sentiment.
+     * The overall sentiment for the document. Populated if the user enables AnnotateTextRequest.Features.extract_document_sentiment.
      */
     documentSentiment?: Schema$Sentiment;
     /**
-     * Entities, along with their semantic information, in the input document.
-     * Populated if the user enables
-     * AnnotateTextRequest.Features.extract_entities.
+     * Entities, along with their semantic information, in the input document. Populated if the user enables AnnotateTextRequest.Features.extract_entities.
      */
     entities?: Schema$Entity[];
     /**
-     * The language of the text, which will be the same as the language
-     * specified in the request or, if not specified, the automatically-detected
-     * language. See Document.language field for more details.
+     * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
      */
     language?: string;
     /**
-     * Sentences in the input document. Populated if the user enables
-     * AnnotateTextRequest.Features.extract_syntax.
+     * Sentences in the input document. Populated if the user enables AnnotateTextRequest.Features.extract_syntax.
      */
     sentences?: Schema$Sentence[];
     /**
-     * Tokens, along with their syntactic information, in the input document.
-     * Populated if the user enables
-     * AnnotateTextRequest.Features.extract_syntax.
+     * Tokens, along with their syntactic information, in the input document. Populated if the user enables AnnotateTextRequest.Features.extract_syntax.
      */
     tokens?: Schema$Token[];
   }
@@ -301,13 +280,11 @@ export namespace language_v1beta2 {
    */
   export interface Schema$ClassificationCategory {
     /**
-     * The classifier&#39;s confidence of the category. Number represents how
-     * certain the classifier is that this category represents the given text.
+     * The classifier&#39;s confidence of the category. Number represents how certain the classifier is that this category represents the given text.
      */
     confidence?: number;
     /**
-     * The name of the category representing the document, from the [predefined
-     * taxonomy](/natural-language/docs/categories).
+     * The name of the category representing the document, from the [predefined taxonomy](/natural-language/docs/categories).
      */
     name?: string;
   }
@@ -334,11 +311,7 @@ export namespace language_v1beta2 {
    */
   export interface Schema$DependencyEdge {
     /**
-     * Represents the head of this token in the dependency tree. This is the
-     * index of the token which has an arc going to this token. The index is the
-     * position of the token in the array of tokens returned by the API method.
-     * If this token is a root token, then the `head_token_index` is its own
-     * index.
+     * Represents the head of this token in the dependency tree. This is the index of the token which has an arc going to this token. The index is the position of the token in the array of tokens returned by the API method. If this token is a root token, then the `head_token_index` is its own index.
      */
     headTokenIndex?: number;
     /**
@@ -347,54 +320,36 @@ export namespace language_v1beta2 {
     label?: string;
   }
   /**
-   * ################################################################ #
-   * Represents the input to API methods.
+   * ################################################################ #  Represents the input to API methods.
    */
   export interface Schema$Document {
     /**
-     * The content of the input in string format. Cloud audit logging exempt
-     * since it is based on user data.
+     * The content of the input in string format. Cloud audit logging exempt since it is based on user data.
      */
     content?: string;
     /**
-     * The Google Cloud Storage URI where the file content is located. This URI
-     * must be of the form: gs://bucket_name/object_name. For more details, see
-     * https://cloud.google.com/storage/docs/reference-uris. NOTE: Cloud Storage
-     * object versioning is not supported.
+     * The Google Cloud Storage URI where the file content is located. This URI must be of the form: gs://bucket_name/object_name. For more details, see https://cloud.google.com/storage/docs/reference-uris. NOTE: Cloud Storage object versioning is not supported.
      */
     gcsContentUri?: string;
     /**
-     * The language of the document (if not specified, the language is
-     * automatically detected). Both ISO and BCP-47 language codes are
-     * accepted.&lt;br&gt; [Language Support](/natural-language/docs/languages)
-     * lists currently supported languages for each API method. If the language
-     * (either specified by the caller or automatically detected) is not
-     * supported by the called API method, an `INVALID_ARGUMENT` error is
-     * returned.
+     * The language of the document (if not specified, the language is automatically detected). Both ISO and BCP-47 language codes are accepted.&lt;br&gt; [Language Support](/natural-language/docs/languages) lists currently supported languages for each API method. If the language (either specified by the caller or automatically detected) is not supported by the called API method, an `INVALID_ARGUMENT` error is returned.
      */
     language?: string;
     /**
-     * Required. If the type is not set or is `TYPE_UNSPECIFIED`, returns an
-     * `INVALID_ARGUMENT` error.
+     * Required. If the type is not set or is `TYPE_UNSPECIFIED`, returns an `INVALID_ARGUMENT` error.
      */
     type?: string;
   }
   /**
-   * Represents a phrase in the text that is a known entity, such as a person,
-   * an organization, or location. The API associates information, such as
-   * salience and mentions, with entities.
+   * Represents a phrase in the text that is a known entity, such as a person, an organization, or location. The API associates information, such as salience and mentions, with entities.
    */
   export interface Schema$Entity {
     /**
-     * The mentions of this entity in the input document. The API currently
-     * supports proper noun mentions.
+     * The mentions of this entity in the input document. The API currently supports proper noun mentions.
      */
     mentions?: Schema$EntityMention[];
     /**
-     * Metadata associated with the entity.  For most entity types, the metadata
-     * is a Wikipedia URL (`wikipedia_url`) and Knowledge Graph MID (`mid`), if
-     * they are available. For the metadata associated with other entity types,
-     * see the Type table below.
+     * Metadata associated with the entity.  For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`) and Knowledge Graph MID (`mid`), if they are available. For the metadata associated with other entity types, see the Type table below.
      */
     metadata?: {[key: string]: string};
     /**
@@ -402,17 +357,11 @@ export namespace language_v1beta2 {
      */
     name?: string;
     /**
-     * The salience score associated with the entity in the [0, 1.0] range.  The
-     * salience score for an entity provides information about the importance or
-     * centrality of that entity to the entire document text. Scores closer to 0
-     * are less salient, while scores closer to 1.0 are highly salient.
+     * The salience score associated with the entity in the [0, 1.0] range.  The salience score for an entity provides information about the importance or centrality of that entity to the entire document text. Scores closer to 0 are less salient, while scores closer to 1.0 are highly salient.
      */
     salience?: number;
     /**
-     * For calls to AnalyzeEntitySentiment or if
-     * AnnotateTextRequest.Features.extract_entity_sentiment is set to true,
-     * this field will contain the aggregate sentiment expressed for this entity
-     * in the provided document.
+     * For calls to AnalyzeEntitySentiment or if AnnotateTextRequest.Features.extract_entity_sentiment is set to true, this field will contain the aggregate sentiment expressed for this entity in the provided document.
      */
     sentiment?: Schema$Sentiment;
     /**
@@ -421,15 +370,11 @@ export namespace language_v1beta2 {
     type?: string;
   }
   /**
-   * Represents a mention for an entity in the text. Currently, proper noun
-   * mentions are supported.
+   * Represents a mention for an entity in the text. Currently, proper noun mentions are supported.
    */
   export interface Schema$EntityMention {
     /**
-     * For calls to AnalyzeEntitySentiment or if
-     * AnnotateTextRequest.Features.extract_entity_sentiment is set to true,
-     * this field will contain the sentiment expressed for this mention of the
-     * entity in the provided document.
+     * For calls to AnalyzeEntitySentiment or if AnnotateTextRequest.Features.extract_entity_sentiment is set to true, this field will contain the sentiment expressed for this mention of the entity in the provided document.
      */
     sentiment?: Schema$Sentiment;
     /**
@@ -442,15 +387,11 @@ export namespace language_v1beta2 {
     type?: string;
   }
   /**
-   * All available features for sentiment, syntax, and semantic analysis.
-   * Setting each one to true will enable that specific analysis for the input.
-   * Next ID: 10
+   * All available features for sentiment, syntax, and semantic analysis. Setting each one to true will enable that specific analysis for the input. Next ID: 10
    */
   export interface Schema$Features {
     /**
-     * Classify the full document into categories. If this is true, the API will
-     * use the default model which classifies into a [predefined
-     * taxonomy](/natural-language/docs/categories).
+     * Classify the full document into categories. If this is true, the API will use the default model which classifies into a [predefined taxonomy](/natural-language/docs/categories).
      */
     classifyText?: boolean;
     /**
@@ -528,9 +469,7 @@ export namespace language_v1beta2 {
    */
   export interface Schema$Sentence {
     /**
-     * For calls to AnalyzeSentiment or if
-     * AnnotateTextRequest.Features.extract_document_sentiment is set to true,
-     * this field will contain the sentiment for the sentence.
+     * For calls to AnalyzeSentiment or if AnnotateTextRequest.Features.extract_document_sentiment is set to true, this field will contain the sentiment for the sentence.
      */
     sentiment?: Schema$Sentiment;
     /**
@@ -539,57 +478,20 @@ export namespace language_v1beta2 {
     text?: Schema$TextSpan;
   }
   /**
-   * Represents the feeling associated with the entire text or entities in the
-   * text. Next ID: 6
+   * Represents the feeling associated with the entire text or entities in the text. Next ID: 6
    */
   export interface Schema$Sentiment {
     /**
-     * A non-negative number in the [0, +inf) range, which represents the
-     * absolute magnitude of sentiment regardless of score (positive or
-     * negative).
+     * A non-negative number in the [0, +inf) range, which represents the absolute magnitude of sentiment regardless of score (positive or negative).
      */
     magnitude?: number;
     /**
-     * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive
-     * sentiment).
+     * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive sentiment).
      */
     score?: number;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for
-   * different programming environments, including REST APIs and RPC APIs. It is
-   * used by [gRPC](https://github.com/grpc). The error model is designed to be:
-   * - Simple to use and understand for most users - Flexible enough to meet
-   * unexpected needs  # Overview  The `Status` message contains three pieces of
-   * data: error code, error message, and error details. The error code should
-   * be an enum value of google.rpc.Code, but it may accept additional error
-   * codes if needed.  The error message should be a developer-facing English
-   * message that helps developers *understand* and *resolve* the error. If a
-   * localized user-facing error message is needed, put the localized message in
-   * the error details or localize it in the client. The optional error details
-   * may contain arbitrary information about the error. There is a predefined
-   * set of error detail types in the package `google.rpc` that can be used for
-   * common error conditions.  # Language mapping  The `Status` message is the
-   * logical representation of the error model, but it is not necessarily the
-   * actual wire format. When the `Status` message is exposed in different
-   * client libraries and different wire protocols, it can be mapped
-   * differently. For example, it will likely be mapped to some exceptions in
-   * Java, but more likely mapped to some error codes in C.  # Other uses  The
-   * error model and the `Status` message can be used in a variety of
-   * environments, either with or without APIs, to provide a consistent
-   * developer experience across different environments.  Example uses of this
-   * error model include:  - Partial errors. If a service needs to return
-   * partial errors to the client,     it may embed the `Status` in the normal
-   * response to indicate the partial     errors.  - Workflow errors. A typical
-   * workflow has multiple steps. Each step may     have a `Status` message for
-   * error reporting.  - Batch operations. If a client uses batch request and
-   * batch response, the     `Status` message should be used directly inside
-   * batch response, one for     each error sub-response.  - Asynchronous
-   * operations. If an API call embeds asynchronous operation     results in its
-   * response, the status of those operations should be     represented directly
-   * using the `Status` message.  - Logging. If some API errors are stored in
-   * logs, the message `Status` could     be used directly after any stripping
-   * needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
    */
   export interface Schema$Status {
     /**
@@ -597,14 +499,11 @@ export namespace language_v1beta2 {
      */
     code?: number;
     /**
-     * A list of messages that carry the error details.  There is a common set
-     * of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}>;
     /**
-     * A developer-facing error message, which should be in English. Any
-     * user-facing error message should be localized and sent in the
-     * google.rpc.Status.details field, or localized by the client.
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
   }
@@ -613,8 +512,7 @@ export namespace language_v1beta2 {
    */
   export interface Schema$TextSpan {
     /**
-     * The API calculates the beginning offset of the content in the original
-     * document according to the EncodingType specified in the API request.
+     * The API calculates the beginning offset of the content in the original document according to the EncodingType specified in the API request.
      */
     beginOffset?: number;
     /**
@@ -631,8 +529,7 @@ export namespace language_v1beta2 {
      */
     dependencyEdge?: Schema$DependencyEdge;
     /**
-     * [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the
-     * token.
+     * [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
      */
     lemma?: string;
     /**
@@ -653,9 +550,7 @@ export namespace language_v1beta2 {
 
     /**
      * language.documents.analyzeEntities
-     * @desc Finds named entities (currently proper names and common nouns) in
-     * the text along with entity types, salience, mentions for each entity, and
-     * other properties.
+     * @desc Finds named entities (currently proper names and common nouns) in the text along with entity types, salience, mentions for each entity, and other properties.
      * @alias language.documents.analyzeEntities
      * @memberOf! ()
      *
@@ -733,8 +628,7 @@ export namespace language_v1beta2 {
 
     /**
      * language.documents.analyzeEntitySentiment
-     * @desc Finds entities, similar to AnalyzeEntities in the text and analyzes
-     * sentiment associated with each entity and its mentions.
+     * @desc Finds entities, similar to AnalyzeEntities in the text and analyzes sentiment associated with each entity and its mentions.
      * @alias language.documents.analyzeEntitySentiment
      * @memberOf! ()
      *
@@ -894,9 +788,7 @@ export namespace language_v1beta2 {
 
     /**
      * language.documents.analyzeSyntax
-     * @desc Analyzes the syntax of the text and provides sentence boundaries
-     * and tokenization along with part of speech tags, dependency trees, and
-     * other properties.
+     * @desc Analyzes the syntax of the text and provides sentence boundaries and tokenization along with part of speech tags, dependency trees, and other properties.
      * @alias language.documents.analyzeSyntax
      * @memberOf! ()
      *
@@ -974,8 +866,7 @@ export namespace language_v1beta2 {
 
     /**
      * language.documents.annotateText
-     * @desc A convenience method that provides all syntax, sentiment, entity,
-     * and classification features in one call.
+     * @desc A convenience method that provides all syntax, sentiment, entity, and classification features in one call.
      * @alias language.documents.annotateText
      * @memberOf! ()
      *

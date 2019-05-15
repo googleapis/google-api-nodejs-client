@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace websecurityscanner_v1beta {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace websecurityscanner_v1beta {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -112,7 +108,10 @@ export namespace websecurityscanner_v1beta {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
@@ -132,9 +131,7 @@ export namespace websecurityscanner_v1beta {
     googleAccount?: Schema$GoogleAccount;
   }
   /**
-   * A CrawledUrl resource represents a URL that was crawled during a ScanRun.
-   * Web Security Scanner Service crawls the web applications, following all
-   * links within the scope of sites, to find the URLs to test against.
+   * A CrawledUrl resource represents a URL that was crawled during a ScanRun. Web Security Scanner Service crawls the web applications, following all links within the scope of sites, to find the URLs to test against.
    */
   export interface Schema$CrawledUrl {
     /**
@@ -142,8 +139,7 @@ export namespace websecurityscanner_v1beta {
      */
     body?: string;
     /**
-     * Output only. The http method of the request that was used to visit the
-     * URL, in uppercase.
+     * Output only. The http method of the request that was used to visit the URL, in uppercase.
      */
     httpMethod?: string;
     /**
@@ -160,9 +156,7 @@ export namespace websecurityscanner_v1beta {
      */
     loginUrl?: string;
     /**
-     * Input only. Required. The password of the custom account. The credential
-     * is stored encrypted and not returned in any response nor included in
-     * audit logs.
+     * Input only. Required. The password of the custom account. The credential is stored encrypted and not returned in any response nor included in audit logs.
      */
     password?: string;
     /**
@@ -171,16 +165,11 @@ export namespace websecurityscanner_v1beta {
     username?: string;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * A Finding resource represents a vulnerability instance identified during a
-   * ScanRun.
+   * A Finding resource represents a vulnerability instance identified during a ScanRun.
    */
   export interface Schema$Finding {
     /**
@@ -192,41 +181,31 @@ export namespace websecurityscanner_v1beta {
      */
     description?: string;
     /**
-     * Output only. The URL where the browser lands when the vulnerability is
-     * detected.
+     * Output only. The URL where the browser lands when the vulnerability is detected.
      */
     finalUrl?: string;
     /**
-     * Output only. The type of the Finding. Detailed and up-to-date information
-     * on findings can be found here:
-     * https://cloud.google.com/security-scanner/docs/scan-result-details
+     * Output only. The type of the Finding. Detailed and up-to-date information on findings can be found here: https://cloud.google.com/security-scanner/docs/scan-result-details
      */
     findingType?: string;
     /**
-     * Output only. An addon containing information reported for a vulnerability
-     * with an HTML form, if any.
+     * Output only. An addon containing information reported for a vulnerability with an HTML form, if any.
      */
     form?: Schema$Form;
     /**
-     * Output only. If the vulnerability was originated from nested IFrame, the
-     * immediate parent IFrame is reported.
+     * Output only. If the vulnerability was originated from nested IFrame, the immediate parent IFrame is reported.
      */
     frameUrl?: string;
     /**
-     * Output only. The URL produced by the server-side fuzzer and used in the
-     * request that triggered the vulnerability.
+     * Output only. The URL produced by the server-side fuzzer and used in the request that triggered the vulnerability.
      */
     fuzzedUrl?: string;
     /**
-     * Output only. The http method of the request that triggered the
-     * vulnerability, in uppercase.
+     * Output only. The http method of the request that triggered the vulnerability, in uppercase.
      */
     httpMethod?: string;
     /**
-     * Output only. The resource name of the Finding. The name follows the
-     * format of
-     * &#39;projects/{projectId}/scanConfigs/{scanConfigId}/scanruns/{scanRunId}/findings/{findingId}&#39;.
-     * The finding IDs are generated by the system.
+     * Output only. The resource name of the Finding. The name follows the format of &#39;projects/{projectId}/scanConfigs/{scanConfigId}/scanruns/{scanRunId}/findings/{findingId}&#39;. The finding IDs are generated by the system.
      */
     name?: string;
     /**
@@ -234,29 +213,23 @@ export namespace websecurityscanner_v1beta {
      */
     outdatedLibrary?: Schema$OutdatedLibrary;
     /**
-     * Output only. The URL containing human-readable payload that user can
-     * leverage to reproduce the vulnerability.
+     * Output only. The URL containing human-readable payload that user can leverage to reproduce the vulnerability.
      */
     reproductionUrl?: string;
     /**
-     * Output only. The tracking ID uniquely identifies a vulnerability instance
-     * across multiple ScanRuns.
+     * Output only. The tracking ID uniquely identifies a vulnerability instance across multiple ScanRuns.
      */
     trackingId?: string;
     /**
-     * Output only. An addon containing detailed information regarding any
-     * resource causing the vulnerability such as JavaScript sources, image,
-     * audio files, etc.
+     * Output only. An addon containing detailed information regarding any resource causing the vulnerability such as JavaScript sources, image, audio files, etc.
      */
     violatingResource?: Schema$ViolatingResource;
     /**
-     * Output only. An addon containing information about vulnerable or missing
-     * HTTP headers.
+     * Output only. An addon containing information about vulnerable or missing HTTP headers.
      */
     vulnerableHeaders?: Schema$VulnerableHeaders;
     /**
-     * Output only. An addon containing information about request parameters
-     * which were found to be vulnerable.
+     * Output only. An addon containing information about request parameters which were found to be vulnerable.
      */
     vulnerableParameters?: Schema$VulnerableParameters;
     /**
@@ -265,8 +238,7 @@ export namespace websecurityscanner_v1beta {
     xss?: Schema$Xss;
   }
   /**
-   * A FindingTypeStats resource represents stats regarding a specific
-   * FindingType of Findings under a given ScanRun.
+   * A FindingTypeStats resource represents stats regarding a specific FindingType of Findings under a given ScanRun.
    */
   export interface Schema$FindingTypeStats {
     /**
@@ -296,9 +268,7 @@ export namespace websecurityscanner_v1beta {
    */
   export interface Schema$GoogleAccount {
     /**
-     * Input only. Required. The password of the Google account. The credential
-     * is stored encrypted and not returned in any response nor included in
-     * audit logs.
+     * Input only. Required. The password of the Google account. The credential is stored encrypted and not returned in any response nor included in audit logs.
      */
     password?: string;
     /**
@@ -328,8 +298,7 @@ export namespace websecurityscanner_v1beta {
      */
     crawledUrls?: Schema$CrawledUrl[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -342,8 +311,7 @@ export namespace websecurityscanner_v1beta {
      */
     findings?: Schema$Finding[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -361,8 +329,7 @@ export namespace websecurityscanner_v1beta {
    */
   export interface Schema$ListScanConfigsResponse {
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
     /**
@@ -375,8 +342,7 @@ export namespace websecurityscanner_v1beta {
    */
   export interface Schema$ListScanRunsResponse {
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
     /**
@@ -402,18 +368,15 @@ export namespace websecurityscanner_v1beta {
     version?: string;
   }
   /**
-   * A ScanConfig resource contains the configurations to launch a scan. next
-   * id: 12
+   * A ScanConfig resource contains the configurations to launch a scan. next id: 12
    */
   export interface Schema$ScanConfig {
     /**
-     * The authentication configuration. If specified, service will use the
-     * authentication configuration during scanning.
+     * The authentication configuration. If specified, service will use the authentication configuration during scanning.
      */
     authentication?: Schema$Authentication;
     /**
-     * The blacklist URL patterns as described in
-     * https://cloud.google.com/security-scanner/docs/excluded-urls
+     * The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
      */
     blacklistPatterns?: string[];
     /**
@@ -421,8 +384,7 @@ export namespace websecurityscanner_v1beta {
      */
     displayName?: string;
     /**
-     * Controls export of scan configurations and results to Cloud Security
-     * Command Center.
+     * Controls export of scan configurations and results to Cloud Security Command Center.
      */
     exportToSecurityCommandCenter?: string;
     /**
@@ -430,16 +392,11 @@ export namespace websecurityscanner_v1beta {
      */
     latestRun?: Schema$ScanRun;
     /**
-     * The maximum QPS during scanning. A valid value ranges from 5 to 20
-     * inclusively. If the field is unspecified or its value is set 0, server
-     * will default to 15. Other values outside of [5, 20] range will be
-     * rejected with INVALID_ARGUMENT error.
+     * The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively. If the field is unspecified or its value is set 0, server will default to 15. Other values outside of [5, 20] range will be rejected with INVALID_ARGUMENT error.
      */
     maxQps?: number;
     /**
-     * The resource name of the ScanConfig. The name follows the format of
-     * &#39;projects/{projectId}/scanConfigs/{scanConfigId}&#39;. The ScanConfig
-     * IDs are generated by the system.
+     * The resource name of the ScanConfig. The name follows the format of &#39;projects/{projectId}/scanConfigs/{scanConfigId}&#39;. The ScanConfig IDs are generated by the system.
      */
     name?: string;
     /**
@@ -451,8 +408,7 @@ export namespace websecurityscanner_v1beta {
      */
     startingUrls?: string[];
     /**
-     * Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be
-     * used as a default.
+     * Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
      */
     targetPlatforms?: string[];
     /**
@@ -461,10 +417,7 @@ export namespace websecurityscanner_v1beta {
     userAgent?: string;
   }
   /**
-   * Defines a custom error message used by CreateScanConfig and
-   * UpdateScanConfig APIs when scan configuration validation fails. It is also
-   * reported as part of a ScanRunErrorTrace message if scan validation fails
-   * due to a scan configuration error.
+   * Defines a custom error message used by CreateScanConfig and UpdateScanConfig APIs when scan configuration validation fails. It is also reported as part of a ScanRunErrorTrace message if scan validation fails due to a scan configuration error.
    */
   export interface Schema$ScanConfigError {
     /**
@@ -472,27 +425,20 @@ export namespace websecurityscanner_v1beta {
      */
     code?: string;
     /**
-     * Output only. Indicates the full name of the ScanConfig field that
-     * triggers this error, for example &quot;scan_config.max_qps&quot;. This
-     * field is provided for troubleshooting purposes only and its actual value
-     * can change in the future.
+     * Output only. Indicates the full name of the ScanConfig field that triggers this error, for example &quot;scan_config.max_qps&quot;. This field is provided for troubleshooting purposes only and its actual value can change in the future.
      */
     fieldName?: string;
   }
   /**
-   * A ScanRun is a output-only resource representing an actual run of the scan.
-   * Next id: 12
+   * A ScanRun is a output-only resource representing an actual run of the scan. Next id: 12
    */
   export interface Schema$ScanRun {
     /**
-     * Output only. The time at which the ScanRun reached termination state -
-     * that the ScanRun is either finished or stopped by user.
+     * Output only. The time at which the ScanRun reached termination state - that the ScanRun is either finished or stopped by user.
      */
     endTime?: string;
     /**
-     * Output only. If result_state is an ERROR, this field provides the primary
-     * reason for scan&#39;s termination and more details, if such are
-     * available.
+     * Output only. If result_state is an ERROR, this field provides the primary reason for scan&#39;s termination and more details, if such are available.
      */
     errorTrace?: Schema$ScanRunErrorTrace;
     /**
@@ -504,21 +450,15 @@ export namespace websecurityscanner_v1beta {
      */
     hasVulnerabilities?: boolean;
     /**
-     * Output only. The resource name of the ScanRun. The name follows the
-     * format of
-     * &#39;projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}&#39;.
-     * The ScanRun IDs are generated by the system.
+     * Output only. The resource name of the ScanRun. The name follows the format of &#39;projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}&#39;. The ScanRun IDs are generated by the system.
      */
     name?: string;
     /**
-     * Output only. The percentage of total completion ranging from 0 to 100. If
-     * the scan is in queue, the value is 0. If the scan is running, the value
-     * ranges from 0 to 100. If the scan is finished, the value is 100.
+     * Output only. The percentage of total completion ranging from 0 to 100. If the scan is in queue, the value is 0. If the scan is running, the value ranges from 0 to 100. If the scan is finished, the value is 100.
      */
     progressPercent?: number;
     /**
-     * Output only. The result state of the ScanRun. This field is only
-     * available after the execution state reaches &quot;FINISHED&quot;.
+     * Output only. The result state of the ScanRun. This field is only available after the execution state reaches &quot;FINISHED&quot;.
      */
     resultState?: string;
     /**
@@ -526,21 +466,15 @@ export namespace websecurityscanner_v1beta {
      */
     startTime?: string;
     /**
-     * Output only. The number of URLs crawled during this ScanRun. If the scan
-     * is in progress, the value represents the number of URLs crawled up to
-     * now.
+     * Output only. The number of URLs crawled during this ScanRun. If the scan is in progress, the value represents the number of URLs crawled up to now.
      */
     urlsCrawledCount?: string;
     /**
-     * Output only. The number of URLs tested during this ScanRun. If the scan
-     * is in progress, the value represents the number of URLs tested up to now.
-     * The number of URLs tested is usually larger than the number URLS crawled
-     * because typically a crawled URL is tested with multiple test payloads.
+     * Output only. The number of URLs tested during this ScanRun. If the scan is in progress, the value represents the number of URLs tested up to now. The number of URLs tested is usually larger than the number URLS crawled because typically a crawled URL is tested with multiple test payloads.
      */
     urlsTestedCount?: string;
     /**
-     * Output only. A list of warnings, if such are encountered during this scan
-     * run.
+     * Output only. A list of warnings, if such are encountered during this scan run.
      */
     warningTraces?: Schema$ScanRunWarningTrace[];
   }
@@ -553,23 +487,16 @@ export namespace websecurityscanner_v1beta {
      */
     code?: string;
     /**
-     * Output only. If the scan encounters TOO_MANY_HTTP_ERRORS, this field
-     * indicates the most common HTTP error code, if such is available. For
-     * example, if this code is 404, the scan has encountered too many NOT_FOUND
-     * responses.
+     * Output only. If the scan encounters TOO_MANY_HTTP_ERRORS, this field indicates the most common HTTP error code, if such is available. For example, if this code is 404, the scan has encountered too many NOT_FOUND responses.
      */
     mostCommonHttpErrorCode?: number;
     /**
-     * Output only. If the scan encounters SCAN_CONFIG_ISSUE error, this field
-     * has the error message encountered during scan configuration validation
-     * that is performed before each scan run.
+     * Output only. If the scan encounters SCAN_CONFIG_ISSUE error, this field has the error message encountered during scan configuration validation that is performed before each scan run.
      */
     scanConfigError?: Schema$ScanConfigError;
   }
   /**
-   * Output only. Defines a warning trace message for ScanRun. Warning traces
-   * provide customers with useful information that helps make the scanning
-   * process more effective.
+   * Output only. Defines a warning trace message for ScanRun. Warning traces provide customers with useful information that helps make the scanning process more effective.
    */
   export interface Schema$ScanRunWarningTrace {
     /**
@@ -586,10 +513,7 @@ export namespace websecurityscanner_v1beta {
      */
     intervalDurationDays?: number;
     /**
-     * A timestamp indicates when the next run will be scheduled. The value is
-     * refreshed by the server after each run. If unspecified, it will default
-     * to current server time, which means the scan will be scheduled to start
-     * immediately.
+     * A timestamp indicates when the next run will be scheduled. The value is refreshed by the server after each run. If unspecified, it will default to current server time, which means the scan will be scheduled to start immediately.
      */
     scheduleTime?: string;
   }
@@ -602,8 +526,7 @@ export namespace websecurityscanner_v1beta {
    */
   export interface Schema$StopScanRunRequest {}
   /**
-   * Information regarding any resource causing the vulnerability such as
-   * JavaScript sources, image, audio files, etc.
+   * Information regarding any resource causing the vulnerability such as JavaScript sources, image, audio files, etc.
    */
   export interface Schema$ViolatingResource {
     /**
@@ -967,8 +890,7 @@ export namespace websecurityscanner_v1beta {
 
     /**
      * websecurityscanner.projects.scanConfigs.patch
-     * @desc Updates a ScanConfig. This method support partial update of a
-     * ScanConfig.
+     * @desc Updates a ScanConfig. This method support partial update of a ScanConfig.
      * @alias websecurityscanner.projects.scanConfigs.patch
      * @memberOf! ()
      *
@@ -1123,8 +1045,7 @@ export namespace websecurityscanner_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The parent resource name where the scan is created, which
-     * should be a project resource name in the format 'projects/{projectId}'.
+     * Required. The parent resource name where the scan is created, which should be a project resource name in the format 'projects/{projectId}'.
      */
     parent?: string;
 
@@ -1141,8 +1062,7 @@ export namespace websecurityscanner_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the ScanConfig to be deleted. The name
-     * follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
+     * Required. The resource name of the ScanConfig to be deleted. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      */
     name?: string;
   }
@@ -1154,8 +1074,7 @@ export namespace websecurityscanner_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the ScanConfig to be returned. The name
-     * follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
+     * Required. The resource name of the ScanConfig to be returned. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      */
     name?: string;
   }
@@ -1167,20 +1086,15 @@ export namespace websecurityscanner_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of ScanConfigs to return, can be limited by server. If
-     * not specified or not positive, the implementation will select a
-     * reasonable value.
+     * The maximum number of ScanConfigs to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results to be returned. This should be a
-     * `next_page_token` value returned from a previous List request. If
-     * unspecified, the first page of results is returned.
+     * A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, which should be a project resource
-     * name in the format 'projects/{projectId}'.
+     * Required. The parent resource name, which should be a project resource name in the format 'projects/{projectId}'.
      */
     parent?: string;
   }
@@ -1192,15 +1106,11 @@ export namespace websecurityscanner_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the ScanConfig. The name follows the format of
-     * 'projects/{projectId}/scanConfigs/{scanConfigId}'. The ScanConfig IDs are
-     * generated by the system.
+     * The resource name of the ScanConfig. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'. The ScanConfig IDs are generated by the system.
      */
     name?: string;
     /**
-     * Required. The update mask applies to the resource. For the `FieldMask`
-     * definition, see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -1217,8 +1127,7 @@ export namespace websecurityscanner_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the ScanConfig to be used. The name
-     * follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
+     * Required. The resource name of the ScanConfig to be used. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      */
     name?: string;
 
@@ -1318,8 +1227,7 @@ export namespace websecurityscanner_v1beta {
 
     /**
      * websecurityscanner.projects.scanConfigs.scanRuns.list
-     * @desc Lists ScanRuns under a given ScanConfig, in descending order of
-     * ScanRun stop time.
+     * @desc Lists ScanRuns under a given ScanConfig, in descending order of ScanRun stop time.
      * @alias websecurityscanner.projects.scanConfigs.scanRuns.list
      * @memberOf! ()
      *
@@ -1479,9 +1387,7 @@ export namespace websecurityscanner_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the ScanRun to be returned. The name
-     * follows the format of
-     * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * Required. The resource name of the ScanRun to be returned. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      */
     name?: string;
   }
@@ -1493,20 +1399,15 @@ export namespace websecurityscanner_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of ScanRuns to return, can be limited by server. If
-     * not specified or not positive, the implementation will select a
-     * reasonable value.
+     * The maximum number of ScanRuns to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results to be returned. This should be a
-     * `next_page_token` value returned from a previous List request. If
-     * unspecified, the first page of results is returned.
+     * A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, which should be a scan resource name
-     * in the format 'projects/{projectId}/scanConfigs/{scanConfigId}'.
+     * Required. The parent resource name, which should be a scan resource name in the format 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      */
     parent?: string;
   }
@@ -1518,9 +1419,7 @@ export namespace websecurityscanner_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the ScanRun to be stopped. The name
-     * follows the format of
-     * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * Required. The resource name of the ScanRun to be stopped. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      */
     name?: string;
 
@@ -1624,21 +1523,15 @@ export namespace websecurityscanner_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of CrawledUrls to return, can be limited by server. If
-     * not specified or not positive, the implementation will select a
-     * reasonable value.
+     * The maximum number of CrawledUrls to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results to be returned. This should be a
-     * `next_page_token` value returned from a previous List request. If
-     * unspecified, the first page of results is returned.
+     * A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, which should be a scan run resource
-     * name in the format
-     * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      */
     parent?: string;
   }
@@ -1808,9 +1701,7 @@ export namespace websecurityscanner_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the Finding to be returned. The name
-     * follows the format of
-     * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}/findings/{findingId}'.
+     * Required. The resource name of the Finding to be returned. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}/findings/{findingId}'.
      */
     name?: string;
   }
@@ -1822,27 +1713,19 @@ export namespace websecurityscanner_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The filter expression. The expression must be in the format: <field>
-     * <operator> <value>. Supported field: 'finding_type'. Supported operator:
-     * '='.
+     * The filter expression. The expression must be in the format: <field> <operator> <value>. Supported field: 'finding_type'. Supported operator: '='.
      */
     filter?: string;
     /**
-     * The maximum number of Findings to return, can be limited by server. If
-     * not specified or not positive, the implementation will select a
-     * reasonable value.
+     * The maximum number of Findings to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results to be returned. This should be a
-     * `next_page_token` value returned from a previous List request. If
-     * unspecified, the first page of results is returned.
+     * A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, which should be a scan run resource
-     * name in the format
-     * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      */
     parent?: string;
   }
@@ -1856,8 +1739,7 @@ export namespace websecurityscanner_v1beta {
     /**
      * websecurityscanner.projects.scanConfigs.scanRuns.findingTypeStats.list
      * @desc List all FindingTypeStats under a given ScanRun.
-     * @alias
-     * websecurityscanner.projects.scanConfigs.scanRuns.findingTypeStats.list
+     * @alias websecurityscanner.projects.scanConfigs.scanRuns.findingTypeStats.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -1947,9 +1829,7 @@ export namespace websecurityscanner_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The parent resource name, which should be a scan run resource
-     * name in the format
-     * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      */
     parent?: string;
   }

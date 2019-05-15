@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace surveys_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace surveys_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -78,8 +75,7 @@ export namespace surveys_v2 {
   /**
    * Surveys API
    *
-   * Creates and conducts surveys, lists the surveys that an authenticated user
-   * owns, and retrieves survey results and information about specified surveys.
+   * Creates and conducts surveys, lists the surveys that an authenticated user owns, and retrieves survey results and information about specified surveys.
    *
    * @example
    * const {google} = require('googleapis');
@@ -97,7 +93,10 @@ export namespace surveys_v2 {
     surveys: Resource$Surveys;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.results = new Resource$Results(this.context);
       this.surveys = new Resource$Surveys(this.context);
@@ -133,9 +132,7 @@ export namespace surveys_v2 {
      */
     cost?: Schema$SurveyCost;
     /**
-     * Additional information to store on behalf of the API consumer and
-     * associate with this question. This binary blob is treated as opaque. This
-     * field is limited to 64K bytes.
+     * Additional information to store on behalf of the API consumer and associate with this question. This binary blob is treated as opaque. This field is limited to 64K bytes.
      */
     customerData?: string;
     /**
@@ -143,8 +140,7 @@ export namespace surveys_v2 {
      */
     description?: string;
     /**
-     * List of email addresses for survey owners. Must contain at least the
-     * address of the user making the API call.
+     * List of email addresses for survey owners. Must contain at least the address of the user making the API call.
      */
     owners?: string[];
     /**
@@ -152,8 +148,7 @@ export namespace surveys_v2 {
      */
     questions?: Schema$SurveyQuestion[];
     /**
-     * Reason for the survey being rejected. Only present if the survey state is
-     * rejected.
+     * Reason for the survey being rejected. Only present if the survey state is rejected.
      */
     rejectionReason?: Schema$SurveyRejection;
     /**
@@ -178,24 +173,15 @@ export namespace surveys_v2 {
    */
   export interface Schema$SurveyAudience {
     /**
-     * Optional list of age buckets to target. Supported age buckets are:
-     * [&#39;18-24&#39;, &#39;25-34&#39;, &#39;35-44&#39;, &#39;45-54&#39;,
-     * &#39;55-64&#39;, &#39;65+&#39;]
+     * Optional list of age buckets to target. Supported age buckets are: [&#39;18-24&#39;, &#39;25-34&#39;, &#39;35-44&#39;, &#39;45-54&#39;, &#39;55-64&#39;, &#39;65+&#39;]
      */
     ages?: string[];
     /**
-     * Required country code that surveys should be targeted to. Accepts
-     * standard ISO 3166-1 2 character language codes. For instance,
-     * &#39;US&#39; for the United States, and &#39;GB&#39; for the United
-     * Kingdom.
+     * Required country code that surveys should be targeted to. Accepts standard ISO 3166-1 2 character language codes. For instance, &#39;US&#39; for the United States, and &#39;GB&#39; for the United Kingdom.
      */
     country?: string;
     /**
-     * Country subdivision (states/provinces/etc) that surveys should be
-     * targeted to. For all countries except GB, ISO-3166-2 subdivision code is
-     * required (eg. &#39;US-OH&#39; for Ohio, United States). For GB, NUTS 1
-     * statistical region codes for the United Kingdom is required (eg.
-     * &#39;UK-UKC&#39; for North East England).
+     * Country subdivision (states/provinces/etc) that surveys should be targeted to. For all countries except GB, ISO-3166-2 subdivision code is required (eg. &#39;US-OH&#39; for Ohio, United States). For GB, NUTS 1 statistical region codes for the United Kingdom is required (eg. &#39;UK-UKC&#39; for North East England).
      */
     countrySubdivision?: string;
     /**
@@ -203,12 +189,7 @@ export namespace surveys_v2 {
      */
     gender?: string;
     /**
-     * Language code that surveys should be targeted to. For instance,
-     * &#39;en-US&#39;. Surveys may target bilingual users by specifying a list
-     * of language codes (for example, &#39;de&#39; and &#39;en-US&#39;). In
-     * that case, all languages will be used for targeting users but the survey
-     * content (which is displayed) must match the first language listed.
-     * Accepts standard BCP47 language codes. See specification.
+     * Language code that surveys should be targeted to. For instance, &#39;en-US&#39;. Surveys may target bilingual users by specifying a list of language codes (for example, &#39;de&#39; and &#39;en-US&#39;). In that case, all languages will be used for targeting users but the survey content (which is displayed) must match the first language listed. Accepts standard BCP47 language codes. See specification.
      */
     languages?: string[];
     /**
@@ -221,8 +202,7 @@ export namespace surveys_v2 {
    */
   export interface Schema$SurveyCost {
     /**
-     * Cost per survey response in nano units of the given currency. To get the
-     * total cost for a survey, multiply this value by wanted_response_count.
+     * Cost per survey response in nano units of the given currency. To get the total cost for a survey, multiply this value by wanted_response_count.
      */
     costPerResponseNanos?: string;
     /**
@@ -230,28 +210,11 @@ export namespace surveys_v2 {
      */
     currencyCode?: string;
     /**
-     * *Deprecated* Threshold to start a survey automatically if the quoted
-     * price is at most this value. When a survey has a Screener (threshold)
-     * question, it must go through an incidence pricing test to determine the
-     * final cost per response. Typically you will have to make a followup call
-     * to start the survey giving the final computed cost per response. If the
-     * survey has no threshold_answers, setting this property will return an
-     * error. By specifying this property, you indicate the max price per
-     * response you are willing to pay in advance of the incidence test. If the
-     * price turns out to be lower than the specified value, the survey will
-     * begin immediately and you will be charged at the rate determined by the
-     * incidence pricing test. If the price turns out to be greater than the
-     * specified value the survey will not be started and you will instead be
-     * notified what price was determined by the incidence test. At that point,
-     * you must raise the value of this property to be greater than or equal to
-     * that cost before attempting to start the survey again. This will
-     * immediately start the survey as long the incidence test was run within
-     * the last 21 days. This will no longer be available after June 2018.
+     * *Deprecated* Threshold to start a survey automatically if the quoted price is at most this value. When a survey has a Screener (threshold) question, it must go through an incidence pricing test to determine the final cost per response. Typically you will have to make a followup call to start the survey giving the final computed cost per response. If the survey has no threshold_answers, setting this property will return an error. By specifying this property, you indicate the max price per response you are willing to pay in advance of the incidence test. If the price turns out to be lower than the specified value, the survey will begin immediately and you will be charged at the rate determined by the incidence pricing test. If the price turns out to be greater than the specified value the survey will not be started and you will instead be notified what price was determined by the incidence test. At that point, you must raise the value of this property to be greater than or equal to that cost before attempting to start the survey again. This will immediately start the survey as long the incidence test was run within the last 21 days. This will no longer be available after June 2018.
      */
     maxCostPerResponseNanos?: string;
     /**
-     * Cost of survey in nano units of the given currency. DEPRECATED in favor
-     * of cost_per_response_nanos
+     * Cost of survey in nano units of the given currency. DEPRECATED in favor of cost_per_response_nanos
      */
     nanos?: string;
   }
@@ -260,8 +223,7 @@ export namespace surveys_v2 {
    */
   export interface Schema$SurveyQuestion {
     /**
-     * The randomization option for multiple choice and multi-select questions.
-     * If not specified, this option defaults to randomize.
+     * The randomization option for multiple choice and multi-select questions. If not specified, this option defaults to randomize.
      */
     answerOrder?: string;
     /**
@@ -269,16 +231,11 @@ export namespace surveys_v2 {
      */
     answers?: string[];
     /**
-     * Option to allow open-ended text box for Single Answer and Multiple Answer
-     * question types. This can be used with SINGLE_ANSWER,
-     * SINGLE_ANSWER_WITH_IMAGE, MULTIPLE_ANSWERS, and
-     * MULTIPLE_ANSWERS_WITH_IMAGE question types.
+     * Option to allow open-ended text box for Single Answer and Multiple Answer question types. This can be used with SINGLE_ANSWER, SINGLE_ANSWER_WITH_IMAGE, MULTIPLE_ANSWERS, and MULTIPLE_ANSWERS_WITH_IMAGE question types.
      */
     hasOther?: boolean;
     /**
-     * For rating questions, the text for the higher end of the scale, such as
-     * &#39;Best&#39;. For numeric questions, a string representing a
-     * floating-point that is the maximum allowed number for a response.
+     * For rating questions, the text for the higher end of the scale, such as &#39;Best&#39;. For numeric questions, a string representing a floating-point that is the maximum allowed number for a response.
      */
     highValueLabel?: string;
     images?: Schema$SurveyQuestionImage[];
@@ -287,14 +244,11 @@ export namespace surveys_v2 {
      */
     lastAnswerPositionPinned?: boolean;
     /**
-     * For rating questions, the text for the lower end of the scale, such as
-     * &#39;Worst&#39;. For numeric questions, a string representing a
-     * floating-point that is the minimum allowed number for a response.
+     * For rating questions, the text for the lower end of the scale, such as &#39;Worst&#39;. For numeric questions, a string representing a floating-point that is the minimum allowed number for a response.
      */
     lowValueLabel?: string;
     /**
-     * Option to force the user to pick one of the open text suggestions. This
-     * requires that suggestions are provided for this question.
+     * Option to force the user to pick one of the open text suggestions. This requires that suggestions are provided for this question.
      */
     mustPickSuggestion?: boolean;
     /**
@@ -306,8 +260,7 @@ export namespace surveys_v2 {
      */
     openTextPlaceholder?: string;
     /**
-     * A list of suggested answers for open text question auto-complete. This is
-     * only valid if single_line_response is true.
+     * A list of suggested answers for open text question auto-complete. This is only valid if single_line_response is true.
      */
     openTextSuggestions?: string[];
     /**
@@ -315,30 +268,23 @@ export namespace surveys_v2 {
      */
     question?: string;
     /**
-     * Used by the Rating Scale with Text question type. This text goes along
-     * with the question field that is presented to the respondent, and is the
-     * actual text that the respondent is asked to rate.
+     * Used by the Rating Scale with Text question type. This text goes along with the question field that is presented to the respondent, and is the actual text that the respondent is asked to rate.
      */
     sentimentText?: string;
     /**
-     * Option to allow multiple line open text responses instead of a single
-     * line response. Note that we don&#39;t show auto-complete suggestions with
-     * multiple line responses.
+     * Option to allow multiple line open text responses instead of a single line response. Note that we don&#39;t show auto-complete suggestions with multiple line responses.
      */
     singleLineResponse?: boolean;
     /**
-     * The threshold/screener answer options, which will screen a user into the
-     * rest of the survey. These will be a subset of the answer option strings.
+     * The threshold/screener answer options, which will screen a user into the rest of the survey. These will be a subset of the answer option strings.
      */
     thresholdAnswers?: string[];
     /**
-     * Required field defining the question type. For details about configuring
-     * different type of questions, consult the question configuration guide.
+     * Required field defining the question type. For details about configuring different type of questions, consult the question configuration guide.
      */
     type?: string;
     /**
-     * Optional unit of measurement for display (for example: hours, people,
-     * miles).
+     * Optional unit of measurement for display (for example: hours, people, miles).
      */
     unitOfMeasurementLabel?: string;
     /**
@@ -355,8 +301,7 @@ export namespace surveys_v2 {
      */
     altText?: string;
     /**
-     * Inline jpeg, gif, tiff, bmp, or png image raw bytes for an image question
-     * types.
+     * Inline jpeg, gif, tiff, bmp, or png image raw bytes for an image question types.
      */
     data?: string;
     /**
@@ -373,8 +318,7 @@ export namespace surveys_v2 {
      */
     explanation?: string;
     /**
-     * Which category of rejection this was. See the  Google Surveys Help Center
-     * for additional details on each category.
+     * Which category of rejection this was. See the  Google Surveys Help Center for additional details on each category.
      */
     type?: string;
   }
@@ -393,16 +337,14 @@ export namespace surveys_v2 {
   }
   export interface Schema$SurveysDeleteResponse {
     /**
-     * Unique request ID used for logging and debugging. Please include in any
-     * error reporting or troubleshooting requests.
+     * Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
      */
     requestId?: string;
   }
   export interface Schema$SurveysListResponse {
     pageInfo?: Schema$PageInfo;
     /**
-     * Unique request ID used for logging and debugging. Please include in any
-     * error reporting or troubleshooting requests.
+     * Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
      */
     requestId?: string;
     /**
@@ -413,23 +355,19 @@ export namespace surveys_v2 {
   }
   export interface Schema$SurveysStartRequest {
     /**
-     * *Deprecated* Threshold to start a survey automatically if the quoted
-     * prices is less than or equal to this value. See Survey.Cost for more
-     * details. This will no longer be available after June 2018.
+     * *Deprecated* Threshold to start a survey automatically if the quoted prices is less than or equal to this value. See Survey.Cost for more details. This will no longer be available after June 2018.
      */
     maxCostPerResponseNanos?: string;
   }
   export interface Schema$SurveysStartResponse {
     /**
-     * Unique request ID used for logging and debugging. Please include in any
-     * error reporting or troubleshooting requests.
+     * Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
      */
     requestId?: string;
   }
   export interface Schema$SurveysStopResponse {
     /**
-     * Unique request ID used for logging and debugging. Please include in any
-     * error reporting or troubleshooting requests.
+     * Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
      */
     requestId?: string;
   }
@@ -446,9 +384,7 @@ export namespace surveys_v2 {
 
     /**
      * surveys.results.get
-     * @desc Retrieves any survey results that have been produced so far.
-     * Results are formatted as an Excel file. You must add "?alt=media" to the
-     * URL as an argument to get results.
+     * @desc Retrieves any survey results that have been produced so far. Results are formatted as an Excel file. You must add "?alt=media" to the URL as an argument to get results.
      * @alias surveys.results.get
      * @memberOf! ()
      *
@@ -986,8 +922,7 @@ export namespace surveys_v2 {
 
     /**
      * surveys.surveys.update
-     * @desc Updates a survey. Currently the only property that can be updated
-     * is the owners property.
+     * @desc Updates a survey. Currently the only property that can be updated is the owners property.
      * @alias surveys.surveys.update
      * @memberOf! ()
      *

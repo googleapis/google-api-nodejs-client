@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace deploymentmanager_v2beta {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace deploymentmanager_v2beta {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -78,8 +75,7 @@ export namespace deploymentmanager_v2beta {
   /**
    * Google Cloud Deployment Manager API V2Beta Methods
    *
-   * The Deployment Manager API allows users to declaratively configure, deploy
-   * and run complex solutions on the Google Cloud Platform.
+   * The Deployment Manager API allows users to declaratively configure, deploy and run complex solutions on the Google Cloud Platform.
    *
    * @example
    * const {google} = require('googleapis');
@@ -102,7 +98,10 @@ export namespace deploymentmanager_v2beta {
     types: Resource$Types;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.compositeTypes = new Resource$Compositetypes(this.context);
       this.deployments = new Resource$Deployments(this.context);
@@ -123,33 +122,12 @@ export namespace deploymentmanager_v2beta {
      */
     methodMatch?: string;
     /**
-     * Deployment manager will poll instances for this API resource setting a
-     * RUNNING state, and blocking until polling conditions tell whether the
-     * resource is completed or failed.
+     * Deployment manager will poll instances for this API resource setting a RUNNING state, and blocking until polling conditions tell whether the resource is completed or failed.
      */
     pollingOptions?: Schema$PollingOptions;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration
-   * determines which permission types are logged, and what identities, if any,
-   * are exempted from logging. An AuditConfig must have one or more
-   * AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a
-   * specific service, the union of the two AuditConfigs is used for that
-   * service: the log_types specified in each AuditConfig are enabled, and the
-   * exempted_members in each AuditLogConfig are exempted.  Example Policy with
-   * multiple AuditConfigs:  { &quot;audit_configs&quot;: [ {
-   * &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;:
-   * [ { &quot;log_type&quot;: &quot;DATA_READ&quot;,
-   * &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, {
-   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;, }, { &quot;log_type&quot;:
-   * &quot;ADMIN_READ&quot;, } ] }, { &quot;service&quot;:
-   * &quot;fooservice.googleapis.com&quot; &quot;audit_log_configs&quot;: [ {
-   * &quot;log_type&quot;: &quot;DATA_READ&quot;, }, { &quot;log_type&quot;:
-   * &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [
-   * &quot;user:bar@gmail.com&quot; ] } ] } ] }  For fooservice, this policy
-   * enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts
-   * foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE
-   * logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:  { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot;, } ] }, { &quot;service&quot;: &quot;fooservice.googleapis.com&quot; &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:bar@gmail.com&quot; ] } ] } ] }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -158,25 +136,16 @@ export namespace deploymentmanager_v2beta {
     auditLogConfigs?: Schema$AuditLogConfig[];
     exemptedMembers?: string[];
     /**
-     * Specifies a service that will be enabled for audit logging. For example,
-     * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
-     * special value that covers all services.
+     * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
     service?: string;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:  {
-   * &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;:
-   * &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [
-   * &quot;user:foo@gmail.com&quot; ] }, { &quot;log_type&quot;:
-   * &quot;DATA_WRITE&quot;, } ] }  This enables &#39;DATA_READ&#39; and
-   * &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ
-   * logging.
+   * Provides the configuration for logging a type of permissions. Example:  { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, } ] }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
-     * Specifies the identities that do not cause logging for this type of
-     * permission. Follows the same format of [Binding.members][].
+     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of [Binding.members][].
      */
     exemptedMembers?: string[];
     /**
@@ -226,37 +195,20 @@ export namespace deploymentmanager_v2beta {
    */
   export interface Schema$Binding {
     /**
-     * Unimplemented. The condition that is associated with this binding. NOTE:
-     * an unsatisfied condition will not allow user access via current binding.
-     * Different bindings, including their conditions, are examined
-     * independently.
+     * Unimplemented. The condition that is associated with this binding. NOTE: an unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource.
-     * `members` can have the following values:  * `allUsers`: A special
-     * identifier that represents anyone who is on the internet; with or without
-     * a Google account.  * `allAuthenticatedUsers`: A special identifier that
-     * represents anyone who is authenticated with a Google account or a service
-     * account.  * `user:{emailid}`: An email address that represents a specific
-     * Google account. For example, `alice@gmail.com` .    *
-     * `serviceAccount:{emailid}`: An email address that represents a service
-     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
-     * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.    * `domain:{domain}`: A Google Apps
-     * domain name that represents all the users of that domain. For example,
-     * `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@gmail.com` .    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.    * `domain:{domain}`: A Google Apps domain name that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
-     * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`.
+     * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
   /**
-   * CollectionOverride allows resource handling overrides for specific
-   * resources within a BaseType
+   * CollectionOverride allows resource handling overrides for specific resources within a BaseType
    */
   export interface Schema$CollectionOverride {
     /**
@@ -273,8 +225,7 @@ export namespace deploymentmanager_v2beta {
    */
   export interface Schema$CompositeType {
     /**
-     * An optional textual description of the resource; provided by the client
-     * when the resource is created.
+     * An optional textual description of the resource; provided by the client when the resource is created.
      */
     description?: string;
     id?: string;
@@ -283,22 +234,15 @@ export namespace deploymentmanager_v2beta {
      */
     insertTime?: string;
     /**
-     * Map of labels; provided by the client when the resource is created or
-     * updated. Specifically: Label keys must be between 1 and 63 characters
-     * long and must conform to the following regular expression:
-     * [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63
-     * characters long and must conform to the regular expression
-     * ([a-z]([-a-z0-9]*[a-z0-9])?)?
+     * Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
     labels?: Schema$CompositeTypeLabelEntry[];
     /**
-     * Name of the composite type, must follow the expression:
-     * [a-z]([-a-z0-9_.]{0,61}[a-z0-9])?.
+     * Name of the composite type, must follow the expression: [a-z]([-a-z0-9_.]{0,61}[a-z0-9])?.
      */
     name?: string;
     /**
-     * Output only. The Operation that most recently ran, or is currently
-     * running, on this composite type.
+     * Output only. The Operation that most recently ran, or is currently running, on this composite type.
      */
     operation?: Schema$Operation;
     /**
@@ -320,8 +264,7 @@ export namespace deploymentmanager_v2beta {
    */
   export interface Schema$CompositeTypesListResponse {
     /**
-     * Output only. A list of resource composite types supported by Deployment
-     * Manager.
+     * Output only. A list of resource composite types supported by Deployment Manager.
      */
     compositeTypes?: Schema$CompositeType[];
     /**
@@ -346,8 +289,7 @@ export namespace deploymentmanager_v2beta {
      */
     svc?: string;
     /**
-     * Trusted attributes supplied by any service that owns resources and uses
-     * the IAM system for access control.
+     * Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
      */
     sys?: string;
     /**
@@ -355,8 +297,7 @@ export namespace deploymentmanager_v2beta {
      */
     value?: string;
     /**
-     * The objects of the condition. This is mutually exclusive with
-     * &#39;value&#39;.
+     * The objects of the condition. This is mutually exclusive with &#39;value&#39;.
      */
     values?: string[];
   }
@@ -367,8 +308,7 @@ export namespace deploymentmanager_v2beta {
     content?: string;
   }
   /**
-   * The credential used by Deployment Manager and TypeProvider. Only one of the
-   * options is permitted.
+   * The credential used by Deployment Manager and TypeProvider. Only one of the options is permitted.
    */
   export interface Schema$Credential {
     /**
@@ -380,8 +320,7 @@ export namespace deploymentmanager_v2beta {
      */
     serviceAccount?: Schema$ServiceAccount;
     /**
-     * Specify to use the project default credential, only supported by
-     * Deployment.
+     * Specify to use the project default credential, only supported by Deployment.
      */
     useProjectDefault?: boolean;
   }
@@ -391,14 +330,7 @@ export namespace deploymentmanager_v2beta {
      */
     description?: string;
     /**
-     * Provides a fingerprint to use in requests to modify a deployment, such as
-     * update(), stop(), and cancelPreview() requests. A fingerprint is a
-     * randomly generated value that must be provided with update(), stop(), and
-     * cancelPreview() requests to perform optimistic locking. This ensures
-     * optimistic concurrency so that only one request happens at a time.  The
-     * fingerprint is initially generated by Deployment Manager and changes
-     * after every request to modify data. To get the latest fingerprint value,
-     * perform a get() request to a deployment.
+     * Provides a fingerprint to use in requests to modify a deployment, such as update(), stop(), and cancelPreview() requests. A fingerprint is a randomly generated value that must be provided with update(), stop(), and cancelPreview() requests to perform optimistic locking. This ensures optimistic concurrency so that only one request happens at a time.  The fingerprint is initially generated by Deployment Manager and changes after every request to modify data. To get the latest fingerprint value, perform a get() request to a deployment.
      */
     fingerprint?: string;
     id?: string;
@@ -407,32 +339,19 @@ export namespace deploymentmanager_v2beta {
      */
     insertTime?: string;
     /**
-     * Map of labels; provided by the client when the resource is created or
-     * updated. Specifically: Label keys must be between 1 and 63 characters
-     * long and must conform to the following regular expression:
-     * [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63
-     * characters long and must conform to the regular expression
-     * ([a-z]([-a-z0-9]*[a-z0-9])?)?
+     * Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
     labels?: Schema$DeploymentLabelEntry[];
     /**
-     * Output only. URL of the manifest representing the last manifest that was
-     * successfully deployed.
+     * Output only. URL of the manifest representing the last manifest that was successfully deployed.
      */
     manifest?: string;
     /**
-     * Name of the resource; provided by the client when the resource is
-     * created. The name must be 1-63 characters long, and comply with RFC1035.
-     * Specifically, the name must be 1-63 characters long and match the regular
-     * expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character
-     * must be a lowercase letter, and all following characters must be a dash,
-     * lowercase letter, or digit, except the last character, which cannot be a
-     * dash.
+     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     name?: string;
     /**
-     * Output only. The Operation that most recently ran, or is currently
-     * running, on this deployment.
+     * Output only. The Operation that most recently ran, or is currently running, on this deployment.
      */
     operation?: Schema$Operation;
     /**
@@ -440,13 +359,11 @@ export namespace deploymentmanager_v2beta {
      */
     selfLink?: string;
     /**
-     * [Input Only] The parameters that define your deployment, including the
-     * deployment configuration and relevant templates.
+     * [Input Only] The parameters that define your deployment, including the deployment configuration and relevant templates.
      */
     target?: Schema$TargetConfiguration;
     /**
-     * Output only. If Deployment Manager is currently updating or previewing an
-     * update to this deployment, the updated configuration appears here.
+     * Output only. If Deployment Manager is currently updating or previewing an update to this deployment, the updated configuration appears here.
      */
     update?: Schema$DeploymentUpdate;
     /**
@@ -460,21 +377,12 @@ export namespace deploymentmanager_v2beta {
   }
   export interface Schema$DeploymentsCancelPreviewRequest {
     /**
-     * Specifies a fingerprint for cancelPreview() requests. A fingerprint is a
-     * randomly generated value that must be provided in cancelPreview()
-     * requests to perform optimistic locking. This ensures optimistic
-     * concurrency so that the deployment does not have conflicting requests
-     * (e.g. if someone attempts to make a new update request while another user
-     * attempts to cancel a preview, this would prevent one of the requests).
-     * The fingerprint is initially generated by Deployment Manager and changes
-     * after every request to modify a deployment. To get the latest fingerprint
-     * value, perform a get() request on the deployment.
+     * Specifies a fingerprint for cancelPreview() requests. A fingerprint is a randomly generated value that must be provided in cancelPreview() requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to cancel a preview, this would prevent one of the requests).  The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a get() request on the deployment.
      */
     fingerprint?: string;
   }
   /**
-   * A response containing a partial list of deployments and a page token used
-   * to build the next request if the request has been truncated.
+   * A response containing a partial list of deployments and a page token used to build the next request if the request has been truncated.
    */
   export interface Schema$DeploymentsListResponse {
     /**
@@ -488,36 +396,21 @@ export namespace deploymentmanager_v2beta {
   }
   export interface Schema$DeploymentsStopRequest {
     /**
-     * Specifies a fingerprint for stop() requests. A fingerprint is a randomly
-     * generated value that must be provided in stop() requests to perform
-     * optimistic locking. This ensures optimistic concurrency so that the
-     * deployment does not have conflicting requests (e.g. if someone attempts
-     * to make a new update request while another user attempts to stop an
-     * ongoing update request, this would prevent a collision).  The fingerprint
-     * is initially generated by Deployment Manager and changes after every
-     * request to modify a deployment. To get the latest fingerprint value,
-     * perform a get() request on the deployment.
+     * Specifies a fingerprint for stop() requests. A fingerprint is a randomly generated value that must be provided in stop() requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to stop an ongoing update request, this would prevent a collision).  The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a get() request on the deployment.
      */
     fingerprint?: string;
   }
   export interface Schema$DeploymentUpdate {
     /**
-     * Output only. An optional user-provided description of the deployment
-     * after the current update has been applied.
+     * Output only. An optional user-provided description of the deployment after the current update has been applied.
      */
     description?: string;
     /**
-     * Output only. Map of labels; provided by the client when the resource is
-     * created or updated. Specifically: Label keys must be between 1 and 63
-     * characters long and must conform to the following regular expression:
-     * [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63
-     * characters long and must conform to the regular expression
-     * ([a-z]([-a-z0-9]*[a-z0-9])?)?
+     * Output only. Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
     labels?: Schema$DeploymentUpdateLabelEntry[];
     /**
-     * Output only. URL of the manifest representing the update configuration of
-     * this deployment.
+     * Output only. URL of the manifest representing the update configuration of this deployment.
      */
     manifest?: string;
   }
@@ -527,8 +420,7 @@ export namespace deploymentmanager_v2beta {
   }
   export interface Schema$Diagnostic {
     /**
-     * JsonPath expression on the resource that if non empty, indicates that
-     * this field needs to be extracted as a diagnostic.
+     * JsonPath expression on the resource that if non empty, indicates that this field needs to be extracted as a diagnostic.
      */
     field?: string;
     /**
@@ -537,50 +429,37 @@ export namespace deploymentmanager_v2beta {
     level?: string;
   }
   /**
-   * Represents an expression text. Example:  title: &quot;User account
-   * presence&quot; description: &quot;Determines whether the request has a user
-   * account&quot; expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents an expression text. Example:  title: &quot;User account presence&quot; description: &quot;Determines whether the request has a user account&quot; expression: &quot;size(request.user) &gt; 0&quot;
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which
-     * describes the expression, e.g. when hovered over it in a UI.
+     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string;
     /**
-     * Textual representation of an expression in Common Expression Language
-     * syntax.  The application context of the containing message determines
-     * which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
     expression?: string;
     /**
-     * An optional string indicating the location of the expression for error
-     * reporting, e.g. a file name and a position in the file.
+     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string;
     /**
-     * An optional title for the expression, i.e. a short string describing its
-     * purpose. This can be used e.g. in UIs which allow to enter the
-     * expression.
+     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string;
   }
   export interface Schema$GlobalSetPolicyRequest {
     /**
-     * Flatten Policy to create a backward compatible wire-format. Deprecated.
-     * Use &#39;policy&#39; to specify bindings.
+     * Flatten Policy to create a backward compatible wire-format. Deprecated. Use &#39;policy&#39; to specify bindings.
      */
     bindings?: Schema$Binding[];
     /**
-     * Flatten Policy to create a backward compatible wire-format. Deprecated.
-     * Use &#39;policy&#39; to specify the etag.
+     * Flatten Policy to create a backward compatible wire-format. Deprecated. Use &#39;policy&#39; to specify the etag.
      */
     etag?: string;
     /**
-     * REQUIRED: The complete policy to be applied to the &#39;resource&#39;.
-     * The size of the policy is limited to a few 10s of KB. An empty policy is
-     * in general a valid policy but certain services (like Projects) might
-     * reject them.
+     * REQUIRED: The complete policy to be applied to the &#39;resource&#39;. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
      */
     policy?: Schema$Policy;
   }
@@ -595,8 +474,7 @@ export namespace deploymentmanager_v2beta {
     name?: string;
   }
   /**
-   * InputMapping creates a &#39;virtual&#39; property that will be injected
-   * into the properties before sending the request to the underlying API.
+   * InputMapping creates a &#39;virtual&#39; property that will be injected into the properties before sending the request to the underlying API.
    */
   export interface Schema$InputMapping {
     /**
@@ -647,22 +525,7 @@ export namespace deploymentmanager_v2beta {
     logName?: string;
   }
   /**
-   * Increment a streamz counter with the specified metric and field names.
-   * Metric names should start with a &#39;/&#39;, generally be lowercase-only,
-   * and end in &quot;_count&quot;. Field names should not contain an initial
-   * slash. The actual exported metric names will have &quot;/iam/policy&quot;
-   * prepended.  Field names correspond to IAM request parameters and field
-   * values are their respective values.  Supported field names: -
-   * &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is
-   * present, otherwise the value of IAMContext.authority_selector if present,
-   * and otherwise a representation of IAMContext.principal; or -
-   * &quot;iam_principal&quot;, a representation of IAMContext.principal even if
-   * a token or authority selector is present; or - &quot;&quot; (empty string),
-   * resulting in a counter with no fields.  Examples: counter { metric:
-   * &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt;
-   * increment counter /iam/policy/backend_debug_access_count
-   * {iam_principal=[value of IAMContext.principal]}  At this time we do not
-   * support multiple field names (though this may be supported in the future).
+   * Increment a streamz counter with the specified metric and field names.  Metric names should start with a &#39;/&#39;, generally be lowercase-only, and end in &quot;_count&quot;. Field names should not contain an initial slash. The actual exported metric names will have &quot;/iam/policy&quot; prepended.  Field names correspond to IAM request parameters and field values are their respective values.  Supported field names: - &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is present, otherwise the value of IAMContext.authority_selector if present, and otherwise a representation of IAMContext.principal; or - &quot;iam_principal&quot;, a representation of IAMContext.principal even if a token or authority selector is present; or - &quot;&quot; (empty string), resulting in a counter with no fields.  Examples: counter { metric: &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt; increment counter /iam/policy/backend_debug_access_count {iam_principal=[value of IAMContext.principal]}  At this time we do not support multiple field names (though this may be supported in the future).
    */
   export interface Schema$LogConfigCounterOptions {
     /**
@@ -679,12 +542,7 @@ export namespace deploymentmanager_v2beta {
    */
   export interface Schema$LogConfigDataAccessOptions {
     /**
-     * Whether Gin logging should happen in a fail-closed manner at the caller.
-     * This is relevant only in the LocalIAM implementation, for now.  NOTE:
-     * Logging to Gin in a fail-closed manner is currently unsupported while
-     * work is being done to satisfy the requirements of go/345. Currently,
-     * setting LOG_FAIL_CLOSED mode will have no effect, but still exists
-     * because there is active work being done to support it (b/115874152).
+     * Whether Gin logging should happen in a fail-closed manner at the caller. This is relevant only in the LocalIAM implementation, for now.  NOTE: Logging to Gin in a fail-closed manner is currently unsupported while work is being done to satisfy the requirements of go/345. Currently, setting LOG_FAIL_CLOSED mode will have no effect, but still exists because there is active work being done to support it (b/115874152).
      */
     logMode?: string;
   }
@@ -694,8 +552,7 @@ export namespace deploymentmanager_v2beta {
      */
     config?: Schema$ConfigFile;
     /**
-     * Output only. The fully-expanded configuration file, including any
-     * templates and references.
+     * Output only. The fully-expanded configuration file, including any templates and references.
      */
     expandedConfig?: string;
     id?: string;
@@ -721,8 +578,7 @@ export namespace deploymentmanager_v2beta {
     selfLink?: string;
   }
   /**
-   * A response containing a partial list of manifests and a page token used to
-   * build the next request if the request has been truncated.
+   * A response containing a partial list of manifests and a page token used to build the next request if the request has been truncated.
    */
   export interface Schema$ManifestsListResponse {
     /**
@@ -735,16 +591,11 @@ export namespace deploymentmanager_v2beta {
     nextPageToken?: string;
   }
   /**
-   * An Operation resource, used to manage asynchronous API requests. (==
-   * resource_for v1.globalOperations ==) (== resource_for beta.globalOperations
-   * ==) (== resource_for v1.regionOperations ==) (== resource_for
-   * beta.regionOperations ==) (== resource_for v1.zoneOperations ==) (==
-   * resource_for beta.zoneOperations ==)
+   * An Operation resource, used to manage asynchronous API requests. (== resource_for v1.globalOperations ==) (== resource_for beta.globalOperations ==) (== resource_for v1.regionOperations ==) (== resource_for beta.regionOperations ==) (== resource_for v1.zoneOperations ==) (== resource_for beta.zoneOperations ==)
    */
   export interface Schema$Operation {
     /**
-     * [Output Only] The value of `requestId` if you provided it in the request.
-     * Not present otherwise.
+     * [Output Only] The value of `requestId` if you provided it in the request. Not present otherwise.
      */
     clientOperationId?: string;
     /**
@@ -752,46 +603,37 @@ export namespace deploymentmanager_v2beta {
      */
     creationTimestamp?: string;
     /**
-     * [Output Only] A textual description of the operation, which is set when
-     * the operation is created.
+     * [Output Only] A textual description of the operation, which is set when the operation is created.
      */
     description?: string;
     /**
-     * [Output Only] The time that this operation was completed. This value is
-     * in RFC3339 text format.
+     * [Output Only] The time that this operation was completed. This value is in RFC3339 text format.
      */
     endTime?: string;
     /**
-     * [Output Only] If errors are generated during processing of the operation,
-     * this field will be populated.
+     * [Output Only] If errors are generated during processing of the operation, this field will be populated.
      */
     error?: {
       errors?: Array<{code?: string; location?: string; message?: string}>;
     };
     /**
-     * [Output Only] If the operation fails, this field contains the HTTP error
-     * message that was returned, such as NOT FOUND.
+     * [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as NOT FOUND.
      */
     httpErrorMessage?: string;
     /**
-     * [Output Only] If the operation fails, this field contains the HTTP error
-     * status code that was returned. For example, a 404 means the resource was
-     * not found.
+     * [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a 404 means the resource was not found.
      */
     httpErrorStatusCode?: number;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
-     * defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      */
     id?: string;
     /**
-     * [Output Only] The time that this operation was requested. This value is
-     * in RFC3339 text format.
+     * [Output Only] The time that this operation was requested. This value is in RFC3339 text format.
      */
     insertTime?: string;
     /**
-     * [Output Only] Type of the resource. Always compute#operation for
-     * Operation resources.
+     * [Output Only] Type of the resource. Always compute#operation for Operation resources.
      */
     kind?: string;
     /**
@@ -799,23 +641,15 @@ export namespace deploymentmanager_v2beta {
      */
     name?: string;
     /**
-     * [Output Only] The type of operation, such as insert, update, or delete,
-     * and so on.
+     * [Output Only] The type of operation, such as insert, update, or delete, and so on.
      */
     operationType?: string;
     /**
-     * [Output Only] An optional progress indicator that ranges from 0 to 100.
-     * There is no requirement that this be linear or support any granularity of
-     * operations. This should not be used to guess when the operation will be
-     * complete. This number should monotonically increase as the operation
-     * progresses.
+     * [Output Only] An optional progress indicator that ranges from 0 to 100. There is no requirement that this be linear or support any granularity of operations. This should not be used to guess when the operation will be complete. This number should monotonically increase as the operation progresses.
      */
     progress?: number;
     /**
-     * [Output Only] The URL of the region where the operation resides. Only
-     * available when performing regional operations. You must specify this
-     * field as part of the HTTP request URL. It is not settable as a field in
-     * the request body.
+     * [Output Only] The URL of the region where the operation resides. Only available when performing regional operations. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      */
     region?: string;
     /**
@@ -823,39 +657,31 @@ export namespace deploymentmanager_v2beta {
      */
     selfLink?: string;
     /**
-     * [Output Only] The time that this operation was started by the server.
-     * This value is in RFC3339 text format.
+     * [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
      */
     startTime?: string;
     /**
-     * [Output Only] The status of the operation, which can be one of the
-     * following: PENDING, RUNNING, or DONE.
+     * [Output Only] The status of the operation, which can be one of the following: PENDING, RUNNING, or DONE.
      */
     status?: string;
     /**
-     * [Output Only] An optional textual description of the current status of
-     * the operation.
+     * [Output Only] An optional textual description of the current status of the operation.
      */
     statusMessage?: string;
     /**
-     * [Output Only] The unique target ID, which identifies a specific
-     * incarnation of the target resource.
+     * [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      */
     targetId?: string;
     /**
-     * [Output Only] The URL of the resource that the operation modifies. For
-     * operations related to creating a snapshot, this points to the persistent
-     * disk that the snapshot was created from.
+     * [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
      */
     targetLink?: string;
     /**
-     * [Output Only] User who requested the operation, for example:
-     * user@example.com.
+     * [Output Only] User who requested the operation, for example: user@example.com.
      */
     user?: string;
     /**
-     * [Output Only] If warning messages are generated during processing of the
-     * operation, this field will be populated.
+     * [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
      */
     warnings?: Array<{
       code?: string;
@@ -863,16 +689,12 @@ export namespace deploymentmanager_v2beta {
       message?: string;
     }>;
     /**
-     * [Output Only] The URL of the zone where the operation resides. Only
-     * available when performing per-zone operations. You must specify this
-     * field as part of the HTTP request URL. It is not settable as a field in
-     * the request body.
+     * [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      */
     zone?: string;
   }
   /**
-   * A response containing a partial list of operations and a page token used to
-   * build the next request if the request has been truncated.
+   * A response containing a partial list of operations and a page token used to build the next request if the request has been truncated.
    */
   export interface Schema$OperationsListResponse {
     /**
@@ -901,34 +723,12 @@ export namespace deploymentmanager_v2beta {
      */
     validationOptions?: Schema$ValidationOptions;
     /**
-     * Additional properties block described as a jsonSchema, these properties
-     * will never be part of the json payload, but they can be consumed by
-     * InputMappings, this must be a valid json schema draft-04. The properties
-     * specified here will be decouple in a different section. This schema will
-     * be merged to the schema validation, and properties here will be extracted
-     * From the payload and consumed explicitly by InputMappings. ex: field1:
-     * type: string field2: type: number
+     * Additional properties block described as a jsonSchema, these properties will never be part of the json payload, but they can be consumed by InputMappings, this must be a valid json schema draft-04. The properties specified here will be decouple in a different section. This schema will be merged to the schema validation, and properties here will be extracted From the payload and consumed explicitly by InputMappings. ex: field1: type: string field2: type: number
      */
     virtualProperties?: string;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to
-   * specify access control policies for Cloud Platform resources.    A `Policy`
-   * consists of a list of `bindings`. A `binding` binds a list of `members` to
-   * a `role`, where the members can be user accounts, Google groups, Google
-   * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **JSON Example**  { &quot;bindings&quot;: [ {
-   * &quot;role&quot;: &quot;roles/owner&quot;, &quot;members&quot;: [
-   * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
-   * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
-   * &quot;role&quot;: &quot;roles/viewer&quot;, &quot;members&quot;:
-   * [&quot;user:sean@example.com&quot;] } ] }  **YAML Example**  bindings: -
-   * members: - user:mike@example.com - group:admins@example.com -
-   * domain:google.com - serviceAccount:my-other-app@appspot.gserviceaccount.com
-   * role: roles/owner - members: - user:sean@example.com role: roles/viewer For
-   * a description of IAM and its features, see the [IAM developer&#39;s
-   * guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.    A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**  { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/owner&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/viewer&quot;, &quot;members&quot;: [&quot;user:sean@example.com&quot;] } ] }  **YAML Example**  bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-other-app@appspot.gserviceaccount.com role: roles/owner - members: - user:sean@example.com role: roles/viewer    For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -936,31 +736,16 @@ export namespace deploymentmanager_v2beta {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members
-     * will result in an error.
+     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a policy from overwriting each other. It
-     * is strongly suggested that systems make use of the `etag` in the
-     * read-modify-write cycle to perform policy updates in order to avoid race
-     * conditions: An `etag` is returned in the response to `getIamPolicy`, and
-     * systems are expected to put that etag in the request to `setIamPolicy` to
-     * ensure that their change will be applied to the same version of the
-     * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
-     * existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
      */
     etag?: string;
     iamOwned?: boolean;
     /**
-     * If more than one rule is specified, the rules are applied in the
-     * following manner: - All matching LOG rules are always applied. - If any
-     * DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be
-     * applied if one or more matching rule requires logging. - Otherwise, if
-     * any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging
-     * will be applied if one or more matching rule requires logging. -
-     * Otherwise, if no rule applies, permission is denied.
+     * If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
      */
     rules?: Schema$Rule[];
     /**
@@ -970,8 +755,7 @@ export namespace deploymentmanager_v2beta {
   }
   export interface Schema$PollingOptions {
     /**
-     * An array of diagnostics to be collected by Deployment Manager, these
-     * diagnostics will be displayed to the user.
+     * An array of diagnostics to be collected by Deployment Manager, these diagnostics will be displayed to the user.
      */
     diagnostics?: Schema$Diagnostic[];
     /**
@@ -987,8 +771,7 @@ export namespace deploymentmanager_v2beta {
      */
     pollingLink?: string;
     /**
-     * JsonPath expression, after polling is completed, indicates where to fetch
-     * the resource.
+     * JsonPath expression, after polling is completed, indicates where to fetch the resource.
      */
     targetLink?: string;
   }
@@ -998,8 +781,7 @@ export namespace deploymentmanager_v2beta {
      */
     accessControl?: Schema$ResourceAccessControl;
     /**
-     * Output only. The evaluated properties of the resource with references
-     * expanded. Returned as serialized YAML.
+     * Output only. The evaluated properties of the resource with references expanded. Returned as serialized YAML.
      */
     finalProperties?: string;
     id?: string;
@@ -1008,8 +790,7 @@ export namespace deploymentmanager_v2beta {
      */
     insertTime?: string;
     /**
-     * Output only. URL of the manifest representing the current configuration
-     * of this resource.
+     * Output only. URL of the manifest representing the current configuration of this resource.
      */
     manifest?: string;
     /**
@@ -1017,18 +798,15 @@ export namespace deploymentmanager_v2beta {
      */
     name?: string;
     /**
-     * Output only. The current properties of the resource before any references
-     * have been filled in. Returned as serialized YAML.
+     * Output only. The current properties of the resource before any references have been filled in. Returned as serialized YAML.
      */
     properties?: string;
     /**
-     * Output only. The type of the resource, for example compute.v1.instance,
-     * or cloudfunctions.v1beta1.function.
+     * Output only. The type of the resource, for example compute.v1.instance, or cloudfunctions.v1beta1.function.
      */
     type?: string;
     /**
-     * Output only. If Deployment Manager is currently updating or previewing an
-     * update to this resource, the updated configuration appears here.
+     * Output only. If Deployment Manager is currently updating or previewing an update to this resource, the updated configuration appears here.
      */
     update?: Schema$ResourceUpdate;
     /**
@@ -1040,8 +818,7 @@ export namespace deploymentmanager_v2beta {
      */
     url?: string;
     /**
-     * Output only. If warning messages are generated during processing of this
-     * resource, this field will be populated.
+     * Output only. If warning messages are generated during processing of this resource, this field will be populated.
      */
     warnings?: Array<{
       code?: string;
@@ -1059,8 +836,7 @@ export namespace deploymentmanager_v2beta {
     gcpIamPolicy?: string;
   }
   /**
-   * A response containing a partial list of resources and a page token used to
-   * build the next request if the request has been truncated.
+   * A response containing a partial list of resources and a page token used to build the next request if the request has been truncated.
    */
   export interface Schema$ResourcesListResponse {
     /**
@@ -1074,20 +850,17 @@ export namespace deploymentmanager_v2beta {
   }
   export interface Schema$ResourceUpdate {
     /**
-     * The Access Control Policy to set on this resource after updating the
-     * resource itself.
+     * The Access Control Policy to set on this resource after updating the resource itself.
      */
     accessControl?: Schema$ResourceAccessControl;
     /**
-     * Output only. If errors are generated during update of the resource, this
-     * field will be populated.
+     * Output only. If errors are generated during update of the resource, this field will be populated.
      */
     error?: {
       errors?: Array<{code?: string; location?: string; message?: string}>;
     };
     /**
-     * Output only. The expanded properties of the resource with reference
-     * values expanded. Returned as serialized YAML.
+     * Output only. The expanded properties of the resource with reference values expanded. Returned as serialized YAML.
      */
     finalProperties?: string;
     /**
@@ -1095,13 +868,11 @@ export namespace deploymentmanager_v2beta {
      */
     intent?: string;
     /**
-     * Output only. URL of the manifest representing the update configuration of
-     * this resource.
+     * Output only. URL of the manifest representing the update configuration of this resource.
      */
     manifest?: string;
     /**
-     * Output only. The set of updated properties for this resource, before
-     * references are expanded. Returned as serialized YAML.
+     * Output only. The set of updated properties for this resource, before references are expanded. Returned as serialized YAML.
      */
     properties?: string;
     /**
@@ -1109,8 +880,7 @@ export namespace deploymentmanager_v2beta {
      */
     state?: string;
     /**
-     * Output only. If warning messages are generated during processing of this
-     * resource, this field will be populated.
+     * Output only. If warning messages are generated during processing of this resource, this field will be populated.
      */
     warnings?: Array<{
       code?: string;
@@ -1127,8 +897,7 @@ export namespace deploymentmanager_v2beta {
      */
     action?: string;
     /**
-     * Additional restrictions that must be met. All conditions must pass for
-     * the rule to match.
+     * Additional restrictions that must be met. All conditions must pass for the rule to match.
      */
     conditions?: Schema$Condition[];
     /**
@@ -1136,25 +905,19 @@ export namespace deploymentmanager_v2beta {
      */
     description?: string;
     /**
-     * If one or more &#39;in&#39; clauses are specified, the rule matches if
-     * the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
+     * If one or more &#39;in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
      */
     ins?: string[];
     /**
-     * The config returned to callers of tech.iam.IAM.CheckPolicy for any
-     * entries that match the LOG action.
+     * The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
      */
     logConfigs?: Schema$LogConfig[];
     /**
-     * If one or more &#39;not_in&#39; clauses are specified, the rule matches
-     * if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
+     * If one or more &#39;not_in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
      */
     notIns?: string[];
     /**
-     * A permission is a string of form &#39;..&#39; (e.g.,
-     * &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all
-     * permissions, and a verb part of &#39;*&#39; (e.g.,
-     * &#39;storage.buckets.*&#39;) matches all verbs.
+     * A permission is a string of form &#39;..&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
      */
     permissions?: string[];
   }
@@ -1163,8 +926,7 @@ export namespace deploymentmanager_v2beta {
    */
   export interface Schema$ServiceAccount {
     /**
-     * The IAM service account email address like
-     * test@myproject.iam.gserviceaccount.com
+     * The IAM service account email address like test@myproject.iam.gserviceaccount.com
      */
     email?: string;
   }
@@ -1174,9 +936,7 @@ export namespace deploymentmanager_v2beta {
      */
     config?: Schema$ConfigFile;
     /**
-     * Specifies any files to import for this configuration. This can be used to
-     * import templates or other files. For example, you might import a text
-     * file in order to use the file in a template.
+     * Specifies any files to import for this configuration. This can be used to import templates or other files. For example, you might import a text file in order to use the file in a template.
      */
     imports?: Schema$ImportFile[];
   }
@@ -1207,16 +967,13 @@ export namespace deploymentmanager_v2beta {
   }
   export interface Schema$TestPermissionsRequest {
     /**
-     * The set of permissions to check for the &#39;resource&#39;. Permissions
-     * with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not
-     * allowed.
+     * The set of permissions to check for the &#39;resource&#39;. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
      */
     permissions?: string[];
   }
   export interface Schema$TestPermissionsResponse {
     /**
-     * A subset of `TestPermissionsRequest.permissions` that the caller is
-     * allowed.
+     * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[];
   }
@@ -1229,8 +986,7 @@ export namespace deploymentmanager_v2beta {
      */
     base?: Schema$BaseType;
     /**
-     * An optional textual description of the resource; provided by the client
-     * when the resource is created.
+     * An optional textual description of the resource; provided by the client when the resource is created.
      */
     description?: string;
     id?: string;
@@ -1239,12 +995,7 @@ export namespace deploymentmanager_v2beta {
      */
     insertTime?: string;
     /**
-     * Map of labels; provided by the client when the resource is created or
-     * updated. Specifically: Label keys must be between 1 and 63 characters
-     * long and must conform to the following regular expression:
-     * [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63
-     * characters long and must conform to the regular expression
-     * ([a-z]([-a-z0-9]*[a-z0-9])?)?
+     * Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
     labels?: Schema$TypeLabelEntry[];
     /**
@@ -1252,8 +1003,7 @@ export namespace deploymentmanager_v2beta {
      */
     name?: string;
     /**
-     * Output only. The Operation that most recently ran, or is currently
-     * running, on this type.
+     * Output only. The Operation that most recently ran, or is currently running, on this type.
      */
     operation?: Schema$Operation;
     /**
@@ -1262,8 +1012,7 @@ export namespace deploymentmanager_v2beta {
     selfLink?: string;
   }
   /**
-   * Type Information. Contains detailed information about a composite type,
-   * base type, or base type with specific collection.
+   * Type Information. Contains detailed information about a composite type, base type, or base type with specific collection.
    */
   export interface Schema$TypeInfo {
     /**
@@ -1271,13 +1020,11 @@ export namespace deploymentmanager_v2beta {
      */
     description?: string;
     /**
-     * For swagger 2.0 externalDocs field will be used. For swagger 1.2 this
-     * field will be empty.
+     * For swagger 2.0 externalDocs field will be used. For swagger 1.2 this field will be empty.
      */
     documentationLink?: string;
     /**
-     * Output only. Type of the output. Always deploymentManager#TypeInfo for
-     * TypeInfo.
+     * Output only. Type of the output. Always deploymentManager#TypeInfo for TypeInfo.
      */
     kind?: string;
     /**
@@ -1285,8 +1032,7 @@ export namespace deploymentmanager_v2beta {
      */
     name?: string;
     /**
-     * For base types with a collection, we return a schema and documentation
-     * link For template types, we return only a schema
+     * For base types with a collection, we return a schema and documentation link For template types, we return only a schema
      */
     schema?: Schema$TypeInfoSchemaInfo;
     /**
@@ -1300,14 +1046,11 @@ export namespace deploymentmanager_v2beta {
   }
   export interface Schema$TypeInfoSchemaInfo {
     /**
-     * The properties that this composite type or base type collection accept as
-     * input, represented as a json blob, format is: JSON Schema Draft V4
+     * The properties that this composite type or base type collection accept as input, represented as a json blob, format is: JSON Schema Draft V4
      */
     input?: string;
     /**
-     * The properties that this composite type or base type collection exposes
-     * as output, these properties can be used for references, represented as
-     * json blob, format is: JSON Schema Draft V4
+     * The properties that this composite type or base type collection exposes as output, these properties can be used for references, represented as json blob, format is: JSON Schema Draft V4
      */
     output?: string;
   }
@@ -1328,8 +1071,7 @@ export namespace deploymentmanager_v2beta {
      */
     credential?: Schema$Credential;
     /**
-     * An optional textual description of the resource; provided by the client
-     * when the resource is created.
+     * An optional textual description of the resource; provided by the client when the resource is created.
      */
     description?: string;
     /**
@@ -1345,27 +1087,15 @@ export namespace deploymentmanager_v2beta {
      */
     insertTime?: string;
     /**
-     * Map of labels; provided by the client when the resource is created or
-     * updated. Specifically: Label keys must be between 1 and 63 characters
-     * long and must conform to the following regular expression:
-     * [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63
-     * characters long and must conform to the regular expression
-     * ([a-z]([-a-z0-9]*[a-z0-9])?)?
+     * Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
     labels?: Schema$TypeProviderLabelEntry[];
     /**
-     * Name of the resource; provided by the client when the resource is
-     * created. The name must be 1-63 characters long, and comply with RFC1035.
-     * Specifically, the name must be 1-63 characters long and match the regular
-     * expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character
-     * must be a lowercase letter, and all following characters must be a dash,
-     * lowercase letter, or digit, except the last character, which cannot be a
-     * dash.
+     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     name?: string;
     /**
-     * Output only. The Operation that most recently ran, or is currently
-     * running, on this type provider.
+     * Output only. The Operation that most recently ran, or is currently running, on this type provider.
      */
     operation?: Schema$Operation;
     /**
@@ -1390,8 +1120,7 @@ export namespace deploymentmanager_v2beta {
      */
     nextPageToken?: string;
     /**
-     * Output only. A list of resource type providers supported by Deployment
-     * Manager.
+     * Output only. A list of resource type providers supported by Deployment Manager.
      */
     typeProviders?: Schema$TypeProvider[];
   }
@@ -1423,8 +1152,7 @@ export namespace deploymentmanager_v2beta {
    */
   export interface Schema$ValidationOptions {
     /**
-     * Customize how deployment manager will validate the resource against
-     * schema errors.
+     * Customize how deployment manager will validate the resource against schema errors.
      */
     schemaValidation?: string;
     /**
@@ -1959,46 +1687,19 @@ export namespace deploymentmanager_v2beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      */
     orderBy?: string;
     /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -2057,8 +1758,7 @@ export namespace deploymentmanager_v2beta {
 
     /**
      * deploymentmanager.deployments.cancelPreview
-     * @desc Cancels and removes the preview currently associated with the
-     * deployment.
+     * @desc Cancels and removes the preview currently associated with the deployment.
      * @alias deploymentmanager.deployments.cancelPreview
      * @memberOf! ()
      *
@@ -2284,8 +1984,7 @@ export namespace deploymentmanager_v2beta {
 
     /**
      * deploymentmanager.deployments.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no
-     * such policy or resource exists.
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias deploymentmanager.deployments.getIamPolicy
      * @memberOf! ()
      *
@@ -2358,8 +2057,7 @@ export namespace deploymentmanager_v2beta {
 
     /**
      * deploymentmanager.deployments.insert
-     * @desc Creates a deployment and all of the resources described by the
-     * deployment manifest.
+     * @desc Creates a deployment and all of the resources described by the deployment manifest.
      * @alias deploymentmanager.deployments.insert
      * @memberOf! ()
      *
@@ -2515,8 +2213,7 @@ export namespace deploymentmanager_v2beta {
 
     /**
      * deploymentmanager.deployments.patch
-     * @desc Updates a deployment and all of the resources described by the
-     * deployment manifest. This method supports patch semantics.
+     * @desc Updates a deployment and all of the resources described by the deployment manifest. This method supports patch semantics.
      * @alias deploymentmanager.deployments.patch
      * @memberOf! ()
      *
@@ -2595,8 +2292,7 @@ export namespace deploymentmanager_v2beta {
 
     /**
      * deploymentmanager.deployments.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias deploymentmanager.deployments.setIamPolicy
      * @memberOf! ()
      *
@@ -2670,8 +2366,7 @@ export namespace deploymentmanager_v2beta {
 
     /**
      * deploymentmanager.deployments.stop
-     * @desc Stops an ongoing operation. This does not roll back any work that
-     * has already been completed, but prevents any new work from being started.
+     * @desc Stops an ongoing operation. This does not roll back any work that has already been completed, but prevents any new work from being started.
      * @alias deploymentmanager.deployments.stop
      * @memberOf! ()
      *
@@ -2826,8 +2521,7 @@ export namespace deploymentmanager_v2beta {
 
     /**
      * deploymentmanager.deployments.update
-     * @desc Updates a deployment and all of the resources described by the
-     * deployment manifest.
+     * @desc Updates a deployment and all of the resources described by the deployment manifest.
      * @alias deploymentmanager.deployments.update
      * @memberOf! ()
      *
@@ -2989,13 +2683,7 @@ export namespace deploymentmanager_v2beta {
      */
     createPolicy?: string;
     /**
-     * If set to true, creates a deployment and creates "shell" resources but
-     * does not actually instantiate these resources. This allows you to preview
-     * what your deployment looks like. After previewing a deployment, you can
-     * deploy your resources by making a request with the update() method or you
-     * can use the cancelPreview() method to cancel the preview altogether. Note
-     * that the deployment will still exist after you cancel the preview and you
-     * must separately delete this deployment if you want to remove it.
+     * If set to true, creates a deployment and creates "shell" resources but does not actually instantiate these resources. This allows you to preview what your deployment looks like. After previewing a deployment, you can deploy your resources by making a request with the update() method or you can use the cancelPreview() method to cancel the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      */
     preview?: boolean;
     /**
@@ -3015,46 +2703,19 @@ export namespace deploymentmanager_v2beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      */
     orderBy?: string;
     /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -3082,16 +2743,7 @@ export namespace deploymentmanager_v2beta {
      */
     deployment?: string;
     /**
-     * If set to true, updates the deployment and creates and updates the
-     * "shell" resources but does not actually alter or instantiate these
-     * resources. This allows you to preview what your deployment will look
-     * like. You can use this intent to preview how an update would affect your
-     * deployment. You must provide a target.config with a configuration if this
-     * is set to true. After previewing a deployment, you can deploy your
-     * resources by making a request with the update() or you can
-     * cancelPreview() to remove the preview altogether. Note that the
-     * deployment will still exist after you cancel the preview and you must
-     * separately delete this deployment if you want to remove it.
+     * If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      */
     preview?: boolean;
     /**
@@ -3186,16 +2838,7 @@ export namespace deploymentmanager_v2beta {
      */
     deployment?: string;
     /**
-     * If set to true, updates the deployment and creates and updates the
-     * "shell" resources but does not actually alter or instantiate these
-     * resources. This allows you to preview what your deployment will look
-     * like. You can use this intent to preview how an update would affect your
-     * deployment. You must provide a target.config with a configuration if this
-     * is set to true. After previewing a deployment, you can deploy your
-     * resources by making a request with the update() or you can
-     * cancelPreview() to remove the preview altogether. Note that the
-     * deployment will still exist after you cancel the preview and you must
-     * separately delete this deployment if you want to remove it.
+     * If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      */
     preview?: boolean;
     /**
@@ -3399,46 +3042,19 @@ export namespace deploymentmanager_v2beta {
      */
     deployment?: string;
     /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      */
     orderBy?: string;
     /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -3629,46 +3245,19 @@ export namespace deploymentmanager_v2beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      */
     orderBy?: string;
     /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -3867,46 +3456,19 @@ export namespace deploymentmanager_v2beta {
      */
     deployment?: string;
     /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      */
     orderBy?: string;
     /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -4623,46 +4185,19 @@ export namespace deploymentmanager_v2beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      */
     orderBy?: string;
     /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -4678,46 +4213,19 @@ export namespace deploymentmanager_v2beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      */
     orderBy?: string;
     /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -4863,46 +4371,19 @@ export namespace deploymentmanager_v2beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      */
     orderBy?: string;
     /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**

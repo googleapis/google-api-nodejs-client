@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace searchconsole_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace searchconsole_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -112,7 +108,10 @@ export namespace searchconsole_v1 {
     urlTestingTools: Resource$Urltestingtools;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.urlTestingTools = new Resource$Urltestingtools(this.context);
     }
@@ -132,9 +131,7 @@ export namespace searchconsole_v1 {
    */
   export interface Schema$Image {
     /**
-     * Image data in format determined by the mime type. Currently, the format
-     * will always be &quot;image/png&quot;, but this might change in the
-     * future.
+     * Image data in format determined by the mime type. Currently, the format will always be &quot;image/png&quot;, but this might change in the future.
      */
     data?: string;
     /**
@@ -174,8 +171,7 @@ export namespace searchconsole_v1 {
     url?: string;
   }
   /**
-   * Mobile-friendly test response, including mobile-friendly issues and
-   * resource issues.
+   * Mobile-friendly test response, including mobile-friendly issues and resource issues.
    */
   export interface Schema$RunMobileFriendlyTestResponse {
     /**

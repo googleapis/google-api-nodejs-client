@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace admin_datatransfer_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace admin_datatransfer_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -96,7 +93,10 @@ export namespace admin_datatransfer_v1 {
     transfers: Resource$Transfers;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.applications = new Resource$Applications(this.context);
       this.transfers = new Resource$Transfers(this.context);
@@ -124,9 +124,7 @@ export namespace admin_datatransfer_v1 {
      */
     name?: string;
     /**
-     * The list of all possible transfer parameters for this application. These
-     * parameters can be used to select the data of the user in this application
-     * to be transfered.
+     * The list of all possible transfer parameters for this application. These parameters can be used to select the data of the user in this application to be transfered.
      */
     transferParams?: Schema$ApplicationTransferParam[];
   }
@@ -139,8 +137,7 @@ export namespace admin_datatransfer_v1 {
      */
     applicationId?: string;
     /**
-     * The transfer parameters for the application. These parameters are used to
-     * select the data which will get transfered in context of this application.
+     * The transfer parameters for the application. These parameters are used to select the data which will get transfered in context of this application.
      */
     applicationTransferParams?: Schema$ApplicationTransferParam[];
     /**
@@ -153,8 +150,7 @@ export namespace admin_datatransfer_v1 {
    */
   export interface Schema$ApplicationsListResponse {
     /**
-     * List of applications that support data transfer and are also installed
-     * for the customer.
+     * List of applications that support data transfer and are also installed for the customer.
      */
     applications?: Schema$Application[];
     /**
@@ -179,8 +175,7 @@ export namespace admin_datatransfer_v1 {
      */
     key?: string;
     /**
-     * The value of the coressponding transfer parameter. eg: &#39;PRIVATE&#39;
-     * or &#39;SHARED&#39;
+     * The value of the coressponding transfer parameter. eg: &#39;PRIVATE&#39; or &#39;SHARED&#39;
      */
     value?: string[];
   }
@@ -189,11 +184,7 @@ export namespace admin_datatransfer_v1 {
    */
   export interface Schema$DataTransfer {
     /**
-     * List of per application data transfer resources. It contains data
-     * transfer details of the applications associated with this transfer
-     * resource. Note that this list is also used to specify the applications
-     * for which data transfer has to be done at the time of the transfer
-     * resource creation.
+     * List of per application data transfer resources. It contains data transfer details of the applications associated with this transfer resource. Note that this list is also used to specify the applications for which data transfer has to be done at the time of the transfer resource creation.
      */
     applicationDataTransfers?: Schema$ApplicationDataTransfer[];
     /**
@@ -255,8 +246,7 @@ export namespace admin_datatransfer_v1 {
 
     /**
      * datatransfer.applications.get
-     * @desc Retrieves information about an application for the given
-     * application ID.
+     * @desc Retrieves information about an application for the given application ID.
      * @alias datatransfer.applications.get
      * @memberOf! ()
      *
@@ -590,8 +580,7 @@ export namespace admin_datatransfer_v1 {
 
     /**
      * datatransfer.transfers.list
-     * @desc Lists the transfers for a customer by source user, destination
-     * user, or status.
+     * @desc Lists the transfers for a customer by source user, destination user, or status.
      * @alias datatransfer.transfers.list
      * @memberOf! ()
      *
@@ -682,8 +671,7 @@ export namespace admin_datatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the resource to be retrieved. This is returned in the response from
-     * the insert method.
+     * ID of the resource to be retrieved. This is returned in the response from the insert method.
      */
     dataTransferId?: string;
   }

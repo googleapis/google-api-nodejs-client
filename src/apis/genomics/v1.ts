@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace genomics_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace genomics_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -112,7 +108,10 @@ export namespace genomics_v1 {
     operations: Resource$Operations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.operations = new Resource$Operations(this.context);
     }
@@ -123,8 +122,7 @@ export namespace genomics_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Describes a Compute Engine resource that is being managed by a running
-   * pipeline.
+   * Describes a Compute Engine resource that is being managed by a running pipeline.
    */
   export interface Schema$ComputeEngine {
     /**
@@ -145,9 +143,7 @@ export namespace genomics_v1 {
     zone?: string;
   }
   /**
-   * An event generated when a container is forcibly terminated by the worker.
-   * Currently, this only occurs when the container outlives the timeout
-   * specified by the user.
+   * An event generated when a container is forcibly terminated by the worker. Currently, this only occurs when the container outlives the timeout specified by the user.
    */
   export interface Schema$ContainerKilledEvent {
     /**
@@ -164,16 +160,11 @@ export namespace genomics_v1 {
      */
     actionId?: number;
     /**
-     * The public IP address that can be used to connect to the container. This
-     * field is only populated when at least one port mapping is present. If the
-     * instance was created with a private address, this field will be empty
-     * even if port mappings exist.
+     * The public IP address that can be used to connect to the container. This field is only populated when at least one port mapping is present. If the instance was created with a private address, this field will be empty even if port mappings exist.
      */
     ipAddress?: string;
     /**
-     * The container-to-host port mappings installed for this container. This
-     * set will contain any ports exposed using the `PUBLISH_EXPOSED_PORTS` flag
-     * as well as any specified in the `Action` definition.
+     * The container-to-host port mappings installed for this container. This set will contain any ports exposed using the `PUBLISH_EXPOSED_PORTS` flag as well as any specified in the `Action` definition.
      */
     portMappings?: {[key: string]: number};
   }
@@ -190,41 +181,25 @@ export namespace genomics_v1 {
      */
     exitStatus?: number;
     /**
-     * The tail end of any content written to standard error by the container.
-     * If the content emits large amounts of debugging noise or contains
-     * sensitive information, you can prevent the content from being printed by
-     * setting the `DISABLE_STANDARD_ERROR_CAPTURE` flag.  Note that only a
-     * small amount of the end of the stream is captured here. The entire stream
-     * is stored in the `/google/logs` directory mounted into each action, and
-     * can be copied off the machine as described elsewhere.
+     * The tail end of any content written to standard error by the container. If the content emits large amounts of debugging noise or contains sensitive information, you can prevent the content from being printed by setting the `DISABLE_STANDARD_ERROR_CAPTURE` flag.  Note that only a small amount of the end of the stream is captured here. The entire stream is stored in the `/google/logs` directory mounted into each action, and can be copied off the machine as described elsewhere.
      */
     stderr?: string;
   }
   /**
-   * An event generated whenever a resource limitation or transient error delays
-   * execution of a pipeline that was otherwise ready to run.
+   * An event generated whenever a resource limitation or transient error delays execution of a pipeline that was otherwise ready to run.
    */
   export interface Schema$DelayedEvent {
     /**
-     * A textual description of the cause of the delay. The string can change
-     * without notice because it is often generated by another service (such as
-     * Compute Engine).
+     * A textual description of the cause of the delay. The string can change without notice because it is often generated by another service (such as Compute Engine).
      */
     cause?: string;
     /**
-     * If the delay was caused by a resource shortage, this field lists the
-     * Compute Engine metrics that are preventing this operation from running
-     * (for example, `CPUS` or `INSTANCES`). If the particular metric is not
-     * known, a single `UNKNOWN` metric will be present.
+     * If the delay was caused by a resource shortage, this field lists the Compute Engine metrics that are preventing this operation from running (for example, `CPUS` or `INSTANCES`). If the particular metric is not known, a single `UNKNOWN` metric will be present.
      */
     metrics?: string[];
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -232,9 +207,7 @@ export namespace genomics_v1 {
    */
   export interface Schema$Event {
     /**
-     * A human-readable description of the event. Note that these strings can
-     * change at any time without notice. Any application logic must use the
-     * information in the `details` field.
+     * A human-readable description of the event. Note that these strings can change at any time without notice. Any application logic must use the information in the `details` field.
      */
     description?: string;
     /**
@@ -247,8 +220,7 @@ export namespace genomics_v1 {
     timestamp?: string;
   }
   /**
-   * An event generated when the execution of a pipeline has failed. Note that
-   * other events can continue to occur after this event.
+   * An event generated when the execution of a pipeline has failed. Note that other events can continue to occur after this event.
    */
   export interface Schema$FailedEvent {
     /**
@@ -274,14 +246,11 @@ export namespace genomics_v1 {
     operations?: Schema$Operation[];
   }
   /**
-   * This resource represents a long-running operation that is the result of a
-   * network API call.
+   * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
     /**
-     * If the value is `false`, it means the operation is still in progress. If
-     * `true`, the operation is completed, and either `error` or `response` is
-     * available.
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
     done?: boolean;
     /**
@@ -289,14 +258,11 @@ export namespace genomics_v1 {
      */
     error?: Schema$Status;
     /**
-     * An OperationMetadata or Metadata object. This will always be returned
-     * with the Operation.
+     * An OperationMetadata or Metadata object. This will always be returned with the Operation.
      */
     metadata?: {[key: string]: any};
     /**
-     * The server-assigned name, which is only unique within the same service
-     * that originally returns it. For example&amp;#58;
-     * `operations/CJHU7Oi_ChDrveSpBRjfuL-qzoWAgEw`
+     * The server-assigned name, which is only unique within the same service that originally returns it. For example&amp;#58; `operations/CJHU7Oi_ChDrveSpBRjfuL-qzoWAgEw`
      */
     name?: string;
     /**
@@ -313,9 +279,7 @@ export namespace genomics_v1 {
      */
     description?: string;
     /**
-     * Optional time of when event finished. An event can have a start time and
-     * no finish time. If an event has a finish time, there must be a start
-     * time.
+     * Optional time of when event finished. An event can have a start time and no finish time. If an event has a finish time, there must be a start time.
      */
     endTime?: string;
     /**
@@ -328,8 +292,7 @@ export namespace genomics_v1 {
    */
   export interface Schema$OperationMetadata {
     /**
-     * This field is deprecated. Use `labels` instead. Optionally provided by
-     * the caller when submitting the request that creates the operation.
+     * This field is deprecated. Use `labels` instead. Optionally provided by the caller when submitting the request that creates the operation.
      */
     clientId?: string;
     /**
@@ -341,14 +304,11 @@ export namespace genomics_v1 {
      */
     endTime?: string;
     /**
-     * Optional event messages that were generated during the job&#39;s
-     * execution. This also contains any warnings that were generated during
-     * import or export.
+     * Optional event messages that were generated during the job&#39;s execution. This also contains any warnings that were generated during import or export.
      */
     events?: Schema$OperationEvent[];
     /**
-     * Optionally provided by the caller when submitting the request that
-     * creates the operation.
+     * Optionally provided by the caller when submitting the request that creates the operation.
      */
     labels?: {[key: string]: string};
     /**
@@ -356,10 +316,7 @@ export namespace genomics_v1 {
      */
     projectId?: string;
     /**
-     * The original request that started the operation. Note that this will be
-     * in current version of the API. If the operation was started with v1beta2
-     * API and a GetOperation is performed on v1 API, a v1 request will be
-     * returned.
+     * The original request that started the operation. Note that this will be in current version of the API. If the operation was started with v1beta2 API and a GetOperation is performed on v1 API, a v1 request will be returned.
      */
     request?: {[key: string]: any};
     /**
@@ -390,13 +347,11 @@ export namespace genomics_v1 {
     imageUri?: string;
   }
   /**
-   * The response to the RunPipeline method, returned in the operation&#39;s
-   * result field on success.
+   * The response to the RunPipeline method, returned in the operation&#39;s result field on success.
    */
   export interface Schema$RunPipelineResponse {}
   /**
-   * Runtime metadata that will be populated in the runtimeMetadata field of the
-   * Operation associated with a RunPipeline execution.
+   * Runtime metadata that will be populated in the runtimeMetadata field of the Operation associated with a RunPipeline execution.
    */
   export interface Schema$RuntimeMetadata {
     /**
@@ -405,40 +360,7 @@ export namespace genomics_v1 {
     computeEngine?: Schema$ComputeEngine;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for
-   * different programming environments, including REST APIs and RPC APIs. It is
-   * used by [gRPC](https://github.com/grpc). The error model is designed to be:
-   * - Simple to use and understand for most users - Flexible enough to meet
-   * unexpected needs  # Overview  The `Status` message contains three pieces of
-   * data: error code, error message, and error details. The error code should
-   * be an enum value of google.rpc.Code, but it may accept additional error
-   * codes if needed.  The error message should be a developer-facing English
-   * message that helps developers *understand* and *resolve* the error. If a
-   * localized user-facing error message is needed, put the localized message in
-   * the error details or localize it in the client. The optional error details
-   * may contain arbitrary information about the error. There is a predefined
-   * set of error detail types in the package `google.rpc` that can be used for
-   * common error conditions.  # Language mapping  The `Status` message is the
-   * logical representation of the error model, but it is not necessarily the
-   * actual wire format. When the `Status` message is exposed in different
-   * client libraries and different wire protocols, it can be mapped
-   * differently. For example, it will likely be mapped to some exceptions in
-   * Java, but more likely mapped to some error codes in C.  # Other uses  The
-   * error model and the `Status` message can be used in a variety of
-   * environments, either with or without APIs, to provide a consistent
-   * developer experience across different environments.  Example uses of this
-   * error model include:  - Partial errors. If a service needs to return
-   * partial errors to the client,     it may embed the `Status` in the normal
-   * response to indicate the partial     errors.  - Workflow errors. A typical
-   * workflow has multiple steps. Each step may     have a `Status` message for
-   * error reporting.  - Batch operations. If a client uses batch request and
-   * batch response, the     `Status` message should be used directly inside
-   * batch response, one for     each error sub-response.  - Asynchronous
-   * operations. If an API call embeds asynchronous operation     results in its
-   * response, the status of those operations should be     represented directly
-   * using the `Status` message.  - Logging. If some API errors are stored in
-   * logs, the message `Status` could     be used directly after any stripping
-   * needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
    */
   export interface Schema$Status {
     /**
@@ -446,22 +368,16 @@ export namespace genomics_v1 {
      */
     code?: number;
     /**
-     * A list of messages that carry the error details.  There is a common set
-     * of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}>;
     /**
-     * A developer-facing error message, which should be in English. Any
-     * user-facing error message should be localized and sent in the
-     * google.rpc.Status.details field, or localized by the client.
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
   }
   /**
-   * An event generated when the execution of a container results in a non-zero
-   * exit status that was not otherwise ignored. Execution will continue, but
-   * only actions that are flagged as `ALWAYS_RUN` will be executed. Other
-   * actions will be skipped.
+   * An event generated when the execution of a container results in a non-zero exit status that was not otherwise ignored. Execution will continue, but only actions that are flagged as `ALWAYS_RUN` will be executed. Other actions will be skipped.
    */
   export interface Schema$UnexpectedExitStatusEvent {
     /**
@@ -487,8 +403,7 @@ export namespace genomics_v1 {
     zone?: string;
   }
   /**
-   * An event generated when the worker VM that was assigned to the pipeline has
-   * been released (deleted).
+   * An event generated when the worker VM that was assigned to the pipeline has been released (deleted).
    */
   export interface Schema$WorkerReleasedEvent {
     /**
@@ -509,27 +424,19 @@ export namespace genomics_v1 {
 
     /**
      * genomics.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The
-     * server makes a best effort to cancel the operation, but success is not
-     * guaranteed. Clients may use Operations.GetOperation or
-     * Operations.ListOperations to check whether the cancellation succeeded or
-     * the operation completed despite cancellation. Authorization requires the
-     * following [Google IAM](https://cloud.google.com/iam) permission&#58;  *
-     * `genomics.operations.cancel`
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients may use Operations.GetOperation or Operations.ListOperations to check whether the cancellation succeeded or the operation completed despite cancellation. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `genomics.operations.cancel`
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Genomics API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/genomics
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -562,10 +469,9 @@ export namespace genomics_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -639,25 +545,19 @@ export namespace genomics_v1 {
 
     /**
      * genomics.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use
-     * this method to poll the operation result at intervals as recommended by
-     * the API service. Authorization requires the following [Google
-     * IAM](https://cloud.google.com/iam) permission&#58;  *
-     * `genomics.operations.get`
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `genomics.operations.get`
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Genomics API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/genomics
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -689,10 +589,9 @@ export namespace genomics_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -766,24 +665,19 @@ export namespace genomics_v1 {
 
     /**
      * genomics.operations.list
-     * @desc Lists operations that match the specified filter in the request.
-     * Authorization requires the following [Google
-     * IAM](https://cloud.google.com/iam) permission&#58;  *
-     * `genomics.operations.list`
+     * @desc Lists operations that match the specified filter in the request. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `genomics.operations.list`
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Genomics API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/genomics
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -809,9 +703,8 @@ export namespace genomics_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < operationsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `operationsPage`: console.log(JSON.stringify(operationsPage[i], null,
-     * 2));
+     *       // TODO: Change code below to process each resource in `operationsPage`:
+     *       console.log(JSON.stringify(operationsPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -829,10 +722,9 @@ export namespace genomics_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -945,25 +837,7 @@ export namespace genomics_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A string for filtering Operations. In v2alpha1, the following filter
-     * fields are supported&#58;  * createTime&#58; The time this job was
-     * created * events&#58; The set of event (names) that have occurred while
-     * running   the pipeline.  The &#58; operator can be used to determine if a
-     * particular event has occurred. * error&#58; If the pipeline is running,
-     * this value is NULL.  Once the   pipeline finishes, the value is the
-     * standard Google error code. * labels.key or labels."key with space" where
-     * key is a label key. * done&#58; If the pipeline is running, this value is
-     * false. Once the   pipeline finishes, the value is true.  In v1 and
-     * v1alpha2, the following filter fields are supported&#58;  *
-     * projectId&#58; Required. Corresponds to   OperationMetadata.projectId. *
-     * createTime&#58; The time this job was created, in seconds from the
-     * [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`
-     * operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or
-     * `CANCELED`. Only   one status may be specified. * labels.key where key is
-     * a label key.  Examples&#58;  * `projectId = my-project AND createTime >=
-     * 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND
-     * createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project
-     * AND labels.color = *` * `projectId = my-project AND labels.color = red`
+     * A string for filtering Operations. In v2alpha1, the following filter fields are supported&#58;  * createTime&#58; The time this job was created * events&#58; The set of event (names) that have occurred while running   the pipeline.  The &#58; operator can be used to determine if a   particular event has occurred. * error&#58; If the pipeline is running, this value is NULL.  Once the   pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done&#58; If the pipeline is running, this value is false. Once the   pipeline finishes, the value is true.  In v1 and v1alpha2, the following filter fields are supported&#58;  * projectId&#58; Required. Corresponds to   OperationMetadata.projectId. * createTime&#58; The time this job was created, in seconds from the   [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`   operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only   one status may be specified. * labels.key where key is a label key.  Examples&#58;  * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
      */
     filter?: string;
     /**

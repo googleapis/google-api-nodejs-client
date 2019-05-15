@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace storage_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace storage_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -102,7 +99,10 @@ export namespace storage_v1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.bucketAccessControls = new Resource$Bucketaccesscontrols(
         this.context
@@ -143,19 +143,7 @@ export namespace storage_v1 {
       responseHeader?: string[];
     }>;
     /**
-     * The default value for event-based hold on newly created objects in this
-     * bucket. Event-based hold is a way to retain objects indefinitely until an
-     * event occurs, signified by the hold&#39;s release. After being released,
-     * such objects will be subject to bucket-level retention (if any). One
-     * sample use case of this flag is for banks to hold loan documents for at
-     * least 3 years after loan is paid in full. Here, bucket-level retention is
-     * 3 years and the event is loan being paid in full. In this example, these
-     * objects will be held intact for any number of years until the event has
-     * occurred (event-based hold on the object is released) and then 3 more
-     * years after that. That means retention duration of the objects begins
-     * from the moment event-based hold transitioned from true to false. Objects
-     * under event-based hold cannot be deleted, overwritten or archived until
-     * the hold is removed.
+     * The default value for event-based hold on newly created objects in this bucket. Event-based hold is a way to retain objects indefinitely until an event occurs, signified by the hold&#39;s release. After being released, such objects will be subject to bucket-level retention (if any). One sample use case of this flag is for banks to hold loan documents for at least 3 years after loan is paid in full. Here, bucket-level retention is 3 years and the event is loan being paid in full. In this example, these objects will be held intact for any number of years until the event has occurred (event-based hold on the object is released) and then 3 more years after that. That means retention duration of the objects begins from the moment event-based hold transitioned from true to false. Objects under event-based hold cannot be deleted, overwritten or archived until the hold is removed.
      */
     defaultEventBasedHold?: boolean;
     /**
@@ -177,8 +165,7 @@ export namespace storage_v1 {
       bucketPolicyOnly?: {enabled?: boolean; lockedTime?: string};
     };
     /**
-     * The ID of the bucket. For buckets, the id and name properties are the
-     * same.
+     * The ID of the bucket. For buckets, the id and name properties are the same.
      */
     id?: string;
     /**
@@ -190,8 +177,7 @@ export namespace storage_v1 {
      */
     labels?: {[key: string]: string};
     /**
-     * The bucket&#39;s lifecycle configuration. See lifecycle management for
-     * more information.
+     * The bucket&#39;s lifecycle configuration. See lifecycle management for more information.
      */
     lifecycle?: {
       rule?: Array<{
@@ -207,14 +193,15 @@ export namespace storage_v1 {
       }>;
     };
     /**
-     * The location of the bucket. Object data for objects in the bucket resides
-     * in physical storage within this region. Defaults to US. See the
-     * developer&#39;s guide for the authoritative list.
+     * The location of the bucket. Object data for objects in the bucket resides in physical storage within this region. Defaults to US. See the developer&#39;s guide for the authoritative list.
      */
     location?: string;
     /**
-     * The bucket&#39;s logging configuration, which defines the destination
-     * bucket and optional name prefix for the current bucket&#39;s logs.
+     * The type of the bucket location.
+     */
+    locationType?: string;
+    /**
+     * The bucket&#39;s logging configuration, which defines the destination bucket and optional name prefix for the current bucket&#39;s logs.
      */
     logging?: {logBucket?: string; logObjectPrefix?: string};
     /**
@@ -226,8 +213,7 @@ export namespace storage_v1 {
      */
     name?: string;
     /**
-     * The owner of the bucket. This is always the project team&#39;s owner
-     * group.
+     * The owner of the bucket. This is always the project team&#39;s owner group.
      */
     owner?: {entity?: string; entityId?: string};
     /**
@@ -235,15 +221,7 @@ export namespace storage_v1 {
      */
     projectNumber?: string;
     /**
-     * The bucket&#39;s retention policy. The retention policy enforces a
-     * minimum retention time for all objects contained in the bucket, based on
-     * their creation time. Any attempt to overwrite or delete objects younger
-     * than the retention period will result in a PERMISSION_DENIED error. An
-     * unlocked retention policy can be modified or removed from the bucket via
-     * a storage.buckets.update operation. A locked retention policy cannot be
-     * removed or shortened in duration for the lifetime of the bucket.
-     * Attempting to remove or decrease period of a locked retention policy will
-     * result in a PERMISSION_DENIED error.
+     * The bucket&#39;s retention policy. The retention policy enforces a minimum retention time for all objects contained in the bucket, based on their creation time. Any attempt to overwrite or delete objects younger than the retention period will result in a PERMISSION_DENIED error. An unlocked retention policy can be modified or removed from the bucket via a storage.buckets.update operation. A locked retention policy cannot be removed or shortened in duration for the lifetime of the bucket. Attempting to remove or decrease period of a locked retention policy will result in a PERMISSION_DENIED error.
      */
     retentionPolicy?: {
       effectiveTime?: string;
@@ -255,13 +233,7 @@ export namespace storage_v1 {
      */
     selfLink?: string;
     /**
-     * The bucket&#39;s default storage class, used whenever no storageClass is
-     * specified for a newly-created object. This defines how objects in the
-     * bucket are stored and determines the SLA and the cost of storage. Values
-     * include MULTI_REGIONAL, REGIONAL, STANDARD, NEARLINE, COLDLINE, and
-     * DURABLE_REDUCED_AVAILABILITY. If this value is not specified when the
-     * bucket is created, it will default to STANDARD. For more information, see
-     * storage classes.
+     * The bucket&#39;s default storage class, used whenever no storageClass is specified for a newly-created object. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include MULTI_REGIONAL, REGIONAL, STANDARD, NEARLINE, COLDLINE, and DURABLE_REDUCED_AVAILABILITY. If this value is not specified when the bucket is created, it will default to STANDARD. For more information, see storage classes.
      */
     storageClass?: string;
     /**
@@ -277,9 +249,7 @@ export namespace storage_v1 {
      */
     versioning?: {enabled?: boolean};
     /**
-     * The bucket&#39;s website configuration, controlling how the service
-     * behaves when accessing bucket contents as a web site. See the Static
-     * Website Examples for more information.
+     * The bucket&#39;s website configuration, controlling how the service behaves when accessing bucket contents as a web site. See the Static Website Examples for more information.
      */
     website?: {mainPageSuffix?: string; notFoundPage?: string};
   }
@@ -300,14 +270,7 @@ export namespace storage_v1 {
      */
     email?: string;
     /**
-     * The entity holding the permission, in one of the following forms:  -
-     * user-userId  - user-email  - group-groupId  - group-email  -
-     * domain-domain  - project-team-projectId  - allUsers  -
-     * allAuthenticatedUsers Examples:  - The user liz@example.com would be
-     * user-liz@example.com.  - The group example@googlegroups.com would be
-     * group-example@googlegroups.com.  - To refer to all members of the Google
-     * Apps for Business domain example.com, the entity would be
-     * domain-example.com.
+     * The entity holding the permission, in one of the following forms:  - user-userId  - user-email  - group-groupId  - group-email  - domain-domain  - project-team-projectId  - allUsers  - allAuthenticatedUsers Examples:  - The user liz@example.com would be user-liz@example.com.  - The group example@googlegroups.com would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
      */
     entity?: string;
     /**
@@ -323,8 +286,7 @@ export namespace storage_v1 {
      */
     id?: string;
     /**
-     * The kind of item this is. For bucket access control entries, this is
-     * always storage#bucketAccessControl.
+     * The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.
      */
     kind?: string;
     /**
@@ -349,8 +311,7 @@ export namespace storage_v1 {
      */
     items?: Schema$BucketAccessControl[];
     /**
-     * The kind of item this is. For lists of bucket access control entries,
-     * this is always storage#bucketAccessControls.
+     * The kind of item this is. For lists of bucket access control entries, this is always storage#bucketAccessControls.
      */
     kind?: string;
   }
@@ -363,13 +324,11 @@ export namespace storage_v1 {
      */
     items?: Schema$Bucket[];
     /**
-     * The kind of item this is. For lists of buckets, this is always
-     * storage#buckets.
+     * The kind of item this is. For lists of buckets, this is always storage#buckets.
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
   }
@@ -382,8 +341,7 @@ export namespace storage_v1 {
      */
     address?: string;
     /**
-     * Date and time of notification channel expiration, expressed as a Unix
-     * timestamp, in milliseconds. Optional.
+     * Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
      */
     expiration?: string;
     /**
@@ -391,8 +349,7 @@ export namespace storage_v1 {
      */
     id?: string;
     /**
-     * Identifies this as a notification channel used to watch for changes to a
-     * resource. Value: the fixed string &quot;api#channel&quot;.
+     * Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string &quot;api#channel&quot;.
      */
     kind?: string;
     /**
@@ -404,8 +361,7 @@ export namespace storage_v1 {
      */
     payload?: boolean;
     /**
-     * An opaque ID that identifies the resource being watched on this channel.
-     * Stable across different API versions.
+     * An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
      */
     resourceId?: string;
     /**
@@ -413,8 +369,7 @@ export namespace storage_v1 {
      */
     resourceUri?: string;
     /**
-     * An arbitrary string delivered to the target address with each
-     * notification delivered over this channel. Optional.
+     * An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
      */
     token?: string;
     /**
@@ -435,8 +390,7 @@ export namespace storage_v1 {
      */
     kind?: string;
     /**
-     * The list of source objects that will be concatenated into a single
-     * object.
+     * The list of source objects that will be concatenated into a single object.
      */
     sourceObjects?: Array<{
       generation?: string;
@@ -445,42 +399,32 @@ export namespace storage_v1 {
     }>;
   }
   /**
-   * Represents an expression text. Example: title: &quot;User account
-   * presence&quot; description: &quot;Determines whether the request has a user
-   * account&quot; expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents an expression text. Example: title: &quot;User account presence&quot; description: &quot;Determines whether the request has a user account&quot; expression: &quot;size(request.user) &gt; 0&quot;
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which
-     * describes the expression, e.g. when hovered over it in a UI.
+     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string;
     /**
-     * Textual representation of an expression in Common Expression Language
-     * syntax. The application context of the containing message determines
-     * which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax. The application context of the containing message determines which well-known feature set of CEL is supported.
      */
     expression?: string;
     /**
-     * The kind of item this is. For storage, this is always storage#expr. This
-     * field is ignored on input.
+     * The kind of item this is. For storage, this is always storage#expr. This field is ignored on input.
      */
     kind?: string;
     /**
-     * An optional string indicating the location of the expression for error
-     * reporting, e.g. a file name and a position in the file.
+     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string;
     /**
-     * An optional title for the expression, i.e. a short string describing its
-     * purpose. This can be used e.g. in UIs which allow to enter the
-     * expression.
+     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string;
   }
   /**
-   * JSON template to produce a JSON-style HMAC Key resource for Create
-   * responses.
+   * JSON template to produce a JSON-style HMAC Key resource for Create responses.
    */
   export interface Schema$HmacKey {
     /**
@@ -490,7 +434,7 @@ export namespace storage_v1 {
     /**
      * Key metadata.
      */
-    metadata?: any;
+    metadata?: Schema$HmacKeyMetadata;
     /**
      * HMAC secret key material.
      */
@@ -505,7 +449,7 @@ export namespace storage_v1 {
      */
     accessId?: string;
     /**
-     * HTTP 1.1 Entity tag for the access-control entry.
+     * HTTP 1.1 Entity tag for the HMAC key.
      */
     etag?: string;
     /**
@@ -513,8 +457,7 @@ export namespace storage_v1 {
      */
     id?: string;
     /**
-     * The kind of item this is. For HMAC Key metadata, this is always
-     * storage#hmacKeyMetadata.
+     * The kind of item this is. For HMAC Key metadata, this is always storage#hmacKeyMetadata.
      */
     kind?: string;
     /**
@@ -551,13 +494,11 @@ export namespace storage_v1 {
      */
     items?: Schema$HmacKeyMetadata[];
     /**
-     * The kind of item this is. For lists of hmacKeys, this is always
-     * storage#hmacKeysMetadata.
+     * The kind of item this is. For lists of hmacKeys, this is always storage#hmacKeysMetadata.
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
   }
@@ -566,8 +507,7 @@ export namespace storage_v1 {
    */
   export interface Schema$Notification {
     /**
-     * An optional list of additional attributes to attach to each Cloud PubSub
-     * message published for this notification subscription.
+     * An optional list of additional attributes to attach to each Cloud PubSub message published for this notification subscription.
      */
     custom_attributes?: {[key: string]: string};
     /**
@@ -575,8 +515,7 @@ export namespace storage_v1 {
      */
     etag?: string;
     /**
-     * If present, only send notifications about listed event types. If empty,
-     * sent notifications for all event types.
+     * If present, only send notifications about listed event types. If empty, sent notifications for all event types.
      */
     event_types?: string[];
     /**
@@ -584,13 +523,11 @@ export namespace storage_v1 {
      */
     id?: string;
     /**
-     * The kind of item this is. For notifications, this is always
-     * storage#notification.
+     * The kind of item this is. For notifications, this is always storage#notification.
      */
     kind?: string;
     /**
-     * If present, only apply this notification configuration to object names
-     * that begin with this prefix.
+     * If present, only apply this notification configuration to object names that begin with this prefix.
      */
     object_name_prefix?: string;
     /**
@@ -602,9 +539,7 @@ export namespace storage_v1 {
      */
     selfLink?: string;
     /**
-     * The Cloud PubSub topic to which this subscription publishes. Formatted
-     * as:
-     * &#39;//pubsub.googleapis.com/projects/{project-identifier}/topics/{my-topic}&#39;
+     * The Cloud PubSub topic to which this subscription publishes. Formatted as: &#39;//pubsub.googleapis.com/projects/{project-identifier}/topics/{my-topic}&#39;
      */
     topic?: string;
   }
@@ -617,8 +552,7 @@ export namespace storage_v1 {
      */
     items?: Schema$Notification[];
     /**
-     * The kind of item this is. For lists of notifications, this is always
-     * storage#notifications.
+     * The kind of item this is. For lists of notifications, this is always storage#notifications.
      */
     kind?: string;
   }
@@ -635,14 +569,11 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * Cache-Control directive for the object data. If omitted, and the object
-     * is accessible to all anonymous users, the default will be public,
-     * max-age=3600.
+     * Cache-Control directive for the object data. If omitted, and the object is accessible to all anonymous users, the default will be public, max-age=3600.
      */
     cacheControl?: string;
     /**
-     * Number of underlying components that make up this object. Components are
-     * accumulated by compose operations.
+     * Number of underlying components that make up this object. Components are accumulated by compose operations.
      */
     componentCount?: number;
     /**
@@ -658,19 +589,15 @@ export namespace storage_v1 {
      */
     contentLanguage?: string;
     /**
-     * Content-Type of the object data. If an object is stored without a
-     * Content-Type, it is served as application/octet-stream.
+     * Content-Type of the object data. If an object is stored without a Content-Type, it is served as application/octet-stream.
      */
     contentType?: string;
     /**
-     * CRC32c checksum, as described in RFC 4960, Appendix B; encoded using
-     * base64 in big-endian byte order. For more information about using the
-     * CRC32c checksum, see Hashes and ETags: Best Practices.
+     * CRC32c checksum, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. For more information about using the CRC32c checksum, see Hashes and ETags: Best Practices.
      */
     crc32c?: string;
     /**
-     * Metadata of customer-supplied encryption key, if the object is encrypted
-     * by such a key.
+     * Metadata of customer-supplied encryption key, if the object is encrypted by such a key.
      */
     customerEncryption?: {encryptionAlgorithm?: string; keySha256?: string};
     /**
@@ -678,18 +605,7 @@ export namespace storage_v1 {
      */
     etag?: string;
     /**
-     * Whether an object is under event-based hold. Event-based hold is a way to
-     * retain objects until an event occurs, which is signified by the
-     * hold&#39;s release (i.e. this value is set to false). After being
-     * released (set to false), such objects will be subject to bucket-level
-     * retention (if any). One sample use case of this flag is for banks to hold
-     * loan documents for at least 3 years after loan is paid in full. Here,
-     * bucket-level retention is 3 years and the event is the loan being paid in
-     * full. In this example, these objects will be held intact for any number
-     * of years until the event has occurred (event-based hold on the object is
-     * released) and then 3 more years after that. That means retention duration
-     * of the objects begins from the moment event-based hold transitioned from
-     * true to false.
+     * Whether an object is under event-based hold. Event-based hold is a way to retain objects until an event occurs, which is signified by the hold&#39;s release (i.e. this value is set to false). After being released (set to false), such objects will be subject to bucket-level retention (if any). One sample use case of this flag is for banks to hold loan documents for at least 3 years after loan is paid in full. Here, bucket-level retention is 3 years and the event is the loan being paid in full. In this example, these objects will be held intact for any number of years until the event has occurred (event-based hold on the object is released) and then 3 more years after that. That means retention duration of the objects begins from the moment event-based hold transitioned from true to false.
      */
     eventBasedHold?: boolean;
     /**
@@ -697,8 +613,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * The ID of the object, including the bucket name, object name, and
-     * generation number.
+     * The ID of the object, including the bucket name, object name, and generation number.
      */
     id?: string;
     /**
@@ -706,13 +621,11 @@ export namespace storage_v1 {
      */
     kind?: string;
     /**
-     * Cloud KMS Key used to encrypt this object, if the object is encrypted by
-     * such a key.
+     * Cloud KMS Key used to encrypt this object, if the object is encrypted by such a key.
      */
     kmsKeyName?: string;
     /**
-     * MD5 hash of the data; encoded using base64. For more information about
-     * using the MD5 hash, see Hashes and ETags: Best Practices.
+     * MD5 hash of the data; encoded using base64. For more information about using the MD5 hash, see Hashes and ETags: Best Practices.
      */
     md5Hash?: string;
     /**
@@ -724,10 +637,7 @@ export namespace storage_v1 {
      */
     metadata?: {[key: string]: string};
     /**
-     * The version of the metadata for this object at this generation. Used for
-     * preconditions and for detecting changes in metadata. A metageneration
-     * number is only meaningful in the context of a particular generation of a
-     * particular object.
+     * The version of the metadata for this object at this generation. Used for preconditions and for detecting changes in metadata. A metageneration number is only meaningful in the context of a particular generation of a particular object.
      */
     metageneration?: string;
     /**
@@ -739,13 +649,7 @@ export namespace storage_v1 {
      */
     owner?: {entity?: string; entityId?: string};
     /**
-     * A server-determined value that specifies the earliest time that the
-     * object&#39;s retention period expires. This value is in RFC 3339 format.
-     * Note 1: This field is not provided for objects with an active event-based
-     * hold, since retention expiration is unknown until the hold is removed.
-     * Note 2: This value can be provided even when temporary hold is set (so
-     * that the user can reason about policy without having to first unset the
-     * temporary hold).
+     * A server-determined value that specifies the earliest time that the object&#39;s retention period expires. This value is in RFC 3339 format. Note 1: This field is not provided for objects with an active event-based hold, since retention expiration is unknown until the hold is removed. Note 2: This value can be provided even when temporary hold is set (so that the user can reason about policy without having to first unset the temporary hold).
      */
     retentionExpirationTime?: string;
     /**
@@ -761,12 +665,7 @@ export namespace storage_v1 {
      */
     storageClass?: string;
     /**
-     * Whether an object is under temporary hold. While this flag is set to
-     * true, the object is protected against deletion and overwrites. A common
-     * use case of this flag is regulatory investigations where objects need to
-     * be retained while the investigation is ongoing. Note that unlike
-     * event-based hold, temporary hold does not impact retention expiration
-     * time of an object.
+     * Whether an object is under temporary hold. While this flag is set to true, the object is protected against deletion and overwrites. A common use case of this flag is regulatory investigations where objects need to be retained while the investigation is ongoing. Note that unlike event-based hold, temporary hold does not impact retention expiration time of an object.
      */
     temporaryHold?: boolean;
     /**
@@ -774,13 +673,11 @@ export namespace storage_v1 {
      */
     timeCreated?: string;
     /**
-     * The deletion time of the object in RFC 3339 format. Will be returned if
-     * and only if this version of the object has been deleted.
+     * The deletion time of the object in RFC 3339 format. Will be returned if and only if this version of the object has been deleted.
      */
     timeDeleted?: string;
     /**
-     * The time at which the object&#39;s storage class was last changed. When
-     * the object is initially created, it will be set to timeCreated.
+     * The time at which the object&#39;s storage class was last changed. When the object is initially created, it will be set to timeCreated.
      */
     timeStorageClassUpdated?: string;
     /**
@@ -805,14 +702,7 @@ export namespace storage_v1 {
      */
     email?: string;
     /**
-     * The entity holding the permission, in one of the following forms:  -
-     * user-userId  - user-email  - group-groupId  - group-email  -
-     * domain-domain  - project-team-projectId  - allUsers  -
-     * allAuthenticatedUsers Examples:  - The user liz@example.com would be
-     * user-liz@example.com.  - The group example@googlegroups.com would be
-     * group-example@googlegroups.com.  - To refer to all members of the Google
-     * Apps for Business domain example.com, the entity would be
-     * domain-example.com.
+     * The entity holding the permission, in one of the following forms:  - user-userId  - user-email  - group-groupId  - group-email  - domain-domain  - project-team-projectId  - allUsers  - allAuthenticatedUsers Examples:  - The user liz@example.com would be user-liz@example.com.  - The group example@googlegroups.com would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
      */
     entity?: string;
     /**
@@ -832,8 +722,7 @@ export namespace storage_v1 {
      */
     id?: string;
     /**
-     * The kind of item this is. For object access control entries, this is
-     * always storage#objectAccessControl.
+     * The kind of item this is. For object access control entries, this is always storage#objectAccessControl.
      */
     kind?: string;
     /**
@@ -862,8 +751,7 @@ export namespace storage_v1 {
      */
     items?: Schema$ObjectAccessControl[];
     /**
-     * The kind of item this is. For lists of object access control entries,
-     * this is always storage#objectAccessControls.
+     * The kind of item this is. For lists of object access control entries, this is always storage#objectAccessControls.
      */
     kind?: string;
   }
@@ -876,18 +764,15 @@ export namespace storage_v1 {
      */
     items?: Schema$Object[];
     /**
-     * The kind of item this is. For lists of objects, this is always
-     * storage#objects.
+     * The kind of item this is. For lists of objects, this is always storage#objects.
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
-     * The list of prefixes of objects matching-but-not-listed up to and
-     * including the requested delimiter.
+     * The list of prefixes of objects matching-but-not-listed up to and including the requested delimiter.
      */
     prefixes?: string[];
   }
@@ -896,8 +781,7 @@ export namespace storage_v1 {
    */
   export interface Schema$Policy {
     /**
-     * An association between a role, which comes with a set of permissions, and
-     * members who may assume that role.
+     * An association between a role, which comes with a set of permissions, and members who may assume that role.
      */
     bindings?: Array<{
       condition?: Schema$Expr;
@@ -909,18 +793,11 @@ export namespace storage_v1 {
      */
     etag?: string;
     /**
-     * The kind of item this is. For policies, this is always storage#policy.
-     * This field is ignored on input.
+     * The kind of item this is. For policies, this is always storage#policy. This field is ignored on input.
      */
     kind?: string;
     /**
-     * The ID of the resource to which this policy belongs. Will be of the form
-     * projects/_/buckets/bucket for buckets, and
-     * projects/_/buckets/bucket/objects/object for objects. A specific
-     * generation may be specified by appending #generationNumber to the end of
-     * the object name, e.g. projects/_/buckets/my-bucket/objects/data.txt#17.
-     * The current generation can be denoted with #0. This field is ignored on
-     * input.
+     * The ID of the resource to which this policy belongs. Will be of the form projects/_/buckets/bucket for buckets, and projects/_/buckets/bucket/objects/object for objects. A specific generation may be specified by appending #generationNumber to the end of the object name, e.g. projects/_/buckets/my-bucket/objects/data.txt#17. The current generation can be denoted with #0. This field is ignored on input.
      */
     resourceId?: string;
   }
@@ -929,8 +806,7 @@ export namespace storage_v1 {
    */
   export interface Schema$RewriteResponse {
     /**
-     * true if the copy is finished; otherwise, false if the copy is in
-     * progress. This property is always present in the response.
+     * true if the copy is finished; otherwise, false if the copy is in progress. This property is always present in the response.
      */
     done?: boolean;
     /**
@@ -938,24 +814,19 @@ export namespace storage_v1 {
      */
     kind?: string;
     /**
-     * The total size of the object being copied in bytes. This property is
-     * always present in the response.
+     * The total size of the object being copied in bytes. This property is always present in the response.
      */
     objectSize?: string;
     /**
-     * A resource containing the metadata for the copied-to object. This
-     * property is present in the response only when copying completes.
+     * A resource containing the metadata for the copied-to object. This property is present in the response only when copying completes.
      */
     resource?: Schema$Object;
     /**
-     * A token to use in subsequent requests to continue copying data. This
-     * token is present in the response only when there is more data to copy.
+     * A token to use in subsequent requests to continue copying data. This token is present in the response only when there is more data to copy.
      */
     rewriteToken?: string;
     /**
-     * The total bytes written so far, which can be used to provide a waiting
-     * user with a progress indicator. This property is always present in the
-     * response.
+     * The total bytes written so far, which can be used to provide a waiting user with a progress indicator. This property is always present in the response.
      */
     totalBytesRewritten?: string;
   }
@@ -968,8 +839,7 @@ export namespace storage_v1 {
      */
     email_address?: string;
     /**
-     * The kind of item this is. For notifications, this is always
-     * storage#notification.
+     * The kind of item this is. For notifications, this is always storage#notification.
      */
     kind?: string;
   }
@@ -982,20 +852,7 @@ export namespace storage_v1 {
      */
     kind?: string;
     /**
-     * The permissions held by the caller. Permissions are always of the format
-     * storage.resource.capability, where resource is one of buckets or objects.
-     * The supported permissions are as follows:   - storage.buckets.delete —
-     * Delete bucket.   - storage.buckets.get — Read bucket metadata.   -
-     * storage.buckets.getIamPolicy — Read bucket IAM policy.   -
-     * storage.buckets.create — Create bucket.   - storage.buckets.list — List
-     * buckets.   - storage.buckets.setIamPolicy — Update bucket IAM policy.   -
-     * storage.buckets.update — Update bucket metadata.   -
-     * storage.objects.delete — Delete object.   - storage.objects.get — Read
-     * object data and metadata.   - storage.objects.getIamPolicy — Read object
-     * IAM policy.   - storage.objects.create — Create object.   -
-     * storage.objects.list — List objects.   - storage.objects.setIamPolicy —
-     * Update object IAM policy.   - storage.objects.update — Update object
-     * metadata.
+     * The permissions held by the caller. Permissions are always of the format storage.resource.capability, where resource is one of buckets or objects. The supported permissions are as follows:   - storage.buckets.delete — Delete bucket.   - storage.buckets.get — Read bucket metadata.   - storage.buckets.getIamPolicy — Read bucket IAM policy.   - storage.buckets.create — Create bucket.   - storage.buckets.list — List buckets.   - storage.buckets.setIamPolicy — Update bucket IAM policy.   - storage.buckets.update — Update bucket metadata.   - storage.objects.delete — Delete object.   - storage.objects.get — Read object data and metadata.   - storage.objects.getIamPolicy — Read object IAM policy.   - storage.objects.create — Create object.   - storage.objects.list — List objects.   - storage.objects.setIamPolicy — Update object IAM policy.   - storage.objects.update — Update object metadata.
      */
     permissions?: string[];
   }
@@ -1008,22 +865,19 @@ export namespace storage_v1 {
 
     /**
      * storage.bucketAccessControls.delete
-     * @desc Permanently deletes the ACL entry for the specified entity on the
-     * specified bucket.
+     * @desc Permanently deletes the ACL entry for the specified entity on the specified bucket.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1035,8 +889,7 @@ export namespace storage_v1 {
      *     // Name of a bucket.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // The entity holding the permission. Can be user-userId,
-     * user-emailAddress, group-groupId,
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
@@ -1057,10 +910,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1071,6 +923,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1138,22 +991,19 @@ export namespace storage_v1 {
 
     /**
      * storage.bucketAccessControls.get
-     * @desc Returns the ACL entry for the specified entity on the specified
-     * bucket.
+     * @desc Returns the ACL entry for the specified entity on the specified bucket.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1165,8 +1015,7 @@ export namespace storage_v1 {
      *     // Name of a bucket.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // The entity holding the permission. Can be user-userId,
-     * user-emailAddress, group-groupId,
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
@@ -1190,10 +1039,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1204,6 +1052,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1280,14 +1129,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1323,10 +1170,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1336,6 +1182,7 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().BucketAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1413,14 +1260,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1452,10 +1297,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1465,6 +1309,7 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1543,14 +1388,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1562,14 +1405,12 @@ export namespace storage_v1 {
      *     // Name of a bucket.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // The entity holding the permission. Can be user-userId,
-     * user-emailAddress, group-groupId,
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
+     *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
@@ -1593,10 +1434,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1607,6 +1447,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().BucketAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1684,14 +1525,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1703,14 +1542,12 @@ export namespace storage_v1 {
      *     // Name of a bucket.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // The entity holding the permission. Can be user-userId,
-     * user-emailAddress, group-groupId,
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
+     *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
@@ -1734,10 +1571,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1748,6 +1584,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().BucketAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1829,13 +1666,15 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -1851,13 +1690,15 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -1873,8 +1714,11 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -1895,8 +1739,11 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -1912,13 +1759,15 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -1939,13 +1788,15 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -1970,14 +1821,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2006,10 +1855,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2021,6 +1869,7 @@ export namespace storage_v1 {
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.ifMetagenerationMatch If set, only deletes the bucket if its metageneration matches this value.
      * @param {string=} params.ifMetagenerationNotMatch If set, only deletes the bucket if its metageneration does not match this value.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2094,14 +1943,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2133,10 +1980,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2149,6 +1995,7 @@ export namespace storage_v1 {
      * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2222,14 +2069,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2261,10 +2106,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2274,6 +2118,7 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2348,14 +2193,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2391,10 +2234,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2407,6 +2249,7 @@ export namespace storage_v1 {
      * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
      * @param {string} params.project A valid API project identifier.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request.
      * @param {().Bucket} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2478,14 +2321,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2530,10 +2371,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2547,6 +2387,7 @@ export namespace storage_v1 {
      * @param {string=} params.prefix Filter results to buckets whose names begin with this prefix.
      * @param {string} params.project A valid API project identifier.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2617,6 +2458,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.ifMetagenerationMatch Makes the operation conditional on whether bucket's current metageneration matches the given value.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2683,23 +2525,19 @@ export namespace storage_v1 {
 
     /**
      * storage.buckets.patch
-     * @desc Patches a bucket. Changes to the bucket will be readable
-     * immediately after writing, but configuration changes may take time to
-     * propagate.
+     * @desc Patches a bucket. Changes to the bucket will be readable immediately after writing, but configuration changes may take time to propagate.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2712,8 +2550,7 @@ export namespace storage_v1 {
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
+     *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
@@ -2737,10 +2574,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2755,6 +2591,7 @@ export namespace storage_v1 {
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this bucket.
      * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().Bucket} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2829,14 +2666,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2849,8 +2684,7 @@ export namespace storage_v1 {
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
+     *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
@@ -2874,10 +2708,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2887,6 +2720,7 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().Policy} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2955,22 +2789,19 @@ export namespace storage_v1 {
 
     /**
      * storage.buckets.testIamPermissions
-     * @desc Tests a set of permissions on the given bucket to see which, if
-     * any, are held by the caller.
+     * @desc Tests a set of permissions on the given bucket to see which, if any, are held by the caller.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3005,10 +2836,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3019,6 +2849,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.permissions Permissions to test.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3094,23 +2925,19 @@ export namespace storage_v1 {
 
     /**
      * storage.buckets.update
-     * @desc Updates a bucket. Changes to the bucket will be readable
-     * immediately after writing, but configuration changes may take time to
-     * propagate.
+     * @desc Updates a bucket. Changes to the bucket will be readable immediately after writing, but configuration changes may take time to propagate.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3123,8 +2950,7 @@ export namespace storage_v1 {
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
+     *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
@@ -3148,10 +2974,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3166,6 +2991,7 @@ export namespace storage_v1 {
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this bucket.
      * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().Bucket} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3247,13 +3073,15 @@ export namespace storage_v1 {
      */
     ifMetagenerationMatch?: string;
     /**
-     * If set, only deletes the bucket if its metageneration does not match this
-     * value.
+     * If set, only deletes the bucket if its metageneration does not match this value.
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -3268,13 +3096,11 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration matches the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration does not match the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -3282,8 +3108,11 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -3299,8 +3128,11 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -3323,11 +3155,13 @@ export namespace storage_v1 {
      */
     project?: string;
     /**
-     * Set of properties to return. Defaults to noAcl, unless the bucket
-     * resource specifies acl or defaultObjectAcl properties, when it defaults
-     * to full.
+     * Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
      */
     projection?: string;
+    /**
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
     /**
      * The project to be billed for this request.
      */
@@ -3345,13 +3179,11 @@ export namespace storage_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Maximum number of buckets to return in a single response. The service
-     * will use this parameter or 1,000 items, whichever is smaller.
+     * Maximum number of buckets to return in a single response. The service will use this parameter or 1,000 items, whichever is smaller.
      */
     maxResults?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**
@@ -3366,6 +3198,10 @@ export namespace storage_v1 {
      * Set of properties to return. Defaults to noAcl.
      */
     projection?: string;
+    /**
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
     /**
      * The project to be billed for this request.
      */
@@ -3383,13 +3219,15 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * Makes the operation conditional on whether bucket's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether bucket's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -3404,13 +3242,11 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration matches the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration does not match the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -3426,8 +3262,11 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -3448,8 +3287,11 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -3474,8 +3316,11 @@ export namespace storage_v1 {
      */
     permissions?: string[];
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -3490,13 +3335,11 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration matches the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration does not match the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -3512,8 +3355,11 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -3538,14 +3384,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3575,10 +3419,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3672,22 +3515,19 @@ export namespace storage_v1 {
 
     /**
      * storage.defaultObjectAccessControls.delete
-     * @desc Permanently deletes the default object ACL entry for the specified
-     * entity on the specified bucket.
+     * @desc Permanently deletes the default object ACL entry for the specified entity on the specified bucket.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3699,8 +3539,7 @@ export namespace storage_v1 {
      *     // Name of a bucket.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // The entity holding the permission. Can be user-userId,
-     * user-emailAddress, group-groupId,
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
@@ -3721,10 +3560,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3735,6 +3573,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3801,22 +3640,19 @@ export namespace storage_v1 {
 
     /**
      * storage.defaultObjectAccessControls.get
-     * @desc Returns the default object ACL entry for the specified entity on
-     * the specified bucket.
+     * @desc Returns the default object ACL entry for the specified entity on the specified bucket.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3828,16 +3664,17 @@ export namespace storage_v1 {
      *     // Name of a bucket.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // The entity holding the permission. Can be user-userId,
-     * user-emailAddress, group-groupId,
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
      *
-     *   storage.defaultObjectAccessControls.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   storage.defaultObjectAccessControls.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -3851,10 +3688,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3865,6 +3701,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3940,14 +3777,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3966,8 +3801,10 @@ export namespace storage_v1 {
      *     auth: authClient,
      *   };
      *
-     *   storage.defaultObjectAccessControls.insert(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   storage.defaultObjectAccessControls.insert(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -3981,10 +3818,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3994,6 +3830,7 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4071,14 +3908,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4093,8 +3928,10 @@ export namespace storage_v1 {
      *     auth: authClient,
      *   };
      *
-     *   storage.defaultObjectAccessControls.list(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   storage.defaultObjectAccessControls.list(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -4108,10 +3945,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4123,6 +3959,7 @@ export namespace storage_v1 {
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.ifMetagenerationMatch If present, only return default ACL listing if the bucket's current metageneration matches this value.
      * @param {string=} params.ifMetagenerationNotMatch If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4201,14 +4038,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4220,22 +4055,22 @@ export namespace storage_v1 {
      *     // Name of a bucket.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // The entity holding the permission. Can be user-userId,
-     * user-emailAddress, group-groupId,
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
+     *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
      *     auth: authClient,
      *   };
      *
-     *   storage.defaultObjectAccessControls.patch(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   storage.defaultObjectAccessControls.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -4249,10 +4084,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4263,6 +4097,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4339,14 +4174,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4358,22 +4191,22 @@ export namespace storage_v1 {
      *     // Name of a bucket.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // The entity holding the permission. Can be user-userId,
-     * user-emailAddress, group-groupId,
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
+     *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
      *     auth: authClient,
      *   };
      *
-     *   storage.defaultObjectAccessControls.update(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   storage.defaultObjectAccessControls.update(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -4387,10 +4220,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4401,6 +4233,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4481,13 +4314,15 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -4503,13 +4338,15 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -4525,8 +4362,11 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -4547,18 +4387,19 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * If present, only return default ACL listing if the bucket's current
-     * metageneration matches this value.
+     * If present, only return default ACL listing if the bucket's current metageneration matches this value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * If present, only return default ACL listing if the bucket's current
-     * metageneration does not match the given value.
+     * If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -4574,13 +4415,15 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -4601,13 +4444,15 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -4632,14 +4477,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4671,10 +4514,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4685,6 +4527,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket The parent bucket of the notification.
      * @param {string} params.notification ID of the notification to delete.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4759,14 +4602,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4801,10 +4642,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4815,6 +4655,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket The parent bucket of the notification.
      * @param {string} params.notification Notification ID
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4891,14 +4732,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4934,10 +4773,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4947,6 +4785,7 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket The parent bucket of the notification.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().Notification} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5023,14 +4862,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5062,10 +4899,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -5075,6 +4911,7 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a Google Cloud Storage bucket.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5158,8 +4995,11 @@ export namespace storage_v1 {
      */
     notification?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -5179,8 +5019,11 @@ export namespace storage_v1 {
      */
     notification?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -5196,8 +5039,11 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -5218,8 +5064,11 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -5232,22 +5081,19 @@ export namespace storage_v1 {
 
     /**
      * storage.objectAccessControls.delete
-     * @desc Permanently deletes the ACL entry for the specified entity on the
-     * specified object.
+     * @desc Permanently deletes the ACL entry for the specified entity on the specified object.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5259,13 +5105,11 @@ export namespace storage_v1 {
      *     // Name of a bucket.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the object. For information about how to URL encode object
-     * names to be path safe, see
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
      *     object: 'my-object',  // TODO: Update placeholder value.
      *
-     *     // The entity holding the permission. Can be user-userId,
-     * user-emailAddress, group-groupId,
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
@@ -5286,10 +5130,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -5302,6 +5145,7 @@ export namespace storage_v1 {
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5368,22 +5212,19 @@ export namespace storage_v1 {
 
     /**
      * storage.objectAccessControls.get
-     * @desc Returns the ACL entry for the specified entity on the specified
-     * object.
+     * @desc Returns the ACL entry for the specified entity on the specified object.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5395,13 +5236,11 @@ export namespace storage_v1 {
      *     // Name of a bucket.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the object. For information about how to URL encode object
-     * names to be path safe, see
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
      *     object: 'my-object',  // TODO: Update placeholder value.
      *
-     *     // The entity holding the permission. Can be user-userId,
-     * user-emailAddress, group-groupId,
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
@@ -5425,10 +5264,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -5441,6 +5279,7 @@ export namespace storage_v1 {
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5516,14 +5355,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5535,8 +5372,7 @@ export namespace storage_v1 {
      *     // Name of a bucket.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the object. For information about how to URL encode object
-     * names to be path safe, see
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
      *     object: 'my-object',  // TODO: Update placeholder value.
      *
@@ -5564,10 +5400,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -5579,6 +5414,7 @@ export namespace storage_v1 {
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5656,14 +5492,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5675,8 +5509,7 @@ export namespace storage_v1 {
      *     // Name of a bucket.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the object. For information about how to URL encode object
-     * names to be path safe, see
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
      *     object: 'my-object',  // TODO: Update placeholder value.
      *
@@ -5700,10 +5533,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -5715,6 +5547,7 @@ export namespace storage_v1 {
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5793,14 +5626,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5812,19 +5643,16 @@ export namespace storage_v1 {
      *     // Name of a bucket.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the object. For information about how to URL encode object
-     * names to be path safe, see
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
      *     object: 'my-object',  // TODO: Update placeholder value.
      *
-     *     // The entity holding the permission. Can be user-userId,
-     * user-emailAddress, group-groupId,
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
+     *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
@@ -5848,10 +5676,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -5864,6 +5691,7 @@ export namespace storage_v1 {
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5940,14 +5768,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5959,19 +5785,16 @@ export namespace storage_v1 {
      *     // Name of a bucket.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the object. For information about how to URL encode object
-     * names to be path safe, see
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
      *     object: 'my-object',  // TODO: Update placeholder value.
      *
-     *     // The entity holding the permission. Can be user-userId,
-     * user-emailAddress, group-groupId,
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
+     *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
@@ -5995,10 +5818,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -6011,6 +5833,7 @@ export namespace storage_v1 {
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6091,23 +5914,23 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names
-     * to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -6123,23 +5946,23 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names
-     * to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -6155,18 +5978,19 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names
-     * to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -6187,18 +6011,19 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names
-     * to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -6214,23 +6039,23 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names
-     * to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -6251,23 +6076,23 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names
-     * to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -6285,22 +6110,19 @@ export namespace storage_v1 {
 
     /**
      * storage.objects.compose
-     * @desc Concatenates a list of existing objects into a new object in the
-     * same bucket.
+     * @desc Concatenates a list of existing objects into a new object in the same bucket.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -6310,14 +6132,11 @@ export namespace storage_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the bucket in which to store the new object.
-     *     destinationBucket: 'my-destination-bucket',  // TODO: Update
-     * placeholder value.
+     *     destinationBucket: 'my-destination-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the new object. For information about how to URL encode
-     * object names to be path safe, see
+     *     // Name of the new object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
-     *     destinationObject: 'my-destination-object',  // TODO: Update
-     * placeholder value.
+     *     destinationObject: 'my-destination-object',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -6343,10 +6162,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -6361,6 +6179,7 @@ export namespace storage_v1 {
      * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().ComposeRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6428,22 +6247,19 @@ export namespace storage_v1 {
 
     /**
      * storage.objects.copy
-     * @desc Copies a source object to a destination object. Optionally
-     * overrides metadata.
+     * @desc Copies a source object to a destination object. Optionally overrides metadata.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -6455,24 +6271,18 @@ export namespace storage_v1 {
      *     // Name of the bucket in which to find the source object.
      *     sourceBucket: 'my-source-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the source object. For information about how to URL encode
-     * object names to be path safe,
+     *     // Name of the source object. For information about how to URL encode object names to be path safe,
      *     // see Encoding URI Path Parts.
      *     sourceObject: 'my-source-object',  // TODO: Update placeholder value.
      *
-     *     // Name of the bucket in which to store the new object. Overrides the
-     * provided object metadata's
-     *     // bucket value, if any.For information about how to URL encode
-     * object names to be path safe, see
+     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's
+     *     // bucket value, if any.For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
-     *     destinationBucket: 'my-destination-bucket',  // TODO: Update
-     * placeholder value.
+     *     destinationBucket: 'my-destination-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the new object. Required when the object metadata is not
-     * otherwise provided. Overrides the
+     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the
      *     // object metadata's name value, if any.
-     *     destinationObject: 'my-destination-object',  // TODO: Update
-     * placeholder value.
+     *     destinationObject: 'my-destination-object',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -6498,10 +6308,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -6522,6 +6331,7 @@ export namespace storage_v1 {
      * @param {string=} params.ifSourceMetagenerationMatch Makes the operation conditional on whether the source object's current metageneration matches the given value.
      * @param {string=} params.ifSourceMetagenerationNotMatch Makes the operation conditional on whether the source object's current metageneration does not match the given value.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string} params.sourceBucket Name of the bucket in which to find the source object.
      * @param {string=} params.sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      * @param {string} params.sourceObject Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
@@ -6602,23 +6412,19 @@ export namespace storage_v1 {
 
     /**
      * storage.objects.delete
-     * @desc Deletes an object and its metadata. Deletions are permanent if
-     * versioning is not enabled for the bucket, or if the generation parameter
-     * is used.
+     * @desc Deletes an object and its metadata. Deletions are permanent if versioning is not enabled for the bucket, or if the generation parameter is used.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -6630,8 +6436,7 @@ export namespace storage_v1 {
      *     // Name of the bucket in which the object resides.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the object. For information about how to URL encode object
-     * names to be path safe, see
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
      *     object: 'my-object',  // TODO: Update placeholder value.
      *
@@ -6652,10 +6457,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -6671,6 +6475,7 @@ export namespace storage_v1 {
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6744,14 +6549,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -6763,8 +6566,7 @@ export namespace storage_v1 {
      *     // Name of the bucket in which the object resides.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the object. For information about how to URL encode object
-     * names to be path safe, see
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
      *     object: 'my-object',  // TODO: Update placeholder value.
      *
@@ -6792,10 +6594,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -6812,6 +6613,7 @@ export namespace storage_v1 {
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6885,14 +6687,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -6904,8 +6704,7 @@ export namespace storage_v1 {
      *     // Name of the bucket in which the object resides.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the object. For information about how to URL encode object
-     * names to be path safe, see
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
      *     object: 'my-object',  // TODO: Update placeholder value.
      *
@@ -6929,10 +6728,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -6944,6 +6742,7 @@ export namespace storage_v1 {
      * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7018,14 +6817,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -7034,8 +6831,7 @@ export namespace storage_v1 {
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // Name of the bucket in which to store the new object. Overrides the
-     * provided object metadata's
+     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's
      *     // bucket value, if any.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
@@ -7046,8 +6842,8 @@ export namespace storage_v1 {
      *     media: {
      *       // TODO: Add desired media content for upload. See
      *       // https://github.com/google/google-api-nodejs-client#media-uploads
-     *       mimeType: '',  // See
-     * https://www.w3.org/Protocols/rfc1341/4_Content-Type.html body: '',
+     *       mimeType: '',  // See https://www.w3.org/Protocols/rfc1341/4_Content-Type.html
+     *       body: '',
      *     },
      *
      *     auth: authClient,
@@ -7070,10 +6866,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -7092,6 +6887,7 @@ export namespace storage_v1 {
      * @param {string=} params.name Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
@@ -7173,14 +6969,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -7225,10 +7019,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -7244,6 +7037,7 @@ export namespace storage_v1 {
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {boolean=} params.versions If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7318,14 +7112,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -7337,14 +7129,12 @@ export namespace storage_v1 {
      *     // Name of the bucket in which the object resides.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the object. For information about how to URL encode object
-     * names to be path safe, see
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
      *     object: 'my-object',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
+     *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
@@ -7368,10 +7158,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -7389,6 +7178,7 @@ export namespace storage_v1 {
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {().Object} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7456,22 +7246,19 @@ export namespace storage_v1 {
 
     /**
      * storage.objects.rewrite
-     * @desc Rewrites a source object to a destination object. Optionally
-     * overrides metadata.
+     * @desc Rewrites a source object to a destination object. Optionally overrides metadata.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -7483,24 +7270,18 @@ export namespace storage_v1 {
      *     // Name of the bucket in which to find the source object.
      *     sourceBucket: 'my-source-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the source object. For information about how to URL encode
-     * object names to be path safe,
+     *     // Name of the source object. For information about how to URL encode object names to be path safe,
      *     // see Encoding URI Path Parts.
      *     sourceObject: 'my-source-object',  // TODO: Update placeholder value.
      *
-     *     // Name of the bucket in which to store the new object. Overrides the
-     * provided object metadata's
+     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's
      *     // bucket value, if any.
-     *     destinationBucket: 'my-destination-bucket',  // TODO: Update
-     * placeholder value.
+     *     destinationBucket: 'my-destination-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the new object. Required when the object metadata is not
-     * otherwise provided. Overrides the
-     *     // object metadata's name value, if any. For information about how to
-     * URL encode object names to be
+     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the
+     *     // object metadata's name value, if any. For information about how to URL encode object names to be
      *     // path safe, see Encoding URI Path Parts.
-     *     destinationObject: 'my-destination-object',  // TODO: Update
-     * placeholder value.
+     *     destinationObject: 'my-destination-object',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -7526,10 +7307,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -7552,6 +7332,7 @@ export namespace storage_v1 {
      * @param {string=} params.ifSourceMetagenerationNotMatch Makes the operation conditional on whether the source object's current metageneration does not match the given value.
      * @param {string=} params.maxBytesRewrittenPerCall The maximum number of bytes that will be rewritten per rewrite request. Most callers shouldn't need to specify this parameter - it is primarily in place to support testing. If specified the value must be an integral multiple of 1 MiB (1048576). Also, this only applies to requests where the source and destination span locations and/or storage classes. Finally, this value must not change across rewrite calls else you'll get an error that the rewriteToken is invalid.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.rewriteToken Include this field (from the previous rewrite response) on each rewrite request after the first one, until the rewrite response 'done' flag is true. Calls that provide a rewriteToken can omit all other request fields, but if included those fields must match the values provided in the first rewrite request.
      * @param {string} params.sourceBucket Name of the bucket in which to find the source object.
      * @param {string=} params.sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
@@ -7642,14 +7423,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -7661,14 +7440,12 @@ export namespace storage_v1 {
      *     // Name of the bucket in which the object resides.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the object. For information about how to URL encode object
-     * names to be path safe, see
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
      *     object: 'my-object',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
+     *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
@@ -7692,10 +7469,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -7707,6 +7483,7 @@ export namespace storage_v1 {
      * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().Policy} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7775,22 +7552,19 @@ export namespace storage_v1 {
 
     /**
      * storage.objects.testIamPermissions
-     * @desc Tests a set of permissions on the given object to see which, if
-     * any, are held by the caller.
+     * @desc Tests a set of permissions on the given object to see which, if any, are held by the caller.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -7802,8 +7576,7 @@ export namespace storage_v1 {
      *     // Name of the bucket in which the object resides.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the object. For information about how to URL encode object
-     * names to be path safe, see
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
      *     object: 'my-object',  // TODO: Update placeholder value.
      *
@@ -7830,10 +7603,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -7846,6 +7618,7 @@ export namespace storage_v1 {
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string} params.permissions Permissions to test.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7928,14 +7701,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -7947,14 +7718,12 @@ export namespace storage_v1 {
      *     // Name of the bucket in which the object resides.
      *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     // Name of the object. For information about how to URL encode object
-     * names to be path safe, see
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
      *     object: 'my-object',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
+     *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
@@ -7978,10 +7747,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -7999,6 +7767,7 @@ export namespace storage_v1 {
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().Object} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8073,14 +7842,12 @@ export namespace storage_v1 {
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -8116,10 +7883,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -8135,6 +7901,7 @@ export namespace storage_v1 {
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {boolean=} params.versions If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
      * @param {().Channel} params.resource Request body data
@@ -8209,13 +7976,11 @@ export namespace storage_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the bucket containing the source objects. The destination object
-     * is stored in this bucket.
+     * Name of the bucket containing the source objects. The destination object is stored in this bucket.
      */
     destinationBucket?: string;
     /**
-     * Name of the new object. For information about how to URL encode object
-     * names to be path safe, see Encoding URI Path Parts.
+     * Name of the new object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     destinationObject?: string;
     /**
@@ -8223,26 +7988,23 @@ export namespace storage_v1 {
      */
     destinationPredefinedAcl?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value. Setting to 0 makes the operation
-     * succeed only if there are no live versions of the object.
+     * Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Resource name of the Cloud KMS key, of the form
-     * projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
-     * that will be used to encrypt the object. Overrides the object metadata's
-     * kms_key_name value, if any.
+     * Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      */
     kmsKeyName?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -8258,14 +8020,11 @@ export namespace storage_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the bucket in which to store the new object. Overrides the
-     * provided object metadata's bucket value, if any.For information about how
-     * to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     destinationBucket?: string;
     /**
-     * Name of the new object. Required when the object metadata is not
-     * otherwise provided. Overrides the object metadata's name value, if any.
+     * Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
      */
     destinationObject?: string;
     /**
@@ -8273,70 +8032,59 @@ export namespace storage_v1 {
      */
     destinationPredefinedAcl?: string;
     /**
-     * Makes the operation conditional on whether the destination object's
-     * current generation matches the given value. Setting to 0 makes the
-     * operation succeed only if there are no live versions of the object.
+     * Makes the operation conditional on whether the destination object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the destination object's
-     * current generation does not match the given value. If no live object
-     * exists, the precondition fails. Setting to 0 makes the operation succeed
-     * only if there is a live version of the object.
+     * Makes the operation conditional on whether the destination object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the destination object's
-     * current metageneration matches the given value.
+     * Makes the operation conditional on whether the destination object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the destination object's
-     * current metageneration does not match the given value.
+     * Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's current
-     * generation matches the given value.
+     * Makes the operation conditional on whether the source object's current generation matches the given value.
      */
     ifSourceGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's current
-     * generation does not match the given value.
+     * Makes the operation conditional on whether the source object's current generation does not match the given value.
      */
     ifSourceGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the source object's current metageneration matches the given value.
      */
     ifSourceMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the source object's current metageneration does not match the given value.
      */
     ifSourceMetagenerationNotMatch?: string;
     /**
-     * Set of properties to return. Defaults to noAcl, unless the object
-     * resource specifies the acl property, when it defaults to full.
+     * Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      */
     projection?: string;
+    /**
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
     /**
      * Name of the bucket in which to find the source object.
      */
     sourceBucket?: string;
     /**
-     * If present, selects a specific revision of the source object (as opposed
-     * to the latest version, the default).
+     * If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      */
     sourceGeneration?: string;
     /**
-     * Name of the source object. For information about how to URL encode object
-     * names to be path safe, see Encoding URI Path Parts.
+     * Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     sourceObject?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -8356,41 +8104,35 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * If present, permanently deletes a specific revision of this object (as
-     * opposed to the latest version, the default).
+     * If present, permanently deletes a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value. Setting to 0 makes the operation
-     * succeed only if there are no live versions of the object.
+     * Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation does not match the given value. If no live object exists, the
-     * precondition fails. Setting to 0 makes the operation succeed only if
-     * there is a live version of the object.
+     * Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. For information about how to URL encode object names
-     * to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -8405,36 +8147,27 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value. Setting to 0 makes the operation
-     * succeed only if there are no live versions of the object.
+     * Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation does not match the given value. If no live object exists, the
-     * precondition fails. Setting to 0 makes the operation succeed only if
-     * there is a live version of the object.
+     * Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. For information about how to URL encode object names
-     * to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
     /**
@@ -8442,8 +8175,11 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -8459,18 +8195,19 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names
-     * to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -8481,53 +8218,35 @@ export namespace storage_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the bucket in which to store the new object. Overrides the
-     * provided object metadata's bucket value, if any.
+     * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
      */
     bucket?: string;
     /**
-     * If set, sets the contentEncoding property of the final object to this
-     * value. Setting this parameter is equivalent to setting the
-     * contentEncoding metadata property. This can be useful when uploading an
-     * object with uploadType=media to indicate the encoding of the content
-     * being uploaded.
+     * If set, sets the contentEncoding property of the final object to this value. Setting this parameter is equivalent to setting the contentEncoding metadata property. This can be useful when uploading an object with uploadType=media to indicate the encoding of the content being uploaded.
      */
     contentEncoding?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value. Setting to 0 makes the operation
-     * succeed only if there are no live versions of the object.
+     * Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation does not match the given value. If no live object exists, the
-     * precondition fails. Setting to 0 makes the operation succeed only if
-     * there is a live version of the object.
+     * Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Resource name of the Cloud KMS key, of the form
-     * projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
-     * that will be used to encrypt the object. Overrides the object metadata's
-     * kms_key_name value, if any.
+     * Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      */
     kmsKeyName?: string;
     /**
-     * Name of the object. Required when the object metadata is not otherwise
-     * provided. Overrides the object metadata's name value, if any. For
-     * information about how to URL encode object names to be path safe, see
-     * Encoding URI Path Parts.
+     * Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     name?: string;
     /**
@@ -8535,13 +8254,15 @@ export namespace storage_v1 {
      */
     predefinedAcl?: string;
     /**
-     * Set of properties to return. Defaults to noAcl, unless the object
-     * resource specifies the acl property, when it defaults to full.
+     * Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      */
     projection?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -8576,28 +8297,19 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * Returns results in a directory-like mode. items will contain only objects
-     * whose names, aside from the prefix, do not contain delimiter. Objects
-     * whose names, aside from the prefix, contain delimiter will have their
-     * name, truncated after the delimiter, returned in prefixes. Duplicate
-     * prefixes are omitted.
+     * Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
      */
     delimiter?: string;
     /**
-     * If true, objects that end in exactly one instance of delimiter will have
-     * their metadata included in items in addition to prefixes.
+     * If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
      */
     includeTrailingDelimiter?: boolean;
     /**
-     * Maximum number of items plus prefixes to return in a single page of
-     * responses. As duplicate prefixes are omitted, fewer total results may be
-     * returned than requested. The service will use this parameter or 1,000
-     * items, whichever is smaller.
+     * Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
      */
     maxResults?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**
@@ -8609,13 +8321,15 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
     /**
-     * If true, lists all versions of an object as distinct results. The default
-     * is false. For more information, see Object Versioning.
+     * If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
      */
     versions?: boolean;
   }
@@ -8630,36 +8344,27 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value. Setting to 0 makes the operation
-     * succeed only if there are no live versions of the object.
+     * Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation does not match the given value. If no live object exists, the
-     * precondition fails. Setting to 0 makes the operation succeed only if
-     * there is a live version of the object.
+     * Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. For information about how to URL encode object names
-     * to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
     /**
@@ -8670,6 +8375,10 @@ export namespace storage_v1 {
      * Set of properties to return. Defaults to full.
      */
     projection?: string;
+    /**
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
     /**
      * The project to be billed for this request, for Requester Pays buckets.
      */
@@ -8687,22 +8396,15 @@ export namespace storage_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the bucket in which to store the new object. Overrides the
-     * provided object metadata's bucket value, if any.
+     * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
      */
     destinationBucket?: string;
     /**
-     * Resource name of the Cloud KMS key, of the form
-     * projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
-     * that will be used to encrypt the object. Overrides the object metadata's
-     * kms_key_name value, if any.
+     * Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      */
     destinationKmsKeyName?: string;
     /**
-     * Name of the new object. Required when the object metadata is not
-     * otherwise provided. Overrides the object metadata's name value, if any.
-     * For information about how to URL encode object names to be path safe, see
-     * Encoding URI Path Parts.
+     * Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     destinationObject?: string;
     /**
@@ -8710,69 +8412,51 @@ export namespace storage_v1 {
      */
     destinationPredefinedAcl?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value. Setting to 0 makes the operation
-     * succeed only if there are no live versions of the object.
+     * Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation does not match the given value. If no live object exists, the
-     * precondition fails. Setting to 0 makes the operation succeed only if
-     * there is a live version of the object.
+     * Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the destination object's
-     * current metageneration matches the given value.
+     * Makes the operation conditional on whether the destination object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the destination object's
-     * current metageneration does not match the given value.
+     * Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's current
-     * generation matches the given value.
+     * Makes the operation conditional on whether the source object's current generation matches the given value.
      */
     ifSourceGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's current
-     * generation does not match the given value.
+     * Makes the operation conditional on whether the source object's current generation does not match the given value.
      */
     ifSourceGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the source object's current metageneration matches the given value.
      */
     ifSourceMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the source object's current metageneration does not match the given value.
      */
     ifSourceMetagenerationNotMatch?: string;
     /**
-     * The maximum number of bytes that will be rewritten per rewrite request.
-     * Most callers shouldn't need to specify this parameter - it is primarily
-     * in place to support testing. If specified the value must be an integral
-     * multiple of 1 MiB (1048576). Also, this only applies to requests where
-     * the source and destination span locations and/or storage classes.
-     * Finally, this value must not change across rewrite calls else you'll get
-     * an error that the rewriteToken is invalid.
+     * The maximum number of bytes that will be rewritten per rewrite request. Most callers shouldn't need to specify this parameter - it is primarily in place to support testing. If specified the value must be an integral multiple of 1 MiB (1048576). Also, this only applies to requests where the source and destination span locations and/or storage classes. Finally, this value must not change across rewrite calls else you'll get an error that the rewriteToken is invalid.
      */
     maxBytesRewrittenPerCall?: string;
     /**
-     * Set of properties to return. Defaults to noAcl, unless the object
-     * resource specifies the acl property, when it defaults to full.
+     * Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      */
     projection?: string;
     /**
-     * Include this field (from the previous rewrite response) on each rewrite
-     * request after the first one, until the rewrite response 'done' flag is
-     * true. Calls that provide a rewriteToken can omit all other request
-     * fields, but if included those fields must match the values provided in
-     * the first rewrite request.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * Include this field (from the previous rewrite response) on each rewrite request after the first one, until the rewrite response 'done' flag is true. Calls that provide a rewriteToken can omit all other request fields, but if included those fields must match the values provided in the first rewrite request.
      */
     rewriteToken?: string;
     /**
@@ -8780,18 +8464,15 @@ export namespace storage_v1 {
      */
     sourceBucket?: string;
     /**
-     * If present, selects a specific revision of the source object (as opposed
-     * to the latest version, the default).
+     * If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      */
     sourceGeneration?: string;
     /**
-     * Name of the source object. For information about how to URL encode object
-     * names to be path safe, see Encoding URI Path Parts.
+     * Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     sourceObject?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -8812,18 +8493,19 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names
-     * to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -8844,13 +8526,11 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names
-     * to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
     /**
@@ -8858,8 +8538,11 @@ export namespace storage_v1 {
      */
     permissions?: string[];
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
   }
@@ -8874,36 +8557,27 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value. Setting to 0 makes the operation
-     * succeed only if there are no live versions of the object.
+     * Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation does not match the given value. If no live object exists, the
-     * precondition fails. Setting to 0 makes the operation succeed only if
-     * there is a live version of the object.
+     * Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. For information about how to URL encode object names
-     * to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
     /**
@@ -8915,8 +8589,11 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -8936,28 +8613,19 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * Returns results in a directory-like mode. items will contain only objects
-     * whose names, aside from the prefix, do not contain delimiter. Objects
-     * whose names, aside from the prefix, contain delimiter will have their
-     * name, truncated after the delimiter, returned in prefixes. Duplicate
-     * prefixes are omitted.
+     * Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
      */
     delimiter?: string;
     /**
-     * If true, objects that end in exactly one instance of delimiter will have
-     * their metadata included in items in addition to prefixes.
+     * If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
      */
     includeTrailingDelimiter?: boolean;
     /**
-     * Maximum number of items plus prefixes to return in a single page of
-     * responses. As duplicate prefixes are omitted, fewer total results may be
-     * returned than requested. The service will use this parameter or 1,000
-     * items, whichever is smaller.
+     * Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
      */
     maxResults?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**
@@ -8969,13 +8637,15 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request. Required for Requester Pays
-     * buckets.
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
     /**
-     * If true, lists all versions of an object as distinct results. The default
-     * is false. For more information, see Object Versioning.
+     * If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
      */
     versions?: boolean;
 
@@ -9011,6 +8681,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.projectId Project ID owning the service account.
      * @param {string} params.serviceAccountEmail Email address of the service account.
+     * @param {string=} params.userProject The project to be billed for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9083,6 +8754,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accessId Name of the HMAC key to be deleted.
      * @param {string} params.projectId Project ID owning the requested key
+     * @param {string=} params.userProject The project to be billed for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9155,6 +8827,7 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accessId Name of the HMAC key.
      * @param {string} params.projectId Project ID owning the service account of the requested key.
+     * @param {string=} params.userProject The project to be billed for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9227,11 +8900,12 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of items plus prefixes to return in a single page of responses. Because duplicate prefixes are omitted, fewer total results may be returned than requested. The service uses this parameter or 1,000 items, whichever is smaller.
+     * @param {integer=} params.maxResults Maximum number of items to return in a single page of responses. The service uses this parameter or 250 items, whichever is smaller. The max number of items per page will also be limited by the number of distinct service accounts in the response. If the number of service accounts in a single response is too high, the page will truncated and a next page token will be returned.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string} params.projectId Name of the project in which to look for HMAC keys.
      * @param {string=} params.serviceAccountEmail If present, only keys for the given service account are returned.
      * @param {boolean=} params.showDeletedKeys Whether or not to show keys in the DELETED state.
+     * @param {string=} params.userProject The project to be billed for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9299,14 +8973,14 @@ export namespace storage_v1 {
 
     /**
      * storage.projects.hmacKeys.update
-     * @desc Updates the state of an HMAC key. See the HMAC Key resource
-     * descriptor for valid states.
+     * @desc Updates the state of an HMAC key. See the HMAC Key resource descriptor for valid states.
      * @alias storage.projects.hmacKeys.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accessId Name of the HMAC key being updated.
      * @param {string} params.projectId Project ID owning the service account of the updated key.
+     * @param {string=} params.userProject The project to be billed for this request.
      * @param {().HmacKeyMetadata} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9389,6 +9063,10 @@ export namespace storage_v1 {
      * Email address of the service account.
      */
     serviceAccountEmail?: string;
+    /**
+     * The project to be billed for this request.
+     */
+    userProject?: string;
   }
   export interface Params$Resource$Projects$Hmackeys$Delete
     extends StandardParameters {
@@ -9405,6 +9083,10 @@ export namespace storage_v1 {
      * Project ID owning the requested key
      */
     projectId?: string;
+    /**
+     * The project to be billed for this request.
+     */
+    userProject?: string;
   }
   export interface Params$Resource$Projects$Hmackeys$Get
     extends StandardParameters {
@@ -9421,6 +9103,10 @@ export namespace storage_v1 {
      * Project ID owning the service account of the requested key.
      */
     projectId?: string;
+    /**
+     * The project to be billed for this request.
+     */
+    userProject?: string;
   }
   export interface Params$Resource$Projects$Hmackeys$List
     extends StandardParameters {
@@ -9430,15 +9116,11 @@ export namespace storage_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Maximum number of items plus prefixes to return in a single page of
-     * responses. Because duplicate prefixes are omitted, fewer total results
-     * may be returned than requested. The service uses this parameter or 1,000
-     * items, whichever is smaller.
+     * Maximum number of items to return in a single page of responses. The service uses this parameter or 250 items, whichever is smaller. The max number of items per page will also be limited by the number of distinct service accounts in the response. If the number of service accounts in a single response is too high, the page will truncated and a next page token will be returned.
      */
     maxResults?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**
@@ -9453,6 +9135,10 @@ export namespace storage_v1 {
      * Whether or not to show keys in the DELETED state.
      */
     showDeletedKeys?: boolean;
+    /**
+     * The project to be billed for this request.
+     */
+    userProject?: string;
   }
   export interface Params$Resource$Projects$Hmackeys$Update
     extends StandardParameters {
@@ -9469,6 +9155,10 @@ export namespace storage_v1 {
      * Project ID owning the service account of the updated key.
      */
     projectId?: string;
+    /**
+     * The project to be billed for this request.
+     */
+    userProject?: string;
 
     /**
      * Request body metadata
@@ -9484,22 +9174,19 @@ export namespace storage_v1 {
 
     /**
      * storage.projects.serviceAccount.get
-     * @desc Get the email address of this project's Google Cloud Storage
-     * service account.
+     * @desc Get the email address of this project's Google Cloud Storage service account.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud Storage JSON API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storage
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -9531,10 +9218,9 @@ export namespace storage_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -9544,6 +9230,7 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId Project ID
+     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9622,6 +9309,10 @@ export namespace storage_v1 {
      * Project ID
      */
     projectId?: string;
+    /**
+     * The project to be billed for this request if the target bucket is requester-pays bucket.
+     */
+    provisionalUserProject?: string;
     /**
      * The project to be billed for this request.
      */

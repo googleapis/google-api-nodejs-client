@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace pubsub_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace pubsub_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace pubsub_v1 {
   /**
    * Cloud Pub/Sub API
    *
-   * Provides reliable, many-to-many, asynchronous messaging between
-   * applications.
+   * Provides reliable, many-to-many, asynchronous messaging between applications.
    *
    * @example
    * const {google} = require('googleapis');
@@ -113,7 +108,10 @@ export namespace pubsub_v1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
@@ -124,8 +122,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$AcknowledgeRequest {
     /**
-     * The acknowledgment ID for the messages being acknowledged that was
-     * returned by the Pub/Sub system in the `Pull` response. Must not be empty.
+     * The acknowledgment ID for the messages being acknowledged that was returned by the Pub/Sub system in the `Pull` response. Must not be empty.
      */
     ackIds?: string[];
   }
@@ -134,30 +131,15 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied
-     * condition will not allow user access via current binding. Different
-     * bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource.
-     * `members` can have the following values:  * `allUsers`: A special
-     * identifier that represents anyone who is    on the internet; with or
-     * without a Google account.  * `allAuthenticatedUsers`: A special
-     * identifier that represents anyone    who is authenticated with a Google
-     * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com` .
-     * * `serviceAccount:{emailid}`: An email address that represents a service
-     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
-     * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
-     * (primary) that represents all the    users of that domain. For example,
-     * `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
-     * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`.
+     * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -166,72 +148,45 @@ export namespace pubsub_v1 {
    */
   export interface Schema$CreateSnapshotRequest {
     /**
-     * See &lt;a
-     * href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating
-     * and managing labels&lt;/a&gt;.
+     * See &lt;a href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating and managing labels&lt;/a&gt;.
      */
     labels?: {[key: string]: string};
     /**
-     * The subscription whose backlog the snapshot retains. Specifically, the
-     * created snapshot is guaranteed to retain:  (a) The existing backlog on
-     * the subscription. More precisely, this is      defined as the messages in
-     * the subscription&#39;s backlog that are      unacknowledged upon the
-     * successful completion of the      `CreateSnapshot` request; as well as:
-     * (b) Any messages published to the subscription&#39;s topic following the
-     * successful completion of the CreateSnapshot request. Format is
-     * `projects/{project}/subscriptions/{sub}`.
+     * The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain:  (a) The existing backlog on the subscription. More precisely, this is      defined as the messages in the subscription&#39;s backlog that are      unacknowledged upon the successful completion of the      `CreateSnapshot` request; as well as:  (b) Any messages published to the subscription&#39;s topic following the      successful completion of the CreateSnapshot request. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * A policy that specifies the conditions for resource expiration (i.e.,
-   * automatic resource deletion).
+   * A policy that specifies the conditions for resource expiration (i.e., automatic resource deletion).
    */
   export interface Schema$ExpirationPolicy {
     /**
-     * Specifies the &quot;time-to-live&quot; duration for an associated
-     * resource. The resource expires if it is not active for a period of `ttl`.
-     * The definition of &quot;activity&quot; depends on the type of the
-     * associated resource. The minimum and maximum allowed values for `ttl`
-     * depend on the type of the associated resource, as well. If `ttl` is not
-     * set, the associated resource never expires.
+     * Specifies the &quot;time-to-live&quot; duration for an associated resource. The resource expires if it is not active for a period of `ttl`. The definition of &quot;activity&quot; depends on the type of the associated resource. The minimum and maximum allowed values for `ttl` depend on the type of the associated resource, as well. If `ttl` is not set, the associated resource never expires.
      */
     ttl?: string;
   }
   /**
-   * Represents an expression text. Example:      title: &quot;User account
-   * presence&quot;     description: &quot;Determines whether the request has a
-   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which
-     * describes the expression, e.g. when hovered over it in a UI.
+     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string;
     /**
-     * Textual representation of an expression in Common Expression Language
-     * syntax.  The application context of the containing message determines
-     * which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
     expression?: string;
     /**
-     * An optional string indicating the location of the expression for error
-     * reporting, e.g. a file name and a position in the file.
+     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string;
     /**
-     * An optional title for the expression, i.e. a short string describing its
-     * purpose. This can be used e.g. in UIs which allow to enter the
-     * expression.
+     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string;
   }
@@ -240,8 +195,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ListSnapshotsResponse {
     /**
-     * If not empty, indicates that there may be more snapshot that match the
-     * request; this value should be passed in a new `ListSnapshotsRequest`.
+     * If not empty, indicates that there may be more snapshot that match the request; this value should be passed in a new `ListSnapshotsRequest`.
      */
     nextPageToken?: string;
     /**
@@ -254,9 +208,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ListSubscriptionsResponse {
     /**
-     * If not empty, indicates that there may be more subscriptions that match
-     * the request; this value should be passed in a new
-     * `ListSubscriptionsRequest` to get more subscriptions.
+     * If not empty, indicates that there may be more subscriptions that match the request; this value should be passed in a new `ListSubscriptionsRequest` to get more subscriptions.
      */
     nextPageToken?: string;
     /**
@@ -269,9 +221,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ListTopicSnapshotsResponse {
     /**
-     * If not empty, indicates that there may be more snapshots that match the
-     * request; this value should be passed in a new `ListTopicSnapshotsRequest`
-     * to get more snapshots.
+     * If not empty, indicates that there may be more snapshots that match the request; this value should be passed in a new `ListTopicSnapshotsRequest` to get more snapshots.
      */
     nextPageToken?: string;
     /**
@@ -284,8 +234,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ListTopicsResponse {
     /**
-     * If not empty, indicates that there may be more topics that match the
-     * request; this value should be passed in a new `ListTopicsRequest`.
+     * If not empty, indicates that there may be more topics that match the request; this value should be passed in a new `ListTopicsRequest`.
      */
     nextPageToken?: string;
     /**
@@ -298,9 +247,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ListTopicSubscriptionsResponse {
     /**
-     * If not empty, indicates that there may be more subscriptions that match
-     * the request; this value should be passed in a new
-     * `ListTopicSubscriptionsRequest` to get more subscriptions.
+     * If not empty, indicates that there may be more subscriptions that match the request; this value should be passed in a new `ListTopicSubscriptionsRequest` to get more subscriptions.
      */
     nextPageToken?: string;
     /**
@@ -313,14 +260,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ModifyAckDeadlineRequest {
     /**
-     * The new ack deadline with respect to the time this request was sent to
-     * the Pub/Sub system. For example, if the value is 10, the new ack deadline
-     * will expire 10 seconds after the `ModifyAckDeadline` call was made.
-     * Specifying zero might immediately make the message available for delivery
-     * to another subscriber client. This typically results in an increase in
-     * the rate of message redeliveries (that is, duplicates). The minimum
-     * deadline you can specify is 0 seconds. The maximum deadline you can
-     * specify is 600 seconds (10 minutes).
+     * The new ack deadline with respect to the time this request was sent to the Pub/Sub system. For example, if the value is 10, the new ack deadline will expire 10 seconds after the `ModifyAckDeadline` call was made. Specifying zero might immediately make the message available for delivery to another subscriber client. This typically results in an increase in the rate of message redeliveries (that is, duplicates). The minimum deadline you can specify is 0 seconds. The maximum deadline you can specify is 600 seconds (10 minutes).
      */
     ackDeadlineSeconds?: number;
     /**
@@ -333,73 +273,33 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ModifyPushConfigRequest {
     /**
-     * The push configuration for future deliveries.  An empty `pushConfig`
-     * indicates that the Pub/Sub system should stop pushing messages from the
-     * given subscription and allow messages to be pulled and acknowledged -
-     * effectively pausing the subscription if `Pull` or `StreamingPull` is not
-     * called.
+     * The push configuration for future deliveries.  An empty `pushConfig` indicates that the Pub/Sub system should stop pushing messages from the given subscription and allow messages to be pulled and acknowledged - effectively pausing the subscription if `Pull` or `StreamingPull` is not called.
      */
     pushConfig?: Schema$PushConfig;
   }
   /**
-   * Contains information needed for generating an [OpenID Connect
-   * token](https://developers.google.com/identity/protocols/OpenIDConnect).
+   * Contains information needed for generating an [OpenID Connect token](https://developers.google.com/identity/protocols/OpenIDConnect).
    */
   export interface Schema$OidcToken {
     /**
-     * Audience to be used when generating OIDC token. The audience claim
-     * identifies the recipients that the JWT is intended for. The audience
-     * value is a single case-sensitive string. Having multiple values (array)
-     * for the audience field is not supported. More info about the OIDC JWT
-     * token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
-     * Note: if not specified, the Push endpoint URL will be used.
+     * Audience to be used when generating OIDC token. The audience claim identifies the recipients that the JWT is intended for. The audience value is a single case-sensitive string. Having multiple values (array) for the audience field is not supported. More info about the OIDC JWT token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3 Note: if not specified, the Push endpoint URL will be used.
      */
     audience?: string;
     /**
-     * [Service account
-     * email](https://cloud.google.com/iam/docs/service-accounts) to be used for
-     * generating the OIDC token. The caller (for CreateSubscription,
-     * UpdateSubscription, and ModifyPushConfig RPCs) must have the
-     * iam.serviceAccounts.actAs permission for the service account.
+     * [Service account email](https://cloud.google.com/iam/docs/service-accounts) to be used for generating the OIDC token. The caller (for CreateSubscription, UpdateSubscription, and ModifyPushConfig RPCs) must have the iam.serviceAccounts.actAs permission for the service account.
      */
     serviceAccountEmail?: string;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to
-   * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `binding` binds a list of `members` to
-   * a `role`, where the members can be user accounts, Google groups, Google
-   * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
-   * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
-   * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
-   * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
-   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
-   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
-   * Example**      bindings:     - members:       - user:mike@example.com -
-   * group:admins@example.com       - domain:google.com       -
-   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
-   * roles/owner     - members:       - user:sean@example.com       role:
-   * roles/viewer   For a description of IAM and its features, see the [IAM
-   * developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members
-     * will result in an error.
+     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a policy from overwriting each other. It
-     * is strongly suggested that systems make use of the `etag` in the
-     * read-modify-write cycle to perform policy updates in order to avoid race
-     * conditions: An `etag` is returned in the response to `getIamPolicy`, and
-     * systems are expected to put that etag in the request to `setIamPolicy` to
-     * ensure that their change will be applied to the same version of the
-     * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
-     * existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
      */
     etag?: string;
     /**
@@ -421,21 +321,12 @@ export namespace pubsub_v1 {
    */
   export interface Schema$PublishResponse {
     /**
-     * The server-assigned ID of each published message, in the same order as
-     * the messages in the request. IDs are guaranteed to be unique within the
-     * topic.
+     * The server-assigned ID of each published message, in the same order as the messages in the request. IDs are guaranteed to be unique within the topic.
      */
     messageIds?: string[];
   }
   /**
-   * A message that is published by publishers and consumed by subscribers. The
-   * message must contain either a non-empty data field or at least one
-   * attribute. Note that client libraries represent this object differently
-   * depending on the language. See the corresponding &lt;a
-   * href=&quot;https://cloud.google.com/pubsub/docs/reference/libraries&quot;&gt;client
-   * library documentation&lt;/a&gt; for more information. See &lt;a
-   * href=&quot;https://cloud.google.com/pubsub/quotas&quot;&gt;Quotas and
-   * limits&lt;/a&gt; for more information about message limits.
+   * A message that is published by publishers and consumed by subscribers. The message must contain either a non-empty data field or at least one attribute. Note that client libraries represent this object differently depending on the language. See the corresponding &lt;a href=&quot;https://cloud.google.com/pubsub/docs/reference/libraries&quot;&gt;client library documentation&lt;/a&gt; for more information. See &lt;a href=&quot;https://cloud.google.com/pubsub/quotas&quot;&gt;Quotas and limits&lt;/a&gt; for more information about message limits.
    */
   export interface Schema$PubsubMessage {
     /**
@@ -443,21 +334,15 @@ export namespace pubsub_v1 {
      */
     attributes?: {[key: string]: string};
     /**
-     * The message data field. If this field is empty, the message must contain
-     * at least one attribute.
+     * The message data field. If this field is empty, the message must contain at least one attribute.
      */
     data?: string;
     /**
-     * ID of this message, assigned by the server when the message is published.
-     * Guaranteed to be unique within the topic. This value may be read by a
-     * subscriber that receives a `PubsubMessage` via a `Pull` call or a push
-     * delivery. It must not be populated by the publisher in a `Publish` call.
+     * ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.
      */
     messageId?: string;
     /**
-     * The time at which the message was published, populated by the server when
-     * it receives the `Publish` call. It must not be populated by the publisher
-     * in a `Publish` call.
+     * The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.
      */
     publishTime?: string;
   }
@@ -466,15 +351,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$PullRequest {
     /**
-     * The maximum number of messages returned for this request. The Pub/Sub
-     * system may return fewer than the number specified.
+     * The maximum number of messages returned for this request. The Pub/Sub system may return fewer than the number specified.
      */
     maxMessages?: number;
     /**
-     * If this field set to true, the system will respond immediately even if it
-     * there are no messages available to return in the `Pull` response.
-     * Otherwise, the system may wait (for a bounded amount of time) until at
-     * least one message is available, rather than returning no messages.
+     * If this field set to true, the system will respond immediately even if it there are no messages available to return in the `Pull` response. Otherwise, the system may wait (for a bounded amount of time) until at least one message is available, rather than returning no messages.
      */
     returnImmediately?: boolean;
   }
@@ -483,10 +364,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$PullResponse {
     /**
-     * Received Pub/Sub messages. The list will be empty if there are no more
-     * messages available in the backlog. For JSON, the response can be entirely
-     * empty. The Pub/Sub system may return fewer than the `maxMessages`
-     * requested even if there are more messages available in the backlog.
+     * Received Pub/Sub messages. The list will be empty if there are no more messages available in the backlog. For JSON, the response can be entirely empty. The Pub/Sub system may return fewer than the `maxMessages` requested even if there are more messages available in the backlog.
      */
     receivedMessages?: Schema$ReceivedMessage[];
   }
@@ -495,32 +373,15 @@ export namespace pubsub_v1 {
    */
   export interface Schema$PushConfig {
     /**
-     * Endpoint configuration attributes.  Every endpoint has a set of API
-     * supported attributes that can be used to control different aspects of the
-     * message delivery.  The currently supported attribute is `x-goog-version`,
-     * which you can use to change the format of the pushed message. This
-     * attribute indicates the version of the data expected by the endpoint.
-     * This controls the shape of the pushed message (i.e., its fields and
-     * metadata). The endpoint version is based on the version of the Pub/Sub
-     * API.  If not present during the `CreateSubscription` call, it will
-     * default to the version of the API used to make such call. If not present
-     * during a `ModifyPushConfig` call, its value will not be changed.
-     * `GetSubscription` calls will always return a valid version, even if the
-     * subscription was created without this attribute.  The possible values for
-     * this attribute are:  * `v1beta1`: uses the push format defined in the
-     * v1beta1 Pub/Sub API. * `v1` or `v1beta2`: uses the push format defined in
-     * the v1 Pub/Sub API.
+     * Endpoint configuration attributes.  Every endpoint has a set of API supported attributes that can be used to control different aspects of the message delivery.  The currently supported attribute is `x-goog-version`, which you can use to change the format of the pushed message. This attribute indicates the version of the data expected by the endpoint. This controls the shape of the pushed message (i.e., its fields and metadata). The endpoint version is based on the version of the Pub/Sub API.  If not present during the `CreateSubscription` call, it will default to the version of the API used to make such call. If not present during a `ModifyPushConfig` call, its value will not be changed. `GetSubscription` calls will always return a valid version, even if the subscription was created without this attribute.  The possible values for this attribute are:  * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API. * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
      */
     attributes?: {[key: string]: string};
     /**
-     * If specified, Pub/Sub will generate and attach an OIDC JWT token as an
-     * `Authorization` header in the HTTP request for every pushed message.
+     * If specified, Pub/Sub will generate and attach an OIDC JWT token as an `Authorization` header in the HTTP request for every pushed message.
      */
     oidcToken?: Schema$OidcToken;
     /**
-     * A URL locating the endpoint to which messages should be pushed. For
-     * example, a Webhook endpoint might use
-     * &quot;https://example.com/push&quot;.
+     * A URL locating the endpoint to which messages should be pushed. For example, a Webhook endpoint might use &quot;https://example.com/push&quot;.
      */
     pushEndpoint?: string;
   }
@@ -542,22 +403,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$SeekRequest {
     /**
-     * The snapshot to seek to. The snapshot&#39;s topic must be the same as
-     * that of the provided subscription. Format is
-     * `projects/{project}/snapshots/{snap}`.
+     * The snapshot to seek to. The snapshot&#39;s topic must be the same as that of the provided subscription. Format is `projects/{project}/snapshots/{snap}`.
      */
     snapshot?: string;
     /**
-     * The time to seek to. Messages retained in the subscription that were
-     * published before this time are marked as acknowledged, and messages
-     * retained in the subscription that were published after this time are
-     * marked as unacknowledged. Note that this operation affects only those
-     * messages retained in the subscription (configured by the combination of
-     * `message_retention_duration` and `retain_acked_messages`). For example,
-     * if `time` corresponds to a point before the message retention window (or
-     * to a point before the system&#39;s notion of the subscription creation
-     * time), only retained messages will be marked as unacknowledged, and
-     * already-expunged messages will not be restored.
+     * The time to seek to. Messages retained in the subscription that were published before this time are marked as acknowledged, and messages retained in the subscription that were published after this time are marked as unacknowledged. Note that this operation affects only those messages retained in the subscription (configured by the combination of `message_retention_duration` and `retain_acked_messages`). For example, if `time` corresponds to a point before the message retention window (or to a point before the system&#39;s notion of the subscription creation time), only retained messages will be marked as unacknowledged, and already-expunged messages will not be restored.
      */
     time?: string;
   }
@@ -570,38 +420,20 @@ export namespace pubsub_v1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size
-     * of the policy is limited to a few 10s of KB. An empty policy is a valid
-     * policy but certain Cloud Platform services (such as Projects) might
-     * reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
   }
   /**
-   * A snapshot resource. Snapshots are used in &lt;a
-   * href=&quot;https://cloud.google.com/pubsub/docs/replay-overview&quot;&gt;Seek&lt;/a&gt;
-   * operations, which allow you to manage message acknowledgments in bulk. That
-   * is, you can set the acknowledgment state of messages in an existing
-   * subscription to the state captured by a snapshot.
+   * A snapshot resource. Snapshots are used in &lt;a href=&quot;https://cloud.google.com/pubsub/docs/replay-overview&quot;&gt;Seek&lt;/a&gt; operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
    */
   export interface Schema$Snapshot {
     /**
-     * The snapshot is guaranteed to exist up until this time. A newly-created
-     * snapshot expires no later than 7 days from the time of its creation. Its
-     * exact lifetime is determined at creation by the existing backlog in the
-     * source subscription. Specifically, the lifetime of the snapshot is `7
-     * days - (age of oldest unacked message in the subscription)`. For example,
-     * consider a subscription whose oldest unacked message is 3 days old. If a
-     * snapshot is created from this subscription, the snapshot -- which will
-     * always capture this 3-day-old backlog as long as the snapshot exists --
-     * will expire in 4 days. The service will refuse to create a snapshot that
-     * would expire in less than 1 hour after creation.
+     * The snapshot is guaranteed to exist up until this time. A newly-created snapshot expires no later than 7 days from the time of its creation. Its exact lifetime is determined at creation by the existing backlog in the source subscription. Specifically, the lifetime of the snapshot is `7 days - (age of oldest unacked message in the subscription)`. For example, consider a subscription whose oldest unacked message is 3 days old. If a snapshot is created from this subscription, the snapshot -- which will always capture this 3-day-old backlog as long as the snapshot exists -- will expire in 4 days. The service will refuse to create a snapshot that would expire in less than 1 hour after creation.
      */
     expireTime?: string;
     /**
-     * See &lt;a
-     * href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating
-     * and managing labels&lt;/a&gt;.
+     * See &lt;a href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating and managing labels&lt;/a&gt;.
      */
     labels?: {[key: string]: string};
     /**
@@ -618,80 +450,35 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Subscription {
     /**
-     * The approximate amount of time (on a best-effort basis) Pub/Sub waits for
-     * the subscriber to acknowledge receipt before resending the message. In
-     * the interval after the message is delivered and before it is
-     * acknowledged, it is considered to be &lt;i&gt;outstanding&lt;/i&gt;.
-     * During that time period, the message will not be redelivered (on a
-     * best-effort basis).  For pull subscriptions, this value is used as the
-     * initial value for the ack deadline. To override this value for a given
-     * message, call `ModifyAckDeadline` with the corresponding `ack_id` if
-     * using non-streaming pull or send the `ack_id` in a
-     * `StreamingModifyAckDeadlineRequest` if using streaming pull. The minimum
-     * custom deadline you can specify is 10 seconds. The maximum custom
-     * deadline you can specify is 600 seconds (10 minutes). If this parameter
-     * is 0, a default value of 10 seconds is used.  For push delivery, this
-     * value is also used to set the request timeout for the call to the push
-     * endpoint.  If the subscriber never acknowledges the message, the Pub/Sub
-     * system will eventually redeliver the message.
+     * The approximate amount of time (on a best-effort basis) Pub/Sub waits for the subscriber to acknowledge receipt before resending the message. In the interval after the message is delivered and before it is acknowledged, it is considered to be &lt;i&gt;outstanding&lt;/i&gt;. During that time period, the message will not be redelivered (on a best-effort basis).  For pull subscriptions, this value is used as the initial value for the ack deadline. To override this value for a given message, call `ModifyAckDeadline` with the corresponding `ack_id` if using non-streaming pull or send the `ack_id` in a `StreamingModifyAckDeadlineRequest` if using streaming pull. The minimum custom deadline you can specify is 10 seconds. The maximum custom deadline you can specify is 600 seconds (10 minutes). If this parameter is 0, a default value of 10 seconds is used.  For push delivery, this value is also used to set the request timeout for the call to the push endpoint.  If the subscriber never acknowledges the message, the Pub/Sub system will eventually redeliver the message.
      */
     ackDeadlineSeconds?: number;
     /**
-     * A policy that specifies the conditions for this subscription&#39;s
-     * expiration. A subscription is considered active as long as any connected
-     * subscriber is successfully consuming messages from the subscription or is
-     * issuing operations on the subscription. If `expiration_policy` is not
-     * set, a *default policy* with `ttl` of 31 days will be used. The minimum
-     * allowed value for `expiration_policy.ttl` is 1 day.
-     * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
+     * A policy that specifies the conditions for this subscription&#39;s expiration. A subscription is considered active as long as any connected subscriber is successfully consuming messages from the subscription or is issuing operations on the subscription. If `expiration_policy` is not set, a *default policy* with `ttl` of 31 days will be used. The minimum allowed value for `expiration_policy.ttl` is 1 day.
      */
     expirationPolicy?: Schema$ExpirationPolicy;
     /**
-     * See &lt;a
-     * href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating
-     * and managing labels&lt;/a&gt;.
+     * See &lt;a href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating and managing labels&lt;/a&gt;.
      */
     labels?: {[key: string]: string};
     /**
-     * How long to retain unacknowledged messages in the subscription&#39;s
-     * backlog, from the moment a message is published. If
-     * `retain_acked_messages` is true, then this also configures the retention
-     * of acknowledged messages, and thus configures how far back in time a
-     * `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or
-     * less than 10 minutes.
+     * How long to retain unacknowledged messages in the subscription&#39;s backlog, from the moment a message is published. If `retain_acked_messages` is true, then this also configures the retention of acknowledged messages, and thus configures how far back in time a `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10 minutes.
      */
     messageRetentionDuration?: string;
     /**
-     * The name of the subscription. It must have the format
-     * `&quot;projects/{project}/subscriptions/{subscription}&quot;`.
-     * `{subscription}` must start with a letter, and contain only letters
-     * (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods
-     * (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be
-     * between 3 and 255 characters in length, and it must not start with
-     * `&quot;goog&quot;`.
+     * The name of the subscription. It must have the format `&quot;projects/{project}/subscriptions/{subscription}&quot;`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `&quot;goog&quot;`.
      */
     name?: string;
     /**
-     * If push delivery is used with this subscription, this field is used to
-     * configure it. An empty `pushConfig` signifies that the subscriber will
-     * pull and ack messages using API methods.
+     * If push delivery is used with this subscription, this field is used to configure it. An empty `pushConfig` signifies that the subscriber will pull and ack messages using API methods.
      */
     pushConfig?: Schema$PushConfig;
     /**
-     * Indicates whether to retain acknowledged messages. If true, then messages
-     * are not expunged from the subscription&#39;s backlog, even if they are
-     * acknowledged, until they fall out of the `message_retention_duration`
-     * window. This must be true if you would like to &lt;a
-     * href=&quot;https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time&quot;&gt;
-     * Seek to a timestamp&lt;/a&gt;.
+     * Indicates whether to retain acknowledged messages. If true, then messages are not expunged from the subscription&#39;s backlog, even if they are acknowledged, until they fall out of the `message_retention_duration` window. This must be true if you would like to &lt;a href=&quot;https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time&quot;&gt; Seek to a timestamp&lt;/a&gt;.
      */
     retainAckedMessages?: boolean;
     /**
-     * The name of the topic from which this subscription is receiving messages.
-     * Format is `projects/{project}/topics/{topic}`. The value of this field
-     * will be `_deleted-topic_` if the topic has been deleted.
+     * The name of the topic from which this subscription is receiving messages. Format is `projects/{project}/topics/{topic}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.
      */
     topic?: string;
   }
@@ -700,10 +487,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with
-     * wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
-     * For more information see [IAM
-     * Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[];
   }
@@ -712,8 +496,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$TestIamPermissionsResponse {
     /**
-     * A subset of `TestPermissionsRequest.permissions` that the caller is
-     * allowed.
+     * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[];
   }
@@ -722,18 +505,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Topic {
     /**
-     * See &lt;a
-     * href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating
-     * and managing labels&lt;/a&gt;.
+     * See &lt;a href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating and managing labels&lt;/a&gt;.
      */
     labels?: {[key: string]: string};
     /**
-     * The name of the topic. It must have the format
-     * `&quot;projects/{project}/topics/{topic}&quot;`. `{topic}` must start
-     * with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`),
-     * dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`)
-     * or percent signs (`%`). It must be between 3 and 255 characters in
-     * length, and it must not start with `&quot;goog&quot;`.
+     * The name of the topic. It must have the format `&quot;projects/{project}/topics/{topic}&quot;`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `&quot;goog&quot;`.
      */
     name?: string;
   }
@@ -746,8 +522,7 @@ export namespace pubsub_v1 {
      */
     snapshot?: Schema$Snapshot;
     /**
-     * Indicates which fields in the provided snapshot to update. Must be
-     * specified and non-empty.
+     * Indicates which fields in the provided snapshot to update. Must be specified and non-empty.
      */
     updateMask?: string;
   }
@@ -760,8 +535,7 @@ export namespace pubsub_v1 {
      */
     subscription?: Schema$Subscription;
     /**
-     * Indicates which fields in the provided subscription to update. Must be
-     * specified and non-empty.
+     * Indicates which fields in the provided subscription to update. Must be specified and non-empty.
      */
     updateMask?: string;
   }
@@ -774,11 +548,7 @@ export namespace pubsub_v1 {
      */
     topic?: Schema$Topic;
     /**
-     * Indicates which fields in the provided topic to update. Must be specified
-     * and non-empty. Note that if `update_mask` contains
-     * &quot;message_storage_policy&quot; then the new value will be determined
-     * based on the policy configured at the project or organization level. The
-     * `message_storage_policy` must not be set in the `topic` provided above.
+     * Indicates which fields in the provided topic to update. Must be specified and non-empty. Note that if `update_mask` contains &quot;message_storage_policy&quot; then the new value will be determined based on the policy configured at the project or organization level. The `message_storage_policy` must not be set in the `topic` provided above.
      */
     updateMask?: string;
   }
@@ -804,22 +574,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.create
-     * @desc Creates a snapshot from the requested subscription. Snapshots are
-     * used in <a
-     * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
-     * operations, which allow you to manage message acknowledgments in bulk.
-     * That is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot. <br><br>If the snapshot
-     * already exists, returns `ALREADY_EXISTS`. If the requested subscription
-     * doesn't exist, returns `NOT_FOUND`. If the backlog in the subscription is
-     * too old -- and the resulting snapshot would expire in less than 1 hour --
-     * then `FAILED_PRECONDITION` is returned. See also the
-     * `Snapshot.expire_time` field. If the name is not provided in the request,
-     * the server will assign a random name for this snapshot on the same
-     * project as the subscription, conforming to the [resource name
-     * format](https://cloud.google.com/pubsub/docs/admin#resource_names). The
-     * generated name is populated in the returned Snapshot object. Note that
-     * for REST API requests, you must specify a name in the request.
+     * @desc Creates a snapshot from the requested subscription. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. <br><br>If the snapshot already exists, returns `ALREADY_EXISTS`. If the requested subscription doesn't exist, returns `NOT_FOUND`. If the backlog in the subscription is too old -- and the resulting snapshot would expire in less than 1 hour -- then `FAILED_PRECONDITION` is returned. See also the `Snapshot.expire_time` field. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription, conforming to the [resource name format](https://cloud.google.com/pubsub/docs/admin#resource_names). The generated name is populated in the returned Snapshot object. Note that for REST API requests, you must specify a name in the request.
      * @alias pubsub.projects.snapshots.create
      * @memberOf! ()
      *
@@ -889,16 +644,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.delete
-     * @desc Removes an existing snapshot. Snapshots are used in <a
-     * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
-     * operations, which allow you to manage message acknowledgments in bulk.
-     * That is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot.<br><br> When the
-     * snapshot is deleted, all messages retained in the snapshot are
-     * immediately dropped. After a snapshot is deleted, a new one may be
-     * created with the same name, but the new one has no association with the
-     * old snapshot or its subscription, unless the same subscription is
-     * specified.
+     * @desc Removes an existing snapshot. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.<br><br> When the snapshot is deleted, all messages retained in the snapshot are immediately dropped. After a snapshot is deleted, a new one may be created with the same name, but the new one has no association with the old snapshot or its subscription, unless the same subscription is specified.
      * @alias pubsub.projects.snapshots.delete
      * @memberOf! ()
      *
@@ -967,11 +713,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.get
-     * @desc Gets the configuration details of a snapshot. Snapshots are used in
-     * <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
-     * operations, which allow you to manage message acknowledgments in bulk.
-     * That is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot.
+     * @desc Gets the configuration details of a snapshot. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
      * @alias pubsub.projects.snapshots.get
      * @memberOf! ()
      *
@@ -1040,22 +782,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1065,15 +804,16 @@ export namespace pubsub_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'projects/my-project/snapshots/my-snapshot',  // TODO:
-     * Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'projects/my-project/snapshots/my-snapshot',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
      *
-     *   pubsub.projects.snapshots.getIamPolicy(request, function(err, response)
-     * { if (err) { console.error(err); return;
+     *   pubsub.projects.snapshots.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1087,10 +827,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1166,11 +905,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.list
-     * @desc Lists the existing snapshots. Snapshots are used in <a
-     * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
-     * operations, which allow you to manage message acknowledgments in bulk.
-     * That is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot.
+     * @desc Lists the existing snapshots. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
      * @alias pubsub.projects.snapshots.list
      * @memberOf! ()
      *
@@ -1248,11 +983,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.patch
-     * @desc Updates an existing snapshot. Snapshots are used in <a
-     * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
-     * operations, which allow you to manage message acknowledgments in bulk.
-     * That is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot.
+     * @desc Updates an existing snapshot. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
      * @alias pubsub.projects.snapshots.patch
      * @memberOf! ()
      *
@@ -1322,22 +1053,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1347,9 +1075,8 @@ export namespace pubsub_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'projects/my-project/snapshots/my-snapshot',  // TODO:
-     * Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'projects/my-project/snapshots/my-snapshot',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -1358,8 +1085,10 @@ export namespace pubsub_v1 {
      *     auth: authClient,
      *   };
      *
-     *   pubsub.projects.snapshots.setIamPolicy(request, function(err, response)
-     * { if (err) { console.error(err); return;
+     *   pubsub.projects.snapshots.setIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1373,10 +1102,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1453,25 +1181,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
-     * be used for building permission-aware UIs and command-line tools, not for
-     * authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1480,11 +1202,9 @@ export namespace pubsub_v1 {
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // REQUIRED: The resource for which the policy detail is being
-     * requested.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'projects/my-project/snapshots/my-snapshot',  // TODO:
-     * Update placeholder value.
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'projects/my-project/snapshots/my-snapshot',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -1493,8 +1213,10 @@ export namespace pubsub_v1 {
      *     auth: authClient,
      *   };
      *
-     *   pubsub.projects.snapshots.testIamPermissions(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   pubsub.projects.snapshots.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1508,10 +1230,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1604,12 +1325,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional user-provided name for this snapshot. If the name is not
-     * provided in the request, the server will assign a random name for this
-     * snapshot on the same project as the subscription. Note that for REST API
-     * requests, you must specify a name.  See the <a
-     * href="https://cloud.google.com/pubsub/docs/admin#resource_names">
-     * resource name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
+     * Optional user-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name.  See the <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      */
     name?: string;
 
@@ -1626,8 +1342,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the snapshot to delete. Format is
-     * `projects/{project}/snapshots/{snap}`.
+     * The name of the snapshot to delete. Format is `projects/{project}/snapshots/{snap}`.
      */
     snapshot?: string;
   }
@@ -1639,8 +1354,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the snapshot to get. Format is
-     * `projects/{project}/snapshots/{snap}`.
+     * The name of the snapshot to get. Format is `projects/{project}/snapshots/{snap}`.
      */
     snapshot?: string;
   }
@@ -1652,8 +1366,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -1669,14 +1382,11 @@ export namespace pubsub_v1 {
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListSnapshotsResponse`; indicates that
-     * this is a continuation of a prior `ListSnapshots` call, and that the
-     * system should return the next page of data.
+     * The value returned by the last `ListSnapshotsResponse`; indicates that this is a continuation of a prior `ListSnapshots` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
-     * The name of the project in which to list snapshots. Format is
-     * `projects/{project-id}`.
+     * The name of the project in which to list snapshots. Format is `projects/{project-id}`.
      */
     project?: string;
   }
@@ -1705,8 +1415,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -1723,8 +1432,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -1742,25 +1450,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.acknowledge
-     * @desc Acknowledges the messages associated with the `ack_ids` in the
-     * `AcknowledgeRequest`. The Pub/Sub system can remove the relevant messages
-     * from the subscription.  Acknowledging a message whose ack deadline has
-     * expired may succeed, but such a message may be redelivered later.
-     * Acknowledging a message more than once will not result in an error.
+     * @desc Acknowledges the messages associated with the `ack_ids` in the `AcknowledgeRequest`. The Pub/Sub system can remove the relevant messages from the subscription.  Acknowledging a message whose ack deadline has expired may succeed, but such a message may be redelivered later. Acknowledging a message more than once will not result in an error.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1771,8 +1473,7 @@ export namespace pubsub_v1 {
      *   var request = {
      *     // The subscription whose message is being acknowledged.
      *     // Format is `projects/{project}/subscriptions/{sub}`.
-     *     subscription: 'projects/my-project/subscriptions/my-subscription', //
-     * TODO: Update placeholder value.
+     *     subscription: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -1795,10 +1496,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1875,30 +1575,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.create
-     * @desc Creates a subscription to a given topic. See the <a
-     * href="https://cloud.google.com/pubsub/docs/admin#resource_names">
-     * resource name rules</a>. If the subscription already exists, returns
-     * `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns
-     * `NOT_FOUND`.  If the name is not provided in the request, the server will
-     * assign a random name for this subscription on the same project as the
-     * topic, conforming to the [resource name
-     * format](https://cloud.google.com/pubsub/docs/admin#resource_names). The
-     * generated name is populated in the returned Subscription object. Note
-     * that for REST API requests, you must specify a name in the request.
+     * @desc Creates a subscription to a given topic. See the <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>. If the subscription already exists, returns `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`.  If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic, conforming to the [resource name format](https://cloud.google.com/pubsub/docs/admin#resource_names). The generated name is populated in the returned Subscription object. Note that for REST API requests, you must specify a name in the request.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1908,21 +1597,15 @@ export namespace pubsub_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The name of the subscription. It must have the format
-     *     // `"projects/{project}/subscriptions/{subscription}"`.
-     * `{subscription}` must
-     *     // start with a letter, and contain only letters (`[A-Za-z]`),
-     * numbers
-     *     // (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes
-     * (`~`),
-     *     // plus (`+`) or percent signs (`%`). It must be between 3 and 255
-     * characters
+     *     // `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
+     *     // start with a letter, and contain only letters (`[A-Za-z]`), numbers
+     *     // (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
+     *     // plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
      *     // in length, and it must not start with `"goog"`.
-     *     name: 'projects/my-project/subscriptions/my-subscription',  // TODO:
-     * Update placeholder value.
+     *     name: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
+     *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
@@ -1946,10 +1629,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2025,25 +1707,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.delete
-     * @desc Deletes an existing subscription. All messages retained in the
-     * subscription are immediately dropped. Calls to `Pull` after deletion will
-     * return `NOT_FOUND`. After a subscription is deleted, a new one may be
-     * created with the same name, but the new one has no association with the
-     * old subscription or its topic unless the same topic is specified.
+     * @desc Deletes an existing subscription. All messages retained in the subscription are immediately dropped. Calls to `Pull` after deletion will return `NOT_FOUND`. After a subscription is deleted, a new one may be created with the same name, but the new one has no association with the old subscription or its topic unless the same topic is specified.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2054,8 +1730,7 @@ export namespace pubsub_v1 {
      *   var request = {
      *     // The subscription to delete.
      *     // Format is `projects/{project}/subscriptions/{sub}`.
-     *     subscription: 'projects/my-project/subscriptions/my-subscription', //
-     * TODO: Update placeholder value.
+     *     subscription: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
@@ -2074,10 +1749,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2160,14 +1834,12 @@ export namespace pubsub_v1 {
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2178,8 +1850,7 @@ export namespace pubsub_v1 {
      *   var request = {
      *     // The name of the subscription to get.
      *     // Format is `projects/{project}/subscriptions/{sub}`.
-     *     subscription: 'projects/my-project/subscriptions/my-subscription', //
-     * TODO: Update placeholder value.
+     *     subscription: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
@@ -2201,10 +1872,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2282,22 +1952,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2307,15 +1974,16 @@ export namespace pubsub_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'projects/my-project/subscriptions/my-subscription', //
-     * TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
      *
-     *   pubsub.projects.subscriptions.getIamPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   pubsub.projects.subscriptions.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -2329,10 +1997,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2415,14 +2082,12 @@ export namespace pubsub_v1 {
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2449,9 +2114,8 @@ export namespace pubsub_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < subscriptionsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `subscriptionsPage`: console.log(JSON.stringify(subscriptionsPage[i],
-     * null, 2));
+     *       // TODO: Change code below to process each resource in `subscriptionsPage`:
+     *       console.log(JSON.stringify(subscriptionsPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -2469,10 +2133,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2559,25 +2222,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.modifyAckDeadline
-     * @desc Modifies the ack deadline for a specific message. This method is
-     * useful to indicate that more time is needed to process a message by the
-     * subscriber, or to make the message available for redelivery if the
-     * processing was interrupted. Note that this does not modify the
-     * subscription-level `ackDeadlineSeconds` used for subsequent messages.
+     * @desc Modifies the ack deadline for a specific message. This method is useful to indicate that more time is needed to process a message by the subscriber, or to make the message available for redelivery if the processing was interrupted. Note that this does not modify the subscription-level `ackDeadlineSeconds` used for subsequent messages.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2588,8 +2245,7 @@ export namespace pubsub_v1 {
      *   var request = {
      *     // The name of the subscription.
      *     // Format is `projects/{project}/subscriptions/{sub}`.
-     *     subscription: 'projects/my-project/subscriptions/my-subscription', //
-     * TODO: Update placeholder value.
+     *     subscription: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -2598,8 +2254,10 @@ export namespace pubsub_v1 {
      *     auth: authClient,
      *   };
      *
-     *   pubsub.projects.subscriptions.modifyAckDeadline(request, function(err)
-     * { if (err) { console.error(err); return;
+     *   pubsub.projects.subscriptions.modifyAckDeadline(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *   });
      * });
@@ -2610,10 +2268,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2690,25 +2347,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.modifyPushConfig
-     * @desc Modifies the `PushConfig` for a specified subscription.  This may
-     * be used to change a push subscription to a pull one (signified by an
-     * empty `PushConfig`) or vice versa, or change the endpoint URL and other
-     * attributes of a push subscription. Messages will accumulate for delivery
-     * continuously through the call regardless of changes to the `PushConfig`.
+     * @desc Modifies the `PushConfig` for a specified subscription.  This may be used to change a push subscription to a pull one (signified by an empty `PushConfig`) or vice versa, or change the endpoint URL and other attributes of a push subscription. Messages will accumulate for delivery continuously through the call regardless of changes to the `PushConfig`.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2719,8 +2370,7 @@ export namespace pubsub_v1 {
      *   var request = {
      *     // The name of the subscription.
      *     // Format is `projects/{project}/subscriptions/{sub}`.
-     *     subscription: 'projects/my-project/subscriptions/my-subscription', //
-     * TODO: Update placeholder value.
+     *     subscription: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -2743,10 +2393,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2823,8 +2472,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.patch
-     * @desc Updates an existing subscription. Note that certain properties of a
-     * subscription, such as its topic, are not modifiable.
+     * @desc Updates an existing subscription. Note that certain properties of a subscription, such as its topic, are not modifiable.
      * @alias pubsub.projects.subscriptions.patch
      * @memberOf! ()
      *
@@ -2896,23 +2544,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.pull
-     * @desc Pulls messages from the server. The server may return `UNAVAILABLE`
-     * if there are too many concurrent pull requests pending for the given
-     * subscription.
+     * @desc Pulls messages from the server. The server may return `UNAVAILABLE` if there are too many concurrent pull requests pending for the given subscription.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2923,8 +2567,7 @@ export namespace pubsub_v1 {
      *   var request = {
      *     // The subscription from which messages should be pulled.
      *     // Format is `projects/{project}/subscriptions/{sub}`.
-     *     subscription: 'projects/my-project/subscriptions/my-subscription', //
-     * TODO: Update placeholder value.
+     *     subscription: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -2950,10 +2593,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3032,13 +2674,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.seek
-     * @desc Seeks an existing subscription to a point in time or to a given
-     * snapshot, whichever is provided in the request. Snapshots are used in <a
-     * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
-     * operations, which allow you to manage message acknowledgments in bulk.
-     * That is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot. Note that both the
-     * subscription and the snapshot must be on the same topic.
+     * @desc Seeks an existing subscription to a point in time or to a given snapshot, whichever is provided in the request. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. Note that both the subscription and the snapshot must be on the same topic.
      * @alias pubsub.projects.subscriptions.seek
      * @memberOf! ()
      *
@@ -3113,22 +2749,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3138,9 +2771,8 @@ export namespace pubsub_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'projects/my-project/subscriptions/my-subscription', //
-     * TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -3149,8 +2781,10 @@ export namespace pubsub_v1 {
      *     auth: authClient,
      *   };
      *
-     *   pubsub.projects.subscriptions.setIamPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   pubsub.projects.subscriptions.setIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -3164,10 +2798,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3244,25 +2877,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.subscriptions.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
-     * be used for building permission-aware UIs and command-line tools, not for
-     * authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3271,11 +2898,9 @@ export namespace pubsub_v1 {
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // REQUIRED: The resource for which the policy detail is being
-     * requested.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'projects/my-project/subscriptions/my-subscription', //
-     * TODO: Update placeholder value.
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -3284,8 +2909,10 @@ export namespace pubsub_v1 {
      *     auth: authClient,
      *   };
      *
-     *   pubsub.projects.subscriptions.testIamPermissions(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   pubsub.projects.subscriptions.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -3299,10 +2926,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3395,8 +3021,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The subscription whose message is being acknowledged. Format is
-     * `projects/{project}/subscriptions/{sub}`.
+     * The subscription whose message is being acknowledged. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
 
@@ -3413,12 +3038,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the subscription. It must have the format
-     * `"projects/{project}/subscriptions/{subscription}"`. `{subscription}`
-     * must start with a letter, and contain only letters (`[A-Za-z]`), numbers
-     * (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
-     * plus (`+`) or percent signs (`%`). It must be between 3 and 255
-     * characters in length, and it must not start with `"goog"`.
+     * The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -3435,8 +3055,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The subscription to delete. Format is
-     * `projects/{project}/subscriptions/{sub}`.
+     * The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
   }
@@ -3448,8 +3067,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the subscription to get. Format is
-     * `projects/{project}/subscriptions/{sub}`.
+     * The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
   }
@@ -3461,8 +3079,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -3478,14 +3095,11 @@ export namespace pubsub_v1 {
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListSubscriptionsResponse`; indicates
-     * that this is a continuation of a prior `ListSubscriptions` call, and that
-     * the system should return the next page of data.
+     * The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
-     * The name of the project in which to list subscriptions. Format is
-     * `projects/{project-id}`.
+     * The name of the project in which to list subscriptions. Format is `projects/{project-id}`.
      */
     project?: string;
   }
@@ -3497,8 +3111,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the subscription. Format is
-     * `projects/{project}/subscriptions/{sub}`.
+     * The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
 
@@ -3515,8 +3128,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the subscription. Format is
-     * `projects/{project}/subscriptions/{sub}`.
+     * The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
 
@@ -3533,12 +3145,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the subscription. It must have the format
-     * `"projects/{project}/subscriptions/{subscription}"`. `{subscription}`
-     * must start with a letter, and contain only letters (`[A-Za-z]`), numbers
-     * (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
-     * plus (`+`) or percent signs (`%`). It must be between 3 and 255
-     * characters in length, and it must not start with `"goog"`.
+     * The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -3555,8 +3162,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The subscription from which messages should be pulled. Format is
-     * `projects/{project}/subscriptions/{sub}`.
+     * The subscription from which messages should be pulled. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
 
@@ -3590,8 +3196,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3608,8 +3213,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3633,23 +3237,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.create
-     * @desc Creates the given topic with the given name. See the <a
-     * href="https://cloud.google.com/pubsub/docs/admin#resource_names">
-     * resource name rules</a>.
+     * @desc Creates the given topic with the given name. See the <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3659,21 +3259,15 @@ export namespace pubsub_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // The name of the topic. It must have the format
-     *     // `"projects/{project}/topics/{topic}"`. `{topic}` must start with a
-     * letter,
-     *     // and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes
-     * (`-`),
-     *     // underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or
-     * percent
-     *     // signs (`%`). It must be between 3 and 255 characters in length,
-     * and it
+     *     // `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
+     *     // and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
+     *     // underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
+     *     // signs (`%`). It must be between 3 and 255 characters in length, and it
      *     // must not start with `"goog"`.
-     *     name: 'projects/my-project/topics/my-topic',  // TODO: Update
-     * placeholder value.
+     *     name: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
+     *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
@@ -3697,10 +3291,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3774,26 +3367,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.delete
-     * @desc Deletes the topic with the given name. Returns `NOT_FOUND` if the
-     * topic does not exist. After a topic is deleted, a new topic may be
-     * created with the same name; this is an entirely new topic with none of
-     * the old configuration or subscriptions. Existing subscriptions to this
-     * topic are not deleted, but their `topic` field is set to
-     * `_deleted-topic_`.
+     * @desc Deletes the topic with the given name. Returns `NOT_FOUND` if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted, but their `topic` field is set to `_deleted-topic_`.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3804,8 +3390,7 @@ export namespace pubsub_v1 {
      *   var request = {
      *     // Name of the topic to delete.
      *     // Format is `projects/{project}/topics/{topic}`.
-     *     topic: 'projects/my-project/topics/my-topic',  // TODO: Update
-     * placeholder value.
+     *     topic: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
@@ -3824,10 +3409,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3907,14 +3491,12 @@ export namespace pubsub_v1 {
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3925,8 +3507,7 @@ export namespace pubsub_v1 {
      *   var request = {
      *     // The name of the topic to get.
      *     // Format is `projects/{project}/topics/{topic}`.
-     *     topic: 'projects/my-project/topics/my-topic',  // TODO: Update
-     * placeholder value.
+     *     topic: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
@@ -3948,10 +3529,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4024,22 +3604,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4049,9 +3626,8 @@ export namespace pubsub_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'projects/my-project/topics/my-topic',  // TODO: Update
-     * placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
@@ -4073,10 +3649,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4159,14 +3734,12 @@ export namespace pubsub_v1 {
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4193,8 +3766,8 @@ export namespace pubsub_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < topicsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `topicsPage`: console.log(JSON.stringify(topicsPage[i], null, 2));
+     *       // TODO: Change code below to process each resource in `topicsPage`:
+     *       console.log(JSON.stringify(topicsPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -4212,10 +3785,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4295,8 +3867,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.patch
-     * @desc Updates an existing topic. Note that certain properties of a topic
-     * are not modifiable.
+     * @desc Updates an existing topic. Note that certain properties of a topic are not modifiable.
      * @alias pubsub.projects.topics.patch
      * @memberOf! ()
      *
@@ -4366,22 +3937,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.publish
-     * @desc Adds one or more messages to the topic. Returns `NOT_FOUND` if the
-     * topic does not exist.
+     * @desc Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic does not exist.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4392,8 +3960,7 @@ export namespace pubsub_v1 {
      *   var request = {
      *     // The messages in the request will be published on this topic.
      *     // Format is `projects/{project}/topics/{topic}`.
-     *     topic: 'projects/my-project/topics/my-topic',  // TODO: Update
-     * placeholder value.
+     *     topic: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -4419,10 +3986,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4501,22 +4067,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4526,9 +4089,8 @@ export namespace pubsub_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'projects/my-project/topics/my-topic',  // TODO: Update
-     * placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -4554,10 +4116,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4634,25 +4195,19 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
-     * be used for building permission-aware UIs and command-line tools, not for
-     * authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4661,11 +4216,9 @@ export namespace pubsub_v1 {
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // REQUIRED: The resource for which the policy detail is being
-     * requested.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'projects/my-project/topics/my-topic',  // TODO: Update
-     * placeholder value.
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -4674,8 +4227,10 @@ export namespace pubsub_v1 {
      *     auth: authClient,
      *   };
      *
-     *   pubsub.projects.topics.testIamPermissions(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   pubsub.projects.topics.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -4689,10 +4244,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4785,12 +4339,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the topic. It must have the format
-     * `"projects/{project}/topics/{topic}"`. `{topic}` must start with a
-     * letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes
-     * (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or
-     * percent signs (`%`). It must be between 3 and 255 characters in length,
-     * and it must not start with `"goog"`.
+     * The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -4807,8 +4356,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the topic to delete. Format is
-     * `projects/{project}/topics/{topic}`.
+     * Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.
      */
     topic?: string;
   }
@@ -4820,8 +4368,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the topic to get. Format is
-     * `projects/{project}/topics/{topic}`.
+     * The name of the topic to get. Format is `projects/{project}/topics/{topic}`.
      */
     topic?: string;
   }
@@ -4833,8 +4380,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -4850,14 +4396,11 @@ export namespace pubsub_v1 {
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListTopicsResponse`; indicates that this
-     * is a continuation of a prior `ListTopics` call, and that the system
-     * should return the next page of data.
+     * The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
-     * The name of the project in which to list topics. Format is
-     * `projects/{project-id}`.
+     * The name of the project in which to list topics. Format is `projects/{project-id}`.
      */
     project?: string;
   }
@@ -4869,12 +4412,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the topic. It must have the format
-     * `"projects/{project}/topics/{topic}"`. `{topic}` must start with a
-     * letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes
-     * (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or
-     * percent signs (`%`). It must be between 3 and 255 characters in length,
-     * and it must not start with `"goog"`.
+     * The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -4891,8 +4429,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The messages in the request will be published on this topic. Format is
-     * `projects/{project}/topics/{topic}`.
+     * The messages in the request will be published on this topic. Format is `projects/{project}/topics/{topic}`.
      */
     topic?: string;
 
@@ -4909,8 +4446,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4927,8 +4463,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4946,12 +4481,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.snapshots.list
-     * @desc Lists the names of the snapshots on this topic. Snapshots are used
-     * in <a
-     * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
-     * operations, which allow you to manage message acknowledgments in bulk.
-     * That is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot.
+     * @desc Lists the names of the snapshots on this topic. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
      * @alias pubsub.projects.topics.snapshots.list
      * @memberOf! ()
      *
@@ -5045,14 +4575,11 @@ export namespace pubsub_v1 {
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListTopicSnapshotsResponse`; indicates
-     * that this is a continuation of a prior `ListTopicSnapshots` call, and
-     * that the system should return the next page of data.
+     * The value returned by the last `ListTopicSnapshotsResponse`; indicates that this is a continuation of a prior `ListTopicSnapshots` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
-     * The name of the topic that snapshots are attached to. Format is
-     * `projects/{project}/topics/{topic}`.
+     * The name of the topic that snapshots are attached to. Format is `projects/{project}/topics/{topic}`.
      */
     topic?: string;
   }
@@ -5072,14 +4599,12 @@ export namespace pubsub_v1 {
      * // 1. If not already done, enable the Google Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5090,8 +4615,7 @@ export namespace pubsub_v1 {
      *   var request = {
      *     // The name of the topic that subscriptions are attached to.
      *     // Format is `projects/{project}/topics/{topic}`.
-     *     topic: 'projects/my-project/topics/my-topic',  // TODO: Update
-     * placeholder value.
+     *     topic: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
@@ -5107,9 +4631,8 @@ export namespace pubsub_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < subscriptionsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `subscriptionsPage`: console.log(JSON.stringify(subscriptionsPage[i],
-     * null, 2));
+     *       // TODO: Change code below to process each resource in `subscriptionsPage`:
+     *       console.log(JSON.stringify(subscriptionsPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -5127,10 +4650,9 @@ export namespace pubsub_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -5230,14 +4752,11 @@ export namespace pubsub_v1 {
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListTopicSubscriptionsResponse`;
-     * indicates that this is a continuation of a prior `ListTopicSubscriptions`
-     * call, and that the system should return the next page of data.
+     * The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
-     * The name of the topic that subscriptions are attached to. Format is
-     * `projects/{project}/topics/{topic}`.
+     * The name of the topic that subscriptions are attached to. Format is `projects/{project}/topics/{topic}`.
      */
     topic?: string;
   }

@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace alertcenter_v1beta1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace alertcenter_v1beta1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -113,7 +109,10 @@ export namespace alertcenter_v1beta1 {
     v1beta1: Resource$V1beta1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.alerts = new Resource$Alerts(this.context);
       this.v1beta1 = new Resource$V1beta1(this.context);
@@ -129,10 +128,7 @@ export namespace alertcenter_v1beta1 {
      */
     email?: string;
     /**
-     * Optional. Details of the login action associated with the warning event.
-     * This is only available for:  * Suspicious login * Suspicious login (less
-     * secure app) * Suspicious programmatic login * User suspended (suspicious
-     * activity)
+     * Optional. Details of the login action associated with the warning event. This is only available for:  * Suspicious login * Suspicious login (less secure app) * Suspicious programmatic login * User suspended (suspicious activity)
      */
     loginDetails?: Schema$LoginDetails;
   }
@@ -165,15 +161,11 @@ export namespace alertcenter_v1beta1 {
      */
     query?: string;
     /**
-     * List of alert ids superseded by this alert. It is used to indicate that
-     * this alert is essentially extension of superseded alerts and we found the
-     * relationship after creating these alerts.
+     * List of alert ids superseded by this alert. It is used to indicate that this alert is essentially extension of superseded alerts and we found the relationship after creating these alerts.
      */
     supersededAlerts?: string[];
     /**
-     * Alert id superseding this alert. It is used to indicate that superseding
-     * alert is essentially extension of this alert and we found the
-     * relationship after creating both alerts.
+     * Alert id superseding this alert. It is used to indicate that superseding alert is essentially extension of this alert and we found the relationship after creating both alerts.
      */
     supersedingAlert?: string;
     /**
@@ -181,8 +173,7 @@ export namespace alertcenter_v1beta1 {
      */
     threshold?: string;
     /**
-     * The trigger sources for this rule.  * GMAIL_EVENTS * DEVICE_EVENTS *
-     * USER_EVENTS
+     * The trigger sources for this rule.  * GMAIL_EVENTS * DEVICE_EVENTS * USER_EVENTS
      */
     triggerSource?: string;
     /**
@@ -211,8 +202,7 @@ export namespace alertcenter_v1beta1 {
      */
     customerId?: string;
     /**
-     * Optional. The data associated with this alert, for example
-     * google.apps.alertcenter.type.DeviceCompromised.
+     * Optional. The data associated with this alert, for example google.apps.alertcenter.type.DeviceCompromised.
      */
     data?: {[key: string]: any};
     /**
@@ -220,33 +210,23 @@ export namespace alertcenter_v1beta1 {
      */
     deleted?: boolean;
     /**
-     * Optional. The time the event that caused this alert ceased being active.
-     * If provided, the end time must not be earlier than the start time. If not
-     * provided, it indicates an ongoing alert.
+     * Optional. The time the event that caused this alert ceased being active. If provided, the end time must not be earlier than the start time. If not provided, it indicates an ongoing alert.
      */
     endTime?: string;
     /**
-     * Output only. An optional [Security Investigation
-     * Tool](https://support.google.com/a/answer/7575955) query for this alert.
+     * Output only. An optional [Security Investigation Tool](https://support.google.com/a/answer/7575955) query for this alert.
      */
     securityInvestigationToolLink?: string;
     /**
-     * Required. A unique identifier for the system that reported the alert.
-     * This is output only after alert is created.  Supported sources are any of
-     * the following:  * Google Operations * Mobile device management * Gmail
-     * phishing * Domain wide takeout * Government attack warning * Google
-     * identity
+     * Required. A unique identifier for the system that reported the alert. This is output only after alert is created.  Supported sources are any of the following:  * Google Operations * Mobile device management * Gmail phishing * Domain wide takeout * Government attack warning * Google identity
      */
     source?: string;
     /**
-     * Required. The time the event that caused this alert was started or
-     * detected.
+     * Required. The time the event that caused this alert was started or detected.
      */
     startTime?: string;
     /**
-     * Required. The type of the alert. This is output only after alert is
-     * created. For a list of available alert types see [G Suite Alert
-     * types](/admin-sdk/alertcenter/reference/alert-types).
+     * Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [G Suite Alert types](/admin-sdk/alertcenter/reference/alert-types).
      */
     type?: string;
     /**
@@ -293,8 +273,7 @@ export namespace alertcenter_v1beta1 {
     csv?: Schema$Csv;
   }
   /**
-   * Alert for setting the domain or IP that malicious email comes from as
-   * whitelisted domain or IP in Gmail advanced settings.
+   * Alert for setting the domain or IP that malicious email comes from as whitelisted domain or IP in Gmail advanced settings.
    */
   export interface Schema$BadWhitelist {
     /**
@@ -315,31 +294,24 @@ export namespace alertcenter_v1beta1 {
     sourceIp?: string;
   }
   /**
-   * A reference to a Cloud Pubsub topic.  To register for notifications, the
-   * owner of the topic must grant
-   * `alerts-api-push-notifications@system.gserviceaccount.com` the
-   * `projects.topics.publish` permission.
+   * A reference to a Cloud Pubsub topic.  To register for notifications, the owner of the topic must grant `alerts-api-push-notifications@system.gserviceaccount.com` the  `projects.topics.publish` permission.
    */
   export interface Schema$CloudPubsubTopic {
     /**
-     * Optional. The format of the payload that would be sent. If not specified
-     * the format will be JSON.
+     * Optional. The format of the payload that would be sent. If not specified the format will be JSON.
      */
     payloadFormat?: string;
     /**
-     * The `name` field of a Cloud Pubsub [Topic]
-     * (https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
+     * The `name` field of a Cloud Pubsub [Topic] (https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
      */
     topicName?: string;
   }
   /**
-   * A representation of a CSV file attachment, as a list of column headers and
-   * a list of data rows.
+   * A representation of a CSV file attachment, as a list of column headers and a list of data rows.
    */
   export interface Schema$Csv {
     /**
-     * The list of data rows in a CSV file, as string arrays rather than as a
-     * single comma-separated string.
+     * The list of data rows in a CSV file, as string arrays rather than as a single comma-separated string.
      */
     dataRows?: Schema$CsvRow[];
     /**
@@ -352,8 +324,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$CsvRow {
     /**
-     * The data entries in a CSV file row, as a string array rather than a
-     * single comma-separated string.
+     * The data entries in a CSV file row, as a string array rather than a single comma-separated string.
      */
     entries?: string[];
   }
@@ -375,8 +346,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$DeviceCompromisedSecurityDetail {
     /**
-     * The device compromised state. Possible values are
-     * &quot;`Compromised`&quot; or &quot;`Not Compromised`&quot;.
+     * The device compromised state. Possible values are &quot;`Compromised`&quot; or &quot;`Not Compromised`&quot;.
      */
     deviceCompromisedState?: string;
     /**
@@ -414,8 +384,7 @@ export namespace alertcenter_v1beta1 {
     customerPrimaryDomain?: string;
   }
   /**
-   * A takeout operation for the entire domain was initiated by an admin.
-   * Derived from audit logs.
+   * A takeout operation for the entire domain was initiated by an admin. Derived from audit logs.
    */
   export interface Schema$DomainWideTakeoutInitiated {
     /**
@@ -428,11 +397,7 @@ export namespace alertcenter_v1beta1 {
     takeoutRequestId?: string;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -456,8 +421,7 @@ export namespace alertcenter_v1beta1 {
      */
     md5HashSubject?: string;
     /**
-     * The snippet of the message body text (only available for reported
-     * emails).
+     * The snippet of the message body text (only available for reported emails).
      */
     messageBodySnippet?: string;
     /**
@@ -478,14 +442,11 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$GoogleOperations {
     /**
-     * The list of emails which correspond to the users directly affected by the
-     * incident.
+     * The list of emails which correspond to the users directly affected by the incident.
      */
     affectedUserEmails?: string[];
     /**
-     * Optional. Application-specific data for an incident, provided when the G
-     * Suite application which reported the incident cannot be completely
-     * restored to a valid state.
+     * Optional. Application-specific data for an incident, provided when the G Suite application which reported the incident cannot be completely restored to a valid state.
      */
     attachmentData?: Schema$Attachment;
     /**
@@ -502,8 +463,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$ListAlertFeedbackResponse {
     /**
-     * The list of alert feedback. Feedback entries for each alert are ordered
-     * by creation time descending.
+     * The list of alert feedback. Feedback entries for each alert are ordered by creation time descending.
      */
     feedback?: Schema$AlertFeedback[];
   }
@@ -516,10 +476,7 @@ export namespace alertcenter_v1beta1 {
      */
     alerts?: Schema$Alert[];
     /**
-     * The token for the next page. If not empty, indicates that there may be
-     * more alerts that match the listing request; this value can be used in a
-     * subsequent ListAlertsRequest to get alerts continuing from last result of
-     * the current list call.
+     * The token for the next page. If not empty, indicates that there may be more alerts that match the listing request; this value can be used in a subsequent ListAlertsRequest to get alerts continuing from last result of the current list call.
      */
     nextPageToken?: string;
   }
@@ -528,21 +485,16 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$LoginDetails {
     /**
-     * Optional. The human-readable IP address (for example, `11.22.33.44`) that
-     * is associated with the warning event.
+     * Optional. The human-readable IP address (for example, `11.22.33.44`) that is associated with the warning event.
      */
     ipAddress?: string;
     /**
-     * Optional. The successful login time that is associated with the warning
-     * event. This will not be present for blocked login attempts.
+     * Optional. The successful login time that is associated with the warning event. This will not be present for blocked login attempts.
      */
     loginTime?: string;
   }
   /**
-   * Proto for all phishing alerts with common payload. Supported types are any
-   * of the following:  * User reported phishing * User reported spam spike *
-   * Suspicious message reported * Phishing reclassification * Malware
-   * reclassification
+   * Proto for all phishing alerts with common payload. Supported types are any of the following:  * User reported phishing * User reported spam spike * Suspicious message reported * Phishing reclassification * Malware reclassification
    */
   export interface Schema$MailPhishing {
     /**
@@ -572,8 +524,7 @@ export namespace alertcenter_v1beta1 {
     fromHeader?: string;
   }
   /**
-   * Settings for callback notifications. For more details see [G Suite Alert
-   * Notification](/admin-sdk/alertcenter/guides/notifications).
+   * Settings for callback notifications. For more details see [G Suite Alert Notification](/admin-sdk/alertcenter/guides/notifications).
    */
   export interface Schema$Notification {
     /**
@@ -582,11 +533,7 @@ export namespace alertcenter_v1beta1 {
     cloudPubsubTopic?: Schema$CloudPubsubTopic;
   }
   /**
-   * Alert for a spike in user reported phishing. &lt;aside
-   * class=&quot;warning&quot;&gt;&lt;b&gt;Warning&lt;/b&gt;: This type has been
-   * deprecated. Use
-   * [MailPhishing](/admin-sdk/alertcenter/reference/rest/v1beta1/MailPhishing)
-   * instead.&lt;/aside&gt;
+   * Alert for a spike in user reported phishing. &lt;aside class=&quot;warning&quot;&gt;&lt;b&gt;Warning&lt;/b&gt;: This type has been deprecated. Use [MailPhishing](/admin-sdk/alertcenter/reference/rest/v1beta1/MailPhishing) instead.&lt;/aside&gt;
    */
   export interface Schema$PhishingSpike {
     /**
@@ -683,9 +630,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$UndeleteAlertRequest {
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alert is associated with. Inferred from the caller
-     * identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
   }
@@ -700,11 +645,7 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * alertcenter.alerts.delete
-     * @desc Marks the specified alert for deletion. An alert that has been
-     * marked for deletion is removed from Alert Center after 30 days. Marking
-     * an alert for deletion has no effect on an alert which has already been
-     * marked for deletion. Attempting to mark a nonexistent alert for deletion
-     * results in a `NOT_FOUND` error.
+     * @desc Marks the specified alert for deletion. An alert that has been marked for deletion is removed from Alert Center after 30 days. Marking an alert for deletion has no effect on an alert which has already been marked for deletion. Attempting to mark a nonexistent alert for deletion results in a `NOT_FOUND` error.
      * @alias alertcenter.alerts.delete
      * @memberOf! ()
      *
@@ -776,8 +717,7 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * alertcenter.alerts.get
-     * @desc Gets the specified alert. Attempting to get a nonexistent alert
-     * returns `NOT_FOUND` error.
+     * @desc Gets the specified alert. Attempting to get a nonexistent alert returns `NOT_FOUND` error.
      * @alias alertcenter.alerts.get
      * @memberOf! ()
      *
@@ -923,12 +863,7 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * alertcenter.alerts.undelete
-     * @desc Restores, or "undeletes", an alert that was marked for deletion
-     * within the past 30 days. Attempting to undelete an alert which was marked
-     * for deletion over 30 days ago (which has been removed from the Alert
-     * Center database) or a nonexistent alert returns a `NOT_FOUND` error.
-     * Attempting to undelete an alert which has not been marked for deletion
-     * has no effect.
+     * @desc Restores, or "undeletes", an alert that was marked for deletion within the past 30 days. Attempting to undelete an alert which was marked for deletion over 30 days ago (which has been removed from the Alert Center database) or a nonexistent alert returns a `NOT_FOUND` error. Attempting to undelete an alert which has not been marked for deletion has no effect.
      * @alias alertcenter.alerts.undelete
      * @memberOf! ()
      *
@@ -1010,9 +945,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alert is associated with. Inferred from the caller
-     * identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
   }
@@ -1027,9 +960,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alert is associated with. Inferred from the caller
-     * identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
   }
@@ -1040,35 +971,23 @@ export namespace alertcenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alerts are associated with. Inferred from the caller
-     * identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
     /**
-     * Optional. A query string for filtering alert results. For more details,
-     * see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and
-     * [Supported query filter
-     * fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
+     * Optional. A query string for filtering alert results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
      */
     filter?: string;
     /**
-     * Optional. The sort order of the list results. If not specified results
-     * may be returned in arbitrary order. You can sort the results in
-     * descending order based on the creation timestamp using
-     * `order_by="create_time desc"`. Currently, supported sorting are
-     * `create_time asc`, `create_time desc`, `update_time desc`
+     * Optional. The sort order of the list results. If not specified results may be returned in arbitrary order. You can sort the results in descending order based on the creation timestamp using `order_by="create_time desc"`. Currently, supported sorting are `create_time asc`, `create_time desc`, `update_time desc`
      */
     orderBy?: string;
     /**
-     * Optional. The requested page size. Server may return fewer items than
-     * requested. If unspecified, server picks an appropriate default.
+     * Optional. The requested page size. Server may return fewer items than requested. If unspecified, server picks an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional. A token identifying a page of results the server should return.
-     * If empty, a new iteration is started. To continue an iteration, pass in
-     * the value from the previous ListAlertsResponse's next_page_token field.
+     * Optional. A token identifying a page of results the server should return. If empty, a new iteration is started. To continue an iteration, pass in the value from the previous ListAlertsResponse's next_page_token field.
      */
     pageToken?: string;
   }
@@ -1097,8 +1016,7 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * alertcenter.alerts.feedback.create
-     * @desc Creates new feedback for an alert. Attempting to create a feedback
-     * for a non-existent alert returns `NOT_FOUND` error.
+     * @desc Creates new feedback for an alert. Attempting to create a feedback for a non-existent alert returns `NOT_FOUND` error.
      * @alias alertcenter.alerts.feedback.create
      * @memberOf! ()
      *
@@ -1174,8 +1092,7 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * alertcenter.alerts.feedback.list
-     * @desc Lists all the feedback for an alert. Attempting to list feedbacks
-     * for a non-existent alert returns `NOT_FOUND` error.
+     * @desc Lists all the feedback for an alert. Attempting to list feedbacks for a non-existent alert returns `NOT_FOUND` error.
      * @alias alertcenter.alerts.feedback.list
      * @memberOf! ()
      *
@@ -1269,9 +1186,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alert is associated with. Inferred from the caller
-     * identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
 
@@ -1288,21 +1203,15 @@ export namespace alertcenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The alert identifier. The "-" wildcard could be used to
-     * represent all alerts.
+     * Required. The alert identifier. The "-" wildcard could be used to represent all alerts.
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alert feedback are associated with. Inferred from the
-     * caller identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
     /**
-     * Optional. A query string for filtering alert feedback results. For more
-     * details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters)
-     * and [Supported query filter
-     * fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
+     * Optional. A query string for filtering alert feedback results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
      */
     filter?: string;
   }
@@ -1461,9 +1370,7 @@ export namespace alertcenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alert settings are associated with. Inferred from the
-     * caller identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
   }
@@ -1475,9 +1382,7 @@ export namespace alertcenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alert settings are associated with. Inferred from the
-     * caller identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
 

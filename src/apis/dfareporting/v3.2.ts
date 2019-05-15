@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace dfareporting_v3_2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace dfareporting_v3_2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -155,7 +152,10 @@ export namespace dfareporting_v3_2 {
     videoFormats: Resource$Videoformats;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.accountActiveAdSummaries = new Resource$Accountactiveadsummaries(
         this.context
@@ -256,8 +256,7 @@ export namespace dfareporting_v3_2 {
      */
     accountPermissionIds?: string[];
     /**
-     * Profile for this account. This is a read-only field that can be left
-     * blank.
+     * Profile for this account. This is a read-only field that can be left blank.
      */
     accountProfile?: string;
     /**
@@ -269,8 +268,7 @@ export namespace dfareporting_v3_2 {
      */
     activeAdsLimitTier?: string;
     /**
-     * Whether to serve creatives with Active View tags. If disabled,
-     * viewability data will not be available for any impressions.
+     * Whether to serve creatives with Active View tags. If disabled, viewability data will not be available for any impressions.
      */
     activeViewOptOut?: boolean;
     /**
@@ -282,26 +280,7 @@ export namespace dfareporting_v3_2 {
      */
     countryId?: string;
     /**
-     * ID of currency associated with this account. This is a required field.
-     * Acceptable values are:  - &quot;1&quot; for USD  - &quot;2&quot; for GBP
-     * - &quot;3&quot; for ESP  - &quot;4&quot; for SEK  - &quot;5&quot; for CAD
-     * - &quot;6&quot; for JPY  - &quot;7&quot; for DEM  - &quot;8&quot; for AUD
-     * - &quot;9&quot; for FRF  - &quot;10&quot; for ITL  - &quot;11&quot; for
-     * DKK  - &quot;12&quot; for NOK  - &quot;13&quot; for FIM  - &quot;14&quot;
-     * for ZAR  - &quot;15&quot; for IEP  - &quot;16&quot; for NLG  -
-     * &quot;17&quot; for EUR  - &quot;18&quot; for KRW  - &quot;19&quot; for
-     * TWD  - &quot;20&quot; for SGD  - &quot;21&quot; for CNY  - &quot;22&quot;
-     * for HKD  - &quot;23&quot; for NZD  - &quot;24&quot; for MYR  -
-     * &quot;25&quot; for BRL  - &quot;26&quot; for PTE  - &quot;27&quot; for
-     * MXP  - &quot;28&quot; for CLP  - &quot;29&quot; for TRY  - &quot;30&quot;
-     * for ARS  - &quot;31&quot; for PEN  - &quot;32&quot; for ILS  -
-     * &quot;33&quot; for CHF  - &quot;34&quot; for VEF  - &quot;35&quot; for
-     * COP  - &quot;36&quot; for GTQ  - &quot;37&quot; for PLN  - &quot;39&quot;
-     * for INR  - &quot;40&quot; for THB  - &quot;41&quot; for IDR  -
-     * &quot;42&quot; for CZK  - &quot;43&quot; for RON  - &quot;44&quot; for
-     * HUF  - &quot;45&quot; for RUB  - &quot;46&quot; for AED  - &quot;47&quot;
-     * for BGN  - &quot;48&quot; for HRK  - &quot;49&quot; for MXN  -
-     * &quot;50&quot; for NGN
+     * ID of currency associated with this account. This is a required field. Acceptable values are:  - &quot;1&quot; for USD  - &quot;2&quot; for GBP  - &quot;3&quot; for ESP  - &quot;4&quot; for SEK  - &quot;5&quot; for CAD  - &quot;6&quot; for JPY  - &quot;7&quot; for DEM  - &quot;8&quot; for AUD  - &quot;9&quot; for FRF  - &quot;10&quot; for ITL  - &quot;11&quot; for DKK  - &quot;12&quot; for NOK  - &quot;13&quot; for FIM  - &quot;14&quot; for ZAR  - &quot;15&quot; for IEP  - &quot;16&quot; for NLG  - &quot;17&quot; for EUR  - &quot;18&quot; for KRW  - &quot;19&quot; for TWD  - &quot;20&quot; for SGD  - &quot;21&quot; for CNY  - &quot;22&quot; for HKD  - &quot;23&quot; for NZD  - &quot;24&quot; for MYR  - &quot;25&quot; for BRL  - &quot;26&quot; for PTE  - &quot;27&quot; for MXP  - &quot;28&quot; for CLP  - &quot;29&quot; for TRY  - &quot;30&quot; for ARS  - &quot;31&quot; for PEN  - &quot;32&quot; for ILS  - &quot;33&quot; for CHF  - &quot;34&quot; for VEF  - &quot;35&quot; for COP  - &quot;36&quot; for GTQ  - &quot;37&quot; for PLN  - &quot;39&quot; for INR  - &quot;40&quot; for THB  - &quot;41&quot; for IDR  - &quot;42&quot; for CZK  - &quot;43&quot; for RON  - &quot;44&quot; for HUF  - &quot;45&quot; for RUB  - &quot;46&quot; for AED  - &quot;47&quot; for BGN  - &quot;48&quot; for HRK  - &quot;49&quot; for MXN  - &quot;50&quot; for NGN
      */
     currencyId?: string;
     /**
@@ -317,34 +296,23 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#account&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#account&quot;.
      */
     kind?: string;
     /**
-     * Locale of this account. Acceptable values are:  - &quot;cs&quot; (Czech)
-     * - &quot;de&quot; (German)  - &quot;en&quot; (English)  -
-     * &quot;en-GB&quot; (English United Kingdom)  - &quot;es&quot; (Spanish)  -
-     * &quot;fr&quot; (French)  - &quot;it&quot; (Italian)  - &quot;ja&quot;
-     * (Japanese)  - &quot;ko&quot; (Korean)  - &quot;pl&quot; (Polish)  -
-     * &quot;pt-BR&quot; (Portuguese Brazil)  - &quot;ru&quot; (Russian)  -
-     * &quot;sv&quot; (Swedish)  - &quot;tr&quot; (Turkish)  - &quot;zh-CN&quot;
-     * (Chinese Simplified)  - &quot;zh-TW&quot; (Chinese Traditional)
+     * Locale of this account. Acceptable values are:  - &quot;cs&quot; (Czech)  - &quot;de&quot; (German)  - &quot;en&quot; (English)  - &quot;en-GB&quot; (English United Kingdom)  - &quot;es&quot; (Spanish)  - &quot;fr&quot; (French)  - &quot;it&quot; (Italian)  - &quot;ja&quot; (Japanese)  - &quot;ko&quot; (Korean)  - &quot;pl&quot; (Polish)  - &quot;pt-BR&quot; (Portuguese Brazil)  - &quot;ru&quot; (Russian)  - &quot;sv&quot; (Swedish)  - &quot;tr&quot; (Turkish)  - &quot;zh-CN&quot; (Chinese Simplified)  - &quot;zh-TW&quot; (Chinese Traditional)
      */
     locale?: string;
     /**
-     * Maximum image size allowed for this account, in kilobytes. Value must be
-     * greater than or equal to 1.
+     * Maximum image size allowed for this account, in kilobytes. Value must be greater than or equal to 1.
      */
     maximumImageSize?: string;
     /**
-     * Name of this account. This is a required field, and must be less than 128
-     * characters long and be globally unique.
+     * Name of this account. This is a required field, and must be less than 128 characters long and be globally unique.
      */
     name?: string;
     /**
-     * Whether campaigns created in this account will be enabled for Nielsen OCR
-     * reach ratings by default.
+     * Whether campaigns created in this account will be enabled for Nielsen OCR reach ratings by default.
      */
     nielsenOcrEnabled?: boolean;
     /**
@@ -356,8 +324,7 @@ export namespace dfareporting_v3_2 {
      */
     shareReportsWithTwitter?: boolean;
     /**
-     * File size limit in kilobytes of Rich Media teaser creatives. Acceptable
-     * values are 1 to 10240, inclusive.
+     * File size limit in kilobytes of Rich Media teaser creatives. Acceptable values are 1 to 10240, inclusive.
      */
     teaserSizeLimit?: string;
   }
@@ -382,21 +349,16 @@ export namespace dfareporting_v3_2 {
      */
     availableAds?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#accountActiveAdSummary&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountActiveAdSummary&quot;.
      */
     kind?: string;
   }
   /**
-   * AccountPermissions contains information about a particular account
-   * permission. Some features of Campaign Manager require an account permission
-   * to be present in the account.
+   * AccountPermissions contains information about a particular account permission. Some features of Campaign Manager require an account permission to be present in the account.
    */
   export interface Schema$AccountPermission {
     /**
-     * Account profiles associated with this account permission.  Possible
-     * values are: - &quot;ACCOUNT_PROFILE_BASIC&quot; -
-     * &quot;ACCOUNT_PROFILE_STANDARD&quot;
+     * Account profiles associated with this account permission.  Possible values are: - &quot;ACCOUNT_PROFILE_BASIC&quot; - &quot;ACCOUNT_PROFILE_STANDARD&quot;
      */
     accountProfiles?: string[];
     /**
@@ -404,8 +366,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#accountPermission&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermission&quot;.
      */
     kind?: string;
     /**
@@ -422,8 +383,7 @@ export namespace dfareporting_v3_2 {
     permissionGroupId?: string;
   }
   /**
-   * AccountPermissionGroups contains a mapping of permission group IDs to
-   * names. A permission group is a grouping of account permissions.
+   * AccountPermissionGroups contains a mapping of permission group IDs to names. A permission group is a grouping of account permissions.
    */
   export interface Schema$AccountPermissionGroup {
     /**
@@ -431,8 +391,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#accountPermissionGroup&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionGroup&quot;.
      */
     kind?: string;
     /**
@@ -449,8 +408,7 @@ export namespace dfareporting_v3_2 {
      */
     accountPermissionGroups?: Schema$AccountPermissionGroup[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#accountPermissionGroupsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionGroupsListResponse&quot;.
      */
     kind?: string;
   }
@@ -463,8 +421,7 @@ export namespace dfareporting_v3_2 {
      */
     accountPermissions?: Schema$AccountPermission[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#accountPermissionsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionsListResponse&quot;.
      */
     kind?: string;
   }
@@ -477,8 +434,7 @@ export namespace dfareporting_v3_2 {
      */
     accounts?: Schema$Account[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#accountsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -487,19 +443,15 @@ export namespace dfareporting_v3_2 {
     nextPageToken?: string;
   }
   /**
-   * AccountUserProfiles contains properties of a Campaign Manager user profile.
-   * This resource is specifically for managing user profiles, whereas
-   * UserProfiles is for accessing the API.
+   * AccountUserProfiles contains properties of a Campaign Manager user profile. This resource is specifically for managing user profiles, whereas UserProfiles is for accessing the API.
    */
   export interface Schema$AccountUserProfile {
     /**
-     * Account ID of the user profile. This is a read-only field that can be
-     * left blank.
+     * Account ID of the user profile. This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
-     * Whether this user profile is active. This defaults to false, and must be
-     * set true on insert for the user profile to be usable.
+     * Whether this user profile is active. This defaults to false, and must be set true on insert for the user profile to be usable.
      */
     active?: boolean;
     /**
@@ -515,9 +467,7 @@ export namespace dfareporting_v3_2 {
      */
     comments?: string;
     /**
-     * Email of the user profile. The email addresss must be linked to a Google
-     * Account. This field is required on insertion and is read-only after
-     * insertion.
+     * Email of the user profile. The email addresss must be linked to a Google Account. This field is required on insertion and is read-only after insertion.
      */
     email?: string;
     /**
@@ -525,26 +475,15 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#accountUserProfile&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountUserProfile&quot;.
      */
     kind?: string;
     /**
-     * Locale of the user profile. This is a required field. Acceptable values
-     * are:   - &quot;cs&quot; (Czech)  - &quot;de&quot; (German)  -
-     * &quot;en&quot; (English)  - &quot;en-GB&quot; (English United Kingdom)  -
-     * &quot;es&quot; (Spanish)  - &quot;fr&quot; (French)  - &quot;it&quot;
-     * (Italian)  - &quot;ja&quot; (Japanese)  - &quot;ko&quot; (Korean)  -
-     * &quot;pl&quot; (Polish)  - &quot;pt-BR&quot; (Portuguese Brazil) -
-     * &quot;ru&quot; (Russian)  - &quot;sv&quot; (Swedish)  - &quot;tr&quot;
-     * (Turkish)  - &quot;zh-CN&quot; (Chinese Simplified)  - &quot;zh-TW&quot;
-     * (Chinese Traditional)
+     * Locale of the user profile. This is a required field. Acceptable values are:   - &quot;cs&quot; (Czech)  - &quot;de&quot; (German)  - &quot;en&quot; (English)  - &quot;en-GB&quot; (English United Kingdom)  - &quot;es&quot; (Spanish)  - &quot;fr&quot; (French)  - &quot;it&quot; (Italian)  - &quot;ja&quot; (Japanese)  - &quot;ko&quot; (Korean)  - &quot;pl&quot; (Polish)  - &quot;pt-BR&quot; (Portuguese Brazil) - &quot;ru&quot; (Russian)  - &quot;sv&quot; (Swedish)  - &quot;tr&quot; (Turkish)  - &quot;zh-CN&quot; (Chinese Simplified)  - &quot;zh-TW&quot; (Chinese Traditional)
      */
     locale?: string;
     /**
-     * Name of the user profile. This is a required field. Must be less than 64
-     * characters long, must be globally unique, and cannot contain whitespace
-     * or any of the following characters: &quot;&amp;;&quot;#%,&quot;.
+     * Name of the user profile. This is a required field. Must be less than 64 characters long, must be globally unique, and cannot contain whitespace or any of the following characters: &quot;&amp;;&quot;#%,&quot;.
      */
     name?: string;
     /**
@@ -552,8 +491,7 @@ export namespace dfareporting_v3_2 {
      */
     siteFilter?: Schema$ObjectFilter;
     /**
-     * Subaccount ID of the user profile. This is a read-only field that can be
-     * left blank.
+     * Subaccount ID of the user profile. This is a read-only field that can be left blank.
      */
     subaccountId?: string;
     /**
@@ -561,8 +499,7 @@ export namespace dfareporting_v3_2 {
      */
     traffickerType?: string;
     /**
-     * User type of the user profile. This is a read-only field that can be left
-     * blank.
+     * User type of the user profile. This is a read-only field that can be left blank.
      */
     userAccessType?: string;
     /**
@@ -583,8 +520,7 @@ export namespace dfareporting_v3_2 {
      */
     accountUserProfiles?: Schema$AccountUserProfile[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#accountUserProfilesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountUserProfilesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -597,8 +533,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$Activities {
     /**
-     * List of activity filters. The dimension values need to be all either of
-     * type &quot;dfa:activity&quot; or &quot;dfa:activityGroup&quot;.
+     * List of activity filters. The dimension values need to be all either of type &quot;dfa:activity&quot; or &quot;dfa:activityGroup&quot;.
      */
     filters?: Schema$DimensionValue[];
     /**
@@ -627,8 +562,7 @@ export namespace dfareporting_v3_2 {
      */
     advertiserId?: string;
     /**
-     * Dimension value for the ID of the advertiser. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -636,8 +570,7 @@ export namespace dfareporting_v3_2 {
      */
     archived?: boolean;
     /**
-     * Audience segment ID that is being targeted for this ad. Applicable when
-     * type is AD_SERVING_STANDARD_AD.
+     * Audience segment ID that is being targeted for this ad. Applicable when type is AD_SERVING_STANDARD_AD.
      */
     audienceSegmentId?: string;
     /**
@@ -645,18 +578,15 @@ export namespace dfareporting_v3_2 {
      */
     campaignId?: string;
     /**
-     * Dimension value for the ID of the campaign. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
      */
     campaignIdDimensionValue?: Schema$DimensionValue;
     /**
-     * Click-through URL for this ad. This is a required field on insertion.
-     * Applicable when type is AD_SERVING_CLICK_TRACKER.
+     * Click-through URL for this ad. This is a required field on insertion. Applicable when type is AD_SERVING_CLICK_TRACKER.
      */
     clickThroughUrl?: Schema$ClickThroughUrl;
     /**
-     * Click-through URL suffix properties for this ad. Applies to the URL in
-     * the ad or (if overriding ad properties) the URL in the creative.
+     * Click-through URL suffix properties for this ad. Applies to the URL in the ad or (if overriding ad properties) the URL in the creative.
      */
     clickThroughUrlSuffixProperties?: Schema$ClickThroughUrlSuffixProperties;
     /**
@@ -664,14 +594,7 @@ export namespace dfareporting_v3_2 {
      */
     comments?: string;
     /**
-     * Compatibility of this ad. Applicable when type is AD_SERVING_DEFAULT_AD.
-     * DISPLAY and DISPLAY_INTERSTITIAL refer to either rendering on desktop or
-     * on mobile devices or in mobile apps for regular or interstitial ads,
-     * respectively. APP and APP_INTERSTITIAL are only used for existing default
-     * ads. New mobile placements must be assigned DISPLAY or
-     * DISPLAY_INTERSTITIAL and default ads created for those placements will be
-     * limited to those compatibility types. IN_STREAM_VIDEO refers to rendering
-     * in-stream video ads developed with the VAST standard.
+     * Compatibility of this ad. Applicable when type is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to either rendering on desktop or on mobile devices or in mobile apps for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are only used for existing default ads. New mobile placements must be assigned DISPLAY or DISPLAY_INTERSTITIAL and default ads created for those placements will be limited to those compatibility types. IN_STREAM_VIDEO refers to rendering in-stream video ads developed with the VAST standard.
      */
     compatibility?: string;
     /**
@@ -679,22 +602,15 @@ export namespace dfareporting_v3_2 {
      */
     createInfo?: Schema$LastModifiedInfo;
     /**
-     * Creative group assignments for this ad. Applicable when type is
-     * AD_SERVING_CLICK_TRACKER. Only one assignment per creative group number
-     * is allowed for a maximum of two assignments.
+     * Creative group assignments for this ad. Applicable when type is AD_SERVING_CLICK_TRACKER. Only one assignment per creative group number is allowed for a maximum of two assignments.
      */
     creativeGroupAssignments?: Schema$CreativeGroupAssignment[];
     /**
-     * Creative rotation for this ad. Applicable when type is
-     * AD_SERVING_DEFAULT_AD, AD_SERVING_STANDARD_AD, or AD_SERVING_TRACKING.
-     * When type is AD_SERVING_DEFAULT_AD, this field should have exactly one
-     * creativeAssignment.
+     * Creative rotation for this ad. Applicable when type is AD_SERVING_DEFAULT_AD, AD_SERVING_STANDARD_AD, or AD_SERVING_TRACKING. When type is AD_SERVING_DEFAULT_AD, this field should have exactly one creativeAssignment.
      */
     creativeRotation?: Schema$CreativeRotation;
     /**
-     * Time and day targeting information for this ad. This field must be left
-     * blank if the ad is using a targeting template. Applicable when type is
-     * AD_SERVING_STANDARD_AD.
+     * Time and day targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
      */
     dayPartTargeting?: Schema$DayPartTargeting;
     /**
@@ -702,21 +618,15 @@ export namespace dfareporting_v3_2 {
      */
     defaultClickThroughEventTagProperties?: Schema$DefaultClickThroughEventTagProperties;
     /**
-     * Delivery schedule information for this ad. Applicable when type is
-     * AD_SERVING_STANDARD_AD or AD_SERVING_TRACKING. This field along with
-     * subfields priority and impressionRatio are required on insertion when
-     * type is AD_SERVING_STANDARD_AD.
+     * Delivery schedule information for this ad. Applicable when type is AD_SERVING_STANDARD_AD or AD_SERVING_TRACKING. This field along with subfields priority and impressionRatio are required on insertion when type is AD_SERVING_STANDARD_AD.
      */
     deliverySchedule?: Schema$DeliverySchedule;
     /**
-     * Whether this ad is a dynamic click tracker. Applicable when type is
-     * AD_SERVING_CLICK_TRACKER. This is a required field on insert, and is
-     * read-only after insert.
+     * Whether this ad is a dynamic click tracker. Applicable when type is AD_SERVING_CLICK_TRACKER. This is a required field on insert, and is read-only after insert.
      */
     dynamicClickTracker?: boolean;
     /**
-     * Date and time that this ad should stop serving. Must be later than the
-     * start time. This is a required field on insertion.
+     * Date and time that this ad should stop serving. Must be later than the start time. This is a required field on insertion.
      */
     endTime?: string;
     /**
@@ -724,9 +634,7 @@ export namespace dfareporting_v3_2 {
      */
     eventTagOverrides?: Schema$EventTagOverride[];
     /**
-     * Geographical targeting information for this ad. This field must be left
-     * blank if the ad is using a targeting template. Applicable when type is
-     * AD_SERVING_STANDARD_AD.
+     * Geographical targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
      */
     geoTargeting?: Schema$GeoTargeting;
     /**
@@ -734,35 +642,27 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Dimension value for the ID of this ad. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of this ad. This is a read-only, auto-generated field.
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Key-value targeting information for this ad. This field must be left
-     * blank if the ad is using a targeting template. Applicable when type is
-     * AD_SERVING_STANDARD_AD.
+     * Key-value targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
      */
     keyValueTargetingExpression?: Schema$KeyValueTargetingExpression;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#ad&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#ad&quot;.
      */
     kind?: string;
     /**
-     * Language targeting information for this ad. This field must be left blank
-     * if the ad is using a targeting template. Applicable when type is
-     * AD_SERVING_STANDARD_AD.
+     * Language targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
      */
     languageTargeting?: Schema$LanguageTargeting;
     /**
-     * Information about the most recent modification of this ad. This is a
-     * read-only field.
+     * Information about the most recent modification of this ad. This is a read-only field.
      */
     lastModifiedInfo?: Schema$LastModifiedInfo;
     /**
-     * Name of this ad. This is a required field and must be less than 256
-     * characters long.
+     * Name of this ad. This is a required field and must be less than 256 characters long.
      */
     name?: string;
     /**
@@ -770,9 +670,7 @@ export namespace dfareporting_v3_2 {
      */
     placementAssignments?: Schema$PlacementAssignment[];
     /**
-     * Remarketing list targeting expression for this ad. This field must be
-     * left blank if the ad is using a targeting template. Applicable when type
-     * is AD_SERVING_STANDARD_AD.
+     * Remarketing list targeting expression for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
      */
     remarketingListExpression?: Schema$ListTargetingExpression;
     /**
@@ -780,44 +678,31 @@ export namespace dfareporting_v3_2 {
      */
     size?: Schema$Size;
     /**
-     * Whether this ad is ssl compliant. This is a read-only field that is
-     * auto-generated when the ad is inserted or updated.
+     * Whether this ad is ssl compliant. This is a read-only field that is auto-generated when the ad is inserted or updated.
      */
     sslCompliant?: boolean;
     /**
-     * Whether this ad requires ssl. This is a read-only field that is
-     * auto-generated when the ad is inserted or updated.
+     * Whether this ad requires ssl. This is a read-only field that is auto-generated when the ad is inserted or updated.
      */
     sslRequired?: boolean;
     /**
-     * Date and time that this ad should start serving. If creating an ad, this
-     * field must be a time in the future. This is a required field on
-     * insertion.
+     * Date and time that this ad should start serving. If creating an ad, this field must be a time in the future. This is a required field on insertion.
      */
     startTime?: string;
     /**
-     * Subaccount ID of this ad. This is a read-only field that can be left
-     * blank.
+     * Subaccount ID of this ad. This is a read-only field that can be left blank.
      */
     subaccountId?: string;
     /**
-     * Targeting template ID, used to apply preconfigured targeting information
-     * to this ad. This cannot be set while any of dayPartTargeting,
-     * geoTargeting, keyValueTargetingExpression, languageTargeting,
-     * remarketingListExpression, or technologyTargeting are set. Applicable
-     * when type is AD_SERVING_STANDARD_AD.
+     * Targeting template ID, used to apply preconfigured targeting information to this ad. This cannot be set while any of dayPartTargeting, geoTargeting, keyValueTargetingExpression, languageTargeting, remarketingListExpression, or technologyTargeting are set. Applicable when type is AD_SERVING_STANDARD_AD.
      */
     targetingTemplateId?: string;
     /**
-     * Technology platform targeting information for this ad. This field must be
-     * left blank if the ad is using a targeting template. Applicable when type
-     * is AD_SERVING_STANDARD_AD.
+     * Technology platform targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
      */
     technologyTargeting?: Schema$TechnologyTargeting;
     /**
-     * Type of ad. This is a required field on insertion. Note that default ads
-     * (AD_SERVING_DEFAULT_AD) cannot be created directly (see Creative
-     * resource).
+     * Type of ad. This is a required field on insertion. Note that default ads (AD_SERVING_DEFAULT_AD) cannot be created directly (see Creative resource).
      */
     type?: string;
   }
@@ -826,27 +711,19 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$AdBlockingConfiguration {
     /**
-     * Click-through URL used by brand-neutral ads. This is a required field
-     * when overrideClickThroughUrl is set to true.
+     * Click-through URL used by brand-neutral ads. This is a required field when overrideClickThroughUrl is set to true.
      */
     clickThroughUrl?: string;
     /**
-     * ID of a creative bundle to use for this campaign. If set, brand-neutral
-     * ads will select creatives from this bundle. Otherwise, a default
-     * transparent pixel will be used.
+     * ID of a creative bundle to use for this campaign. If set, brand-neutral ads will select creatives from this bundle. Otherwise, a default transparent pixel will be used.
      */
     creativeBundleId?: string;
     /**
-     * Whether this campaign has enabled ad blocking. When true, ad blocking is
-     * enabled for placements in the campaign, but this may be overridden by
-     * site and placement settings. When false, ad blocking is disabled for all
-     * placements under the campaign, regardless of site and placement settings.
+     * Whether this campaign has enabled ad blocking. When true, ad blocking is enabled for placements in the campaign, but this may be overridden by site and placement settings. When false, ad blocking is disabled for all placements under the campaign, regardless of site and placement settings.
      */
     enabled?: boolean;
     /**
-     * Whether the brand-neutral ad&#39;s click-through URL comes from the
-     * campaign&#39;s creative bundle or the override URL. Must be set to true
-     * if ad blocking is enabled and no creative bundle is configured.
+     * Whether the brand-neutral ad&#39;s click-through URL comes from the campaign&#39;s creative bundle or the override URL. Must be set to true if ad blocking is enabled and no creative bundle is configured.
      */
     overrideClickThroughUrl?: boolean;
   }
@@ -859,8 +736,7 @@ export namespace dfareporting_v3_2 {
      */
     ads?: Schema$Ad[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#adsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#adsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -877,11 +753,7 @@ export namespace dfareporting_v3_2 {
      */
     comment?: string;
     /**
-     * Ad slot compatibility. DISPLAY and DISPLAY_INTERSTITIAL refer to
-     * rendering either on desktop, mobile devices or in mobile apps for regular
-     * or interstitial ads respectively. APP and APP_INTERSTITIAL are for
-     * rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in
-     * in-stream video ads developed with the VAST standard.
+     * Ad slot compatibility. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop, mobile devices or in mobile apps for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
      */
     compatibility?: string;
     /**
@@ -889,8 +761,7 @@ export namespace dfareporting_v3_2 {
      */
     height?: string;
     /**
-     * ID of the placement from an external platform that is linked to this ad
-     * slot.
+     * ID of the placement from an external platform that is linked to this ad slot.
      */
     linkedPlacementId?: string;
     /**
@@ -915,24 +786,19 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$Advertiser {
     /**
-     * Account ID of this advertiser.This is a read-only field that can be left
-     * blank.
+     * Account ID of this advertiser.This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
-     * ID of the advertiser group this advertiser belongs to. You can group
-     * advertisers for reporting purposes, allowing you to see aggregated
-     * information for all advertisers in each group.
+     * ID of the advertiser group this advertiser belongs to. You can group advertisers for reporting purposes, allowing you to see aggregated information for all advertisers in each group.
      */
     advertiserGroupId?: string;
     /**
-     * Suffix added to click-through URL of ad creative associations under this
-     * advertiser. Must be less than 129 characters long.
+     * Suffix added to click-through URL of ad creative associations under this advertiser. Must be less than 129 characters long.
      */
     clickThroughUrlSuffix?: string;
     /**
-     * ID of the click-through event tag to apply by default to the landing
-     * pages of this advertiser&#39;s campaigns.
+     * ID of the click-through event tag to apply by default to the landing pages of this advertiser&#39;s campaigns.
      */
     defaultClickThroughEventTagId?: string;
     /**
@@ -940,20 +806,11 @@ export namespace dfareporting_v3_2 {
      */
     defaultEmail?: string;
     /**
-     * Floodlight configuration ID of this advertiser. The floodlight
-     * configuration ID will be created automatically, so on insert this field
-     * should be left blank. This field can be set to another advertiser&#39;s
-     * floodlight configuration ID in order to share that advertiser&#39;s
-     * floodlight configuration with this advertiser, so long as:  - This
-     * advertiser&#39;s original floodlight configuration is not already
-     * associated with floodlight activities or floodlight activity groups.  -
-     * This advertiser&#39;s original floodlight configuration is not already
-     * shared with another advertiser.
+     * Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser&#39;s floodlight configuration ID in order to share that advertiser&#39;s floodlight configuration with this advertiser, so long as:  - This advertiser&#39;s original floodlight configuration is not already associated with floodlight activities or floodlight activity groups.  - This advertiser&#39;s original floodlight configuration is not already shared with another advertiser.
      */
     floodlightConfigurationId?: string;
     /**
-     * Dimension value for the ID of the floodlight configuration. This is a
-     * read-only, auto-generated field.
+     * Dimension value for the ID of the floodlight configuration. This is a read-only, auto-generated field.
      */
     floodlightConfigurationIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -961,27 +818,19 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Dimension value for the ID of this advertiser. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of this advertiser. This is a read-only, auto-generated field.
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#advertiser&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiser&quot;.
      */
     kind?: string;
     /**
-     * Name of this advertiser. This is a required field and must be less than
-     * 256 characters long and unique among advertisers of the same account.
+     * Name of this advertiser. This is a required field and must be less than 256 characters long and unique among advertisers of the same account.
      */
     name?: string;
     /**
-     * Original floodlight configuration before any sharing occurred. Set the
-     * floodlightConfigurationId of this advertiser to
-     * originalFloodlightConfigurationId to unshare the advertiser&#39;s current
-     * floodlight configuration. You cannot unshare an advertiser&#39;s
-     * floodlight configuration if the shared configuration has activities
-     * associated with any campaign or placement.
+     * Original floodlight configuration before any sharing occurred. Set the floodlightConfigurationId of this advertiser to originalFloodlightConfigurationId to unshare the advertiser&#39;s current floodlight configuration. You cannot unshare an advertiser&#39;s floodlight configuration if the shared configuration has activities associated with any campaign or placement.
      */
     originalFloodlightConfigurationId?: string;
     /**
@@ -989,8 +838,7 @@ export namespace dfareporting_v3_2 {
      */
     status?: string;
     /**
-     * Subaccount ID of this advertiser.This is a read-only field that can be
-     * left blank.
+     * Subaccount ID of this advertiser.This is a read-only field that can be left blank.
      */
     subaccountId?: string;
     /**
@@ -999,13 +847,11 @@ export namespace dfareporting_v3_2 {
     suspended?: boolean;
   }
   /**
-   * Groups advertisers together so that reports can be generated for the entire
-   * group at once.
+   * Groups advertisers together so that reports can be generated for the entire group at once.
    */
   export interface Schema$AdvertiserGroup {
     /**
-     * Account ID of this advertiser group. This is a read-only field that can
-     * be left blank.
+     * Account ID of this advertiser group. This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
@@ -1013,14 +859,11 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#advertiserGroup&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiserGroup&quot;.
      */
     kind?: string;
     /**
-     * Name of this advertiser group. This is a required field and must be less
-     * than 256 characters long and unique among advertiser groups of the same
-     * account.
+     * Name of this advertiser group. This is a required field and must be less than 256 characters long and unique among advertiser groups of the same account.
      */
     name?: string;
   }
@@ -1033,8 +876,7 @@ export namespace dfareporting_v3_2 {
      */
     advertiserGroups?: Schema$AdvertiserGroup[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#advertiserGroupsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiserGroupsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -1047,8 +889,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$AdvertiserLandingPagesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#advertiserLandingPagesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiserLandingPagesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -1069,8 +910,7 @@ export namespace dfareporting_v3_2 {
      */
     advertisers?: Schema$Advertiser[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#advertisersListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertisersListResponse&quot;.
      */
     kind?: string;
     /**
@@ -1083,9 +923,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$AudienceSegment {
     /**
-     * Weight allocated to this segment. The weight assigned will be understood
-     * in proportion to the weights assigned to other segments in the same
-     * segment group. Acceptable values are 1 to 1000, inclusive.
+     * Weight allocated to this segment. The weight assigned will be understood in proportion to the weights assigned to other segments in the same segment group. Acceptable values are 1 to 1000, inclusive.
      */
     allocation?: number;
     /**
@@ -1093,8 +931,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Name of this audience segment. This is a required field and must be less
-     * than 65 characters long.
+     * Name of this audience segment. This is a required field and must be less than 65 characters long.
      */
     name?: string;
   }
@@ -1103,18 +940,15 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$AudienceSegmentGroup {
     /**
-     * Audience segments assigned to this group. The number of segments must be
-     * between 2 and 100.
+     * Audience segments assigned to this group. The number of segments must be between 2 and 100.
      */
     audienceSegments?: Schema$AudienceSegment[];
     /**
-     * ID of this audience segment group. This is a read-only, auto-generated
-     * field.
+     * ID of this audience segment group. This is a read-only, auto-generated field.
      */
     id?: string;
     /**
-     * Name of this audience segment group. This is a required field and must be
-     * less than 65 characters long.
+     * Name of this audience segment group. This is a required field and must be less than 65 characters long.
      */
     name?: string;
   }
@@ -1123,8 +957,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$Browser {
     /**
-     * ID referring to this grouping of browser and version numbers. This is the
-     * ID used for targeting.
+     * ID referring to this grouping of browser and version numbers. This is the ID used for targeting.
      */
     browserVersionId?: string;
     /**
@@ -1132,30 +965,15 @@ export namespace dfareporting_v3_2 {
      */
     dartId?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#browser&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#browser&quot;.
      */
     kind?: string;
     /**
-     * Major version number (leftmost number) of this browser. For example, for
-     * Chrome 5.0.376.86 beta, this field should be set to 5. An asterisk (*)
-     * may be used to target any version number, and a question mark (?) may be
-     * used to target cases where the version number cannot be identified. For
-     * example, Chrome *.* targets any version of Chrome: 1.2, 2.5, 3.5, and so
-     * on. Chrome 3.* targets Chrome 3.1, 3.5, but not 4.0. Firefox ?.? targets
-     * cases where the ad server knows the browser is Firefox but can&#39;t tell
-     * which version it is.
+     * Major version number (leftmost number) of this browser. For example, for Chrome 5.0.376.86 beta, this field should be set to 5. An asterisk (*) may be used to target any version number, and a question mark (?) may be used to target cases where the version number cannot be identified. For example, Chrome *.* targets any version of Chrome: 1.2, 2.5, 3.5, and so on. Chrome 3.* targets Chrome 3.1, 3.5, but not 4.0. Firefox ?.? targets cases where the ad server knows the browser is Firefox but can&#39;t tell which version it is.
      */
     majorVersion?: string;
     /**
-     * Minor version number (number after first dot on left) of this browser.
-     * For example, for Chrome 5.0.375.86 beta, this field should be set to 0.
-     * An asterisk (*) may be used to target any version number, and a question
-     * mark (?) may be used to target cases where the version number cannot be
-     * identified. For example, Chrome *.* targets any version of Chrome:
-     * 1.2, 2.5, 3.5, and so on. Chrome 3.* targets Chrome 3.1, 3.5, but
-     * not 4.0. Firefox ?.? targets cases where the ad server knows the browser
-     * is Firefox but can&#39;t tell which version it is.
+     * Minor version number (number after first dot on left) of this browser. For example, for Chrome 5.0.375.86 beta, this field should be set to 0. An asterisk (*) may be used to target any version number, and a question mark (?) may be used to target cases where the version number cannot be identified. For example, Chrome *.* targets any version of Chrome: 1.2, 2.5, 3.5, and so on. Chrome 3.* targets Chrome 3.1, 3.5, but not 4.0. Firefox ?.? targets cases where the ad server knows the browser is Firefox but can&#39;t tell which version it is.
      */
     minorVersion?: string;
     /**
@@ -1172,8 +990,7 @@ export namespace dfareporting_v3_2 {
      */
     browsers?: Schema$Browser[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#browsersListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#browsersListResponse&quot;.
      */
     kind?: string;
   }
@@ -1182,8 +999,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$Campaign {
     /**
-     * Account ID of this campaign. This is a read-only field that can be left
-     * blank.
+     * Account ID of this campaign. This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
@@ -1203,8 +1019,7 @@ export namespace dfareporting_v3_2 {
      */
     advertiserId?: string;
     /**
-     * Dimension value for the advertiser ID of this campaign. This is a
-     * read-only, auto-generated field.
+     * Dimension value for the advertiser ID of this campaign. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -1212,13 +1027,11 @@ export namespace dfareporting_v3_2 {
      */
     archived?: boolean;
     /**
-     * Audience segment groups assigned to this campaign. Cannot have more than
-     * 300 segment groups.
+     * Audience segment groups assigned to this campaign. Cannot have more than 300 segment groups.
      */
     audienceSegmentGroups?: Schema$AudienceSegmentGroup[];
     /**
-     * Billing invoice code included in the Campaign Manager client billing
-     * invoices associated with the campaign.
+     * Billing invoice code included in the Campaign Manager client billing invoices associated with the campaign.
      */
     billingInvoiceCode?: string;
     /**
@@ -1226,13 +1039,11 @@ export namespace dfareporting_v3_2 {
      */
     clickThroughUrlSuffixProperties?: Schema$ClickThroughUrlSuffixProperties;
     /**
-     * Arbitrary comments about this campaign. Must be less than 256 characters
-     * long.
+     * Arbitrary comments about this campaign. Must be less than 256 characters long.
      */
     comment?: string;
     /**
-     * Information about the creation of this campaign. This is a read-only
-     * field.
+     * Information about the creation of this campaign. This is a read-only field.
      */
     createInfo?: Schema$LastModifiedInfo;
     /**
@@ -1252,18 +1063,11 @@ export namespace dfareporting_v3_2 {
      */
     defaultLandingPageId?: string;
     /**
-     * Date on which the campaign will stop running. On insert, the end date
-     * must be today or a future date. The end date must be later than or be the
-     * same as the start date. If, for example, you set 6/25/2015 as both the
-     * start and end dates, the effective campaign run date is just that day
-     * only, 6/25/2015. The hours, minutes, and seconds of the end date should
-     * not be set, as doing so will result in an error. This is a required
-     * field.
+     * Date on which the campaign will stop running. On insert, the end date must be today or a future date. The end date must be later than or be the same as the start date. If, for example, you set 6/25/2015 as both the start and end dates, the effective campaign run date is just that day only, 6/25/2015. The hours, minutes, and seconds of the end date should not be set, as doing so will result in an error. This is a required field.
      */
     endDate?: string;
     /**
-     * Overrides that can be used to activate or deactivate advertiser event
-     * tags.
+     * Overrides that can be used to activate or deactivate advertiser event tags.
      */
     eventTagOverrides?: Schema$EventTagOverride[];
     /**
@@ -1275,18 +1079,15 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Dimension value for the ID of this campaign. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of this campaign. This is a read-only, auto-generated field.
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#campaign&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaign&quot;.
      */
     kind?: string;
     /**
-     * Information about the most recent modification of this campaign. This is
-     * a read-only field.
+     * Information about the most recent modification of this campaign. This is a read-only field.
      */
     lastModifiedInfo?: Schema$LastModifiedInfo;
     /**
@@ -1294,8 +1095,7 @@ export namespace dfareporting_v3_2 {
      */
     lookbackConfiguration?: Schema$LookbackConfiguration;
     /**
-     * Name of this campaign. This is a required field and must be less than 256
-     * characters long and unique among campaigns of the same advertiser.
+     * Name of this campaign. This is a required field and must be less than 256 characters long and unique among campaigns of the same advertiser.
      */
     name?: string;
     /**
@@ -1303,14 +1103,11 @@ export namespace dfareporting_v3_2 {
      */
     nielsenOcrEnabled?: boolean;
     /**
-     * Date on which the campaign starts running. The start date can be any
-     * date. The hours, minutes, and seconds of the start date should not be
-     * set, as doing so will result in an error. This is a required field.
+     * Date on which the campaign starts running. The start date can be any date. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error. This is a required field.
      */
     startDate?: string;
     /**
-     * Subaccount ID of this campaign. This is a read-only field that can be
-     * left blank.
+     * Subaccount ID of this campaign. This is a read-only field that can be left blank.
      */
     subaccountId?: string;
     /**
@@ -1323,13 +1120,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CampaignCreativeAssociation {
     /**
-     * ID of the creative associated with the campaign. This is a required
-     * field.
+     * ID of the creative associated with the campaign. This is a required field.
      */
     creativeId?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#campaignCreativeAssociation&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignCreativeAssociation&quot;.
      */
     kind?: string;
   }
@@ -1342,8 +1137,7 @@ export namespace dfareporting_v3_2 {
      */
     campaignCreativeAssociations?: Schema$CampaignCreativeAssociation[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#campaignCreativeAssociationsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignCreativeAssociationsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -1360,8 +1154,7 @@ export namespace dfareporting_v3_2 {
      */
     campaigns?: Schema$Campaign[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#campaignsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -1394,8 +1187,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#changeLog&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#changeLog&quot;.
      */
     kind?: string;
     /**
@@ -1403,8 +1195,7 @@ export namespace dfareporting_v3_2 {
      */
     newValue?: string;
     /**
-     * ID of the object of this change log. The object could be a campaign,
-     * placement, ad, or other type.
+     * ID of the object of this change log. The object could be a campaign, placement, ad, or other type.
      */
     objectId?: string;
     /**
@@ -1420,9 +1211,7 @@ export namespace dfareporting_v3_2 {
      */
     subaccountId?: string;
     /**
-     * Transaction ID of this change log. When a single API call results in many
-     * changes, each change will have a separate ID in the change log but will
-     * share the same transactionId.
+     * Transaction ID of this change log. When a single API call results in many changes, each change will have a separate ID in the change log but will share the same transactionId.
      */
     transactionId?: string;
     /**
@@ -1443,8 +1232,7 @@ export namespace dfareporting_v3_2 {
      */
     changeLogs?: Schema$ChangeLog[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#changeLogsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#changeLogsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -1461,8 +1249,7 @@ export namespace dfareporting_v3_2 {
      */
     cities?: Schema$City[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#citiesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#citiesListResponse&quot;.
      */
     kind?: string;
   }
@@ -1479,13 +1266,11 @@ export namespace dfareporting_v3_2 {
      */
     countryDartId?: string;
     /**
-     * DART ID of this city. This is the ID used for targeting and generating
-     * reports.
+     * DART ID of this city. This is the ID used for targeting and generating reports.
      */
     dartId?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#city&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#city&quot;.
      */
     kind?: string;
     /**
@@ -1514,20 +1299,15 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$ClickTag {
     /**
-     * Parameter value for the specified click tag. This field contains a
-     * click-through url.
+     * Parameter value for the specified click tag. This field contains a click-through url.
      */
     clickThroughUrl?: Schema$CreativeClickThroughUrl;
     /**
-     * Advertiser event name associated with the click tag. This field is used
-     * by DISPLAY_IMAGE_GALLERY and HTML5_BANNER creatives. Applicable to
-     * DISPLAY when the primary asset type is not HTML_IMAGE.
+     * Advertiser event name associated with the click tag. This field is used by DISPLAY_IMAGE_GALLERY and HTML5_BANNER creatives. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     eventName?: string;
     /**
-     * Parameter name for the specified click tag. For DISPLAY_IMAGE_GALLERY
-     * creative assets, this field must match the value of the creative
-     * asset&#39;s creativeAssetId.name field.
+     * Parameter name for the specified click tag. For DISPLAY_IMAGE_GALLERY creative assets, this field must match the value of the creative asset&#39;s creativeAssetId.name field.
      */
     name?: string;
   }
@@ -1536,18 +1316,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$ClickThroughUrl {
     /**
-     * Read-only convenience field representing the actual URL that will be used
-     * for this click-through. The URL is computed as follows:  - If
-     * defaultLandingPage is enabled then the campaign&#39;s default landing
-     * page URL is assigned to this field. - If defaultLandingPage is not
-     * enabled and a landingPageId is specified then that landing page&#39;s URL
-     * is assigned to this field. - If neither of the above cases apply, then
-     * the customClickThroughUrl is assigned to this field.
+     * Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows:  - If defaultLandingPage is enabled then the campaign&#39;s default landing page URL is assigned to this field. - If defaultLandingPage is not enabled and a landingPageId is specified then that landing page&#39;s URL is assigned to this field. - If neither of the above cases apply, then the customClickThroughUrl is assigned to this field.
      */
     computedClickThroughUrl?: string;
     /**
-     * Custom click-through URL. Applicable if the defaultLandingPage field is
-     * set to false and the landingPageId field is left unset.
+     * Custom click-through URL. Applicable if the defaultLandingPage field is set to false and the landingPageId field is left unset.
      */
     customClickThroughUrl?: string;
     /**
@@ -1555,8 +1328,7 @@ export namespace dfareporting_v3_2 {
      */
     defaultLandingPage?: boolean;
     /**
-     * ID of the landing page for the click-through URL. Applicable if the
-     * defaultLandingPage field is set to false.
+     * ID of the landing page for the click-through URL. Applicable if the defaultLandingPage field is set to false.
      */
     landingPageId?: string;
   }
@@ -1565,13 +1337,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$ClickThroughUrlSuffixProperties {
     /**
-     * Click-through URL suffix to apply to all ads in this entity&#39;s scope.
-     * Must be less than 128 characters long.
+     * Click-through URL suffix to apply to all ads in this entity&#39;s scope. Must be less than 128 characters long.
      */
     clickThroughUrlSuffix?: string;
     /**
-     * Whether this entity should override the inherited click-through URL
-     * suffix with its own defined value.
+     * Whether this entity should override the inherited click-through URL suffix with its own defined value.
      */
     overrideInheritedSuffix?: boolean;
   }
@@ -1597,8 +1367,7 @@ export namespace dfareporting_v3_2 {
      */
     companionsDisabled?: boolean;
     /**
-     * Whitelist of companion sizes to be served to this placement. Set this
-     * list to null or empty to serve all companion sizes.
+     * Whitelist of companion sizes to be served to this placement. Set this list to null or empty to serve all companion sizes.
      */
     enabledSizes?: Schema$Size[];
     /**
@@ -1606,8 +1375,7 @@ export namespace dfareporting_v3_2 {
      */
     imageOnly?: boolean;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#companionSetting&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#companionSetting&quot;.
      */
     kind?: string;
   }
@@ -1616,13 +1384,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CompatibleFields {
     /**
-     * Contains items that are compatible to be selected for a report of type
-     * &quot;CROSS_DIMENSION_REACH&quot;.
+     * Contains items that are compatible to be selected for a report of type &quot;CROSS_DIMENSION_REACH&quot;.
      */
     crossDimensionReachReportCompatibleFields?: Schema$CrossDimensionReachReportCompatibleFields;
     /**
-     * Contains items that are compatible to be selected for a report of type
-     * &quot;FLOODLIGHT&quot;.
+     * Contains items that are compatible to be selected for a report of type &quot;FLOODLIGHT&quot;.
      */
     floodlightReportCompatibleFields?: Schema$FloodlightReportCompatibleFields;
     /**
@@ -1630,25 +1396,20 @@ export namespace dfareporting_v3_2 {
      */
     kind?: string;
     /**
-     * Contains items that are compatible to be selected for a report of type
-     * &quot;PATH_TO_CONVERSION&quot;.
+     * Contains items that are compatible to be selected for a report of type &quot;PATH_TO_CONVERSION&quot;.
      */
     pathToConversionReportCompatibleFields?: Schema$PathToConversionReportCompatibleFields;
     /**
-     * Contains items that are compatible to be selected for a report of type
-     * &quot;REACH&quot;.
+     * Contains items that are compatible to be selected for a report of type &quot;REACH&quot;.
      */
     reachReportCompatibleFields?: Schema$ReachReportCompatibleFields;
     /**
-     * Contains items that are compatible to be selected for a report of type
-     * &quot;STANDARD&quot;.
+     * Contains items that are compatible to be selected for a report of type &quot;STANDARD&quot;.
      */
     reportCompatibleFields?: Schema$ReportCompatibleFields;
   }
   /**
-   * Contains information about an internet connection type that can be targeted
-   * by ads. Clients can use the connection type to target mobile vs. broadband
-   * users.
+   * Contains information about an internet connection type that can be targeted by ads. Clients can use the connection type to target mobile vs. broadband users.
    */
   export interface Schema$ConnectionType {
     /**
@@ -1656,8 +1417,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#connectionType&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#connectionType&quot;.
      */
     kind?: string;
     /**
@@ -1674,8 +1434,7 @@ export namespace dfareporting_v3_2 {
      */
     connectionTypes?: Schema$ConnectionType[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#connectionTypesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#connectionTypesListResponse&quot;.
      */
     kind?: string;
   }
@@ -1688,8 +1447,7 @@ export namespace dfareporting_v3_2 {
      */
     contentCategories?: Schema$ContentCategory[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#contentCategoriesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#contentCategoriesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -1698,13 +1456,11 @@ export namespace dfareporting_v3_2 {
     nextPageToken?: string;
   }
   /**
-   * Organizes placements according to the contents of their associated
-   * webpages.
+   * Organizes placements according to the contents of their associated webpages.
    */
   export interface Schema$ContentCategory {
     /**
-     * Account ID of this content category. This is a read-only field that can
-     * be left blank.
+     * Account ID of this content category. This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
@@ -1712,25 +1468,20 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#contentCategory&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#contentCategory&quot;.
      */
     kind?: string;
     /**
-     * Name of this content category. This is a required field and must be less
-     * than 256 characters long and unique among content categories of the same
-     * account.
+     * Name of this content category. This is a required field and must be less than 256 characters long and unique among content categories of the same account.
      */
     name?: string;
   }
   /**
-   * A Conversion represents when a user successfully performs a desired action
-   * after seeing an ad.
+   * A Conversion represents when a user successfully performs a desired action after seeing an ad.
    */
   export interface Schema$Conversion {
     /**
-     * Whether this particular request may come from a user under the age of 13,
-     * under COPPA compliance.
+     * Whether this particular request may come from a user under the age of 13, under COPPA compliance.
      */
     childDirectedTreatment?: boolean;
     /**
@@ -1738,22 +1489,11 @@ export namespace dfareporting_v3_2 {
      */
     customVariables?: Schema$CustomFloodlightVariable[];
     /**
-     * The alphanumeric encrypted user ID. When set, encryptionInfo should also
-     * be specified. This field is mutually exclusive with
-     * encryptedUserIdCandidates[], mobileDeviceId and gclid. This or
-     * encryptedUserIdCandidates[] or mobileDeviceId or gclid is a required
-     * field.
+     * The alphanumeric encrypted user ID. When set, encryptionInfo should also be specified. This field is mutually exclusive with encryptedUserIdCandidates[], mobileDeviceId and gclid. This or encryptedUserIdCandidates[] or mobileDeviceId or gclid is a required field.
      */
     encryptedUserId?: string;
     /**
-     * A list of the alphanumeric encrypted user IDs. Any user ID with exposure
-     * prior to the conversion timestamp will be used in the inserted
-     * conversion. If no such user ID is found then the conversion will be
-     * rejected with NO_COOKIE_MATCH_FOUND error. When set, encryptionInfo
-     * should also be specified. This field may only be used when calling
-     * batchinsert; it is not supported by batchupdate. This field is mutually
-     * exclusive with encryptedUserId, mobileDeviceId and gclid. This or
-     * encryptedUserId or mobileDeviceId or gclid is a required field.
+     * A list of the alphanumeric encrypted user IDs. Any user ID with exposure prior to the conversion timestamp will be used in the inserted conversion. If no such user ID is found then the conversion will be rejected with NO_COOKIE_MATCH_FOUND error. When set, encryptionInfo should also be specified. This field may only be used when calling batchinsert; it is not supported by batchupdate. This field is mutually exclusive with encryptedUserId, mobileDeviceId and gclid. This or encryptedUserId or mobileDeviceId or gclid is a required field.
      */
     encryptedUserIdCandidates?: string[];
     /**
@@ -1765,28 +1505,19 @@ export namespace dfareporting_v3_2 {
      */
     floodlightConfigurationId?: string;
     /**
-     * The Google click ID. This field is mutually exclusive with
-     * encryptedUserId, encryptedUserIdCandidates[] and mobileDeviceId. This or
-     * encryptedUserId or encryptedUserIdCandidates[] or mobileDeviceId is a
-     * required field.
+     * The Google click ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[] and mobileDeviceId. This or encryptedUserId or encryptedUserIdCandidates[] or mobileDeviceId is a required field.
      */
     gclid?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#conversion&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversion&quot;.
      */
     kind?: string;
     /**
-     * Whether Limit Ad Tracking is enabled. When set to true, the conversion
-     * will be used for reporting but not targeting. This will prevent
-     * remarketing.
+     * Whether Limit Ad Tracking is enabled. When set to true, the conversion will be used for reporting but not targeting. This will prevent remarketing.
      */
     limitAdTracking?: boolean;
     /**
-     * The mobile device ID. This field is mutually exclusive with
-     * encryptedUserId, encryptedUserIdCandidates[] and gclid. This or
-     * encryptedUserId or encryptedUserIdCandidates[] or gclid is a required
-     * field.
+     * The mobile device ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[] and gclid. This or encryptedUserId or encryptedUserIdCandidates[] or gclid is a required field.
      */
     mobileDeviceId?: string;
     /**
@@ -1794,8 +1525,7 @@ export namespace dfareporting_v3_2 {
      */
     nonPersonalizedAd?: boolean;
     /**
-     * The ordinal of the conversion. Use this field to control how conversions
-     * of the same user and day are de-duplicated. This is a required field.
+     * The ordinal of the conversion. Use this field to control how conversions of the same user and day are de-duplicated. This is a required field.
      */
     ordinal?: string;
     /**
@@ -1803,14 +1533,11 @@ export namespace dfareporting_v3_2 {
      */
     quantity?: string;
     /**
-     * The timestamp of conversion, in Unix epoch micros. This is a required
-     * field.
+     * The timestamp of conversion, in Unix epoch micros. This is a required field.
      */
     timestampMicros?: string;
     /**
-     * Whether this particular request may come from a user under the age of 16
-     * (may differ by country), under compliance with the European Union&#39;s
-     * General Data Protection Regulation (GDPR).
+     * Whether this particular request may come from a user under the age of 16 (may differ by country), under compliance with the European Union&#39;s General Data Protection Regulation (GDPR).
      */
     treatmentForUnderage?: boolean;
     /**
@@ -1819,8 +1546,7 @@ export namespace dfareporting_v3_2 {
     value?: number;
   }
   /**
-   * The error code and description for a conversion that failed to insert or
-   * update.
+   * The error code and description for a conversion that failed to insert or update.
    */
   export interface Schema$ConversionError {
     /**
@@ -1828,8 +1554,7 @@ export namespace dfareporting_v3_2 {
      */
     code?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#conversionError&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionError&quot;.
      */
     kind?: string;
     /**
@@ -1846,14 +1571,11 @@ export namespace dfareporting_v3_2 {
      */
     conversions?: Schema$Conversion[];
     /**
-     * Describes how encryptedUserId or encryptedUserIdCandidates[] is
-     * encrypted. This is a required field if encryptedUserId or
-     * encryptedUserIdCandidates[] is used.
+     * Describes how encryptedUserId or encryptedUserIdCandidates[] is encrypted. This is a required field if encryptedUserId or encryptedUserIdCandidates[] is used.
      */
     encryptionInfo?: Schema$EncryptionInfo;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#conversionsBatchInsertRequest&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchInsertRequest&quot;.
      */
     kind?: string;
   }
@@ -1866,13 +1588,11 @@ export namespace dfareporting_v3_2 {
      */
     hasFailures?: boolean;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#conversionsBatchInsertResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchInsertResponse&quot;.
      */
     kind?: string;
     /**
-     * The insert status of each conversion. Statuses are returned in the same
-     * order that conversions are inserted.
+     * The insert status of each conversion. Statuses are returned in the same order that conversions are inserted.
      */
     status?: Schema$ConversionStatus[];
   }
@@ -1885,13 +1605,11 @@ export namespace dfareporting_v3_2 {
      */
     conversions?: Schema$Conversion[];
     /**
-     * Describes how encryptedUserId is encrypted. This is a required field if
-     * encryptedUserId is used.
+     * Describes how encryptedUserId is encrypted. This is a required field if encryptedUserId is used.
      */
     encryptionInfo?: Schema$EncryptionInfo;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#conversionsBatchUpdateRequest&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchUpdateRequest&quot;.
      */
     kind?: string;
   }
@@ -1904,19 +1622,16 @@ export namespace dfareporting_v3_2 {
      */
     hasFailures?: boolean;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#conversionsBatchUpdateResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchUpdateResponse&quot;.
      */
     kind?: string;
     /**
-     * The update status of each conversion. Statuses are returned in the same
-     * order that conversions are updated.
+     * The update status of each conversion. Statuses are returned in the same order that conversions are updated.
      */
     status?: Schema$ConversionStatus[];
   }
   /**
-   * The original conversion that was inserted or updated and whether there were
-   * any errors.
+   * The original conversion that was inserted or updated and whether there were any errors.
    */
   export interface Schema$ConversionStatus {
     /**
@@ -1928,8 +1643,7 @@ export namespace dfareporting_v3_2 {
      */
     errors?: Schema$ConversionError[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#conversionStatus&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionStatus&quot;.
      */
     kind?: string;
   }
@@ -1942,8 +1656,7 @@ export namespace dfareporting_v3_2 {
      */
     countries?: Schema$Country[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#countriesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#countriesListResponse&quot;.
      */
     kind?: string;
   }
@@ -1956,13 +1669,11 @@ export namespace dfareporting_v3_2 {
      */
     countryCode?: string;
     /**
-     * DART ID of this country. This is the ID used for targeting and generating
-     * reports.
+     * DART ID of this country. This is the ID used for targeting and generating reports.
      */
     dartId?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#country&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#country&quot;.
      */
     kind?: string;
     /**
@@ -1979,9 +1690,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$Creative {
     /**
-     * Account ID of this creative. This field, if left unset, will be
-     * auto-generated for both insert and update operations. Applicable to all
-     * creative types.
+     * Account ID of this creative. This field, if left unset, will be auto-generated for both insert and update operations. Applicable to all creative types.
      */
     accountId?: string;
     /**
@@ -1989,34 +1698,23 @@ export namespace dfareporting_v3_2 {
      */
     active?: boolean;
     /**
-     * Additional sizes associated with a responsive creative. When inserting or
-     * updating a creative either the size ID field or size width and height
-     * fields can be used. Applicable to DISPLAY creatives when the primary
-     * asset type is HTML_IMAGE.
+     * Additional sizes associated with a responsive creative. When inserting or updating a creative either the size ID field or size width and height fields can be used. Applicable to DISPLAY creatives when the primary asset type is HTML_IMAGE.
      */
     additionalSizes?: Schema$Size[];
     /**
-     * Ad parameters user for VPAID creative. This is a read-only field.
-     * Applicable to the following creative types: all VPAID.
+     * Ad parameters user for VPAID creative. This is a read-only field. Applicable to the following creative types: all VPAID.
      */
     adParameters?: string;
     /**
-     * Keywords for a Rich Media creative. Keywords let you customize the
-     * creative settings of a Rich Media ad running on your site without having
-     * to contact the advertiser. You can use keywords to dynamically change the
-     * look or functionality of a creative. Applicable to the following creative
-     * types: all RICH_MEDIA, and all VPAID.
+     * Keywords for a Rich Media creative. Keywords let you customize the creative settings of a Rich Media ad running on your site without having to contact the advertiser. You can use keywords to dynamically change the look or functionality of a creative. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
     adTagKeys?: string[];
     /**
-     * Advertiser ID of this creative. This is a required field. Applicable to
-     * all creative types.
+     * Advertiser ID of this creative. This is a required field. Applicable to all creative types.
      */
     advertiserId?: string;
     /**
-     * Whether script access is allowed for this creative. This is a read-only
-     * and deprecated field which will automatically be set to true on update.
-     * Applicable to the following creative types: FLASH_INPAGE.
+     * Whether script access is allowed for this creative. This is a read-only and deprecated field which will automatically be set to true on update. Applicable to the following creative types: FLASH_INPAGE.
      */
     allowScriptAccess?: boolean;
     /**
@@ -2024,125 +1722,67 @@ export namespace dfareporting_v3_2 {
      */
     archived?: boolean;
     /**
-     * Type of artwork used for the creative. This is a read-only field.
-     * Applicable to the following creative types: all RICH_MEDIA, and all
-     * VPAID.
+     * Type of artwork used for the creative. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
     artworkType?: string;
     /**
-     * Source application where creative was authored. Presently, only DBM
-     * authored creatives will have this field set. Applicable to all creative
-     * types.
+     * Source application where creative was authored. Presently, only DBM authored creatives will have this field set. Applicable to all creative types.
      */
     authoringSource?: string;
     /**
-     * Authoring tool for HTML5 banner creatives. This is a read-only field.
-     * Applicable to the following creative types: HTML5_BANNER.
+     * Authoring tool for HTML5 banner creatives. This is a read-only field. Applicable to the following creative types: HTML5_BANNER.
      */
     authoringTool?: string;
     /**
-     * Whether images are automatically advanced for image gallery creatives.
-     * Applicable to the following creative types: DISPLAY_IMAGE_GALLERY.
+     * Whether images are automatically advanced for image gallery creatives. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY.
      */
     autoAdvanceImages?: boolean;
     /**
-     * The 6-character HTML color code, beginning with #, for the background of
-     * the window area where the Flash file is displayed. Default is white.
-     * Applicable to the following creative types: FLASH_INPAGE.
+     * The 6-character HTML color code, beginning with #, for the background of the window area where the Flash file is displayed. Default is white. Applicable to the following creative types: FLASH_INPAGE.
      */
     backgroundColor?: string;
     /**
-     * Click-through URL for backup image. Applicable to ENHANCED_BANNER when
-     * the primary asset type is not HTML_IMAGE.
+     * Click-through URL for backup image. Applicable to ENHANCED_BANNER when the primary asset type is not HTML_IMAGE.
      */
     backupImageClickThroughUrl?: Schema$CreativeClickThroughUrl;
     /**
-     * List of feature dependencies that will cause a backup image to be served
-     * if the browser that serves the ad does not support them. Feature
-     * dependencies are features that a browser must be able to support in order
-     * to render your HTML5 creative asset correctly. This field is initially
-     * auto-generated to contain all features detected by Campaign Manager for
-     * all the assets of this creative and can then be modified by the client.
-     * To reset this field, copy over all the creativeAssets&#39; detected
-     * features. Applicable to the following creative types: HTML5_BANNER.
-     * Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+     * List of feature dependencies that will cause a backup image to be served if the browser that serves the ad does not support them. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative asset correctly. This field is initially auto-generated to contain all features detected by Campaign Manager for all the assets of this creative and can then be modified by the client. To reset this field, copy over all the creativeAssets&#39; detected features. Applicable to the following creative types: HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     backupImageFeatures?: string[];
     /**
-     * Reporting label used for HTML5 banner backup image. Applicable to the
-     * following creative types: DISPLAY when the primary asset type is not
-     * HTML_IMAGE.
+     * Reporting label used for HTML5 banner backup image. Applicable to the following creative types: DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     backupImageReportingLabel?: string;
     /**
-     * Target window for backup image. Applicable to the following creative
-     * types: FLASH_INPAGE and HTML5_BANNER. Applicable to DISPLAY when the
-     * primary asset type is not HTML_IMAGE.
+     * Target window for backup image. Applicable to the following creative types: FLASH_INPAGE and HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     backupImageTargetWindow?: Schema$TargetWindow;
     /**
-     * Click tags of the creative. For DISPLAY, FLASH_INPAGE, and HTML5_BANNER
-     * creatives, this is a subset of detected click tags for the assets
-     * associated with this creative. After creating a flash asset, detected
-     * click tags will be returned in the creativeAssetMetadata. When inserting
-     * the creative, populate the creative clickTags field using the
-     * creativeAssetMetadata.clickTags field. For DISPLAY_IMAGE_GALLERY
-     * creatives, there should be exactly one entry in this list for each image
-     * creative asset. A click tag is matched with a corresponding creative
-     * asset by matching the clickTag.name field with the
-     * creativeAsset.assetIdentifier.name field. Applicable to the following
-     * creative types: DISPLAY_IMAGE_GALLERY, FLASH_INPAGE, HTML5_BANNER.
-     * Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+     * Click tags of the creative. For DISPLAY, FLASH_INPAGE, and HTML5_BANNER creatives, this is a subset of detected click tags for the assets associated with this creative. After creating a flash asset, detected click tags will be returned in the creativeAssetMetadata. When inserting the creative, populate the creative clickTags field using the creativeAssetMetadata.clickTags field. For DISPLAY_IMAGE_GALLERY creatives, there should be exactly one entry in this list for each image creative asset. A click tag is matched with a corresponding creative asset by matching the clickTag.name field with the creativeAsset.assetIdentifier.name field. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, FLASH_INPAGE, HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     clickTags?: Schema$ClickTag[];
     /**
-     * Industry standard ID assigned to creative for reach and frequency.
-     * Applicable to INSTREAM_VIDEO_REDIRECT creatives.
+     * Industry standard ID assigned to creative for reach and frequency. Applicable to INSTREAM_VIDEO_REDIRECT creatives.
      */
     commercialId?: string;
     /**
-     * List of companion creatives assigned to an in-Stream video creative.
-     * Acceptable values include IDs of existing flash and image creatives.
-     * Applicable to the following creative types: all VPAID, all INSTREAM_AUDIO
-     * and all INSTREAM_VIDEO with dynamicAssetSelection set to false.
+     * List of companion creatives assigned to an in-Stream video creative. Acceptable values include IDs of existing flash and image creatives. Applicable to the following creative types: all VPAID, all INSTREAM_AUDIO and all INSTREAM_VIDEO with dynamicAssetSelection set to false.
      */
     companionCreatives?: string[];
     /**
-     * Compatibilities associated with this creative. This is a read-only field.
-     * DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or
-     * on mobile devices or in mobile apps for regular or interstitial ads,
-     * respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps.
-     * Only pre-existing creatives may have these compatibilities since new
-     * creatives will either be assigned DISPLAY or DISPLAY_INTERSTITIAL
-     * instead. IN_STREAM_VIDEO refers to rendering in in-stream video ads
-     * developed with the VAST standard. IN_STREAM_AUDIO refers to rendering in
-     * in-stream audio ads developed with the VAST standard. Applicable to all
-     * creative types.  Acceptable values are: - &quot;APP&quot; -
-     * &quot;APP_INTERSTITIAL&quot; - &quot;IN_STREAM_VIDEO&quot; -
-     * &quot;IN_STREAM_AUDIO&quot; - &quot;DISPLAY&quot; -
-     * &quot;DISPLAY_INTERSTITIAL&quot;
+     * Compatibilities associated with this creative. This is a read-only field. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices or in mobile apps for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. Only pre-existing creatives may have these compatibilities since new creatives will either be assigned DISPLAY or DISPLAY_INTERSTITIAL instead. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard. IN_STREAM_AUDIO refers to rendering in in-stream audio ads developed with the VAST standard. Applicable to all creative types.  Acceptable values are: - &quot;APP&quot; - &quot;APP_INTERSTITIAL&quot; - &quot;IN_STREAM_VIDEO&quot; - &quot;IN_STREAM_AUDIO&quot; - &quot;DISPLAY&quot; - &quot;DISPLAY_INTERSTITIAL&quot;
      */
     compatibility?: string[];
     /**
-     * Whether Flash assets associated with the creative need to be
-     * automatically converted to HTML5. This flag is enabled by default and
-     * users can choose to disable it if they don&#39;t want the system to
-     * generate and use HTML5 asset for this creative. Applicable to the
-     * following creative type: FLASH_INPAGE. Applicable to DISPLAY when the
-     * primary asset type is not HTML_IMAGE.
+     * Whether Flash assets associated with the creative need to be automatically converted to HTML5. This flag is enabled by default and users can choose to disable it if they don&#39;t want the system to generate and use HTML5 asset for this creative. Applicable to the following creative type: FLASH_INPAGE. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     convertFlashToHtml5?: boolean;
     /**
-     * List of counter events configured for the creative. For
-     * DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated
-     * from clickTags. Applicable to the following creative types:
-     * DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID.
+     * List of counter events configured for the creative. For DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated from clickTags. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID.
      */
     counterCustomEvents?: Schema$CreativeCustomEvent[];
     /**
-     * Assets associated with a creative. Applicable to all but the following
-     * creative types: INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and
-     * REDIRECT
+     * Assets associated with a creative. Applicable to all but the following creative types: INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and REDIRECT
      */
     creativeAssets?: Schema$CreativeAsset[];
     /**
@@ -2150,251 +1790,163 @@ export namespace dfareporting_v3_2 {
      */
     creativeAssetSelection?: Schema$CreativeAssetSelection;
     /**
-     * Creative field assignments for this creative. Applicable to all creative
-     * types.
+     * Creative field assignments for this creative. Applicable to all creative types.
      */
     creativeFieldAssignments?: Schema$CreativeFieldAssignment[];
     /**
-     * Custom key-values for a Rich Media creative. Key-values let you customize
-     * the creative settings of a Rich Media ad running on your site without
-     * having to contact the advertiser. You can use key-values to dynamically
-     * change the look or functionality of a creative. Applicable to the
-     * following creative types: all RICH_MEDIA, and all VPAID.
+     * Custom key-values for a Rich Media creative. Key-values let you customize the creative settings of a Rich Media ad running on your site without having to contact the advertiser. You can use key-values to dynamically change the look or functionality of a creative. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
     customKeyValues?: string[];
     /**
-     * Set this to true to enable the use of rules to target individual assets
-     * in this creative. When set to true creativeAssetSelection must be set.
-     * This also controls asset-level companions. When this is true, companion
-     * creatives should be assigned to creative assets. Learn more. Applicable
-     * to INSTREAM_VIDEO creatives.
+     * Set this to true to enable the use of rules to target individual assets in this creative. When set to true creativeAssetSelection must be set. This also controls asset-level companions. When this is true, companion creatives should be assigned to creative assets. Learn more. Applicable to INSTREAM_VIDEO creatives.
      */
     dynamicAssetSelection?: boolean;
     /**
-     * List of exit events configured for the creative. For DISPLAY and
-     * DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated
-     * from clickTags, For DISPLAY, an event is also created from the
-     * backupImageReportingLabel. Applicable to the following creative types:
-     * DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID. Applicable to
-     * DISPLAY when the primary asset type is not HTML_IMAGE.
+     * List of exit events configured for the creative. For DISPLAY and DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated from clickTags, For DISPLAY, an event is also created from the backupImageReportingLabel. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     exitCustomEvents?: Schema$CreativeCustomEvent[];
     /**
-     * OpenWindow FSCommand of this creative. This lets the SWF file communicate
-     * with either Flash Player or the program hosting Flash Player, such as a
-     * web browser. This is only triggered if allowScriptAccess field is true.
-     * Applicable to the following creative types: FLASH_INPAGE.
+     * OpenWindow FSCommand of this creative. This lets the SWF file communicate with either Flash Player or the program hosting Flash Player, such as a web browser. This is only triggered if allowScriptAccess field is true. Applicable to the following creative types: FLASH_INPAGE.
      */
     fsCommand?: Schema$FsCommand;
     /**
-     * HTML code for the creative. This is a required field when applicable.
-     * This field is ignored if htmlCodeLocked is true. Applicable to the
-     * following creative types: all CUSTOM, FLASH_INPAGE, and HTML5_BANNER, and
-     * all RICH_MEDIA.
+     * HTML code for the creative. This is a required field when applicable. This field is ignored if htmlCodeLocked is true. Applicable to the following creative types: all CUSTOM, FLASH_INPAGE, and HTML5_BANNER, and all RICH_MEDIA.
      */
     htmlCode?: string;
     /**
-     * Whether HTML code is generated by Campaign Manager or manually entered.
-     * Set to true to ignore changes to htmlCode. Applicable to the following
-     * creative types: FLASH_INPAGE and HTML5_BANNER.
+     * Whether HTML code is generated by Campaign Manager or manually entered. Set to true to ignore changes to htmlCode. Applicable to the following creative types: FLASH_INPAGE and HTML5_BANNER.
      */
     htmlCodeLocked?: boolean;
     /**
-     * ID of this creative. This is a read-only, auto-generated field.
-     * Applicable to all creative types.
+     * ID of this creative. This is a read-only, auto-generated field. Applicable to all creative types.
      */
     id?: string;
     /**
-     * Dimension value for the ID of this creative. This is a read-only field.
-     * Applicable to all creative types.
+     * Dimension value for the ID of this creative. This is a read-only field. Applicable to all creative types.
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#creative&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creative&quot;.
      */
     kind?: string;
     /**
-     * Creative last modification information. This is a read-only field.
-     * Applicable to all creative types.
+     * Creative last modification information. This is a read-only field. Applicable to all creative types.
      */
     lastModifiedInfo?: Schema$LastModifiedInfo;
     /**
-     * Latest Studio trafficked creative ID associated with rich media and VPAID
-     * creatives. This is a read-only field. Applicable to the following
-     * creative types: all RICH_MEDIA, and all VPAID.
+     * Latest Studio trafficked creative ID associated with rich media and VPAID creatives. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
     latestTraffickedCreativeId?: string;
     /**
-     * Description of the audio or video ad. Applicable to the following
-     * creative types: all INSTREAM_VIDEO, INSTREAM_AUDIO, and all VPAID.
+     * Description of the audio or video ad. Applicable to the following creative types: all INSTREAM_VIDEO, INSTREAM_AUDIO, and all VPAID.
      */
     mediaDescription?: string;
     /**
-     * Creative audio or video duration in seconds. This is a read-only field.
-     * Applicable to the following creative types: INSTREAM_VIDEO,
-     * INSTREAM_AUDIO, all RICH_MEDIA, and all VPAID.
+     * Creative audio or video duration in seconds. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO, INSTREAM_AUDIO, all RICH_MEDIA, and all VPAID.
      */
     mediaDuration?: number;
     /**
-     * Name of the creative. This is a required field and must be less than 256
-     * characters long. Applicable to all creative types.
+     * Name of the creative. This is a required field and must be less than 256 characters long. Applicable to all creative types.
      */
     name?: string;
     /**
-     * Override CSS value for rich media creatives. Applicable to the following
-     * creative types: all RICH_MEDIA.
+     * Override CSS value for rich media creatives. Applicable to the following creative types: all RICH_MEDIA.
      */
     overrideCss?: string;
     /**
-     * The asset ID of the polite load image asset. Applicable to the creative
-     * type: DISPLAY.
+     * The asset ID of the polite load image asset. Applicable to the creative type: DISPLAY.
      */
     politeLoadAssetId?: string;
     /**
-     * Amount of time to play the video before counting a view. Applicable to
-     * the following creative types: all INSTREAM_VIDEO.
+     * Amount of time to play the video before counting a view. Applicable to the following creative types: all INSTREAM_VIDEO.
      */
     progressOffset?: Schema$VideoOffset;
     /**
-     * URL of hosted image or hosted video or another ad tag. For
-     * INSTREAM_VIDEO_REDIRECT creatives this is the in-stream video redirect
-     * URL. The standard for a VAST (Video Ad Serving Template) ad response
-     * allows for a redirect link to another VAST 2.0 or 3.0 call. This is a
-     * required field when applicable. Applicable to the following creative
-     * types: DISPLAY_REDIRECT, INTERNAL_REDIRECT,
-     * INTERSTITIAL_INTERNAL_REDIRECT, and INSTREAM_VIDEO_REDIRECT
+     * URL of hosted image or hosted video or another ad tag. For INSTREAM_VIDEO_REDIRECT creatives this is the in-stream video redirect URL. The standard for a VAST (Video Ad Serving Template) ad response allows for a redirect link to another VAST 2.0 or 3.0 call. This is a required field when applicable. Applicable to the following creative types: DISPLAY_REDIRECT, INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and INSTREAM_VIDEO_REDIRECT
      */
     redirectUrl?: string;
     /**
-     * ID of current rendering version. This is a read-only field. Applicable to
-     * all creative types.
+     * ID of current rendering version. This is a read-only field. Applicable to all creative types.
      */
     renderingId?: string;
     /**
-     * Dimension value for the rendering ID of this creative. This is a
-     * read-only field. Applicable to all creative types.
+     * Dimension value for the rendering ID of this creative. This is a read-only field. Applicable to all creative types.
      */
     renderingIdDimensionValue?: Schema$DimensionValue;
     /**
-     * The minimum required Flash plugin version for this creative. For
-     * example, 11.2.202.235. This is a read-only field. Applicable to the
-     * following creative types: all RICH_MEDIA, and all VPAID.
+     * The minimum required Flash plugin version for this creative. For example, 11.2.202.235. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
     requiredFlashPluginVersion?: string;
     /**
-     * The internal Flash version for this creative as calculated by Studio.
-     * This is a read-only field. Applicable to the following creative types:
-     * FLASH_INPAGE all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when
-     * the primary asset type is not HTML_IMAGE.
+     * The internal Flash version for this creative as calculated by Studio. This is a read-only field. Applicable to the following creative types: FLASH_INPAGE all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     requiredFlashVersion?: number;
     /**
-     * Size associated with this creative. When inserting or updating a creative
-     * either the size ID field or size width and height fields can be used.
-     * This is a required field when applicable; however for IMAGE, FLASH_INPAGE
-     * creatives, and for DISPLAY creatives with a primary asset of type
-     * HTML_IMAGE, if left blank, this field will be automatically set using the
-     * actual size of the associated image assets. Applicable to the following
-     * creative types: DISPLAY, DISPLAY_IMAGE_GALLERY, FLASH_INPAGE,
-     * HTML5_BANNER, IMAGE, and all RICH_MEDIA.
+     * Size associated with this creative. When inserting or updating a creative either the size ID field or size width and height fields can be used. This is a required field when applicable; however for IMAGE, FLASH_INPAGE creatives, and for DISPLAY creatives with a primary asset of type HTML_IMAGE, if left blank, this field will be automatically set using the actual size of the associated image assets. Applicable to the following creative types: DISPLAY, DISPLAY_IMAGE_GALLERY, FLASH_INPAGE, HTML5_BANNER, IMAGE, and all RICH_MEDIA.
      */
     size?: Schema$Size;
     /**
-     * Amount of time to play the video before the skip button appears.
-     * Applicable to the following creative types: all INSTREAM_VIDEO.
+     * Amount of time to play the video before the skip button appears. Applicable to the following creative types: all INSTREAM_VIDEO.
      */
     skipOffset?: Schema$VideoOffset;
     /**
-     * Whether the user can choose to skip the creative. Applicable to the
-     * following creative types: all INSTREAM_VIDEO and all VPAID.
+     * Whether the user can choose to skip the creative. Applicable to the following creative types: all INSTREAM_VIDEO and all VPAID.
      */
     skippable?: boolean;
     /**
-     * Whether the creative is SSL-compliant. This is a read-only field.
-     * Applicable to all creative types.
+     * Whether the creative is SSL-compliant. This is a read-only field. Applicable to all creative types.
      */
     sslCompliant?: boolean;
     /**
-     * Whether creative should be treated as SSL compliant even if the system
-     * scan shows it&#39;s not. Applicable to all creative types.
+     * Whether creative should be treated as SSL compliant even if the system scan shows it&#39;s not. Applicable to all creative types.
      */
     sslOverride?: boolean;
     /**
-     * Studio advertiser ID associated with rich media and VPAID creatives. This
-     * is a read-only field. Applicable to the following creative types: all
-     * RICH_MEDIA, and all VPAID.
+     * Studio advertiser ID associated with rich media and VPAID creatives. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
     studioAdvertiserId?: string;
     /**
-     * Studio creative ID associated with rich media and VPAID creatives. This
-     * is a read-only field. Applicable to the following creative types: all
-     * RICH_MEDIA, and all VPAID.
+     * Studio creative ID associated with rich media and VPAID creatives. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
     studioCreativeId?: string;
     /**
-     * Studio trafficked creative ID associated with rich media and VPAID
-     * creatives. This is a read-only field. Applicable to the following
-     * creative types: all RICH_MEDIA, and all VPAID.
+     * Studio trafficked creative ID associated with rich media and VPAID creatives. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
     studioTraffickedCreativeId?: string;
     /**
-     * Subaccount ID of this creative. This field, if left unset, will be
-     * auto-generated for both insert and update operations. Applicable to all
-     * creative types.
+     * Subaccount ID of this creative. This field, if left unset, will be auto-generated for both insert and update operations. Applicable to all creative types.
      */
     subaccountId?: string;
     /**
-     * Third-party URL used to record backup image impressions. Applicable to
-     * the following creative types: all RICH_MEDIA.
+     * Third-party URL used to record backup image impressions. Applicable to the following creative types: all RICH_MEDIA.
      */
     thirdPartyBackupImageImpressionsUrl?: string;
     /**
-     * Third-party URL used to record rich media impressions. Applicable to the
-     * following creative types: all RICH_MEDIA.
+     * Third-party URL used to record rich media impressions. Applicable to the following creative types: all RICH_MEDIA.
      */
     thirdPartyRichMediaImpressionsUrl?: string;
     /**
-     * Third-party URLs for tracking in-stream creative events. Applicable to
-     * the following creative types: all INSTREAM_VIDEO, all INSTREAM_AUDIO, and
-     * all VPAID.
+     * Third-party URLs for tracking in-stream creative events. Applicable to the following creative types: all INSTREAM_VIDEO, all INSTREAM_AUDIO, and all VPAID.
      */
     thirdPartyUrls?: Schema$ThirdPartyTrackingUrl[];
     /**
-     * List of timer events configured for the creative. For
-     * DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated
-     * from clickTags. Applicable to the following creative types:
-     * DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID. Applicable to
-     * DISPLAY when the primary asset is not HTML_IMAGE.
+     * List of timer events configured for the creative. For DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated from clickTags. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset is not HTML_IMAGE.
      */
     timerCustomEvents?: Schema$CreativeCustomEvent[];
     /**
-     * Combined size of all creative assets. This is a read-only field.
-     * Applicable to the following creative types: all RICH_MEDIA, and all
-     * VPAID.
+     * Combined size of all creative assets. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
     totalFileSize?: string;
     /**
-     * Type of this creative. This is a required field. Applicable to all
-     * creative types.  Note: FLASH_INPAGE, HTML5_BANNER, and IMAGE are only
-     * used for existing creatives. New creatives should use DISPLAY as a
-     * replacement for these types.
+     * Type of this creative. This is a required field. Applicable to all creative types.  Note: FLASH_INPAGE, HTML5_BANNER, and IMAGE are only used for existing creatives. New creatives should use DISPLAY as a replacement for these types.
      */
     type?: string;
     /**
-     * A Universal Ad ID as per the VAST 4.0 spec. Applicable to the following
-     * creative types: INSTREAM_AUDIO and INSTREAM_VIDEO and VPAID.
+     * A Universal Ad ID as per the VAST 4.0 spec. Applicable to the following creative types: INSTREAM_AUDIO and INSTREAM_VIDEO and VPAID.
      */
     universalAdId?: Schema$UniversalAdId;
     /**
-     * The version number helps you keep track of multiple versions of your
-     * creative in your reports. The version number will always be
-     * auto-generated during insert operations to start at 1. For tracking
-     * creatives the version cannot be incremented and will always remain at 1.
-     * For all other creative types the version can be incremented only by 1
-     * during update operations. In addition, the version will be automatically
-     * incremented by 1 when undergoing Rich Media creative merging. Applicable
-     * to all creative types.
+     * The version number helps you keep track of multiple versions of your creative in your reports. The version number will always be auto-generated during insert operations to start at 1. For tracking creatives the version cannot be incremented and will always remain at 1. For all other creative types the version can be incremented only by 1 during update operations. In addition, the version will be automatically incremented by 1 when undergoing Rich Media creative merging. Applicable to all creative types.
      */
     version?: number;
   }
@@ -2403,161 +1955,111 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CreativeAsset {
     /**
-     * Whether ActionScript3 is enabled for the flash asset. This is a read-only
-     * field. Applicable to the following creative type: FLASH_INPAGE.
-     * Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+     * Whether ActionScript3 is enabled for the flash asset. This is a read-only field. Applicable to the following creative type: FLASH_INPAGE. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     actionScript3?: boolean;
     /**
-     * Whether the video or audio asset is active. This is a read-only field for
-     * VPAID_NON_LINEAR_VIDEO assets. Applicable to the following creative
-     * types: INSTREAM_AUDIO, INSTREAM_VIDEO and all VPAID.
+     * Whether the video or audio asset is active. This is a read-only field for VPAID_NON_LINEAR_VIDEO assets. Applicable to the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and all VPAID.
      */
     active?: boolean;
     /**
-     * Additional sizes associated with this creative asset. HTML5 asset
-     * generated by compatible software such as GWD will be able to support more
-     * sizes this creative asset can render.
+     * Additional sizes associated with this creative asset. HTML5 asset generated by compatible software such as GWD will be able to support more sizes this creative asset can render.
      */
     additionalSizes?: Schema$Size[];
     /**
-     * Possible alignments for an asset. This is a read-only field. Applicable
-     * to the following creative types:
-     * RICH_MEDIA_DISPLAY_MULTI_FLOATING_INTERSTITIAL.
+     * Possible alignments for an asset. This is a read-only field. Applicable to the following creative types: RICH_MEDIA_DISPLAY_MULTI_FLOATING_INTERSTITIAL.
      */
     alignment?: string;
     /**
-     * Artwork type of rich media creative. This is a read-only field.
-     * Applicable to the following creative types: all RICH_MEDIA.
+     * Artwork type of rich media creative. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
      */
     artworkType?: string;
     /**
-     * Identifier of this asset. This is the same identifier returned during
-     * creative asset insert operation. This is a required field. Applicable to
-     * all but the following creative types: all REDIRECT and TRACKING_TEXT.
+     * Identifier of this asset. This is the same identifier returned during creative asset insert operation. This is a required field. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
      */
     assetIdentifier?: Schema$CreativeAssetId;
     /**
-     * Exit event configured for the backup image. Applicable to the following
-     * creative types: all RICH_MEDIA.
+     * Exit event configured for the backup image. Applicable to the following creative types: all RICH_MEDIA.
      */
     backupImageExit?: Schema$CreativeCustomEvent;
     /**
-     * Detected bit-rate for audio or video asset. This is a read-only field.
-     * Applicable to the following creative types: INSTREAM_AUDIO,
-     * INSTREAM_VIDEO and all VPAID.
+     * Detected bit-rate for audio or video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and all VPAID.
      */
     bitRate?: number;
     /**
-     * Rich media child asset type. This is a read-only field. Applicable to the
-     * following creative types: all VPAID.
+     * Rich media child asset type. This is a read-only field. Applicable to the following creative types: all VPAID.
      */
     childAssetType?: string;
     /**
-     * Size of an asset when collapsed. This is a read-only field. Applicable to
-     * the following creative types: all RICH_MEDIA and all VPAID. Additionally,
-     * applicable to assets whose displayType is ASSET_DISPLAY_TYPE_EXPANDING or
-     * ASSET_DISPLAY_TYPE_PEEL_DOWN.
+     * Size of an asset when collapsed. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA and all VPAID. Additionally, applicable to assets whose displayType is ASSET_DISPLAY_TYPE_EXPANDING or ASSET_DISPLAY_TYPE_PEEL_DOWN.
      */
     collapsedSize?: Schema$Size;
     /**
-     * List of companion creatives assigned to an in-stream video creative
-     * asset. Acceptable values include IDs of existing flash and image
-     * creatives. Applicable to INSTREAM_VIDEO creative type with
-     * dynamicAssetSelection set to true.
+     * List of companion creatives assigned to an in-stream video creative asset. Acceptable values include IDs of existing flash and image creatives. Applicable to INSTREAM_VIDEO creative type with dynamicAssetSelection set to true.
      */
     companionCreativeIds?: string[];
     /**
-     * Custom start time in seconds for making the asset visible. Applicable to
-     * the following creative types: all RICH_MEDIA. Value must be greater than
-     * or equal to 0.
+     * Custom start time in seconds for making the asset visible. Applicable to the following creative types: all RICH_MEDIA. Value must be greater than or equal to 0.
      */
     customStartTimeValue?: number;
     /**
-     * List of feature dependencies for the creative asset that are detected by
-     * Campaign Manager. Feature dependencies are features that a browser must
-     * be able to support in order to render your HTML5 creative correctly. This
-     * is a read-only, auto-generated field. Applicable to the following
-     * creative types: HTML5_BANNER. Applicable to DISPLAY when the primary
-     * asset type is not HTML_IMAGE.
+     * List of feature dependencies for the creative asset that are detected by Campaign Manager. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative correctly. This is a read-only, auto-generated field. Applicable to the following creative types: HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     detectedFeatures?: string[];
     /**
-     * Type of rich media asset. This is a read-only field. Applicable to the
-     * following creative types: all RICH_MEDIA.
+     * Type of rich media asset. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
      */
     displayType?: string;
     /**
-     * Duration in seconds for which an asset will be displayed. Applicable to
-     * the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and
-     * VPAID_LINEAR_VIDEO. Value must be greater than or equal to 1.
+     * Duration in seconds for which an asset will be displayed. Applicable to the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and VPAID_LINEAR_VIDEO. Value must be greater than or equal to 1.
      */
     duration?: number;
     /**
-     * Duration type for which an asset will be displayed. Applicable to the
-     * following creative types: all RICH_MEDIA.
+     * Duration type for which an asset will be displayed. Applicable to the following creative types: all RICH_MEDIA.
      */
     durationType?: string;
     /**
-     * Detected expanded dimension for video asset. This is a read-only field.
-     * Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
+     * Detected expanded dimension for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
      */
     expandedDimension?: Schema$Size;
     /**
-     * File size associated with this creative asset. This is a read-only field.
-     * Applicable to all but the following creative types: all REDIRECT and
-     * TRACKING_TEXT.
+     * File size associated with this creative asset. This is a read-only field. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
      */
     fileSize?: string;
     /**
-     * Flash version of the asset. This is a read-only field. Applicable to the
-     * following creative types: FLASH_INPAGE, all RICH_MEDIA, and all VPAID.
-     * Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+     * Flash version of the asset. This is a read-only field. Applicable to the following creative types: FLASH_INPAGE, all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     flashVersion?: number;
     /**
-     * Whether to hide Flash objects flag for an asset. Applicable to the
-     * following creative types: all RICH_MEDIA.
+     * Whether to hide Flash objects flag for an asset. Applicable to the following creative types: all RICH_MEDIA.
      */
     hideFlashObjects?: boolean;
     /**
-     * Whether to hide selection boxes flag for an asset. Applicable to the
-     * following creative types: all RICH_MEDIA.
+     * Whether to hide selection boxes flag for an asset. Applicable to the following creative types: all RICH_MEDIA.
      */
     hideSelectionBoxes?: boolean;
     /**
-     * Whether the asset is horizontally locked. This is a read-only field.
-     * Applicable to the following creative types: all RICH_MEDIA.
+     * Whether the asset is horizontally locked. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
      */
     horizontallyLocked?: boolean;
     /**
-     * Numeric ID of this creative asset. This is a required field and should
-     * not be modified. Applicable to all but the following creative types: all
-     * REDIRECT and TRACKING_TEXT.
+     * Numeric ID of this creative asset. This is a required field and should not be modified. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
      */
     id?: string;
     /**
-     * Dimension value for the ID of the asset. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the asset. This is a read-only, auto-generated field.
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Detected duration for audio or video asset. This is a read-only field.
-     * Applicable to the following creative types: INSTREAM_AUDIO,
-     * INSTREAM_VIDEO and all VPAID.
+     * Detected duration for audio or video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and all VPAID.
      */
     mediaDuration?: number;
     /**
-     * Detected MIME type for audio or video asset. This is a read-only field.
-     * Applicable to the following creative types: INSTREAM_AUDIO,
-     * INSTREAM_VIDEO and all VPAID.
+     * Detected MIME type for audio or video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and all VPAID.
      */
     mimeType?: string;
     /**
-     * Offset position for an asset in collapsed mode. This is a read-only
-     * field. Applicable to the following creative types: all RICH_MEDIA and all
-     * VPAID. Additionally, only applicable to assets whose displayType is
-     * ASSET_DISPLAY_TYPE_EXPANDING or ASSET_DISPLAY_TYPE_PEEL_DOWN.
+     * Offset position for an asset in collapsed mode. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA and all VPAID. Additionally, only applicable to assets whose displayType is ASSET_DISPLAY_TYPE_EXPANDING or ASSET_DISPLAY_TYPE_PEEL_DOWN.
      */
     offset?: Schema$OffsetPosition;
     /**
@@ -2565,133 +2067,75 @@ export namespace dfareporting_v3_2 {
      */
     orientation?: string;
     /**
-     * Whether the backup asset is original or changed by the user in Campaign
-     * Manager. Applicable to the following creative types: all RICH_MEDIA.
+     * Whether the backup asset is original or changed by the user in Campaign Manager. Applicable to the following creative types: all RICH_MEDIA.
      */
     originalBackup?: boolean;
     /**
-     * Offset position for an asset. Applicable to the following creative types:
-     * all RICH_MEDIA.
+     * Offset position for an asset. Applicable to the following creative types: all RICH_MEDIA.
      */
     position?: Schema$OffsetPosition;
     /**
-     * Offset left unit for an asset. This is a read-only field. Applicable to
-     * the following creative types: all RICH_MEDIA.
+     * Offset left unit for an asset. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
      */
     positionLeftUnit?: string;
     /**
-     * Offset top unit for an asset. This is a read-only field if the asset
-     * displayType is ASSET_DISPLAY_TYPE_OVERLAY. Applicable to the following
-     * creative types: all RICH_MEDIA.
+     * Offset top unit for an asset. This is a read-only field if the asset displayType is ASSET_DISPLAY_TYPE_OVERLAY. Applicable to the following creative types: all RICH_MEDIA.
      */
     positionTopUnit?: string;
     /**
-     * Progressive URL for video asset. This is a read-only field. Applicable to
-     * the following creative types: INSTREAM_VIDEO and all VPAID.
+     * Progressive URL for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
      */
     progressiveServingUrl?: string;
     /**
-     * Whether the asset pushes down other content. Applicable to the following
-     * creative types: all RICH_MEDIA. Additionally, only applicable when the
-     * asset offsets are 0, the collapsedSize.width matches size.width, and the
-     * collapsedSize.height is less than size.height.
+     * Whether the asset pushes down other content. Applicable to the following creative types: all RICH_MEDIA. Additionally, only applicable when the asset offsets are 0, the collapsedSize.width matches size.width, and the collapsedSize.height is less than size.height.
      */
     pushdown?: boolean;
     /**
-     * Pushdown duration in seconds for an asset. Applicable to the following
-     * creative types: all RICH_MEDIA.Additionally, only applicable when the
-     * asset pushdown field is true, the offsets are 0, the collapsedSize.width
-     * matches size.width, and the collapsedSize.height is less than
-     * size.height. Acceptable values are 0 to 9.99, inclusive.
+     * Pushdown duration in seconds for an asset. Applicable to the following creative types: all RICH_MEDIA.Additionally, only applicable when the asset pushdown field is true, the offsets are 0, the collapsedSize.width matches size.width, and the collapsedSize.height is less than size.height. Acceptable values are 0 to 9.99, inclusive.
      */
     pushdownDuration?: number;
     /**
-     * Role of the asset in relation to creative. Applicable to all but the
-     * following creative types: all REDIRECT and TRACKING_TEXT. This is a
-     * required field. PRIMARY applies to DISPLAY, FLASH_INPAGE, HTML5_BANNER,
-     * IMAGE, DISPLAY_IMAGE_GALLERY, all RICH_MEDIA (which may contain multiple
-     * primary assets), and all VPAID creatives. BACKUP_IMAGE applies to
-     * FLASH_INPAGE, HTML5_BANNER, all RICH_MEDIA, and all VPAID creatives.
-     * Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
-     * ADDITIONAL_IMAGE and ADDITIONAL_FLASH apply to FLASH_INPAGE creatives.
-     * OTHER refers to assets from sources other than Campaign Manager, such as
-     * Studio uploaded assets, applicable to all RICH_MEDIA and all VPAID
-     * creatives. PARENT_VIDEO refers to videos uploaded by the user in Campaign
-     * Manager and is applicable to INSTREAM_VIDEO and VPAID_LINEAR_VIDEO
-     * creatives. TRANSCODED_VIDEO refers to videos transcoded by Campaign
-     * Manager from PARENT_VIDEO assets and is applicable to INSTREAM_VIDEO and
-     * VPAID_LINEAR_VIDEO creatives. ALTERNATE_VIDEO refers to the Campaign
-     * Manager representation of child asset videos from Studio, and is
-     * applicable to VPAID_LINEAR_VIDEO creatives. These cannot be added or
-     * removed within Campaign Manager. For VPAID_LINEAR_VIDEO creatives,
-     * PARENT_VIDEO, TRANSCODED_VIDEO and ALTERNATE_VIDEO assets that are marked
-     * active serve as backup in case the VPAID creative cannot be served. Only
-     * PARENT_VIDEO assets can be added or removed for an INSTREAM_VIDEO or
-     * VPAID_LINEAR_VIDEO creative. PARENT_AUDIO refers to audios uploaded by
-     * the user in Campaign Manager and is applicable to INSTREAM_AUDIO
-     * creatives. TRANSCODED_AUDIO refers to audios transcoded by Campaign
-     * Manager from PARENT_AUDIO assets and is applicable to INSTREAM_AUDIO
-     * creatives.
+     * Role of the asset in relation to creative. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT. This is a required field. PRIMARY applies to DISPLAY, FLASH_INPAGE, HTML5_BANNER, IMAGE, DISPLAY_IMAGE_GALLERY, all RICH_MEDIA (which may contain multiple primary assets), and all VPAID creatives. BACKUP_IMAGE applies to FLASH_INPAGE, HTML5_BANNER, all RICH_MEDIA, and all VPAID creatives. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE. ADDITIONAL_IMAGE and ADDITIONAL_FLASH apply to FLASH_INPAGE creatives. OTHER refers to assets from sources other than Campaign Manager, such as Studio uploaded assets, applicable to all RICH_MEDIA and all VPAID creatives. PARENT_VIDEO refers to videos uploaded by the user in Campaign Manager and is applicable to INSTREAM_VIDEO and VPAID_LINEAR_VIDEO creatives. TRANSCODED_VIDEO refers to videos transcoded by Campaign Manager from PARENT_VIDEO assets and is applicable to INSTREAM_VIDEO and VPAID_LINEAR_VIDEO creatives. ALTERNATE_VIDEO refers to the Campaign Manager representation of child asset videos from Studio, and is applicable to VPAID_LINEAR_VIDEO creatives. These cannot be added or removed within Campaign Manager. For VPAID_LINEAR_VIDEO creatives, PARENT_VIDEO, TRANSCODED_VIDEO and ALTERNATE_VIDEO assets that are marked active serve as backup in case the VPAID creative cannot be served. Only PARENT_VIDEO assets can be added or removed for an INSTREAM_VIDEO or VPAID_LINEAR_VIDEO creative. PARENT_AUDIO refers to audios uploaded by the user in Campaign Manager and is applicable to INSTREAM_AUDIO creatives. TRANSCODED_AUDIO refers to audios transcoded by Campaign Manager from PARENT_AUDIO assets and is applicable to INSTREAM_AUDIO creatives.
      */
     role?: string;
     /**
-     * Size associated with this creative asset. This is a required field when
-     * applicable; however for IMAGE and FLASH_INPAGE, creatives if left blank,
-     * this field will be automatically set using the actual size of the
-     * associated image asset. Applicable to the following creative types:
-     * DISPLAY_IMAGE_GALLERY, FLASH_INPAGE, HTML5_BANNER, IMAGE, and all
-     * RICH_MEDIA. Applicable to DISPLAY when the primary asset type is not
-     * HTML_IMAGE.
+     * Size associated with this creative asset. This is a required field when applicable; however for IMAGE and FLASH_INPAGE, creatives if left blank, this field will be automatically set using the actual size of the associated image asset. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, FLASH_INPAGE, HTML5_BANNER, IMAGE, and all RICH_MEDIA. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     size?: Schema$Size;
     /**
-     * Whether the asset is SSL-compliant. This is a read-only field. Applicable
-     * to all but the following creative types: all REDIRECT and TRACKING_TEXT.
+     * Whether the asset is SSL-compliant. This is a read-only field. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
      */
     sslCompliant?: boolean;
     /**
-     * Initial wait time type before making the asset visible. Applicable to the
-     * following creative types: all RICH_MEDIA.
+     * Initial wait time type before making the asset visible. Applicable to the following creative types: all RICH_MEDIA.
      */
     startTimeType?: string;
     /**
-     * Streaming URL for video asset. This is a read-only field. Applicable to
-     * the following creative types: INSTREAM_VIDEO and all VPAID.
+     * Streaming URL for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
      */
     streamingServingUrl?: string;
     /**
-     * Whether the asset is transparent. Applicable to the following creative
-     * types: all RICH_MEDIA. Additionally, only applicable to HTML5 assets.
+     * Whether the asset is transparent. Applicable to the following creative types: all RICH_MEDIA. Additionally, only applicable to HTML5 assets.
      */
     transparency?: boolean;
     /**
-     * Whether the asset is vertically locked. This is a read-only field.
-     * Applicable to the following creative types: all RICH_MEDIA.
+     * Whether the asset is vertically locked. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
      */
     verticallyLocked?: boolean;
     /**
-     * Window mode options for flash assets. Applicable to the following
-     * creative types: FLASH_INPAGE, RICH_MEDIA_DISPLAY_EXPANDING,
-     * RICH_MEDIA_IM_EXPAND, RICH_MEDIA_DISPLAY_BANNER, and
-     * RICH_MEDIA_INPAGE_FLOATING.
+     * Window mode options for flash assets. Applicable to the following creative types: FLASH_INPAGE, RICH_MEDIA_DISPLAY_EXPANDING, RICH_MEDIA_IM_EXPAND, RICH_MEDIA_DISPLAY_BANNER, and RICH_MEDIA_INPAGE_FLOATING.
      */
     windowMode?: string;
     /**
-     * zIndex value of an asset. Applicable to the following creative types: all
-     * RICH_MEDIA.Additionally, only applicable to assets whose displayType is
-     * NOT one of the following types: ASSET_DISPLAY_TYPE_INPAGE or
-     * ASSET_DISPLAY_TYPE_OVERLAY. Acceptable values are -999999999 to
-     * 999999999, inclusive.
+     * zIndex value of an asset. Applicable to the following creative types: all RICH_MEDIA.Additionally, only applicable to assets whose displayType is NOT one of the following types: ASSET_DISPLAY_TYPE_INPAGE or ASSET_DISPLAY_TYPE_OVERLAY. Acceptable values are -999999999 to 999999999, inclusive.
      */
     zIndex?: number;
     /**
-     * File name of zip file. This is a read-only field. Applicable to the
-     * following creative types: HTML5_BANNER.
+     * File name of zip file. This is a read-only field. Applicable to the following creative types: HTML5_BANNER.
      */
     zipFilename?: string;
     /**
-     * Size of zip file. This is a read-only field. Applicable to the following
-     * creative types: HTML5_BANNER.
+     * Size of zip file. This is a read-only field. Applicable to the following creative types: HTML5_BANNER.
      */
     zipFilesize?: string;
   }
@@ -2700,22 +2144,16 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CreativeAssetId {
     /**
-     * Name of the creative asset. This is a required field while inserting an
-     * asset. After insertion, this assetIdentifier is used to identify the
-     * uploaded asset. Characters in the name must be alphanumeric or one of the
-     * following: &quot;.-_ &quot;. Spaces are allowed.
+     * Name of the creative asset. This is a required field while inserting an asset. After insertion, this assetIdentifier is used to identify the uploaded asset. Characters in the name must be alphanumeric or one of the following: &quot;.-_ &quot;. Spaces are allowed.
      */
     name?: string;
     /**
-     * Type of asset to upload. This is a required field. FLASH and IMAGE are no
-     * longer supported for new uploads. All image assets should use HTML_IMAGE.
+     * Type of asset to upload. This is a required field. FLASH and IMAGE are no longer supported for new uploads. All image assets should use HTML_IMAGE.
      */
     type?: string;
   }
   /**
-   * CreativeAssets contains properties of a creative asset file which will be
-   * uploaded or has already been uploaded. Refer to the creative sample code
-   * for how to upload assets and insert a creative.
+   * CreativeAssets contains properties of a creative asset file which will be uploaded or has already been uploaded. Refer to the creative sample code for how to upload assets and insert a creative.
    */
   export interface Schema$CreativeAssetMetadata {
     /**
@@ -2723,15 +2161,11 @@ export namespace dfareporting_v3_2 {
      */
     assetIdentifier?: Schema$CreativeAssetId;
     /**
-     * List of detected click tags for assets. This is a read-only
-     * auto-generated field.
+     * List of detected click tags for assets. This is a read-only auto-generated field.
      */
     clickTags?: Schema$ClickTag[];
     /**
-     * List of feature dependencies for the creative asset that are detected by
-     * Campaign Manager. Feature dependencies are features that a browser must
-     * be able to support in order to render your HTML5 creative correctly. This
-     * is a read-only, auto-generated field.
+     * List of feature dependencies for the creative asset that are detected by Campaign Manager. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative correctly. This is a read-only, auto-generated field.
      */
     detectedFeatures?: string[];
     /**
@@ -2739,50 +2173,28 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Dimension value for the numeric ID of the asset. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the numeric ID of the asset. This is a read-only, auto-generated field.
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#creativeAssetMetadata&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeAssetMetadata&quot;.
      */
     kind?: string;
     /**
-     * Rules validated during code generation that generated a warning. This is
-     * a read-only, auto-generated field.  Possible values are: -
-     * &quot;ADMOB_REFERENCED&quot; - &quot;ASSET_FORMAT_UNSUPPORTED_DCM&quot; -
-     * &quot;ASSET_INVALID&quot; - &quot;CLICK_TAG_HARD_CODED&quot; -
-     * &quot;CLICK_TAG_INVALID&quot; - &quot;CLICK_TAG_IN_GWD&quot; -
-     * &quot;CLICK_TAG_MISSING&quot; - &quot;CLICK_TAG_MORE_THAN_ONE&quot; -
-     * &quot;CLICK_TAG_NON_TOP_LEVEL&quot; -
-     * &quot;COMPONENT_UNSUPPORTED_DCM&quot; -
-     * &quot;ENABLER_UNSUPPORTED_METHOD_DCM&quot; -
-     * &quot;EXTERNAL_FILE_REFERENCED&quot; - &quot;FILE_DETAIL_EMPTY&quot; -
-     * &quot;FILE_TYPE_INVALID&quot; - &quot;GWD_PROPERTIES_INVALID&quot; -
-     * &quot;HTML5_FEATURE_UNSUPPORTED&quot; - &quot;LINKED_FILE_NOT_FOUND&quot;
-     * - &quot;MAX_FLASH_VERSION_11&quot; - &quot;MRAID_REFERENCED&quot; -
-     * &quot;NOT_SSL_COMPLIANT&quot; - &quot;ORPHANED_ASSET&quot; -
-     * &quot;PRIMARY_HTML_MISSING&quot; - &quot;SVG_INVALID&quot; -
-     * &quot;ZIP_INVALID&quot;
+     * Rules validated during code generation that generated a warning. This is a read-only, auto-generated field.  Possible values are: - &quot;ADMOB_REFERENCED&quot; - &quot;ASSET_FORMAT_UNSUPPORTED_DCM&quot; - &quot;ASSET_INVALID&quot; - &quot;CLICK_TAG_HARD_CODED&quot; - &quot;CLICK_TAG_INVALID&quot; - &quot;CLICK_TAG_IN_GWD&quot; - &quot;CLICK_TAG_MISSING&quot; - &quot;CLICK_TAG_MORE_THAN_ONE&quot; - &quot;CLICK_TAG_NON_TOP_LEVEL&quot; - &quot;COMPONENT_UNSUPPORTED_DCM&quot; - &quot;ENABLER_UNSUPPORTED_METHOD_DCM&quot; - &quot;EXTERNAL_FILE_REFERENCED&quot; - &quot;FILE_DETAIL_EMPTY&quot; - &quot;FILE_TYPE_INVALID&quot; - &quot;GWD_PROPERTIES_INVALID&quot; - &quot;HTML5_FEATURE_UNSUPPORTED&quot; - &quot;LINKED_FILE_NOT_FOUND&quot; - &quot;MAX_FLASH_VERSION_11&quot; - &quot;MRAID_REFERENCED&quot; - &quot;NOT_SSL_COMPLIANT&quot; - &quot;ORPHANED_ASSET&quot; - &quot;PRIMARY_HTML_MISSING&quot; - &quot;SVG_INVALID&quot; - &quot;ZIP_INVALID&quot;
      */
     warnedValidationRules?: string[];
   }
   /**
-   * Encapsulates the list of rules for asset selection and a default asset in
-   * case none of the rules match. Applicable to INSTREAM_VIDEO creatives.
+   * Encapsulates the list of rules for asset selection and a default asset in case none of the rules match. Applicable to INSTREAM_VIDEO creatives.
    */
   export interface Schema$CreativeAssetSelection {
     /**
-     * A creativeAssets[].id. This should refer to one of the parent assets in
-     * this creative, and will be served if none of the rules match. This is a
-     * required field.
+     * A creativeAssets[].id. This should refer to one of the parent assets in this creative, and will be served if none of the rules match. This is a required field.
      */
     defaultAssetId?: string;
     /**
-     * Rules determine which asset will be served to a viewer. Rules will be
-     * evaluated in the order in which they are stored in this list. This list
-     * must contain at least one rule. Applicable to INSTREAM_VIDEO creatives.
+     * Rules determine which asset will be served to a viewer. Rules will be evaluated in the order in which they are stored in this list. This list must contain at least one rule. Applicable to INSTREAM_VIDEO creatives.
      */
     rules?: Schema$Rule[];
   }
@@ -2791,15 +2203,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CreativeAssignment {
     /**
-     * Whether this creative assignment is active. When true, the creative will
-     * be included in the ad&#39;s rotation.
+     * Whether this creative assignment is active. When true, the creative will be included in the ad&#39;s rotation.
      */
     active?: boolean;
     /**
-     * Whether applicable event tags should fire when this creative assignment
-     * is rendered. If this value is unset when the ad is inserted or updated,
-     * it will default to true for all creative types EXCEPT for
-     * INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and INSTREAM_VIDEO.
+     * Whether applicable event tags should fire when this creative assignment is rendered. If this value is unset when the ad is inserted or updated, it will default to true for all creative types EXCEPT for INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and INSTREAM_VIDEO.
      */
     applyEventTags?: boolean;
     /**
@@ -2807,14 +2215,11 @@ export namespace dfareporting_v3_2 {
      */
     clickThroughUrl?: Schema$ClickThroughUrl;
     /**
-     * Companion creative overrides for this creative assignment. Applicable to
-     * video ads.
+     * Companion creative overrides for this creative assignment. Applicable to video ads.
      */
     companionCreativeOverrides?: Schema$CompanionClickThroughOverride[];
     /**
-     * Creative group assignments for this creative assignment. Only one
-     * assignment per creative group number is allowed for a maximum of two
-     * assignments.
+     * Creative group assignments for this creative assignment. Only one assignment per creative group number is allowed for a maximum of two assignments.
      */
     creativeGroupAssignments?: Schema$CreativeGroupAssignment[];
     /**
@@ -2822,33 +2227,23 @@ export namespace dfareporting_v3_2 {
      */
     creativeId?: string;
     /**
-     * Dimension value for the ID of the creative. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the creative. This is a read-only, auto-generated field.
      */
     creativeIdDimensionValue?: Schema$DimensionValue;
     /**
-     * Date and time that the assigned creative should stop serving. Must be
-     * later than the start time.
+     * Date and time that the assigned creative should stop serving. Must be later than the start time.
      */
     endTime?: string;
     /**
-     * Rich media exit overrides for this creative assignment. Applicable when
-     * the creative type is any of the following:  - DISPLAY - RICH_MEDIA_INPAGE
-     * - RICH_MEDIA_INPAGE_FLOATING - RICH_MEDIA_IM_EXPAND -
-     * RICH_MEDIA_EXPANDING - RICH_MEDIA_INTERSTITIAL_FLOAT -
-     * RICH_MEDIA_MOBILE_IN_APP - RICH_MEDIA_MULTI_FLOATING -
-     * RICH_MEDIA_PEEL_DOWN - VPAID_LINEAR - VPAID_NON_LINEAR
+     * Rich media exit overrides for this creative assignment. Applicable when the creative type is any of the following:  - DISPLAY - RICH_MEDIA_INPAGE - RICH_MEDIA_INPAGE_FLOATING - RICH_MEDIA_IM_EXPAND - RICH_MEDIA_EXPANDING - RICH_MEDIA_INTERSTITIAL_FLOAT - RICH_MEDIA_MOBILE_IN_APP - RICH_MEDIA_MULTI_FLOATING - RICH_MEDIA_PEEL_DOWN - VPAID_LINEAR - VPAID_NON_LINEAR
      */
     richMediaExitOverrides?: Schema$RichMediaExitOverride[];
     /**
-     * Sequence number of the creative assignment, applicable when the rotation
-     * type is CREATIVE_ROTATION_TYPE_SEQUENTIAL. Acceptable values are 1 to
-     * 65535, inclusive.
+     * Sequence number of the creative assignment, applicable when the rotation type is CREATIVE_ROTATION_TYPE_SEQUENTIAL. Acceptable values are 1 to 65535, inclusive.
      */
     sequence?: number;
     /**
-     * Whether the creative to be assigned is SSL-compliant. This is a read-only
-     * field that is auto-generated when the ad is inserted or updated.
+     * Whether the creative to be assigned is SSL-compliant. This is a read-only field that is auto-generated when the ad is inserted or updated.
      */
     sslCompliant?: boolean;
     /**
@@ -2856,8 +2251,7 @@ export namespace dfareporting_v3_2 {
      */
     startTime?: string;
     /**
-     * Weight of the creative assignment, applicable when the rotation type is
-     * CREATIVE_ROTATION_TYPE_RANDOM. Value must be greater than or equal to 1.
+     * Weight of the creative assignment, applicable when the rotation type is CREATIVE_ROTATION_TYPE_RANDOM. Value must be greater than or equal to 1.
      */
     weight?: number;
   }
@@ -2866,16 +2260,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CreativeClickThroughUrl {
     /**
-     * Read-only convenience field representing the actual URL that will be used
-     * for this click-through. The URL is computed as follows:  - If
-     * landingPageId is specified then that landing page&#39;s URL is assigned
-     * to this field. - Otherwise, the customClickThroughUrl is assigned to this
-     * field.
+     * Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows:  - If landingPageId is specified then that landing page&#39;s URL is assigned to this field. - Otherwise, the customClickThroughUrl is assigned to this field.
      */
     computedClickThroughUrl?: string;
     /**
-     * Custom click-through URL. Applicable if the landingPageId field is left
-     * unset.
+     * Custom click-through URL. Applicable if the landingPageId field is left unset.
      */
     customClickThroughUrl?: string;
     /**
@@ -2888,8 +2277,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CreativeCustomEvent {
     /**
-     * Unique ID of this event used by Reporting and Data Transfer. This is a
-     * read-only field.
+     * Unique ID of this event used by Reporting and Data Transfer. This is a read-only field.
      */
     advertiserCustomEventId?: string;
     /**
@@ -2901,9 +2289,7 @@ export namespace dfareporting_v3_2 {
      */
     advertiserCustomEventType?: string;
     /**
-     * Artwork label column, used to link events in Campaign Manager back to
-     * events in Studio. This is a required field and should not be modified
-     * after insertion.
+     * Artwork label column, used to link events in Campaign Manager back to events in Studio. This is a required field and should not be modified after insertion.
      */
     artworkLabel?: string;
     /**
@@ -2911,18 +2297,15 @@ export namespace dfareporting_v3_2 {
      */
     artworkType?: string;
     /**
-     * Exit click-through URL for the event. This field is used only for exit
-     * events.
+     * Exit click-through URL for the event. This field is used only for exit events.
      */
     exitClickThroughUrl?: Schema$CreativeClickThroughUrl;
     /**
-     * ID of this event. This is a required field and should not be modified
-     * after insertion.
+     * ID of this event. This is a required field and should not be modified after insertion.
      */
     id?: string;
     /**
-     * Properties for rich media popup windows. This field is used only for exit
-     * events.
+     * Properties for rich media popup windows. This field is used only for exit events.
      */
     popupWindowProperties?: Schema$PopupWindowProperties;
     /**
@@ -2930,8 +2313,7 @@ export namespace dfareporting_v3_2 {
      */
     targetType?: string;
     /**
-     * Video reporting ID, used to differentiate multiple videos in a single
-     * creative. This is a read-only field.
+     * Video reporting ID, used to differentiate multiple videos in a single creative. This is a read-only field.
      */
     videoReportingId?: string;
   }
@@ -2940,18 +2322,15 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CreativeField {
     /**
-     * Account ID of this creative field. This is a read-only field that can be
-     * left blank.
+     * Account ID of this creative field. This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
-     * Advertiser ID of this creative field. This is a required field on
-     * insertion.
+     * Advertiser ID of this creative field. This is a required field on insertion.
      */
     advertiserId?: string;
     /**
-     * Dimension value for the ID of the advertiser. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -2959,19 +2338,15 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#creativeField&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeField&quot;.
      */
     kind?: string;
     /**
-     * Name of this creative field. This is a required field and must be less
-     * than 256 characters long and unique among creative fields of the same
-     * advertiser.
+     * Name of this creative field. This is a required field and must be less than 256 characters long and unique among creative fields of the same advertiser.
      */
     name?: string;
     /**
-     * Subaccount ID of this creative field. This is a read-only field that can
-     * be left blank.
+     * Subaccount ID of this creative field. This is a read-only field that can be left blank.
      */
     subaccountId?: string;
   }
@@ -2997,8 +2372,7 @@ export namespace dfareporting_v3_2 {
      */
     creativeFields?: Schema$CreativeField[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#creativeFieldsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -3011,18 +2385,15 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CreativeFieldValue {
     /**
-     * ID of this creative field value. This is a read-only, auto-generated
-     * field.
+     * ID of this creative field value. This is a read-only, auto-generated field.
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#creativeFieldValue&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldValue&quot;.
      */
     kind?: string;
     /**
-     * Value of this creative field value. It needs to be less than 256
-     * characters in length and unique per creative field.
+     * Value of this creative field value. It needs to be less than 256 characters in length and unique per creative field.
      */
     value?: string;
   }
@@ -3035,8 +2406,7 @@ export namespace dfareporting_v3_2 {
      */
     creativeFieldValues?: Schema$CreativeFieldValue[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#creativeFieldValuesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldValuesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -3049,25 +2419,19 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CreativeGroup {
     /**
-     * Account ID of this creative group. This is a read-only field that can be
-     * left blank.
+     * Account ID of this creative group. This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
-     * Advertiser ID of this creative group. This is a required field on
-     * insertion.
+     * Advertiser ID of this creative group. This is a required field on insertion.
      */
     advertiserId?: string;
     /**
-     * Dimension value for the ID of the advertiser. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
-     * Subgroup of the creative group. Assign your creative groups to a subgroup
-     * in order to filter or manage them more easily. This field is required on
-     * insertion and is read-only after insertion. Acceptable values are 1 to 2,
-     * inclusive.
+     * Subgroup of the creative group. Assign your creative groups to a subgroup in order to filter or manage them more easily. This field is required on insertion and is read-only after insertion. Acceptable values are 1 to 2, inclusive.
      */
     groupNumber?: number;
     /**
@@ -3075,19 +2439,15 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#creativeGroup&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeGroup&quot;.
      */
     kind?: string;
     /**
-     * Name of this creative group. This is a required field and must be less
-     * than 256 characters long and unique among creative groups of the same
-     * advertiser.
+     * Name of this creative group. This is a required field and must be less than 256 characters long and unique among creative groups of the same advertiser.
      */
     name?: string;
     /**
-     * Subaccount ID of this creative group. This is a read-only field that can
-     * be left blank.
+     * Subaccount ID of this creative group. This is a read-only field that can be left blank.
      */
     subaccountId?: string;
   }
@@ -3113,8 +2473,7 @@ export namespace dfareporting_v3_2 {
      */
     creativeGroups?: Schema$CreativeGroup[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#creativeGroupsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeGroupsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -3127,14 +2486,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CreativeOptimizationConfiguration {
     /**
-     * ID of this creative optimization config. This field is auto-generated
-     * when the campaign is inserted or updated. It can be null for existing
-     * campaigns.
+     * ID of this creative optimization config. This field is auto-generated when the campaign is inserted or updated. It can be null for existing campaigns.
      */
     id?: string;
     /**
-     * Name of this creative optimization config. This is a required field and
-     * must be less than 129 characters long.
+     * Name of this creative optimization config. This is a required field and must be less than 129 characters long.
      */
     name?: string;
     /**
@@ -3155,20 +2511,15 @@ export namespace dfareporting_v3_2 {
      */
     creativeAssignments?: Schema$CreativeAssignment[];
     /**
-     * Creative optimization configuration that is used by this ad. It should
-     * refer to one of the existing optimization configurations in the ad&#39;s
-     * campaign. If it is unset or set to 0, then the campaign&#39;s default
-     * optimization configuration will be used for this ad.
+     * Creative optimization configuration that is used by this ad. It should refer to one of the existing optimization configurations in the ad&#39;s campaign. If it is unset or set to 0, then the campaign&#39;s default optimization configuration will be used for this ad.
      */
     creativeOptimizationConfigurationId?: string;
     /**
-     * Type of creative rotation. Can be used to specify whether to use
-     * sequential or random rotation.
+     * Type of creative rotation. Can be used to specify whether to use sequential or random rotation.
      */
     type?: string;
     /**
-     * Strategy for calculating weights. Used with
-     * CREATIVE_ROTATION_TYPE_RANDOM.
+     * Strategy for calculating weights. Used with CREATIVE_ROTATION_TYPE_RANDOM.
      */
     weightCalculationStrategy?: string;
   }
@@ -3177,13 +2528,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CreativeSettings {
     /**
-     * Header text for iFrames for this site. Must be less than or equal to 2000
-     * characters long.
+     * Header text for iFrames for this site. Must be less than or equal to 2000 characters long.
      */
     iFrameFooter?: string;
     /**
-     * Header text for iFrames for this site. Must be less than or equal to 2000
-     * characters long.
+     * Header text for iFrames for this site. Must be less than or equal to 2000 characters long.
      */
     iFrameHeader?: string;
   }
@@ -3196,8 +2545,7 @@ export namespace dfareporting_v3_2 {
      */
     creatives?: Schema$Creative[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#creativesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -3206,33 +2554,27 @@ export namespace dfareporting_v3_2 {
     nextPageToken?: string;
   }
   /**
-   * Represents fields that are compatible to be selected for a report of type
-   * &quot;CROSS_DIMENSION_REACH&quot;.
+   * Represents fields that are compatible to be selected for a report of type &quot;CROSS_DIMENSION_REACH&quot;.
    */
   export interface Schema$CrossDimensionReachReportCompatibleFields {
     /**
-     * Dimensions which are compatible to be selected in the
-     * &quot;breakdown&quot; section of the report.
+     * Dimensions which are compatible to be selected in the &quot;breakdown&quot; section of the report.
      */
     breakdown?: Schema$Dimension[];
     /**
-     * Dimensions which are compatible to be selected in the
-     * &quot;dimensionFilters&quot; section of the report.
+     * Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
      */
     dimensionFilters?: Schema$Dimension[];
     /**
-     * The kind of resource this is, in this case
-     * dfareporting#crossDimensionReachReportCompatibleFields.
+     * The kind of resource this is, in this case dfareporting#crossDimensionReachReportCompatibleFields.
      */
     kind?: string;
     /**
-     * Metrics which are compatible to be selected in the
-     * &quot;metricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
      */
     metrics?: Schema$Metric[];
     /**
-     * Metrics which are compatible to be selected in the
-     * &quot;overlapMetricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the &quot;overlapMetricNames&quot; section of the report.
      */
     overlapMetrics?: Schema$Metric[];
   }
@@ -3241,18 +2583,15 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CustomFloodlightVariable {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#customFloodlightVariable&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customFloodlightVariable&quot;.
      */
     kind?: string;
     /**
-     * The type of custom floodlight variable to supply a value for. These map
-     * to the &quot;u[1-20]=&quot; in the tags.
+     * The type of custom floodlight variable to supply a value for. These map to the &quot;u[1-20]=&quot; in the tags.
      */
     type?: string;
     /**
-     * The value of the custom floodlight variable. The length of string must
-     * not exceed 50 characters.
+     * The value of the custom floodlight variable. The length of string must not exceed 50 characters.
      */
     value?: string;
   }
@@ -3261,13 +2600,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CustomRichMediaEvents {
     /**
-     * List of custom rich media event IDs. Dimension values must be all of type
-     * dfa:richMediaEventTypeIdAndName.
+     * List of custom rich media event IDs. Dimension values must be all of type dfa:richMediaEventTypeIdAndName.
      */
     filteredEventIds?: Schema$DimensionValue[];
     /**
-     * The kind of resource this is, in this case
-     * dfareporting#customRichMediaEvents.
+     * The kind of resource this is, in this case dfareporting#customRichMediaEvents.
      */
     kind?: string;
   }
@@ -3276,8 +2613,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$DateRange {
     /**
-     * The end date of the date range, inclusive. A string of the format:
-     * &quot;yyyy-MM-dd&quot;.
+     * The end date of the date range, inclusive. A string of the format: &quot;yyyy-MM-dd&quot;.
      */
     endDate?: string;
     /**
@@ -3289,8 +2625,7 @@ export namespace dfareporting_v3_2 {
      */
     relativeDateRange?: string;
     /**
-     * The start date of the date range, inclusive. A string of the format:
-     * &quot;yyyy-MM-dd&quot;.
+     * The start date of the date range, inclusive. A string of the format: &quot;yyyy-MM-dd&quot;.
      */
     startDate?: string;
   }
@@ -3299,25 +2634,15 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$DayPartTargeting {
     /**
-     * Days of the week when the ad will serve.  Acceptable values are: -
-     * &quot;SUNDAY&quot; - &quot;MONDAY&quot; - &quot;TUESDAY&quot; -
-     * &quot;WEDNESDAY&quot; - &quot;THURSDAY&quot; - &quot;FRIDAY&quot; -
-     * &quot;SATURDAY&quot;
+     * Days of the week when the ad will serve.  Acceptable values are: - &quot;SUNDAY&quot; - &quot;MONDAY&quot; - &quot;TUESDAY&quot; - &quot;WEDNESDAY&quot; - &quot;THURSDAY&quot; - &quot;FRIDAY&quot; - &quot;SATURDAY&quot;
      */
     daysOfWeek?: string[];
     /**
-     * Hours of the day when the ad will serve, where 0 is midnight to 1 AM and
-     * 23 is 11 PM to midnight. Can be specified with days of week, in which
-     * case the ad would serve during these hours on the specified days. For
-     * example if Monday, Wednesday, Friday are the days of week specified and
-     * 9-10am, 3-5pm (hours 9, 15, and 16) is specified, the ad would serve
-     * Monday, Wednesdays, and Fridays at 9-10am and 3-5pm. Acceptable values
-     * are 0 to 23, inclusive.
+     * Hours of the day when the ad will serve, where 0 is midnight to 1 AM and 23 is 11 PM to midnight. Can be specified with days of week, in which case the ad would serve during these hours on the specified days. For example if Monday, Wednesday, Friday are the days of week specified and 9-10am, 3-5pm (hours 9, 15, and 16) is specified, the ad would serve Monday, Wednesdays, and Fridays at 9-10am and 3-5pm. Acceptable values are 0 to 23, inclusive.
      */
     hoursOfDay?: number[];
     /**
-     * Whether or not to use the user&#39;s local time. If false, the
-     * America/New York time zone applies.
+     * Whether or not to use the user&#39;s local time. If false, the America/New York time zone applies.
      */
     userLocalTime?: boolean;
   }
@@ -3330,13 +2655,11 @@ export namespace dfareporting_v3_2 {
      */
     appUrl?: string;
     /**
-     * The fallback URL. This URL will be served to users who do not have the
-     * mobile app installed.
+     * The fallback URL. This URL will be served to users who do not have the mobile app installed.
      */
     fallbackUrl?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#deepLink&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#deepLink&quot;.
      */
     kind?: string;
     /**
@@ -3344,25 +2667,20 @@ export namespace dfareporting_v3_2 {
      */
     mobileApp?: Schema$MobileApp;
     /**
-     * Ads served to users on these remarketing lists will use this deep link.
-     * Applicable when mobileApp.directory is APPLE_APP_STORE.
+     * Ads served to users on these remarketing lists will use this deep link. Applicable when mobileApp.directory is APPLE_APP_STORE.
      */
     remarketingListIds?: string[];
   }
   /**
-   * Properties of inheriting and overriding the default click-through event
-   * tag. A campaign may override the event tag defined at the advertiser level,
-   * and an ad may also override the campaign&#39;s setting further.
+   * Properties of inheriting and overriding the default click-through event tag. A campaign may override the event tag defined at the advertiser level, and an ad may also override the campaign&#39;s setting further.
    */
   export interface Schema$DefaultClickThroughEventTagProperties {
     /**
-     * ID of the click-through event tag to apply to all ads in this
-     * entity&#39;s scope.
+     * ID of the click-through event tag to apply to all ads in this entity&#39;s scope.
      */
     defaultClickThroughEventTagId?: string;
     /**
-     * Whether this entity should override the inherited default click-through
-     * event tag with its own defined value.
+     * Whether this entity should override the inherited default click-through event tag with its own defined value.
      */
     overrideInheritedEventTag?: boolean;
   }
@@ -3371,27 +2689,19 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$DeliverySchedule {
     /**
-     * Limit on the number of times an individual user can be served the ad
-     * within a specified period of time.
+     * Limit on the number of times an individual user can be served the ad within a specified period of time.
      */
     frequencyCap?: Schema$FrequencyCap;
     /**
-     * Whether or not hard cutoff is enabled. If true, the ad will not serve
-     * after the end date and time. Otherwise the ad will continue to be served
-     * until it has reached its delivery goals.
+     * Whether or not hard cutoff is enabled. If true, the ad will not serve after the end date and time. Otherwise the ad will continue to be served until it has reached its delivery goals.
      */
     hardCutoff?: boolean;
     /**
-     * Impression ratio for this ad. This ratio determines how often each ad is
-     * served relative to the others. For example, if ad A has an impression
-     * ratio of 1 and ad B has an impression ratio of 3, then Campaign Manager
-     * will serve ad B three times as often as ad A. Acceptable values are 1 to
-     * 10, inclusive.
+     * Impression ratio for this ad. This ratio determines how often each ad is served relative to the others. For example, if ad A has an impression ratio of 1 and ad B has an impression ratio of 3, then Campaign Manager will serve ad B three times as often as ad A. Acceptable values are 1 to 10, inclusive.
      */
     impressionRatio?: string;
     /**
-     * Serving priority of an ad, with respect to other ads. The lower the
-     * priority number, the greater the priority with which it is served.
+     * Serving priority of an ad, with respect to other ads. The lower the priority number, the greater the priority with which it is served.
      */
     priority?: string;
   }
@@ -3471,12 +2781,7 @@ export namespace dfareporting_v3_2 {
      */
     kind?: string;
     /**
-     * Determines how the &#39;value&#39; field is matched when filtering. If
-     * not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION,
-     * &#39;*&#39; is allowed as a placeholder for variable length character
-     * sequences, and it can be escaped with a backslash. Note, only paid search
-     * dimensions (&#39;dfa:paidSearch*&#39;) allow a matchType other than
-     * EXACT.
+     * Determines how the &#39;value&#39; field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, &#39;*&#39; is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions (&#39;dfa:paidSearch*&#39;) allow a matchType other than EXACT.
      */
     matchType?: string;
     /**
@@ -3501,10 +2806,7 @@ export namespace dfareporting_v3_2 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through dimension values. To retrieve the
-     * next page of results, set the next request&#39;s &quot;pageToken&quot; to
-     * the value of this field. The page token is only valid for a limited
-     * amount of time and should not be persisted.
+     * Continuation token used to page through dimension values. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
      */
     nextPageToken?: string;
   }
@@ -3517,8 +2819,7 @@ export namespace dfareporting_v3_2 {
      */
     dimensionName?: string;
     /**
-     * The end date of the date range for which to retrieve dimension values. A
-     * string of the format &quot;yyyy-MM-dd&quot;.
+     * The end date of the date range for which to retrieve dimension values. A string of the format &quot;yyyy-MM-dd&quot;.
      */
     endDate?: string;
     /**
@@ -3526,20 +2827,16 @@ export namespace dfareporting_v3_2 {
      */
     filters?: Schema$DimensionFilter[];
     /**
-     * The kind of request this is, in this case
-     * dfareporting#dimensionValueRequest.
+     * The kind of request this is, in this case dfareporting#dimensionValueRequest.
      */
     kind?: string;
     /**
-     * The start date of the date range for which to retrieve dimension values.
-     * A string of the format &quot;yyyy-MM-dd&quot;.
+     * The start date of the date range for which to retrieve dimension values. A string of the format &quot;yyyy-MM-dd&quot;.
      */
     startDate?: string;
   }
   /**
-   * DirectorySites contains properties of a website from the Site Directory.
-   * Sites need to be added to an account via the Sites resource before they can
-   * be assigned to a placement.
+   * DirectorySites contains properties of a website from the Site Directory. Sites need to be added to an account via the Sites resource before they can be assigned to a placement.
    */
   export interface Schema$DirectorySite {
     /**
@@ -3555,26 +2852,7 @@ export namespace dfareporting_v3_2 {
      */
     countryId?: string;
     /**
-     * Currency ID of this directory site. This is a read-only field. Possible
-     * values are:  - &quot;1&quot; for USD  - &quot;2&quot; for GBP  -
-     * &quot;3&quot; for ESP  - &quot;4&quot; for SEK  - &quot;5&quot; for CAD
-     * - &quot;6&quot; for JPY  - &quot;7&quot; for DEM  - &quot;8&quot; for AUD
-     * - &quot;9&quot; for FRF  - &quot;10&quot; for ITL  - &quot;11&quot; for
-     * DKK  - &quot;12&quot; for NOK  - &quot;13&quot; for FIM  - &quot;14&quot;
-     * for ZAR  - &quot;15&quot; for IEP  - &quot;16&quot; for NLG  -
-     * &quot;17&quot; for EUR  - &quot;18&quot; for KRW  - &quot;19&quot; for
-     * TWD  - &quot;20&quot; for SGD  - &quot;21&quot; for CNY  - &quot;22&quot;
-     * for HKD  - &quot;23&quot; for NZD  - &quot;24&quot; for MYR  -
-     * &quot;25&quot; for BRL  - &quot;26&quot; for PTE  - &quot;27&quot; for
-     * MXP  - &quot;28&quot; for CLP  - &quot;29&quot; for TRY  - &quot;30&quot;
-     * for ARS  - &quot;31&quot; for PEN  - &quot;32&quot; for ILS  -
-     * &quot;33&quot; for CHF  - &quot;34&quot; for VEF  - &quot;35&quot; for
-     * COP  - &quot;36&quot; for GTQ  - &quot;37&quot; for PLN  - &quot;39&quot;
-     * for INR  - &quot;40&quot; for THB  - &quot;41&quot; for IDR  -
-     * &quot;42&quot; for CZK  - &quot;43&quot; for RON  - &quot;44&quot; for
-     * HUF  - &quot;45&quot; for RUB  - &quot;46&quot; for AED  - &quot;47&quot;
-     * for BGN  - &quot;48&quot; for HRK  - &quot;49&quot; for MXN  -
-     * &quot;50&quot; for NGN
+     * Currency ID of this directory site. This is a read-only field. Possible values are:  - &quot;1&quot; for USD  - &quot;2&quot; for GBP  - &quot;3&quot; for ESP  - &quot;4&quot; for SEK  - &quot;5&quot; for CAD  - &quot;6&quot; for JPY  - &quot;7&quot; for DEM  - &quot;8&quot; for AUD  - &quot;9&quot; for FRF  - &quot;10&quot; for ITL  - &quot;11&quot; for DKK  - &quot;12&quot; for NOK  - &quot;13&quot; for FIM  - &quot;14&quot; for ZAR  - &quot;15&quot; for IEP  - &quot;16&quot; for NLG  - &quot;17&quot; for EUR  - &quot;18&quot; for KRW  - &quot;19&quot; for TWD  - &quot;20&quot; for SGD  - &quot;21&quot; for CNY  - &quot;22&quot; for HKD  - &quot;23&quot; for NZD  - &quot;24&quot; for MYR  - &quot;25&quot; for BRL  - &quot;26&quot; for PTE  - &quot;27&quot; for MXP  - &quot;28&quot; for CLP  - &quot;29&quot; for TRY  - &quot;30&quot; for ARS  - &quot;31&quot; for PEN  - &quot;32&quot; for ILS  - &quot;33&quot; for CHF  - &quot;34&quot; for VEF  - &quot;35&quot; for COP  - &quot;36&quot; for GTQ  - &quot;37&quot; for PLN  - &quot;39&quot; for INR  - &quot;40&quot; for THB  - &quot;41&quot; for IDR  - &quot;42&quot; for CZK  - &quot;43&quot; for RON  - &quot;44&quot; for HUF  - &quot;45&quot; for RUB  - &quot;46&quot; for AED  - &quot;47&quot; for BGN  - &quot;48&quot; for HRK  - &quot;49&quot; for MXN  - &quot;50&quot; for NGN
      */
     currencyId?: string;
     /**
@@ -3586,26 +2864,19 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Dimension value for the ID of this directory site. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of this directory site. This is a read-only, auto-generated field.
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Tag types for regular placements.  Acceptable values are: -
-     * &quot;STANDARD&quot; - &quot;IFRAME_JAVASCRIPT_INPAGE&quot; -
-     * &quot;INTERNAL_REDIRECT_INPAGE&quot; - &quot;JAVASCRIPT_INPAGE&quot;
+     * Tag types for regular placements.  Acceptable values are: - &quot;STANDARD&quot; - &quot;IFRAME_JAVASCRIPT_INPAGE&quot; - &quot;INTERNAL_REDIRECT_INPAGE&quot; - &quot;JAVASCRIPT_INPAGE&quot;
      */
     inpageTagFormats?: string[];
     /**
-     * Tag types for interstitial placements.  Acceptable values are: -
-     * &quot;IFRAME_JAVASCRIPT_INTERSTITIAL&quot; -
-     * &quot;INTERNAL_REDIRECT_INTERSTITIAL&quot; -
-     * &quot;JAVASCRIPT_INTERSTITIAL&quot;
+     * Tag types for interstitial placements.  Acceptable values are: - &quot;IFRAME_JAVASCRIPT_INTERSTITIAL&quot; - &quot;INTERNAL_REDIRECT_INTERSTITIAL&quot; - &quot;JAVASCRIPT_INTERSTITIAL&quot;
      */
     interstitialTagFormats?: string[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#directorySite&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#directorySite&quot;.
      */
     kind?: string;
     /**
@@ -3642,13 +2913,11 @@ export namespace dfareporting_v3_2 {
      */
     firstName?: string;
     /**
-     * ID of this directory site contact. This is a read-only, auto-generated
-     * field.
+     * ID of this directory site contact. This is a read-only, auto-generated field.
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#directorySiteContact&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#directorySiteContact&quot;.
      */
     kind?: string;
     /**
@@ -3677,14 +2946,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$DirectorySiteContactAssignment {
     /**
-     * ID of this directory site contact. This is a read-only, auto-generated
-     * field.
+     * ID of this directory site contact. This is a read-only, auto-generated field.
      */
     contactId?: string;
     /**
-     * Visibility of this directory site contact assignment. When set to PUBLIC
-     * this contact assignment is visible to all account and agency users; when
-     * set to PRIVATE it is visible only to the site.
+     * Visibility of this directory site contact assignment. When set to PUBLIC this contact assignment is visible to all account and agency users; when set to PRIVATE it is visible only to the site.
      */
     visibility?: string;
   }
@@ -3697,8 +2963,7 @@ export namespace dfareporting_v3_2 {
      */
     directorySiteContacts?: Schema$DirectorySiteContact[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#directorySiteContactsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#directorySiteContactsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -3731,13 +2996,11 @@ export namespace dfareporting_v3_2 {
      */
     nielsenOcrOptOut?: boolean;
     /**
-     * Whether this directory site has disabled generation of Verification ins
-     * tags.
+     * Whether this directory site has disabled generation of Verification ins tags.
      */
     verificationTagOptOut?: boolean;
     /**
-     * Whether this directory site has disabled active view for in-stream video
-     * creatives. This is a read-only field.
+     * Whether this directory site has disabled active view for in-stream video creatives. This is a read-only field.
      */
     videoActiveViewOptOut?: boolean;
   }
@@ -3750,8 +3013,7 @@ export namespace dfareporting_v3_2 {
      */
     directorySites?: Schema$DirectorySite[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#directorySitesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#directorySitesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -3760,23 +3022,15 @@ export namespace dfareporting_v3_2 {
     nextPageToken?: string;
   }
   /**
-   * Contains properties of a dynamic targeting key. Dynamic targeting keys are
-   * unique, user-friendly labels, created at the advertiser level in DCM, that
-   * can be assigned to ads, creatives, and placements and used for targeting
-   * with Studio dynamic creatives. Use these labels instead of numeric Campaign
-   * Manager IDs (such as placement IDs) to save time and avoid errors in your
-   * dynamic feeds.
+   * Contains properties of a dynamic targeting key. Dynamic targeting keys are unique, user-friendly labels, created at the advertiser level in DCM, that can be assigned to ads, creatives, and placements and used for targeting with Studio dynamic creatives. Use these labels instead of numeric Campaign Manager IDs (such as placement IDs) to save time and avoid errors in your dynamic feeds.
    */
   export interface Schema$DynamicTargetingKey {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#dynamicTargetingKey&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#dynamicTargetingKey&quot;.
      */
     kind?: string;
     /**
-     * Name of this dynamic targeting key. This is a required field. Must be
-     * less than 256 characters long and cannot contain commas. All characters
-     * are converted to lowercase.
+     * Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
      */
     name?: string;
     /**
@@ -3784,8 +3038,7 @@ export namespace dfareporting_v3_2 {
      */
     objectId?: string;
     /**
-     * Type of the object of this dynamic targeting key. This is a required
-     * field.
+     * Type of the object of this dynamic targeting key. This is a required field.
      */
     objectType?: string;
   }
@@ -3798,8 +3051,7 @@ export namespace dfareporting_v3_2 {
      */
     dynamicTargetingKeys?: Schema$DynamicTargetingKey[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#dynamicTargetingKeysListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#dynamicTargetingKeysListResponse&quot;.
      */
     kind?: string;
   }
@@ -3808,23 +3060,19 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$EncryptionInfo {
     /**
-     * The encryption entity ID. This should match the encryption configuration
-     * for ad serving or Data Transfer.
+     * The encryption entity ID. This should match the encryption configuration for ad serving or Data Transfer.
      */
     encryptionEntityId?: string;
     /**
-     * The encryption entity type. This should match the encryption
-     * configuration for ad serving or Data Transfer.
+     * The encryption entity type. This should match the encryption configuration for ad serving or Data Transfer.
      */
     encryptionEntityType?: string;
     /**
-     * Describes whether the encrypted cookie was received from ad serving (the
-     * %m macro) or from Data Transfer.
+     * Describes whether the encrypted cookie was received from ad serving (the %m macro) or from Data Transfer.
      */
     encryptionSource?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#encryptionInfo&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#encryptionInfo&quot;.
      */
     kind?: string;
   }
@@ -3833,40 +3081,31 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$EventTag {
     /**
-     * Account ID of this event tag. This is a read-only field that can be left
-     * blank.
+     * Account ID of this event tag. This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
-     * Advertiser ID of this event tag. This field or the campaignId field is
-     * required on insertion.
+     * Advertiser ID of this event tag. This field or the campaignId field is required on insertion.
      */
     advertiserId?: string;
     /**
-     * Dimension value for the ID of the advertiser. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
-     * Campaign ID of this event tag. This field or the advertiserId field is
-     * required on insertion.
+     * Campaign ID of this event tag. This field or the advertiserId field is required on insertion.
      */
     campaignId?: string;
     /**
-     * Dimension value for the ID of the campaign. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
      */
     campaignIdDimensionValue?: Schema$DimensionValue;
     /**
-     * Whether this event tag should be automatically enabled for all of the
-     * advertiser&#39;s campaigns and ads.
+     * Whether this event tag should be automatically enabled for all of the advertiser&#39;s campaigns and ads.
      */
     enabledByDefault?: boolean;
     /**
-     * Whether to remove this event tag from ads that are trafficked through
-     * Display &amp; Video 360 to Ad Exchange. This may be useful if the event
-     * tag uses a pixel that is unapproved for Ad Exchange bids on one or more
-     * networks, such as the Google Display Network.
+     * Whether to remove this event tag from ads that are trafficked through Display &amp; Video 360 to Ad Exchange. This may be useful if the event tag uses a pixel that is unapproved for Ad Exchange bids on one or more networks, such as the Google Display Network.
      */
     excludeFromAdxRequests?: boolean;
     /**
@@ -3874,24 +3113,19 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#eventTag&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#eventTag&quot;.
      */
     kind?: string;
     /**
-     * Name of this event tag. This is a required field and must be less than
-     * 256 characters long.
+     * Name of this event tag. This is a required field and must be less than 256 characters long.
      */
     name?: string;
     /**
-     * Site filter type for this event tag. If no type is specified then the
-     * event tag will be applied to all sites.
+     * Site filter type for this event tag. If no type is specified then the event tag will be applied to all sites.
      */
     siteFilterType?: string;
     /**
-     * Filter list of site IDs associated with this event tag. The
-     * siteFilterType determines whether this is a whitelist or blacklist
-     * filter.
+     * Filter list of site IDs associated with this event tag. The siteFilterType determines whether this is a whitelist or blacklist filter.
      */
     siteIds?: string[];
     /**
@@ -3899,31 +3133,23 @@ export namespace dfareporting_v3_2 {
      */
     sslCompliant?: boolean;
     /**
-     * Status of this event tag. Must be ENABLED for this event tag to fire.
-     * This is a required field.
+     * Status of this event tag. Must be ENABLED for this event tag to fire. This is a required field.
      */
     status?: string;
     /**
-     * Subaccount ID of this event tag. This is a read-only field that can be
-     * left blank.
+     * Subaccount ID of this event tag. This is a read-only field that can be left blank.
      */
     subaccountId?: string;
     /**
-     * Event tag type. Can be used to specify whether to use a third-party
-     * pixel, a third-party JavaScript URL, or a third-party click-through URL
-     * for either impression or click tracking. This is a required field.
+     * Event tag type. Can be used to specify whether to use a third-party pixel, a third-party JavaScript URL, or a third-party click-through URL for either impression or click tracking. This is a required field.
      */
     type?: string;
     /**
-     * Payload URL for this event tag. The URL on a click-through event tag
-     * should have a landing page URL appended to the end of it. This field is
-     * required on insertion.
+     * Payload URL for this event tag. The URL on a click-through event tag should have a landing page URL appended to the end of it. This field is required on insertion.
      */
     url?: string;
     /**
-     * Number of times the landing page URL should be URL-escaped before being
-     * appended to the click-through event tag URL. Only applies to
-     * click-through event tags as specified by the event tag type.
+     * Number of times the landing page URL should be URL-escaped before being appended to the click-through event tag URL. Only applies to click-through event tags as specified by the event tag type.
      */
     urlEscapeLevels?: number;
   }
@@ -3949,20 +3175,16 @@ export namespace dfareporting_v3_2 {
      */
     eventTags?: Schema$EventTag[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#eventTagsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#eventTagsListResponse&quot;.
      */
     kind?: string;
   }
   /**
-   * Represents a File resource. A file contains the metadata for a report run.
-   * It shows the status of the run and holds the URLs to the generated report
-   * data if the run is finished and the status is &quot;REPORT_AVAILABLE&quot;.
+   * Represents a File resource. A file contains the metadata for a report run. It shows the status of the run and holds the URLs to the generated report data if the run is finished and the status is &quot;REPORT_AVAILABLE&quot;.
    */
   export interface Schema$File {
     /**
-     * The date range for which the file has report data. The date range will
-     * always be the absolute date range for which the report is run.
+     * The date range for which the file has report data. The date range will always be the absolute date range for which the report is run.
      */
     dateRange?: Schema$DateRange;
     /**
@@ -3974,8 +3196,7 @@ export namespace dfareporting_v3_2 {
      */
     fileName?: string;
     /**
-     * The output format of the report. Only available once the file is
-     * available.
+     * The output format of the report. Only available once the file is available.
      */
     format?: string;
     /**
@@ -3987,8 +3208,7 @@ export namespace dfareporting_v3_2 {
      */
     kind?: string;
     /**
-     * The timestamp in milliseconds since epoch when this file was last
-     * modified.
+     * The timestamp in milliseconds since epoch when this file was last modified.
      */
     lastModifiedTime?: string;
     /**
@@ -4021,10 +3241,7 @@ export namespace dfareporting_v3_2 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through files. To retrieve the next page
-     * of results, set the next request&#39;s &quot;pageToken&quot; to the value
-     * of this field. The page token is only valid for a limited amount of time
-     * and should not be persisted.
+     * Continuation token used to page through files. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
      */
     nextPageToken?: string;
   }
@@ -4054,19 +3271,15 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$FloodlightActivitiesGenerateTagResponse {
     /**
-     * Generated tag for this Floodlight activity. For global site tags, this is
-     * the event snippet.
+     * Generated tag for this Floodlight activity. For global site tags, this is the event snippet.
      */
     floodlightActivityTag?: string;
     /**
-     * The global snippet section of a global site tag. The global site tag sets
-     * new cookies on your domain, which will store a unique identifier for a
-     * user or the ad click that brought the user to your site. Learn more.
+     * The global snippet section of a global site tag. The global site tag sets new cookies on your domain, which will store a unique identifier for a user or the ad click that brought the user to your site. Learn more.
      */
     globalSiteTagGlobalSnippet?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#floodlightActivitiesGenerateTagResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivitiesGenerateTagResponse&quot;.
      */
     kind?: string;
   }
@@ -4079,8 +3292,7 @@ export namespace dfareporting_v3_2 {
      */
     floodlightActivities?: Schema$FloodlightActivity[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#floodlightActivitiesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivitiesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -4093,30 +3305,23 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$FloodlightActivity {
     /**
-     * Account ID of this floodlight activity. This is a read-only field that
-     * can be left blank.
+     * Account ID of this floodlight activity. This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
-     * Advertiser ID of this floodlight activity. If this field is left blank,
-     * the value will be copied over either from the activity group&#39;s
-     * advertiser or the existing activity&#39;s advertiser.
+     * Advertiser ID of this floodlight activity. If this field is left blank, the value will be copied over either from the activity group&#39;s advertiser or the existing activity&#39;s advertiser.
      */
     advertiserId?: string;
     /**
-     * Dimension value for the ID of the advertiser. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
-     * Code type used for cache busting in the generated tag. Applicable only
-     * when floodlightActivityGroupType is COUNTER and countingMethod is
-     * STANDARD_COUNTING or UNIQUE_COUNTING.
+     * Code type used for cache busting in the generated tag. Applicable only when floodlightActivityGroupType is COUNTER and countingMethod is STANDARD_COUNTING or UNIQUE_COUNTING.
      */
     cacheBustingType?: string;
     /**
-     * Counting method for conversions for this floodlight activity. This is a
-     * required field.
+     * Counting method for conversions for this floodlight activity. This is a required field.
      */
     countingMethod?: string;
     /**
@@ -4124,45 +3329,35 @@ export namespace dfareporting_v3_2 {
      */
     defaultTags?: Schema$FloodlightActivityDynamicTag[];
     /**
-     * URL where this tag will be deployed. If specified, must be less than 256
-     * characters long.
+     * URL where this tag will be deployed. If specified, must be less than 256 characters long.
      */
     expectedUrl?: string;
     /**
-     * Floodlight activity group ID of this floodlight activity. This is a
-     * required field.
+     * Floodlight activity group ID of this floodlight activity. This is a required field.
      */
     floodlightActivityGroupId?: string;
     /**
-     * Name of the associated floodlight activity group. This is a read-only
-     * field.
+     * Name of the associated floodlight activity group. This is a read-only field.
      */
     floodlightActivityGroupName?: string;
     /**
-     * Tag string of the associated floodlight activity group. This is a
-     * read-only field.
+     * Tag string of the associated floodlight activity group. This is a read-only field.
      */
     floodlightActivityGroupTagString?: string;
     /**
-     * Type of the associated floodlight activity group. This is a read-only
-     * field.
+     * Type of the associated floodlight activity group. This is a read-only field.
      */
     floodlightActivityGroupType?: string;
     /**
-     * Floodlight configuration ID of this floodlight activity. If this field is
-     * left blank, the value will be copied over either from the activity
-     * group&#39;s floodlight configuration or from the existing activity&#39;s
-     * floodlight configuration.
+     * Floodlight configuration ID of this floodlight activity. If this field is left blank, the value will be copied over either from the activity group&#39;s floodlight configuration or from the existing activity&#39;s floodlight configuration.
      */
     floodlightConfigurationId?: string;
     /**
-     * Dimension value for the ID of the floodlight configuration. This is a
-     * read-only, auto-generated field.
+     * Dimension value for the ID of the floodlight configuration. This is a read-only, auto-generated field.
      */
     floodlightConfigurationIdDimensionValue?: Schema$DimensionValue;
     /**
-     * The type of Floodlight tag this activity will generate. This is a
-     * required field.
+     * The type of Floodlight tag this activity will generate. This is a required field.
      */
     floodlightTagType?: string;
     /**
@@ -4170,23 +3365,19 @@ export namespace dfareporting_v3_2 {
      */
     hidden?: boolean;
     /**
-     * ID of this floodlight activity. This is a read-only, auto-generated
-     * field.
+     * ID of this floodlight activity. This is a read-only, auto-generated field.
      */
     id?: string;
     /**
-     * Dimension value for the ID of this floodlight activity. This is a
-     * read-only, auto-generated field.
+     * Dimension value for the ID of this floodlight activity. This is a read-only, auto-generated field.
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#floodlightActivity&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivity&quot;.
      */
     kind?: string;
     /**
-     * Name of this floodlight activity. This is a required field. Must be less
-     * than 129 characters long and cannot contain quotes.
+     * Name of this floodlight activity. This is a required field. Must be less than 129 characters long and cannot contain quotes.
      */
     name?: string;
     /**
@@ -4202,8 +3393,7 @@ export namespace dfareporting_v3_2 {
      */
     secure?: boolean;
     /**
-     * Whether the floodlight activity is SSL-compliant. This is a read-only
-     * field, its value detected by the system from the floodlight tags.
+     * Whether the floodlight activity is SSL-compliant. This is a read-only field, its value detected by the system from the floodlight tags.
      */
     sslCompliant?: boolean;
     /**
@@ -4211,28 +3401,19 @@ export namespace dfareporting_v3_2 {
      */
     sslRequired?: boolean;
     /**
-     * Subaccount ID of this floodlight activity. This is a read-only field that
-     * can be left blank.
+     * Subaccount ID of this floodlight activity. This is a read-only field that can be left blank.
      */
     subaccountId?: string;
     /**
-     * Tag format type for the floodlight activity. If left blank, the tag
-     * format will default to HTML.
+     * Tag format type for the floodlight activity. If left blank, the tag format will default to HTML.
      */
     tagFormat?: string;
     /**
-     * Value of the cat= parameter in the floodlight tag, which the ad servers
-     * use to identify the activity. This is optional: if empty, a new tag
-     * string will be generated for you. This string must be 1 to 8 characters
-     * long, with valid characters being [a-z][A-Z][0-9][-][ _ ]. This tag
-     * string must also be unique among activities of the same activity group.
-     * This field is read-only after insertion.
+     * Value of the cat= parameter in the floodlight tag, which the ad servers use to identify the activity. This is optional: if empty, a new tag string will be generated for you. This string must be 1 to 8 characters long, with valid characters being [a-z][A-Z][0-9][-][ _ ]. This tag string must also be unique among activities of the same activity group. This field is read-only after insertion.
      */
     tagString?: string;
     /**
-     * List of the user-defined variables used by this conversion tag. These map
-     * to the &quot;u[1-100]=&quot; in the tags. Each of these can have a user
-     * defined type. Acceptable values are U1 to U100, inclusive.
+     * List of the user-defined variables used by this conversion tag. These map to the &quot;u[1-100]=&quot; in the tags. Each of these can have a user defined type. Acceptable values are U1 to U100, inclusive.
      */
     userDefinedVariableTypes?: string[];
   }
@@ -4258,70 +3439,51 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$FloodlightActivityGroup {
     /**
-     * Account ID of this floodlight activity group. This is a read-only field
-     * that can be left blank.
+     * Account ID of this floodlight activity group. This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
-     * Advertiser ID of this floodlight activity group. If this field is left
-     * blank, the value will be copied over either from the floodlight
-     * configuration&#39;s advertiser or from the existing activity group&#39;s
-     * advertiser.
+     * Advertiser ID of this floodlight activity group. If this field is left blank, the value will be copied over either from the floodlight configuration&#39;s advertiser or from the existing activity group&#39;s advertiser.
      */
     advertiserId?: string;
     /**
-     * Dimension value for the ID of the advertiser. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
-     * Floodlight configuration ID of this floodlight activity group. This is a
-     * required field.
+     * Floodlight configuration ID of this floodlight activity group. This is a required field.
      */
     floodlightConfigurationId?: string;
     /**
-     * Dimension value for the ID of the floodlight configuration. This is a
-     * read-only, auto-generated field.
+     * Dimension value for the ID of the floodlight configuration. This is a read-only, auto-generated field.
      */
     floodlightConfigurationIdDimensionValue?: Schema$DimensionValue;
     /**
-     * ID of this floodlight activity group. This is a read-only, auto-generated
-     * field.
+     * ID of this floodlight activity group. This is a read-only, auto-generated field.
      */
     id?: string;
     /**
-     * Dimension value for the ID of this floodlight activity group. This is a
-     * read-only, auto-generated field.
+     * Dimension value for the ID of this floodlight activity group. This is a read-only, auto-generated field.
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#floodlightActivityGroup&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivityGroup&quot;.
      */
     kind?: string;
     /**
-     * Name of this floodlight activity group. This is a required field. Must be
-     * less than 65 characters long and cannot contain quotes.
+     * Name of this floodlight activity group. This is a required field. Must be less than 65 characters long and cannot contain quotes.
      */
     name?: string;
     /**
-     * Subaccount ID of this floodlight activity group. This is a read-only
-     * field that can be left blank.
+     * Subaccount ID of this floodlight activity group. This is a read-only field that can be left blank.
      */
     subaccountId?: string;
     /**
-     * Value of the type= parameter in the floodlight tag, which the ad servers
-     * use to identify the activity group that the activity belongs to. This is
-     * optional: if empty, a new tag string will be generated for you. This
-     * string must be 1 to 8 characters long, with valid characters being
-     * [a-z][A-Z][0-9][-][ _ ]. This tag string must also be unique among
-     * activity groups of the same floodlight configuration. This field is
-     * read-only after insertion.
+     * Value of the type= parameter in the floodlight tag, which the ad servers use to identify the activity group that the activity belongs to. This is optional: if empty, a new tag string will be generated for you. This string must be 1 to 8 characters long, with valid characters being [a-z][A-Z][0-9][-][ _ ]. This tag string must also be unique among activity groups of the same floodlight configuration. This field is read-only after insertion.
      */
     tagString?: string;
     /**
-     * Type of the floodlight activity group. This is a required field that is
-     * read-only after insertion.
+     * Type of the floodlight activity group. This is a required field that is read-only after insertion.
      */
     type?: string;
   }
@@ -4334,8 +3496,7 @@ export namespace dfareporting_v3_2 {
      */
     floodlightActivityGroups?: Schema$FloodlightActivityGroup[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#floodlightActivityGroupsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivityGroupsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -4352,9 +3513,7 @@ export namespace dfareporting_v3_2 {
      */
     clickThrough?: boolean;
     /**
-     * Directory site ID of this dynamic tag. This is a write-only field that
-     * can be used as an alternative to the siteId field. When this resource is
-     * retrieved, only the siteId field will be populated.
+     * Directory site ID of this dynamic tag. This is a write-only field that can be used as an alternative to the siteId field. When this resource is retrieved, only the siteId field will be populated.
      */
     directorySiteId?: string;
     /**
@@ -4366,8 +3525,7 @@ export namespace dfareporting_v3_2 {
      */
     siteId?: string;
     /**
-     * Dimension value for the ID of the site. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the site. This is a read-only, auto-generated field.
      */
     siteIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -4380,8 +3538,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$FloodlightConfiguration {
     /**
-     * Account ID of this floodlight configuration. This is a read-only field
-     * that can be left blank.
+     * Account ID of this floodlight configuration. This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
@@ -4389,8 +3546,7 @@ export namespace dfareporting_v3_2 {
      */
     advertiserId?: string;
     /**
-     * Dimension value for the ID of the advertiser. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -4398,24 +3554,19 @@ export namespace dfareporting_v3_2 {
      */
     analyticsDataSharingEnabled?: boolean;
     /**
-     * Whether the exposure-to-conversion report is enabled. This report shows
-     * detailed pathway information on up to 10 of the most recent ad exposures
-     * seen by a user before converting.
+     * Whether the exposure-to-conversion report is enabled. This report shows detailed pathway information on up to 10 of the most recent ad exposures seen by a user before converting.
      */
     exposureToConversionEnabled?: boolean;
     /**
-     * Day that will be counted as the first day of the week in reports. This is
-     * a required field.
+     * Day that will be counted as the first day of the week in reports. This is a required field.
      */
     firstDayOfWeek?: string;
     /**
-     * ID of this floodlight configuration. This is a read-only, auto-generated
-     * field.
+     * ID of this floodlight configuration. This is a read-only, auto-generated field.
      */
     id?: string;
     /**
-     * Dimension value for the ID of this floodlight configuration. This is a
-     * read-only, auto-generated field.
+     * Dimension value for the ID of this floodlight configuration. This is a read-only, auto-generated field.
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
@@ -4423,8 +3574,7 @@ export namespace dfareporting_v3_2 {
      */
     inAppAttributionTrackingEnabled?: boolean;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#floodlightConfiguration&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightConfiguration&quot;.
      */
     kind?: string;
     /**
@@ -4440,8 +3590,7 @@ export namespace dfareporting_v3_2 {
      */
     omnitureSettings?: Schema$OmnitureSettings;
     /**
-     * Subaccount ID of this floodlight configuration. This is a read-only field
-     * that can be left blank.
+     * Subaccount ID of this floodlight configuration. This is a read-only field that can be left blank.
      */
     subaccountId?: string;
     /**
@@ -4466,34 +3615,28 @@ export namespace dfareporting_v3_2 {
      */
     floodlightConfigurations?: Schema$FloodlightConfiguration[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#floodlightConfigurationsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightConfigurationsListResponse&quot;.
      */
     kind?: string;
   }
   /**
-   * Represents fields that are compatible to be selected for a report of type
-   * &quot;FlOODLIGHT&quot;.
+   * Represents fields that are compatible to be selected for a report of type &quot;FlOODLIGHT&quot;.
    */
   export interface Schema$FloodlightReportCompatibleFields {
     /**
-     * Dimensions which are compatible to be selected in the
-     * &quot;dimensionFilters&quot; section of the report.
+     * Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
      */
     dimensionFilters?: Schema$Dimension[];
     /**
-     * Dimensions which are compatible to be selected in the
-     * &quot;dimensions&quot; section of the report.
+     * Dimensions which are compatible to be selected in the &quot;dimensions&quot; section of the report.
      */
     dimensions?: Schema$Dimension[];
     /**
-     * The kind of resource this is, in this case
-     * dfareporting#floodlightReportCompatibleFields.
+     * The kind of resource this is, in this case dfareporting#floodlightReportCompatibleFields.
      */
     kind?: string;
     /**
-     * Metrics which are compatible to be selected in the
-     * &quot;metricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
      */
     metrics?: Schema$Metric[];
   }
@@ -4502,13 +3645,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$FrequencyCap {
     /**
-     * Duration of time, in seconds, for this frequency cap. The maximum
-     * duration is 90 days. Acceptable values are 1 to 7776000, inclusive.
+     * Duration of time, in seconds, for this frequency cap. The maximum duration is 90 days. Acceptable values are 1 to 7776000, inclusive.
      */
     duration?: string;
     /**
-     * Number of times an individual user can be served the ad within the
-     * specified duration. Acceptable values are 1 to 15, inclusive.
+     * Number of times an individual user can be served the ad within the specified duration. Acceptable values are 1 to 15, inclusive.
      */
     impressions?: string;
   }
@@ -4517,8 +3658,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$FsCommand {
     /**
-     * Distance from the left of the browser.Applicable when positionOption is
-     * DISTANCE_FROM_TOP_LEFT_CORNER.
+     * Distance from the left of the browser.Applicable when positionOption is DISTANCE_FROM_TOP_LEFT_CORNER.
      */
     left?: number;
     /**
@@ -4526,8 +3666,7 @@ export namespace dfareporting_v3_2 {
      */
     positionOption?: string;
     /**
-     * Distance from the top of the browser. Applicable when positionOption is
-     * DISTANCE_FROM_TOP_LEFT_CORNER.
+     * Distance from the top of the browser. Applicable when positionOption is DISTANCE_FROM_TOP_LEFT_CORNER.
      */
     top?: number;
     /**
@@ -4544,44 +3683,27 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$GeoTargeting {
     /**
-     * Cities to be targeted. For each city only dartId is required. The other
-     * fields are populated automatically when the ad is inserted or updated. If
-     * targeting a city, do not target or exclude the country of the city, and
-     * do not target the metro or region of the city.
+     * Cities to be targeted. For each city only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a city, do not target or exclude the country of the city, and do not target the metro or region of the city.
      */
     cities?: Schema$City[];
     /**
-     * Countries to be targeted or excluded from targeting, depending on the
-     * setting of the excludeCountries field. For each country only dartId is
-     * required. The other fields are populated automatically when the ad is
-     * inserted or updated. If targeting or excluding a country, do not target
-     * regions, cities, metros, or postal codes in the same country.
+     * Countries to be targeted or excluded from targeting, depending on the setting of the excludeCountries field. For each country only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting or excluding a country, do not target regions, cities, metros, or postal codes in the same country.
      */
     countries?: Schema$Country[];
     /**
-     * Whether or not to exclude the countries in the countries field from
-     * targeting. If false, the countries field refers to countries which will
-     * be targeted by the ad.
+     * Whether or not to exclude the countries in the countries field from targeting. If false, the countries field refers to countries which will be targeted by the ad.
      */
     excludeCountries?: boolean;
     /**
-     * Metros to be targeted. For each metro only dmaId is required. The other
-     * fields are populated automatically when the ad is inserted or updated. If
-     * targeting a metro, do not target or exclude the country of the metro.
+     * Metros to be targeted. For each metro only dmaId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a metro, do not target or exclude the country of the metro.
      */
     metros?: Schema$Metro[];
     /**
-     * Postal codes to be targeted. For each postal code only id is required.
-     * The other fields are populated automatically when the ad is inserted or
-     * updated. If targeting a postal code, do not target or exclude the country
-     * of the postal code.
+     * Postal codes to be targeted. For each postal code only id is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a postal code, do not target or exclude the country of the postal code.
      */
     postalCodes?: Schema$PostalCode[];
     /**
-     * Regions to be targeted. For each region only dartId is required. The
-     * other fields are populated automatically when the ad is inserted or
-     * updated. If targeting a region, do not target or exclude the country of
-     * the region.
+     * Regions to be targeted. For each region only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a region, do not target or exclude the country of the region.
      */
     regions?: Schema$Region[];
   }
@@ -4594,10 +3716,7 @@ export namespace dfareporting_v3_2 {
      */
     accountId?: string;
     /**
-     * Ad slots of this inventory item. If this inventory item represents a
-     * standalone placement, there will be exactly one ad slot. If this
-     * inventory item represents a placement group, there will be more than one
-     * ad slot, each representing one child placement in that placement group.
+     * Ad slots of this inventory item. If this inventory item represents a standalone placement, there will be exactly one ad slot. If this inventory item represents a placement group, there will be more than one ad slot, each representing one child placement in that placement group.
      */
     adSlots?: Schema$AdSlot[];
     /**
@@ -4625,8 +3744,7 @@ export namespace dfareporting_v3_2 {
      */
     inPlan?: boolean;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#inventoryItem&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#inventoryItem&quot;.
      */
     kind?: string;
     /**
@@ -4634,9 +3752,7 @@ export namespace dfareporting_v3_2 {
      */
     lastModifiedInfo?: Schema$LastModifiedInfo;
     /**
-     * Name of this inventory item. For standalone inventory items, this is the
-     * same name as that of its only ad slot. For group inventory items, this
-     * can differ from the name of any of its ad slots.
+     * Name of this inventory item. For standalone inventory items, this is the same name as that of its only ad slot. For group inventory items, this can differ from the name of any of its ad slots.
      */
     name?: string;
     /**
@@ -4685,8 +3801,7 @@ export namespace dfareporting_v3_2 {
      */
     inventoryItems?: Schema$InventoryItem[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#inventoryItemsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#inventoryItemsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -4704,8 +3819,7 @@ export namespace dfareporting_v3_2 {
     expression?: string;
   }
   /**
-   * Contains information about where a user&#39;s browser is taken after the
-   * user clicks an ad.
+   * Contains information about where a user&#39;s browser is taken after the user clicks an ad.
    */
   export interface Schema$LandingPage {
     /**
@@ -4725,13 +3839,11 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#landingPage&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#landingPage&quot;.
      */
     kind?: string;
     /**
-     * Name of this landing page. This is a required field. It must be less than
-     * 256 characters long.
+     * Name of this landing page. This is a required field. It must be less than 256 characters long.
      */
     name?: string;
     /**
@@ -4744,19 +3856,15 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$Language {
     /**
-     * Language ID of this language. This is the ID used for targeting and
-     * generating reports.
+     * Language ID of this language. This is the ID used for targeting and generating reports.
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#language&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#language&quot;.
      */
     kind?: string;
     /**
-     * Format of language code is an ISO 639 two-letter language code optionally
-     * followed by an underscore followed by an ISO 3166 code. Examples are
-     * &quot;en&quot; for English or &quot;zh_CN&quot; for Simplified Chinese.
+     * Format of language code is an ISO 639 two-letter language code optionally followed by an underscore followed by an ISO 3166 code. Examples are &quot;en&quot; for English or &quot;zh_CN&quot; for Simplified Chinese.
      */
     languageCode?: string;
     /**
@@ -4769,8 +3877,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$LanguagesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#languagesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#languagesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -4783,9 +3890,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$LanguageTargeting {
     /**
-     * Languages that this ad targets. For each language only languageId is
-     * required. The other fields are populated automatically when the ad is
-     * inserted or updated.
+     * Languages that this ad targets. For each language only languageId is required. The other fields are populated automatically when the ad is inserted or updated.
      */
     languages?: Schema$Language[];
   }
@@ -4799,13 +3904,11 @@ export namespace dfareporting_v3_2 {
     time?: string;
   }
   /**
-   * A group clause made up of list population terms representing constraints
-   * joined by ORs.
+   * A group clause made up of list population terms representing constraints joined by ORs.
    */
   export interface Schema$ListPopulationClause {
     /**
-     * Terms of this list population clause. Each clause is made up of list
-     * population terms representing constraints and are joined by ORs.
+     * Terms of this list population clause. Each clause is made up of list population terms representing constraints and are joined by ORs.
      */
     terms?: Schema$ListPopulationTerm[];
   }
@@ -4814,19 +3917,15 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$ListPopulationRule {
     /**
-     * Floodlight activity ID associated with this rule. This field can be left
-     * blank.
+     * Floodlight activity ID associated with this rule. This field can be left blank.
      */
     floodlightActivityId?: string;
     /**
-     * Name of floodlight activity associated with this rule. This is a
-     * read-only, auto-generated field.
+     * Name of floodlight activity associated with this rule. This is a read-only, auto-generated field.
      */
     floodlightActivityName?: string;
     /**
-     * Clauses that make up this list population rule. Clauses are joined by
-     * ANDs, and the clauses themselves are made up of list population terms
-     * which are joined by ORs.
+     * Clauses that make up this list population rule. Clauses are joined by ANDs, and the clauses themselves are made up of list population terms which are joined by ORs.
      */
     listPopulationClauses?: Schema$ListPopulationClause[];
   }
@@ -4835,52 +3934,35 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$ListPopulationTerm {
     /**
-     * Will be true if the term should check if the user is in the list and
-     * false if the term should check if the user is not in the list. This field
-     * is only relevant when type is set to LIST_MEMBERSHIP_TERM. False by
-     * default.
+     * Will be true if the term should check if the user is in the list and false if the term should check if the user is not in the list. This field is only relevant when type is set to LIST_MEMBERSHIP_TERM. False by default.
      */
     contains?: boolean;
     /**
-     * Whether to negate the comparison result of this term during rule
-     * evaluation. This field is only relevant when type is left unset or set to
-     * CUSTOM_VARIABLE_TERM or REFERRER_TERM.
+     * Whether to negate the comparison result of this term during rule evaluation. This field is only relevant when type is left unset or set to CUSTOM_VARIABLE_TERM or REFERRER_TERM.
      */
     negation?: boolean;
     /**
-     * Comparison operator of this term. This field is only relevant when type
-     * is left unset or set to CUSTOM_VARIABLE_TERM or REFERRER_TERM.
+     * Comparison operator of this term. This field is only relevant when type is left unset or set to CUSTOM_VARIABLE_TERM or REFERRER_TERM.
      */
     operator?: string;
     /**
-     * ID of the list in question. This field is only relevant when type is set
-     * to LIST_MEMBERSHIP_TERM.
+     * ID of the list in question. This field is only relevant when type is set to LIST_MEMBERSHIP_TERM.
      */
     remarketingListId?: string;
     /**
-     * List population term type determines the applicable fields in this
-     * object. If left unset or set to CUSTOM_VARIABLE_TERM, then variableName,
-     * variableFriendlyName, operator, value, and negation are applicable. If
-     * set to LIST_MEMBERSHIP_TERM then remarketingListId and contains are
-     * applicable. If set to REFERRER_TERM then operator, value, and negation
-     * are applicable.
+     * List population term type determines the applicable fields in this object. If left unset or set to CUSTOM_VARIABLE_TERM, then variableName, variableFriendlyName, operator, value, and negation are applicable. If set to LIST_MEMBERSHIP_TERM then remarketingListId and contains are applicable. If set to REFERRER_TERM then operator, value, and negation are applicable.
      */
     type?: string;
     /**
-     * Literal to compare the variable to. This field is only relevant when type
-     * is left unset or set to CUSTOM_VARIABLE_TERM or REFERRER_TERM.
+     * Literal to compare the variable to. This field is only relevant when type is left unset or set to CUSTOM_VARIABLE_TERM or REFERRER_TERM.
      */
     value?: string;
     /**
-     * Friendly name of this term&#39;s variable. This is a read-only,
-     * auto-generated field. This field is only relevant when type is left unset
-     * or set to CUSTOM_VARIABLE_TERM.
+     * Friendly name of this term&#39;s variable. This is a read-only, auto-generated field. This field is only relevant when type is left unset or set to CUSTOM_VARIABLE_TERM.
      */
     variableFriendlyName?: string;
     /**
-     * Name of the variable (U1, U2, etc.) being compared in this term. This
-     * field is only relevant when type is set to null, CUSTOM_VARIABLE_TERM or
-     * REFERRER_TERM.
+     * Name of the variable (U1, U2, etc.) being compared in this term. This field is only relevant when type is set to null, CUSTOM_VARIABLE_TERM or REFERRER_TERM.
      */
     variableName?: string;
   }
@@ -4898,19 +3980,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$LookbackConfiguration {
     /**
-     * Lookback window, in days, from the last time a given user clicked on one
-     * of your ads. If you enter 0, clicks will not be considered as triggering
-     * events for floodlight tracking. If you leave this field blank, the
-     * default value for your account will be used. Acceptable values are 0 to
-     * 90, inclusive.
+     * Lookback window, in days, from the last time a given user clicked on one of your ads. If you enter 0, clicks will not be considered as triggering events for floodlight tracking. If you leave this field blank, the default value for your account will be used. Acceptable values are 0 to 90, inclusive.
      */
     clickDuration?: number;
     /**
-     * Lookback window, in days, from the last time a given user viewed one of
-     * your ads. If you enter 0, impressions will not be considered as
-     * triggering events for floodlight tracking. If you leave this field blank,
-     * the default value for your account will be used. Acceptable values are 0
-     * to 90, inclusive.
+     * Lookback window, in days, from the last time a given user viewed one of your ads. If you enter 0, impressions will not be considered as triggering events for floodlight tracking. If you leave this field blank, the default value for your account will be used. Acceptable values are 0 to 90, inclusive.
      */
     postImpressionActivitiesDuration?: number;
   }
@@ -4944,13 +4018,11 @@ export namespace dfareporting_v3_2 {
      */
     dartId?: string;
     /**
-     * DMA ID of this metro region. This is the ID used for targeting and
-     * generating reports, and is equivalent to metro_code.
+     * DMA ID of this metro region. This is the ID used for targeting and generating reports, and is equivalent to metro_code.
      */
     dmaId?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#metro&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#metro&quot;.
      */
     kind?: string;
     /**
@@ -4967,8 +4039,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$MetrosListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#metrosListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#metrosListResponse&quot;.
      */
     kind?: string;
     /**
@@ -4989,8 +4060,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#mobileApp&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileApp&quot;.
      */
     kind?: string;
     /**
@@ -5007,8 +4077,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$MobileAppsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#mobileAppsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileAppsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -5037,8 +4106,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#mobileCarrier&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileCarrier&quot;.
      */
     kind?: string;
     /**
@@ -5051,8 +4119,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$MobileCarriersListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#mobileCarriersListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileCarriersListResponse&quot;.
      */
     kind?: string;
     /**
@@ -5065,19 +4132,15 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$ObjectFilter {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#objectFilter&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#objectFilter&quot;.
      */
     kind?: string;
     /**
-     * Applicable when status is ASSIGNED. The user has access to objects with
-     * these object IDs.
+     * Applicable when status is ASSIGNED. The user has access to objects with these object IDs.
      */
     objectIds?: string[];
     /**
-     * Status of the filter. NONE means the user has access to none of the
-     * objects. ALL means the user has access to all objects. ASSIGNED means the
-     * user has access to the objects with IDs in the objectIds list.
+     * Status of the filter. NONE means the user has access to none of the objects. ALL means the user has access to all objects. ASSIGNED means the user has access to the objects with IDs in the objectIds list.
      */
     status?: string;
   }
@@ -5099,13 +4162,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$OmnitureSettings {
     /**
-     * Whether placement cost data will be sent to Omniture. This property can
-     * be enabled only if omnitureIntegrationEnabled is true.
+     * Whether placement cost data will be sent to Omniture. This property can be enabled only if omnitureIntegrationEnabled is true.
      */
     omnitureCostDataEnabled?: boolean;
     /**
-     * Whether Omniture integration is enabled. This property can be enabled
-     * only when the &quot;Advanced Ad Serving&quot; account setting is enabled.
+     * Whether Omniture integration is enabled. This property can be enabled only when the &quot;Advanced Ad Serving&quot; account setting is enabled.
      */
     omnitureIntegrationEnabled?: boolean;
   }
@@ -5122,8 +4183,7 @@ export namespace dfareporting_v3_2 {
      */
     desktop?: boolean;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#operatingSystem&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystem&quot;.
      */
     kind?: string;
     /**
@@ -5140,8 +4200,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$OperatingSystemsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#operatingSystemsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystemsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -5150,8 +4209,7 @@ export namespace dfareporting_v3_2 {
     operatingSystems?: Schema$OperatingSystem[];
   }
   /**
-   * Contains information about a particular version of an operating system that
-   * can be targeted by ads.
+   * Contains information about a particular version of an operating system that can be targeted by ads.
    */
   export interface Schema$OperatingSystemVersion {
     /**
@@ -5159,8 +4217,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#operatingSystemVersion&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystemVersion&quot;.
      */
     kind?: string;
     /**
@@ -5168,8 +4225,7 @@ export namespace dfareporting_v3_2 {
      */
     majorVersion?: string;
     /**
-     * Minor version (number after the first dot) of this operating system
-     * version.
+     * Minor version (number after the first dot) of this operating system version.
      */
     minorVersion?: string;
     /**
@@ -5186,8 +4242,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$OperatingSystemVersionsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#operatingSystemVersionsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystemVersionsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -5200,19 +4255,15 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$OptimizationActivity {
     /**
-     * Floodlight activity ID of this optimization activity. This is a required
-     * field.
+     * Floodlight activity ID of this optimization activity. This is a required field.
      */
     floodlightActivityId?: string;
     /**
-     * Dimension value for the ID of the floodlight activity. This is a
-     * read-only, auto-generated field.
+     * Dimension value for the ID of the floodlight activity. This is a read-only, auto-generated field.
      */
     floodlightActivityIdDimensionValue?: Schema$DimensionValue;
     /**
-     * Weight associated with this optimization. The weight assigned will be
-     * understood in proportion to the weights assigned to the other
-     * optimization activities. Value must be greater than or equal to 1.
+     * Weight associated with this optimization. The weight assigned will be understood in proportion to the weights assigned to the other optimization activities. Value must be greater than or equal to 1.
      */
     weight?: number;
   }
@@ -5253,8 +4304,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#order&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#order&quot;.
      */
     kind?: string;
     /**
@@ -5307,9 +4357,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$OrderContact {
     /**
-     * Free-form information about this contact. It could be any information
-     * related to this contact in addition to type, title, name, and signature
-     * user profile ID.
+     * Free-form information about this contact. It could be any information related to this contact in addition to type, title, name, and signature user profile ID.
      */
     contactInfo?: string;
     /**
@@ -5325,8 +4373,7 @@ export namespace dfareporting_v3_2 {
      */
     contactType?: string;
     /**
-     * ID of the user profile containing the signature that will be embedded
-     * into order documents.
+     * ID of the user profile containing the signature that will be embedded into order documents.
      */
     signatureUserProfileId?: string;
   }
@@ -5343,9 +4390,7 @@ export namespace dfareporting_v3_2 {
      */
     advertiserId?: string;
     /**
-     * The amended order document ID of this order document. An order document
-     * can be created by optionally amending another order document so that the
-     * change history can be preserved.
+     * The amended order document ID of this order document. An order document can be created by optionally amending another order document so that the change history can be preserved.
      */
     amendedOrderDocumentId?: string;
     /**
@@ -5369,8 +4414,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#orderDocument&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#orderDocument&quot;.
      */
     kind?: string;
     /**
@@ -5411,8 +4455,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$OrderDocumentsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#orderDocumentsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#orderDocumentsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -5429,8 +4472,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$OrdersListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#ordersListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#ordersListResponse&quot;.
      */
     kind?: string;
     /**
@@ -5443,33 +4485,27 @@ export namespace dfareporting_v3_2 {
     orders?: Schema$Order[];
   }
   /**
-   * Represents fields that are compatible to be selected for a report of type
-   * &quot;PATH_TO_CONVERSION&quot;.
+   * Represents fields that are compatible to be selected for a report of type &quot;PATH_TO_CONVERSION&quot;.
    */
   export interface Schema$PathToConversionReportCompatibleFields {
     /**
-     * Conversion dimensions which are compatible to be selected in the
-     * &quot;conversionDimensions&quot; section of the report.
+     * Conversion dimensions which are compatible to be selected in the &quot;conversionDimensions&quot; section of the report.
      */
     conversionDimensions?: Schema$Dimension[];
     /**
-     * Custom floodlight variables which are compatible to be selected in the
-     * &quot;customFloodlightVariables&quot; section of the report.
+     * Custom floodlight variables which are compatible to be selected in the &quot;customFloodlightVariables&quot; section of the report.
      */
     customFloodlightVariables?: Schema$Dimension[];
     /**
-     * The kind of resource this is, in this case
-     * dfareporting#pathToConversionReportCompatibleFields.
+     * The kind of resource this is, in this case dfareporting#pathToConversionReportCompatibleFields.
      */
     kind?: string;
     /**
-     * Metrics which are compatible to be selected in the
-     * &quot;metricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
      */
     metrics?: Schema$Metric[];
     /**
-     * Per-interaction dimensions which are compatible to be selected in the
-     * &quot;perInteractionDimensions&quot; section of the report.
+     * Per-interaction dimensions which are compatible to be selected in the &quot;perInteractionDimensions&quot; section of the report.
      */
     perInteractionDimensions?: Schema$Dimension[];
   }
@@ -5482,14 +4518,11 @@ export namespace dfareporting_v3_2 {
      */
     accountId?: string;
     /**
-     * Whether this placement opts out of ad blocking. When true, ad blocking is
-     * disabled for this placement. When false, the campaign and site settings
-     * take effect.
+     * Whether this placement opts out of ad blocking. When true, ad blocking is disabled for this placement. When false, the campaign and site settings take effect.
      */
     adBlockingOptOut?: boolean;
     /**
-     * Additional sizes associated with this placement. When inserting or
-     * updating a placement, only the size ID field is used.
+     * Additional sizes associated with this placement. When inserting or updating a placement, only the size ID field is used.
      */
     additionalSizes?: Schema$Size[];
     /**
@@ -5497,8 +4530,7 @@ export namespace dfareporting_v3_2 {
      */
     advertiserId?: string;
     /**
-     * Dimension value for the ID of the advertiser. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -5506,13 +4538,11 @@ export namespace dfareporting_v3_2 {
      */
     archived?: boolean;
     /**
-     * Campaign ID of this placement. This field is a required field on
-     * insertion.
+     * Campaign ID of this placement. This field is a required field on insertion.
      */
     campaignId?: string;
     /**
-     * Dimension value for the ID of the campaign. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
      */
     campaignIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -5520,13 +4550,7 @@ export namespace dfareporting_v3_2 {
      */
     comment?: string;
     /**
-     * Placement compatibility. DISPLAY and DISPLAY_INTERSTITIAL refer to
-     * rendering on desktop, on mobile devices or in mobile apps for regular or
-     * interstitial ads respectively. APP and APP_INTERSTITIAL are no longer
-     * allowed for new placement insertions. Instead, use DISPLAY or
-     * DISPLAY_INTERSTITIAL. IN_STREAM_VIDEO refers to rendering in in-stream
-     * video ads developed with the VAST standard. This field is required on
-     * insertion.
+     * Placement compatibility. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering on desktop, on mobile devices or in mobile apps for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are no longer allowed for new placement insertions. Instead, use DISPLAY or DISPLAY_INTERSTITIAL. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard. This field is required on insertion.
      */
     compatibility?: string;
     /**
@@ -5534,19 +4558,15 @@ export namespace dfareporting_v3_2 {
      */
     contentCategoryId?: string;
     /**
-     * Information about the creation of this placement. This is a read-only
-     * field.
+     * Information about the creation of this placement. This is a read-only field.
      */
     createInfo?: Schema$LastModifiedInfo;
     /**
-     * Directory site ID of this placement. On insert, you must set either this
-     * field or the siteId field to specify the site associated with this
-     * placement. This is a required field that is read-only after insertion.
+     * Directory site ID of this placement. On insert, you must set either this field or the siteId field to specify the site associated with this placement. This is a required field that is read-only after insertion.
      */
     directorySiteId?: string;
     /**
-     * Dimension value for the ID of the directory site. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the directory site. This is a read-only, auto-generated field.
      */
     directorySiteIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -5558,8 +4578,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Dimension value for the ID of this placement. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of this placement. This is a read-only, auto-generated field.
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
@@ -5567,13 +4586,11 @@ export namespace dfareporting_v3_2 {
      */
     keyName?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#placement&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placement&quot;.
      */
     kind?: string;
     /**
-     * Information about the most recent modification of this placement. This is
-     * a read-only field.
+     * Information about the most recent modification of this placement. This is a read-only field.
      */
     lastModifiedInfo?: Schema$LastModifiedInfo;
     /**
@@ -5581,18 +4598,15 @@ export namespace dfareporting_v3_2 {
      */
     lookbackConfiguration?: Schema$LookbackConfiguration;
     /**
-     * Name of this placement.This is a required field and must be less than 256
-     * characters long.
+     * Name of this placement.This is a required field and must be less than 256 characters long.
      */
     name?: string;
     /**
-     * Whether payment was approved for this placement. This is a read-only
-     * field relevant only to publisher-paid placements.
+     * Whether payment was approved for this placement. This is a read-only field relevant only to publisher-paid placements.
      */
     paymentApproved?: boolean;
     /**
-     * Payment source for this placement. This is a required field that is
-     * read-only after insertion.
+     * Payment source for this placement. This is a required field that is read-only after insertion.
      */
     paymentSource?: string;
     /**
@@ -5600,8 +4614,7 @@ export namespace dfareporting_v3_2 {
      */
     placementGroupId?: string;
     /**
-     * Dimension value for the ID of the placement group. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the placement group. This is a read-only, auto-generated field.
      */
     placementGroupIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -5609,17 +4622,11 @@ export namespace dfareporting_v3_2 {
      */
     placementStrategyId?: string;
     /**
-     * Pricing schedule of this placement. This field is required on insertion,
-     * specifically subfields startDate, endDate and pricingType.
+     * Pricing schedule of this placement. This field is required on insertion, specifically subfields startDate, endDate and pricingType.
      */
     pricingSchedule?: Schema$PricingSchedule;
     /**
-     * Whether this placement is the primary placement of a roadblock (placement
-     * group). You cannot change this field from true to false. Setting this
-     * field to true will automatically set the primary field on the original
-     * primary placement of the roadblock to false, and it will automatically
-     * set the roadblock&#39;s primaryPlacementId field to the ID of this
-     * placement.
+     * Whether this placement is the primary placement of a roadblock (placement group). You cannot change this field from true to false. Setting this field to true will automatically set the primary field on the original primary placement of the roadblock to false, and it will automatically set the roadblock&#39;s primaryPlacementId field to the ID of this placement.
      */
     primary?: boolean;
     /**
@@ -5627,21 +4634,15 @@ export namespace dfareporting_v3_2 {
      */
     publisherUpdateInfo?: Schema$LastModifiedInfo;
     /**
-     * Site ID associated with this placement. On insert, you must set either
-     * this field or the directorySiteId field to specify the site associated
-     * with this placement. This is a required field that is read-only after
-     * insertion.
+     * Site ID associated with this placement. On insert, you must set either this field or the directorySiteId field to specify the site associated with this placement. This is a required field that is read-only after insertion.
      */
     siteId?: string;
     /**
-     * Dimension value for the ID of the site. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the site. This is a read-only, auto-generated field.
      */
     siteIdDimensionValue?: Schema$DimensionValue;
     /**
-     * Size associated with this placement. When inserting or updating a
-     * placement, only the size ID field is used. This field is required on
-     * insertion.
+     * Size associated with this placement. When inserting or updating a placement, only the size ID field is used. This field is required on insertion.
      */
     size?: Schema$Size;
     /**
@@ -5657,22 +4658,7 @@ export namespace dfareporting_v3_2 {
      */
     subaccountId?: string;
     /**
-     * Tag formats to generate for this placement. This field is required on
-     * insertion. Acceptable values are: - &quot;PLACEMENT_TAG_STANDARD&quot; -
-     * &quot;PLACEMENT_TAG_IFRAME_JAVASCRIPT&quot; -
-     * &quot;PLACEMENT_TAG_IFRAME_ILAYER&quot; -
-     * &quot;PLACEMENT_TAG_INTERNAL_REDIRECT&quot; -
-     * &quot;PLACEMENT_TAG_JAVASCRIPT&quot; -
-     * &quot;PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT&quot; -
-     * &quot;PLACEMENT_TAG_INTERSTITIAL_INTERNAL_REDIRECT&quot; -
-     * &quot;PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT&quot; -
-     * &quot;PLACEMENT_TAG_CLICK_COMMANDS&quot; -
-     * &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH&quot; -
-     * &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_3&quot; -
-     * &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4&quot; -
-     * &quot;PLACEMENT_TAG_TRACKING&quot; -
-     * &quot;PLACEMENT_TAG_TRACKING_IFRAME&quot; -
-     * &quot;PLACEMENT_TAG_TRACKING_JAVASCRIPT&quot;
+     * Tag formats to generate for this placement. This field is required on insertion. Acceptable values are: - &quot;PLACEMENT_TAG_STANDARD&quot; - &quot;PLACEMENT_TAG_IFRAME_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_IFRAME_ILAYER&quot; - &quot;PLACEMENT_TAG_INTERNAL_REDIRECT&quot; - &quot;PLACEMENT_TAG_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_INTERSTITIAL_INTERNAL_REDIRECT&quot; - &quot;PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_CLICK_COMMANDS&quot; - &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH&quot; - &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_3&quot; - &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4&quot; - &quot;PLACEMENT_TAG_TRACKING&quot; - &quot;PLACEMENT_TAG_TRACKING_IFRAME&quot; - &quot;PLACEMENT_TAG_TRACKING_JAVASCRIPT&quot;
      */
     tagFormats?: string[];
     /**
@@ -5680,26 +4666,15 @@ export namespace dfareporting_v3_2 {
      */
     tagSetting?: Schema$TagSetting;
     /**
-     * Whether Verification and ActiveView are disabled for in-stream video
-     * creatives for this placement. The same setting videoActiveViewOptOut
-     * exists on the site level -- the opt out occurs if either of these
-     * settings are true. These settings are distinct from
-     * DirectorySites.settings.activeViewOptOut or
-     * Sites.siteSettings.activeViewOptOut which only apply to display ads.
-     * However, Accounts.activeViewOptOut opts out both video traffic, as well
-     * as display ads, from Verification and ActiveView.
+     * Whether Verification and ActiveView are disabled for in-stream video creatives for this placement. The same setting videoActiveViewOptOut exists on the site level -- the opt out occurs if either of these settings are true. These settings are distinct from DirectorySites.settings.activeViewOptOut or Sites.siteSettings.activeViewOptOut which only apply to display ads. However, Accounts.activeViewOptOut opts out both video traffic, as well as display ads, from Verification and ActiveView.
      */
     videoActiveViewOptOut?: boolean;
     /**
-     * A collection of settings which affect video creatives served through this
-     * placement. Applicable to placements with IN_STREAM_VIDEO compatibility.
+     * A collection of settings which affect video creatives served through this placement. Applicable to placements with IN_STREAM_VIDEO compatibility.
      */
     videoSettings?: Schema$VideoSettings;
     /**
-     * VPAID adapter setting for this placement. Controls which VPAID format the
-     * measurement adapter will use for in-stream video creatives assigned to
-     * this placement.  Note: Flash is no longer supported. This field now
-     * defaults to HTML5 when the following values are provided: FLASH, BOTH.
+     * VPAID adapter setting for this placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to this placement.  Note: Flash is no longer supported. This field now defaults to HTML5 when the following values are provided: FLASH, BOTH.
      */
     vpaidAdapterChoice?: string;
   }
@@ -5708,8 +4683,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$PlacementAssignment {
     /**
-     * Whether this placement assignment is active. When true, the placement
-     * will be included in the ad&#39;s rotation.
+     * Whether this placement assignment is active. When true, the placement will be included in the ad&#39;s rotation.
      */
     active?: boolean;
     /**
@@ -5717,13 +4691,11 @@ export namespace dfareporting_v3_2 {
      */
     placementId?: string;
     /**
-     * Dimension value for the ID of the placement. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the placement. This is a read-only, auto-generated field.
      */
     placementIdDimensionValue?: Schema$DimensionValue;
     /**
-     * Whether the placement to be assigned requires SSL. This is a read-only
-     * field that is auto-generated when the ad is inserted or updated.
+     * Whether the placement to be assigned requires SSL. This is a read-only field that is auto-generated when the ad is inserted or updated.
      */
     sslRequired?: boolean;
   }
@@ -5732,18 +4704,15 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$PlacementGroup {
     /**
-     * Account ID of this placement group. This is a read-only field that can be
-     * left blank.
+     * Account ID of this placement group. This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
-     * Advertiser ID of this placement group. This is a required field on
-     * insertion.
+     * Advertiser ID of this placement group. This is a required field on insertion.
      */
     advertiserId?: string;
     /**
-     * Dimension value for the ID of the advertiser. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -5755,13 +4724,11 @@ export namespace dfareporting_v3_2 {
      */
     campaignId?: string;
     /**
-     * Dimension value for the ID of the campaign. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
      */
     campaignIdDimensionValue?: Schema$DimensionValue;
     /**
-     * IDs of placements which are assigned to this placement group. This is a
-     * read-only, auto-generated field.
+     * IDs of placements which are assigned to this placement group. This is a read-only, auto-generated field.
      */
     childPlacementIds?: string[];
     /**
@@ -5773,20 +4740,15 @@ export namespace dfareporting_v3_2 {
      */
     contentCategoryId?: string;
     /**
-     * Information about the creation of this placement group. This is a
-     * read-only field.
+     * Information about the creation of this placement group. This is a read-only field.
      */
     createInfo?: Schema$LastModifiedInfo;
     /**
-     * Directory site ID associated with this placement group. On insert, you
-     * must set either this field or the site_id field to specify the site
-     * associated with this placement group. This is a required field that is
-     * read-only after insertion.
+     * Directory site ID associated with this placement group. On insert, you must set either this field or the site_id field to specify the site associated with this placement group. This is a required field that is read-only after insertion.
      */
     directorySiteId?: string;
     /**
-     * Dimension value for the ID of the directory site. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the directory site. This is a read-only, auto-generated field.
      */
     directorySiteIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -5798,32 +4760,23 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Dimension value for the ID of this placement group. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of this placement group. This is a read-only, auto-generated field.
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#placementGroup&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementGroup&quot;.
      */
     kind?: string;
     /**
-     * Information about the most recent modification of this placement group.
-     * This is a read-only field.
+     * Information about the most recent modification of this placement group. This is a read-only field.
      */
     lastModifiedInfo?: Schema$LastModifiedInfo;
     /**
-     * Name of this placement group. This is a required field and must be less
-     * than 256 characters long.
+     * Name of this placement group. This is a required field and must be less than 256 characters long.
      */
     name?: string;
     /**
-     * Type of this placement group. A package is a simple group of placements
-     * that acts as a single pricing point for a group of tags. A roadblock is a
-     * group of placements that not only acts as a single pricing point, but
-     * also assumes that all the tags in it will be served at the same time. A
-     * roadblock requires one of its assigned placements to be marked as primary
-     * for reporting. This field is required on insertion.
+     * Type of this placement group. A package is a simple group of placements that acts as a single pricing point for a group of tags. A roadblock is a group of placements that not only acts as a single pricing point, but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned placements to be marked as primary for reporting. This field is required on insertion.
      */
     placementGroupType?: string;
     /**
@@ -5831,36 +4784,27 @@ export namespace dfareporting_v3_2 {
      */
     placementStrategyId?: string;
     /**
-     * Pricing schedule of this placement group. This field is required on
-     * insertion.
+     * Pricing schedule of this placement group. This field is required on insertion.
      */
     pricingSchedule?: Schema$PricingSchedule;
     /**
-     * ID of the primary placement, used to calculate the media cost of a
-     * roadblock (placement group). Modifying this field will automatically
-     * modify the primary field on all affected roadblock child placements.
+     * ID of the primary placement, used to calculate the media cost of a roadblock (placement group). Modifying this field will automatically modify the primary field on all affected roadblock child placements.
      */
     primaryPlacementId?: string;
     /**
-     * Dimension value for the ID of the primary placement. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the primary placement. This is a read-only, auto-generated field.
      */
     primaryPlacementIdDimensionValue?: Schema$DimensionValue;
     /**
-     * Site ID associated with this placement group. On insert, you must set
-     * either this field or the directorySiteId field to specify the site
-     * associated with this placement group. This is a required field that is
-     * read-only after insertion.
+     * Site ID associated with this placement group. On insert, you must set either this field or the directorySiteId field to specify the site associated with this placement group. This is a required field that is read-only after insertion.
      */
     siteId?: string;
     /**
-     * Dimension value for the ID of the site. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the site. This is a read-only, auto-generated field.
      */
     siteIdDimensionValue?: Schema$DimensionValue;
     /**
-     * Subaccount ID of this placement group. This is a read-only field that can
-     * be left blank.
+     * Subaccount ID of this placement group. This is a read-only field that can be left blank.
      */
     subaccountId?: string;
   }
@@ -5869,8 +4813,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$PlacementGroupsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#placementGroupsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementGroupsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -5887,8 +4830,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$PlacementsGenerateTagsResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#placementsGenerateTagsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementsGenerateTagsResponse&quot;.
      */
     kind?: string;
     /**
@@ -5901,8 +4843,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$PlacementsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#placementsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -5919,8 +4860,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$PlacementStrategiesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#placementStrategiesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementStrategiesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -5937,8 +4877,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$PlacementStrategy {
     /**
-     * Account ID of this placement strategy.This is a read-only field that can
-     * be left blank.
+     * Account ID of this placement strategy.This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
@@ -5946,14 +4885,11 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#placementStrategy&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementStrategy&quot;.
      */
     kind?: string;
     /**
-     * Name of this placement strategy. This is a required field. It must be
-     * less than 256 characters long and unique among placement strategies of
-     * the same account.
+     * Name of this placement strategy. This is a required field. It must be less than 256 characters long and unique among placement strategies of the same account.
      */
     name?: string;
   }
@@ -5979,8 +4915,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#platformType&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#platformType&quot;.
      */
     kind?: string;
     /**
@@ -5993,8 +4928,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$PlatformTypesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#platformTypesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#platformTypesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -6007,13 +4941,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$PopupWindowProperties {
     /**
-     * Popup dimension for a creative. This is a read-only field. Applicable to
-     * the following creative types: all RICH_MEDIA and all VPAID
+     * Popup dimension for a creative. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA and all VPAID
      */
     dimension?: Schema$Size;
     /**
-     * Upper-left corner coordinates of the popup window. Applicable if
-     * positionType is COORDINATES.
+     * Upper-left corner coordinates of the popup window. Applicable if positionType is COORDINATES.
      */
     offset?: Schema$OffsetPosition;
     /**
@@ -6066,8 +4998,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#postalCode&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#postalCode&quot;.
      */
     kind?: string;
   }
@@ -6076,8 +5007,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$PostalCodesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#postalCodesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#postalCodesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -6098,20 +5028,11 @@ export namespace dfareporting_v3_2 {
      */
     endDate?: string;
     /**
-     * Flights of this inventory item. A flight (a.k.a. pricing period)
-     * represents the inventory item pricing information for a specific period
-     * of time.
+     * Flights of this inventory item. A flight (a.k.a. pricing period) represents the inventory item pricing information for a specific period of time.
      */
     flights?: Schema$Flight[];
     /**
-     * Group type of this inventory item if it represents a placement group. Is
-     * null otherwise. There are two type of placement groups:
-     * PLANNING_PLACEMENT_GROUP_TYPE_PACKAGE is a simple group of inventory
-     * items that acts as a single pricing point for a group of tags.
-     * PLANNING_PLACEMENT_GROUP_TYPE_ROADBLOCK is a group of inventory items
-     * that not only acts as a single pricing point, but also assumes that all
-     * the tags in it will be served at the same time. A roadblock requires one
-     * of its assigned inventory items to be marked as primary.
+     * Group type of this inventory item if it represents a placement group. Is null otherwise. There are two type of placement groups: PLANNING_PLACEMENT_GROUP_TYPE_PACKAGE is a simple group of inventory items that acts as a single pricing point for a group of tags. PLANNING_PLACEMENT_GROUP_TYPE_ROADBLOCK is a group of inventory items that not only acts as a single pricing point, but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned inventory items to be marked as primary.
      */
     groupType?: string;
     /**
@@ -6136,22 +5057,15 @@ export namespace dfareporting_v3_2 {
      */
     disregardOverdelivery?: boolean;
     /**
-     * Placement end date. This date must be later than, or the same day as, the
-     * placement start date, but not later than the campaign end date. If, for
-     * example, you set 6/25/2015 as both the start and end dates, the effective
-     * placement date is just that day only, 6/25/2015. The hours, minutes, and
-     * seconds of the end date should not be set, as doing so will result in an
-     * error. This field is required on insertion.
+     * Placement end date. This date must be later than, or the same day as, the placement start date, but not later than the campaign end date. If, for example, you set 6/25/2015 as both the start and end dates, the effective placement date is just that day only, 6/25/2015. The hours, minutes, and seconds of the end date should not be set, as doing so will result in an error. This field is required on insertion.
      */
     endDate?: string;
     /**
-     * Whether this placement is flighted. If true, pricing periods will be
-     * computed automatically.
+     * Whether this placement is flighted. If true, pricing periods will be computed automatically.
      */
     flighted?: boolean;
     /**
-     * Floodlight activity ID associated with this placement. This field should
-     * be set when placement pricing type is set to PRICING_TYPE_CPA.
+     * Floodlight activity ID associated with this placement. This field should be set when placement pricing type is set to PRICING_TYPE_CPA.
      */
     floodlightActivityId?: string;
     /**
@@ -6163,15 +5077,11 @@ export namespace dfareporting_v3_2 {
      */
     pricingType?: string;
     /**
-     * Placement start date. This date must be later than, or the same day as,
-     * the campaign start date. The hours, minutes, and seconds of the start
-     * date should not be set, as doing so will result in an error. This field
-     * is required on insertion.
+     * Placement start date. This date must be later than, or the same day as, the campaign start date. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error. This field is required on insertion.
      */
     startDate?: string;
     /**
-     * Testing start date of this placement. The hours, minutes, and seconds of
-     * the start date should not be set, as doing so will result in an error.
+     * Testing start date of this placement. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error.
      */
     testingStartDate?: string;
   }
@@ -6180,13 +5090,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$PricingSchedulePricingPeriod {
     /**
-     * Pricing period end date. This date must be later than, or the same day
-     * as, the pricing period start date, but not later than the placement end
-     * date. The period end date can be the same date as the period start date.
-     * If, for example, you set 6/25/2015 as both the start and end dates, the
-     * effective pricing period date is just that day only, 6/25/2015. The
-     * hours, minutes, and seconds of the end date should not be set, as doing
-     * so will result in an error.
+     * Pricing period end date. This date must be later than, or the same day as, the pricing period start date, but not later than the placement end date. The period end date can be the same date as the period start date. If, for example, you set 6/25/2015 as both the start and end dates, the effective pricing period date is just that day only, 6/25/2015. The hours, minutes, and seconds of the end date should not be set, as doing so will result in an error.
      */
     endDate?: string;
     /**
@@ -6194,19 +5098,15 @@ export namespace dfareporting_v3_2 {
      */
     pricingComment?: string;
     /**
-     * Rate or cost of this pricing period in nanos (i.e., multipled by
-     * 1000000000). Acceptable values are 0 to 1000000000000000000, inclusive.
+     * Rate or cost of this pricing period in nanos (i.e., multipled by 1000000000). Acceptable values are 0 to 1000000000000000000, inclusive.
      */
     rateOrCostNanos?: string;
     /**
-     * Pricing period start date. This date must be later than, or the same day
-     * as, the placement start date. The hours, minutes, and seconds of the
-     * start date should not be set, as doing so will result in an error.
+     * Pricing period start date. This date must be later than, or the same day as, the placement start date. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error.
      */
     startDate?: string;
     /**
-     * Units of this pricing period. Acceptable values are 0 to 10000000000,
-     * inclusive.
+     * Units of this pricing period. Acceptable values are 0 to 10000000000, inclusive.
      */
     units?: string;
   }
@@ -6231,10 +5131,7 @@ export namespace dfareporting_v3_2 {
      */
     audienceGender?: string;
     /**
-     * Budget of this project in the currency specified by the current account.
-     * The value stored in this field represents only the non-fractional amount.
-     * For example, for USD, the smallest value that can be represented by this
-     * field is 1 US dollar.
+     * Budget of this project in the currency specified by the current account. The value stored in this field represents only the non-fractional amount. For example, for USD, the smallest value that can be represented by this field is 1 US dollar.
      */
     budget?: string;
     /**
@@ -6254,8 +5151,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#project&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#project&quot;.
      */
     kind?: string;
     /**
@@ -6312,8 +5208,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$ProjectsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#projectsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#projectsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -6326,38 +5221,31 @@ export namespace dfareporting_v3_2 {
     projects?: Schema$Project[];
   }
   /**
-   * Represents fields that are compatible to be selected for a report of type
-   * &quot;REACH&quot;.
+   * Represents fields that are compatible to be selected for a report of type &quot;REACH&quot;.
    */
   export interface Schema$ReachReportCompatibleFields {
     /**
-     * Dimensions which are compatible to be selected in the
-     * &quot;dimensionFilters&quot; section of the report.
+     * Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
      */
     dimensionFilters?: Schema$Dimension[];
     /**
-     * Dimensions which are compatible to be selected in the
-     * &quot;dimensions&quot; section of the report.
+     * Dimensions which are compatible to be selected in the &quot;dimensions&quot; section of the report.
      */
     dimensions?: Schema$Dimension[];
     /**
-     * The kind of resource this is, in this case
-     * dfareporting#reachReportCompatibleFields.
+     * The kind of resource this is, in this case dfareporting#reachReportCompatibleFields.
      */
     kind?: string;
     /**
-     * Metrics which are compatible to be selected in the
-     * &quot;metricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
      */
     metrics?: Schema$Metric[];
     /**
-     * Metrics which are compatible to be selected as activity metrics to pivot
-     * on in the &quot;activities&quot; section of the report.
+     * Metrics which are compatible to be selected as activity metrics to pivot on in the &quot;activities&quot; section of the report.
      */
     pivotedActivityMetrics?: Schema$Metric[];
     /**
-     * Metrics which are compatible to be selected in the
-     * &quot;reachByFrequencyMetricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the &quot;reachByFrequencyMetricNames&quot; section of the report.
      */
     reachByFrequencyMetrics?: Schema$Metric[];
   }
@@ -6395,8 +5283,7 @@ export namespace dfareporting_v3_2 {
      */
     dartId?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#region&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#region&quot;.
      */
     kind?: string;
     /**
@@ -6413,8 +5300,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$RegionsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#regionsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#regionsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -6423,18 +5309,11 @@ export namespace dfareporting_v3_2 {
     regions?: Schema$Region[];
   }
   /**
-   * Contains properties of a remarketing list. Remarketing enables you to
-   * create lists of users who have performed specific actions on a site, then
-   * target ads to members of those lists. This resource can be used to manage
-   * remarketing lists that are owned by your advertisers. To see all
-   * remarketing lists that are visible to your advertisers, including those
-   * that are shared to your advertiser or account, use the
-   * TargetableRemarketingLists resource.
+   * Contains properties of a remarketing list. Remarketing enables you to create lists of users who have performed specific actions on a site, then target ads to members of those lists. This resource can be used to manage remarketing lists that are owned by your advertisers. To see all remarketing lists that are visible to your advertisers, including those that are shared to your advertiser or account, use the TargetableRemarketingLists resource.
    */
   export interface Schema$RemarketingList {
     /**
-     * Account ID of this remarketing list. This is a read-only, auto-generated
-     * field that is only returned in GET requests.
+     * Account ID of this remarketing list. This is a read-only, auto-generated field that is only returned in GET requests.
      */
     accountId?: string;
     /**
@@ -6442,13 +5321,11 @@ export namespace dfareporting_v3_2 {
      */
     active?: boolean;
     /**
-     * Dimension value for the advertiser ID that owns this remarketing list.
-     * This is a required field.
+     * Dimension value for the advertiser ID that owns this remarketing list. This is a required field.
      */
     advertiserId?: string;
     /**
-     * Dimension value for the ID of the advertiser. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -6460,13 +5337,11 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#remarketingList&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#remarketingList&quot;.
      */
     kind?: string;
     /**
-     * Number of days that a user should remain in the remarketing list without
-     * an impression. Acceptable values are 1 to 540, inclusive.
+     * Number of days that a user should remain in the remarketing list without an impression. Acceptable values are 1 to 540, inclusive.
      */
     lifeSpan?: string;
     /**
@@ -6482,26 +5357,20 @@ export namespace dfareporting_v3_2 {
      */
     listSource?: string;
     /**
-     * Name of the remarketing list. This is a required field. Must be no
-     * greater than 128 characters long.
+     * Name of the remarketing list. This is a required field. Must be no greater than 128 characters long.
      */
     name?: string;
     /**
-     * Subaccount ID of this remarketing list. This is a read-only,
-     * auto-generated field that is only returned in GET requests.
+     * Subaccount ID of this remarketing list. This is a read-only, auto-generated field that is only returned in GET requests.
      */
     subaccountId?: string;
   }
   /**
-   * Contains properties of a remarketing list&#39;s sharing information.
-   * Sharing allows other accounts or advertisers to target to your remarketing
-   * lists. This resource can be used to manage remarketing list sharing to
-   * other accounts and advertisers.
+   * Contains properties of a remarketing list&#39;s sharing information. Sharing allows other accounts or advertisers to target to your remarketing lists. This resource can be used to manage remarketing list sharing to other accounts and advertisers.
    */
   export interface Schema$RemarketingListShare {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#remarketingListShare&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#remarketingListShare&quot;.
      */
     kind?: string;
     /**
@@ -6522,8 +5391,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$RemarketingListsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#remarketingListsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#remarketingListsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -6555,8 +5423,7 @@ export namespace dfareporting_v3_2 {
       metricNames?: string[];
     };
     /**
-     * The report criteria for a report of type
-     * &quot;CROSS_DIMENSION_REACH&quot;.
+     * The report criteria for a report of type &quot;CROSS_DIMENSION_REACH&quot;.
      */
     crossDimensionReachCriteria?: {
       breakdown?: Schema$SortedDimension[];
@@ -6601,11 +5468,7 @@ export namespace dfareporting_v3_2 {
       };
     };
     /**
-     * The output format of the report. If not specified, default format is
-     * &quot;CSV&quot;. Note that the actual format in the completed report file
-     * might differ if for instance the report&#39;s size exceeds the
-     * format&#39;s capabilities. &quot;CSV&quot; will then be the fallback
-     * format.
+     * The output format of the report. If not specified, default format is &quot;CSV&quot;. Note that the actual format in the completed report file might differ if for instance the report&#39;s size exceeds the format&#39;s capabilities. &quot;CSV&quot; will then be the fallback format.
      */
     format?: string;
     /**
@@ -6617,8 +5480,7 @@ export namespace dfareporting_v3_2 {
      */
     kind?: string;
     /**
-     * The timestamp (in milliseconds since epoch) of when this report was last
-     * modified.
+     * The timestamp (in milliseconds since epoch) of when this report was last modified.
      */
     lastModifiedTime?: string;
     /**
@@ -6667,9 +5529,7 @@ export namespace dfareporting_v3_2 {
       reachByFrequencyMetricNames?: string[];
     };
     /**
-     * The report&#39;s schedule. Can only be set if the report&#39;s
-     * &#39;dateRange&#39; is a relative date range and the relative date range
-     * is not &quot;TODAY&quot;.
+     * The report&#39;s schedule. Can only be set if the report&#39;s &#39;dateRange&#39; is a relative date range and the relative date range is not &quot;TODAY&quot;.
      */
     schedule?: {
       active?: boolean;
@@ -6690,33 +5550,27 @@ export namespace dfareporting_v3_2 {
     type?: string;
   }
   /**
-   * Represents fields that are compatible to be selected for a report of type
-   * &quot;STANDARD&quot;.
+   * Represents fields that are compatible to be selected for a report of type &quot;STANDARD&quot;.
    */
   export interface Schema$ReportCompatibleFields {
     /**
-     * Dimensions which are compatible to be selected in the
-     * &quot;dimensionFilters&quot; section of the report.
+     * Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
      */
     dimensionFilters?: Schema$Dimension[];
     /**
-     * Dimensions which are compatible to be selected in the
-     * &quot;dimensions&quot; section of the report.
+     * Dimensions which are compatible to be selected in the &quot;dimensions&quot; section of the report.
      */
     dimensions?: Schema$Dimension[];
     /**
-     * The kind of resource this is, in this case
-     * dfareporting#reportCompatibleFields.
+     * The kind of resource this is, in this case dfareporting#reportCompatibleFields.
      */
     kind?: string;
     /**
-     * Metrics which are compatible to be selected in the
-     * &quot;metricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
      */
     metrics?: Schema$Metric[];
     /**
-     * Metrics which are compatible to be selected as activity metrics to pivot
-     * on in the &quot;activities&quot; section of the report.
+     * Metrics which are compatible to be selected as activity metrics to pivot on in the &quot;activities&quot; section of the report.
      */
     pivotedActivityMetrics?: Schema$Metric[];
   }
@@ -6737,10 +5591,7 @@ export namespace dfareporting_v3_2 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through reports. To retrieve the next
-     * page of results, set the next request&#39;s &quot;pageToken&quot; to the
-     * value of this field. The page token is only valid for a limited amount of
-     * time and should not be persisted.
+     * Continuation token used to page through reports. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
      */
     nextPageToken?: string;
   }
@@ -6749,9 +5600,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$ReportsConfiguration {
     /**
-     * Whether the exposure to conversion report is enabled. This report shows
-     * detailed pathway information on up to 10 of the most recent ad exposures
-     * seen by a user before converting.
+     * Whether the exposure to conversion report is enabled. This report shows detailed pathway information on up to 10 of the most recent ad exposures seen by a user before converting.
      */
     exposureToConversionEnabled?: boolean;
     /**
@@ -6759,18 +5608,7 @@ export namespace dfareporting_v3_2 {
      */
     lookbackConfiguration?: Schema$LookbackConfiguration;
     /**
-     * Report generation time zone ID of this account. This is a required field
-     * that can only be changed by a superuser. Acceptable values are:  -
-     * &quot;1&quot; for &quot;America/New_York&quot;  - &quot;2&quot; for
-     * &quot;Europe/London&quot;  - &quot;3&quot; for &quot;Europe/Paris&quot;
-     * - &quot;4&quot; for &quot;Africa/Johannesburg&quot;  - &quot;5&quot; for
-     * &quot;Asia/Jerusalem&quot;  - &quot;6&quot; for &quot;Asia/Shanghai&quot;
-     * - &quot;7&quot; for &quot;Asia/Hong_Kong&quot;  - &quot;8&quot; for
-     * &quot;Asia/Tokyo&quot;  - &quot;9&quot; for &quot;Australia/Sydney&quot;
-     * - &quot;10&quot; for &quot;Asia/Dubai&quot;  - &quot;11&quot; for
-     * &quot;America/Los_Angeles&quot;  - &quot;12&quot; for
-     * &quot;Pacific/Auckland&quot;  - &quot;13&quot; for
-     * &quot;America/Sao_Paulo&quot;
+     * Report generation time zone ID of this account. This is a required field that can only be changed by a superuser. Acceptable values are:  - &quot;1&quot; for &quot;America/New_York&quot;  - &quot;2&quot; for &quot;Europe/London&quot;  - &quot;3&quot; for &quot;Europe/Paris&quot;  - &quot;4&quot; for &quot;Africa/Johannesburg&quot;  - &quot;5&quot; for &quot;Asia/Jerusalem&quot;  - &quot;6&quot; for &quot;Asia/Shanghai&quot;  - &quot;7&quot; for &quot;Asia/Hong_Kong&quot;  - &quot;8&quot; for &quot;Asia/Tokyo&quot;  - &quot;9&quot; for &quot;Australia/Sydney&quot;  - &quot;10&quot; for &quot;Asia/Dubai&quot;  - &quot;11&quot; for &quot;America/Los_Angeles&quot;  - &quot;12&quot; for &quot;Pacific/Auckland&quot;  - &quot;13&quot; for &quot;America/Sao_Paulo&quot;
      */
     reportGenerationTimeZoneId?: string;
   }
@@ -6779,13 +5617,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$RichMediaExitOverride {
     /**
-     * Click-through URL of this rich media exit override. Applicable if the
-     * enabled field is set to true.
+     * Click-through URL of this rich media exit override. Applicable if the enabled field is set to true.
      */
     clickThroughUrl?: Schema$ClickThroughUrl;
     /**
-     * Whether to use the clickThroughUrl. If false, the creative-level exit
-     * will be used.
+     * Whether to use the clickThroughUrl. If false, the creative-level exit will be used.
      */
     enabled?: boolean;
     /**
@@ -6794,13 +5630,11 @@ export namespace dfareporting_v3_2 {
     exitId?: string;
   }
   /**
-   * A rule associates an asset with a targeting template for asset-level
-   * targeting. Applicable to INSTREAM_VIDEO creatives.
+   * A rule associates an asset with a targeting template for asset-level targeting. Applicable to INSTREAM_VIDEO creatives.
    */
   export interface Schema$Rule {
     /**
-     * A creativeAssets[].id. This should refer to one of the parent assets in
-     * this creative. This is a required field.
+     * A creativeAssets[].id. This should refer to one of the parent assets in this creative. This is a required field.
      */
     assetId?: string;
     /**
@@ -6808,9 +5642,7 @@ export namespace dfareporting_v3_2 {
      */
     name?: string;
     /**
-     * A targeting template ID. The targeting from the targeting template will
-     * be used to determine whether this asset should be served. This is a
-     * required field.
+     * A targeting template ID. The targeting from the targeting template will be used to determine whether this asset should be served. This is a required field.
      */
     targetingTemplateId?: string;
   }
@@ -6819,8 +5651,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$Site {
     /**
-     * Account ID of this site. This is a read-only field that can be left
-     * blank.
+     * Account ID of this site. This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
@@ -6828,13 +5659,11 @@ export namespace dfareporting_v3_2 {
      */
     approved?: boolean;
     /**
-     * Directory site associated with this site. This is a required field that
-     * is read-only after insertion.
+     * Directory site associated with this site. This is a required field that is read-only after insertion.
      */
     directorySiteId?: string;
     /**
-     * Dimension value for the ID of the directory site. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the directory site. This is a read-only, auto-generated field.
      */
     directorySiteIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -6842,8 +5671,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Dimension value for the ID of this site. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of this site. This is a read-only, auto-generated field.
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
@@ -6851,16 +5679,11 @@ export namespace dfareporting_v3_2 {
      */
     keyName?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#site&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#site&quot;.
      */
     kind?: string;
     /**
-     * Name of this site.This is a required field. Must be less than 128
-     * characters long. If this site is under a subaccount, the name must be
-     * unique among sites of the same subaccount. Otherwise, this site is a
-     * top-level site, and the name must be unique among top-level sites of the
-     * same account.
+     * Name of this site.This is a required field. Must be less than 128 characters long. If this site is under a subaccount, the name must be unique among sites of the same subaccount. Otherwise, this site is a top-level site, and the name must be unique among top-level sites of the same account.
      */
     name?: string;
     /**
@@ -6872,8 +5695,7 @@ export namespace dfareporting_v3_2 {
      */
     siteSettings?: Schema$SiteSettings;
     /**
-     * Subaccount ID of this site. This is a read-only field that can be left
-     * blank.
+     * Subaccount ID of this site. This is a read-only field that can be left blank.
      */
     subaccountId?: string;
   }
@@ -6923,10 +5745,7 @@ export namespace dfareporting_v3_2 {
      */
     activeViewOptOut?: boolean;
     /**
-     * Whether this site opts out of ad blocking. When true, ad blocking is
-     * disabled for all placements under the site, regardless of the individual
-     * placement settings. When false, the campaign and placement settings take
-     * effect.
+     * Whether this site opts out of ad blocking. When true, ad blocking is disabled for all placements under the site, regardless of the individual placement settings. When false, the campaign and placement settings take effect.
      */
     adBlockingOptOut?: boolean;
     /**
@@ -6946,22 +5765,11 @@ export namespace dfareporting_v3_2 {
      */
     tagSetting?: Schema$TagSetting;
     /**
-     * Whether Verification and ActiveView for in-stream video creatives are
-     * disabled by default for new placements created under this site. This
-     * value will be used to populate the placement.videoActiveViewOptOut field,
-     * when no value is specified for the new placement.
+     * Whether Verification and ActiveView for in-stream video creatives are disabled by default for new placements created under this site. This value will be used to populate the placement.videoActiveViewOptOut field, when no value is specified for the new placement.
      */
     videoActiveViewOptOutTemplate?: boolean;
     /**
-     * Default VPAID adapter setting for new placements created under this site.
-     * This value will be used to populate the placements.vpaidAdapterChoice
-     * field, when no value is specified for the new placement. Controls which
-     * VPAID format the measurement adapter will use for in-stream video
-     * creatives assigned to the placement. The publisher&#39;s specifications
-     * will typically determine this setting. For VPAID creatives, the adapter
-     * format will match the VPAID format (HTML5 VPAID creatives use the HTML5
-     * adapter).  Note: Flash is no longer supported. This field now defaults to
-     * HTML5 when the following values are provided: FLASH, BOTH.
+     * Default VPAID adapter setting for new placements created under this site. This value will be used to populate the placements.vpaidAdapterChoice field, when no value is specified for the new placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to the placement. The publisher&#39;s specifications will typically determine this setting. For VPAID creatives, the adapter format will match the VPAID format (HTML5 VPAID creatives use the HTML5 adapter).  Note: Flash is no longer supported. This field now defaults to HTML5 when the following values are provided: FLASH, BOTH.
      */
     vpaidAdapterChoiceTemplate?: string;
   }
@@ -6970,8 +5778,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$SitesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#sitesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#sitesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -6984,8 +5791,7 @@ export namespace dfareporting_v3_2 {
     sites?: Schema$Site[];
   }
   /**
-   * Represents the dimensions of ads, placements, creatives, or creative
-   * assets.
+   * Represents the dimensions of ads, placements, creatives, or creative assets.
    */
   export interface Schema$Size {
     /**
@@ -7001,8 +5807,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#size&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#size&quot;.
      */
     kind?: string;
     /**
@@ -7015,8 +5820,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$SizesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#sizesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#sizesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -7029,18 +5833,15 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$SkippableSetting {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#skippableSetting&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#skippableSetting&quot;.
      */
     kind?: string;
     /**
-     * Amount of time to play videos served to this placement before counting a
-     * view. Applicable when skippable is true.
+     * Amount of time to play videos served to this placement before counting a view. Applicable when skippable is true.
      */
     progressOffset?: Schema$VideoOffset;
     /**
-     * Amount of time to play videos served to this placement before the skip
-     * button should appear. Applicable when skippable is true.
+     * Amount of time to play videos served to this placement before the skip button should appear. Applicable when skippable is true.
      */
     skipOffset?: Schema$VideoOffset;
     /**
@@ -7070,8 +5871,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$Subaccount {
     /**
-     * ID of the account that contains this subaccount. This is a read-only
-     * field that can be left blank.
+     * ID of the account that contains this subaccount. This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
@@ -7083,13 +5883,11 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#subaccount&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#subaccount&quot;.
      */
     kind?: string;
     /**
-     * Name of this subaccount. This is a required field. Must be less than 128
-     * characters long and be unique among subaccounts of the same account.
+     * Name of this subaccount. This is a required field. Must be less than 128 characters long and be unique among subaccounts of the same account.
      */
     name?: string;
   }
@@ -7098,8 +5896,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$SubaccountsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#subaccountsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#subaccountsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -7116,8 +5913,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$TagData {
     /**
-     * Ad associated with this placement tag. Applicable only when format is
-     * PLACEMENT_TAG_TRACKING.
+     * Ad associated with this placement tag. Applicable only when format is PLACEMENT_TAG_TRACKING.
      */
     adId?: string;
     /**
@@ -7125,8 +5921,7 @@ export namespace dfareporting_v3_2 {
      */
     clickTag?: string;
     /**
-     * Creative associated with this placement tag. Applicable only when format
-     * is PLACEMENT_TAG_TRACKING.
+     * Creative associated with this placement tag. Applicable only when format is PLACEMENT_TAG_TRACKING.
      */
     creativeId?: string;
     /**
@@ -7143,15 +5938,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$TagSetting {
     /**
-     * Additional key-values to be included in tags. Each key-value pair must be
-     * of the form key=value, and pairs must be separated by a semicolon (;).
-     * Keys and values must not contain commas. For example, id=2;color=red is a
-     * valid value for this field.
+     * Additional key-values to be included in tags. Each key-value pair must be of the form key=value, and pairs must be separated by a semicolon (;). Keys and values must not contain commas. For example, id=2;color=red is a valid value for this field.
      */
     additionalKeyValues?: string;
     /**
-     * Whether static landing page URLs should be included in the tags. This
-     * setting applies only to placements.
+     * Whether static landing page URLs should be included in the tags. This setting applies only to placements.
      */
     includeClickThroughUrls?: boolean;
     /**
@@ -7159,10 +5950,7 @@ export namespace dfareporting_v3_2 {
      */
     includeClickTracking?: boolean;
     /**
-     * Option specifying how keywords are embedded in ad tags. This setting can
-     * be used to specify whether keyword placeholders are inserted in placement
-     * tags for this site. Publishers can then add keywords to those
-     * placeholders.
+     * Option specifying how keywords are embedded in ad tags. This setting can be used to specify whether keyword placeholders are inserted in placement tags for this site. Publishers can then add keywords to those placeholders.
      */
     keywordOption?: string;
   }
@@ -7180,19 +5968,11 @@ export namespace dfareporting_v3_2 {
     imageTagEnabled?: boolean;
   }
   /**
-   * Contains properties of a targetable remarketing list. Remarketing enables
-   * you to create lists of users who have performed specific actions on a site,
-   * then target ads to members of those lists. This resource is a read-only
-   * view of a remarketing list to be used to faciliate targeting ads to
-   * specific lists. Remarketing lists that are owned by your advertisers and
-   * those that are shared to your advertisers or account are accessible via
-   * this resource. To manage remarketing lists that are owned by your
-   * advertisers, use the RemarketingLists resource.
+   * Contains properties of a targetable remarketing list. Remarketing enables you to create lists of users who have performed specific actions on a site, then target ads to members of those lists. This resource is a read-only view of a remarketing list to be used to faciliate targeting ads to specific lists. Remarketing lists that are owned by your advertisers and those that are shared to your advertisers or account are accessible via this resource. To manage remarketing lists that are owned by your advertisers, use the RemarketingLists resource.
    */
   export interface Schema$TargetableRemarketingList {
     /**
-     * Account ID of this remarketing list. This is a read-only, auto-generated
-     * field that is only returned in GET requests.
+     * Account ID of this remarketing list. This is a read-only, auto-generated field that is only returned in GET requests.
      */
     accountId?: string;
     /**
@@ -7200,8 +5980,7 @@ export namespace dfareporting_v3_2 {
      */
     active?: boolean;
     /**
-     * Dimension value for the advertiser ID that owns this targetable
-     * remarketing list.
+     * Dimension value for the advertiser ID that owns this targetable remarketing list.
      */
     advertiserId?: string;
     /**
@@ -7217,13 +5996,11 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#targetableRemarketingList&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetableRemarketingList&quot;.
      */
     kind?: string;
     /**
-     * Number of days that a user should remain in the targetable remarketing
-     * list without an impression.
+     * Number of days that a user should remain in the targetable remarketing list without an impression.
      */
     lifeSpan?: string;
     /**
@@ -7235,13 +6012,11 @@ export namespace dfareporting_v3_2 {
      */
     listSource?: string;
     /**
-     * Name of the targetable remarketing list. Is no greater than 128
-     * characters long.
+     * Name of the targetable remarketing list. Is no greater than 128 characters long.
      */
     name?: string;
     /**
-     * Subaccount ID of this remarketing list. This is a read-only,
-     * auto-generated field that is only returned in GET requests.
+     * Subaccount ID of this remarketing list. This is a read-only, auto-generated field that is only returned in GET requests.
      */
     subaccountId?: string;
   }
@@ -7250,8 +6025,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$TargetableRemarketingListsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#targetableRemarketingListsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetableRemarketingListsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -7264,23 +6038,19 @@ export namespace dfareporting_v3_2 {
     targetableRemarketingLists?: Schema$TargetableRemarketingList[];
   }
   /**
-   * Contains properties of a targeting template. A targeting template
-   * encapsulates targeting information which can be reused across multiple ads.
+   * Contains properties of a targeting template. A targeting template encapsulates targeting information which can be reused across multiple ads.
    */
   export interface Schema$TargetingTemplate {
     /**
-     * Account ID of this targeting template. This field, if left unset, will be
-     * auto-generated on insert and is read-only after insert.
+     * Account ID of this targeting template. This field, if left unset, will be auto-generated on insert and is read-only after insert.
      */
     accountId?: string;
     /**
-     * Advertiser ID of this targeting template. This is a required field on
-     * insert and is read-only after insert.
+     * Advertiser ID of this targeting template. This is a required field on insert and is read-only after insert.
      */
     advertiserId?: string;
     /**
-     * Dimension value for the ID of the advertiser. This is a read-only,
-     * auto-generated field.
+     * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
     /**
@@ -7300,8 +6070,7 @@ export namespace dfareporting_v3_2 {
      */
     keyValueTargetingExpression?: Schema$KeyValueTargetingExpression;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#targetingTemplate&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetingTemplate&quot;.
      */
     kind?: string;
     /**
@@ -7313,13 +6082,11 @@ export namespace dfareporting_v3_2 {
      */
     listTargetingExpression?: Schema$ListTargetingExpression;
     /**
-     * Name of this targeting template. This field is required. It must be less
-     * than 256 characters long and unique within an advertiser.
+     * Name of this targeting template. This field is required. It must be less than 256 characters long and unique within an advertiser.
      */
     name?: string;
     /**
-     * Subaccount ID of this targeting template. This field, if left unset, will
-     * be auto-generated on insert and is read-only after insert.
+     * Subaccount ID of this targeting template. This field, if left unset, will be auto-generated on insert and is read-only after insert.
      */
     subaccountId?: string;
     /**
@@ -7332,8 +6099,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$TargetingTemplatesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#targetingTemplatesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetingTemplatesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -7354,8 +6120,7 @@ export namespace dfareporting_v3_2 {
      */
     customHtml?: string;
     /**
-     * Type of browser window for which the backup image of the flash creative
-     * can be displayed.
+     * Type of browser window for which the backup image of the flash creative can be displayed.
      */
     targetWindowOption?: string;
   }
@@ -7364,45 +6129,27 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$TechnologyTargeting {
     /**
-     * Browsers that this ad targets. For each browser either set
-     * browserVersionId or dartId along with the version numbers. If both are
-     * specified, only browserVersionId will be used. The other fields are
-     * populated automatically when the ad is inserted or updated.
+     * Browsers that this ad targets. For each browser either set browserVersionId or dartId along with the version numbers. If both are specified, only browserVersionId will be used. The other fields are populated automatically when the ad is inserted or updated.
      */
     browsers?: Schema$Browser[];
     /**
-     * Connection types that this ad targets. For each connection type only id
-     * is required. The other fields are populated automatically when the ad is
-     * inserted or updated.
+     * Connection types that this ad targets. For each connection type only id is required. The other fields are populated automatically when the ad is inserted or updated.
      */
     connectionTypes?: Schema$ConnectionType[];
     /**
-     * Mobile carriers that this ad targets. For each mobile carrier only id is
-     * required, and the other fields are populated automatically when the ad is
-     * inserted or updated. If targeting a mobile carrier, do not set targeting
-     * for any zip codes.
+     * Mobile carriers that this ad targets. For each mobile carrier only id is required, and the other fields are populated automatically when the ad is inserted or updated. If targeting a mobile carrier, do not set targeting for any zip codes.
      */
     mobileCarriers?: Schema$MobileCarrier[];
     /**
-     * Operating systems that this ad targets. To target specific versions, use
-     * operatingSystemVersions. For each operating system only dartId is
-     * required. The other fields are populated automatically when the ad is
-     * inserted or updated. If targeting an operating system, do not set
-     * targeting for operating system versions for the same operating system.
+     * Operating systems that this ad targets. To target specific versions, use operatingSystemVersions. For each operating system only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting an operating system, do not set targeting for operating system versions for the same operating system.
      */
     operatingSystems?: Schema$OperatingSystem[];
     /**
-     * Operating system versions that this ad targets. To target all versions,
-     * use operatingSystems. For each operating system version, only id is
-     * required. The other fields are populated automatically when the ad is
-     * inserted or updated. If targeting an operating system version, do not set
-     * targeting for the corresponding operating system in operatingSystems.
+     * Operating system versions that this ad targets. To target all versions, use operatingSystems. For each operating system version, only id is required. The other fields are populated automatically when the ad is inserted or updated. If targeting an operating system version, do not set targeting for the corresponding operating system in operatingSystems.
      */
     operatingSystemVersions?: Schema$OperatingSystemVersion[];
     /**
-     * Platform types that this ad targets. For example, desktop, mobile, or
-     * tablet. For each platform type, only id is required, and the other fields
-     * are populated automatically when the ad is inserted or updated.
+     * Platform types that this ad targets. For example, desktop, mobile, or tablet. For each platform type, only id is required, and the other fields are populated automatically when the ad is inserted or updated.
      */
     platformTypes?: Schema$PlatformType[];
   }
@@ -7415,8 +6162,7 @@ export namespace dfareporting_v3_2 {
      */
     name?: string;
     /**
-     * Value of the third-party authentication token. This is a read-only,
-     * auto-generated field.
+     * Value of the third-party authentication token. This is a read-only, auto-generated field.
      */
     value?: string;
   }
@@ -7438,19 +6184,16 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$TranscodeSetting {
     /**
-     * Whitelist of video formats to be served to this placement. Set this list
-     * to null or empty to serve all video formats.
+     * Whitelist of video formats to be served to this placement. Set this list to null or empty to serve all video formats.
      */
     enabledVideoFormats?: number[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#transcodeSetting&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#transcodeSetting&quot;.
      */
     kind?: string;
   }
   /**
-   * A Universal Ad ID as per the VAST 4.0 spec. Applicable to the following
-   * creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and VPAID.
+   * A Universal Ad ID as per the VAST 4.0 spec. Applicable to the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and VPAID.
    */
   export interface Schema$UniversalAdId {
     /**
@@ -7458,9 +6201,7 @@ export namespace dfareporting_v3_2 {
      */
     registry?: string;
     /**
-     * ID value for this creative. Only alphanumeric characters and the
-     * following symbols are valid: &quot;_/\-&quot;. Maximum length is 64
-     * characters. Read only when registry is DCM.
+     * ID value for this creative. Only alphanumeric characters and the following symbols are valid: &quot;_/\-&quot;. Maximum length is 64 characters. Read only when registry is DCM.
      */
     value?: string;
   }
@@ -7473,9 +6214,7 @@ export namespace dfareporting_v3_2 {
      */
     dataType?: string;
     /**
-     * User-friendly name for the variable which will appear in reports. This is
-     * a required field, must be less than 64 characters long, and cannot
-     * contain the following characters: &quot;&quot;&lt;&gt;&quot;.
+     * User-friendly name for the variable which will appear in reports. This is a required field, must be less than 64 characters long, and cannot contain the following characters: &quot;&quot;&lt;&gt;&quot;.
      */
     reportName?: string;
     /**
@@ -7542,14 +6281,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$UserRole {
     /**
-     * Account ID of this user role. This is a read-only field that can be left
-     * blank.
+     * Account ID of this user role. This is a read-only field that can be left blank.
      */
     accountId?: string;
     /**
-     * Whether this is a default user role. Default user roles are created by
-     * the system for the account/subaccount and cannot be modified or deleted.
-     * Each default user role comes with a basic set of preassigned permissions.
+     * Whether this is a default user role. Default user roles are created by the system for the account/subaccount and cannot be modified or deleted. Each default user role comes with a basic set of preassigned permissions.
      */
     defaultUserRole?: boolean;
     /**
@@ -7557,21 +6293,15 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#userRole&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRole&quot;.
      */
     kind?: string;
     /**
-     * Name of this user role. This is a required field. Must be less than 256
-     * characters long. If this user role is under a subaccount, the name must
-     * be unique among sites of the same subaccount. Otherwise, this user role
-     * is a top-level user role, and the name must be unique among top-level
-     * user roles of the same account.
+     * Name of this user role. This is a required field. Must be less than 256 characters long. If this user role is under a subaccount, the name must be unique among sites of the same subaccount. Otherwise, this user role is a top-level user role, and the name must be unique among top-level user roles of the same account.
      */
     name?: string;
     /**
-     * ID of the user role that this user role is based on or copied from. This
-     * is a required field.
+     * ID of the user role that this user role is based on or copied from. This is a required field.
      */
     parentUserRoleId?: string;
     /**
@@ -7579,8 +6309,7 @@ export namespace dfareporting_v3_2 {
      */
     permissions?: Schema$UserRolePermission[];
     /**
-     * Subaccount ID of this user role. This is a read-only field that can be
-     * left blank.
+     * Subaccount ID of this user role. This is a read-only field that can be left blank.
      */
     subaccountId?: string;
   }
@@ -7597,8 +6326,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#userRolePermission&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermission&quot;.
      */
     kind?: string;
     /**
@@ -7619,8 +6347,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#userRolePermissionGroup&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionGroup&quot;.
      */
     kind?: string;
     /**
@@ -7633,8 +6360,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$UserRolePermissionGroupsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#userRolePermissionGroupsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionGroupsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -7647,8 +6373,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$UserRolePermissionsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#userRolePermissionsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -7661,8 +6386,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$UserRolesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#userRolesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -7687,8 +6411,7 @@ export namespace dfareporting_v3_2 {
      */
     id?: number;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#videoFormat&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#videoFormat&quot;.
      */
     kind?: string;
     /**
@@ -7705,8 +6428,7 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$VideoFormatsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#videoFormatsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#videoFormatsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -7719,13 +6441,11 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$VideoOffset {
     /**
-     * Duration, as a percentage of video duration. Do not set when
-     * offsetSeconds is set. Acceptable values are 0 to 100, inclusive.
+     * Duration, as a percentage of video duration. Do not set when offsetSeconds is set. Acceptable values are 0 to 100, inclusive.
      */
     offsetPercentage?: number;
     /**
-     * Duration, in seconds. Do not set when offsetPercentage is set. Acceptable
-     * values are 0 to 86399, inclusive.
+     * Duration, in seconds. Do not set when offsetPercentage is set. Acceptable values are 0 to 86399, inclusive.
      */
     offsetSeconds?: number;
   }
@@ -7734,30 +6454,23 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$VideoSettings {
     /**
-     * Settings for the companion creatives of video creatives served to this
-     * placement.
+     * Settings for the companion creatives of video creatives served to this placement.
      */
     companionSettings?: Schema$CompanionSetting;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;dfareporting#videoSettings&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#videoSettings&quot;.
      */
     kind?: string;
     /**
-     * Orientation of a video placement. If this value is set, placement will
-     * return assets matching the specified orientation.
+     * Orientation of a video placement. If this value is set, placement will return assets matching the specified orientation.
      */
     orientation?: string;
     /**
-     * Settings for the skippability of video creatives served to this
-     * placement. If this object is provided, the creative-level skippable
-     * settings will be overridden.
+     * Settings for the skippability of video creatives served to this placement. If this object is provided, the creative-level skippable settings will be overridden.
      */
     skippableSettings?: Schema$SkippableSetting;
     /**
-     * Settings for the transcodes of video creatives served to this placement.
-     * If this object is provided, the creative-level transcode settings will be
-     * overridden.
+     * Settings for the transcodes of video creatives served to this placement. If this object is provided, the creative-level transcode settings will be overridden.
      */
     transcodeSettings?: Schema$TranscodeSetting;
   }
@@ -8335,8 +7048,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.accounts.list
-     * @desc Retrieves the list of accounts, possibly filtered. This method
-     * supports paging.
+     * @desc Retrieves the list of accounts, possibly filtered. This method supports paging.
      * @alias dfareporting.accounts.list
      * @memberOf! ()
      *
@@ -8581,8 +7293,7 @@ export namespace dfareporting_v3_2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Select only active accounts. Don't set this field to select both active
-     * and non-active accounts.
+     * Select only active accounts. Don't set this field to select both active and non-active accounts.
      */
     active?: boolean;
     /**
@@ -8602,12 +7313,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "account*2015" will return objects with names like "account
-     * June 2015", "account April 2015", or simply "account 2015". Most of the
-     * searches also add wildcards implicitly at the start and the end of the
-     * search string. For example, a search string of "account" will match
-     * objects with name "my account", "account 2015", or simply "account".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "account*2015" will return objects with names like "account June 2015", "account April 2015", or simply "account 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "account" will match objects with name "my account", "account 2015", or simply "account".
      */
     searchString?: string;
     /**
@@ -8814,8 +7520,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.accountUserProfiles.list
-     * @desc Retrieves a list of account user profiles, possibly filtered. This
-     * method supports paging.
+     * @desc Retrieves a list of account user profiles, possibly filtered. This method supports paging.
      * @alias dfareporting.accountUserProfiles.list
      * @memberOf! ()
      *
@@ -8907,8 +7612,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.accountUserProfiles.patch
-     * @desc Updates an existing account user profile. This method supports
-     * patch semantics.
+     * @desc Updates an existing account user profile. This method supports patch semantics.
      * @alias dfareporting.accountUserProfiles.patch
      * @memberOf! ()
      *
@@ -9119,13 +7823,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name, ID or email. Wildcards (*) are
-     * allowed. For example, "user profile*2015" will return objects with names
-     * like "user profile June 2015", "user profile April 2015", or simply "user
-     * profile 2015". Most of the searches also add wildcards implicitly at the
-     * start and the end of the search string. For example, a search string of
-     * "user profile" will match objects with name "my user profile", "user
-     * profile 2015", or simply "user profile".
+     * Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "user profile*2015" will return objects with names like "user profile June 2015", "user profile April 2015", or simply "user profile 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "user profile" will match objects with name "my user profile", "user profile 2015", or simply "user profile".
      */
     searchString?: string;
     /**
@@ -9334,8 +8032,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.ads.list
-     * @desc Retrieves a list of ads, possibly filtered. This method supports
-     * paging.
+     * @desc Retrieves a list of ads, possibly filtered. This method supports paging.
      * @alias dfareporting.ads.list
      * @memberOf! ()
      *
@@ -9630,12 +8327,7 @@ export namespace dfareporting_v3_2 {
      */
     campaignIds?: string[];
     /**
-     * Select default ads with the specified compatibility. Applicable when type
-     * is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to
-     * rendering either on desktop or on mobile devices for regular or
-     * interstitial ads, respectively. APP and APP_INTERSTITIAL are for
-     * rendering in mobile apps. IN_STREAM_VIDEO refers to rendering an
-     * in-stream video ads developed with the VAST standard.
+     * Select default ads with the specified compatibility. Applicable when type is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering an in-stream video ads developed with the VAST standard.
      */
     compatibility?: string;
     /**
@@ -9647,9 +8339,7 @@ export namespace dfareporting_v3_2 {
      */
     creativeOptimizationConfigurationIds?: string[];
     /**
-     * Select only dynamic click trackers. Applicable when type is
-     * AD_SERVING_CLICK_TRACKER. If true, select dynamic click trackers. If
-     * false, select static click trackers. Leave unset to select both.
+     * Select only dynamic click trackers. Applicable when type is AD_SERVING_CLICK_TRACKER. If true, select dynamic click trackers. If false, select static click trackers. Leave unset to select both.
      */
     dynamicClickTracker?: boolean;
     /**
@@ -9681,17 +8371,11 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Select only ads whose list targeting expression use these remarketing
-     * list IDs.
+     * Select only ads whose list targeting expression use these remarketing list IDs.
      */
     remarketingListIds?: string[];
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "ad*2015" will return objects with names like "ad June
-     * 2015", "ad April 2015", or simply "ad 2015". Most of the searches also
-     * add wildcards implicitly at the start and the end of the search string.
-     * For example, a search string of "ad" will match objects with name "my
-     * ad", "ad 2015", or simply "ad".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "ad*2015" will return objects with names like "ad June 2015", "ad April 2015", or simply "ad 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "ad" will match objects with name "my ad", "ad 2015", or simply "ad".
      */
     searchString?: string;
     /**
@@ -9987,8 +8671,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.advertiserGroups.list
-     * @desc Retrieves a list of advertiser groups, possibly filtered. This
-     * method supports paging.
+     * @desc Retrieves a list of advertiser groups, possibly filtered. This method supports paging.
      * @alias dfareporting.advertiserGroups.list
      * @memberOf! ()
      *
@@ -10077,8 +8760,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.advertiserGroups.patch
-     * @desc Updates an existing advertiser group. This method supports patch
-     * semantics.
+     * @desc Updates an existing advertiser group. This method supports patch semantics.
      * @alias dfareporting.advertiserGroups.patch
      * @memberOf! ()
      *
@@ -10301,13 +8983,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "advertiser*2015" will return objects with names like
-     * "advertiser group June 2015", "advertiser group April 2015", or simply
-     * "advertiser group 2015". Most of the searches also add wildcards
-     * implicitly at the start and the end of the search string. For example, a
-     * search string of "advertisergroup" will match objects with name "my
-     * advertisergroup", "advertisergroup 2015", or simply "advertisergroup".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser group June 2015", "advertiser group April 2015", or simply "advertiser group 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertisergroup" will match objects with name "my advertisergroup", "advertisergroup 2015", or simply "advertisergroup".
      */
     searchString?: string;
     /**
@@ -10609,8 +9285,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.advertiserLandingPages.patch
-     * @desc Updates an existing landing page. This method supports patch
-     * semantics.
+     * @desc Updates an existing landing page. This method supports patch semantics.
      * @alias dfareporting.advertiserLandingPages.patch
      * @memberOf! ()
      *
@@ -10805,8 +9480,7 @@ export namespace dfareporting_v3_2 {
      */
     advertiserIds?: string[];
     /**
-     * Select only archived landing pages. Don't set this field to select both
-     * archived and non-archived landing pages.
+     * Select only archived landing pages. Don't set this field to select both archived and non-archived landing pages.
      */
     archived?: boolean;
     /**
@@ -10830,13 +9504,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for landing pages by name or ID. Wildcards (*) are
-     * allowed. For example, "landingpage*2017" will return landing pages with
-     * names like "landingpage July 2017", "landingpage March 2017", or simply
-     * "landingpage 2017". Most of the searches also add wildcards implicitly at
-     * the start and the end of the search string. For example, a search string
-     * of "landingpage" will match campaigns with name "my landingpage",
-     * "landingpage 2015", or simply "landingpage".
+     * Allows searching for landing pages by name or ID. Wildcards (*) are allowed. For example, "landingpage*2017" will return landing pages with names like "landingpage July 2017", "landingpage March 2017", or simply "landingpage 2017". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "landingpage" will match campaigns with name "my landingpage", "landingpage 2015", or simply "landingpage".
      */
     searchString?: string;
     /**
@@ -11048,8 +9716,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.advertisers.list
-     * @desc Retrieves a list of advertisers, possibly filtered. This method
-     * supports paging.
+     * @desc Retrieves a list of advertisers, possibly filtered. This method supports paging.
      * @alias dfareporting.advertisers.list
      * @memberOf! ()
      *
@@ -11136,8 +9803,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.advertisers.patch
-     * @desc Updates an existing advertiser. This method supports patch
-     * semantics.
+     * @desc Updates an existing advertiser. This method supports patch semantics.
      * @alias dfareporting.advertisers.patch
      * @memberOf! ()
      *
@@ -11346,8 +10012,7 @@ export namespace dfareporting_v3_2 {
      */
     maxResults?: number;
     /**
-     * Select only advertisers which use another advertiser's floodlight
-     * configuration.
+     * Select only advertisers which use another advertiser's floodlight configuration.
      */
     onlyParent?: boolean;
     /**
@@ -11359,13 +10024,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "advertiser*2015" will return objects with names like
-     * "advertiser June 2015", "advertiser April 2015", or simply "advertiser
-     * 2015". Most of the searches also add wildcards implicitly at the start
-     * and the end of the search string. For example, a search string of
-     * "advertiser" will match objects with name "my advertiser", "advertiser
-     * 2015", or simply "advertiser".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser".
      */
     searchString?: string;
     /**
@@ -11525,9 +10184,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.campaignCreativeAssociations.insert
-     * @desc Associates a creative with the specified campaign. This method
-     * creates a default ad with dimensions matching the creative in the
-     * campaign if such a default ad does not exist already.
+     * @desc Associates a creative with the specified campaign. This method creates a default ad with dimensions matching the creative in the campaign if such a default ad does not exist already.
      * @alias dfareporting.campaignCreativeAssociations.insert
      * @memberOf! ()
      *
@@ -11610,8 +10267,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.campaignCreativeAssociations.list
-     * @desc Retrieves the list of creative IDs associated with the specified
-     * campaign. This method supports paging.
+     * @desc Retrieves the list of creative IDs associated with the specified campaign. This method supports paging.
      * @alias dfareporting.campaignCreativeAssociations.list
      * @memberOf! ()
      *
@@ -11906,8 +10562,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.campaigns.list
-     * @desc Retrieves a list of campaigns, possibly filtered. This method
-     * supports paging.
+     * @desc Retrieves a list of campaigns, possibly filtered. This method supports paging.
      * @alias dfareporting.campaigns.list
      * @memberOf! ()
      *
@@ -12174,8 +10829,7 @@ export namespace dfareporting_v3_2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Select only campaigns whose advertisers belong to these advertiser
-     * groups.
+     * Select only campaigns whose advertisers belong to these advertiser groups.
      */
     advertiserGroupIds?: string[];
     /**
@@ -12183,8 +10837,7 @@ export namespace dfareporting_v3_2 {
      */
     advertiserIds?: string[];
     /**
-     * Select only archived campaigns. Don't set this field to select both
-     * archived and non-archived campaigns.
+     * Select only archived campaigns. Don't set this field to select both archived and non-archived campaigns.
      */
     archived?: boolean;
     /**
@@ -12216,13 +10869,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for campaigns by name or ID. Wildcards (*) are allowed.
-     * For example, "campaign*2015" will return campaigns with names like
-     * "campaign June 2015", "campaign April 2015", or simply "campaign 2015".
-     * Most of the searches also add wildcards implicitly at the start and the
-     * end of the search string. For example, a search string of "campaign" will
-     * match campaigns with name "my campaign", "campaign 2015", or simply
-     * "campaign".
+     * Allows searching for campaigns by name or ID. Wildcards (*) are allowed. For example, "campaign*2015" will return campaigns with names like "campaign June 2015", "campaign April 2015", or simply "campaign 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "campaign" will match campaigns with name "my campaign", "campaign 2015", or simply "campaign".
      */
     searchString?: string;
     /**
@@ -12470,12 +11117,7 @@ export namespace dfareporting_v3_2 {
      */
     ids?: string[];
     /**
-     * Select only change logs whose change time is before the specified
-     * maxChangeTime.The time should be formatted as an RFC3339 date/time
-     * string. For example, for 10:54 PM on July 18th, 2015, in the America/New
-     * York time zone, the format is "2015-07-18T22:54:00-04:00". In other
-     * words, the year, month, day, the letter T, the hour (24-hour clock
-     * system), minute, second, and then the time zone offset.
+     * Select only change logs whose change time is before the specified maxChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
      */
     maxChangeTime?: string;
     /**
@@ -12483,12 +11125,7 @@ export namespace dfareporting_v3_2 {
      */
     maxResults?: number;
     /**
-     * Select only change logs whose change time is before the specified
-     * minChangeTime.The time should be formatted as an RFC3339 date/time
-     * string. For example, for 10:54 PM on July 18th, 2015, in the America/New
-     * York time zone, the format is "2015-07-18T22:54:00-04:00". In other
-     * words, the year, month, day, the letter T, the hour (24-hour clock
-     * system), minute, second, and then the time zone offset.
+     * Select only change logs whose change time is before the specified minChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
      */
     minChangeTime?: string;
     /**
@@ -12508,8 +11145,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Select only change logs whose object ID, user name, old or new values
-     * match the search string.
+     * Select only change logs whose object ID, user name, old or new values match the search string.
      */
     searchString?: string;
     /**
@@ -13052,8 +11688,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.contentCategories.list
-     * @desc Retrieves a list of content categories, possibly filtered. This
-     * method supports paging.
+     * @desc Retrieves a list of content categories, possibly filtered. This method supports paging.
      * @alias dfareporting.contentCategories.list
      * @memberOf! ()
      *
@@ -13142,8 +11777,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.contentCategories.patch
-     * @desc Updates an existing content category. This method supports patch
-     * semantics.
+     * @desc Updates an existing content category. This method supports patch semantics.
      * @alias dfareporting.contentCategories.patch
      * @memberOf! ()
      *
@@ -13366,13 +12000,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "contentcategory*2015" will return objects with names like
-     * "contentcategory June 2015", "contentcategory April 2015", or simply
-     * "contentcategory 2015". Most of the searches also add wildcards
-     * implicitly at the start and the end of the search string. For example, a
-     * search string of "contentcategory" will match objects with name "my
-     * contentcategory", "contentcategory 2015", or simply "contentcategory".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "contentcategory*2015" will return objects with names like "contentcategory June 2015", "contentcategory April 2015", or simply "contentcategory 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "contentcategory" will match objects with name "my contentcategory", "contentcategory 2015", or simply "contentcategory".
      */
     searchString?: string;
     /**
@@ -14173,8 +12801,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.creativeFields.list
-     * @desc Retrieves a list of creative fields, possibly filtered. This method
-     * supports paging.
+     * @desc Retrieves a list of creative fields, possibly filtered. This method supports paging.
      * @alias dfareporting.creativeFields.list
      * @memberOf! ()
      *
@@ -14262,8 +12889,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.creativeFields.patch
-     * @desc Updates an existing creative field. This method supports patch
-     * semantics.
+     * @desc Updates an existing creative field. This method supports patch semantics.
      * @alias dfareporting.creativeFields.patch
      * @memberOf! ()
      *
@@ -14490,13 +13116,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for creative fields by name or ID. Wildcards (*) are
-     * allowed. For example, "creativefield*2015" will return creative fields
-     * with names like "creativefield June 2015", "creativefield April 2015", or
-     * simply "creativefield 2015". Most of the searches also add wild-cards
-     * implicitly at the start and the end of the search string. For example, a
-     * search string of "creativefield" will match creative fields with the name
-     * "my creativefield", "creativefield 2015", or simply "creativefield".
+     * Allows searching for creative fields by name or ID. Wildcards (*) are allowed. For example, "creativefield*2015" will return creative fields with names like "creativefield June 2015", "creativefield April 2015", or simply "creativefield 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativefield" will match creative fields with the name "my creativefield", "creativefield 2015", or simply "creativefield".
      */
     searchString?: string;
     /**
@@ -14781,8 +13401,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.creativeFieldValues.list
-     * @desc Retrieves a list of creative field values, possibly filtered. This
-     * method supports paging.
+     * @desc Retrieves a list of creative field values, possibly filtered. This method supports paging.
      * @alias dfareporting.creativeFieldValues.list
      * @memberOf! ()
      *
@@ -14872,8 +13491,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.creativeFieldValues.patch
-     * @desc Updates an existing creative field value. This method supports
-     * patch semantics.
+     * @desc Updates an existing creative field value. This method supports patch semantics.
      * @alias dfareporting.creativeFieldValues.patch
      * @memberOf! ()
      *
@@ -15114,8 +13732,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for creative field values by their values. Wildcards
-     * (e.g. *) are not allowed.
+     * Allows searching for creative field values by their values. Wildcards (e.g. *) are not allowed.
      */
     searchString?: string;
     /**
@@ -15332,8 +13949,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.creativeGroups.list
-     * @desc Retrieves a list of creative groups, possibly filtered. This method
-     * supports paging.
+     * @desc Retrieves a list of creative groups, possibly filtered. This method supports paging.
      * @alias dfareporting.creativeGroups.list
      * @memberOf! ()
      *
@@ -15422,8 +14038,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.creativeGroups.patch
-     * @desc Updates an existing creative group. This method supports patch
-     * semantics.
+     * @desc Updates an existing creative group. This method supports patch semantics.
      * @alias dfareporting.creativeGroups.patch
      * @memberOf! ()
      *
@@ -15638,13 +14253,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for creative groups by name or ID. Wildcards (*) are
-     * allowed. For example, "creativegroup*2015" will return creative groups
-     * with names like "creativegroup June 2015", "creativegroup April 2015", or
-     * simply "creativegroup 2015". Most of the searches also add wild-cards
-     * implicitly at the start and the end of the search string. For example, a
-     * search string of "creativegroup" will match creative groups with the name
-     * "my creativegroup", "creativegroup 2015", or simply "creativegroup".
+     * Allows searching for creative groups by name or ID. Wildcards (*) are allowed. For example, "creativegroup*2015" will return creative groups with names like "creativegroup June 2015", "creativegroup April 2015", or simply "creativegroup 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativegroup" will match creative groups with the name "my creativegroup", "creativegroup 2015", or simply "creativegroup".
      */
     searchString?: string;
     /**
@@ -15846,8 +14455,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.creatives.list
-     * @desc Retrieves a list of creatives, possibly filtered. This method
-     * supports paging.
+     * @desc Retrieves a list of creatives, possibly filtered. This method supports paging.
      * @alias dfareporting.creatives.list
      * @memberOf! ()
      *
@@ -16117,8 +14725,7 @@ export namespace dfareporting_v3_2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Select only active creatives. Leave blank to select active and inactive
-     * creatives.
+     * Select only active creatives. Leave blank to select active and inactive creatives.
      */
     active?: boolean;
     /**
@@ -16126,8 +14733,7 @@ export namespace dfareporting_v3_2 {
      */
     advertiserId?: string;
     /**
-     * Select only archived creatives. Leave blank to select archived and
-     * unarchived creatives.
+     * Select only archived creatives. Leave blank to select archived and unarchived creatives.
      */
     archived?: boolean;
     /**
@@ -16163,13 +14769,7 @@ export namespace dfareporting_v3_2 {
      */
     renderingIds?: string[];
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "creative*2015" will return objects with names like
-     * "creative June 2015", "creative April 2015", or simply "creative 2015".
-     * Most of the searches also add wildcards implicitly at the start and the
-     * end of the search string. For example, a search string of "creative" will
-     * match objects with name "my creative", "creative 2015", or simply
-     * "creative".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "creative*2015" will return objects with names like "creative June 2015", "creative April 2015", or simply "creative 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "creative" will match objects with name "my creative", "creative 2015", or simply "creative".
      */
     searchString?: string;
     /**
@@ -16425,8 +15025,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.directorySiteContacts.list
-     * @desc Retrieves a list of directory site contacts, possibly filtered.
-     * This method supports paging.
+     * @desc Retrieves a list of directory site contacts, possibly filtered. This method supports paging.
      * @alias dfareporting.directorySiteContacts.list
      * @memberOf! ()
      *
@@ -16539,8 +15138,7 @@ export namespace dfareporting_v3_2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Select only directory site contacts with these directory site IDs. This
-     * is a required field.
+     * Select only directory site contacts with these directory site IDs. This is a required field.
      */
     directorySiteIds?: string[];
     /**
@@ -16560,14 +15158,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name, ID or email. Wildcards (*) are
-     * allowed. For example, "directory site contact*2015" will return objects
-     * with names like "directory site contact June 2015", "directory site
-     * contact April 2015", or simply "directory site contact 2015". Most of the
-     * searches also add wildcards implicitly at the start and the end of the
-     * search string. For example, a search string of "directory site contact"
-     * will match objects with name "my directory site contact", "directory site
-     * contact 2015", or simply "directory site contact".
+     * Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "directory site contact*2015" will return objects with names like "directory site contact June 2015", "directory site contact April 2015", or simply "directory site contact 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site contact" will match objects with name "my directory site contact", "directory site contact 2015", or simply "directory site contact".
      */
     searchString?: string;
     /**
@@ -16738,8 +15329,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.directorySites.list
-     * @desc Retrieves a list of directory sites, possibly filtered. This method
-     * supports paging.
+     * @desc Retrieves a list of directory sites, possibly filtered. This method supports paging.
      * @alias dfareporting.directorySites.list
      * @memberOf! ()
      *
@@ -16873,23 +15463,19 @@ export namespace dfareporting_v3_2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * This search filter is no longer supported and will have no effect on the
-     * results returned.
+     * This search filter is no longer supported and will have no effect on the results returned.
      */
     acceptsInStreamVideoPlacements?: boolean;
     /**
-     * This search filter is no longer supported and will have no effect on the
-     * results returned.
+     * This search filter is no longer supported and will have no effect on the results returned.
      */
     acceptsInterstitialPlacements?: boolean;
     /**
-     * Select only directory sites that accept publisher paid placements. This
-     * field can be left blank.
+     * Select only directory sites that accept publisher paid placements. This field can be left blank.
      */
     acceptsPublisherPaidPlacements?: boolean;
     /**
-     * Select only active directory sites. Leave blank to retrieve both active
-     * and inactive directory sites.
+     * Select only active directory sites. Leave blank to retrieve both active and inactive directory sites.
      */
     active?: boolean;
     /**
@@ -16921,13 +15507,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name, ID or URL. Wildcards (*) are
-     * allowed. For example, "directory site*2015" will return objects with
-     * names like "directory site June 2015", "directory site April 2015", or
-     * simply "directory site 2015". Most of the searches also add wildcards
-     * implicitly at the start and the end of the search string. For example, a
-     * search string of "directory site" will match objects with name "my
-     * directory site", "directory site 2015" or simply, "directory site".
+     * Allows searching for objects by name, ID or URL. Wildcards (*) are allowed. For example, "directory site*2015" will return objects with names like "directory site June 2015", "directory site April 2015", or simply "directory site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site" will match objects with name "my directory site", "directory site 2015" or simply, "directory site".
      */
     searchString?: string;
     /**
@@ -17023,11 +15603,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.dynamicTargetingKeys.insert
-     * @desc Inserts a new dynamic targeting key. Keys must be created at the
-     * advertiser level before being assigned to the advertiser's ads,
-     * creatives, or placements. There is a maximum of 1000 keys per advertiser,
-     * out of which a maximum of 20 keys can be assigned per ad, creative, or
-     * placement.
+     * @desc Inserts a new dynamic targeting key. Keys must be created at the advertiser level before being assigned to the advertiser's ads, creatives, or placements. There is a maximum of 1000 keys per advertiser, out of which a maximum of 20 keys can be assigned per ad, creative, or placement.
      * @alias dfareporting.dynamicTargetingKeys.insert
      * @memberOf! ()
      *
@@ -17196,9 +15772,7 @@ export namespace dfareporting_v3_2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of this dynamic targeting key. This is a required field. Must be
-     * less than 256 characters long and cannot contain commas. All characters
-     * are converted to lowercase.
+     * Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
      */
     name?: string;
     /**
@@ -17206,8 +15780,7 @@ export namespace dfareporting_v3_2 {
      */
     objectId?: string;
     /**
-     * Type of the object of this dynamic targeting key. This is a required
-     * field.
+     * Type of the object of this dynamic targeting key. This is a required field.
      */
     objectType?: string;
     /**
@@ -17568,8 +16141,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.eventTags.patch
-     * @desc Updates an existing event tag. This method supports patch
-     * semantics.
+     * @desc Updates an existing event tag. This method supports patch semantics.
      * @alias dfareporting.eventTags.patch
      * @memberOf! ()
      *
@@ -17776,29 +16348,15 @@ export namespace dfareporting_v3_2 {
      */
     campaignId?: string;
     /**
-     * Examine only the specified campaign or advertiser's event tags for
-     * matching selector criteria. When set to false, the parent advertiser and
-     * parent campaign of the specified ad or campaign is examined as well. In
-     * addition, when set to false, the status field is examined as well, along
-     * with the enabledByDefault field. This parameter can not be set to true
-     * when adId is specified as ads do not define their own even tags.
+     * Examine only the specified campaign or advertiser's event tags for matching selector criteria. When set to false, the parent advertiser and parent campaign of the specified ad or campaign is examined as well. In addition, when set to false, the status field is examined as well, along with the enabledByDefault field. This parameter can not be set to true when adId is specified as ads do not define their own even tags.
      */
     definitionsOnly?: boolean;
     /**
-     * Select only enabled event tags. What is considered enabled or disabled
-     * depends on the definitionsOnly parameter. When definitionsOnly is set to
-     * true, only the specified advertiser or campaign's event tags'
-     * enabledByDefault field is examined. When definitionsOnly is set to false,
-     * the specified ad or specified campaign's parent advertiser's or parent
-     * campaign's event tags' enabledByDefault and status fields are examined as
-     * well.
+     * Select only enabled event tags. What is considered enabled or disabled depends on the definitionsOnly parameter. When definitionsOnly is set to true, only the specified advertiser or campaign's event tags' enabledByDefault field is examined. When definitionsOnly is set to false, the specified ad or specified campaign's parent advertiser's or parent campaign's event tags' enabledByDefault and status fields are examined as well.
      */
     enabled?: boolean;
     /**
-     * Select only event tags with the specified event tag types. Event tag
-     * types can be used to specify whether to use a third-party pixel, a
-     * third-party JavaScript URL, or a third-party click-through URL for either
-     * impression or click tracking.
+     * Select only event tags with the specified event tag types. Event tag types can be used to specify whether to use a third-party pixel, a third-party JavaScript URL, or a third-party click-through URL for either impression or click tracking.
      */
     eventTagTypes?: string[];
     /**
@@ -17810,13 +16368,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "eventtag*2015" will return objects with names like
-     * "eventtag June 2015", "eventtag April 2015", or simply "eventtag 2015".
-     * Most of the searches also add wildcards implicitly at the start and the
-     * end of the search string. For example, a search string of "eventtag" will
-     * match objects with name "my eventtag", "eventtag 2015", or simply
-     * "eventtag".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "eventtag*2015" will return objects with names like "eventtag June 2015", "eventtag April 2015", or simply "eventtag 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "eventtag" will match objects with name "my eventtag", "eventtag 2015", or simply "eventtag".
      */
     searchString?: string;
     /**
@@ -17873,8 +16425,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.files.get
-     * @desc Retrieves a report file by its report ID and file ID. This method
-     * supports media download.
+     * @desc Retrieves a report file by its report ID and file ID. This method supports media download.
      * @alias dfareporting.files.get
      * @memberOf! ()
      *
@@ -18389,8 +16940,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.floodlightActivities.list
-     * @desc Retrieves a list of floodlight activities, possibly filtered. This
-     * method supports paging.
+     * @desc Retrieves a list of floodlight activities, possibly filtered. This method supports paging.
      * @alias dfareporting.floodlightActivities.list
      * @memberOf! ()
      *
@@ -18486,8 +17036,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.floodlightActivities.patch
-     * @desc Updates an existing floodlight activity. This method supports patch
-     * semantics.
+     * @desc Updates an existing floodlight activity. This method supports patch semantics.
      * @alias dfareporting.floodlightActivities.patch
      * @memberOf! ()
      *
@@ -18710,41 +17259,31 @@ export namespace dfareporting_v3_2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Select only floodlight activities for the specified advertiser ID. Must
-     * specify either ids, advertiserId, or floodlightConfigurationId for a
-     * non-empty result.
+     * Select only floodlight activities for the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
      */
     advertiserId?: string;
     /**
-     * Select only floodlight activities with the specified floodlight activity
-     * group IDs.
+     * Select only floodlight activities with the specified floodlight activity group IDs.
      */
     floodlightActivityGroupIds?: string[];
     /**
-     * Select only floodlight activities with the specified floodlight activity
-     * group name.
+     * Select only floodlight activities with the specified floodlight activity group name.
      */
     floodlightActivityGroupName?: string;
     /**
-     * Select only floodlight activities with the specified floodlight activity
-     * group tag string.
+     * Select only floodlight activities with the specified floodlight activity group tag string.
      */
     floodlightActivityGroupTagString?: string;
     /**
-     * Select only floodlight activities with the specified floodlight activity
-     * group type.
+     * Select only floodlight activities with the specified floodlight activity group type.
      */
     floodlightActivityGroupType?: string;
     /**
-     * Select only floodlight activities for the specified floodlight
-     * configuration ID. Must specify either ids, advertiserId, or
-     * floodlightConfigurationId for a non-empty result.
+     * Select only floodlight activities for the specified floodlight configuration ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
      */
     floodlightConfigurationId?: string;
     /**
-     * Select only floodlight activities with the specified IDs. Must specify
-     * either ids, advertiserId, or floodlightConfigurationId for a non-empty
-     * result.
+     * Select only floodlight activities with the specified IDs. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
      */
     ids?: string[];
     /**
@@ -18760,14 +17299,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "floodlightactivity*2015" will return objects with names
-     * like "floodlightactivity June 2015", "floodlightactivity April 2015", or
-     * simply "floodlightactivity 2015". Most of the searches also add wildcards
-     * implicitly at the start and the end of the search string. For example, a
-     * search string of "floodlightactivity" will match objects with name "my
-     * floodlightactivity activity", "floodlightactivity 2015", or simply
-     * "floodlightactivity".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivity*2015" will return objects with names like "floodlightactivity June 2015", "floodlightactivity April 2015", or simply "floodlightactivity 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivity" will match objects with name "my floodlightactivity activity", "floodlightactivity 2015", or simply "floodlightactivity".
      */
     searchString?: string;
     /**
@@ -18986,8 +17518,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.floodlightActivityGroups.list
-     * @desc Retrieves a list of floodlight activity groups, possibly filtered.
-     * This method supports paging.
+     * @desc Retrieves a list of floodlight activity groups, possibly filtered. This method supports paging.
      * @alias dfareporting.floodlightActivityGroups.list
      * @memberOf! ()
      *
@@ -19087,8 +17618,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.floodlightActivityGroups.patch
-     * @desc Updates an existing floodlight activity group. This method supports
-     * patch semantics.
+     * @desc Updates an existing floodlight activity group. This method supports patch semantics.
      * @alias dfareporting.floodlightActivityGroups.patch
      * @memberOf! ()
      *
@@ -19285,21 +17815,15 @@ export namespace dfareporting_v3_2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Select only floodlight activity groups with the specified advertiser ID.
-     * Must specify either advertiserId or floodlightConfigurationId for a
-     * non-empty result.
+     * Select only floodlight activity groups with the specified advertiser ID. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
      */
     advertiserId?: string;
     /**
-     * Select only floodlight activity groups with the specified floodlight
-     * configuration ID. Must specify either advertiserId, or
-     * floodlightConfigurationId for a non-empty result.
+     * Select only floodlight activity groups with the specified floodlight configuration ID. Must specify either advertiserId, or floodlightConfigurationId for a non-empty result.
      */
     floodlightConfigurationId?: string;
     /**
-     * Select only floodlight activity groups with the specified IDs. Must
-     * specify either advertiserId or floodlightConfigurationId for a non-empty
-     * result.
+     * Select only floodlight activity groups with the specified IDs. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
      */
     ids?: string[];
     /**
@@ -19315,14 +17839,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "floodlightactivitygroup*2015" will return objects with
-     * names like "floodlightactivitygroup June 2015", "floodlightactivitygroup
-     * April 2015", or simply "floodlightactivitygroup 2015". Most of the
-     * searches also add wildcards implicitly at the start and the end of the
-     * search string. For example, a search string of "floodlightactivitygroup"
-     * will match objects with name "my floodlightactivitygroup activity",
-     * "floodlightactivitygroup 2015", or simply "floodlightactivitygroup".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivitygroup*2015" will return objects with names like "floodlightactivitygroup June 2015", "floodlightactivitygroup April 2015", or simply "floodlightactivitygroup 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivitygroup" will match objects with name "my floodlightactivitygroup activity", "floodlightactivitygroup 2015", or simply "floodlightactivitygroup".
      */
     searchString?: string;
     /**
@@ -19334,8 +17851,7 @@ export namespace dfareporting_v3_2 {
      */
     sortOrder?: string;
     /**
-     * Select only floodlight activity groups with the specified floodlight
-     * activity group type.
+     * Select only floodlight activity groups with the specified floodlight activity group type.
      */
     type?: string;
   }
@@ -19555,8 +18071,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.floodlightConfigurations.patch
-     * @desc Updates an existing floodlight configuration. This method supports
-     * patch semantics.
+     * @desc Updates an existing floodlight configuration. This method supports patch semantics.
      * @alias dfareporting.floodlightConfigurations.patch
      * @memberOf! ()
      *
@@ -19736,8 +18251,7 @@ export namespace dfareporting_v3_2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Set of IDs of floodlight configurations to retrieve. Required field;
-     * otherwise an empty list will be returned.
+     * Set of IDs of floodlight configurations to retrieve. Required field; otherwise an empty list will be returned.
      */
     ids?: string[];
     /**
@@ -19868,8 +18382,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.inventoryItems.list
-     * @desc Retrieves a list of inventory items, possibly filtered. This method
-     * supports paging.
+     * @desc Retrieves a list of inventory items, possibly filtered. This method supports paging.
      * @alias dfareporting.inventoryItems.list
      * @memberOf! ()
      *
@@ -20418,12 +18931,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "app*2015" will return objects with names like "app Jan
-     * 2018", "app Jan 2018", or simply "app 2018". Most of the searches also
-     * add wildcards implicitly at the start and the end of the search string.
-     * For example, a search string of "app" will match objects with name "my
-     * app", "app 2018", or simply "app".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "app*2015" will return objects with names like "app Jan 2018", "app Jan 2018", or simply "app 2018". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "app" will match objects with name "my app", "app 2018", or simply "app".
      */
     searchString?: string;
   }
@@ -21096,8 +19604,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.orderDocuments.list
-     * @desc Retrieves a list of order documents, possibly filtered. This method
-     * supports paging.
+     * @desc Retrieves a list of order documents, possibly filtered. This method supports paging.
      * @alias dfareporting.orderDocuments.list
      * @memberOf! ()
      *
@@ -21243,13 +19750,7 @@ export namespace dfareporting_v3_2 {
      */
     projectId?: string;
     /**
-     * Allows searching for order documents by name or ID. Wildcards (*) are
-     * allowed. For example, "orderdocument*2015" will return order documents
-     * with names like "orderdocument June 2015", "orderdocument April 2015", or
-     * simply "orderdocument 2015". Most of the searches also add wildcards
-     * implicitly at the start and the end of the search string. For example, a
-     * search string of "orderdocument" will match order documents with name "my
-     * orderdocument", "orderdocument 2015", or simply "orderdocument".
+     * Allows searching for order documents by name or ID. Wildcards (*) are allowed. For example, "orderdocument*2015" will return order documents with names like "orderdocument June 2015", "orderdocument April 2015", or simply "orderdocument 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "orderdocument" will match order documents with name "my orderdocument", "orderdocument 2015", or simply "orderdocument".
      */
     searchString?: string;
     /**
@@ -21347,8 +19848,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.orders.list
-     * @desc Retrieves a list of orders, possibly filtered. This method supports
-     * paging.
+     * @desc Retrieves a list of orders, possibly filtered. This method supports paging.
      * @alias dfareporting.orders.list
      * @memberOf! ()
      *
@@ -21474,12 +19974,7 @@ export namespace dfareporting_v3_2 {
      */
     projectId?: string;
     /**
-     * Allows searching for orders by name or ID. Wildcards (*) are allowed. For
-     * example, "order*2015" will return orders with names like "order June
-     * 2015", "order April 2015", or simply "order 2015". Most of the searches
-     * also add wildcards implicitly at the start and the end of the search
-     * string. For example, a search string of "order" will match orders with
-     * name "my order", "order 2015", or simply "order".
+     * Allows searching for orders by name or ID. Wildcards (*) are allowed. For example, "order*2015" will return orders with names like "order June 2015", "order April 2015", or simply "order 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "order" will match orders with name "my order", "order 2015", or simply "order".
      */
     searchString?: string;
     /**
@@ -21654,8 +20149,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.placementGroups.list
-     * @desc Retrieves a list of placement groups, possibly filtered. This
-     * method supports paging.
+     * @desc Retrieves a list of placement groups, possibly filtered. This method supports paging.
      * @alias dfareporting.placementGroups.list
      * @memberOf! ()
      *
@@ -21755,8 +20249,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.placementGroups.patch
-     * @desc Updates an existing placement group. This method supports patch
-     * semantics.
+     * @desc Updates an existing placement group. This method supports patch semantics.
      * @alias dfareporting.placementGroups.patch
      * @memberOf! ()
      *
@@ -21951,8 +20444,7 @@ export namespace dfareporting_v3_2 {
      */
     advertiserIds?: string[];
     /**
-     * Select only archived placements. Don't set this field to select both
-     * archived and non-archived placements.
+     * Select only archived placements. Don't set this field to select both archived and non-archived placements.
      */
     archived?: boolean;
     /**
@@ -21960,13 +20452,11 @@ export namespace dfareporting_v3_2 {
      */
     campaignIds?: string[];
     /**
-     * Select only placement groups that are associated with these content
-     * categories.
+     * Select only placement groups that are associated with these content categories.
      */
     contentCategoryIds?: string[];
     /**
-     * Select only placement groups that are associated with these directory
-     * sites.
+     * Select only placement groups that are associated with these directory sites.
      */
     directorySiteIds?: string[];
     /**
@@ -21974,8 +20464,7 @@ export namespace dfareporting_v3_2 {
      */
     ids?: string[];
     /**
-     * Select only placements or placement groups whose end date is on or before
-     * the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
+     * Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
      */
     maxEndDate?: string;
     /**
@@ -21983,20 +20472,15 @@ export namespace dfareporting_v3_2 {
      */
     maxResults?: number;
     /**
-     * Select only placements or placement groups whose start date is on or
-     * before the specified maxStartDate. The date should be formatted as
-     * "yyyy-MM-dd".
+     * Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
      */
     maxStartDate?: string;
     /**
-     * Select only placements or placement groups whose end date is on or after
-     * the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
+     * Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
      */
     minEndDate?: string;
     /**
-     * Select only placements or placement groups whose start date is on or
-     * after the specified minStartDate. The date should be formatted as
-     * "yyyy-MM-dd".
+     * Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
      */
     minStartDate?: string;
     /**
@@ -22004,17 +20488,11 @@ export namespace dfareporting_v3_2 {
      */
     pageToken?: string;
     /**
-     * Select only placement groups belonging with this group type. A package is
-     * a simple group of placements that acts as a single pricing point for a
-     * group of tags. A roadblock is a group of placements that not only acts as
-     * a single pricing point but also assumes that all the tags in it will be
-     * served at the same time. A roadblock requires one of its assigned
-     * placements to be marked as primary for reporting.
+     * Select only placement groups belonging with this group type. A package is a simple group of placements that acts as a single pricing point for a group of tags. A roadblock is a group of placements that not only acts as a single pricing point but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned placements to be marked as primary for reporting.
      */
     placementGroupType?: string;
     /**
-     * Select only placement groups that are associated with these placement
-     * strategies.
+     * Select only placement groups that are associated with these placement strategies.
      */
     placementStrategyIds?: string[];
     /**
@@ -22026,13 +20504,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for placement groups by name or ID. Wildcards (*) are
-     * allowed. For example, "placement*2015" will return placement groups with
-     * names like "placement group June 2015", "placement group May 2015", or
-     * simply "placements 2015". Most of the searches also add wildcards
-     * implicitly at the start and the end of the search string. For example, a
-     * search string of "placementgroup" will match placement groups with name
-     * "my placementgroup", "placementgroup 2015", or simply "placementgroup".
+     * Allows searching for placement groups by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placement groups with names like "placement group June 2015", "placement group May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementgroup" will match placement groups with name "my placementgroup", "placementgroup 2015", or simply "placementgroup".
      */
     searchString?: string;
     /**
@@ -22329,8 +20801,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.placements.list
-     * @desc Retrieves a list of placements, possibly filtered. This method
-     * supports paging.
+     * @desc Retrieves a list of placements, possibly filtered. This method supports paging.
      * @alias dfareporting.placements.list
      * @memberOf! ()
      *
@@ -22426,8 +20897,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.placements.patch
-     * @desc Updates an existing placement. This method supports patch
-     * semantics.
+     * @desc Updates an existing placement. This method supports patch semantics.
      * @alias dfareporting.placements.patch
      * @memberOf! ()
      *
@@ -22594,8 +21064,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Tag formats to generate for these placements.  Note:
-     * PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
+     * Tag formats to generate for these placements.  Note: PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
      */
     tagFormats?: string[];
   }
@@ -22642,8 +21111,7 @@ export namespace dfareporting_v3_2 {
      */
     advertiserIds?: string[];
     /**
-     * Select only archived placements. Don't set this field to select both
-     * archived and non-archived placements.
+     * Select only archived placements. Don't set this field to select both archived and non-archived placements.
      */
     archived?: boolean;
     /**
@@ -22651,11 +21119,7 @@ export namespace dfareporting_v3_2 {
      */
     campaignIds?: string[];
     /**
-     * Select only placements that are associated with these compatibilities.
-     * DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or
-     * on mobile devices for regular or interstitial ads respectively. APP and
-     * APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers
-     * to rendering in in-stream video ads developed with the VAST standard.
+     * Select only placements that are associated with these compatibilities. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
      */
     compatibilities?: string[];
     /**
@@ -22675,8 +21139,7 @@ export namespace dfareporting_v3_2 {
      */
     ids?: string[];
     /**
-     * Select only placements or placement groups whose end date is on or before
-     * the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
+     * Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
      */
     maxEndDate?: string;
     /**
@@ -22684,20 +21147,15 @@ export namespace dfareporting_v3_2 {
      */
     maxResults?: number;
     /**
-     * Select only placements or placement groups whose start date is on or
-     * before the specified maxStartDate. The date should be formatted as
-     * "yyyy-MM-dd".
+     * Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
      */
     maxStartDate?: string;
     /**
-     * Select only placements or placement groups whose end date is on or after
-     * the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
+     * Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
      */
     minEndDate?: string;
     /**
-     * Select only placements or placement groups whose start date is on or
-     * after the specified minStartDate. The date should be formatted as
-     * "yyyy-MM-dd".
+     * Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
      */
     minStartDate?: string;
     /**
@@ -22709,8 +21167,7 @@ export namespace dfareporting_v3_2 {
      */
     paymentSource?: string;
     /**
-     * Select only placements that are associated with these placement
-     * strategies.
+     * Select only placements that are associated with these placement strategies.
      */
     placementStrategyIds?: string[];
     /**
@@ -22722,13 +21179,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for placements by name or ID. Wildcards (*) are allowed.
-     * For example, "placement*2015" will return placements with names like
-     * "placement June 2015", "placement May 2015", or simply "placements 2015".
-     * Most of the searches also add wildcards implicitly at the start and the
-     * end of the search string. For example, a search string of "placement"
-     * will match placements with name "my placement", "placement 2015", or
-     * simply "placement".
+     * Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015", or simply "placement".
      */
     searchString?: string;
     /**
@@ -23017,8 +21468,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.placementStrategies.list
-     * @desc Retrieves a list of placement strategies, possibly filtered. This
-     * method supports paging.
+     * @desc Retrieves a list of placement strategies, possibly filtered. This method supports paging.
      * @alias dfareporting.placementStrategies.list
      * @memberOf! ()
      *
@@ -23107,8 +21557,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.placementStrategies.patch
-     * @desc Updates an existing placement strategy. This method supports patch
-     * semantics.
+     * @desc Updates an existing placement strategy. This method supports patch semantics.
      * @alias dfareporting.placementStrategies.patch
      * @memberOf! ()
      *
@@ -23331,14 +21780,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "placementstrategy*2015" will return objects with names like
-     * "placementstrategy June 2015", "placementstrategy April 2015", or simply
-     * "placementstrategy 2015". Most of the searches also add wildcards
-     * implicitly at the start and the end of the search string. For example, a
-     * search string of "placementstrategy" will match objects with name "my
-     * placementstrategy", "placementstrategy 2015", or simply
-     * "placementstrategy".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "placementstrategy*2015" will return objects with names like "placementstrategy June 2015", "placementstrategy April 2015", or simply "placementstrategy 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementstrategy" will match objects with name "my placementstrategy", "placementstrategy 2015", or simply "placementstrategy".
      */
     searchString?: string;
     /**
@@ -23844,8 +22286,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.projects.list
-     * @desc Retrieves a list of projects, possibly filtered. This method
-     * supports paging.
+     * @desc Retrieves a list of projects, possibly filtered. This method supports paging.
      * @alias dfareporting.projects.list
      * @memberOf! ()
      *
@@ -23967,12 +22408,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for projects by name or ID. Wildcards (*) are allowed.
-     * For example, "project*2015" will return projects with names like "project
-     * June 2015", "project April 2015", or simply "project 2015". Most of the
-     * searches also add wildcards implicitly at the start and the end of the
-     * search string. For example, a search string of "project" will match
-     * projects with name "my project", "project 2015", or simply "project".
+     * Allows searching for projects by name or ID. Wildcards (*) are allowed. For example, "project*2015" will return projects with names like "project June 2015", "project April 2015", or simply "project 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "project" will match projects with name "my project", "project 2015", or simply "project".
      */
     searchString?: string;
     /**
@@ -24234,8 +22670,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.remarketingLists.list
-     * @desc Retrieves a list of remarketing lists, possibly filtered. This
-     * method supports paging.
+     * @desc Retrieves a list of remarketing lists, possibly filtered. This method supports paging.
      * @alias dfareporting.remarketingLists.list
      * @memberOf! ()
      *
@@ -24326,8 +22761,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.remarketingLists.patch
-     * @desc Updates an existing remarketing list. This method supports patch
-     * semantics.
+     * @desc Updates an existing remarketing list. This method supports patch semantics.
      * @alias dfareporting.remarketingLists.patch
      * @memberOf! ()
      *
@@ -24534,13 +22968,7 @@ export namespace dfareporting_v3_2 {
      */
     maxResults?: number;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "remarketing list*2015" will return objects with names like
-     * "remarketing list June 2015", "remarketing list April 2015", or simply
-     * "remarketing list 2015". Most of the searches also add wildcards
-     * implicitly at the start and the end of the search string. For example, a
-     * search string of "remarketing list" will match objects with name "my
-     * remarketing list", "remarketing list 2015", or simply "remarketing list".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "remarketing list*2015" will return objects with names like "remarketing list June 2015", "remarketing list April 2015", or simply "remarketing list 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "remarketing list" will match objects with name "my remarketing list", "remarketing list 2015", or simply "remarketing list".
      */
     name?: string;
     /**
@@ -24684,8 +23112,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.remarketingListShares.patch
-     * @desc Updates an existing remarketing list share. This method supports
-     * patch semantics.
+     * @desc Updates an existing remarketing list share. This method supports patch semantics.
      * @alias dfareporting.remarketingListShares.patch
      * @memberOf! ()
      *
@@ -25563,9 +23990,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.reports.compatibleFields.query
-     * @desc Returns the fields that are compatible to be selected in the
-     * respective sections of a report criteria, given the fields already
-     * selected in the input report and user permissions.
+     * @desc Returns the fields that are compatible to be selected in the respective sections of a report criteria, given the fields already selected in the input report and user permissions.
      * @alias dfareporting.reports.compatibleFields.query
      * @memberOf! ()
      *
@@ -26018,8 +24443,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.sites.list
-     * @desc Retrieves a list of sites, possibly filtered. This method supports
-     * paging.
+     * @desc Retrieves a list of sites, possibly filtered. This method supports paging.
      * @alias dfareporting.sites.list
      * @memberOf! ()
      *
@@ -26286,13 +24710,11 @@ export namespace dfareporting_v3_2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * This search filter is no longer supported and will have no effect on the
-     * results returned.
+     * This search filter is no longer supported and will have no effect on the results returned.
      */
     acceptsInStreamVideoPlacements?: boolean;
     /**
-     * This search filter is no longer supported and will have no effect on the
-     * results returned.
+     * This search filter is no longer supported and will have no effect on the results returned.
      */
     acceptsInterstitialPlacements?: boolean;
     /**
@@ -26332,12 +24754,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name, ID or keyName. Wildcards (*) are
-     * allowed. For example, "site*2015" will return objects with names like
-     * "site June 2015", "site April 2015", or simply "site 2015". Most of the
-     * searches also add wildcards implicitly at the start and the end of the
-     * search string. For example, a search string of "site" will match objects
-     * with name "my site", "site 2015", or simply "site".
+     * Allows searching for objects by name, ID or keyName. Wildcards (*) are allowed. For example, "site*2015" will return objects with names like "site June 2015", "site April 2015", or simply "site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "site" will match objects with name "my site", "site 2015", or simply "site".
      */
     searchString?: string;
     /**
@@ -26544,10 +24961,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.sizes.list
-     * @desc Retrieves a list of sizes, possibly filtered. Retrieved sizes are
-     * globally unique and may include values not currently in use by your
-     * account. Due to this, the list of sizes returned by this method may
-     * differ from the list seen in the Trafficking UI.
+     * @desc Retrieves a list of sizes, possibly filtered. Retrieved sizes are globally unique and may include values not currently in use by your account. Due to this, the list of sizes returned by this method may differ from the list seen in the Trafficking UI.
      * @alias dfareporting.sizes.list
      * @memberOf! ()
      *
@@ -26838,8 +25252,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.subaccounts.list
-     * @desc Gets a list of subaccounts, possibly filtered. This method supports
-     * paging.
+     * @desc Gets a list of subaccounts, possibly filtered. This method supports paging.
      * @alias dfareporting.subaccounts.list
      * @memberOf! ()
      *
@@ -26920,8 +25333,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.subaccounts.patch
-     * @desc Updates an existing subaccount. This method supports patch
-     * semantics.
+     * @desc Updates an existing subaccount. This method supports patch semantics.
      * @alias dfareporting.subaccounts.patch
      * @memberOf! ()
      *
@@ -27126,13 +25538,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "subaccount*2015" will return objects with names like
-     * "subaccount June 2015", "subaccount April 2015", or simply "subaccount
-     * 2015". Most of the searches also add wildcards implicitly at the start
-     * and the end of the search string. For example, a search string of
-     * "subaccount" will match objects with name "my subaccount", "subaccount
-     * 2015", or simply "subaccount".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount".
      */
     searchString?: string;
     /**
@@ -27271,8 +25677,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.targetableRemarketingLists.list
-     * @desc Retrieves a list of targetable remarketing lists, possibly
-     * filtered. This method supports paging.
+     * @desc Retrieves a list of targetable remarketing lists, possibly filtered. This method supports paging.
      * @alias dfareporting.targetableRemarketingLists.list
      * @memberOf! ()
      *
@@ -27405,13 +25810,7 @@ export namespace dfareporting_v3_2 {
      */
     maxResults?: number;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "remarketing list*2015" will return objects with names like
-     * "remarketing list June 2015", "remarketing list April 2015", or simply
-     * "remarketing list 2015". Most of the searches also add wildcards
-     * implicitly at the start and the end of the search string. For example, a
-     * search string of "remarketing list" will match objects with name "my
-     * remarketing list", "remarketing list 2015", or simply "remarketing list".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "remarketing list*2015" will return objects with names like "remarketing list June 2015", "remarketing list April 2015", or simply "remarketing list 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "remarketing list" will match objects with name "my remarketing list", "remarketing list 2015", or simply "remarketing list".
      */
     name?: string;
     /**
@@ -27590,8 +25989,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.targetingTemplates.list
-     * @desc Retrieves a list of targeting templates, optionally filtered. This
-     * method supports paging.
+     * @desc Retrieves a list of targeting templates, optionally filtered. This method supports paging.
      * @alias dfareporting.targetingTemplates.list
      * @memberOf! ()
      *
@@ -27681,8 +26079,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.targetingTemplates.patch
-     * @desc Updates an existing targeting template. This method supports patch
-     * semantics.
+     * @desc Updates an existing targeting template. This method supports patch semantics.
      * @alias dfareporting.targetingTemplates.patch
      * @memberOf! ()
      *
@@ -27893,13 +26290,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "template*2015" will return objects with names like
-     * "template June 2015", "template April 2015", or simply "template 2015".
-     * Most of the searches also add wildcards implicitly at the start and the
-     * end of the search string. For example, a search string of "template" will
-     * match objects with name "my template", "template 2015", or simply
-     * "template".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "template*2015" will return objects with names like "template June 2015", "template April 2015", or simply "template 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "template" will match objects with name "my template", "template 2015", or simply "template".
      */
     searchString?: string;
     /**
@@ -28747,8 +27138,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.userRoles.list
-     * @desc Retrieves a list of user roles, possibly filtered. This method
-     * supports paging.
+     * @desc Retrieves a list of user roles, possibly filtered. This method supports paging.
      * @alias dfareporting.userRoles.list
      * @memberOf! ()
      *
@@ -28830,8 +27220,7 @@ export namespace dfareporting_v3_2 {
 
     /**
      * dfareporting.userRoles.patch
-     * @desc Updates an existing user role. This method supports patch
-     * semantics.
+     * @desc Updates an existing user role. This method supports patch semantics.
      * @alias dfareporting.userRoles.patch
      * @memberOf! ()
      *
@@ -29026,8 +27415,7 @@ export namespace dfareporting_v3_2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Select only account level user roles not associated with any specific
-     * subaccount.
+     * Select only account level user roles not associated with any specific subaccount.
      */
     accountUserRoleOnly?: boolean;
     /**
@@ -29047,13 +27435,7 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed.
-     * For example, "userrole*2015" will return objects with names like
-     * "userrole June 2015", "userrole April 2015", or simply "userrole 2015".
-     * Most of the searches also add wildcards implicitly at the start and the
-     * end of the search string. For example, a search string of "userrole" will
-     * match objects with name "my userrole", "userrole 2015", or simply
-     * "userrole".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "userrole*2015" will return objects with names like "userrole June 2015", "userrole April 2015", or simply "userrole 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "userrole" will match objects with name "my userrole", "userrole 2015", or simply "userrole".
      */
     searchString?: string;
     /**

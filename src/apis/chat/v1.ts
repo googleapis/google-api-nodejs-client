@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace chat_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace chat_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -112,17 +108,17 @@ export namespace chat_v1 {
     spaces: Resource$Spaces;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.spaces = new Resource$Spaces(this.context);
     }
   }
 
   /**
-   * List of string parameters to supply when the action method is invoked. For
-   * example, consider three snooze buttons: snooze now, snooze 1 day, snooze
-   * next week. You might use action method = snooze(), passing the snooze type
-   * and snooze time in the list of string parameters.
+   * List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze 1 day, snooze next week. You might use action method = snooze(), passing the snooze type and snooze time in the list of string parameters.
    */
   export interface Schema$ActionParameter {
     /**
@@ -143,32 +139,20 @@ export namespace chat_v1 {
      */
     type?: string;
     /**
-     * URL for users to auth or config. (Only for REQUEST_CONFIG response
-     * types.)
+     * URL for users to auth or config. (Only for REQUEST_CONFIG response types.)
      */
     url?: string;
   }
   /**
-   * Annotations associated with the plain-text body of the message.  Example
-   * plain-text message body: ``` Hello @FooBot how are you!&quot; ```  The
-   * corresponding annotations metadata: ``` &quot;annotations&quot;:[{
-   * &quot;type&quot;:&quot;USER_MENTION&quot;,   &quot;startIndex&quot;:6,
-   * &quot;length&quot;:7,   &quot;userMention&quot;: {     &quot;user&quot;: {
-   * &quot;name&quot;:&quot;users/107946847022116401880&quot;,
-   * &quot;displayName&quot;:&quot;FooBot&quot;,
-   * &quot;avatarUrl&quot;:&quot;https://goo.gl/aeDtrS&quot;,
-   * &quot;type&quot;:&quot;BOT&quot;     },
-   * &quot;type&quot;:&quot;MENTION&quot;    } }] ```
+   * Annotations associated with the plain-text body of the message.  Example plain-text message body: ``` Hello @FooBot how are you!&quot; ```  The corresponding annotations metadata: ``` &quot;annotations&quot;:[{   &quot;type&quot;:&quot;USER_MENTION&quot;,   &quot;startIndex&quot;:6,   &quot;length&quot;:7,   &quot;userMention&quot;: {     &quot;user&quot;: {       &quot;name&quot;:&quot;users/107946847022116401880&quot;,       &quot;displayName&quot;:&quot;FooBot&quot;,       &quot;avatarUrl&quot;:&quot;https://goo.gl/aeDtrS&quot;,       &quot;type&quot;:&quot;BOT&quot;     },     &quot;type&quot;:&quot;MENTION&quot;    } }] ```
    */
   export interface Schema$Annotation {
     /**
-     * Length of the substring in the plain-text message body this annotation
-     * corresponds to.
+     * Length of the substring in the plain-text message body this annotation corresponds to.
      */
     length?: number;
     /**
-     * Start index (0-based, inclusive) in the plain-text message body this
-     * annotation corresponds to.
+     * Start index (0-based, inclusive) in the plain-text message body this annotation corresponds to.
      */
     startIndex?: number;
     /**
@@ -215,9 +199,7 @@ export namespace chat_v1 {
     sections?: Schema$Section[];
   }
   /**
-   * A card action is the action associated with the card. For an invoice card,
-   * a typical action would be: delete invoice, email invoice or open the
-   * invoice in browser.
+   * A card action is the action associated with the card. For an invoice card, a typical action would be: delete invoice, email invoice or open the invoice in browser.
    */
   export interface Schema$CardAction {
     /**
@@ -243,9 +225,7 @@ export namespace chat_v1 {
      */
     subtitle?: string;
     /**
-     * The title must be specified. The header has a fixed height: if both a
-     * title and subtitle is specified, each will take up 1 line. If only the
-     * title is specified, it will take up both lines.
+     * The title must be specified. The header has a fixed height: if both a title and subtitle is specified, each will take up 1 line. If only the title is specified, it will take up both lines.
      */
     title?: string;
   }
@@ -254,16 +234,11 @@ export namespace chat_v1 {
    */
   export interface Schema$DeprecatedEvent {
     /**
-     * The form action data associated with an interactive card that was
-     * clicked. Only populated for CARD_CLICKED events. See the [Interactive
-     * Cards guide](/hangouts/chat/how-tos/cards-onclick) for more information.
+     * The form action data associated with an interactive card that was clicked. Only populated for CARD_CLICKED events. See the [Interactive Cards guide](/hangouts/chat/how-tos/cards-onclick) for more information.
      */
     action?: Schema$FormAction;
     /**
-     * The URL the bot should redirect the user to after they have completed an
-     * authorization or configuration flow outside of Hangouts Chat. See the
-     * [Authorizing access to 3p services guide](/hangouts/chat/how-tos/auth-3p)
-     * for more information.
+     * The URL the bot should redirect the user to after they have completed an authorization or configuration flow outside of Hangouts Chat. See the [Authorizing access to 3p services guide](/hangouts/chat/how-tos/auth-3p) for more information.
      */
     configCompleteRedirectUrl?: string;
     /**
@@ -279,17 +254,11 @@ export namespace chat_v1 {
      */
     space?: Schema$Space;
     /**
-     * The bot-defined key for the thread related to the event. See the
-     * thread_key field of the `spaces.message.create` request for more
-     * information.
+     * The bot-defined key for the thread related to the event. See the thread_key field of the `spaces.message.create` request for more information.
      */
     threadKey?: string;
     /**
-     * A secret value that bots can use to verify if a request is from Google.
-     * The token is randomly generated by Google, remains static, and can be
-     * obtained from the Hangouts Chat API configuration page in the Cloud
-     * Console. Developers can revoke/regenerate it if needed from the same
-     * page.
+     * A secret value that bots can use to verify if a request is from Google. The token is randomly generated by Google, remains static, and can be obtained from the Hangouts Chat API configuration page in the Cloud Console. Developers can revoke/regenerate it if needed from the same page.
      */
     token?: string;
     /**
@@ -302,21 +271,15 @@ export namespace chat_v1 {
     user?: Schema$User;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * A form action describes the behavior when the form is submitted. For
-   * example, an Apps Script can be invoked to handle the form.
+   * A form action describes the behavior when the form is submitted. For example, an Apps Script can be invoked to handle the form.
    */
   export interface Schema$FormAction {
     /**
-     * Apps Script function to invoke when the containing element is
-     * clicked/activated.
+     * Apps Script function to invoke when the containing element is clicked/activated.
      */
     actionMethodName?: string;
     /**
@@ -346,8 +309,7 @@ export namespace chat_v1 {
    */
   export interface Schema$ImageButton {
     /**
-     * The icon specified by an enum that indices to an icon provided by Chat
-     * API.
+     * The icon specified by an enum that indices to an icon provided by Chat API.
      */
     icon?: string;
     /**
@@ -355,8 +317,7 @@ export namespace chat_v1 {
      */
     iconUrl?: string;
     /**
-     * The name of this image_button which will be used for accessibility.
-     * Default value will be provided if developers don&#39;t specify.
+     * The name of this image_button which will be used for accessibility. Default value will be provided if developers don&#39;t specify.
      */
     name?: string;
     /**
@@ -365,8 +326,7 @@ export namespace chat_v1 {
     onClick?: Schema$OnClick;
   }
   /**
-   * A UI element contains a key (label) and a value (content). And this element
-   * may also contain some actions such as onclick button.
+   * A UI element contains a key (label) and a value (content). And this element may also contain some actions such as onclick button.
    */
   export interface Schema$KeyValue {
     /**
@@ -386,8 +346,7 @@ export namespace chat_v1 {
      */
     contentMultiline?: boolean;
     /**
-     * An enum value that will be replaced by the Chat API with the
-     * corresponding icon image.
+     * An enum value that will be replaced by the Chat API with the corresponding icon image.
      */
     icon?: string;
     /**
@@ -395,8 +354,7 @@ export namespace chat_v1 {
      */
     iconUrl?: string;
     /**
-     * The onclick action. Only the top label, bottom label and content region
-     * are clickable.
+     * The onclick action. Only the top label, bottom label and content region are clickable.
      */
     onClick?: Schema$OnClick;
     /**
@@ -410,16 +368,13 @@ export namespace chat_v1 {
      */
     memberships?: Schema$Membership[];
     /**
-     * Continuation token to retrieve the next page of results. It will be empty
-     * for the last page of results.
+     * Continuation token to retrieve the next page of results. It will be empty for the last page of results.
      */
     nextPageToken?: string;
   }
   export interface Schema$ListSpacesResponse {
     /**
-     * Continuation token to retrieve the next page of results. It will be empty
-     * for the last page of results. Tokens expire in an hour. An error is
-     * thrown if an expired token is passed.
+     * Continuation token to retrieve the next page of results. It will be empty for the last page of results. Tokens expire in an hour. An error is thrown if an expired token is passed.
      */
     nextPageToken?: string;
     /**
@@ -432,8 +387,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Membership {
     /**
-     * The creation time of the membership a.k.a the time at which the member
-     * joined the space, if applicable.
+     * The creation time of the membership a.k.a the time at which the member joined the space, if applicable.
      */
     createTime?: string;
     /**
@@ -441,9 +395,7 @@ export namespace chat_v1 {
      */
     member?: Schema$User;
     /**
-     * Resource name of the membership, in the form
-     * &quot;spaces/x/members/*&quot;.  Example:
-     * spaces/AAAAMpdlehY/members/105115627578887013105
+     * Resource name of the membership, in the form &quot;spaces/x/members/*&quot;.  Example: spaces/AAAAMpdlehY/members/105115627578887013105
      */
     name?: string;
     /**
@@ -456,8 +408,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Message {
     /**
-     * Input only. Parameters that a bot can use to configure how its response
-     * is posted.
+     * Input only. Parameters that a bot can use to configure how its response is posted.
      */
     actionResponse?: Schema$ActionResponse;
     /**
@@ -469,30 +420,23 @@ export namespace chat_v1 {
      */
     argumentText?: string;
     /**
-     * Rich, formatted and interactive cards that can be used to display UI
-     * elements such as: formatted texts, buttons, clickable images. Cards are
-     * normally displayed below the plain-text body of the message.
+     * Rich, formatted and interactive cards that can be used to display UI elements such as: formatted texts, buttons, clickable images. Cards are normally displayed below the plain-text body of the message.
      */
     cards?: Schema$Card[];
     /**
-     * Output only. The time at which the message was created in Hangouts Chat
-     * server.
+     * Output only. The time at which the message was created in Hangouts Chat server.
      */
     createTime?: string;
     /**
-     * A plain-text description of the message&#39;s cards, used when the actual
-     * cards cannot be displayed (e.g. mobile notifications).
+     * A plain-text description of the message&#39;s cards, used when the actual cards cannot be displayed (e.g. mobile notifications).
      */
     fallbackText?: string;
     /**
-     * Resource name, in the form &quot;spaces/x/messages/*&quot;.  Example:
-     * spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Resource name, in the form &quot;spaces/x/messages/*&quot;.  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string;
     /**
-     * Text for generating preview chips. This text will not be displayed to the
-     * user, but any links to images, web pages, videos, etc. included here will
-     * generate preview chips.
+     * Text for generating preview chips. This text will not be displayed to the user, but any links to images, web pages, videos, etc. included here will generate preview chips.
      */
     previewText?: string;
     /**
@@ -535,10 +479,7 @@ export namespace chat_v1 {
     url?: string;
   }
   /**
-   * A section contains a collection of widgets that are rendered (vertically)
-   * in the order that they are specified. Across all platforms, cards have a
-   * narrow fixed width, so there is currently no need for layout properties
-   * (e.g. float).
+   * A section contains a collection of widgets that are rendered (vertically) in the order that they are specified. Across all platforms, cards have a narrow fixed width, so there is currently no need for layout properties (e.g. float).
    */
   export interface Schema$Section {
     /**
@@ -559,8 +500,7 @@ export namespace chat_v1 {
      */
     displayName?: string;
     /**
-     * Resource name of the space, in the form &quot;spaces/*&quot;.  Example:
-     * spaces/AAAAMpdlehYs
+     * Resource name of the space, in the form &quot;spaces/*&quot;.  Example: spaces/AAAAMpdlehYs
      */
     name?: string;
     /**
@@ -592,8 +532,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Thread {
     /**
-     * Resource name, in the form &quot;spaces/x/threads/*&quot;.  Example:
-     * spaces/AAAAMpdlehY/threads/UMxbHmzDlr4
+     * Resource name, in the form &quot;spaces/x/threads/*&quot;.  Example: spaces/AAAAMpdlehY/threads/UMxbHmzDlr4
      */
     name?: string;
   }
@@ -632,8 +571,7 @@ export namespace chat_v1 {
    */
   export interface Schema$WidgetMarkup {
     /**
-     * A list of buttons. Buttons is also oneof data and only one of these
-     * fields should be set.
+     * A list of buttons. Buttons is also oneof data and only one of these fields should be set.
      */
     buttons?: Schema$Button[];
     /**
@@ -807,8 +745,7 @@ export namespace chat_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Resource name of the space, in the form "spaces/x".  Example:
-     * spaces/AAAAMpdlehY
+     * Required. Resource name of the space, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
      */
     name?: string;
   }
@@ -819,8 +756,7 @@ export namespace chat_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Requested page size. The value is capped at 1000. Server may return fewer
-     * results than requested. If unspecified, server will default to 100.
+     * Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
      */
     pageSize?: number;
     /**
@@ -993,9 +929,7 @@ export namespace chat_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Resource name of the membership to be retrieved, in the form
-     * "spaces/x/members/x".  Example:
-     * spaces/AAAAMpdlehY/members/105115627578887013105
+     * Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x".  Example: spaces/AAAAMpdlehY/members/105115627578887013105
      */
     name?: string;
   }
@@ -1007,8 +941,7 @@ export namespace chat_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Requested page size. The value is capped at 1000. Server may return fewer
-     * results than requested. If unspecified, server will default to 100.
+     * Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
      */
     pageSize?: number;
     /**
@@ -1016,8 +949,7 @@ export namespace chat_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the space for which membership list is to
-     * be fetched, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
+     * Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
      */
     parent?: string;
   }
@@ -1320,18 +1252,11 @@ export namespace chat_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Space resource name, in the form "spaces/x". Example:
-     * spaces/AAAAMpdlehY
+     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      */
     parent?: string;
     /**
-     * Opaque thread identifier string that can be specified to group messages
-     * into a single thread. If this is the first message with a given thread
-     * identifier, a new thread is created. Subsequent messages with the same
-     * thread identifier will be posted into the same thread. This relieves bots
-     * and webhooks from having to store the Hangouts Chat thread ID of a thread
-     * (created earlier by them) to post further updates to it.  Has no effect
-     * if thread field, corresponding to an existing thread, is set in message.
+     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it.  Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
 
@@ -1348,9 +1273,7 @@ export namespace chat_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Resource name of the message to be deleted, in the form
-     * "spaces/x/messages/x"  Example:
-     * spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x"  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string;
   }
@@ -1362,9 +1285,7 @@ export namespace chat_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Resource name of the message to be retrieved, in the form
-     * "spaces/x/messages/x".  Example:
-     * spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string;
   }
@@ -1376,13 +1297,11 @@ export namespace chat_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name, in the form "spaces/x/messages/x".  Example:
-     * spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Resource name, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string;
     /**
-     * Required. The field paths to be updated.  Currently supported field
-     * paths: "text", "cards".
+     * Required. The field paths to be updated.  Currently supported field paths: "text", "cards".
      */
     updateMask?: string;
 

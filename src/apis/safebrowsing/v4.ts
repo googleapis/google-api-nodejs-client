@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace safebrowsing_v4 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace safebrowsing_v4 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace safebrowsing_v4 {
   /**
    * Safe Browsing API
    *
-   * Enables client applications to check web resources (most commonly URLs)
-   * against Google-generated lists of unsafe web resources.
+   * Enables client applications to check web resources (most commonly URLs) against Google-generated lists of unsafe web resources.
    *
    * @example
    * const {google} = require('googleapis');
@@ -119,7 +114,10 @@ export namespace safebrowsing_v4 {
     threatMatches: Resource$Threatmatches;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.encodedFullHashes = new Resource$Encodedfullhashes(this.context);
       this.encodedUpdates = new Resource$Encodedupdates(this.context);
@@ -136,8 +134,7 @@ export namespace safebrowsing_v4 {
    */
   export interface Schema$Checksum {
     /**
-     * The SHA256 hash of the client state; that is, of the sorted list of all
-     * hashes present in the database.
+     * The SHA256 hash of the client state; that is, of the sorted list of all hashes present in the database.
      */
     sha256?: string;
   }
@@ -146,8 +143,7 @@ export namespace safebrowsing_v4 {
    */
   export interface Schema$ClientInfo {
     /**
-     * A client ID that (hopefully) uniquely identifies the client
-     * implementation of the Safe Browsing API.
+     * A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.
      */
     clientId?: string;
     /**
@@ -160,31 +156,23 @@ export namespace safebrowsing_v4 {
    */
   export interface Schema$Constraints {
     /**
-     * A client&#39;s physical location, expressed as a ISO 31166-1 alpha-2
-     * region code.
+     * A client&#39;s physical location, expressed as a ISO 31166-1 alpha-2 region code.
      */
     deviceLocation?: string;
     /**
-     * Requests the lists for a specific language. Expects ISO 639 alpha-2
-     * format.
+     * Requests the lists for a specific language. Expects ISO 639 alpha-2 format.
      */
     language?: string;
     /**
-     * Sets the maximum number of entries that the client is willing to have in
-     * the local database. This should be a power of 2 between 2**10 and 2**20.
-     * If zero, no database size limit is set.
+     * Sets the maximum number of entries that the client is willing to have in the local database. This should be a power of 2 between 2**10 and 2**20. If zero, no database size limit is set.
      */
     maxDatabaseEntries?: number;
     /**
-     * The maximum size in number of entries. The update will not contain more
-     * entries than this value.  This should be a power of 2 between 2**10 and
-     * 2**20.  If zero, no update size limit is set.
+     * The maximum size in number of entries. The update will not contain more entries than this value.  This should be a power of 2 between 2**10 and 2**20.  If zero, no update size limit is set.
      */
     maxUpdateEntries?: number;
     /**
-     * Requests the list for a specific geographic location. If not set the
-     * server may pick that value based on the user&#39;s IP address. Expects
-     * ISO 3166-1 alpha-2 format.
+     * Requests the list for a specific geographic location. If not set the server may pick that value based on the user&#39;s IP address. Expects ISO 3166-1 alpha-2 format.
      */
     region?: string;
     /**
@@ -193,17 +181,11 @@ export namespace safebrowsing_v4 {
     supportedCompressions?: string[];
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * Describes a Safe Browsing API update request. Clients can request updates
-   * for multiple lists in a single request. NOTE: Field index 2 is unused.
-   * NEXT: 5
+   * Describes a Safe Browsing API update request. Clients can request updates for multiple lists in a single request. NOTE: Field index 2 is unused. NEXT: 5
    */
   export interface Schema$FetchThreatListUpdatesRequest {
     /**
@@ -221,9 +203,7 @@ export namespace safebrowsing_v4 {
      */
     listUpdateResponses?: Schema$ListUpdateResponse[];
     /**
-     * The minimum duration the client must wait before issuing any update
-     * request. If this field is not set clients may update as soon as they
-     * want.
+     * The minimum duration the client must wait before issuing any update request. If this field is not set clients may update as soon as they want.
      */
     minimumWaitDuration?: string;
   }
@@ -232,8 +212,7 @@ export namespace safebrowsing_v4 {
    */
   export interface Schema$FindFullHashesRequest {
     /**
-     * Client metadata associated with callers of higher-level APIs built on top
-     * of the client&#39;s implementation.
+     * Client metadata associated with callers of higher-level APIs built on top of the client&#39;s implementation.
      */
     apiClient?: Schema$ClientInfo;
     /**
@@ -241,8 +220,7 @@ export namespace safebrowsing_v4 {
      */
     client?: Schema$ClientInfo;
     /**
-     * The current client states for each of the client&#39;s local threat
-     * lists.
+     * The current client states for each of the client&#39;s local threat lists.
      */
     clientStates?: string[];
     /**
@@ -256,14 +234,11 @@ export namespace safebrowsing_v4 {
      */
     matches?: Schema$ThreatMatch[];
     /**
-     * The minimum duration the client must wait before issuing any find hashes
-     * request. If this field is not set, clients can issue a request as soon as
-     * they want.
+     * The minimum duration the client must wait before issuing any find hashes request. If this field is not set, clients can issue a request as soon as they want.
      */
     minimumWaitDuration?: string;
     /**
-     * For requested entities that did not match the threat list, how long to
-     * cache the response.
+     * For requested entities that did not match the threat list, how long to cache the response.
      */
     negativeCacheDuration?: string;
   }
@@ -305,8 +280,7 @@ export namespace safebrowsing_v4 {
      */
     platformType?: string;
     /**
-     * The current state of the client for the requested list (the encrypted
-     * client state that was received from the last successful list update).
+     * The current state of the client for the requested list (the encrypted client state that was received from the last successful list update).
      */
     state?: string;
     /**
@@ -323,16 +297,11 @@ export namespace safebrowsing_v4 {
    */
   export interface Schema$ListUpdateResponse {
     /**
-     * A set of entries to add to a local threat type&#39;s list. Repeated to
-     * allow for a combination of compressed and raw data to be sent in a single
-     * response.
+     * A set of entries to add to a local threat type&#39;s list. Repeated to allow for a combination of compressed and raw data to be sent in a single response.
      */
     additions?: Schema$ThreatEntrySet[];
     /**
-     * The expected SHA256 hash of the client state; that is, of the sorted list
-     * of all hashes present in the database after applying the provided update.
-     * If the client state doesn&#39;t match the expected state, the client must
-     * disregard this update and retry later.
+     * The expected SHA256 hash of the client state; that is, of the sorted list of all hashes present in the database after applying the provided update. If the client state doesn&#39;t match the expected state, the client must disregard this update and retry later.
      */
     checksum?: Schema$Checksum;
     /**
@@ -344,13 +313,11 @@ export namespace safebrowsing_v4 {
      */
     platformType?: string;
     /**
-     * A set of entries to remove from a local threat type&#39;s list. In
-     * practice, this field is empty or contains exactly one ThreatEntrySet.
+     * A set of entries to remove from a local threat type&#39;s list. In practice, this field is empty or contains exactly one ThreatEntrySet.
      */
     removals?: Schema$ThreatEntrySet[];
     /**
-     * The type of response. This may indicate that an action is required by the
-     * client when the response is received.
+     * The type of response. This may indicate that an action is required by the client when the response is received.
      */
     responseType?: string;
     /**
@@ -376,23 +343,15 @@ export namespace safebrowsing_v4 {
     value?: string;
   }
   /**
-   * The uncompressed threat entries in hash format of a particular prefix
-   * length. Hashes can be anywhere from 4 to 32 bytes in size. A large majority
-   * are 4 bytes, but some hashes are lengthened if they collide with the hash
-   * of a popular URL.  Used for sending ThreatEntrySet to clients that do not
-   * support compression, or when sending non-4-byte hashes to clients that do
-   * support compression.
+   * The uncompressed threat entries in hash format of a particular prefix length. Hashes can be anywhere from 4 to 32 bytes in size. A large majority are 4 bytes, but some hashes are lengthened if they collide with the hash of a popular URL.  Used for sending ThreatEntrySet to clients that do not support compression, or when sending non-4-byte hashes to clients that do support compression.
    */
   export interface Schema$RawHashes {
     /**
-     * The number of bytes for each prefix encoded below.  This field can be
-     * anywhere from 4 (shortest prefix) to 32 (full SHA256 hash).
+     * The number of bytes for each prefix encoded below.  This field can be anywhere from 4 (shortest prefix) to 32 (full SHA256 hash).
      */
     prefixSize?: number;
     /**
-     * The hashes, in binary format, concatenated into one long string. Hashes
-     * are sorted in lexicographic order. For JSON API users, hashes are
-     * base64-encoded.
+     * The hashes, in binary format, concatenated into one long string. Hashes are sorted in lexicographic order. For JSON API users, hashes are base64-encoded.
      */
     rawHashes?: string;
   }
@@ -406,8 +365,7 @@ export namespace safebrowsing_v4 {
     indices?: number[];
   }
   /**
-   * The Rice-Golomb encoded data. Used for sending compressed 4-byte hashes or
-   * compressed removal indices.
+   * The Rice-Golomb encoded data. Used for sending compressed 4-byte hashes or compressed removal indices.
    */
   export interface Schema$RiceDeltaEncoding {
     /**
@@ -415,37 +373,28 @@ export namespace safebrowsing_v4 {
      */
     encodedData?: string;
     /**
-     * The offset of the first entry in the encoded data, or, if only a single
-     * integer was encoded, that single integer&#39;s value. If the field is
-     * empty or missing, assume zero.
+     * The offset of the first entry in the encoded data, or, if only a single integer was encoded, that single integer&#39;s value. If the field is empty or missing, assume zero.
      */
     firstValue?: string;
     /**
-     * The number of entries that are delta encoded in the encoded data. If only
-     * a single integer was encoded, this will be zero and the single value will
-     * be stored in `first_value`.
+     * The number of entries that are delta encoded in the encoded data. If only a single integer was encoded, this will be zero and the single value will be stored in `first_value`.
      */
     numEntries?: number;
     /**
-     * The Golomb-Rice parameter, which is a number between 2 and 28. This field
-     * is missing (that is, zero) if `num_entries` is zero.
+     * The Golomb-Rice parameter, which is a number between 2 and 28. This field is missing (that is, zero) if `num_entries` is zero.
      */
     riceParameter?: number;
   }
   /**
-   * An individual threat; for example, a malicious URL or its hash
-   * representation. Only one of these fields should be set.
+   * An individual threat; for example, a malicious URL or its hash representation. Only one of these fields should be set.
    */
   export interface Schema$ThreatEntry {
     /**
-     * The digest of an executable in SHA256 format. The API supports both
-     * binary and hex digests. For JSON requests, digests are base64-encoded.
+     * The digest of an executable in SHA256 format. The API supports both binary and hex digests. For JSON requests, digests are base64-encoded.
      */
     digest?: string;
     /**
-     * A hash prefix, consisting of the most significant 4-32 bytes of a SHA256
-     * hash. This field is in binary format. For JSON requests, hashes are
-     * base64-encoded.
+     * A hash prefix, consisting of the most significant 4-32 bytes of a SHA256 hash. This field is in binary format. For JSON requests, hashes are base64-encoded.
      */
     hash?: string;
     /**
@@ -454,9 +403,7 @@ export namespace safebrowsing_v4 {
     url?: string;
   }
   /**
-   * The metadata associated with a specific threat entry. The client is
-   * expected to know the metadata key/value pairs associated with each threat
-   * type.
+   * The metadata associated with a specific threat entry. The client is expected to know the metadata key/value pairs associated with each threat type.
    */
   export interface Schema$ThreatEntryMetadata {
     /**
@@ -465,8 +412,7 @@ export namespace safebrowsing_v4 {
     entries?: Schema$MetadataEntry[];
   }
   /**
-   * A set of threats that should be added or removed from a client&#39;s local
-   * database.
+   * A set of threats that should be added or removed from a client&#39;s local database.
    */
   export interface Schema$ThreatEntrySet {
     /**
@@ -482,16 +428,11 @@ export namespace safebrowsing_v4 {
      */
     rawIndices?: Schema$RawIndices;
     /**
-     * The encoded 4-byte prefixes of SHA256-formatted entries, using a
-     * Golomb-Rice encoding. The hashes are converted to uint32, sorted in
-     * ascending order, then delta encoded and stored as encoded_data.
+     * The encoded 4-byte prefixes of SHA256-formatted entries, using a Golomb-Rice encoding. The hashes are converted to uint32, sorted in ascending order, then delta encoded and stored as encoded_data.
      */
     riceHashes?: Schema$RiceDeltaEncoding;
     /**
-     * The encoded local, lexicographically-sorted list indices, using a
-     * Golomb-Rice encoding. Used for sending compressed removal indices. The
-     * removal indices (uint32) are sorted in ascending order, then delta
-     * encoded and stored as encoded_data.
+     * The encoded local, lexicographically-sorted list indices, using a Golomb-Rice encoding. Used for sending compressed removal indices. The removal indices (uint32) are sorted in ascending order, then delta encoded and stored as encoded_data.
      */
     riceIndices?: Schema$RiceDeltaEncoding;
   }
@@ -501,8 +442,7 @@ export namespace safebrowsing_v4 {
      */
     clientInfo?: Schema$ClientInfo;
     /**
-     * The threat entry responsible for the hit. Full hash should be reported
-     * for hash-based hits.
+     * The threat entry responsible for the hit. Full hash should be reported for hash-based hits.
      */
     entry?: Schema$ThreatEntry;
     /**
@@ -523,8 +463,7 @@ export namespace safebrowsing_v4 {
     userInfo?: Schema$UserInfo;
   }
   /**
-   * The information regarding one or more threats that a client submits when
-   * checking for matches in threat lists.
+   * The information regarding one or more threats that a client submits when checking for matches in threat lists.
    */
   export interface Schema$ThreatInfo {
     /**
@@ -545,9 +484,7 @@ export namespace safebrowsing_v4 {
     threatTypes?: string[];
   }
   /**
-   * Describes an individual threat list. A list is defined by three parameters:
-   * the type of threat posed, the type of platform targeted by the threat, and
-   * the type of entries in the list.
+   * Describes an individual threat list. A list is defined by three parameters: the type of threat posed, the type of platform targeted by the threat, and the type of entries in the list.
    */
   export interface Schema$ThreatListDescriptor {
     /**
@@ -568,8 +505,7 @@ export namespace safebrowsing_v4 {
    */
   export interface Schema$ThreatMatch {
     /**
-     * The cache lifetime for the returned match. Clients must not cache this
-     * response for more than this duration to avoid false positives.
+     * The cache lifetime for the returned match. Clients must not cache this response for more than this duration to avoid false positives.
      */
     cacheDuration?: string;
     /**
@@ -720,8 +656,7 @@ export namespace safebrowsing_v4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A client ID that (hopefully) uniquely identifies the client
-     * implementation of the Safe Browsing API.
+     * A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.
      */
     clientId?: string;
     /**
@@ -833,8 +768,7 @@ export namespace safebrowsing_v4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A client ID that uniquely identifies the client implementation of the
-     * Safe Browsing API.
+     * A client ID that uniquely identifies the client implementation of the Safe Browsing API.
      */
     clientId?: string;
     /**
@@ -949,8 +883,7 @@ export namespace safebrowsing_v4 {
 
     /**
      * safebrowsing.threatHits.create
-     * @desc Reports a Safe Browsing threat list hit to Google. Only projects
-     * with TRUSTED_REPORTER visibility can use this method.
+     * @desc Reports a Safe Browsing threat list hit to Google. Only projects with TRUSTED_REPORTER visibility can use this method.
      * @alias safebrowsing.threatHits.create
      * @memberOf! ()
      *
@@ -1124,8 +1057,7 @@ export namespace safebrowsing_v4 {
 
     /**
      * safebrowsing.threatListUpdates.fetch
-     * @desc Fetches the most recent threat list updates. A client can request
-     * updates for multiple lists at once.
+     * @desc Fetches the most recent threat list updates. A client can request updates for multiple lists at once.
      * @alias safebrowsing.threatListUpdates.fetch
      * @memberOf! ()
      *

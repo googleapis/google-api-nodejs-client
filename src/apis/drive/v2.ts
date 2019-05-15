@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace drive_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace drive_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -78,8 +75,7 @@ export namespace drive_v2 {
   /**
    * Drive API
    *
-   * Manages files in Drive including uploading, downloading, searching,
-   * detecting changes, and updating sharing permissions.
+   * Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.
    *
    * @example
    * const {google} = require('googleapis');
@@ -110,7 +106,10 @@ export namespace drive_v2 {
     teamdrives: Resource$Teamdrives;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.about = new Resource$About(this.context);
       this.apps = new Resource$Apps(this.context);
@@ -135,8 +134,7 @@ export namespace drive_v2 {
    */
   export interface Schema$About {
     /**
-     * Information about supported additional roles per file type. The most
-     * specific type takes precedence.
+     * Information about supported additional roles per file type. The most specific type takes precedence.
      */
     additionalRoleInfo?: Array<{
       roleSets?: Array<{additionalRoles?: string[]; primaryRole?: string}>;
@@ -151,8 +149,7 @@ export namespace drive_v2 {
      */
     canCreateTeamDrives?: boolean;
     /**
-     * The domain sharing policy for the current user. Possible values are:   -
-     * allowed  - allowedWithWarning  - incomingOnly  - disallowed
+     * The domain sharing policy for the current user. Possible values are:   - allowed  - allowedWithWarning  - incomingOnly  - disallowed
      */
     domainSharingPolicy?: string;
     /**
@@ -184,8 +181,7 @@ export namespace drive_v2 {
      */
     importFormats?: Array<{source?: string; targets?: string[]}>;
     /**
-     * A boolean indicating whether the authenticated app is installed by the
-     * authenticated user.
+     * A boolean indicating whether the authenticated app is installed by the authenticated user.
      */
     isCurrentAppInstalled?: boolean;
     /**
@@ -193,9 +189,7 @@ export namespace drive_v2 {
      */
     kind?: string;
     /**
-     * The user&#39;s language or locale code, as defined by BCP 47, with some
-     * extensions from Unicode&#39;s LDML format
-     * (http://www.unicode.org/reports/tr35/).
+     * The user&#39;s language or locale code, as defined by BCP 47, with some extensions from Unicode&#39;s LDML format (http://www.unicode.org/reports/tr35/).
      */
     languageCode?: string;
     /**
@@ -203,8 +197,7 @@ export namespace drive_v2 {
      */
     largestChangeId?: string;
     /**
-     * List of max upload sizes for each file type. The most specific type takes
-     * precedence.
+     * List of max upload sizes for each file type. The most specific type takes precedence.
      */
     maxUploadSizes?: Array<{size?: string; type?: string}>;
     /**
@@ -236,8 +229,7 @@ export namespace drive_v2 {
      */
     quotaBytesUsedInTrash?: string;
     /**
-     * The type of the user&#39;s storage quota. Possible values are:   -
-     * LIMITED  - UNLIMITED
+     * The type of the user&#39;s storage quota. Possible values are:   - LIMITED  - UNLIMITED
      */
     quotaType?: string;
     /**
@@ -266,9 +258,7 @@ export namespace drive_v2 {
     user?: Schema$User;
   }
   /**
-   * The apps resource provides a list of the apps that a user has installed,
-   * with information about each app&#39;s supported MIME types, file
-   * extensions, and other details.
+   * The apps resource provides a list of the apps that a user has installed, with information about each app&#39;s supported MIME types, file extensions, and other details.
    */
   export interface Schema$App {
     /**
@@ -276,9 +266,7 @@ export namespace drive_v2 {
      */
     authorized?: boolean;
     /**
-     * The template url to create a new file with this app in a given folder.
-     * The template will contain {folderId} to be replaced by the folder to
-     * create the new file in.
+     * The template url to create a new file with this app in a given folder. The template will contain {folderId} to be replaced by the folder to create the new file in.
      */
     createInFolderTemplate?: string;
     /**
@@ -286,8 +274,7 @@ export namespace drive_v2 {
      */
     createUrl?: string;
     /**
-     * Whether the app has drive-wide scope. An app with drive-wide scope can
-     * access all files in the user&#39;s drive.
+     * Whether the app has drive-wide scope. An app with drive-wide scope can access all files in the user&#39;s drive.
      */
     hasDriveWideScope?: boolean;
     /**
@@ -315,14 +302,11 @@ export namespace drive_v2 {
      */
     name?: string;
     /**
-     * The type of object this app creates (e.g. Chart). If empty, the app name
-     * should be used instead.
+     * The type of object this app creates (e.g. Chart). If empty, the app name should be used instead.
      */
     objectType?: string;
     /**
-     * The template url for opening files with this app. The template will
-     * contain {ids} and/or {exportIds} to be replaced by the actual file ids.
-     * See  Open Files  for the full documentation.
+     * The template url for opening files with this app. The template will contain {ids} and/or {exportIds} to be replaced by the actual file ids. See  Open Files  for the full documentation.
      */
     openUrlTemplate?: string;
     /**
@@ -370,19 +354,16 @@ export namespace drive_v2 {
      */
     supportsOfflineCreate?: boolean;
     /**
-     * Whether the app is selected as the default handler for the types it
-     * supports.
+     * Whether the app is selected as the default handler for the types it supports.
      */
     useByDefault?: boolean;
   }
   /**
-   * A list of third-party applications which the user has installed or given
-   * access to Google Drive.
+   * A list of third-party applications which the user has installed or given access to Google Drive.
    */
   export interface Schema$AppList {
     /**
-     * List of app IDs that the user has specified to use by default. The list
-     * is in reverse-priority order (lowest to highest).
+     * List of app IDs that the user has specified to use by default. The list is in reverse-priority order (lowest to highest).
      */
     defaultAppIds?: string[];
     /**
@@ -411,14 +392,11 @@ export namespace drive_v2 {
      */
     changeType?: string;
     /**
-     * Whether the file or shared drive has been removed from this list of
-     * changes, for example by deletion or loss of access.
+     * Whether the file or shared drive has been removed from this list of changes, for example by deletion or loss of access.
      */
     deleted?: boolean;
     /**
-     * The updated state of the shared drive. Present if the changeType is
-     * drive, the user is still a member of the shared drive, and the shared
-     * drive has not been deleted.
+     * The updated state of the shared drive. Present if the changeType is drive, the user is still a member of the shared drive, and the shared drive has not been deleted.
      */
     drive?: Schema$Drive;
     /**
@@ -426,8 +404,7 @@ export namespace drive_v2 {
      */
     driveId?: string;
     /**
-     * The updated state of the file. Present if the type is file and the file
-     * has not been removed from this list of changes.
+     * The updated state of the file. Present if the type is file and the file has not been removed from this list of changes.
      */
     file?: Schema$File;
     /**
@@ -472,8 +449,7 @@ export namespace drive_v2 {
      */
     etag?: string;
     /**
-     * The list of changes. If nextPageToken is populated, then this list may be
-     * incomplete and an additional page of results should be fetched.
+     * The list of changes. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
      */
     items?: Schema$Change[];
     /**
@@ -485,8 +461,7 @@ export namespace drive_v2 {
      */
     largestChangeId?: string;
     /**
-     * The starting page token for future changes. This will be present only if
-     * the end of the current changes list has been reached.
+     * The starting page token for future changes. This will be present only if the end of the current changes list has been reached.
      */
     newStartPageToken?: string;
     /**
@@ -494,10 +469,7 @@ export namespace drive_v2 {
      */
     nextLink?: string;
     /**
-     * The page token for the next page of changes. This will be absent if the
-     * end of the changes list has been reached. If the token is rejected for
-     * any reason, it should be discarded, and pagination should be restarted
-     * from the first page of results.
+     * The page token for the next page of changes. This will be absent if the end of the changes list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
     nextPageToken?: string;
     /**
@@ -514,8 +486,7 @@ export namespace drive_v2 {
      */
     address?: string;
     /**
-     * Date and time of notification channel expiration, expressed as a Unix
-     * timestamp, in milliseconds. Optional.
+     * Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
      */
     expiration?: string;
     /**
@@ -523,8 +494,7 @@ export namespace drive_v2 {
      */
     id?: string;
     /**
-     * Identifies this as a notification channel used to watch for changes to a
-     * resource. Value: the fixed string &quot;api#channel&quot;.
+     * Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string &quot;api#channel&quot;.
      */
     kind?: string;
     /**
@@ -536,8 +506,7 @@ export namespace drive_v2 {
      */
     payload?: boolean;
     /**
-     * An opaque ID that identifies the resource being watched on this channel.
-     * Stable across different API versions.
+     * An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
      */
     resourceId?: string;
     /**
@@ -545,8 +514,7 @@ export namespace drive_v2 {
      */
     resourceUri?: string;
     /**
-     * An arbitrary string delivered to the target address with each
-     * notification delivered over this channel. Optional.
+     * An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
      */
     token?: string;
     /**
@@ -563,8 +531,7 @@ export namespace drive_v2 {
      */
     etag?: string;
     /**
-     * The list of children. If nextPageToken is populated, then this list may
-     * be incomplete and an additional page of results should be fetched.
+     * The list of children. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
      */
     items?: Schema$ChildReference[];
     /**
@@ -576,10 +543,7 @@ export namespace drive_v2 {
      */
     nextLink?: string;
     /**
-     * The page token for the next page of children. This will be absent if the
-     * end of the children list has been reached. If the token is rejected for
-     * any reason, it should be discarded, and pagination should be restarted
-     * from the first page of results.
+     * The page token for the next page of children. This will be absent if the end of the children list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
     nextPageToken?: string;
     /**
@@ -613,9 +577,7 @@ export namespace drive_v2 {
    */
   export interface Schema$Comment {
     /**
-     * A region of the document represented as a JSON string. See anchor
-     * documentation for details on how to define and interpret anchor
-     * properties.
+     * A region of the document represented as a JSON string. See anchor documentation for details on how to define and interpret anchor properties.
      */
     anchor?: string;
     /**
@@ -627,9 +589,7 @@ export namespace drive_v2 {
      */
     commentId?: string;
     /**
-     * The plain text content used to create this comment. This is not HTML safe
-     * and should only be used as a starting point to make edits to a
-     * comment&#39;s content.
+     * The plain text content used to create this comment. This is not HTML safe and should only be used as a starting point to make edits to a comment&#39;s content.
      */
     content?: string;
     /**
@@ -641,9 +601,7 @@ export namespace drive_v2 {
      */
     createdDate?: string;
     /**
-     * Whether this comment has been deleted. If a comment has been deleted the
-     * content will be cleared and this will only represent a comment that once
-     * existed.
+     * Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed.
      */
     deleted?: boolean;
     /**
@@ -675,10 +633,7 @@ export namespace drive_v2 {
      */
     selfLink?: string;
     /**
-     * The status of this comment. Status can be changed by posting a reply to a
-     * comment with the desired status.   - &quot;open&quot; - The comment is
-     * still open.  - &quot;resolved&quot; - The comment has been resolved by
-     * one of its replies.
+     * The status of this comment. Status can be changed by posting a reply to a comment with the desired status.   - &quot;open&quot; - The comment is still open.  - &quot;resolved&quot; - The comment has been resolved by one of its replies.
      */
     status?: string;
   }
@@ -687,8 +642,7 @@ export namespace drive_v2 {
    */
   export interface Schema$CommentList {
     /**
-     * The list of comments. If nextPageToken is populated, then this list may
-     * be incomplete and an additional page of results should be fetched.
+     * The list of comments. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
      */
     items?: Schema$Comment[];
     /**
@@ -700,10 +654,7 @@ export namespace drive_v2 {
      */
     nextLink?: string;
     /**
-     * The page token for the next page of comments. This will be absent if the
-     * end of the comments list has been reached. If the token is rejected for
-     * any reason, it should be discarded, and pagination should be restarted
-     * from the first page of results.
+     * The page token for the next page of comments. This will be absent if the end of the comments list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
     nextPageToken?: string;
     /**
@@ -720,10 +671,7 @@ export namespace drive_v2 {
      */
     author?: Schema$User;
     /**
-     * The plain text content used to create this reply. This is not HTML safe
-     * and should only be used as a starting point to make edits to a
-     * reply&#39;s content. This field is required on inserts if no verb is
-     * specified (resolve/reopen).
+     * The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply&#39;s content. This field is required on inserts if no verb is specified (resolve/reopen).
      */
     content?: string;
     /**
@@ -731,9 +679,7 @@ export namespace drive_v2 {
      */
     createdDate?: string;
     /**
-     * Whether this reply has been deleted. If a reply has been deleted the
-     * content will be cleared and this will only represent a reply that once
-     * existed.
+     * Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
      */
     deleted?: boolean;
     /**
@@ -753,10 +699,7 @@ export namespace drive_v2 {
      */
     replyId?: string;
     /**
-     * The action this reply performed to the parent comment. When creating a
-     * new reply this is the action to be perform to the parent comment.
-     * Possible values are:   - &quot;resolve&quot; - To resolve a comment.  -
-     * &quot;reopen&quot; - To reopen (un-resolve) a comment.
+     * The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:   - &quot;resolve&quot; - To resolve a comment.  - &quot;reopen&quot; - To reopen (un-resolve) a comment.
      */
     verb?: string;
   }
@@ -765,8 +708,7 @@ export namespace drive_v2 {
    */
   export interface Schema$CommentReplyList {
     /**
-     * The list of replies. If nextPageToken is populated, then this list may be
-     * incomplete and an additional page of results should be fetched.
+     * The list of replies. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
      */
     items?: Schema$CommentReply[];
     /**
@@ -778,10 +720,7 @@ export namespace drive_v2 {
      */
     nextLink?: string;
     /**
-     * The page token for the next page of replies. This will be absent if the
-     * end of the replies list has been reached. If the token is rejected for
-     * any reason, it should be discarded, and pagination should be restarted
-     * from the first page of results.
+     * The page token for the next page of replies. This will be absent if the end of the replies list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
     nextPageToken?: string;
     /**
@@ -794,10 +733,7 @@ export namespace drive_v2 {
    */
   export interface Schema$Drive {
     /**
-     * An image file and cropping parameters from which a background image for
-     * this shared drive is set. This is a write only field; it can only be set
-     * on drive.drives.update requests that don&#39;t set themeId. When
-     * specified, all fields of the backgroundImageFile must be set.
+     * An image file and cropping parameters from which a background image for this shared drive is set. This is a write only field; it can only be set on drive.drives.update requests that don&#39;t set themeId. When specified, all fields of the backgroundImageFile must be set.
      */
     backgroundImageFile?: {
       id?: string;
@@ -833,8 +769,7 @@ export namespace drive_v2 {
       canTrashChildren?: boolean;
     };
     /**
-     * The color of this shared drive as an RGB hex string. It can only be set
-     * on a drive.drives.update request that does not set themeId.
+     * The color of this shared drive as an RGB hex string. It can only be set on a drive.drives.update request that does not set themeId.
      */
     colorRgb?: string;
     /**
@@ -846,8 +781,7 @@ export namespace drive_v2 {
      */
     hidden?: boolean;
     /**
-     * The ID of this shared drive which is also the ID of the top level folder
-     * of this shared drive.
+     * The ID of this shared drive which is also the ID of the top level folder of this shared drive.
      */
     id?: string;
     /**
@@ -859,8 +793,7 @@ export namespace drive_v2 {
      */
     name?: string;
     /**
-     * A set of restrictions that apply to this shared drive or items inside
-     * this shared drive.
+     * A set of restrictions that apply to this shared drive or items inside this shared drive.
      */
     restrictions?: {
       adminManagedRestrictions?: boolean;
@@ -869,12 +802,7 @@ export namespace drive_v2 {
       driveMembersOnly?: boolean;
     };
     /**
-     * The ID of the theme from which the background image and color will be
-     * set. The set of possible driveThemes can be retrieved from a
-     * drive.about.get response. When not specified on a drive.drives.insert
-     * request, a random theme is chosen from which the background image and
-     * color are set. This is a write-only field; it can only be set on requests
-     * that don&#39;t set colorRgb or backgroundImageFile.
+     * The ID of the theme from which the background image and color will be set. The set of possible driveThemes can be retrieved from a drive.about.get response. When not specified on a drive.drives.insert request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don&#39;t set colorRgb or backgroundImageFile.
      */
     themeId?: string;
   }
@@ -883,8 +811,7 @@ export namespace drive_v2 {
    */
   export interface Schema$DriveList {
     /**
-     * The list of shared drives. If nextPageToken is populated, then this list
-     * may be incomplete and an additional page of results should be fetched.
+     * The list of shared drives. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
      */
     items?: Schema$Drive[];
     /**
@@ -892,10 +819,7 @@ export namespace drive_v2 {
      */
     kind?: string;
     /**
-     * The page token for the next page of shared drives. This will be absent if
-     * the end of the list has been reached. If the token is rejected for any
-     * reason, it should be discarded, and pagination should be restarted from
-     * the first page of results.
+     * The page token for the next page of shared drives. This will be absent if the end of the list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
     nextPageToken?: string;
   }
@@ -920,8 +844,7 @@ export namespace drive_v2 {
      */
     canReadRevisions?: boolean;
     /**
-     * Capabilities the current user has on this file. Each capability
-     * corresponds to a fine-grained action that a user may take.
+     * Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user may take.
      */
     capabilities?: {
       canAddChildren?: boolean;
@@ -959,8 +882,7 @@ export namespace drive_v2 {
      */
     copyable?: boolean;
     /**
-     * Whether the options to copy, print, or download this file, should be
-     * disabled for readers and commenters.
+     * Whether the options to copy, print, or download this file, should be disabled for readers and commenters.
      */
     copyRequiresWriterPermission?: boolean;
     /**
@@ -968,8 +890,7 @@ export namespace drive_v2 {
      */
     createdDate?: string;
     /**
-     * A link to open this file with the user&#39;s default app for this file.
-     * Only populated when the drive.apps.readonly scope is used.
+     * A link to open this file with the user&#39;s default app for this file. Only populated when the drive.apps.readonly scope is used.
      */
     defaultOpenWithLink?: string;
     /**
@@ -977,14 +898,11 @@ export namespace drive_v2 {
      */
     description?: string;
     /**
-     * Short lived download URL for the file. This field is only populated for
-     * files with content stored in Google Drive; it is not populated for Google
-     * Docs or shortcut files.
+     * Short lived download URL for the file. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
      */
     downloadUrl?: string;
     /**
-     * ID of the shared drive the file resides in. Only populated for items in
-     * shared drives.
+     * ID of the shared drive the file resides in. Only populated for items in shared drives.
      */
     driveId?: string;
     /**
@@ -1000,8 +918,7 @@ export namespace drive_v2 {
      */
     etag?: string;
     /**
-     * Whether this file has been explicitly trashed, as opposed to recursively
-     * trashed.
+     * Whether this file has been explicitly trashed, as opposed to recursively trashed.
      */
     explicitlyTrashed?: boolean;
     /**
@@ -1009,50 +926,31 @@ export namespace drive_v2 {
      */
     exportLinks?: {[key: string]: string};
     /**
-     * The final component of fullFileExtension with trailing text that does not
-     * appear to be part of the extension removed. This field is only populated
-     * for files with content stored in Google Drive; it is not populated for
-     * Google Docs or shortcut files.
+     * The final component of fullFileExtension with trailing text that does not appear to be part of the extension removed. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
      */
     fileExtension?: string;
     /**
-     * The size of the file in bytes. This field is only populated for files
-     * with content stored in Google Drive; it is not populated for Google Docs
-     * or shortcut files.
+     * The size of the file in bytes. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
      */
     fileSize?: string;
     /**
-     * Folder color as an RGB hex string if the file is a folder. The list of
-     * supported colors is available in the folderColorPalette field of the
-     * About resource. If an unsupported color is specified, it will be changed
-     * to the closest color in the palette. Not populated for items in shared
-     * drives.
+     * Folder color as an RGB hex string if the file is a folder. The list of supported colors is available in the folderColorPalette field of the About resource. If an unsupported color is specified, it will be changed to the closest color in the palette. Not populated for items in shared drives.
      */
     folderColorRgb?: string;
     /**
-     * The full file extension; extracted from the title. May contain multiple
-     * concatenated extensions, such as &quot;tar.gz&quot;. Removing an
-     * extension from the title does not clear this field; however, changing the
-     * extension on the title does update this field. This field is only
-     * populated for files with content stored in Google Drive; it is not
-     * populated for Google Docs or shortcut files.
+     * The full file extension; extracted from the title. May contain multiple concatenated extensions, such as &quot;tar.gz&quot;. Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
      */
     fullFileExtension?: string;
     /**
-     * Whether any users are granted file access directly on this file. This
-     * field is only populated for items in shared drives.
+     * Whether any users are granted file access directly on this file. This field is only populated for items in shared drives.
      */
     hasAugmentedPermissions?: boolean;
     /**
-     * Whether this file has a thumbnail. This does not indicate whether the
-     * requesting app has access to the thumbnail. To check access, look for the
-     * presence of the thumbnailLink field.
+     * Whether this file has a thumbnail. This does not indicate whether the requesting app has access to the thumbnail. To check access, look for the presence of the thumbnailLink field.
      */
     hasThumbnail?: boolean;
     /**
-     * The ID of the file&#39;s head revision. This field is only populated for
-     * files with content stored in Google Drive; it is not populated for Google
-     * Docs or shortcut files.
+     * The ID of the file&#39;s head revision. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
      */
     headRevisionId?: string;
     /**
@@ -1064,9 +962,7 @@ export namespace drive_v2 {
      */
     id?: string;
     /**
-     * Metadata about image media. This will only be present for image types,
-     * and its contents will depend on what can be parsed from the image
-     * content.
+     * Metadata about image media. This will only be present for image types, and its contents will depend on what can be parsed from the image content.
      */
     imageMediaMetadata?: {
       aperture?: number;
@@ -1123,8 +1019,7 @@ export namespace drive_v2 {
      */
     lastModifyingUserName?: string;
     /**
-     * Last time this file was viewed by the user (formatted RFC 3339
-     * timestamp).
+     * Last time this file was viewed by the user (formatted RFC 3339 timestamp).
      */
     lastViewedByMeDate?: string;
     /**
@@ -1132,49 +1027,35 @@ export namespace drive_v2 {
      */
     markedViewedByMeDate?: string;
     /**
-     * An MD5 checksum for the content of this file. This field is only
-     * populated for files with content stored in Google Drive; it is not
-     * populated for Google Docs or shortcut files.
+     * An MD5 checksum for the content of this file. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
      */
     md5Checksum?: string;
     /**
-     * The MIME type of the file. This is only mutable on update when uploading
-     * new content. This field can be left blank, and the mimetype will be
-     * determined from the uploaded content&#39;s MIME type.
+     * The MIME type of the file. This is only mutable on update when uploading new content. This field can be left blank, and the mimetype will be determined from the uploaded content&#39;s MIME type.
      */
     mimeType?: string;
     /**
-     * Last time this file was modified by the user (formatted RFC 3339
-     * timestamp). Note that setting modifiedDate will also update the
-     * modifiedByMe date for the user which set the date.
+     * Last time this file was modified by the user (formatted RFC 3339 timestamp). Note that setting modifiedDate will also update the modifiedByMe date for the user which set the date.
      */
     modifiedByMeDate?: string;
     /**
-     * Last time this file was modified by anyone (formatted RFC 3339
-     * timestamp). This is only mutable on update when the setModifiedDate
-     * parameter is set.
+     * Last time this file was modified by anyone (formatted RFC 3339 timestamp). This is only mutable on update when the setModifiedDate parameter is set.
      */
     modifiedDate?: string;
     /**
-     * A map of the id of each of the user&#39;s apps to a link to open this
-     * file with that app. Only populated when the drive.apps.readonly scope is
-     * used.
+     * A map of the id of each of the user&#39;s apps to a link to open this file with that app. Only populated when the drive.apps.readonly scope is used.
      */
     openWithLinks?: {[key: string]: string};
     /**
-     * The original filename of the uploaded content if available, or else the
-     * original value of the title field. This is only available for files with
-     * binary content in Google Drive.
+     * The original filename of the uploaded content if available, or else the original value of the title field. This is only available for files with binary content in Google Drive.
      */
     originalFilename?: string;
     /**
-     * Whether the file is owned by the current user. Not populated for items in
-     * shared drives.
+     * Whether the file is owned by the current user. Not populated for items in shared drives.
      */
     ownedByMe?: boolean;
     /**
-     * Name(s) of the owner(s) of this file. Not populated for items in shared
-     * drives.
+     * Name(s) of the owner(s) of this file. Not populated for items in shared drives.
      */
     ownerNames?: string[];
     /**
@@ -1182,12 +1063,7 @@ export namespace drive_v2 {
      */
     owners?: Schema$User[];
     /**
-     * Collection of parent folders which contain this file. If not specified as
-     * part of an insert request, the file will be placed directly in the
-     * user&#39;s My Drive folder. If not specified as part of a copy request,
-     * the file will inherit any discoverable parents of the source file. Update
-     * requests can also use the addParents and removeParents parameters to
-     * modify the parents list.
+     * Collection of parent folders which contain this file. If not specified as part of an insert request, the file will be placed directly in the user&#39;s My Drive folder. If not specified as part of a copy request, the file will inherit any discoverable parents of the source file. Update requests can also use the addParents and removeParents parameters to modify the parents list.
      */
     parents?: Schema$ParentReference[];
     /**
@@ -1195,8 +1071,7 @@ export namespace drive_v2 {
      */
     permissionIds?: string[];
     /**
-     * The list of permissions for users with access to this file. Not populated
-     * for items in shared drives.
+     * The list of permissions for users with access to this file. Not populated for items in shared drives.
      */
     permissions?: Schema$Permission[];
     /**
@@ -1216,13 +1091,11 @@ export namespace drive_v2 {
      */
     shareable?: boolean;
     /**
-     * Whether the file has been shared. Not populated for items in shared
-     * drives.
+     * Whether the file has been shared. Not populated for items in shared drives.
      */
     shared?: boolean;
     /**
-     * Time at which this file was shared with the user (formatted RFC 3339
-     * timestamp).
+     * Time at which this file was shared with the user (formatted RFC 3339 timestamp).
      */
     sharedWithMeDate?: string;
     /**
@@ -1230,8 +1103,7 @@ export namespace drive_v2 {
      */
     sharingUser?: Schema$User;
     /**
-     * The list of spaces which contain the file. Supported values are
-     * &#39;drive&#39;, &#39;appDataFolder&#39; and &#39;photos&#39;.
+     * The list of spaces which contain the file. Supported values are &#39;drive&#39;, &#39;appDataFolder&#39; and &#39;photos&#39;.
      */
     spaces?: string[];
     /**
@@ -1239,14 +1111,11 @@ export namespace drive_v2 {
      */
     teamDriveId?: string;
     /**
-     * A thumbnail for the file. This will only be used if a standard thumbnail
-     * cannot be generated.
+     * A thumbnail for the file. This will only be used if a standard thumbnail cannot be generated.
      */
     thumbnail?: {image?: string; mimeType?: string};
     /**
-     * A short-lived link to the file&#39;s thumbnail. Typically lasts on the
-     * order of hours. Only populated when the requesting app can access the
-     * file&#39;s content.
+     * A short-lived link to the file&#39;s thumbnail. Typically lasts on the order of hours. Only populated when the requesting app can access the file&#39;s content.
      */
     thumbnailLink?: string;
     /**
@@ -1254,19 +1123,15 @@ export namespace drive_v2 {
      */
     thumbnailVersion?: string;
     /**
-     * The title of this file. Note that for immutable items such as the top
-     * level folders of shared drives, My Drive root folder, and Application
-     * Data folder the title is constant.
+     * The title of this file. Note that for immutable items such as the top level folders of shared drives, My Drive root folder, and Application Data folder the title is constant.
      */
     title?: string;
     /**
-     * The time that the item was trashed (formatted RFC 3339 timestamp). Only
-     * populated for items in shared drives.
+     * The time that the item was trashed (formatted RFC 3339 timestamp). Only populated for items in shared drives.
      */
     trashedDate?: string;
     /**
-     * If the file has been explicitly trashed, the user who trashed it. Only
-     * populated for items in shared drives.
+     * If the file has been explicitly trashed, the user who trashed it. Only populated for items in shared drives.
      */
     trashingUser?: Schema$User;
     /**
@@ -1274,9 +1139,7 @@ export namespace drive_v2 {
      */
     userPermission?: Schema$Permission;
     /**
-     * A monotonically increasing version number for the file. This reflects
-     * every change made to the file on the server, even those not visible to
-     * the requesting user.
+     * A monotonically increasing version number for the file. This reflects every change made to the file on the server, even those not visible to the requesting user.
      */
     version?: string;
     /**
@@ -1288,19 +1151,15 @@ export namespace drive_v2 {
       width?: number;
     };
     /**
-     * A link for downloading the content of the file in a browser using cookie
-     * based authentication. In cases where the content is shared publicly, the
-     * content can be downloaded without any credentials.
+     * A link for downloading the content of the file in a browser using cookie based authentication. In cases where the content is shared publicly, the content can be downloaded without any credentials.
      */
     webContentLink?: string;
     /**
-     * A link only available on public folders for viewing their static web
-     * assets (HTML, CSS, JS, etc) via Google Drive&#39;s Website Hosting.
+     * A link only available on public folders for viewing their static web assets (HTML, CSS, JS, etc) via Google Drive&#39;s Website Hosting.
      */
     webViewLink?: string;
     /**
-     * Whether writers can share the document with other users. Not populated
-     * for items in shared drives.
+     * Whether writers can share the document with other users. Not populated for items in shared drives.
      */
     writersCanShare?: boolean;
   }
@@ -1313,17 +1172,11 @@ export namespace drive_v2 {
      */
     etag?: string;
     /**
-     * Whether the search process was incomplete. If true, then some search
-     * results may be missing, since all documents were not searched. This may
-     * occur when searching multiple drives with the &quot;allDrives&quot;
-     * corpora, but all corpora could not be searched. When this happens, it is
-     * suggested that clients narrow their query by choosing a different corpus
-     * such as &quot;default&quot; or &quot;drive&quot;.
+     * Whether the search process was incomplete. If true, then some search results may be missing, since all documents were not searched. This may occur when searching multiple drives with the &quot;allDrives&quot; corpora, but all corpora could not be searched. When this happens, it is suggested that clients narrow their query by choosing a different corpus such as &quot;default&quot; or &quot;drive&quot;.
      */
     incompleteSearch?: boolean;
     /**
-     * The list of files. If nextPageToken is populated, then this list may be
-     * incomplete and an additional page of results should be fetched.
+     * The list of files. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
      */
     items?: Schema$File[];
     /**
@@ -1335,10 +1188,7 @@ export namespace drive_v2 {
      */
     nextLink?: string;
     /**
-     * The page token for the next page of files. This will be absent if the end
-     * of the files list has been reached. If the token is rejected for any
-     * reason, it should be discarded, and pagination should be restarted from
-     * the first page of results.
+     * The page token for the next page of files. This will be absent if the end of the files list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
     nextPageToken?: string;
     /**
@@ -1414,8 +1264,7 @@ export namespace drive_v2 {
    */
   export interface Schema$Permission {
     /**
-     * Additional roles for this user. Only commenter is currently allowed,
-     * though more may be supported in the future.
+     * Additional roles for this user. Only commenter is currently allowed, though more may be supported in the future.
      */
     additionalRoles?: string[];
     /**
@@ -1423,20 +1272,15 @@ export namespace drive_v2 {
      */
     authKey?: string;
     /**
-     * Whether the account associated with this permission has been deleted.
-     * This field only pertains to user and group permissions.
+     * Whether the account associated with this permission has been deleted. This field only pertains to user and group permissions.
      */
     deleted?: boolean;
     /**
-     * The domain name of the entity this permission refers to. This is an
-     * output-only field which is present when the permission type is user,
-     * group or domain.
+     * The domain name of the entity this permission refers to. This is an output-only field which is present when the permission type is user, group or domain.
      */
     domain?: string;
     /**
-     * The email address of the user or group this permission refers to. This is
-     * an output-only field which is present when the permission type is user or
-     * group.
+     * The email address of the user or group this permission refers to. This is an output-only field which is present when the permission type is user or group.
      */
     emailAddress?: string;
     /**
@@ -1444,19 +1288,11 @@ export namespace drive_v2 {
      */
     etag?: string;
     /**
-     * The time at which this permission will expire (RFC 3339 date-time).
-     * Expiration dates have the following restrictions:   - They can only be
-     * set on user and group permissions  - The date must be in the future  -
-     * The date cannot be more than a year in the future  - The date can only be
-     * set on drive.permissions.update or drive.permissions.patch requests
+     * The time at which this permission will expire (RFC 3339 date-time). Expiration dates have the following restrictions:   - They can only be set on user and group permissions  - The date must be in the future  - The date cannot be more than a year in the future  - The date can only be set on drive.permissions.update or drive.permissions.patch requests
      */
     expirationDate?: string;
     /**
-     * The ID of the user this permission refers to, and identical to the
-     * permissionId in the About and Files resources. When making a
-     * drive.permissions.insert request, exactly one of the id or value fields
-     * must be specified unless the permission type is anyone, in which case
-     * both id and value are ignored.
+     * The ID of the user this permission refers to, and identical to the permissionId in the About and Files resources. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified unless the permission type is anyone, in which case both id and value are ignored.
      */
     id?: string;
     /**
@@ -1468,9 +1304,7 @@ export namespace drive_v2 {
      */
     name?: string;
     /**
-     * Details of whether the permissions on this shared drive item are
-     * inherited or directly on this item. This is an output-only field which is
-     * present only for shared drive items.
+     * Details of whether the permissions on this shared drive item are inherited or directly on this item. This is an output-only field which is present only for shared drive items.
      */
     permissionDetails?: Array<{
       additionalRoles?: string[];
@@ -1484,9 +1318,7 @@ export namespace drive_v2 {
      */
     photoLink?: string;
     /**
-     * The primary role for this user. While new values may be supported in the
-     * future, the following are currently allowed:   - owner  - organizer  -
-     * fileOrganizer  - writer  - reader
+     * The primary role for this user. While new values may be supported in the future, the following are currently allowed:   - owner  - organizer  - fileOrganizer  - writer  - reader
      */
     role?: string;
     /**
@@ -1504,16 +1336,11 @@ export namespace drive_v2 {
       teamDrivePermissionType?: string;
     }>;
     /**
-     * The account type. Allowed values are:   - user  - group  - domain  -
-     * anyone
+     * The account type. Allowed values are:   - user  - group  - domain  - anyone
      */
     type?: string;
     /**
-     * The email address or domain name for the entity. This is used during
-     * inserts and is not populated in responses. When making a
-     * drive.permissions.insert request, exactly one of the id or value fields
-     * must be specified unless the permission type is anyone, in which case
-     * both id and value are ignored.
+     * The email address or domain name for the entity. This is used during inserts and is not populated in responses. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified unless the permission type is anyone, in which case both id and value are ignored.
      */
     value?: string;
     /**
@@ -1551,10 +1378,7 @@ export namespace drive_v2 {
      */
     kind?: string;
     /**
-     * The page token for the next page of permissions. This field will be
-     * absent if the end of the permissions list has been reached. If the token
-     * is rejected for any reason, it should be discarded, and pagination should
-     * be restarted from the first page of results.
+     * The page token for the next page of permissions. This field will be absent if the end of the permissions list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
     nextPageToken?: string;
     /**
@@ -1563,11 +1387,7 @@ export namespace drive_v2 {
     selfLink?: string;
   }
   /**
-   * A key-value pair attached to a file that is either public or private to an
-   * application. The following limits apply to file properties:   - Maximum of
-   * 100 properties total per file - Maximum of 30 private properties per app -
-   * Maximum of 30 public properties - Maximum of 124 bytes size limit on (key +
-   * value) string in UTF-8 encoding for a single property.
+   * A key-value pair attached to a file that is either public or private to an application. The following limits apply to file properties:   - Maximum of 100 properties total per file - Maximum of 30 private properties per app - Maximum of 30 public properties - Maximum of 124 bytes size limit on (key + value) string in UTF-8 encoding for a single property.
    */
   export interface Schema$Property {
     /**
@@ -1591,14 +1411,12 @@ export namespace drive_v2 {
      */
     value?: string;
     /**
-     * The visibility of this property. Allowed values are PRIVATE and PUBLIC.
-     * (Default: PRIVATE)
+     * The visibility of this property. Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
      */
     visibility?: string;
   }
   /**
-   * A collection of properties, key-value pairs that are either public or
-   * private to an application.
+   * A collection of properties, key-value pairs that are either public or private to an application.
    */
   export interface Schema$PropertyList {
     /**
@@ -1623,8 +1441,7 @@ export namespace drive_v2 {
    */
   export interface Schema$Revision {
     /**
-     * Short term download URL for the file. This will only be populated on
-     * files with content stored in Drive.
+     * Short term download URL for the file. This will only be populated on files with content stored in Drive.
      */
     downloadUrl?: string;
     /**
@@ -1636,8 +1453,7 @@ export namespace drive_v2 {
      */
     exportLinks?: {[key: string]: string};
     /**
-     * The size of the revision in bytes. This will only be populated on files
-     * with content stored in Drive.
+     * The size of the revision in bytes. This will only be populated on files with content stored in Drive.
      */
     fileSize?: string;
     /**
@@ -1657,8 +1473,7 @@ export namespace drive_v2 {
      */
     lastModifyingUserName?: string;
     /**
-     * An MD5 checksum for the content of this revision. This will only be
-     * populated on files with content stored in Drive.
+     * An MD5 checksum for the content of this revision. This will only be populated on files with content stored in Drive.
      */
     md5Checksum?: string;
     /**
@@ -1670,26 +1485,19 @@ export namespace drive_v2 {
      */
     modifiedDate?: string;
     /**
-     * The original filename when this revision was created. This will only be
-     * populated on files with content stored in Drive.
+     * The original filename when this revision was created. This will only be populated on files with content stored in Drive.
      */
     originalFilename?: string;
     /**
-     * Whether this revision is pinned to prevent automatic purging. This will
-     * only be populated and can only be modified on files with content stored
-     * in Drive which are not Google Docs. Revisions can also be pinned when
-     * they are created through the drive.files.insert/update/copy by using the
-     * pinned query parameter.
+     * Whether this revision is pinned to prevent automatic purging. This will only be populated and can only be modified on files with content stored in Drive which are not Google Docs. Revisions can also be pinned when they are created through the drive.files.insert/update/copy by using the pinned query parameter.
      */
     pinned?: boolean;
     /**
-     * Whether subsequent revisions will be automatically republished. This is
-     * only populated and can only be modified for Google Docs.
+     * Whether subsequent revisions will be automatically republished. This is only populated and can only be modified for Google Docs.
      */
     publishAuto?: boolean;
     /**
-     * Whether this revision is published. This is only populated and can only
-     * be modified for Google Docs.
+     * Whether this revision is published. This is only populated and can only be modified for Google Docs.
      */
     published?: boolean;
     /**
@@ -1697,8 +1505,7 @@ export namespace drive_v2 {
      */
     publishedLink?: string;
     /**
-     * Whether this revision is published outside the domain. This is only
-     * populated and can only be modified for Google Docs.
+     * Whether this revision is published outside the domain. This is only populated and can only be modified for Google Docs.
      */
     publishedOutsideDomain?: boolean;
     /**
@@ -1715,8 +1522,7 @@ export namespace drive_v2 {
      */
     etag?: string;
     /**
-     * The list of revisions. If nextPageToken is populated, then this list may
-     * be incomplete and an additional page of results should be fetched.
+     * The list of revisions. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
      */
     items?: Schema$Revision[];
     /**
@@ -1724,10 +1530,7 @@ export namespace drive_v2 {
      */
     kind?: string;
     /**
-     * The page token for the next page of revisions. This field will be absent
-     * if the end of the revisions list has been reached. If the token is
-     * rejected for any reason, it should be discarded and pagination should be
-     * restarted from the first page of results.
+     * The page token for the next page of revisions. This field will be absent if the end of the revisions list has been reached. If the token is rejected for any reason, it should be discarded and pagination should be restarted from the first page of results.
      */
     nextPageToken?: string;
     /**
@@ -1737,8 +1540,7 @@ export namespace drive_v2 {
   }
   export interface Schema$StartPageToken {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;drive#startPageToken&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;drive#startPageToken&quot;.
      */
     kind?: string;
     /**
@@ -1747,14 +1549,11 @@ export namespace drive_v2 {
     startPageToken?: string;
   }
   /**
-   * Representation of a Team Drive.
+   * Deprecated: use the drive collection instead.
    */
   export interface Schema$TeamDrive {
     /**
-     * An image file and cropping parameters from which a background image for
-     * this Team Drive is set. This is a write only field; it can only be set on
-     * drive.teamdrives.update requests that don&#39;t set themeId. When
-     * specified, all fields of the backgroundImageFile must be set.
+     * An image file and cropping parameters from which a background image for this Team Drive is set. This is a write only field; it can only be set on drive.teamdrives.update requests that don&#39;t set themeId. When specified, all fields of the backgroundImageFile must be set.
      */
     backgroundImageFile?: {
       id?: string;
@@ -1791,8 +1590,7 @@ export namespace drive_v2 {
       canTrashChildren?: boolean;
     };
     /**
-     * The color of this Team Drive as an RGB hex string. It can only be set on
-     * a drive.teamdrives.update request that does not set themeId.
+     * The color of this Team Drive as an RGB hex string. It can only be set on a drive.teamdrives.update request that does not set themeId.
      */
     colorRgb?: string;
     /**
@@ -1800,8 +1598,7 @@ export namespace drive_v2 {
      */
     createdDate?: string;
     /**
-     * The ID of this Team Drive which is also the ID of the top level folder of
-     * this Team Drive.
+     * The ID of this Team Drive which is also the ID of the top level folder of this Team Drive.
      */
     id?: string;
     /**
@@ -1813,8 +1610,7 @@ export namespace drive_v2 {
      */
     name?: string;
     /**
-     * A set of restrictions that apply to this Team Drive or items inside this
-     * Team Drive.
+     * A set of restrictions that apply to this Team Drive or items inside this Team Drive.
      */
     restrictions?: {
       adminManagedRestrictions?: boolean;
@@ -1823,12 +1619,7 @@ export namespace drive_v2 {
       teamMembersOnly?: boolean;
     };
     /**
-     * The ID of the theme from which the background image and color will be
-     * set. The set of possible teamDriveThemes can be retrieved from a
-     * drive.about.get response. When not specified on a drive.teamdrives.insert
-     * request, a random theme is chosen from which the background image and
-     * color are set. This is a write-only field; it can only be set on requests
-     * that don&#39;t set colorRgb or backgroundImageFile.
+     * The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.insert request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don&#39;t set colorRgb or backgroundImageFile.
      */
     themeId?: string;
   }
@@ -1862,8 +1653,7 @@ export namespace drive_v2 {
      */
     emailAddress?: string;
     /**
-     * Whether this user is the same as the authenticated user for whom the
-     * request was made.
+     * Whether this user is the same as the authenticated user for whom the request was made.
      */
     isAuthenticatedUser?: boolean;
     /**
@@ -1888,8 +1678,7 @@ export namespace drive_v2 {
 
     /**
      * drive.about.get
-     * @desc Gets the information about the current user along with Drive API
-     * settings
+     * @desc Gets the information about the current user along with Drive API settings
      * @alias drive.about.get
      * @memberOf! ()
      *
@@ -1965,10 +1754,7 @@ export namespace drive_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Whether to count changes outside the My Drive hierarchy. When set to
-     * false, changes to files such as those in the Application Data folder or
-     * shared files which have not been added to My Drive will be omitted from
-     * the maxChangeIdCount.
+     * Whether to count changes outside the My Drive hierarchy. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the maxChangeIdCount.
      */
     includeSubscribed?: boolean;
     /**
@@ -1976,8 +1762,7 @@ export namespace drive_v2 {
      */
     maxChangeIdCount?: string;
     /**
-     * Change ID to start counting from when calculating number of remaining
-     * change IDs
+     * Change ID to start counting from when calculating number of remaining change IDs
      */
     startChangeId?: string;
   }
@@ -2148,23 +1933,15 @@ export namespace drive_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A comma-separated list of file extensions for open with filtering. All
-     * apps within the given app query scope which can open any of the given
-     * file extensions will be included in the response. If appFilterMimeTypes
-     * are provided as well, the result is a union of the two resulting app
-     * lists.
+     * A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If appFilterMimeTypes are provided as well, the result is a union of the two resulting app lists.
      */
     appFilterExtensions?: string;
     /**
-     * A comma-separated list of MIME types for open with filtering. All apps
-     * within the given app query scope which can open any of the given MIME
-     * types will be included in the response. If appFilterExtensions are
-     * provided as well, the result is a union of the two resulting app lists.
+     * A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
      */
     appFilterMimeTypes?: string;
     /**
-     * A language or locale code, as defined by BCP 47, with some extensions
-     * from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
+     * A language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
      */
     languageCode?: string;
   }
@@ -2177,15 +1954,14 @@ export namespace drive_v2 {
 
     /**
      * drive.changes.get
-     * @desc Deprecated - Use changes.getStartPageToken and changes.list to
-     * retrieve recent changes.
+     * @desc Deprecated - Use changes.getStartPageToken and changes.list to retrieve recent changes.
      * @alias drive.changes.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.changeId The ID of the change.
      * @param {string=} params.driveId The shared drive from which the change will be returned.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.teamDriveId Deprecated use driveId instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2259,7 +2035,7 @@ export namespace drive_v2 {
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.driveId The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive will be returned.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.teamDriveId Deprecated use driveId instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2340,14 +2116,14 @@ export namespace drive_v2 {
      * @param {string=} params.driveId The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
      * @param {boolean=} params.includeDeleted Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-     * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
+     * @param {boolean=} params.includeItemsFromAllDrives Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
      * @param {boolean=} params.includeSubscribed Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the result.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.maxResults Maximum number of changes to return.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param {string=} params.startChangeId Deprecated - use pageToken instead.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.teamDriveId Deprecated use driveId instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2422,14 +2198,14 @@ export namespace drive_v2 {
      * @param {string=} params.driveId The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
      * @param {boolean=} params.includeDeleted Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-     * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
+     * @param {boolean=} params.includeItemsFromAllDrives Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
      * @param {boolean=} params.includeSubscribed Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the result.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.maxResults Maximum number of changes to return.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param {string=} params.startChangeId Deprecated - use pageToken instead.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.teamDriveId Deprecated use driveId instead.
      * @param {().Channel} params.resource Request body data
@@ -2512,8 +2288,7 @@ export namespace drive_v2 {
      */
     driveId?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -2533,13 +2308,11 @@ export namespace drive_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the shared drive for which the starting pageToken for listing
-     * future changes from that shared drive will be returned.
+     * The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive will be returned.
      */
     driveId?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -2558,33 +2331,23 @@ export namespace drive_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The shared drive from which changes will be returned. If specified the
-     * change IDs will be reflective of the shared drive; use the combined drive
-     * ID and change ID as an identifier.
+     * The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      */
     driveId?: string;
     /**
-     * Whether changes should include the file resource if the file is still
-     * accessible by the user at the time of the request, even when a file was
-     * removed from the list of changes and there will be no further change
-     * entries for this file.
+     * Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
      */
     includeCorpusRemovals?: boolean;
     /**
-     * Whether to include changes indicating that items have been removed from
-     * the list of changes, for example by deletion or loss of access.
+     * Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      */
     includeDeleted?: boolean;
     /**
-     * Whether both My Drive and shared drive items should be included in
-     * results.
+     * Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
      */
     includeItemsFromAllDrives?: boolean;
     /**
-     * Whether to include changes outside the My Drive hierarchy in the result.
-     * When set to false, changes to files such as those in the Application Data
-     * folder or shared files which have not been added to My Drive will be
-     * omitted from the result.
+     * Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the result.
      */
     includeSubscribed?: boolean;
     /**
@@ -2596,14 +2359,11 @@ export namespace drive_v2 {
      */
     maxResults?: number;
     /**
-     * The token for continuing a previous list request on the next page. This
-     * should be set to the value of 'nextPageToken' from the previous response
-     * or to the response from the getStartPageToken method.
+     * The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
      */
     pageToken?: string;
     /**
-     * A comma-separated list of spaces to query. Supported values are 'drive',
-     * 'appDataFolder' and 'photos'.
+     * A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      */
     spaces?: string;
     /**
@@ -2611,8 +2371,7 @@ export namespace drive_v2 {
      */
     startChangeId?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -2631,33 +2390,23 @@ export namespace drive_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The shared drive from which changes will be returned. If specified the
-     * change IDs will be reflective of the shared drive; use the combined drive
-     * ID and change ID as an identifier.
+     * The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      */
     driveId?: string;
     /**
-     * Whether changes should include the file resource if the file is still
-     * accessible by the user at the time of the request, even when a file was
-     * removed from the list of changes and there will be no further change
-     * entries for this file.
+     * Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
      */
     includeCorpusRemovals?: boolean;
     /**
-     * Whether to include changes indicating that items have been removed from
-     * the list of changes, for example by deletion or loss of access.
+     * Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      */
     includeDeleted?: boolean;
     /**
-     * Whether both My Drive and shared drive items should be included in
-     * results.
+     * Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
      */
     includeItemsFromAllDrives?: boolean;
     /**
-     * Whether to include changes outside the My Drive hierarchy in the result.
-     * When set to false, changes to files such as those in the Application Data
-     * folder or shared files which have not been added to My Drive will be
-     * omitted from the result.
+     * Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the result.
      */
     includeSubscribed?: boolean;
     /**
@@ -2669,14 +2418,11 @@ export namespace drive_v2 {
      */
     maxResults?: number;
     /**
-     * The token for continuing a previous list request on the next page. This
-     * should be set to the value of 'nextPageToken' from the previous response
-     * or to the response from the getStartPageToken method.
+     * The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
      */
     pageToken?: string;
     /**
-     * A comma-separated list of spaces to query. Supported values are 'drive',
-     * 'appDataFolder' and 'photos'.
+     * A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      */
     spaces?: string;
     /**
@@ -2684,8 +2430,7 @@ export namespace drive_v2 {
      */
     startChangeId?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -2951,7 +2696,7 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.folderId The ID of the folder.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {().ChildReference} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3138,8 +2883,7 @@ export namespace drive_v2 {
      */
     folderId?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -3167,13 +2911,7 @@ export namespace drive_v2 {
      */
     maxResults?: number;
     /**
-     * A comma-separated list of sort keys. Valid keys are 'createdDate',
-     * 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate',
-     * 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'.
-     * Each key sorts ascending by default, but may be reversed with the 'desc'
-     * modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please
-     * note that there is a current limitation for users with approximately one
-     * million files in which the requested sort order is ignored.
+     * A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
      */
     orderBy?: string;
     /**
@@ -3659,8 +3397,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * If set, this will succeed when retrieving a deleted comment, and will
-     * include any deleted replies.
+     * If set, this will succeed when retrieving a deleted comment, and will include any deleted replies.
      */
     includeDeleted?: boolean;
   }
@@ -3691,24 +3428,19 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * If set, all comments and replies, including deleted comments and replies
-     * (with content stripped) will be returned.
+     * If set, all comments and replies, including deleted comments and replies (with content stripped) will be returned.
      */
     includeDeleted?: boolean;
     /**
-     * The maximum number of discussions to include in the response, used for
-     * paging.
+     * The maximum number of discussions to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * The continuation token, used to page through large result sets. To get
-     * the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response.
+     * The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
     /**
-     * Only discussions that were updated after this timestamp will be returned.
-     * Formatted as an RFC 3339 timestamp.
+     * Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
      */
     updatedMin?: string;
   }
@@ -3761,8 +3493,7 @@ export namespace drive_v2 {
 
     /**
      * drive.drives.delete
-     * @desc Permanently deletes a shared drive for which the user is an
-     * organizer. The shared drive cannot contain any untrashed items.
+     * @desc Permanently deletes a shared drive for which the user is an organizer. The shared drive cannot contain any untrashed items.
      * @alias drive.drives.delete
      * @memberOf! ()
      *
@@ -4283,9 +4014,7 @@ export namespace drive_v2 {
      */
     driveId?: string;
     /**
-     * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if they are an administrator of the
-     * domain to which the shared drive belongs.
+     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -4307,11 +4036,7 @@ export namespace drive_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * An ID, such as a random UUID, which uniquely identifies this user's
-     * request for idempotent creation of a shared drive. A repeated request by
-     * the same user and with the same request ID will avoid creating duplicates
-     * by attempting to create the same shared drive. If the shared drive
-     * already exists a 409 error will be returned.
+     * An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a shared drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same shared drive. If the shared drive already exists a 409 error will be returned.
      */
     requestId?: string;
 
@@ -4339,9 +4064,7 @@ export namespace drive_v2 {
      */
     q?: string;
     /**
-     * Issue the request as a domain administrator; if set to true, then all
-     * shared drives of the domain in which the requester is an administrator
-     * are returned.
+     * Issue the request as a domain administrator; if set to true, then all shared drives of the domain in which the requester is an administrator are returned.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -4367,9 +4090,7 @@ export namespace drive_v2 {
      */
     driveId?: string;
     /**
-     * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if they are an administrator of the
-     * domain to which the shared drive belongs.
+     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
      */
     useDomainAdminAccess?: boolean;
 
@@ -4397,7 +4118,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      * @param {boolean=} params.pinned Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
@@ -4468,15 +4189,13 @@ export namespace drive_v2 {
 
     /**
      * drive.files.delete
-     * @desc Permanently deletes a file by ID. Skips the trash. The currently
-     * authenticated user must own the file or be an organizer on the parent for
-     * shared drive files.
+     * @desc Permanently deletes a file by ID. Skips the trash. The currently authenticated user must own the file or be an organizer on the parent for shared drive files.
      * @alias drive.files.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to delete.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4613,9 +4332,7 @@ export namespace drive_v2 {
 
     /**
      * drive.files.export
-     * @desc Exports a Google Doc to the requested MIME type and returns the
-     * exported content. Please note that the exported content is limited to
-     * 10MB.
+     * @desc Exports a Google Doc to the requested MIME type and returns the exported content. Please note that the exported content is limited to 10MB.
      * @alias drive.files.export
      * @memberOf! ()
      *
@@ -4687,8 +4404,7 @@ export namespace drive_v2 {
 
     /**
      * drive.files.generateIds
-     * @desc Generates a set of file IDs which can be provided in insert
-     * requests.
+     * @desc Generates a set of file IDs which can be provided in insert requests.
      * @alias drive.files.generateIds
      * @memberOf! ()
      *
@@ -4772,7 +4488,7 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file in question.
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4849,7 +4565,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      * @param {boolean=} params.pinned Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
@@ -4933,7 +4649,7 @@ export namespace drive_v2 {
      * @param {string=} params.corpora Bodies of items (files/documents) to which the query applies. Supported bodies are 'default', 'domain', 'drive' and 'allDrives'. Prefer 'default' or 'drive' to 'allDrives' for efficiency.
      * @param {string=} params.corpus The body of items (files/documents) to which the query applies. Deprecated: use 'corpora' instead.
      * @param {string=} params.driveId ID of the shared drive to search.
-     * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
+     * @param {boolean=} params.includeItemsFromAllDrives Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.maxResults The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
      * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', 'title', and 'title_natural'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
@@ -4941,7 +4657,7 @@ export namespace drive_v2 {
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.q Query string for searching files.
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.teamDriveId Deprecated use driveId instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5006,8 +4722,7 @@ export namespace drive_v2 {
 
     /**
      * drive.files.patch
-     * @desc Updates file metadata and/or content. This method supports patch
-     * semantics.
+     * @desc Updates file metadata and/or content. This method supports patch semantics.
      * @alias drive.files.patch
      * @memberOf! ()
      *
@@ -5022,7 +4737,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
      * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
      * @param {boolean=} params.setModifiedDate Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
@@ -5100,7 +4815,7 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to update.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5167,15 +4882,13 @@ export namespace drive_v2 {
 
     /**
      * drive.files.trash
-     * @desc Moves a file to the trash. The currently authenticated user must
-     * own the file or be at least a fileOrganizer on the parent for shared
-     * drive files.
+     * @desc Moves a file to the trash. The currently authenticated user must own the file or be at least a fileOrganizer on the parent for shared drive files.
      * @alias drive.files.trash
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to trash.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5248,7 +4961,7 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to untrash.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5330,7 +5043,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
      * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
      * @param {boolean=} params.setModifiedDate Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
@@ -5418,7 +5131,7 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file in question.
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
      * @param {().Channel} params.resource Request body data
@@ -5505,18 +5218,15 @@ export namespace drive_v2 {
      */
     ocr?: boolean;
     /**
-     * If ocr is true, hints at the language to use. Valid values are BCP 47
-     * codes.
+     * If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      */
     ocrLanguage?: string;
     /**
-     * Whether to pin the head revision of the new copy. A file can have a
-     * maximum of 200 pinned revisions.
+     * Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
      */
     pinned?: boolean;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -5532,8 +5242,7 @@ export namespace drive_v2 {
      */
     timedTextTrackName?: string;
     /**
-     * The visibility of the new file. This parameter is only relevant when the
-     * source is not a native Google Doc and convert=false.
+     * The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
      */
     visibility?: string;
 
@@ -5553,8 +5262,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -5595,8 +5303,7 @@ export namespace drive_v2 {
      */
     maxResults?: number;
     /**
-     * The space in which the IDs can be used to create new files. Supported
-     * values are 'drive' and 'appDataFolder'.
+     * The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
      */
     space?: string;
   }
@@ -5607,8 +5314,7 @@ export namespace drive_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Whether the user is acknowledging the risk of downloading known malware
-     * or other abusive files.
+     * Whether the user is acknowledging the risk of downloading known malware or other abusive files.
      */
     acknowledgeAbuse?: boolean;
     /**
@@ -5620,13 +5326,11 @@ export namespace drive_v2 {
      */
     projection?: string;
     /**
-     * Specifies the Revision ID that should be downloaded. Ignored unless
-     * alt=media is specified.
+     * Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
      */
     revisionId?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -5634,8 +5338,7 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Deprecated: Use files.update with modifiedDateBehavior=noChange,
-     * updateViewedDate=true and an empty request body.
+     * Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
      */
     updateViewedDate?: boolean;
   }
@@ -5654,18 +5357,15 @@ export namespace drive_v2 {
      */
     ocr?: boolean;
     /**
-     * If ocr is true, hints at the language to use. Valid values are BCP 47
-     * codes.
+     * If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      */
     ocrLanguage?: string;
     /**
-     * Whether to pin the head revision of the uploaded file. A file can have a
-     * maximum of 200 pinned revisions.
+     * Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
      */
     pinned?: boolean;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -5685,8 +5385,7 @@ export namespace drive_v2 {
      */
     useContentAsIndexableText?: boolean;
     /**
-     * The visibility of the new file. This parameter is only relevant when
-     * convert=false.
+     * The visibility of the new file. This parameter is only relevant when convert=false.
      */
     visibility?: string;
 
@@ -5717,14 +5416,11 @@ export namespace drive_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Bodies of items (files/documents) to which the query applies. Supported
-     * bodies are 'default', 'domain', 'drive' and 'allDrives'. Prefer 'default'
-     * or 'drive' to 'allDrives' for efficiency.
+     * Bodies of items (files/documents) to which the query applies. Supported bodies are 'default', 'domain', 'drive' and 'allDrives'. Prefer 'default' or 'drive' to 'allDrives' for efficiency.
      */
     corpora?: string;
     /**
-     * The body of items (files/documents) to which the query applies.
-     * Deprecated: use 'corpora' instead.
+     * The body of items (files/documents) to which the query applies. Deprecated: use 'corpora' instead.
      */
     corpus?: string;
     /**
@@ -5732,8 +5428,7 @@ export namespace drive_v2 {
      */
     driveId?: string;
     /**
-     * Whether both My Drive and shared drive items should be included in
-     * results.
+     * Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
      */
     includeItemsFromAllDrives?: boolean;
     /**
@@ -5741,20 +5436,11 @@ export namespace drive_v2 {
      */
     includeTeamDriveItems?: boolean;
     /**
-     * The maximum number of files to return per page. Partial or empty result
-     * pages are possible even before the end of the files list has been
-     * reached.
+     * The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
      */
     maxResults?: number;
     /**
-     * A comma-separated list of sort keys. Valid keys are 'createdDate',
-     * 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate',
-     * 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', 'title', and
-     * 'title_natural'. Each key sorts ascending by default, but may be reversed
-     * with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate
-     * desc,title. Please note that there is a current limitation for users with
-     * approximately one million files in which the requested sort order is
-     * ignored.
+     * A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', 'title', and 'title_natural'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
      */
     orderBy?: string;
     /**
@@ -5770,13 +5456,11 @@ export namespace drive_v2 {
      */
     q?: string;
     /**
-     * A comma-separated list of spaces to query. Supported values are 'drive',
-     * 'appDataFolder' and 'photos'.
+     * A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      */
     spaces?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -5807,18 +5491,11 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * Determines the behavior in which modifiedDate is updated. This overrides
-     * setModifiedDate.
+     * Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
      */
     modifiedDateBehavior?: string;
     /**
-     * Whether a blob upload should create a new revision. If false, the blob
-     * data in the current head revision is replaced. If true or not set, a new
-     * blob is created as head revision, and previous unpinned revisions are
-     * preserved for a short period of time. Pinned revisions are stored
-     * indefinitely, using additional storage quota, up to a maximum of 200
-     * revisions. For details on how revisions are retained, see the Drive Help
-     * Center.
+     * Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
      */
     newRevision?: boolean;
     /**
@@ -5826,13 +5503,11 @@ export namespace drive_v2 {
      */
     ocr?: boolean;
     /**
-     * If ocr is true, hints at the language to use. Valid values are BCP 47
-     * codes.
+     * If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      */
     ocrLanguage?: string;
     /**
-     * Whether to pin the new revision. A file can have a maximum of 200 pinned
-     * revisions.
+     * Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
      */
     pinned?: boolean;
     /**
@@ -5840,16 +5515,11 @@ export namespace drive_v2 {
      */
     removeParents?: string;
     /**
-     * Whether to set the modified date using the value supplied in the request
-     * body. Setting this field to true is equivalent to
-     * modifiedDateBehavior=fromBodyOrNow, and false is equivalent to
-     * modifiedDateBehavior=now. To prevent any changes to the modified date set
-     * modifiedDateBehavior=noChange.
+     * Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
      */
     setModifiedDate?: boolean;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -5889,8 +5559,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -5909,8 +5578,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -5929,8 +5597,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -5957,18 +5624,11 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * Determines the behavior in which modifiedDate is updated. This overrides
-     * setModifiedDate.
+     * Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
      */
     modifiedDateBehavior?: string;
     /**
-     * Whether a blob upload should create a new revision. If false, the blob
-     * data in the current head revision is replaced. If true or not set, a new
-     * blob is created as head revision, and previous unpinned revisions are
-     * preserved for a short period of time. Pinned revisions are stored
-     * indefinitely, using additional storage quota, up to a maximum of 200
-     * revisions. For details on how revisions are retained, see the Drive Help
-     * Center.
+     * Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
      */
     newRevision?: boolean;
     /**
@@ -5976,13 +5636,11 @@ export namespace drive_v2 {
      */
     ocr?: boolean;
     /**
-     * If ocr is true, hints at the language to use. Valid values are BCP 47
-     * codes.
+     * If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      */
     ocrLanguage?: string;
     /**
-     * Whether to pin the new revision. A file can have a maximum of 200 pinned
-     * revisions.
+     * Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
      */
     pinned?: boolean;
     /**
@@ -5990,16 +5648,11 @@ export namespace drive_v2 {
      */
     removeParents?: string;
     /**
-     * Whether to set the modified date using the value supplied in the request
-     * body. Setting this field to true is equivalent to
-     * modifiedDateBehavior=fromBodyOrNow, and false is equivalent to
-     * modifiedDateBehavior=now. To prevent any changes to the modified date set
-     * modifiedDateBehavior=noChange.
+     * Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
      */
     setModifiedDate?: boolean;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -6050,8 +5703,7 @@ export namespace drive_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Whether the user is acknowledging the risk of downloading known malware
-     * or other abusive files.
+     * Whether the user is acknowledging the risk of downloading known malware or other abusive files.
      */
     acknowledgeAbuse?: boolean;
     /**
@@ -6063,13 +5715,11 @@ export namespace drive_v2 {
      */
     projection?: string;
     /**
-     * Specifies the Revision ID that should be downloaded. Ignored unless
-     * alt=media is specified.
+     * Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
      */
     revisionId?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -6077,8 +5727,7 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Deprecated: Use files.update with modifiedDateBehavior=noChange,
-     * updateViewedDate=true and an empty request body.
+     * Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
      */
     updateViewedDate?: boolean;
 
@@ -6246,7 +5895,7 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {().ParentReference} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6429,8 +6078,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -6470,7 +6118,7 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file or shared drive.
      * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6545,7 +6193,7 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file or shared drive.
      * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6696,7 +6344,7 @@ export namespace drive_v2 {
      * @param {string=} params.emailMessage A plain text custom message to include in notification emails.
      * @param {string} params.fileId The ID for the file or shared drive.
      * @param {boolean=} params.sendNotificationEmails Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      * @param {().Permission} params.resource Request body data
@@ -6776,7 +6424,7 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file or shared drive.
      * @param {integer=} params.maxResults The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6854,7 +6502,7 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file or shared drive.
      * @param {string} params.permissionId The ID for the permission.
      * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
@@ -6934,7 +6582,7 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file or shared drive.
      * @param {string} params.permissionId The ID for the permission.
      * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
-     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
@@ -7021,8 +6669,7 @@ export namespace drive_v2 {
      */
     permissionId?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -7030,10 +6677,7 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if the file ID parameter refers to a
-     * shared drive and the requester is an administrator of the domain to which
-     * the shared drive belongs.
+     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -7052,8 +6696,7 @@ export namespace drive_v2 {
      */
     permissionId?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -7061,10 +6704,7 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if the file ID parameter refers to a
-     * shared drive and the requester is an administrator of the domain to which
-     * the shared drive belongs.
+     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -7096,13 +6736,11 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * Whether to send notification emails when sharing to users or groups. This
-     * parameter is ignored and an email is sent if the role is owner.
+     * Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
      */
     sendNotificationEmails?: boolean;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -7110,10 +6748,7 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if the file ID parameter refers to a
-     * shared drive and the requester is an administrator of the domain to which
-     * the shared drive belongs.
+     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      */
     useDomainAdminAccess?: boolean;
 
@@ -7133,20 +6768,15 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * The maximum number of permissions to return per page. When not set for
-     * files in a shared drive, at most 100 results will be returned. When not
-     * set for files that are not in a shared drive, the entire list will be
-     * returned.
+     * The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
      */
     maxResults?: number;
     /**
-     * The token for continuing a previous list request on the next page. This
-     * should be set to the value of 'nextPageToken' from the previous response.
+     * The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
      */
     pageToken?: string;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -7154,10 +6784,7 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if the file ID parameter refers to a
-     * shared drive and the requester is an administrator of the domain to which
-     * the shared drive belongs.
+     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -7181,8 +6808,7 @@ export namespace drive_v2 {
      */
     removeExpiration?: boolean;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -7190,15 +6816,11 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Whether changing a role to 'owner' downgrades the current owners to
-     * writers. Does nothing if the specified role is not 'owner'.
+     * Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
      */
     transferOwnership?: boolean;
     /**
-     * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if the file ID parameter refers to a
-     * shared drive and the requester is an administrator of the domain to which
-     * the shared drive belongs.
+     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      */
     useDomainAdminAccess?: boolean;
 
@@ -7227,8 +6849,7 @@ export namespace drive_v2 {
      */
     removeExpiration?: boolean;
     /**
-     * Whether the requesting application supports both My Drives and shared
-     * drives.
+     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -7236,15 +6857,11 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
     /**
-     * Whether changing a role to 'owner' downgrades the current owners to
-     * writers. Does nothing if the specified role is not 'owner'.
+     * Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
      */
     transferOwnership?: boolean;
     /**
-     * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if the file ID parameter refers to a
-     * shared drive and the requester is an administrator of the domain to which
-     * the shared drive belongs.
+     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      */
     useDomainAdminAccess?: boolean;
 
@@ -7781,8 +7398,7 @@ export namespace drive_v2 {
      */
     propertyKey?: string;
     /**
-     * The visibility of the property. Allowed values are PRIVATE and PUBLIC.
-     * (Default: PRIVATE)
+     * The visibility of the property. Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
      */
     visibility?: string;
 
@@ -7807,8 +7423,7 @@ export namespace drive_v2 {
      */
     propertyKey?: string;
     /**
-     * The visibility of the property. Allowed values are PRIVATE and PUBLIC.
-     * (Default: PRIVATE)
+     * The visibility of the property. Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
      */
     visibility?: string;
 
@@ -7826,8 +7441,7 @@ export namespace drive_v2 {
 
     /**
      * drive.realtime.get
-     * @desc Exports the contents of the Realtime API data model associated with
-     * this file as JSON.
+     * @desc Exports the contents of the Realtime API data model associated with this file as JSON.
      * @alias drive.realtime.get
      * @memberOf! ()
      *
@@ -7899,8 +7513,7 @@ export namespace drive_v2 {
 
     /**
      * drive.realtime.update
-     * @desc Overwrites the Realtime API data model associated with this file
-     * with the provided JSON data model.
+     * @desc Overwrites the Realtime API data model associated with this file with the provided JSON data model.
      * @alias drive.realtime.update
      * @memberOf! ()
      *
@@ -7988,9 +7601,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * The revision of the Realtime API data model to export. Revisions start at
-     * 1 (the initial empty data model) and are incremented with each change. If
-     * this parameter is excluded, the most recent data model will be returned.
+     * The revision of the Realtime API data model to export. Revisions start at 1 (the initial empty data model) and are incremented with each change. If this parameter is excluded, the most recent data model will be returned.
      */
     revision?: number;
   }
@@ -8001,11 +7612,7 @@ export namespace drive_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The revision of the model to diff the uploaded model against. If set, the
-     * uploaded model is diffed against the provided revision and those
-     * differences are merged with any changes made to the model after the
-     * provided revision. If not set, the uploaded model replaces the current
-     * model on the server.
+     * The revision of the model to diff the uploaded model against. If set, the uploaded model is diffed against the provided revision and those differences are merged with any changes made to the model after the provided revision. If not set, the uploaded model replaces the current model on the server.
      */
     baseRevision?: string;
     /**
@@ -8564,19 +8171,15 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * If set, all replies, including deleted replies (with content stripped)
-     * will be returned.
+     * If set, all replies, including deleted replies (with content stripped) will be returned.
      */
     includeDeleted?: boolean;
     /**
-     * The maximum number of replies to include in the response, used for
-     * paging.
+     * The maximum number of replies to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * The continuation token, used to page through large result sets. To get
-     * the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response.
+     * The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -8637,10 +8240,7 @@ export namespace drive_v2 {
 
     /**
      * drive.revisions.delete
-     * @desc Permanently deletes a file version. You can only delete revisions
-     * for files with binary content, like images or videos. Revisions for other
-     * files, like Google Docs or Sheets, and the last remaining file version
-     * can't be deleted.
+     * @desc Permanently deletes a file version. You can only delete revisions for files with binary content, like images or videos. Revisions for other files, like Google Docs or Sheets, and the last remaining file version can't be deleted.
      * @alias drive.revisions.delete
      * @memberOf! ()
      *
@@ -9045,8 +8645,7 @@ export namespace drive_v2 {
      */
     maxResults?: number;
     /**
-     * Page token for revisions. To get the next page of results, set this
-     * parameter to the value of "nextPageToken" from the previous response.
+     * Page token for revisions. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -9494,9 +9093,7 @@ export namespace drive_v2 {
      */
     teamDriveId?: string;
     /**
-     * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if they are an administrator of the
-     * domain to which the Team Drive belongs.
+     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -9508,11 +9105,7 @@ export namespace drive_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * An ID, such as a random UUID, which uniquely identifies this user's
-     * request for idempotent creation of a Team Drive. A repeated request by
-     * the same user and with the same request ID will avoid creating duplicates
-     * by attempting to create the same Team Drive. If the Team Drive already
-     * exists a 409 error will be returned.
+     * An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
      */
     requestId?: string;
 
@@ -9540,9 +9133,7 @@ export namespace drive_v2 {
      */
     q?: string;
     /**
-     * Issue the request as a domain administrator; if set to true, then all
-     * Team Drives of the domain in which the requester is an administrator are
-     * returned.
+     * Issue the request as a domain administrator; if set to true, then all Team Drives of the domain in which the requester is an administrator are returned.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -9558,9 +9149,7 @@ export namespace drive_v2 {
      */
     teamDriveId?: string;
     /**
-     * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if they are an administrator of the
-     * domain to which the Team Drive belongs.
+     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
      */
     useDomainAdminAccess?: boolean;
 

@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace oslogin_v1beta {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace oslogin_v1beta {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,7 +91,7 @@ export namespace oslogin_v1beta {
   /**
    * Cloud OS Login API
    *
-   * Manages OS login configuration for Google account users.
+   * You can use OS Login to manage access to your VM instances using IAM roles. For more information, read [OS Login](/compute/docs/oslogin/).
    *
    * @example
    * const {google} = require('googleapis');
@@ -112,18 +108,17 @@ export namespace oslogin_v1beta {
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.users = new Resource$Users(this.context);
     }
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -136,8 +131,7 @@ export namespace oslogin_v1beta {
     loginProfile?: Schema$LoginProfile;
   }
   /**
-   * The user profile information used for logging in to a virtual machine on
-   * Google Compute Engine.
+   * The user profile information used for logging in to a virtual machine on Google Compute Engine.
    */
   export interface Schema$LoginProfile {
     /**
@@ -186,8 +180,7 @@ export namespace oslogin_v1beta {
      */
     shell?: string;
     /**
-     * System identifier for which account the username or uid applies to. By
-     * default, the empty value is used.
+     * System identifier for which account the username or uid applies to. By default, the empty value is used.
      */
     systemId?: string;
     /**
@@ -212,9 +205,7 @@ export namespace oslogin_v1beta {
      */
     fingerprint?: string;
     /**
-     * Public key text in SSH format, defined by &lt;a
-     * href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot;
-     * target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt; section 6.6.
+     * Public key text in SSH format, defined by &lt;a href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot; target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt; section 6.6.
      */
     key?: string;
   }
@@ -231,8 +222,7 @@ export namespace oslogin_v1beta {
 
     /**
      * oslogin.users.getLoginProfile
-     * @desc Retrieves the profile information used for logging in to a virtual
-     * machine on Google Compute Engine.
+     * @desc Retrieves the profile information used for logging in to a virtual machine on Google Compute Engine.
      * @alias oslogin.users.getLoginProfile
      * @memberOf! ()
      *
@@ -308,9 +298,7 @@ export namespace oslogin_v1beta {
 
     /**
      * oslogin.users.importSshPublicKey
-     * @desc Adds an SSH public key and returns the profile information. Default
-     * POSIX account information is set when no username and UID exist as part
-     * of the login profile.
+     * @desc Adds an SSH public key and returns the profile information. Default POSIX account information is set when no username and UID exist as part of the login profile.
      * @alias oslogin.users.importSshPublicKey
      * @memberOf! ()
      *
@@ -518,9 +506,7 @@ export namespace oslogin_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A reference to the POSIX account to update. POSIX accounts are identified
-     * by the project ID they are associated with. A reference to the POSIX
-     * account is in format `users/{user}/projects/{project}`.
+     * A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
      */
     name?: string;
   }
@@ -673,8 +659,7 @@ export namespace oslogin_v1beta {
 
     /**
      * oslogin.users.sshPublicKeys.patch
-     * @desc Updates an SSH public key and returns the profile information. This
-     * method supports patch semantics.
+     * @desc Updates an SSH public key and returns the profile information. This method supports patch semantics.
      * @alias oslogin.users.sshPublicKeys.patch
      * @memberOf! ()
      *
@@ -754,9 +739,7 @@ export namespace oslogin_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The fingerprint of the public key to update. Public keys are identified
-     * by their SHA-256 fingerprint. The fingerprint of the public key is in
-     * format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
     name?: string;
   }
@@ -768,9 +751,7 @@ export namespace oslogin_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The fingerprint of the public key to retrieve. Public keys are identified
-     * by their SHA-256 fingerprint. The fingerprint of the public key is in
-     * format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
     name?: string;
   }
@@ -782,9 +763,7 @@ export namespace oslogin_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The fingerprint of the public key to update. Public keys are identified
-     * by their SHA-256 fingerprint. The fingerprint of the public key is in
-     * format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
     name?: string;
     /**

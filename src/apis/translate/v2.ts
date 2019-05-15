@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -67,9 +67,7 @@ export namespace translate_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -85,9 +83,7 @@ export namespace translate_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters. Overrides userIp if both are provided.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.
      */
     quotaUser?: string;
     /**
@@ -103,8 +99,7 @@ export namespace translate_v2 {
   /**
    * Google Cloud Translation API
    *
-   * The Google Cloud Translation API lets websites and programs integrate with
-   * Google Translate programmatically.
+   * The Google Cloud Translation API lets websites and programs integrate with     Google Translate programmatically.
    *
    * @example
    * const {google} = require('googleapis');
@@ -123,7 +118,10 @@ export namespace translate_v2 {
     translations: Resource$Translations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.detections = new Resource$Detections(this.context);
       this.languages = new Resource$Languages(this.context);
@@ -138,8 +136,7 @@ export namespace translate_v2 {
     detections?: Schema$DetectionsResource[];
   }
   /**
-   * An array of languages which we detect for the given text The most likely
-   * language list first.
+   * An array of languages which we detect for the given text The most likely language list first.
    */
   export interface Schema$DetectionsResource {}
   /**
@@ -147,8 +144,7 @@ export namespace translate_v2 {
    */
   export interface Schema$DetectLanguageRequest {
     /**
-     * The input text upon which to perform language detection. Repeat this
-     * parameter to perform language detection on multiple text inputs.
+     * The input text upon which to perform language detection. Repeat this parameter to perform language detection on multiple text inputs.
      */
     q?: string[];
   }
@@ -157,27 +153,19 @@ export namespace translate_v2 {
    */
   export interface Schema$GetSupportedLanguagesRequest {
     /**
-     * The language to use to return localized, human readable names of
-     * supported languages.
+     * The language to use to return localized, human readable names of supported languages.
      */
     target?: string;
   }
   export interface Schema$LanguagesListResponse {
     /**
-     * List of source/target languages supported by the translation API. If
-     * target parameter is unspecified, the list is sorted by the ASCII code
-     * point order of the language code. If target parameter is specified, the
-     * list is sorted by the collation order of the language name in the target
-     * language.
+     * List of source/target languages supported by the translation API. If target parameter is unspecified, the list is sorted by the ASCII code point order of the language code. If target parameter is specified, the list is sorted by the collation order of the language name in the target language.
      */
     languages?: Schema$LanguagesResource[];
   }
   export interface Schema$LanguagesResource {
     /**
-     * Supported language code, generally consisting of its ISO 639-1
-     * identifier. (E.g. &#39;en&#39;, &#39;ja&#39;). In certain cases, BCP-47
-     * codes including language + region identifiers are returned (e.g.
-     * &#39;zh-TW&#39; and &#39;zh-CH&#39;)
+     * Supported language code, generally consisting of its ISO 639-1 identifier. (E.g. &#39;en&#39;, &#39;ja&#39;). In certain cases, BCP-47 codes including language + region identifiers are returned (e.g. &#39;zh-TW&#39; and &#39;zh-CH&#39;)
      */
     language?: string;
     /**
@@ -190,31 +178,23 @@ export namespace translate_v2 {
    */
   export interface Schema$TranslateTextRequest {
     /**
-     * The format of the source text, in either HTML (default) or plain-text. A
-     * value of &quot;html&quot; indicates HTML and a value of &quot;text&quot;
-     * indicates plain-text.
+     * The format of the source text, in either HTML (default) or plain-text. A value of &quot;html&quot; indicates HTML and a value of &quot;text&quot; indicates plain-text.
      */
     format?: string;
     /**
-     * The `model` type requested for this translation. Valid values are listed
-     * in public documentation.
+     * The `model` type requested for this translation. Valid values are listed in public documentation.
      */
     model?: string;
     /**
-     * The input text to translate. Repeat this parameter to perform translation
-     * operations on multiple text inputs.
+     * The input text to translate. Repeat this parameter to perform translation operations on multiple text inputs.
      */
     q?: string[];
     /**
-     * The language of the source text, set to one of the language codes listed
-     * in Language Support. If the source language is not specified, the API
-     * will attempt to identify the source language automatically and return it
-     * within the response.
+     * The language of the source text, set to one of the language codes listed in Language Support. If the source language is not specified, the API will attempt to identify the source language automatically and return it within the response.
      */
     source?: string;
     /**
-     * The language to use for translation of the input text, set to one of the
-     * language codes listed in Language Support.
+     * The language to use for translation of the input text, set to one of the language codes listed in Language Support.
      */
     target?: string;
   }
@@ -229,16 +209,11 @@ export namespace translate_v2 {
   }
   export interface Schema$TranslationsResource {
     /**
-     * The source language of the initial request, detected automatically, if no
-     * source language was passed within the initial request. If the source
-     * language was passed, auto-detection of the language will not occur and
-     * this field will be empty.
+     * The source language of the initial request, detected automatically, if no source language was passed within the initial request. If the source language was passed, auto-detection of the language will not occur and this field will be empty.
      */
     detectedSourceLanguage?: string;
     /**
-     * The `model` type used for this translation. Valid values are listed in
-     * public documentation. Can be different from requested `model`. Present
-     * only if specific model type was explicitly requested.
+     * The `model` type used for this translation. Valid values are listed in public documentation. Can be different from requested `model`. Present only if specific model type was explicitly requested.
      */
     model?: string;
     /**
@@ -424,8 +399,7 @@ export namespace translate_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The input text upon which to perform language detection. Repeat this
-     * parameter to perform language detection on multiple text inputs.
+     * The input text upon which to perform language detection. Repeat this parameter to perform language detection on multiple text inputs.
      */
     q?: string[];
   }
@@ -524,8 +498,7 @@ export namespace translate_v2 {
      */
     model?: string;
     /**
-     * The language to use to return localized, human readable names of
-     * supported languages.
+     * The language to use to return localized, human readable names of supported languages.
      */
     target?: string;
   }
@@ -708,31 +681,23 @@ export namespace translate_v2 {
      */
     cid?: string[];
     /**
-     * The format of the source text, in either HTML (default) or plain-text. A
-     * value of "html" indicates HTML and a value of "text" indicates
-     * plain-text.
+     * The format of the source text, in either HTML (default) or plain-text. A value of "html" indicates HTML and a value of "text" indicates plain-text.
      */
     format?: string;
     /**
-     * The `model` type requested for this translation. Valid values are listed
-     * in public documentation.
+     * The `model` type requested for this translation. Valid values are listed in public documentation.
      */
     model?: string;
     /**
-     * The input text to translate. Repeat this parameter to perform translation
-     * operations on multiple text inputs.
+     * The input text to translate. Repeat this parameter to perform translation operations on multiple text inputs.
      */
     q?: string[];
     /**
-     * The language of the source text, set to one of the language codes listed
-     * in Language Support. If the source language is not specified, the API
-     * will attempt to identify the source language automatically and return it
-     * within the response.
+     * The language of the source text, set to one of the language codes listed in Language Support. If the source language is not specified, the API will attempt to identify the source language automatically and return it within the response.
      */
     source?: string;
     /**
-     * The language to use for translation of the input text, set to one of the
-     * language codes listed in Language Support.
+     * The language to use for translation of the input text, set to one of the language codes listed in Language Support.
      */
     target?: string;
   }

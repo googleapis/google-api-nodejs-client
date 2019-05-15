@@ -18,8 +18,20 @@
  * limitations under the License.
  */
 
-import { OAuth2Client, JWT, Compute, UserRefreshClient } from 'google-auth-library';
-import { GoogleConfigurable, createAPIRequest, MethodOptions, GlobalOptions, BodyResponseCallback, APIRequestContext } from 'googleapis-common';
+import { 
+  OAuth2Client, 
+  JWT, 
+  Compute, 
+  UserRefreshClient 
+} from 'google-auth-library';
+import { 
+  GoogleConfigurable, 
+  createAPIRequest, 
+  MethodOptions, 
+  GlobalOptions, 
+  BodyResponseCallback, 
+  APIRequestContext 
+} from 'googleapis-common';
 import { GaxiosPromise } from 'gaxios';
 
 // tslint:disable: no-any
@@ -75,7 +87,7 @@ export class {{ Name }} {
   constructor(options: GlobalOptions, google?: GoogleConfigurable) {
     this.context = {
       _options: options || {},
-      google
+      google,
     };
 
     {% if api.resources %}
