@@ -33,7 +33,7 @@ const { chat, auth } = Chat;
 </script>
 ```
 
-## Quick NodeJS example
+## Using the client library
 
 ```js
 // Assuming that `GOOGLE_APPLICATION_CREDENTIALS="/app/.data/chatbot.json"` is set as an environment variable with the path to the json key that you downloaded when creating a service account for your bot.
@@ -41,8 +41,7 @@ const { chat, auth } = Chat;
 const {google} = require("googleapis")
 const SCOPES = ["https://www.googleapis.com/auth/chat.bot"]
 
-const YourModule = {
-  async execute(){
+async main() {
     const auth = await google.auth.getClient({
       scopes: SCOPES
     })
@@ -50,11 +49,9 @@ const YourModule = {
     console.log(chat)
     const project = await google.auth.getProjectId()
     const spaces = await chat.spaces.list()
-  }
 }
 
-// Some other place
-YourModule.execute()
+main()
 ```
 
 ## License
