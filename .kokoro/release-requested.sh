@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright 2018 Google LLC
+# Copyright 2019 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,24 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -xeo pipefail
+set -eo pipefail
 
 export NPM_CONFIG_PREFIX=/home/node/.npm-global
 
-cd $(dirname $0)/..
+GITHUB_TOKEN=$(cat $KOKORO_KEYSTORE_DIR/73713_yoshi-automation-github-key)
 
-npm install
-npm test
-
-# codecov combines coverage across integration and unit tests. Include
-# the logic below for any environment you wish to collect coverage for:
-COVERAGE_NODE=10
-if npx check-node-version@3.3.0 --silent --node $COVERAGE_NODE; then
-  NYC_BIN=./node_modules/nyc/bin/nyc.js
-  if [ -f "$NYC_BIN" ]; then
-    $NYC_BIN report || true
-  fi
-  bash $KOKORO_GFILE_DIR/codecov.sh
-else
-  echo "coverage is only reported for Node $COVERAGE_NODE"
-fi
+npx release-please detect-checked --token=$GITHUB_TOKEN \
+  --repo-url=googleapis/google-api-nodejs-client \
+  --package-name=googleapis
