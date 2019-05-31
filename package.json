@@ -80,7 +80,7 @@
     "gts": "^1.0.0",
     "hard-rejection": "^2.1.0",
     "intelli-espower-loader": "^1.0.1",
-    "js-green-licenses": "^0.5.0",
+    "js-green-licenses": "^1.0.0",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "mocha": "^6.1.4",
