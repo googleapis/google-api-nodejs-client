@@ -34,9 +34,7 @@
 * [Questions/problems?](#questionsproblems)
 
 ## Google APIs
-The full list of supported APIs can be found [here][supported-list]. The API endpoints are automatically generated, so if the API is not in the list, it is currently not supported by this API client library.
-
-Supported APIs are listed on the [Google APIs Explorer][apiexplorer].
+The full list of supported APIs can be found on the [Google APIs Explorer][apiexplorer]. The API endpoints are automatically generated, so if the API is not in the list, it is currently not supported by this API client library.
 
 ### Working with Google Cloud Platform APIs?
 If you're working with [Google Cloud Platform][cloudplatform] APIs such as Datastore, Cloud Storage or Pub/Sub, consider using the [`@google-cloud`][googlecloud] client libraries: single purpose idiomatic Node.js clients for Google Cloud Platform services.
@@ -527,7 +525,6 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [circleimg]: https://circleci.com/gh/googleapis/google-api-nodejs-client.svg?style=shield
 [releaselevel]: https://cloud.google.com/terms/launch-stages
 [releaselevelimg]: https://img.shields.io/badge/Release%20Level-Alpha-ff69b4.svg
-[supported-list]: https://developers.google.com/apis-explorer/
 [bugs]: https://github.com/googleapis/google-api-nodejs-client/issues
 [node]: http://nodejs.org/
 [stackoverflow]: http://stackoverflow.com/questions/tagged/google-api-nodejs-client
