@@ -43,10 +43,7 @@ if (!fs.existsSync(docsPath)) {
 async function main() {
   const children = await readdir(apiPath);
   const dirs = children.filter(x => {
-    return (
-      !x.endsWith('.ts') &&
-      !x.includes('compute')
-    );
+    return !x.endsWith('.ts') && !x.includes('compute');
   });
   const contents = nunjucks.render(templatePath, {apis: dirs});
   await writeFile(indexPath, contents);
