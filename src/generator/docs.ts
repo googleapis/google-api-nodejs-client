@@ -53,7 +53,7 @@ async function main() {
   const promises = dirs.map(dir => {
     return q
       .add(() =>
-        execa('npx', ['compodoc', `src/apis/${dir}`, '-d', `./docs/${dir}`])
+        execa(process.execPath, ['--max-old-space-size=8192', './node_modules/.bin/compodoc', `src/apis/${dir}`, '-d', `./docs/${dir}`])
       )
       .then(() => {
         i++;
