@@ -45,7 +45,6 @@ async function main() {
   const dirs = children.filter(x => {
     return (
       !x.endsWith('.ts') &&
-      !x.includes('dfareporting') &&
       !x.includes('compute')
     );
   });
