@@ -4,5 +4,6 @@
   "release_level": "beta",
   "language": "nodejs",
   "repo": "googleapis/google-api-nodejs-client",
-  "distribution_name": "googleapis"
+  "distribution_name": "googleapis",
+  "client_documentation": "https://googleapis.dev/nodejs/googleapis/latest"
 }
