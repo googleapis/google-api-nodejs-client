@@ -25,7 +25,7 @@ import {
 } from 'googleapis-common';
 import * as mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
-import Q = require('p-queue');
+import Q from 'p-queue';
 import * as path from 'path';
 import * as url from 'url';
 import * as util from 'util';
