@@ -1,11 +1,4 @@
 {
-  "nyc": {
-    "exclude": [
-      "build/src/apis",
-      "build/test",
-      "samples"
-    ]
-  },
   "license": "Apache-2.0",
   "dependencies": {
     "google-auth-library": "^4.0.0",
@@ -21,7 +14,7 @@
   "scripts": {
     "pretest": "npm run compile",
     "prepare": "npm run compile",
-    "test": "nyc mocha build/test",
+    "test": "c8 mocha build/test",
     "predocs": "npm run build-tools",
     "docs": "node build/src/generator/docs",
     "system-test": "mocha build/system-test",
@@ -30,7 +23,6 @@
     "compile": "tsc -p .",
     "build-tools": "tsc -p tsconfig.tools.json",
     "clean": "gts clean",
-    "codecov": "nyc report && codecov -f .coverage/*.json",
     "fix": "eslint --fix '**/*.js' && gts fix",
     "pregenerate": "npm run build-tools",
     "generate": "node build/src/generator/generate.js",
@@ -70,6 +62,7 @@
     "@types/tmp": "^0.1.0",
     "@types/url-template": "^2.0.28",
     "assert-rejects": "^1.0.0",
+    "c8": "^5.0.1",
     "chai": "^4.2.0",
     "codecov": "^3.4.0",
     "eslint": "^5.16.0",
@@ -89,7 +82,6 @@
     "ncp": "^2.0.0",
     "nock": "^10.0.6",
     "nunjucks": "^3.2.0",
-    "nyc": "^14.1.1",
     "open": "^6.3.0",
     "p-queue": "^6.0.0",
     "prettier": "^1.17.1",
