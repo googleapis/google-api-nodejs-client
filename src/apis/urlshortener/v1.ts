@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace urlshortener_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace urlshortener_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -83,7 +92,10 @@ export namespace urlshortener_v1 {
     url: Resource$Url;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.url = new Resource$Url(this.context);
     }
@@ -91,14 +103,11 @@ export namespace urlshortener_v1 {
 
   export interface Schema$AnalyticsSnapshot {
     /**
-     * Top browsers, e.g. &quot;Chrome&quot;; sorted by (descending) click
-     * counts. Only present if this data is available.
+     * Top browsers, e.g. &quot;Chrome&quot;; sorted by (descending) click counts. Only present if this data is available.
      */
     browsers?: Schema$StringCount[];
     /**
-     * Top countries (expressed as country codes), e.g. &quot;US&quot; or
-     * &quot;DE&quot;; sorted by (descending) click counts. Only present if this
-     * data is available.
+     * Top countries (expressed as country codes), e.g. &quot;US&quot; or &quot;DE&quot;; sorted by (descending) click counts. Only present if this data is available.
      */
     countries?: Schema$StringCount[];
     /**
@@ -106,13 +115,11 @@ export namespace urlshortener_v1 {
      */
     longUrlClicks?: string;
     /**
-     * Top platforms or OSes, e.g. &quot;Windows&quot;; sorted by (descending)
-     * click counts. Only present if this data is available.
+     * Top platforms or OSes, e.g. &quot;Windows&quot;; sorted by (descending) click counts. Only present if this data is available.
      */
     platforms?: Schema$StringCount[];
     /**
-     * Top referring hosts, e.g. &quot;www.google.com&quot;; sorted by
-     * (descending) click counts. Only present if this data is available.
+     * Top referring hosts, e.g. &quot;www.google.com&quot;; sorted by (descending) click counts. Only present if this data is available.
      */
     referrers?: Schema$StringCount[];
     /**
@@ -144,26 +151,21 @@ export namespace urlshortener_v1 {
   }
   export interface Schema$StringCount {
     /**
-     * Number of clicks for this top entry, e.g. for this particular country or
-     * browser.
+     * Number of clicks for this top entry, e.g. for this particular country or browser.
      */
     count?: string;
     /**
-     * Label assigned to this top entry, e.g. &quot;US&quot; or
-     * &quot;Chrome&quot;.
+     * Label assigned to this top entry, e.g. &quot;US&quot; or &quot;Chrome&quot;.
      */
     id?: string;
   }
   export interface Schema$Url {
     /**
-     * A summary of the click analytics for the short and long URL. Might not be
-     * present if not requested or currently unavailable.
+     * A summary of the click analytics for the short and long URL. Might not be present if not requested or currently unavailable.
      */
     analytics?: Schema$AnalyticsSummary;
     /**
-     * Time the short URL was created; ISO 8601 representation using the
-     * yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ format, e.g.
-     * &quot;2010-10-14T19:01:24.944+00:00&quot;.
+     * Time the short URL was created; ISO 8601 representation using the yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ format, e.g. &quot;2010-10-14T19:01:24.944+00:00&quot;.
      */
     created?: string;
     /**
@@ -175,15 +177,11 @@ export namespace urlshortener_v1 {
      */
     kind?: string;
     /**
-     * Long URL, e.g. &quot;http://www.google.com/&quot;. Might not be present
-     * if the status is &quot;REMOVED&quot;.
+     * Long URL, e.g. &quot;http://www.google.com/&quot;. Might not be present if the status is &quot;REMOVED&quot;.
      */
     longUrl?: string;
     /**
-     * Status of the target URL. Possible values: &quot;OK&quot;,
-     * &quot;MALWARE&quot;, &quot;PHISHING&quot;, or &quot;REMOVED&quot;. A URL
-     * might be marked &quot;REMOVED&quot; if it was flagged as spam, for
-     * example.
+     * Status of the target URL. Possible values: &quot;OK&quot;, &quot;MALWARE&quot;, &quot;PHISHING&quot;, or &quot;REMOVED&quot;. A URL might be marked &quot;REMOVED&quot; if it was flagged as spam, for example.
      */
     status?: string;
   }
@@ -193,9 +191,7 @@ export namespace urlshortener_v1 {
      */
     items?: Schema$Url[];
     /**
-     * Number of items returned with each full &quot;page&quot; of results. Note
-     * that the last page could have fewer items than the
-     * &quot;itemsPerPage&quot; value.
+     * Number of items returned with each full &quot;page&quot; of results. Note that the last page could have fewer items than the &quot;itemsPerPage&quot; value.
      */
     itemsPerPage?: number;
     /**
@@ -207,19 +203,16 @@ export namespace urlshortener_v1 {
      */
     nextPageToken?: string;
     /**
-     * Total number of short URLs associated with this user (may be
-     * approximate).
+     * Total number of short URLs associated with this user (may be approximate).
      */
     totalItems?: number;
   }
-
 
   export class Resource$Url {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * urlshortener.url.get
@@ -234,19 +227,27 @@ export namespace urlshortener_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Url$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Url>;
-    get(params: Params$Resource$Url$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Url>,
-        callback: BodyResponseCallback<Schema$Url>): void;
-    get(params: Params$Resource$Url$Get,
-        callback: BodyResponseCallback<Schema$Url>): void;
+    get(
+      params?: Params$Resource$Url$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Url>;
+    get(
+      params: Params$Resource$Url$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Url>,
+      callback: BodyResponseCallback<Schema$Url>
+    ): void;
+    get(
+      params: Params$Resource$Url$Get,
+      callback: BodyResponseCallback<Schema$Url>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Url>): void;
-    get(paramsOrCallback?: Params$Resource$Url$Get|
-        BodyResponseCallback<Schema$Url>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Url>,
-        callback?: BodyResponseCallback<Schema$Url>):
-        void|GaxiosPromise<Schema$Url> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Url$Get
+        | BodyResponseCallback<Schema$Url>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Url>,
+      callback?: BodyResponseCallback<Schema$Url>
+    ): void | GaxiosPromise<Schema$Url> {
       let params = (paramsOrCallback || {}) as Params$Resource$Url$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -264,16 +265,19 @@ export namespace urlshortener_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/urlshortener/v1/url')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/urlshortener/v1/url').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['shortUrl'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Url>(parameters, callback);
@@ -281,7 +285,6 @@ export namespace urlshortener_v1 {
         return createAPIRequest<Schema$Url>(parameters);
       }
     }
-
 
     /**
      * urlshortener.url.insert
@@ -295,22 +298,27 @@ export namespace urlshortener_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Url$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Url>;
     insert(
-        params: Params$Resource$Url$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Url>,
-        callback: BodyResponseCallback<Schema$Url>): void;
+      params?: Params$Resource$Url$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Url>;
     insert(
-        params: Params$Resource$Url$Insert,
-        callback: BodyResponseCallback<Schema$Url>): void;
+      params: Params$Resource$Url$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Url>,
+      callback: BodyResponseCallback<Schema$Url>
+    ): void;
+    insert(
+      params: Params$Resource$Url$Insert,
+      callback: BodyResponseCallback<Schema$Url>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Url>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Url$Insert|
-        BodyResponseCallback<Schema$Url>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Url>,
-        callback?: BodyResponseCallback<Schema$Url>):
-        void|GaxiosPromise<Schema$Url> {
+      paramsOrCallback?:
+        | Params$Resource$Url$Insert
+        | BodyResponseCallback<Schema$Url>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Url>,
+      callback?: BodyResponseCallback<Schema$Url>
+    ): void | GaxiosPromise<Schema$Url> {
       let params = (paramsOrCallback || {}) as Params$Resource$Url$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -328,16 +336,19 @@ export namespace urlshortener_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/urlshortener/v1/url')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/urlshortener/v1/url').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Url>(parameters, callback);
@@ -345,7 +356,6 @@ export namespace urlshortener_v1 {
         return createAPIRequest<Schema$Url>(parameters);
       }
     }
-
 
     /**
      * urlshortener.url.list
@@ -360,23 +370,29 @@ export namespace urlshortener_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Url$List, options?: MethodOptions):
-        GaxiosPromise<Schema$UrlHistory>;
     list(
-        params: Params$Resource$Url$List,
-        options: MethodOptions|BodyResponseCallback<Schema$UrlHistory>,
-        callback: BodyResponseCallback<Schema$UrlHistory>): void;
+      params?: Params$Resource$Url$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UrlHistory>;
     list(
-        params: Params$Resource$Url$List,
-        callback: BodyResponseCallback<Schema$UrlHistory>): void;
+      params: Params$Resource$Url$List,
+      options: MethodOptions | BodyResponseCallback<Schema$UrlHistory>,
+      callback: BodyResponseCallback<Schema$UrlHistory>
+    ): void;
+    list(
+      params: Params$Resource$Url$List,
+      callback: BodyResponseCallback<Schema$UrlHistory>
+    ): void;
     list(callback: BodyResponseCallback<Schema$UrlHistory>): void;
     list(
-        paramsOrCallback?: Params$Resource$Url$List|
-        BodyResponseCallback<Schema$UrlHistory>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UrlHistory>,
-        callback?: BodyResponseCallback<Schema$UrlHistory>):
-        void|GaxiosPromise<Schema$UrlHistory> {
+      paramsOrCallback?:
+        | Params$Resource$Url$List
+        | BodyResponseCallback<Schema$UrlHistory>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlHistory>,
+      callback?: BodyResponseCallback<Schema$UrlHistory>
+    ): void | GaxiosPromise<Schema$UrlHistory> {
       let params = (paramsOrCallback || {}) as Params$Resource$Url$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -394,16 +410,19 @@ export namespace urlshortener_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/urlshortener/v1/url/history')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/urlshortener/v1/url/history').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UrlHistory>(parameters, callback);
@@ -417,7 +436,7 @@ export namespace urlshortener_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Additional information to return.
@@ -432,8 +451,7 @@ export namespace urlshortener_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -444,7 +462,7 @@ export namespace urlshortener_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Additional information to return.

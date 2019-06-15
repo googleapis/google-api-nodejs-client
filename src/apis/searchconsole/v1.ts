@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +63,7 @@ export namespace searchconsole_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,9 +75,7 @@ export namespace searchconsole_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -100,7 +108,10 @@ export namespace searchconsole_v1 {
     urlTestingTools: Resource$Urltestingtools;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.urlTestingTools = new Resource$Urltestingtools(this.context);
     }
@@ -120,9 +131,7 @@ export namespace searchconsole_v1 {
    */
   export interface Schema$Image {
     /**
-     * Image data in format determined by the mime type. Currently, the format
-     * will always be &quot;image/png&quot;, but this might change in the
-     * future.
+     * Image data in format determined by the mime type. Currently, the format will always be &quot;image/png&quot;, but this might change in the future.
      */
     data?: string;
     /**
@@ -162,8 +171,7 @@ export namespace searchconsole_v1 {
     url?: string;
   }
   /**
-   * Mobile-friendly test response, including mobile-friendly issues and
-   * resource issues.
+   * Mobile-friendly test response, including mobile-friendly issues and resource issues.
    */
   export interface Schema$RunMobileFriendlyTestResponse {
     /**
@@ -201,24 +209,22 @@ export namespace searchconsole_v1 {
     status?: string;
   }
 
-
   export class Resource$Urltestingtools {
     context: APIRequestContext;
     mobileFriendlyTest: Resource$Urltestingtools$Mobilefriendlytest;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.mobileFriendlyTest =
-          new Resource$Urltestingtools$Mobilefriendlytest(this.context);
+      this.mobileFriendlyTest = new Resource$Urltestingtools$Mobilefriendlytest(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Urltestingtools$Mobilefriendlytest {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * searchconsole.urlTestingTools.mobileFriendlyTest.run
@@ -232,28 +238,35 @@ export namespace searchconsole_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params?: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$RunMobileFriendlyTestResponse>;
-    run(params: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
-        callback: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>):
-        void;
-    run(params: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
-        callback: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>):
-        void;
-    run(callback: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>):
-        void;
-    run(paramsOrCallback?:
-            Params$Resource$Urltestingtools$Mobilefriendlytest$Run|
-        BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
-        callback?: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>):
-        void|GaxiosPromise<Schema$RunMobileFriendlyTestResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Urltestingtools$Mobilefriendlytest$Run;
+    run(
+      params?: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RunMobileFriendlyTestResponse>;
+    run(
+      params: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
+      callback: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>
+    ): void;
+    run(
+      params: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
+      callback: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>
+    ): void;
+    run(
+      callback: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>
+    ): void;
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Urltestingtools$Mobilefriendlytest$Run
+        | BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
+      callback?: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>
+    ): void | GaxiosPromise<Schema$RunMobileFriendlyTestResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Urltestingtools$Mobilefriendlytest$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -268,37 +281,41 @@ export namespace searchconsole_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://searchconsole.googleapis.com/';
+        options.rootUrl || 'https://searchconsole.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/urlTestingTools/mobileFriendlyTest:run')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/urlTestingTools/mobileFriendlyTest:run'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RunMobileFriendlyTestResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$RunMobileFriendlyTestResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Urltestingtools$Mobilefriendlytest$Run
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

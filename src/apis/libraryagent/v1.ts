@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +63,7 @@ export namespace libraryagent_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,9 +75,7 @@ export namespace libraryagent_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -100,7 +108,10 @@ export namespace libraryagent_v1 {
     shelves: Resource$Shelves;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.shelves = new Resource$Shelves(this.context);
     }
@@ -115,9 +126,7 @@ export namespace libraryagent_v1 {
      */
     author?: string;
     /**
-     * The resource name of the book. Book names have the form
-     * `shelves/{shelf_id}/books/{book_id}`. The name is ignored when creating a
-     * book.
+     * The resource name of the book. Book names have the form `shelves/{shelf_id}/books/{book_id}`. The name is ignored when creating a book.
      */
     name?: string;
     /**
@@ -138,9 +147,7 @@ export namespace libraryagent_v1 {
      */
     books?: Schema$GoogleExampleLibraryagentV1Book[];
     /**
-     * A token to retrieve next page of results. Pass this value in the
-     * ListBooksRequest.page_token field in the subsequent call to `ListBooks`
-     * method to retrieve the next page of results.
+     * A token to retrieve next page of results. Pass this value in the ListBooksRequest.page_token field in the subsequent call to `ListBooks` method to retrieve the next page of results.
      */
     nextPageToken?: string;
   }
@@ -149,9 +156,7 @@ export namespace libraryagent_v1 {
    */
   export interface Schema$GoogleExampleLibraryagentV1ListShelvesResponse {
     /**
-     * A token to retrieve next page of results. Pass this value in the
-     * ListShelvesRequest.page_token field in the subsequent call to
-     * `ListShelves` method to retrieve the next page of results.
+     * A token to retrieve next page of results. Pass this value in the ListShelvesRequest.page_token field in the subsequent call to `ListShelves` method to retrieve the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -164,8 +169,7 @@ export namespace libraryagent_v1 {
    */
   export interface Schema$GoogleExampleLibraryagentV1Shelf {
     /**
-     * Output only. The resource name of the shelf. Shelf names have the form
-     * `shelves/{shelf_id}`. The name is ignored when creating a shelf.
+     * Output only. The resource name of the shelf. Shelf names have the form `shelves/{shelf_id}`. The name is ignored when creating a shelf.
      */
     name?: string;
     /**
@@ -174,7 +178,6 @@ export namespace libraryagent_v1 {
     theme?: string;
   }
 
-
   export class Resource$Shelves {
     context: APIRequestContext;
     books: Resource$Shelves$Books;
@@ -182,7 +185,6 @@ export namespace libraryagent_v1 {
       this.context = context;
       this.books = new Resource$Shelves$Books(this.context);
     }
-
 
     /**
      * libraryagent.shelves.get
@@ -196,28 +198,33 @@ export namespace libraryagent_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Shelves$Get, options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf>;
-    get(params: Params$Resource$Shelves$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>,
-        callback:
-            BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>):
-        void;
-    get(params: Params$Resource$Shelves$Get,
-        callback:
-            BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>):
-        void;
-    get(callback:
-            BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>):
-        void;
-    get(paramsOrCallback?: Params$Resource$Shelves$Get|
-        BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>,
-        callback?:
-            BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>):
-        void|GaxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf> {
+    get(
+      params?: Params$Resource$Shelves$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf>;
+    get(
+      params: Params$Resource$Shelves$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>,
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>
+    ): void;
+    get(
+      params: Params$Resource$Shelves$Get,
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Shelves$Get
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>,
+      callback?: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>
+    ): void | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf> {
       let params = (paramsOrCallback || {}) as Params$Resource$Shelves$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -235,30 +242,32 @@ export namespace libraryagent_v1 {
       const rootUrl = options.rootUrl || 'https://libraryagent.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Shelf>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Shelf>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * libraryagent.shelves.list
-     * @desc Lists shelves. The order is unspecified but deterministic. Newly
-     * created shelves will not necessarily be added to the end of this list.
+     * @desc Lists shelves. The order is unspecified but deterministic. Newly created shelves will not necessarily be added to the end of this list.
      * @alias libraryagent.shelves.list
      * @memberOf! ()
      *
@@ -269,28 +278,49 @@ export namespace libraryagent_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Shelves$List, options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>;
     list(
-        params: Params$Resource$Shelves$List,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListShelvesResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListShelvesResponse>): void;
+      params?: Params$Resource$Shelves$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>;
     list(
-        params: Params$Resource$Shelves$List,
-        callback: BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListShelvesResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$GoogleExampleLibraryagentV1ListShelvesResponse>): void;
+      params: Params$Resource$Shelves$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleExampleLibraryagentV1ListShelvesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleExampleLibraryagentV1ListShelvesResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Shelves$List|BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListShelvesResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListShelvesResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListShelvesResponse>): void|
-        GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListShelvesResponse> {
+      params: Params$Resource$Shelves$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleExampleLibraryagentV1ListShelvesResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$GoogleExampleLibraryagentV1ListShelvesResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Shelves$List
+        | BodyResponseCallback<
+            Schema$GoogleExampleLibraryagentV1ListShelvesResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleExampleLibraryagentV1ListShelvesResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleExampleLibraryagentV1ListShelvesResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleExampleLibraryagentV1ListShelvesResponse
+    > {
       let params = (paramsOrCallback || {}) as Params$Resource$Shelves$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -308,22 +338,26 @@ export namespace libraryagent_v1 {
       const rootUrl = options.rootUrl || 'https://libraryagent.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/shelves').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/shelves').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$GoogleExampleLibraryagentV1ListShelvesResponse>(parameters);
+          Schema$GoogleExampleLibraryagentV1ListShelvesResponse
+        >(parameters);
       }
     }
   }
@@ -332,7 +366,7 @@ export namespace libraryagent_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the shelf to retrieve.
@@ -343,17 +377,14 @@ export namespace libraryagent_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Requested page size. Server may return fewer shelves than requested. If
-     * unspecified, server will pick an appropriate default.
+     * Requested page size. Server may return fewer shelves than requested. If unspecified, server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.
-     * Typically, this is the value of ListShelvesResponse.next_page_token
-     * returned from the previous call to `ListShelves` method.
+     * A token identifying a page of results the server should return. Typically, this is the value of ListShelvesResponse.next_page_token returned from the previous call to `ListShelves` method.
      */
     pageToken?: string;
   }
@@ -364,13 +395,9 @@ export namespace libraryagent_v1 {
       this.context = context;
     }
 
-
     /**
      * libraryagent.shelves.books.borrow
-     * @desc Borrow a book from the library. Returns the book if it is borrowed
-     * successfully. Returns NOT_FOUND if the book does not exist in the
-     * library. Returns quota exceeded error if the amount of books borrowed
-     * exceeds allocation quota in any dimensions.
+     * @desc Borrow a book from the library. Returns the book if it is borrowed successfully. Returns NOT_FOUND if the book does not exist in the library. Returns quota exceeded error if the amount of books borrowed exceeds allocation quota in any dimensions.
      * @alias libraryagent.shelves.books.borrow
      * @memberOf! ()
      *
@@ -381,31 +408,34 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     borrow(
-        params?: Params$Resource$Shelves$Books$Borrow, options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+      params?: Params$Resource$Shelves$Books$Borrow,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
     borrow(
-        params: Params$Resource$Shelves$Books$Borrow,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-        callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>):
-        void;
+      params: Params$Resource$Shelves$Books$Borrow,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+    ): void;
     borrow(
-        params: Params$Resource$Shelves$Books$Borrow,
-        callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>):
-        void;
-    borrow(callback:
-               BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>):
-        void;
+      params: Params$Resource$Shelves$Books$Borrow,
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+    ): void;
     borrow(
-        paramsOrCallback?: Params$Resource$Shelves$Books$Borrow|
-        BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-        callback?:
-            BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>):
-        void|GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Shelves$Books$Borrow;
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+    ): void;
+    borrow(
+      paramsOrCallback?:
+        | Params$Resource$Shelves$Books$Borrow
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+      callback?: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+    ): void | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shelves$Books$Borrow;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -422,26 +452,28 @@ export namespace libraryagent_v1 {
       const rootUrl = options.rootUrl || 'https://libraryagent.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:borrow')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:borrow').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * libraryagent.shelves.books.get
@@ -455,27 +487,35 @@ export namespace libraryagent_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Shelves$Books$Get, options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
-    get(params: Params$Resource$Shelves$Books$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-        callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>):
-        void;
-    get(params: Params$Resource$Shelves$Books$Get,
-        callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>):
-        void;
-    get(callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>):
-        void;
-    get(paramsOrCallback?: Params$Resource$Shelves$Books$Get|
-        BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-        callback?:
-            BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>):
-        void|GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Shelves$Books$Get;
+    get(
+      params?: Params$Resource$Shelves$Books$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+    get(
+      params: Params$Resource$Shelves$Books$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+    ): void;
+    get(
+      params: Params$Resource$Shelves$Books$Get,
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Shelves$Books$Get
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+      callback?: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+    ): void | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shelves$Books$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -492,31 +532,32 @@ export namespace libraryagent_v1 {
       const rootUrl = options.rootUrl || 'https://libraryagent.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * libraryagent.shelves.books.list
-     * @desc Lists books in a shelf. The order is unspecified but deterministic.
-     * Newly created books will not necessarily be added to the end of this
-     * list. Returns NOT_FOUND if the shelf does not exist.
+     * @desc Lists books in a shelf. The order is unspecified but deterministic. Newly created books will not necessarily be added to the end of this list. Returns NOT_FOUND if the shelf does not exist.
      * @alias libraryagent.shelves.books.list
      * @memberOf! ()
      *
@@ -528,31 +569,51 @@ export namespace libraryagent_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Shelves$Books$List, options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListBooksResponse>;
     list(
-        params: Params$Resource$Shelves$Books$List,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListBooksResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListBooksResponse>): void;
+      params?: Params$Resource$Shelves$Books$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListBooksResponse>;
     list(
-        params: Params$Resource$Shelves$Books$List,
-        callback: BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListBooksResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$GoogleExampleLibraryagentV1ListBooksResponse>): void;
+      params: Params$Resource$Shelves$Books$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleExampleLibraryagentV1ListBooksResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleExampleLibraryagentV1ListBooksResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Shelves$Books$List|
-        BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListBooksResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListBooksResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListBooksResponse>): void|
-        GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListBooksResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Shelves$Books$List;
+      params: Params$Resource$Shelves$Books$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleExampleLibraryagentV1ListBooksResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$GoogleExampleLibraryagentV1ListBooksResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Shelves$Books$List
+        | BodyResponseCallback<
+            Schema$GoogleExampleLibraryagentV1ListBooksResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleExampleLibraryagentV1ListBooksResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleExampleLibraryagentV1ListBooksResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleExampleLibraryagentV1ListBooksResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shelves$Books$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -569,32 +630,35 @@ export namespace libraryagent_v1 {
       const rootUrl = options.rootUrl || 'https://libraryagent.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/books')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/books').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1ListBooksResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$GoogleExampleLibraryagentV1ListBooksResponse>(parameters);
+          Schema$GoogleExampleLibraryagentV1ListBooksResponse
+        >(parameters);
       }
     }
 
-
     /**
      * libraryagent.shelves.books.return
-     * @desc Return a book to the library. Returns the book if it is returned to
-     * the library successfully. Returns error if the book does not belong to
-     * the library or the users didn't borrow before.
+     * @desc Return a book to the library. Returns the book if it is returned to the library successfully. Returns error if the book does not belong to the library or the users didn't borrow before.
      * @alias libraryagent.shelves.books.return
      * @memberOf! ()
      *
@@ -605,31 +669,34 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     return(
-        params?: Params$Resource$Shelves$Books$Return, options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+      params?: Params$Resource$Shelves$Books$Return,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
     return(
-        params: Params$Resource$Shelves$Books$Return,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-        callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>):
-        void;
+      params: Params$Resource$Shelves$Books$Return,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+    ): void;
     return(
-        params: Params$Resource$Shelves$Books$Return,
-        callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>):
-        void;
+      params: Params$Resource$Shelves$Books$Return,
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+    ): void;
     return(
-        callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>):
-        void;
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+    ): void;
     return(
-        paramsOrCallback?: Params$Resource$Shelves$Books$Return|
-        BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-        callback?:
-            BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>): void|
-        GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Shelves$Books$Return;
+      paramsOrCallback?:
+        | Params$Resource$Shelves$Books$Return
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+      callback?: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+    ): void | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shelves$Books$Return;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -646,67 +713,67 @@ export namespace libraryagent_v1 {
       const rootUrl = options.rootUrl || 'https://libraryagent.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:return')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:return').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Shelves$Books$Borrow extends
-      StandardParameters {
+  export interface Params$Resource$Shelves$Books$Borrow
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the book to borrow.
      */
     name?: string;
   }
-  export interface Params$Resource$Shelves$Books$Get extends
-      StandardParameters {
+  export interface Params$Resource$Shelves$Books$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the book to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Shelves$Books$List extends
-      StandardParameters {
+  export interface Params$Resource$Shelves$Books$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Requested page size. Server may return fewer books than requested. If
-     * unspecified, server will pick an appropriate default.
+     * Requested page size. Server may return fewer books than requested. If unspecified, server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.
-     * Typically, this is the value of ListBooksResponse.next_page_token.
-     * returned from the previous call to `ListBooks` method.
+     * A token identifying a page of results the server should return. Typically, this is the value of ListBooksResponse.next_page_token. returned from the previous call to `ListBooks` method.
      */
     pageToken?: string;
     /**
@@ -714,12 +781,12 @@ export namespace libraryagent_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Shelves$Books$Return extends
-      StandardParameters {
+  export interface Params$Resource$Shelves$Books$Return
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the book to return.

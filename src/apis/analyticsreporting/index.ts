@@ -17,17 +17,21 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {analyticsreporting_v4} from './v4';
 
 export const VERSIONS = {
-  'v4': analyticsreporting_v4.Analyticsreporting,
+  v4: analyticsreporting_v4.Analyticsreporting,
 };
 
-export function analyticsreporting(version: 'v4'):
-    analyticsreporting_v4.Analyticsreporting;
-export function analyticsreporting(options: analyticsreporting_v4.Options):
-    analyticsreporting_v4.Analyticsreporting;
-export function
-analyticsreporting<T = analyticsreporting_v4.Analyticsreporting>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v4'|analyticsreporting_v4.Options) {
+export function analyticsreporting(
+  version: 'v4'
+): analyticsreporting_v4.Analyticsreporting;
+export function analyticsreporting(
+  options: analyticsreporting_v4.Options
+): analyticsreporting_v4.Analyticsreporting;
+export function analyticsreporting<
+  T = analyticsreporting_v4.Analyticsreporting
+>(
+  this: GoogleConfigurable,
+  versionOrOptions: 'v4' | analyticsreporting_v4.Options
+) {
   return getAPI<T>('analyticsreporting', versionOrOptions, VERSIONS, this);
 }
 

@@ -25,7 +25,7 @@ describe('GoogleApis#discover', () => {
     assert(apis.drive.indexOf('v2') > -1);
   });
 
-  it('should generate all apis', (done) => {
+  it('should generate all apis', done => {
     const localApis = fs.readdirSync(path.join(__dirname, '../src/apis'));
     const google = new GoogleApis();
     // tslint:disable-next-line no-any
@@ -40,7 +40,7 @@ describe('GoogleApis#discover', () => {
     localApis.splice(localApis.indexOf('index.js'), 1);
     localApis.splice(localApis.indexOf('index.js.map'), 1);
 
-    localApis.forEach((name) => {
+    localApis.forEach(name => {
       assert(g2[name], `API '${name}' is not available on GoogleApis`);
       // Setting all APIs to null initially.
       g2[name] = null;
@@ -48,7 +48,7 @@ describe('GoogleApis#discover', () => {
 
     assert.strictEqual(google.drive, null);
 
-    google.discover('https://www.googleapis.com/discovery/v1/apis', (err) => {
+    google.discover('https://www.googleapis.com/discovery/v1/apis', err => {
       if (err) {
         console.warn(err);
         return done();

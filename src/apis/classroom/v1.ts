@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +63,7 @@ export namespace classroom_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,9 +75,7 @@ export namespace classroom_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -103,7 +111,10 @@ export namespace classroom_v1 {
     userProfiles: Resource$Userprofiles;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.courses = new Resource$Courses(this.context);
       this.invitations = new Resource$Invitations(this.context);
@@ -117,13 +128,11 @@ export namespace classroom_v1 {
    */
   export interface Schema$Announcement {
     /**
-     * Absolute link to this announcement in the Classroom web UI. This is only
-     * populated if `state` is `PUBLISHED`.  Read-only.
+     * Absolute link to this announcement in the Classroom web UI. This is only populated if `state` is `PUBLISHED`.  Read-only.
      */
     alternateLink?: string;
     /**
-     * Assignee mode of the announcement. If unspecified, the default value is
-     * `ALL_STUDENTS`.
+     * Assignee mode of the announcement. If unspecified, the default value is `ALL_STUDENTS`.
      */
     assigneeMode?: string;
     /**
@@ -139,20 +148,15 @@ export namespace classroom_v1 {
      */
     creatorUserId?: string;
     /**
-     * Classroom-assigned identifier of this announcement, unique per course.
-     * Read-only.
+     * Classroom-assigned identifier of this announcement, unique per course.  Read-only.
      */
     id?: string;
     /**
-     * Identifiers of students with access to the announcement. This field is
-     * set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the
-     * `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in
-     * this field will be able to see the announcement.
+     * Identifiers of students with access to the announcement. This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this field will be able to see the announcement.
      */
     individualStudentsOptions?: Schema$IndividualStudentsOptions;
     /**
-     * Additional materials.  Announcements must have no more than 20 material
-     * items.
+     * Additional materials.  Announcements must have no more than 20 material items.
      */
     materials?: Schema$Material[];
     /**
@@ -160,13 +164,11 @@ export namespace classroom_v1 {
      */
     scheduledTime?: string;
     /**
-     * Status of this announcement. If unspecified, the default state is
-     * `DRAFT`.
+     * Status of this announcement. If unspecified, the default state is `DRAFT`.
      */
     state?: string;
     /**
-     * Description of this announcement. The text must be a valid UTF-8 string
-     * containing no more than 30,000 characters.
+     * Description of this announcement. The text must be a valid UTF-8 string containing no more than 30,000 characters.
      */
     text?: string;
     /**
@@ -179,8 +181,7 @@ export namespace classroom_v1 {
    */
   export interface Schema$Assignment {
     /**
-     * Drive folder where attachments from student submissions are placed. This
-     * is only populated for course teachers and administrators.
+     * Drive folder where attachments from student submissions are placed. This is only populated for course teachers and administrators.
      */
     studentWorkFolder?: Schema$DriveFolder;
   }
@@ -189,18 +190,12 @@ export namespace classroom_v1 {
    */
   export interface Schema$AssignmentSubmission {
     /**
-     * Attachments added by the student. Drive files that correspond to
-     * materials with a share mode of STUDENT_COPY may not exist yet if the
-     * student has not accessed the assignment in Classroom.  Some attachment
-     * metadata is only populated if the requesting user has permission to
-     * access it. Identifier and alternate_link fields are always available, but
-     * others (e.g. title) may not be.
+     * Attachments added by the student. Drive files that correspond to materials with a share mode of STUDENT_COPY may not exist yet if the student has not accessed the assignment in Classroom.  Some attachment metadata is only populated if the requesting user has permission to access it. Identifier and alternate_link fields are always available, but others (e.g. title) may not be.
      */
     attachments?: Schema$Attachment[];
   }
   /**
-   * Attachment added to student assignment work.  When creating attachments,
-   * setting the `form` field is not supported.
+   * Attachment added to student assignment work.  When creating attachments, setting the `form` field is not supported.
    */
   export interface Schema$Attachment {
     /**
@@ -221,15 +216,11 @@ export namespace classroom_v1 {
     youTubeVideo?: Schema$YouTubeVideo;
   }
   /**
-   * A reference to a Cloud Pub/Sub topic.  To register for notifications, the
-   * owner of the topic must grant
-   * `classroom-notifications@system.gserviceaccount.com` the
-   * `projects.topics.publish` permission.
+   * A reference to a Cloud Pub/Sub topic.  To register for notifications, the owner of the topic must grant `classroom-notifications@system.gserviceaccount.com` the  `projects.topics.publish` permission.
    */
   export interface Schema$CloudPubsubTopic {
     /**
-     * The `name` field of a Cloud Pub/Sub
-     * [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
+     * The `name` field of a Cloud Pub/Sub [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
      */
     topicName?: string;
   }
@@ -242,20 +233,15 @@ export namespace classroom_v1 {
      */
     alternateLink?: string;
     /**
-     * The Calendar ID for a calendar that all course members can see, to which
-     * Classroom adds events for course work and announcements in the course.
-     * Read-only.
+     * The Calendar ID for a calendar that all course members can see, to which Classroom adds events for course work and announcements in the course.  Read-only.
      */
     calendarId?: string;
     /**
-     * The email address of a Google group containing all members of the course.
-     * This group does not accept email and can only be used for permissions.
-     * Read-only.
+     * The email address of a Google group containing all members of the course. This group does not accept email and can only be used for permissions.  Read-only.
      */
     courseGroupEmail?: string;
     /**
-     * Sets of materials that appear on the &quot;about&quot; page of this
-     * course.  Read-only.
+     * Sets of materials that appear on the &quot;about&quot; page of this course.  Read-only.
      */
     courseMaterialSets?: Schema$CourseMaterialSet[];
     /**
@@ -263,105 +249,64 @@ export namespace classroom_v1 {
      */
     courseState?: string;
     /**
-     * Creation time of the course. Specifying this field in a course update
-     * mask results in an error.  Read-only.
+     * Creation time of the course. Specifying this field in a course update mask results in an error.  Read-only.
      */
     creationTime?: string;
     /**
-     * Optional description. For example, &quot;We&#39;ll be learning about the
-     * structure of living creatures from a combination of textbooks, guest
-     * lectures, and lab work. Expect to be excited!&quot; If set, this field
-     * must be a valid UTF-8 string and no longer than 30,000 characters.
+     * Optional description. For example, &quot;We&#39;ll be learning about the structure of living creatures from a combination of textbooks, guest lectures, and lab work. Expect to be excited!&quot; If set, this field must be a valid UTF-8 string and no longer than 30,000 characters.
      */
     description?: string;
     /**
-     * Optional heading for the description. For example, &quot;Welcome to 10th
-     * Grade Biology.&quot; If set, this field must be a valid UTF-8 string and
-     * no longer than 3600 characters.
+     * Optional heading for the description. For example, &quot;Welcome to 10th Grade Biology.&quot; If set, this field must be a valid UTF-8 string and no longer than 3600 characters.
      */
     descriptionHeading?: string;
     /**
-     * Enrollment code to use when joining this course. Specifying this field in
-     * a course update mask results in an error.  Read-only.
+     * Enrollment code to use when joining this course. Specifying this field in a course update mask results in an error.  Read-only.
      */
     enrollmentCode?: string;
     /**
-     * Whether or not guardian notifications are enabled for this course.
-     * Read-only.
+     * Whether or not guardian notifications are enabled for this course.  Read-only.
      */
     guardiansEnabled?: boolean;
     /**
-     * Identifier for this course assigned by Classroom.  When creating a
-     * course, you may optionally set this identifier to an alias string in the
-     * request to create a corresponding alias. The `id` is still assigned by
-     * Classroom and cannot be updated after the course is created.  Specifying
-     * this field in a course update mask results in an error.
+     * Identifier for this course assigned by Classroom.  When creating a course, you may optionally set this identifier to an alias string in the request to create a corresponding alias. The `id` is still assigned by Classroom and cannot be updated after the course is created.  Specifying this field in a course update mask results in an error.
      */
     id?: string;
     /**
-     * Name of the course. For example, &quot;10th Grade Biology&quot;. The name
-     * is required. It must be between 1 and 750 characters and a valid UTF-8
-     * string.
+     * Name of the course. For example, &quot;10th Grade Biology&quot;. The name is required. It must be between 1 and 750 characters and a valid UTF-8 string.
      */
     name?: string;
     /**
-     * The identifier of the owner of a course.  When specified as a parameter
-     * of a create course request, this field is required. The identifier can be
-     * one of the following:  * the numeric identifier for the user * the email
-     * address of the user * the string literal `&quot;me&quot;`, indicating the
-     * requesting user  This must be set in a create request. Admins can also
-     * specify this field in a patch course request to transfer ownership. In
-     * other contexts, it is read-only.
+     * The identifier of the owner of a course.  When specified as a parameter of a create course request, this field is required. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `&quot;me&quot;`, indicating the requesting user  This must be set in a create request. Admins can also specify this field in a patch course request to transfer ownership. In other contexts, it is read-only.
      */
     ownerId?: string;
     /**
-     * Optional room location. For example, &quot;301&quot;. If set, this field
-     * must be a valid UTF-8 string and no longer than 650 characters.
+     * Optional room location. For example, &quot;301&quot;. If set, this field must be a valid UTF-8 string and no longer than 650 characters.
      */
     room?: string;
     /**
-     * Section of the course. For example, &quot;Period 2&quot;. If set, this
-     * field must be a valid UTF-8 string and no longer than 2800 characters.
+     * Section of the course. For example, &quot;Period 2&quot;. If set, this field must be a valid UTF-8 string and no longer than 2800 characters.
      */
     section?: string;
     /**
-     * Information about a Drive Folder that is shared with all teachers of the
-     * course.  This field will only be set for teachers of the course and
-     * domain administrators.  Read-only.
+     * Information about a Drive Folder that is shared with all teachers of the course.  This field will only be set for teachers of the course and domain administrators.  Read-only.
      */
     teacherFolder?: Schema$DriveFolder;
     /**
-     * The email address of a Google group containing all teachers of the
-     * course. This group does not accept email and can only be used for
-     * permissions.  Read-only.
+     * The email address of a Google group containing all teachers of the course. This group does not accept email and can only be used for permissions.  Read-only.
      */
     teacherGroupEmail?: string;
     /**
-     * Time of the most recent update to this course. Specifying this field in a
-     * course update mask results in an error.  Read-only.
+     * Time of the most recent update to this course. Specifying this field in a course update mask results in an error.  Read-only.
      */
     updateTime?: string;
   }
   /**
-   * Alternative identifier for a course.  An alias uniquely identifies a
-   * course. It must be unique within one of the following scopes:  * domain: A
-   * domain-scoped alias is visible to all users within the alias creator&#39;s
-   * domain and can be created only by a domain admin. A domain-scoped alias is
-   * often used when a course has an identifier external to Classroom.  *
-   * project: A project-scoped alias is visible to any request from an
-   * application using the Developer Console project ID that created the alias
-   * and can be created by any project. A project-scoped alias is often used
-   * when an application has alternative identifiers. A random value can also be
-   * used to avoid duplicate courses in the event of transmission failures, as
-   * retrying a request will return `ALREADY_EXISTS` if a previous one has
-   * succeeded.
+   * Alternative identifier for a course.  An alias uniquely identifies a course. It must be unique within one of the following scopes:  * domain: A domain-scoped alias is visible to all users within the alias creator&#39;s domain and can be created only by a domain admin. A domain-scoped alias is often used when a course has an identifier external to Classroom.  * project: A project-scoped alias is visible to any request from an application using the Developer Console project ID that created the alias and can be created by any project. A project-scoped alias is often used when an application has alternative identifiers. A random value can also be used to avoid duplicate courses in the event of transmission failures, as retrying a request will return `ALREADY_EXISTS` if a previous one has succeeded.
    */
   export interface Schema$CourseAlias {
     /**
-     * Alias string. The format of the string indicates the desired alias
-     * scoping.  * `d:&lt;name&gt;` indicates a domain-scoped alias.   Example:
-     * `d:math_101` * `p:&lt;name&gt;` indicates a project-scoped alias.
-     * Example: `p:abc123`  This field has a maximum length of 256 characters.
+     * Alias string. The format of the string indicates the desired alias scoping.  * `d:&lt;name&gt;` indicates a domain-scoped alias.   Example: `d:math_101` * `p:&lt;name&gt;` indicates a project-scoped alias.   Example: `p:abc123`  This field has a maximum length of 256 characters.
      */
     alias?: string;
   }
@@ -387,9 +332,7 @@ export namespace classroom_v1 {
     youTubeVideo?: Schema$YouTubeVideo;
   }
   /**
-   * A set of materials that appears on the &quot;About&quot; page of the
-   * course. These materials might include a syllabus, schedule, or other
-   * background information relating to the course as a whole.
+   * A set of materials that appears on the &quot;About&quot; page of the course. These materials might include a syllabus, schedule, or other background information relating to the course as a whole.
    */
   export interface Schema$CourseMaterialSet {
     /**
@@ -415,24 +358,19 @@ export namespace classroom_v1 {
    */
   export interface Schema$CourseWork {
     /**
-     * Absolute link to this course work in the Classroom web UI. This is only
-     * populated if `state` is `PUBLISHED`.  Read-only.
+     * Absolute link to this course work in the Classroom web UI. This is only populated if `state` is `PUBLISHED`.  Read-only.
      */
     alternateLink?: string;
     /**
-     * Assignee mode of the coursework. If unspecified, the default value is
-     * `ALL_STUDENTS`.
+     * Assignee mode of the coursework. If unspecified, the default value is `ALL_STUDENTS`.
      */
     assigneeMode?: string;
     /**
-     * Assignment details. This is populated only when `work_type` is
-     * `ASSIGNMENT`.  Read-only.
+     * Assignment details. This is populated only when `work_type` is `ASSIGNMENT`.  Read-only.
      */
     assignment?: Schema$Assignment;
     /**
-     * Whether this course work item is associated with the Developer Console
-     * project making the request.  See google.classroom.Work.CreateCourseWork
-     * for more details.  Read-only.
+     * Whether this course work item is associated with the Developer Console project making the request.  See google.classroom.Work.CreateCourseWork for more details.  Read-only.
      */
     associatedWithDeveloper?: boolean;
     /**
@@ -448,49 +386,35 @@ export namespace classroom_v1 {
      */
     creatorUserId?: string;
     /**
-     * Optional description of this course work. If set, the description must be
-     * a valid UTF-8 string containing no more than 30,000 characters.
+     * Optional description of this course work. If set, the description must be a valid UTF-8 string containing no more than 30,000 characters.
      */
     description?: string;
     /**
-     * Optional date, in UTC, that submissions for this course work are due.
-     * This must be specified if `due_time` is specified.
+     * Optional date, in UTC, that submissions for this course work are due. This must be specified if `due_time` is specified.
      */
     dueDate?: Schema$Date;
     /**
-     * Optional time of day, in UTC, that submissions for this course work are
-     * due. This must be specified if `due_date` is specified.
+     * Optional time of day, in UTC, that submissions for this course work are due. This must be specified if `due_date` is specified.
      */
     dueTime?: Schema$TimeOfDay;
     /**
-     * Classroom-assigned identifier of this course work, unique per course.
-     * Read-only.
+     * Classroom-assigned identifier of this course work, unique per course.  Read-only.
      */
     id?: string;
     /**
-     * Identifiers of students with access to the coursework. This field is set
-     * only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is
-     * `INDIVIDUAL_STUDENTS`, then only students specified in this field will be
-     * assigned the coursework.
+     * Identifiers of students with access to the coursework. This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this field will be assigned the coursework.
      */
     individualStudentsOptions?: Schema$IndividualStudentsOptions;
     /**
-     * Additional materials.  CourseWork must have no more than 20 material
-     * items.
+     * Additional materials.  CourseWork must have no more than 20 material items.
      */
     materials?: Schema$Material[];
     /**
-     * Maximum grade for this course work. If zero or unspecified, this
-     * assignment is considered ungraded. This must be a non-negative integer
-     * value.
+     * Maximum grade for this course work. If zero or unspecified, this assignment is considered ungraded. This must be a non-negative integer value.
      */
     maxPoints?: number;
     /**
-     * Multiple choice question details. For read operations, this field is
-     * populated only when `work_type` is `MULTIPLE_CHOICE_QUESTION`. For write
-     * operations, this field must be specified when creating course work with a
-     * `work_type` of `MULTIPLE_CHOICE_QUESTION`, and it must not be set
-     * otherwise.
+     * Multiple choice question details. For read operations, this field is populated only when `work_type` is `MULTIPLE_CHOICE_QUESTION`. For write operations, this field must be specified when creating course work with a `work_type` of `MULTIPLE_CHOICE_QUESTION`, and it must not be set otherwise.
      */
     multipleChoiceQuestion?: Schema$MultipleChoiceQuestion;
     /**
@@ -502,18 +426,15 @@ export namespace classroom_v1 {
      */
     state?: string;
     /**
-     * Setting to determine when students are allowed to modify submissions. If
-     * unspecified, the default value is `MODIFIABLE_UNTIL_TURNED_IN`.
+     * Setting to determine when students are allowed to modify submissions. If unspecified, the default value is `MODIFIABLE_UNTIL_TURNED_IN`.
      */
     submissionModificationMode?: string;
     /**
-     * Title of this course work. The title must be a valid UTF-8 string
-     * containing between 1 and 3000 characters.
+     * Title of this course work. The title must be a valid UTF-8 string containing between 1 and 3000 characters.
      */
     title?: string;
     /**
-     * Identifier for the topic that this coursework is associated with. Must
-     * match an existing topic in the course.
+     * Identifier for the topic that this coursework is associated with. Must match an existing topic in the course.
      */
     topicId?: string;
     /**
@@ -521,8 +442,7 @@ export namespace classroom_v1 {
      */
     updateTime?: string;
     /**
-     * Type of this course work.  The type is set when the course work is
-     * created and cannot be changed.
+     * Type of this course work.  The type is set when the course work is created and cannot be changed.
      */
     workType?: string;
   }
@@ -536,30 +456,19 @@ export namespace classroom_v1 {
     courseId?: string;
   }
   /**
-   * Represents a whole or partial calendar date, e.g. a birthday. The time of
-   * day and time zone are either specified elsewhere or are not significant.
-   * The date is relative to the Proleptic Gregorian Calendar. This can
-   * represent:  * A full date, with non-zero year, month and day values * A
-   * month and day value, with a zero year, e.g. an anniversary * A year on its
-   * own, with zero month and day values * A year and month value, with a zero
-   * day, e.g. a credit card expiration date  Related types are
-   * google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent:  * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date  Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-     * if specifying a year by itself or a year and month where the day is not
-     * significant.
+     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
      */
     day?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a
-     * month and day.
+     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
      */
     month?: number;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a
-     * year.
+     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
      */
     year?: number;
   }
@@ -602,26 +511,19 @@ export namespace classroom_v1 {
     title?: string;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * A class of notifications that an application can register to receive. For
-   * example: &quot;all roster changes for a domain&quot;.
+   * A class of notifications that an application can register to receive. For example: &quot;all roster changes for a domain&quot;.
    */
   export interface Schema$Feed {
     /**
-     * Information about a `Feed` with a `feed_type` of `COURSE_ROSTER_CHANGES`.
-     * This field must be specified if `feed_type` is `COURSE_ROSTER_CHANGES`.
+     * Information about a `Feed` with a `feed_type` of `COURSE_ROSTER_CHANGES`. This field must be specified if `feed_type` is `COURSE_ROSTER_CHANGES`.
      */
     courseRosterChangesInfo?: Schema$CourseRosterChangesInfo;
     /**
-     * Information about a `Feed` with a `feed_type` of `COURSE_WORK_CHANGES`.
-     * This field must be specified if `feed_type` is `COURSE_WORK_CHANGES`.
+     * Information about a `Feed` with a `feed_type` of `COURSE_WORK_CHANGES`. This field must be specified if `feed_type` is `COURSE_WORK_CHANGES`.
      */
     courseWorkChangesInfo?: Schema$CourseWorkChangesInfo;
     /**
@@ -638,9 +540,7 @@ export namespace classroom_v1 {
      */
     formUrl?: string;
     /**
-     * URL of the form responses document. Only set if respsonses have been
-     * recorded and only when the requesting user is an editor of the form.
-     * Read-only.
+     * URL of the form responses document. Only set if respsonses have been recorded and only when the requesting user is an editor of the form.  Read-only.
      */
     responseUrl?: string;
     /**
@@ -678,8 +578,7 @@ export namespace classroom_v1 {
      */
     gradeTimestamp?: string;
     /**
-     * The denominator of the grade at this time in the submission grade
-     * history.
+     * The denominator of the grade at this time in the submission grade history.
      */
     maxPoints?: number;
     /**
@@ -688,8 +587,7 @@ export namespace classroom_v1 {
     pointsEarned?: number;
   }
   /**
-   * Association between a student and a guardian of that student. The guardian
-   * may receive information about the student&#39;s course work.
+   * Association between a student and a guardian of that student. The guardian may receive information about the student&#39;s course work.
    */
   export interface Schema$Guardian {
     /**
@@ -701,8 +599,7 @@ export namespace classroom_v1 {
      */
     guardianProfile?: Schema$UserProfile;
     /**
-     * The email address to which the initial guardian invitation was sent. This
-     * field is only visible to domain administrators.
+     * The email address to which the initial guardian invitation was sent. This field is only visible to domain administrators.
      */
     invitedEmailAddress?: string;
     /**
@@ -711,8 +608,7 @@ export namespace classroom_v1 {
     studentId?: string;
   }
   /**
-   * An invitation to become the guardian of a specified user, sent to a
-   * specified email address.
+   * An invitation to become the guardian of a specified user, sent to a specified email address.
    */
   export interface Schema$GuardianInvitation {
     /**
@@ -724,8 +620,7 @@ export namespace classroom_v1 {
      */
     invitationId?: string;
     /**
-     * Email address that the invitation was sent to. This field is only visible
-     * to domain administrators.
+     * Email address that the invitation was sent to. This field is only visible to domain administrators.
      */
     invitedEmailAddress?: string;
     /**
@@ -738,13 +633,11 @@ export namespace classroom_v1 {
     studentId?: string;
   }
   /**
-   * Assignee details about a coursework/announcement. This field is set if and
-   * only if `assigneeMode` is `INDIVIDUAL_STUDENTS`.
+   * Assignee details about a coursework/announcement. This field is set if and only if `assigneeMode` is `INDIVIDUAL_STUDENTS`.
    */
   export interface Schema$IndividualStudentsOptions {
     /**
-     * Identifiers for the students that have access to the
-     * coursework/announcement.
+     * Identifiers for the students that have access to the coursework/announcement.
      */
     studentIds?: string[];
   }
@@ -765,10 +658,7 @@ export namespace classroom_v1 {
      */
     role?: string;
     /**
-     * Identifier of the invited user.  When specified as a parameter of a
-     * request, this identifier can be set to one of the following:  * the
-     * numeric identifier for the user * the email address of the user * the
-     * string literal `&quot;me&quot;`, indicating the requesting user
+     * Identifier of the invited user.  When specified as a parameter of a request, this identifier can be set to one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `&quot;me&quot;`, indicating the requesting user
      */
     userId?: string;
   }
@@ -785,8 +675,7 @@ export namespace classroom_v1 {
      */
     title?: string;
     /**
-     * URL to link to. This must be a valid UTF-8 string containing between 1
-     * and 2024 characters.
+     * URL to link to. This must be a valid UTF-8 string containing between 1 and 2024 characters.
      */
     url?: string;
   }
@@ -799,8 +688,7 @@ export namespace classroom_v1 {
      */
     announcements?: Schema$Announcement[];
     /**
-     * Token identifying the next page of results to return. If empty, no
-     * further results are available.
+     * Token identifying the next page of results to return. If empty, no further results are available.
      */
     nextPageToken?: string;
   }
@@ -813,8 +701,7 @@ export namespace classroom_v1 {
      */
     aliases?: Schema$CourseAlias[];
     /**
-     * Token identifying the next page of results to return. If empty, no
-     * further results are available.
+     * Token identifying the next page of results to return. If empty, no further results are available.
      */
     nextPageToken?: string;
   }
@@ -827,8 +714,7 @@ export namespace classroom_v1 {
      */
     courses?: Schema$Course[];
     /**
-     * Token identifying the next page of results to return. If empty, no
-     * further results are available.
+     * Token identifying the next page of results to return. If empty, no further results are available.
      */
     nextPageToken?: string;
   }
@@ -841,8 +727,7 @@ export namespace classroom_v1 {
      */
     courseWork?: Schema$CourseWork[];
     /**
-     * Token identifying the next page of results to return. If empty, no
-     * further results are available.
+     * Token identifying the next page of results to return. If empty, no further results are available.
      */
     nextPageToken?: string;
   }
@@ -855,8 +740,7 @@ export namespace classroom_v1 {
      */
     guardianInvitations?: Schema$GuardianInvitation[];
     /**
-     * Token identifying the next page of results to return. If empty, no
-     * further results are available.
+     * Token identifying the next page of results to return. If empty, no further results are available.
      */
     nextPageToken?: string;
   }
@@ -865,13 +749,11 @@ export namespace classroom_v1 {
    */
   export interface Schema$ListGuardiansResponse {
     /**
-     * Guardians on this page of results that met the criteria specified in the
-     * request.
+     * Guardians on this page of results that met the criteria specified in the request.
      */
     guardians?: Schema$Guardian[];
     /**
-     * Token identifying the next page of results to return. If empty, no
-     * further results are available.
+     * Token identifying the next page of results to return. If empty, no further results are available.
      */
     nextPageToken?: string;
   }
@@ -884,8 +766,7 @@ export namespace classroom_v1 {
      */
     invitations?: Schema$Invitation[];
     /**
-     * Token identifying the next page of results to return. If empty, no
-     * further results are available.
+     * Token identifying the next page of results to return. If empty, no further results are available.
      */
     nextPageToken?: string;
   }
@@ -894,8 +775,7 @@ export namespace classroom_v1 {
    */
   export interface Schema$ListStudentsResponse {
     /**
-     * Token identifying the next page of results to return. If empty, no
-     * further results are available.
+     * Token identifying the next page of results to return. If empty, no further results are available.
      */
     nextPageToken?: string;
     /**
@@ -908,8 +788,7 @@ export namespace classroom_v1 {
    */
   export interface Schema$ListStudentSubmissionsResponse {
     /**
-     * Token identifying the next page of results to return. If empty, no
-     * further results are available.
+     * Token identifying the next page of results to return. If empty, no further results are available.
      */
     nextPageToken?: string;
     /**
@@ -922,8 +801,7 @@ export namespace classroom_v1 {
    */
   export interface Schema$ListTeachersResponse {
     /**
-     * Token identifying the next page of results to return. If empty, no
-     * further results are available.
+     * Token identifying the next page of results to return. If empty, no further results are available.
      */
     nextPageToken?: string;
     /**
@@ -936,8 +814,7 @@ export namespace classroom_v1 {
    */
   export interface Schema$ListTopicResponse {
     /**
-     * Token identifying the next page of results to return. If empty, no
-     * further results are available.
+     * Token identifying the next page of results to return. If empty, no further results are available.
      */
     nextPageToken?: string;
     /**
@@ -946,8 +823,7 @@ export namespace classroom_v1 {
     topic?: Schema$Topic[];
   }
   /**
-   * Material attached to course work.  When creating attachments, setting the
-   * `form` field is not supported.
+   * Material attached to course work.  When creating attachments, setting the `form` field is not supported.
    */
   export interface Schema$Material {
     /**
@@ -959,8 +835,7 @@ export namespace classroom_v1 {
      */
     form?: Schema$Form;
     /**
-     * Link material. On creation, will be upgraded to a more appropriate type
-     * if possible, and this will be reflected in the response.
+     * Link material. On creation, will be upgraded to a more appropriate type if possible, and this will be reflected in the response.
      */
     link?: Schema$Link;
     /**
@@ -973,13 +848,11 @@ export namespace classroom_v1 {
    */
   export interface Schema$ModifyAnnouncementAssigneesRequest {
     /**
-     * Mode of the announcement describing whether it will be accessible by all
-     * students or specified individual students.
+     * Mode of the announcement describing whether it will be accessible by all students or specified individual students.
      */
     assigneeMode?: string;
     /**
-     * Set which students can view or cannot view the announcement. Must be
-     * specified only when `assigneeMode` is `INDIVIDUAL_STUDENTS`.
+     * Set which students can view or cannot view the announcement. Must be specified only when `assigneeMode` is `INDIVIDUAL_STUDENTS`.
      */
     modifyIndividualStudentsOptions?: Schema$ModifyIndividualStudentsOptions;
   }
@@ -988,8 +861,7 @@ export namespace classroom_v1 {
    */
   export interface Schema$ModifyAttachmentsRequest {
     /**
-     * Attachments to add. A student submission may not have more than 20
-     * attachments.  Form attachments are not supported.
+     * Attachments to add. A student submission may not have more than 20 attachments.  Form attachments are not supported.
      */
     addAttachments?: Schema$Attachment[];
   }
@@ -998,29 +870,24 @@ export namespace classroom_v1 {
    */
   export interface Schema$ModifyCourseWorkAssigneesRequest {
     /**
-     * Mode of the coursework describing whether it will be assigned to all
-     * students or specified individual students.
+     * Mode of the coursework describing whether it will be assigned to all students or specified individual students.
      */
     assigneeMode?: string;
     /**
-     * Set which students are assigned or not assigned to the coursework. Must
-     * be specified only when `assigneeMode` is `INDIVIDUAL_STUDENTS`.
+     * Set which students are assigned or not assigned to the coursework. Must be specified only when `assigneeMode` is `INDIVIDUAL_STUDENTS`.
      */
     modifyIndividualStudentsOptions?: Schema$ModifyIndividualStudentsOptions;
   }
   /**
-   * Contains fields to add or remove students from a course work or
-   * announcement where the `assigneeMode` is set to `INDIVIDUAL_STUDENTS`.
+   * Contains fields to add or remove students from a course work or announcement where the `assigneeMode` is set to `INDIVIDUAL_STUDENTS`.
    */
   export interface Schema$ModifyIndividualStudentsOptions {
     /**
-     * Ids of students to be added as having access to this
-     * coursework/announcement.
+     * Ids of students to be added as having access to this coursework/announcement.
      */
     addStudentIds?: string[];
     /**
-     * Ids of students to be removed from having access to this
-     * coursework/announcement.
+     * Ids of students to be removed from having access to this coursework/announcement.
      */
     removeStudentIds?: string[];
   }
@@ -1051,8 +918,7 @@ export namespace classroom_v1 {
      */
     familyName?: string;
     /**
-     * The user&#39;s full name formed by concatenating the first and last name
-     * values.  Read-only.
+     * The user&#39;s full name formed by concatenating the first and last name values.  Read-only.
      */
     fullName?: string;
     /**
@@ -1065,8 +931,7 @@ export namespace classroom_v1 {
    */
   export interface Schema$ReclaimStudentSubmissionRequest {}
   /**
-   * An instruction to Classroom to send notifications from the `feed` to the
-   * provided destination.
+   * An instruction to Classroom to send notifications from the `feed` to the provided destination.
    */
   export interface Schema$Registration {
     /**
@@ -1074,13 +939,11 @@ export namespace classroom_v1 {
      */
     cloudPubsubTopic?: Schema$CloudPubsubTopic;
     /**
-     * The time until which the `Registration` is effective.  This is a
-     * read-only field assigned by the server.
+     * The time until which the `Registration` is effective.  This is a read-only field assigned by the server.
      */
     expiryTime?: string;
     /**
-     * Specification for the class of notifications that Classroom should
-     * deliver to the destination.
+     * Specification for the class of notifications that Classroom should deliver to the destination.
      */
     feed?: Schema$Feed;
     /**
@@ -1144,23 +1007,16 @@ export namespace classroom_v1 {
      */
     profile?: Schema$UserProfile;
     /**
-     * Information about a Drive Folder for this student&#39;s work in this
-     * course. Only visible to the student and domain administrators. Read-only.
+     * Information about a Drive Folder for this student&#39;s work in this course. Only visible to the student and domain administrators.  Read-only.
      */
     studentWorkFolder?: Schema$DriveFolder;
     /**
-     * Identifier of the user.  When specified as a parameter of a request, this
-     * identifier can be one of the following:  * the numeric identifier for the
-     * user * the email address of the user * the string literal
-     * `&quot;me&quot;`, indicating the requesting user
+     * Identifier of the user.  When specified as a parameter of a request, this identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `&quot;me&quot;`, indicating the requesting user
      */
     userId?: string;
   }
   /**
-   * Student submission for course work.  StudentSubmission items are generated
-   * when a CourseWork item is created.  StudentSubmissions that have never been
-   * accessed (i.e. with `state` = NEW) may not have a creation time or update
-   * time.
+   * Student submission for course work.  StudentSubmission items are generated when a CourseWork item is created.  StudentSubmissions that have never been accessed (i.e. with `state` = NEW) may not have a creation time or update time.
    */
   export interface Schema$StudentSubmission {
     /**
@@ -1168,21 +1024,15 @@ export namespace classroom_v1 {
      */
     alternateLink?: string;
     /**
-     * Optional grade. If unset, no grade was set. This value must be
-     * non-negative. Decimal (i.e. non-integer) values are allowed, but will be
-     * rounded to two decimal places.  This may be modified only by course
-     * teachers.
+     * Optional grade. If unset, no grade was set. This value must be non-negative. Decimal (i.e. non-integer) values are allowed, but will be rounded to two decimal places.  This may be modified only by course teachers.
      */
     assignedGrade?: number;
     /**
-     * Submission content when course_work_type is ASSIGNMENT.  Students can
-     * modify this content using google.classroom.Work.ModifyAttachments.
+     * Submission content when course_work_type is ASSIGNMENT.  Students can modify this content using google.classroom.Work.ModifyAttachments.
      */
     assignmentSubmission?: Schema$AssignmentSubmission;
     /**
-     * Whether this student submission is associated with the Developer Console
-     * project making the request.  See google.classroom.Work.CreateCourseWork
-     * for more details.  Read-only.
+     * Whether this student submission is associated with the Developer Console project making the request.  See google.classroom.Work.CreateCourseWork for more details.  Read-only.
      */
     associatedWithDeveloper?: boolean;
     /**
@@ -1198,20 +1048,15 @@ export namespace classroom_v1 {
      */
     courseWorkType?: string;
     /**
-     * Creation time of this submission. This may be unset if the student has
-     * not accessed this item.  Read-only.
+     * Creation time of this submission. This may be unset if the student has not accessed this item.  Read-only.
      */
     creationTime?: string;
     /**
-     * Optional pending grade. If unset, no grade was set. This value must be
-     * non-negative. Decimal (i.e. non-integer) values are allowed, but will be
-     * rounded to two decimal places.  This is only visible to and modifiable by
-     * course teachers.
+     * Optional pending grade. If unset, no grade was set. This value must be non-negative. Decimal (i.e. non-integer) values are allowed, but will be rounded to two decimal places.  This is only visible to and modifiable by course teachers.
      */
     draftGrade?: number;
     /**
-     * Classroom-assigned Identifier for the student submission. This is unique
-     * among submissions for the relevant course work.  Read-only.
+     * Classroom-assigned Identifier for the student submission. This is unique among submissions for the relevant course work.  Read-only.
      */
     id?: string;
     /**
@@ -1231,13 +1076,11 @@ export namespace classroom_v1 {
      */
     state?: string;
     /**
-     * The history of the submission (includes state and grade histories).
-     * Read-only.
+     * The history of the submission (includes state and grade histories).  Read-only.
      */
     submissionHistory?: Schema$SubmissionHistory[];
     /**
-     * Last update time of this submission. This may be unset if the student has
-     * not accessed this item.  Read-only.
+     * Last update time of this submission. This may be unset if the student has not accessed this item.  Read-only.
      */
     updateTime?: string;
     /**
@@ -1246,8 +1089,7 @@ export namespace classroom_v1 {
     userId?: string;
   }
   /**
-   * The history of the submission. This currently includes state and grade
-   * histories.
+   * The history of the submission. This currently includes state and grade histories.
    */
   export interface Schema$SubmissionHistory {
     /**
@@ -1272,23 +1114,16 @@ export namespace classroom_v1 {
      */
     profile?: Schema$UserProfile;
     /**
-     * Identifier of the user.  When specified as a parameter of a request, this
-     * identifier can be one of the following:  * the numeric identifier for the
-     * user * the email address of the user * the string literal
-     * `&quot;me&quot;`, indicating the requesting user
+     * Identifier of the user.  When specified as a parameter of a request, this identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `&quot;me&quot;`, indicating the requesting user
      */
     userId?: string;
   }
   /**
-   * Represents a time of day. The date and time zone are either not significant
-   * or are specified elsewhere. An API may choose to allow leap seconds.
-   * Related types are google.type.Date and `google.protobuf.Timestamp`.
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
    */
   export interface Schema$TimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose
-     * to allow the value &quot;24:00:00&quot; for scenarios like business
-     * closing time.
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
      */
     hours?: number;
     /**
@@ -1300,8 +1135,7 @@ export namespace classroom_v1 {
      */
     nanos?: number;
     /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may
-     * allow the value 60 if it allows leap-seconds.
+     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number;
   }
@@ -1314,11 +1148,7 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * The name of the topic, generated by the user. Leading and trailing
-     * whitespaces, if any, will be trimmed. Also, multiple consecutive
-     * whitespaces will be collapsed into one inside the name. The result must
-     * be a non-empty string. Topic names are case sensitive, and must be no
-     * longer than 100 characters.
+     * The name of the topic, generated by the user. Leading and trailing whitespaces, if any, will be trimmed. Also, multiple consecutive whitespaces will be collapsed into one inside the name. The result must be a non-empty string. Topic names are case sensitive, and must be no longer than 100 characters.
      */
     name?: string;
     /**
@@ -1359,10 +1189,7 @@ export namespace classroom_v1 {
      */
     photoUrl?: string;
     /**
-     * Represents whether a G Suite for Education user&#39;s domain
-     * administrator has explicitly verified them as being a teacher. If the
-     * user is not a member of a G Suite for Education domain, than this field
-     * will always be false.  Read-only
+     * Represents whether a G Suite for Education user&#39;s domain administrator has explicitly verified them as being a teacher. If the user is not a member of a G Suite for Education domain, than this field will always be false.  Read-only
      */
     verifiedTeacher?: boolean;
   }
@@ -1388,7 +1215,6 @@ export namespace classroom_v1 {
     title?: string;
   }
 
-
   export class Resource$Courses {
     context: APIRequestContext;
     aliases: Resource$Courses$Aliases;
@@ -1407,17 +1233,9 @@ export namespace classroom_v1 {
       this.topics = new Resource$Courses$Topics(this.context);
     }
 
-
     /**
      * classroom.courses.create
-     * @desc Creates a course.  The user specified in `ownerId` is the owner of
-     * the created course and added as a teacher.  This method returns the
-     * following error codes:  * `PERMISSION_DENIED` if the requesting user is
-     * not permitted to create courses or for access errors. * `NOT_FOUND` if
-     * the primary teacher is not a valid user. * `FAILED_PRECONDITION` if the
-     * course owner's account is disabled or for the following request errors:
-     * * UserGroupsMembershipLimitReached * `ALREADY_EXISTS` if an alias was
-     * specified in the `id` and already exists.
+     * @desc Creates a course.  The user specified in `ownerId` is the owner of the created course and added as a teacher.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to create courses or for access errors. * `NOT_FOUND` if the primary teacher is not a valid user. * `FAILED_PRECONDITION` if the course owner's account is disabled or for the following request errors:     * UserGroupsMembershipLimitReached * `ALREADY_EXISTS` if an alias was specified in the `id` and already exists.
      * @alias classroom.courses.create
      * @memberOf! ()
      *
@@ -1427,22 +1245,27 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Courses$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Course>;
     create(
-        params: Params$Resource$Courses$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Course>,
-        callback: BodyResponseCallback<Schema$Course>): void;
+      params?: Params$Resource$Courses$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Course>;
     create(
-        params: Params$Resource$Courses$Create,
-        callback: BodyResponseCallback<Schema$Course>): void;
+      params: Params$Resource$Courses$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Course>,
+      callback: BodyResponseCallback<Schema$Course>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Create,
+      callback: BodyResponseCallback<Schema$Course>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Course>): void;
     create(
-        paramsOrCallback?: Params$Resource$Courses$Create|
-        BodyResponseCallback<Schema$Course>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Course>,
-        callback?: BodyResponseCallback<Schema$Course>):
-        void|GaxiosPromise<Schema$Course> {
+      paramsOrCallback?:
+        | Params$Resource$Courses$Create
+        | BodyResponseCallback<Schema$Course>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Course>,
+      callback?: BodyResponseCallback<Schema$Course>
+    ): void | GaxiosPromise<Schema$Course> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1460,15 +1283,16 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1477,13 +1301,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.delete
-     * @desc Deletes a course.  This method returns the following error codes:
-     * * `PERMISSION_DENIED` if the requesting user is not permitted to delete
-     * the requested course or for access errors. * `NOT_FOUND` if no course
-     * exists with the requested ID.
+     * @desc Deletes a course.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to delete the requested course or for access errors. * `NOT_FOUND` if no course exists with the requested ID.
      * @alias classroom.courses.delete
      * @memberOf! ()
      *
@@ -1493,22 +1313,27 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Courses$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Courses$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Courses$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Courses$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Courses$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Courses$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1526,15 +1351,16 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1543,13 +1369,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.get
-     * @desc Returns a course.  This method returns the following error codes:
-     * * `PERMISSION_DENIED` if the requesting user is not permitted to access
-     * the requested course or for access errors. * `NOT_FOUND` if no course
-     * exists with the requested ID.
+     * @desc Returns a course.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `NOT_FOUND` if no course exists with the requested ID.
      * @alias classroom.courses.get
      * @memberOf! ()
      *
@@ -1559,19 +1381,27 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Courses$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Course>;
-    get(params: Params$Resource$Courses$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Course>,
-        callback: BodyResponseCallback<Schema$Course>): void;
-    get(params: Params$Resource$Courses$Get,
-        callback: BodyResponseCallback<Schema$Course>): void;
+    get(
+      params?: Params$Resource$Courses$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Course>;
+    get(
+      params: Params$Resource$Courses$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Course>,
+      callback: BodyResponseCallback<Schema$Course>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Get,
+      callback: BodyResponseCallback<Schema$Course>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Course>): void;
-    get(paramsOrCallback?: Params$Resource$Courses$Get|
-        BodyResponseCallback<Schema$Course>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Course>,
-        callback?: BodyResponseCallback<Schema$Course>):
-        void|GaxiosPromise<Schema$Course> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Get
+        | BodyResponseCallback<Schema$Course>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Course>,
+      callback?: BodyResponseCallback<Schema$Course>
+    ): void | GaxiosPromise<Schema$Course> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1589,15 +1419,16 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1606,15 +1437,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.list
-     * @desc Returns a list of courses that the requesting user is permitted to
-     * view, restricted to those that match the request. Returned courses are
-     * ordered by creation time, with the most recently created coming first.
-     * This method returns the following error codes:  * `PERMISSION_DENIED` for
-     * access errors. * `INVALID_ARGUMENT` if the query argument is malformed. *
-     * `NOT_FOUND` if any users specified in the query arguments do not exist.
+     * @desc Returns a list of courses that the requesting user is permitted to view, restricted to those that match the request. Returned courses are ordered by creation time, with the most recently created coming first.  This method returns the following error codes:  * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the query argument is malformed. * `NOT_FOUND` if any users specified in the query arguments do not exist.
      * @alias classroom.courses.list
      * @memberOf! ()
      *
@@ -1628,23 +1453,29 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Courses$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListCoursesResponse>;
     list(
-        params: Params$Resource$Courses$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListCoursesResponse>,
-        callback: BodyResponseCallback<Schema$ListCoursesResponse>): void;
+      params?: Params$Resource$Courses$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCoursesResponse>;
     list(
-        params: Params$Resource$Courses$List,
-        callback: BodyResponseCallback<Schema$ListCoursesResponse>): void;
+      params: Params$Resource$Courses$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListCoursesResponse>,
+      callback: BodyResponseCallback<Schema$ListCoursesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Courses$List,
+      callback: BodyResponseCallback<Schema$ListCoursesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListCoursesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Courses$List|
-        BodyResponseCallback<Schema$ListCoursesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListCoursesResponse>,
-        callback?: BodyResponseCallback<Schema$ListCoursesResponse>):
-        void|GaxiosPromise<Schema$ListCoursesResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Courses$List
+        | BodyResponseCallback<Schema$ListCoursesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCoursesResponse>,
+      callback?: BodyResponseCallback<Schema$ListCoursesResponse>
+    ): void | GaxiosPromise<Schema$ListCoursesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1662,15 +1493,16 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListCoursesResponse>(parameters, callback);
@@ -1679,16 +1511,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.patch
-     * @desc Updates one or more fields in a course.  This method returns the
-     * following error codes:  * `PERMISSION_DENIED` if the requesting user is
-     * not permitted to modify the requested course or for access errors. *
-     * `NOT_FOUND` if no course exists with the requested ID. *
-     * `INVALID_ARGUMENT` if invalid fields are specified in the update mask or
-     * if no update mask is supplied. * `FAILED_PRECONDITION` for the following
-     * request errors:     * CourseNotModifiable
+     * @desc Updates one or more fields in a course.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to modify the requested course or for access errors. * `NOT_FOUND` if no course exists with the requested ID. * `INVALID_ARGUMENT` if invalid fields are specified in the update mask or if no update mask is supplied. * `FAILED_PRECONDITION` for the following request errors:     * CourseNotModifiable
      * @alias classroom.courses.patch
      * @memberOf! ()
      *
@@ -1700,22 +1525,27 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Courses$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Course>;
     patch(
-        params: Params$Resource$Courses$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Course>,
-        callback: BodyResponseCallback<Schema$Course>): void;
+      params?: Params$Resource$Courses$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Course>;
     patch(
-        params: Params$Resource$Courses$Patch,
-        callback: BodyResponseCallback<Schema$Course>): void;
+      params: Params$Resource$Courses$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Course>,
+      callback: BodyResponseCallback<Schema$Course>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Patch,
+      callback: BodyResponseCallback<Schema$Course>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Course>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Courses$Patch|
-        BodyResponseCallback<Schema$Course>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Course>,
-        callback?: BodyResponseCallback<Schema$Course>):
-        void|GaxiosPromise<Schema$Course> {
+      paramsOrCallback?:
+        | Params$Resource$Courses$Patch
+        | BodyResponseCallback<Schema$Course>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Course>,
+      callback?: BodyResponseCallback<Schema$Course>
+    ): void | GaxiosPromise<Schema$Course> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1733,15 +1563,16 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1750,14 +1581,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.update
-     * @desc Updates a course.  This method returns the following error codes:
-     * * `PERMISSION_DENIED` if the requesting user is not permitted to modify
-     * the requested course or for access errors. * `NOT_FOUND` if no course
-     * exists with the requested ID. * `FAILED_PRECONDITION` for the following
-     * request errors:     * CourseNotModifiable
+     * @desc Updates a course.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to modify the requested course or for access errors. * `NOT_FOUND` if no course exists with the requested ID. * `FAILED_PRECONDITION` for the following request errors:     * CourseNotModifiable
      * @alias classroom.courses.update
      * @memberOf! ()
      *
@@ -1768,22 +1594,27 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Courses$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Course>;
     update(
-        params: Params$Resource$Courses$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Course>,
-        callback: BodyResponseCallback<Schema$Course>): void;
+      params?: Params$Resource$Courses$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Course>;
     update(
-        params: Params$Resource$Courses$Update,
-        callback: BodyResponseCallback<Schema$Course>): void;
+      params: Params$Resource$Courses$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Course>,
+      callback: BodyResponseCallback<Schema$Course>
+    ): void;
+    update(
+      params: Params$Resource$Courses$Update,
+      callback: BodyResponseCallback<Schema$Course>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Course>): void;
     update(
-        paramsOrCallback?: Params$Resource$Courses$Update|
-        BodyResponseCallback<Schema$Course>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Course>,
-        callback?: BodyResponseCallback<Schema$Course>):
-        void|GaxiosPromise<Schema$Course> {
+      paramsOrCallback?:
+        | Params$Resource$Courses$Update
+        | BodyResponseCallback<Schema$Course>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Course>,
+      callback?: BodyResponseCallback<Schema$Course>
+    ): void | GaxiosPromise<Schema$Course> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1801,15 +1632,16 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1823,8 +1655,7 @@ export namespace classroom_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1835,11 +1666,10 @@ export namespace classroom_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course to delete. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course to delete. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     id?: string;
   }
@@ -1847,11 +1677,10 @@ export namespace classroom_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course to return. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course to return. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     id?: string;
   }
@@ -1859,37 +1688,26 @@ export namespace classroom_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Restricts returned courses to those in one of the specified states The
-     * default value is ACTIVE, ARCHIVED, PROVISIONED, DECLINED.
+     * Restricts returned courses to those in one of the specified states The default value is ACTIVE, ARCHIVED, PROVISIONED, DECLINED.
      */
     courseStates?: string[];
     /**
-     * Maximum number of items to return. Zero or unspecified indicates that the
-     * server may assign a maximum.  The server may return fewer than the
-     * specified number of results.
+     * Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
      */
     pageSize?: number;
     /**
-     * nextPageToken value returned from a previous list call, indicating that
-     * the subsequent page of results should be returned.  The list request must
-     * be otherwise identical to the one that resulted in this token.
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
      */
     pageToken?: string;
     /**
-     * Restricts returned courses to those having a student with the specified
-     * identifier. The identifier can be one of the following:  * the numeric
-     * identifier for the user * the email address of the user * the string
-     * literal `"me"`, indicating the requesting user
+     * Restricts returned courses to those having a student with the specified identifier. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      */
     studentId?: string;
     /**
-     * Restricts returned courses to those having a teacher with the specified
-     * identifier. The identifier can be one of the following:  * the numeric
-     * identifier for the user * the email address of the user * the string
-     * literal `"me"`, indicating the requesting user
+     * Restricts returned courses to those having a teacher with the specified identifier. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      */
     teacherId?: string;
   }
@@ -1897,22 +1715,14 @@ export namespace classroom_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course to update. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     id?: string;
     /**
-     * Mask that identifies which fields on the course to update. This field is
-     * required to do an update. The update will fail if invalid fields are
-     * specified. The following fields are valid:  * `name` * `section` *
-     * `descriptionHeading` * `description` * `room` * `courseState` * `ownerId`
-     * Note: patches to ownerId are treated as being effective immediately, but
-     * in practice it may take some time for the ownership transfer of all
-     * affected resources to complete.  When set in a query parameter, this
-     * field should be specified as  `updateMask=<field1>,<field2>,...`
+     * Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid:  * `name` * `section` * `descriptionHeading` * `description` * `room` * `courseState` * `ownerId`  Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete.  When set in a query parameter, this field should be specified as  `updateMask=<field1>,<field2>,...`
      */
     updateMask?: string;
 
@@ -1925,11 +1735,10 @@ export namespace classroom_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course to update. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     id?: string;
 
@@ -1945,16 +1754,9 @@ export namespace classroom_v1 {
       this.context = context;
     }
 
-
     /**
      * classroom.courses.aliases.create
-     * @desc Creates an alias for a course.  This method returns the following
-     * error codes:  * `PERMISSION_DENIED` if the requesting user is not
-     * permitted to create the alias or for access errors. * `NOT_FOUND` if the
-     * course does not exist. * `ALREADY_EXISTS` if the alias already exists. *
-     * `FAILED_PRECONDITION` if the alias requested does not make sense for the
-     * requesting user or course (for example, if a user not in a domain
-     * attempts to access a domain-scoped alias).
+     * @desc Creates an alias for a course.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to create the alias or for access errors. * `NOT_FOUND` if the course does not exist. * `ALREADY_EXISTS` if the alias already exists. * `FAILED_PRECONDITION` if the alias requested does not make sense for the   requesting user or course (for example, if a user not in a domain   attempts to access a domain-scoped alias).
      * @alias classroom.courses.aliases.create
      * @memberOf! ()
      *
@@ -1966,25 +1768,30 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Courses$Aliases$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$CourseAlias>;
+      params?: Params$Resource$Courses$Aliases$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CourseAlias>;
     create(
-        params: Params$Resource$Courses$Aliases$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$CourseAlias>,
-        callback: BodyResponseCallback<Schema$CourseAlias>): void;
+      params: Params$Resource$Courses$Aliases$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$CourseAlias>,
+      callback: BodyResponseCallback<Schema$CourseAlias>
+    ): void;
     create(
-        params: Params$Resource$Courses$Aliases$Create,
-        callback: BodyResponseCallback<Schema$CourseAlias>): void;
+      params: Params$Resource$Courses$Aliases$Create,
+      callback: BodyResponseCallback<Schema$CourseAlias>
+    ): void;
     create(callback: BodyResponseCallback<Schema$CourseAlias>): void;
     create(
-        paramsOrCallback?: Params$Resource$Courses$Aliases$Create|
-        BodyResponseCallback<Schema$CourseAlias>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CourseAlias>,
-        callback?: BodyResponseCallback<Schema$CourseAlias>):
-        void|GaxiosPromise<Schema$CourseAlias> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Aliases$Create;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Aliases$Create
+        | BodyResponseCallback<Schema$CourseAlias>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CourseAlias>,
+      callback?: BodyResponseCallback<Schema$CourseAlias>
+    ): void | GaxiosPromise<Schema$CourseAlias> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Aliases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2001,16 +1808,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/aliases')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/aliases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CourseAlias>(parameters, callback);
@@ -2019,15 +1829,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.aliases.delete
-     * @desc Deletes an alias of a course.  This method returns the following
-     * error codes:  * `PERMISSION_DENIED` if the requesting user is not
-     * permitted to remove the alias or for access errors. * `NOT_FOUND` if the
-     * alias does not exist. * `FAILED_PRECONDITION` if the alias requested does
-     * not make sense for the   requesting user or course (for example, if a
-     * user not in a domain   attempts to delete a domain-scoped alias).
+     * @desc Deletes an alias of a course.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to remove the alias or for access errors. * `NOT_FOUND` if the alias does not exist. * `FAILED_PRECONDITION` if the alias requested does not make sense for the   requesting user or course (for example, if a user not in a domain   attempts to delete a domain-scoped alias).
      * @alias classroom.courses.aliases.delete
      * @memberOf! ()
      *
@@ -2039,24 +1843,28 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Courses$Aliases$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Courses$Aliases$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Courses$Aliases$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Aliases$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Courses$Aliases$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Aliases$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Courses$Aliases$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Aliases$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Aliases$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Aliases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2073,16 +1881,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/aliases/{alias}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/aliases/{alias}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'alias'],
         pathParams: ['alias', 'courseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2091,13 +1902,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.aliases.list
-     * @desc Returns a list of aliases for a course.  This method returns the
-     * following error codes:  * `PERMISSION_DENIED` if the requesting user is
-     * not permitted to access the course or for access errors. * `NOT_FOUND` if
-     * the course does not exist.
+     * @desc Returns a list of aliases for a course.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the course or for access errors. * `NOT_FOUND` if the course does not exist.
      * @alias classroom.courses.aliases.list
      * @memberOf! ()
      *
@@ -2110,27 +1917,34 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Courses$Aliases$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListCourseAliasesResponse>;
+      params?: Params$Resource$Courses$Aliases$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCourseAliasesResponse>;
     list(
-        params: Params$Resource$Courses$Aliases$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListCourseAliasesResponse>,
-        callback: BodyResponseCallback<Schema$ListCourseAliasesResponse>): void;
+      params: Params$Resource$Courses$Aliases$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCourseAliasesResponse>,
+      callback: BodyResponseCallback<Schema$ListCourseAliasesResponse>
+    ): void;
     list(
-        params: Params$Resource$Courses$Aliases$List,
-        callback: BodyResponseCallback<Schema$ListCourseAliasesResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListCourseAliasesResponse>):
-        void;
+      params: Params$Resource$Courses$Aliases$List,
+      callback: BodyResponseCallback<Schema$ListCourseAliasesResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Courses$Aliases$List|
-        BodyResponseCallback<Schema$ListCourseAliasesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListCourseAliasesResponse>,
-        callback?: BodyResponseCallback<Schema$ListCourseAliasesResponse>):
-        void|GaxiosPromise<Schema$ListCourseAliasesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Aliases$List;
+      callback: BodyResponseCallback<Schema$ListCourseAliasesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Aliases$List
+        | BodyResponseCallback<Schema$ListCourseAliasesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCourseAliasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListCourseAliasesResponse>
+    ): void | GaxiosPromise<Schema$ListCourseAliasesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Aliases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2147,36 +1961,40 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/aliases')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/aliases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListCourseAliasesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListCourseAliasesResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Courses$Aliases$Create extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Aliases$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course to alias. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course to alias. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
 
@@ -2185,49 +2003,42 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$CourseAlias;
   }
-  export interface Params$Resource$Courses$Aliases$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Aliases$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Alias to delete. This may not be the Classroom-assigned identifier.
      */
     alias?: string;
     /**
-     * Identifier of the course whose alias should be deleted. This identifier
-     * can be either the Classroom-assigned identifier or an alias.
+     * Identifier of the course whose alias should be deleted. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
   }
-  export interface Params$Resource$Courses$Aliases$List extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Aliases$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * The identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
-     * Maximum number of items to return. Zero or unspecified indicates that the
-     * server may assign a maximum.  The server may return fewer than the
-     * specified number of results.
+     * Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
      */
     pageSize?: number;
     /**
-     * nextPageToken value returned from a previous list call, indicating that
-     * the subsequent page of results should be returned.  The list request must
-     * be otherwise identical to the one that resulted in this token.
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
      */
     pageToken?: string;
   }
-
 
   export class Resource$Courses$Announcements {
     context: APIRequestContext;
@@ -2235,16 +2046,9 @@ export namespace classroom_v1 {
       this.context = context;
     }
 
-
     /**
      * classroom.courses.announcements.create
-     * @desc Creates an announcement.  This method returns the following error
-     * codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to
-     * access the requested course, create announcements in the requested
-     * course, share a Drive attachment, or for access errors. *
-     * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the
-     * requested course does not exist. * `FAILED_PRECONDITION` for the
-     * following request error:     * AttachmentNotVisible
+     * @desc Creates an announcement.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, create announcements in the requested course, share a Drive attachment, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist. * `FAILED_PRECONDITION` for the following request error:     * AttachmentNotVisible
      * @alias classroom.courses.announcements.create
      * @memberOf! ()
      *
@@ -2256,25 +2060,30 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Courses$Announcements$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Announcement>;
+      params?: Params$Resource$Courses$Announcements$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Announcement>;
     create(
-        params: Params$Resource$Courses$Announcements$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
-        callback: BodyResponseCallback<Schema$Announcement>): void;
+      params: Params$Resource$Courses$Announcements$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Announcement>,
+      callback: BodyResponseCallback<Schema$Announcement>
+    ): void;
     create(
-        params: Params$Resource$Courses$Announcements$Create,
-        callback: BodyResponseCallback<Schema$Announcement>): void;
+      params: Params$Resource$Courses$Announcements$Create,
+      callback: BodyResponseCallback<Schema$Announcement>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Announcement>): void;
     create(
-        paramsOrCallback?: Params$Resource$Courses$Announcements$Create|
-        BodyResponseCallback<Schema$Announcement>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Announcement>,
-        callback?: BodyResponseCallback<Schema$Announcement>):
-        void|GaxiosPromise<Schema$Announcement> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Courses$Announcements$Create;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Announcements$Create
+        | BodyResponseCallback<Schema$Announcement>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Announcement>,
+      callback?: BodyResponseCallback<Schema$Announcement>
+    ): void | GaxiosPromise<Schema$Announcement> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Announcements$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2291,16 +2100,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/announcements')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/announcements').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2309,18 +2121,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.announcements.delete
-     * @desc Deletes an announcement.  This request must be made by the
-     * Developer Console project of the [OAuth client
-     * ID](https://support.google.com/cloud/answer/6158849) used to create the
-     * corresponding announcement item.  This method returns the following error
-     * codes:  * `PERMISSION_DENIED` if the requesting developer project did not
-     * create the corresponding announcement, if the requesting user is not
-     * permitted to delete the requested course or for access errors. *
-     * `FAILED_PRECONDITION` if the requested announcement has already been
-     * deleted. * `NOT_FOUND` if no course exists with the requested ID.
+     * @desc Deletes an announcement.  This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding announcement item.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding announcement, if the requesting user is not permitted to delete the requested course or for access errors. * `FAILED_PRECONDITION` if the requested announcement has already been deleted. * `NOT_FOUND` if no course exists with the requested ID.
      * @alias classroom.courses.announcements.delete
      * @memberOf! ()
      *
@@ -2332,24 +2135,28 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Courses$Announcements$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Courses$Announcements$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Courses$Announcements$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Announcements$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Courses$Announcements$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Announcements$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Courses$Announcements$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Courses$Announcements$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Announcements$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Announcements$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2366,16 +2173,18 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/courses/{courseId}/announcements/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2384,14 +2193,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.announcements.get
-     * @desc Returns an announcement.  This method returns the following error
-     * codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to
-     * access the requested course or announcement, or for access errors. *
-     * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the
-     * requested course or announcement does not exist.
+     * @desc Returns an announcement.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or announcement, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or announcement does not exist.
      * @alias classroom.courses.announcements.get
      * @memberOf! ()
      *
@@ -2402,22 +2206,31 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Courses$Announcements$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Announcement>;
-    get(params: Params$Resource$Courses$Announcements$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
-        callback: BodyResponseCallback<Schema$Announcement>): void;
-    get(params: Params$Resource$Courses$Announcements$Get,
-        callback: BodyResponseCallback<Schema$Announcement>): void;
+    get(
+      params?: Params$Resource$Courses$Announcements$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Announcement>;
+    get(
+      params: Params$Resource$Courses$Announcements$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Announcement>,
+      callback: BodyResponseCallback<Schema$Announcement>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Announcements$Get,
+      callback: BodyResponseCallback<Schema$Announcement>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Announcement>): void;
-    get(paramsOrCallback?: Params$Resource$Courses$Announcements$Get|
-        BodyResponseCallback<Schema$Announcement>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Announcement>,
-        callback?: BodyResponseCallback<Schema$Announcement>):
-        void|GaxiosPromise<Schema$Announcement> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Announcements$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Announcements$Get
+        | BodyResponseCallback<Schema$Announcement>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Announcement>,
+      callback?: BodyResponseCallback<Schema$Announcement>
+    ): void | GaxiosPromise<Schema$Announcement> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Announcements$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2434,16 +2247,18 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/courses/{courseId}/announcements/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2452,16 +2267,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.announcements.list
-     * @desc Returns a list of announcements that the requester is permitted to
-     * view.  Course students may only view `PUBLISHED` announcements. Course
-     * teachers and domain administrators may view all announcements.  This
-     * method returns the following error codes:  * `PERMISSION_DENIED` if the
-     * requesting user is not permitted to access the requested course or for
-     * access errors. * `INVALID_ARGUMENT` if the request is malformed. *
-     * `NOT_FOUND` if the requested course does not exist.
+     * @desc Returns a list of announcements that the requester is permitted to view.  Course students may only view `PUBLISHED` announcements. Course teachers and domain administrators may view all announcements.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
      * @alias classroom.courses.announcements.list
      * @memberOf! ()
      *
@@ -2476,28 +2284,34 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Courses$Announcements$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAnnouncementsResponse>;
+      params?: Params$Resource$Courses$Announcements$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAnnouncementsResponse>;
     list(
-        params: Params$Resource$Courses$Announcements$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAnnouncementsResponse>,
-        callback: BodyResponseCallback<Schema$ListAnnouncementsResponse>): void;
+      params: Params$Resource$Courses$Announcements$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAnnouncementsResponse>,
+      callback: BodyResponseCallback<Schema$ListAnnouncementsResponse>
+    ): void;
     list(
-        params: Params$Resource$Courses$Announcements$List,
-        callback: BodyResponseCallback<Schema$ListAnnouncementsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListAnnouncementsResponse>):
-        void;
+      params: Params$Resource$Courses$Announcements$List,
+      callback: BodyResponseCallback<Schema$ListAnnouncementsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Courses$Announcements$List|
-        BodyResponseCallback<Schema$ListAnnouncementsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAnnouncementsResponse>,
-        callback?: BodyResponseCallback<Schema$ListAnnouncementsResponse>):
-        void|GaxiosPromise<Schema$ListAnnouncementsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Courses$Announcements$List;
+      callback: BodyResponseCallback<Schema$ListAnnouncementsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Announcements$List
+        | BodyResponseCallback<Schema$ListAnnouncementsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAnnouncementsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAnnouncementsResponse>
+    ): void | GaxiosPromise<Schema$ListAnnouncementsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Announcements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2514,35 +2328,33 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/announcements')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/announcements').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAnnouncementsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListAnnouncementsResponse>(parameters);
       }
     }
 
-
     /**
      * classroom.courses.announcements.modifyAssignees
-     * @desc Modifies assignee mode and options of an announcement.  Only a
-     * teacher of the course that contains the announcement may call this
-     * method.  This method returns the following error codes:  *
-     * `PERMISSION_DENIED` if the requesting user is not permitted to access the
-     * requested course or course work or for access errors. *
-     * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the
-     * requested course or course work does not exist.
+     * @desc Modifies assignee mode and options of an announcement.  Only a teacher of the course that contains the announcement may call this method.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or course work does not exist.
      * @alias classroom.courses.announcements.modifyAssignees
      * @memberOf! ()
      *
@@ -2555,26 +2367,30 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     modifyAssignees(
-        params?: Params$Resource$Courses$Announcements$Modifyassignees,
-        options?: MethodOptions): GaxiosPromise<Schema$Announcement>;
+      params?: Params$Resource$Courses$Announcements$Modifyassignees,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Announcement>;
     modifyAssignees(
-        params: Params$Resource$Courses$Announcements$Modifyassignees,
-        options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
-        callback: BodyResponseCallback<Schema$Announcement>): void;
+      params: Params$Resource$Courses$Announcements$Modifyassignees,
+      options: MethodOptions | BodyResponseCallback<Schema$Announcement>,
+      callback: BodyResponseCallback<Schema$Announcement>
+    ): void;
     modifyAssignees(
-        params: Params$Resource$Courses$Announcements$Modifyassignees,
-        callback: BodyResponseCallback<Schema$Announcement>): void;
+      params: Params$Resource$Courses$Announcements$Modifyassignees,
+      callback: BodyResponseCallback<Schema$Announcement>
+    ): void;
     modifyAssignees(callback: BodyResponseCallback<Schema$Announcement>): void;
     modifyAssignees(
-        paramsOrCallback?:
-            Params$Resource$Courses$Announcements$Modifyassignees|
-        BodyResponseCallback<Schema$Announcement>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Announcement>,
-        callback?: BodyResponseCallback<Schema$Announcement>):
-        void|GaxiosPromise<Schema$Announcement> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Courses$Announcements$Modifyassignees;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Announcements$Modifyassignees
+        | BodyResponseCallback<Schema$Announcement>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Announcement>,
+      callback?: BodyResponseCallback<Schema$Announcement>
+    ): void | GaxiosPromise<Schema$Announcement> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Announcements$Modifyassignees;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2591,17 +2407,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/courses/{courseId}/announcements/{id}:modifyAssignees')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/announcements/{id}:modifyAssignees'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2610,16 +2428,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.announcements.patch
-     * @desc Updates one or more fields of an announcement.  This method returns
-     * the following error codes:  * `PERMISSION_DENIED` if the requesting
-     * developer project did not create the corresponding announcement or for
-     * access errors. * `INVALID_ARGUMENT` if the request is malformed. *
-     * `FAILED_PRECONDITION` if the requested announcement has already been
-     * deleted. * `NOT_FOUND` if the requested course or announcement does not
-     * exist
+     * @desc Updates one or more fields of an announcement.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding announcement or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `FAILED_PRECONDITION` if the requested announcement has already been deleted. * `NOT_FOUND` if the requested course or announcement does not exist
      * @alias classroom.courses.announcements.patch
      * @memberOf! ()
      *
@@ -2633,25 +2444,30 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Courses$Announcements$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Announcement>;
+      params?: Params$Resource$Courses$Announcements$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Announcement>;
     patch(
-        params: Params$Resource$Courses$Announcements$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
-        callback: BodyResponseCallback<Schema$Announcement>): void;
+      params: Params$Resource$Courses$Announcements$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Announcement>,
+      callback: BodyResponseCallback<Schema$Announcement>
+    ): void;
     patch(
-        params: Params$Resource$Courses$Announcements$Patch,
-        callback: BodyResponseCallback<Schema$Announcement>): void;
+      params: Params$Resource$Courses$Announcements$Patch,
+      callback: BodyResponseCallback<Schema$Announcement>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Announcement>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Courses$Announcements$Patch|
-        BodyResponseCallback<Schema$Announcement>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Announcement>,
-        callback?: BodyResponseCallback<Schema$Announcement>):
-        void|GaxiosPromise<Schema$Announcement> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Courses$Announcements$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Announcements$Patch
+        | BodyResponseCallback<Schema$Announcement>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Announcement>,
+      callback?: BodyResponseCallback<Schema$Announcement>
+    ): void | GaxiosPromise<Schema$Announcement> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Announcements$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2668,16 +2484,18 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/courses/{courseId}/announcements/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2687,16 +2505,15 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Announcements$Create extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
 
@@ -2705,34 +2522,31 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Announcement;
   }
-  export interface Params$Resource$Courses$Announcements$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
-     * Identifier of the announcement to delete. This identifier is a
-     * Classroom-assigned identifier.
+     * Identifier of the announcement to delete. This identifier is a Classroom-assigned identifier.
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Announcements$Get extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
@@ -2740,54 +2554,43 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Announcements$List extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Announcements$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Restriction on the `state` of announcements returned. If this argument is
-     * left unspecified, the default value is `PUBLISHED`.
+     * Restriction on the `state` of announcements returned. If this argument is left unspecified, the default value is `PUBLISHED`.
      */
     announcementStates?: string[];
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
-     * Optional sort ordering for results. A comma-separated list of fields with
-     * an optional sort direction keyword. Supported field is `updateTime`.
-     * Supported direction keywords are `asc` and `desc`. If not specified,
-     * `updateTime desc` is the default behavior. Examples: `updateTime asc`,
-     * `updateTime`
+     * Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported field is `updateTime`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `updateTime asc`, `updateTime`
      */
     orderBy?: string;
     /**
-     * Maximum number of items to return. Zero or unspecified indicates that the
-     * server may assign a maximum.  The server may return fewer than the
-     * specified number of results.
+     * Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
      */
     pageSize?: number;
     /**
-     * nextPageToken value returned from a previous list call, indicating that
-     * the subsequent page of results should be returned.  The list request must
-     * be otherwise identical to the one that resulted in this token.
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Courses$Announcements$Modifyassignees extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Modifyassignees
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
@@ -2800,16 +2603,15 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ModifyAnnouncementAssigneesRequest;
   }
-  export interface Params$Resource$Courses$Announcements$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Announcements$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
@@ -2817,14 +2619,7 @@ export namespace classroom_v1 {
      */
     id?: string;
     /**
-     * Mask that identifies which fields on the announcement to update. This
-     * field is required to do an update. The update fails if invalid fields are
-     * specified. If a field supports empty values, it can be cleared by
-     * specifying it in the update mask and not in the Announcement object. If a
-     * field that does not support empty values is included in the update mask
-     * and not set in the Announcement object, an `INVALID_ARGUMENT` error will
-     * be returned.  The following fields may be specified by teachers:  *
-     * `text` * `state` * `scheduled_time`
+     * Mask that identifies which fields on the announcement to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Announcement object. If a field that does not support empty values is included in the update mask and not set in the Announcement object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `text` * `state` * `scheduled_time`
      */
     updateMask?: string;
 
@@ -2834,31 +2629,19 @@ export namespace classroom_v1 {
     requestBody?: Schema$Announcement;
   }
 
-
   export class Resource$Courses$Coursework {
     context: APIRequestContext;
     studentSubmissions: Resource$Courses$Coursework$Studentsubmissions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.studentSubmissions =
-          new Resource$Courses$Coursework$Studentsubmissions(this.context);
+      this.studentSubmissions = new Resource$Courses$Coursework$Studentsubmissions(
+        this.context
+      );
     }
-
 
     /**
      * classroom.courses.courseWork.create
-     * @desc Creates course work.  The resulting course work (and corresponding
-     * student submissions) are associated with the Developer Console project of
-     * the [OAuth client ID](https://support.google.com/cloud/answer/6158849)
-     * used to make the request. Classroom API requests to modify course work
-     * and student submissions must be made with an OAuth client ID from the
-     * associated Developer Console project.  This method returns the following
-     * error codes:  * `PERMISSION_DENIED` if the requesting user is not
-     * permitted to access the requested course, create course work in the
-     * requested course, share a Drive attachment, or for access errors. *
-     * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the
-     * requested course does not exist. * `FAILED_PRECONDITION` for the
-     * following request error:     * AttachmentNotVisible
+     * @desc Creates course work.  The resulting course work (and corresponding student submissions) are associated with the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to make the request. Classroom API requests to modify course work and student submissions must be made with an OAuth client ID from the associated Developer Console project.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, create course work in the requested course, share a Drive attachment, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist. * `FAILED_PRECONDITION` for the following request error:     * AttachmentNotVisible
      * @alias classroom.courses.courseWork.create
      * @memberOf! ()
      *
@@ -2870,25 +2653,30 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Courses$Coursework$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$CourseWork>;
+      params?: Params$Resource$Courses$Coursework$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CourseWork>;
     create(
-        params: Params$Resource$Courses$Coursework$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
-        callback: BodyResponseCallback<Schema$CourseWork>): void;
+      params: Params$Resource$Courses$Coursework$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$CourseWork>,
+      callback: BodyResponseCallback<Schema$CourseWork>
+    ): void;
     create(
-        params: Params$Resource$Courses$Coursework$Create,
-        callback: BodyResponseCallback<Schema$CourseWork>): void;
+      params: Params$Resource$Courses$Coursework$Create,
+      callback: BodyResponseCallback<Schema$CourseWork>
+    ): void;
     create(callback: BodyResponseCallback<Schema$CourseWork>): void;
     create(
-        paramsOrCallback?: Params$Resource$Courses$Coursework$Create|
-        BodyResponseCallback<Schema$CourseWork>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CourseWork>,
-        callback?: BodyResponseCallback<Schema$CourseWork>):
-        void|GaxiosPromise<Schema$CourseWork> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Coursework$Create;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Create
+        | BodyResponseCallback<Schema$CourseWork>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CourseWork>,
+      callback?: BodyResponseCallback<Schema$CourseWork>
+    ): void | GaxiosPromise<Schema$CourseWork> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2905,16 +2693,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/courseWork')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -2923,18 +2714,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.courseWork.delete
-     * @desc Deletes a course work.  This request must be made by the Developer
-     * Console project of the [OAuth client
-     * ID](https://support.google.com/cloud/answer/6158849) used to create the
-     * corresponding course work item.  This method returns the following error
-     * codes:  * `PERMISSION_DENIED` if the requesting developer project did not
-     * create the corresponding course work, if the requesting user is not
-     * permitted to delete the requested course or for access errors. *
-     * `FAILED_PRECONDITION` if the requested course work has already been
-     * deleted. * `NOT_FOUND` if no course exists with the requested ID.
+     * @desc Deletes a course work.  This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding course work, if the requesting user is not permitted to delete the requested course or for access errors. * `FAILED_PRECONDITION` if the requested course work has already been deleted. * `NOT_FOUND` if no course exists with the requested ID.
      * @alias classroom.courses.courseWork.delete
      * @memberOf! ()
      *
@@ -2946,24 +2728,28 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Courses$Coursework$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Courses$Coursework$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Courses$Coursework$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Coursework$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Courses$Coursework$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Coursework$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Courses$Coursework$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Coursework$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2980,16 +2766,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2998,14 +2787,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.courseWork.get
-     * @desc Returns course work.  This method returns the following error
-     * codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to
-     * access the requested course or course work, or for access errors. *
-     * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the
-     * requested course or course work does not exist.
+     * @desc Returns course work.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or course work does not exist.
      * @alias classroom.courses.courseWork.get
      * @memberOf! ()
      *
@@ -3016,22 +2800,31 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Courses$Coursework$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$CourseWork>;
-    get(params: Params$Resource$Courses$Coursework$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
-        callback: BodyResponseCallback<Schema$CourseWork>): void;
-    get(params: Params$Resource$Courses$Coursework$Get,
-        callback: BodyResponseCallback<Schema$CourseWork>): void;
+    get(
+      params?: Params$Resource$Courses$Coursework$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CourseWork>;
+    get(
+      params: Params$Resource$Courses$Coursework$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CourseWork>,
+      callback: BodyResponseCallback<Schema$CourseWork>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Coursework$Get,
+      callback: BodyResponseCallback<Schema$CourseWork>
+    ): void;
     get(callback: BodyResponseCallback<Schema$CourseWork>): void;
-    get(paramsOrCallback?: Params$Resource$Courses$Coursework$Get|
-        BodyResponseCallback<Schema$CourseWork>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CourseWork>,
-        callback?: BodyResponseCallback<Schema$CourseWork>):
-        void|GaxiosPromise<Schema$CourseWork> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Coursework$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Get
+        | BodyResponseCallback<Schema$CourseWork>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CourseWork>,
+      callback?: BodyResponseCallback<Schema$CourseWork>
+    ): void | GaxiosPromise<Schema$CourseWork> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3048,16 +2841,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -3066,16 +2862,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.courseWork.list
-     * @desc Returns a list of course work that the requester is permitted to
-     * view.  Course students may only view `PUBLISHED` course work. Course
-     * teachers and domain administrators may view all course work.  This method
-     * returns the following error codes:  * `PERMISSION_DENIED` if the
-     * requesting user is not permitted to access the requested course or for
-     * access errors. * `INVALID_ARGUMENT` if the request is malformed. *
-     * `NOT_FOUND` if the requested course does not exist.
+     * @desc Returns a list of course work that the requester is permitted to view.  Course students may only view `PUBLISHED` course work. Course teachers and domain administrators may view all course work.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
      * @alias classroom.courses.courseWork.list
      * @memberOf! ()
      *
@@ -3090,26 +2879,32 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Courses$Coursework$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListCourseWorkResponse>;
+      params?: Params$Resource$Courses$Coursework$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCourseWorkResponse>;
     list(
-        params: Params$Resource$Courses$Coursework$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListCourseWorkResponse>,
-        callback: BodyResponseCallback<Schema$ListCourseWorkResponse>): void;
+      params: Params$Resource$Courses$Coursework$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCourseWorkResponse>,
+      callback: BodyResponseCallback<Schema$ListCourseWorkResponse>
+    ): void;
     list(
-        params: Params$Resource$Courses$Coursework$List,
-        callback: BodyResponseCallback<Schema$ListCourseWorkResponse>): void;
+      params: Params$Resource$Courses$Coursework$List,
+      callback: BodyResponseCallback<Schema$ListCourseWorkResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListCourseWorkResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Courses$Coursework$List|
-        BodyResponseCallback<Schema$ListCourseWorkResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListCourseWorkResponse>,
-        callback?: BodyResponseCallback<Schema$ListCourseWorkResponse>):
-        void|GaxiosPromise<Schema$ListCourseWorkResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Coursework$List;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$List
+        | BodyResponseCallback<Schema$ListCourseWorkResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCourseWorkResponse>,
+      callback?: BodyResponseCallback<Schema$ListCourseWorkResponse>
+    ): void | GaxiosPromise<Schema$ListCourseWorkResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3126,16 +2921,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/courseWork')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListCourseWorkResponse>(parameters, callback);
@@ -3144,16 +2942,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.courseWork.modifyAssignees
-     * @desc Modifies assignee mode and options of a coursework.  Only a teacher
-     * of the course that contains the coursework may call this method.  This
-     * method returns the following error codes:  * `PERMISSION_DENIED` if the
-     * requesting user is not permitted to access the requested course or course
-     * work or for access errors. * `INVALID_ARGUMENT` if the request is
-     * malformed. * `NOT_FOUND` if the requested course or course work does not
-     * exist.
+     * @desc Modifies assignee mode and options of a coursework.  Only a teacher of the course that contains the coursework may call this method.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or course work does not exist.
      * @alias classroom.courses.courseWork.modifyAssignees
      * @memberOf! ()
      *
@@ -3166,25 +2957,30 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     modifyAssignees(
-        params?: Params$Resource$Courses$Coursework$Modifyassignees,
-        options?: MethodOptions): GaxiosPromise<Schema$CourseWork>;
+      params?: Params$Resource$Courses$Coursework$Modifyassignees,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CourseWork>;
     modifyAssignees(
-        params: Params$Resource$Courses$Coursework$Modifyassignees,
-        options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
-        callback: BodyResponseCallback<Schema$CourseWork>): void;
+      params: Params$Resource$Courses$Coursework$Modifyassignees,
+      options: MethodOptions | BodyResponseCallback<Schema$CourseWork>,
+      callback: BodyResponseCallback<Schema$CourseWork>
+    ): void;
     modifyAssignees(
-        params: Params$Resource$Courses$Coursework$Modifyassignees,
-        callback: BodyResponseCallback<Schema$CourseWork>): void;
+      params: Params$Resource$Courses$Coursework$Modifyassignees,
+      callback: BodyResponseCallback<Schema$CourseWork>
+    ): void;
     modifyAssignees(callback: BodyResponseCallback<Schema$CourseWork>): void;
     modifyAssignees(
-        paramsOrCallback?: Params$Resource$Courses$Coursework$Modifyassignees|
-        BodyResponseCallback<Schema$CourseWork>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CourseWork>,
-        callback?: BodyResponseCallback<Schema$CourseWork>):
-        void|GaxiosPromise<Schema$CourseWork> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Courses$Coursework$Modifyassignees;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Modifyassignees
+        | BodyResponseCallback<Schema$CourseWork>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CourseWork>,
+      callback?: BodyResponseCallback<Schema$CourseWork>
+    ): void | GaxiosPromise<Schema$CourseWork> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Modifyassignees;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3201,17 +2997,18 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/courses/{courseId}/courseWork/{id}:modifyAssignees')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/courses/{courseId}/courseWork/{id}:modifyAssignees'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -3220,54 +3017,46 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.courseWork.patch
-     * @desc Updates one or more fields of a course work.  See
-     * google.classroom.v1.CourseWork for details of which fields may be updated
-     * and who may change them.  This request must be made by the Developer
-     * Console project of the [OAuth client
-     * ID](https://support.google.com/cloud/answer/6158849) used to create the
-     * corresponding course work item.  This method returns the following error
-     * codes:  * `PERMISSION_DENIED` if the requesting developer project did not
-     * create the corresponding course work, if the user is not permitted to
-     * make the requested modification to the student submission, or for access
-     * errors. * `INVALID_ARGUMENT` if the request is malformed. *
-     * `FAILED_PRECONDITION` if the requested course work has already been
-     * deleted. * `NOT_FOUND` if the requested course, course work, or student
-     * submission does not exist.
+     * @desc Updates one or more fields of a course work.  See google.classroom.v1.CourseWork for details of which fields may be updated and who may change them.  This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding course work, if the user is not permitted to make the requested modification to the student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `FAILED_PRECONDITION` if the requested course work has already been deleted. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
      * @alias classroom.courses.courseWork.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.id Identifier of the course work.
-     * @param {string=} params.updateMask Mask that identifies which fields on the course work to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the CourseWork object. If a field that does not support empty values is included in the update mask and not set in the CourseWork object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `title` * `description` * `state` * `due_date` * `due_time` * `max_points` * `scheduled_time` * `submission_modification_mode`
+     * @param {string=} params.updateMask Mask that identifies which fields on the course work to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the CourseWork object. If a field that does not support empty values is included in the update mask and not set in the CourseWork object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `title` * `description` * `state` * `due_date` * `due_time` * `max_points` * `scheduled_time` * `submission_modification_mode` * `topic_id`
      * @param {().CourseWork} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Courses$Coursework$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$CourseWork>;
+      params?: Params$Resource$Courses$Coursework$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CourseWork>;
     patch(
-        params: Params$Resource$Courses$Coursework$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
-        callback: BodyResponseCallback<Schema$CourseWork>): void;
+      params: Params$Resource$Courses$Coursework$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CourseWork>,
+      callback: BodyResponseCallback<Schema$CourseWork>
+    ): void;
     patch(
-        params: Params$Resource$Courses$Coursework$Patch,
-        callback: BodyResponseCallback<Schema$CourseWork>): void;
+      params: Params$Resource$Courses$Coursework$Patch,
+      callback: BodyResponseCallback<Schema$CourseWork>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$CourseWork>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Courses$Coursework$Patch|
-        BodyResponseCallback<Schema$CourseWork>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CourseWork>,
-        callback?: BodyResponseCallback<Schema$CourseWork>):
-        void|GaxiosPromise<Schema$CourseWork> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Coursework$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Patch
+        | BodyResponseCallback<Schema$CourseWork>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CourseWork>,
+      callback?: BodyResponseCallback<Schema$CourseWork>
+    ): void | GaxiosPromise<Schema$CourseWork> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3284,16 +3073,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -3303,16 +3095,15 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Coursework$Create extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
 
@@ -3321,34 +3112,31 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$CourseWork;
   }
-  export interface Params$Resource$Courses$Coursework$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
-     * Identifier of the course work to delete. This identifier is a
-     * Classroom-assigned identifier.
+     * Identifier of the course work to delete. This identifier is a Classroom-assigned identifier.
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Get extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
@@ -3356,55 +3144,43 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Coursework$List extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Coursework$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
-     * Restriction on the work status to return. Only courseWork that matches is
-     * returned. If unspecified, items with a work status of `PUBLISHED` is
-     * returned.
+     * Restriction on the work status to return. Only courseWork that matches is returned. If unspecified, items with a work status of `PUBLISHED` is returned.
      */
     courseWorkStates?: string[];
     /**
-     * Optional sort ordering for results. A comma-separated list of fields with
-     * an optional sort direction keyword. Supported fields are `updateTime` and
-     * `dueDate`. Supported direction keywords are `asc` and `desc`. If not
-     * specified, `updateTime desc` is the default behavior. Examples: `dueDate
-     * asc,updateTime desc`, `updateTime,dueDate desc`
+     * Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported fields are `updateTime` and `dueDate`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `dueDate asc,updateTime desc`, `updateTime,dueDate desc`
      */
     orderBy?: string;
     /**
-     * Maximum number of items to return. Zero or unspecified indicates that the
-     * server may assign a maximum.  The server may return fewer than the
-     * specified number of results.
+     * Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
      */
     pageSize?: number;
     /**
-     * nextPageToken value returned from a previous list call, indicating that
-     * the subsequent page of results should be returned.  The list request must
-     * be otherwise identical to the one that resulted in this token.
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Modifyassignees extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Modifyassignees
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
@@ -3417,16 +3193,15 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ModifyCourseWorkAssigneesRequest;
   }
-  export interface Params$Resource$Courses$Coursework$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Coursework$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
@@ -3434,15 +3209,7 @@ export namespace classroom_v1 {
      */
     id?: string;
     /**
-     * Mask that identifies which fields on the course work to update. This
-     * field is required to do an update. The update fails if invalid fields are
-     * specified. If a field supports empty values, it can be cleared by
-     * specifying it in the update mask and not in the CourseWork object. If a
-     * field that does not support empty values is included in the update mask
-     * and not set in the CourseWork object, an `INVALID_ARGUMENT` error will be
-     * returned.  The following fields may be specified by teachers:  * `title`
-     * * `description` * `state` * `due_date` * `due_time` * `max_points` *
-     * `scheduled_time` * `submission_modification_mode`
+     * Mask that identifies which fields on the course work to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the CourseWork object. If a field that does not support empty values is included in the update mask and not set in the CourseWork object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `title` * `description` * `state` * `due_date` * `due_time` * `max_points` * `scheduled_time` * `submission_modification_mode` * `topic_id`
      */
     updateMask?: string;
 
@@ -3458,14 +3225,9 @@ export namespace classroom_v1 {
       this.context = context;
     }
 
-
     /**
      * classroom.courses.courseWork.studentSubmissions.get
-     * @desc Returns a student submission.  * `PERMISSION_DENIED` if the
-     * requesting user is not permitted to access the requested course, course
-     * work, or student submission or for access errors. * `INVALID_ARGUMENT` if
-     * the request is malformed. * `NOT_FOUND` if the requested course, course
-     * work, or student submission does not exist.
+     * @desc Returns a student submission.  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, course work, or student submission or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
      * @alias classroom.courses.courseWork.studentSubmissions.get
      * @memberOf! ()
      *
@@ -3477,29 +3239,36 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Courses$Coursework$Studentsubmissions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$StudentSubmission>;
-    get(params: Params$Resource$Courses$Coursework$Studentsubmissions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$StudentSubmission>,
-        callback: BodyResponseCallback<Schema$StudentSubmission>): void;
-    get(params: Params$Resource$Courses$Coursework$Studentsubmissions$Get,
-        callback: BodyResponseCallback<Schema$StudentSubmission>): void;
+    get(
+      params?: Params$Resource$Courses$Coursework$Studentsubmissions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StudentSubmission>;
+    get(
+      params: Params$Resource$Courses$Coursework$Studentsubmissions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$StudentSubmission>,
+      callback: BodyResponseCallback<Schema$StudentSubmission>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Coursework$Studentsubmissions$Get,
+      callback: BodyResponseCallback<Schema$StudentSubmission>
+    ): void;
     get(callback: BodyResponseCallback<Schema$StudentSubmission>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Courses$Coursework$Studentsubmissions$Get|
-        BodyResponseCallback<Schema$StudentSubmission>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StudentSubmission>,
-        callback?: BodyResponseCallback<Schema$StudentSubmission>):
-        void|GaxiosPromise<Schema$StudentSubmission> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Courses$Coursework$Studentsubmissions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Studentsubmissions$Get
+        | BodyResponseCallback<Schema$StudentSubmission>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StudentSubmission>,
+      callback?: BodyResponseCallback<Schema$StudentSubmission>
+    ): void | GaxiosPromise<Schema$StudentSubmission> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Studentsubmissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Courses$Coursework$Studentsubmissions$Get;
+        params = {} as Params$Resource$Courses$Coursework$Studentsubmissions$Get;
         options = {};
       }
 
@@ -3511,18 +3280,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(parameters, callback);
@@ -3531,19 +3301,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.courseWork.studentSubmissions.list
-     * @desc Returns a list of student submissions that the requester is
-     * permitted to view, factoring in the OAuth scopes of the request. `-` may
-     * be specified as the `course_work_id` to include student submissions for
-     * multiple course work items.  Course students may only view their own
-     * work. Course teachers and domain administrators may view all student
-     * submissions.  This method returns the following error codes:  *
-     * `PERMISSION_DENIED` if the requesting user is not permitted to access the
-     * requested course or course work, or for access errors. *
-     * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the
-     * requested course does not exist.
+     * @desc Returns a list of student submissions that the requester is permitted to view, factoring in the OAuth scopes of the request. `-` may be specified as the `course_work_id` to include student submissions for multiple course work items.  Course students may only view their own work. Course teachers and domain administrators may view all student submissions.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
      * @alias classroom.courses.courseWork.studentSubmissions.list
      * @memberOf! ()
      *
@@ -3560,37 +3320,39 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Courses$Coursework$Studentsubmissions$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListStudentSubmissionsResponse>;
+      params?: Params$Resource$Courses$Coursework$Studentsubmissions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListStudentSubmissionsResponse>;
     list(
-        params: Params$Resource$Courses$Coursework$Studentsubmissions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListStudentSubmissionsResponse>,
-        callback: BodyResponseCallback<Schema$ListStudentSubmissionsResponse>):
-        void;
+      params: Params$Resource$Courses$Coursework$Studentsubmissions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListStudentSubmissionsResponse>,
+      callback: BodyResponseCallback<Schema$ListStudentSubmissionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Courses$Coursework$Studentsubmissions$List,
-        callback: BodyResponseCallback<Schema$ListStudentSubmissionsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListStudentSubmissionsResponse>):
-        void;
+      params: Params$Resource$Courses$Coursework$Studentsubmissions$List,
+      callback: BodyResponseCallback<Schema$ListStudentSubmissionsResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Courses$Coursework$Studentsubmissions$List|
-        BodyResponseCallback<Schema$ListStudentSubmissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListStudentSubmissionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListStudentSubmissionsResponse>):
-        void|GaxiosPromise<Schema$ListStudentSubmissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Courses$Coursework$Studentsubmissions$List;
+      callback: BodyResponseCallback<Schema$ListStudentSubmissionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Studentsubmissions$List
+        | BodyResponseCallback<Schema$ListStudentSubmissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListStudentSubmissionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListStudentSubmissionsResponse>
+    ): void | GaxiosPromise<Schema$ListStudentSubmissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Studentsubmissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Courses$Coursework$Studentsubmissions$List;
+        params = {} as Params$Resource$Courses$Coursework$Studentsubmissions$List;
         options = {};
       }
 
@@ -3602,43 +3364,35 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'courseWorkId'],
         pathParams: ['courseId', 'courseWorkId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListStudentSubmissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListStudentSubmissionsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * classroom.courses.courseWork.studentSubmissions.modifyAttachments
-     * @desc Modifies attachments of student submission.  Attachments may only
-     * be added to student submissions belonging to course work objects with a
-     * `workType` of `ASSIGNMENT`.  This request must be made by the Developer
-     * Console project of the [OAuth client
-     * ID](https://support.google.com/cloud/answer/6158849) used to create the
-     * corresponding course work item.  This method returns the following error
-     * codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to
-     * access the requested course or course work, if the user is not permitted
-     * to modify attachments on the requested student submission, or for access
-     * errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND`
-     * if the requested course, course work, or student submission does not
-     * exist.
+     * @desc Modifies attachments of student submission.  Attachments may only be added to student submissions belonging to course work objects with a `workType` of `ASSIGNMENT`.  This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, if the user is not permitted to modify attachments on the requested student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
      * @alias classroom.courses.courseWork.studentSubmissions.modifyAttachments
      * @memberOf! ()
      *
@@ -3652,36 +3406,37 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     modifyAttachments(
-        params?:
-            Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments,
-        options?: MethodOptions): GaxiosPromise<Schema$StudentSubmission>;
+      params?: Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StudentSubmission>;
     modifyAttachments(
-        params:
-            Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments,
-        options: MethodOptions|BodyResponseCallback<Schema$StudentSubmission>,
-        callback: BodyResponseCallback<Schema$StudentSubmission>): void;
+      params: Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments,
+      options: MethodOptions | BodyResponseCallback<Schema$StudentSubmission>,
+      callback: BodyResponseCallback<Schema$StudentSubmission>
+    ): void;
     modifyAttachments(
-        params:
-            Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments,
-        callback: BodyResponseCallback<Schema$StudentSubmission>): void;
-    modifyAttachments(callback: BodyResponseCallback<Schema$StudentSubmission>):
-        void;
+      params: Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments,
+      callback: BodyResponseCallback<Schema$StudentSubmission>
+    ): void;
     modifyAttachments(
-        paramsOrCallback?:
-            Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments|
-        BodyResponseCallback<Schema$StudentSubmission>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StudentSubmission>,
-        callback?: BodyResponseCallback<Schema$StudentSubmission>):
-        void|GaxiosPromise<Schema$StudentSubmission> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments;
+      callback: BodyResponseCallback<Schema$StudentSubmission>
+    ): void;
+    modifyAttachments(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments
+        | BodyResponseCallback<Schema$StudentSubmission>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StudentSubmission>,
+      callback?: BodyResponseCallback<Schema$StudentSubmission>
+    ): void | GaxiosPromise<Schema$StudentSubmission> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments;
+        params = {} as Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments;
         options = {};
       }
 
@@ -3693,18 +3448,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(parameters, callback);
@@ -3713,21 +3469,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.courseWork.studentSubmissions.patch
-     * @desc Updates one or more fields of a student submission.  See
-     * google.classroom.v1.StudentSubmission for details of which fields may be
-     * updated and who may change them.  This request must be made by the
-     * Developer Console project of the [OAuth client
-     * ID](https://support.google.com/cloud/answer/6158849) used to create the
-     * corresponding course work item.  This method returns the following error
-     * codes:  * `PERMISSION_DENIED` if the requesting developer project did not
-     * create the corresponding course work, if the user is not permitted to
-     * make the requested modification to the student submission, or for access
-     * errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND`
-     * if the requested course, course work, or student submission does not
-     * exist.
+     * @desc Updates one or more fields of a student submission.  See google.classroom.v1.StudentSubmission for details of which fields may be updated and who may change them.  This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding course work, if the user is not permitted to make the requested modification to the student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
      * @alias classroom.courses.courseWork.studentSubmissions.patch
      * @memberOf! ()
      *
@@ -3742,32 +3486,35 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Courses$Coursework$Studentsubmissions$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$StudentSubmission>;
+      params?: Params$Resource$Courses$Coursework$Studentsubmissions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StudentSubmission>;
     patch(
-        params: Params$Resource$Courses$Coursework$Studentsubmissions$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$StudentSubmission>,
-        callback: BodyResponseCallback<Schema$StudentSubmission>): void;
+      params: Params$Resource$Courses$Coursework$Studentsubmissions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$StudentSubmission>,
+      callback: BodyResponseCallback<Schema$StudentSubmission>
+    ): void;
     patch(
-        params: Params$Resource$Courses$Coursework$Studentsubmissions$Patch,
-        callback: BodyResponseCallback<Schema$StudentSubmission>): void;
+      params: Params$Resource$Courses$Coursework$Studentsubmissions$Patch,
+      callback: BodyResponseCallback<Schema$StudentSubmission>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$StudentSubmission>): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Courses$Coursework$Studentsubmissions$Patch|
-        BodyResponseCallback<Schema$StudentSubmission>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StudentSubmission>,
-        callback?: BodyResponseCallback<Schema$StudentSubmission>):
-        void|GaxiosPromise<Schema$StudentSubmission> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Courses$Coursework$Studentsubmissions$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Studentsubmissions$Patch
+        | BodyResponseCallback<Schema$StudentSubmission>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StudentSubmission>,
+      callback?: BodyResponseCallback<Schema$StudentSubmission>
+    ): void | GaxiosPromise<Schema$StudentSubmission> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Studentsubmissions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Courses$Coursework$Studentsubmissions$Patch;
+        params = {} as Params$Resource$Courses$Coursework$Studentsubmissions$Patch;
         options = {};
       }
 
@@ -3779,18 +3526,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(parameters, callback);
@@ -3799,23 +3547,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.courseWork.studentSubmissions.reclaim
-     * @desc Reclaims a student submission on behalf of the student that owns
-     * it.  Reclaiming a student submission transfers ownership of attached
-     * Drive files to the student and updates the submission state.  Only the
-     * student that owns the requested student submission may call this method,
-     * and only for a student submission that has been turned in.  This request
-     * must be made by the Developer Console project of the [OAuth client
-     * ID](https://support.google.com/cloud/answer/6158849) used to create the
-     * corresponding course work item.  This method returns the following error
-     * codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to
-     * access the requested course or course work, unsubmit the requested
-     * student submission, or for access errors. * `FAILED_PRECONDITION` if the
-     * student submission has not been turned in. * `INVALID_ARGUMENT` if the
-     * request is malformed. * `NOT_FOUND` if the requested course, course work,
-     * or student submission does not exist.
+     * @desc Reclaims a student submission on behalf of the student that owns it.  Reclaiming a student submission transfers ownership of attached Drive files to the student and updates the submission state.  Only the student that owns the requested student submission may call this method, and only for a student submission that has been turned in.  This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, unsubmit the requested student submission, or for access errors. * `FAILED_PRECONDITION` if the student submission has not been turned in. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
      * @alias classroom.courses.courseWork.studentSubmissions.reclaim
      * @memberOf! ()
      *
@@ -3829,31 +3563,33 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     reclaim(
-        params?: Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     reclaim(
-        params: Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     reclaim(
-        params: Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     reclaim(callback: BodyResponseCallback<Schema$Empty>): void;
     reclaim(
-        paramsOrCallback?:
-            Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim;
+        params = {} as Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim;
         options = {};
       }
 
@@ -3865,18 +3601,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3885,23 +3622,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.courseWork.studentSubmissions.return
-     * @desc Returns a student submission.  Returning a student submission
-     * transfers ownership of attached Drive files to the student and may also
-     * update the submission state. Unlike the Classroom application, returning
-     * a student submission does not set assignedGrade to the draftGrade value.
-     * Only a teacher of the course that contains the requested student
-     * submission may call this method.  This request must be made by the
-     * Developer Console project of the [OAuth client
-     * ID](https://support.google.com/cloud/answer/6158849) used to create the
-     * corresponding course work item.  This method returns the following error
-     * codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to
-     * access the requested course or course work, return the requested student
-     * submission, or for access errors. * `INVALID_ARGUMENT` if the request is
-     * malformed. * `NOT_FOUND` if the requested course, course work, or student
-     * submission does not exist.
+     * @desc Returns a student submission.  Returning a student submission transfers ownership of attached Drive files to the student and may also update the submission state. Unlike the Classroom application, returning a student submission does not set assignedGrade to the draftGrade value.  Only a teacher of the course that contains the requested student submission may call this method.  This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, return the requested student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
      * @alias classroom.courses.courseWork.studentSubmissions.return
      * @memberOf! ()
      *
@@ -3915,31 +3638,33 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     return(
-        params?: Params$Resource$Courses$Coursework$Studentsubmissions$Return,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Courses$Coursework$Studentsubmissions$Return,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     return(
-        params: Params$Resource$Courses$Coursework$Studentsubmissions$Return,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Coursework$Studentsubmissions$Return,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     return(
-        params: Params$Resource$Courses$Coursework$Studentsubmissions$Return,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Coursework$Studentsubmissions$Return,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     return(callback: BodyResponseCallback<Schema$Empty>): void;
     return(
-        paramsOrCallback?:
-            Params$Resource$Courses$Coursework$Studentsubmissions$Return|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void|
-        GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Courses$Coursework$Studentsubmissions$Return;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Studentsubmissions$Return
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Studentsubmissions$Return;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Courses$Coursework$Studentsubmissions$Return;
+        params = {} as Params$Resource$Courses$Coursework$Studentsubmissions$Return;
         options = {};
       }
 
@@ -3951,18 +3676,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:return')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:return'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3971,21 +3697,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.courseWork.studentSubmissions.turnIn
-     * @desc Turns in a student submission.  Turning in a student submission
-     * transfers ownership of attached Drive files to the teacher and may also
-     * update the submission state.  This may only be called by the student that
-     * owns the specified student submission.  This request must be made by the
-     * Developer Console project of the [OAuth client
-     * ID](https://support.google.com/cloud/answer/6158849) used to create the
-     * corresponding course work item.  This method returns the following error
-     * codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to
-     * access the requested course or course work, turn in the requested student
-     * submission, or for access errors. * `INVALID_ARGUMENT` if the request is
-     * malformed. * `NOT_FOUND` if the requested course, course work, or student
-     * submission does not exist.
+     * @desc Turns in a student submission.  Turning in a student submission transfers ownership of attached Drive files to the teacher and may also update the submission state.  This may only be called by the student that owns the specified student submission.  This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, turn in the requested student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
      * @alias classroom.courses.courseWork.studentSubmissions.turnIn
      * @memberOf! ()
      *
@@ -3999,31 +3713,33 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     turnIn(
-        params?: Params$Resource$Courses$Coursework$Studentsubmissions$Turnin,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Courses$Coursework$Studentsubmissions$Turnin,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     turnIn(
-        params: Params$Resource$Courses$Coursework$Studentsubmissions$Turnin,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Coursework$Studentsubmissions$Turnin,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     turnIn(
-        params: Params$Resource$Courses$Coursework$Studentsubmissions$Turnin,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Coursework$Studentsubmissions$Turnin,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     turnIn(callback: BodyResponseCallback<Schema$Empty>): void;
     turnIn(
-        paramsOrCallback?:
-            Params$Resource$Courses$Coursework$Studentsubmissions$Turnin|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Courses$Coursework$Studentsubmissions$Turnin;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Studentsubmissions$Turnin
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Studentsubmissions$Turnin;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Courses$Coursework$Studentsubmissions$Turnin;
+        params = {} as Params$Resource$Courses$Coursework$Studentsubmissions$Turnin;
         options = {};
       }
 
@@ -4035,18 +3751,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4057,15 +3774,14 @@ export namespace classroom_v1 {
   }
 
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
@@ -4078,64 +3794,50 @@ export namespace classroom_v1 {
     id?: string;
   }
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
-     * Identifier of the student work to request. This may be set to the string
-     * literal `"-"` to request student work for all course work in the
-     * specified course.
+     * Identifier of the student work to request. This may be set to the string literal `"-"` to request student work for all course work in the specified course.
      */
     courseWorkId?: string;
     /**
-     * Requested lateness value. If specified, returned student submissions are
-     * restricted by the requested value. If unspecified, submissions are
-     * returned regardless of `late` value.
+     * Requested lateness value. If specified, returned student submissions are restricted by the requested value. If unspecified, submissions are returned regardless of `late` value.
      */
     late?: string;
     /**
-     * Maximum number of items to return. Zero or unspecified indicates that the
-     * server may assign a maximum.  The server may return fewer than the
-     * specified number of results.
+     * Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
      */
     pageSize?: number;
     /**
-     * nextPageToken value returned from a previous list call, indicating that
-     * the subsequent page of results should be returned.  The list request must
-     * be otherwise identical to the one that resulted in this token.
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
      */
     pageToken?: string;
     /**
-     * Requested submission states. If specified, returned student submissions
-     * match one of the specified submission states.
+     * Requested submission states. If specified, returned student submissions match one of the specified submission states.
      */
     states?: string[];
     /**
-     * Optional argument to restrict returned student work to those owned by the
-     * student with the specified identifier. The identifier can be one of the
-     * following:  * the numeric identifier for the user * the email address of
-     * the user * the string literal `"me"`, indicating the requesting user
+     * Optional argument to restrict returned student work to those owned by the student with the specified identifier. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      */
     userId?: string;
   }
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
@@ -4153,15 +3855,14 @@ export namespace classroom_v1 {
     requestBody?: Schema$ModifyAttachmentsRequest;
   }
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
@@ -4173,10 +3874,7 @@ export namespace classroom_v1 {
      */
     id?: string;
     /**
-     * Mask that identifies which fields on the student submission to update.
-     * This field is required to do an update. The update fails if invalid
-     * fields are specified.  The following fields may be specified by teachers:
-     * * `draft_grade` * `assigned_grade`
+     * Mask that identifies which fields on the student submission to update. This field is required to do an update. The update fails if invalid fields are specified.  The following fields may be specified by teachers:  * `draft_grade` * `assigned_grade`
      */
     updateMask?: string;
 
@@ -4186,15 +3884,14 @@ export namespace classroom_v1 {
     requestBody?: Schema$StudentSubmission;
   }
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
@@ -4212,15 +3909,14 @@ export namespace classroom_v1 {
     requestBody?: Schema$ReclaimStudentSubmissionRequest;
   }
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Return
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
@@ -4238,15 +3934,14 @@ export namespace classroom_v1 {
     requestBody?: Schema$ReturnStudentSubmissionRequest;
   }
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Turnin
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
@@ -4264,26 +3959,15 @@ export namespace classroom_v1 {
     requestBody?: Schema$TurnInStudentSubmissionRequest;
   }
 
-
-
   export class Resource$Courses$Students {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * classroom.courses.students.create
-     * @desc Adds a user as a student of a course.  This method returns the
-     * following error codes:  * `PERMISSION_DENIED` if the requesting user is
-     * not permitted to create students in this course or for access errors. *
-     * `NOT_FOUND` if the requested course ID does not exist. *
-     * `FAILED_PRECONDITION` if the requested user's account is disabled, for
-     * the following request errors:     * CourseMemberLimitReached     *
-     * CourseNotModifiable     * UserGroupsMembershipLimitReached *
-     * `ALREADY_EXISTS` if the user is already a student or teacher in the
-     * course.
+     * @desc Adds a user as a student of a course.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to create students in this course or for access errors. * `NOT_FOUND` if the requested course ID does not exist. * `FAILED_PRECONDITION` if the requested user's account is disabled, for the following request errors:     * CourseMemberLimitReached     * CourseNotModifiable     * UserGroupsMembershipLimitReached * `ALREADY_EXISTS` if the user is already a student or teacher in the course.
      * @alias classroom.courses.students.create
      * @memberOf! ()
      *
@@ -4296,24 +3980,28 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Courses$Students$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Student>;
+      params?: Params$Resource$Courses$Students$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Student>;
     create(
-        params: Params$Resource$Courses$Students$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Student>,
-        callback: BodyResponseCallback<Schema$Student>): void;
+      params: Params$Resource$Courses$Students$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Student>,
+      callback: BodyResponseCallback<Schema$Student>
+    ): void;
     create(
-        params: Params$Resource$Courses$Students$Create,
-        callback: BodyResponseCallback<Schema$Student>): void;
+      params: Params$Resource$Courses$Students$Create,
+      callback: BodyResponseCallback<Schema$Student>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Student>): void;
     create(
-        paramsOrCallback?: Params$Resource$Courses$Students$Create|
-        BodyResponseCallback<Schema$Student>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Student>,
-        callback?: BodyResponseCallback<Schema$Student>):
-        void|GaxiosPromise<Schema$Student> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Students$Create;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Students$Create
+        | BodyResponseCallback<Schema$Student>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Student>,
+      callback?: BodyResponseCallback<Schema$Student>
+    ): void | GaxiosPromise<Schema$Student> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Students$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4330,16 +4018,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/students')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/students').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Student>(parameters, callback);
@@ -4348,14 +4039,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.students.delete
-     * @desc Deletes a student of a course.  This method returns the following
-     * error codes:  * `PERMISSION_DENIED` if the requesting user is not
-     * permitted to delete students of this course or for access errors. *
-     * `NOT_FOUND` if no student of this course has the requested ID or if the
-     * course does not exist.
+     * @desc Deletes a student of a course.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to delete students of this course or for access errors. * `NOT_FOUND` if no student of this course has the requested ID or if the course does not exist.
      * @alias classroom.courses.students.delete
      * @memberOf! ()
      *
@@ -4367,24 +4053,28 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Courses$Students$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Courses$Students$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Courses$Students$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Students$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Courses$Students$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Students$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Courses$Students$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Students$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Students$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Students$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4401,16 +4091,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/students/{userId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/students/{userId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4419,14 +4112,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.students.get
-     * @desc Returns a student of a course.  This method returns the following
-     * error codes:  * `PERMISSION_DENIED` if the requesting user is not
-     * permitted to view students of this course or for access errors. *
-     * `NOT_FOUND` if no student of this course has the requested ID or if the
-     * course does not exist.
+     * @desc Returns a student of a course.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to view students of this course or for access errors. * `NOT_FOUND` if no student of this course has the requested ID or if the course does not exist.
      * @alias classroom.courses.students.get
      * @memberOf! ()
      *
@@ -4437,21 +4125,29 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Courses$Students$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Student>;
-    get(params: Params$Resource$Courses$Students$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Student>,
-        callback: BodyResponseCallback<Schema$Student>): void;
-    get(params: Params$Resource$Courses$Students$Get,
-        callback: BodyResponseCallback<Schema$Student>): void;
+    get(
+      params?: Params$Resource$Courses$Students$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Student>;
+    get(
+      params: Params$Resource$Courses$Students$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Student>,
+      callback: BodyResponseCallback<Schema$Student>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Students$Get,
+      callback: BodyResponseCallback<Schema$Student>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Student>): void;
-    get(paramsOrCallback?: Params$Resource$Courses$Students$Get|
-        BodyResponseCallback<Schema$Student>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Student>,
-        callback?: BodyResponseCallback<Schema$Student>):
-        void|GaxiosPromise<Schema$Student> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Students$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Students$Get
+        | BodyResponseCallback<Schema$Student>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Student>,
+      callback?: BodyResponseCallback<Schema$Student>
+    ): void | GaxiosPromise<Schema$Student> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Students$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4468,16 +4164,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/students/{userId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/students/{userId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Student>(parameters, callback);
@@ -4486,13 +4185,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.students.list
-     * @desc Returns a list of students of this course that the requester is
-     * permitted to view.  This method returns the following error codes:  *
-     * `NOT_FOUND` if the course does not exist. * `PERMISSION_DENIED` for
-     * access errors.
+     * @desc Returns a list of students of this course that the requester is permitted to view.  This method returns the following error codes:  * `NOT_FOUND` if the course does not exist. * `PERMISSION_DENIED` for access errors.
      * @alias classroom.courses.students.list
      * @memberOf! ()
      *
@@ -4505,26 +4200,32 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Courses$Students$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListStudentsResponse>;
+      params?: Params$Resource$Courses$Students$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListStudentsResponse>;
     list(
-        params: Params$Resource$Courses$Students$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListStudentsResponse>,
-        callback: BodyResponseCallback<Schema$ListStudentsResponse>): void;
+      params: Params$Resource$Courses$Students$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListStudentsResponse>,
+      callback: BodyResponseCallback<Schema$ListStudentsResponse>
+    ): void;
     list(
-        params: Params$Resource$Courses$Students$List,
-        callback: BodyResponseCallback<Schema$ListStudentsResponse>): void;
+      params: Params$Resource$Courses$Students$List,
+      callback: BodyResponseCallback<Schema$ListStudentsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListStudentsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Courses$Students$List|
-        BodyResponseCallback<Schema$ListStudentsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListStudentsResponse>,
-        callback?: BodyResponseCallback<Schema$ListStudentsResponse>):
-        void|GaxiosPromise<Schema$ListStudentsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Students$List;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Students$List
+        | BodyResponseCallback<Schema$ListStudentsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListStudentsResponse>,
+      callback?: BodyResponseCallback<Schema$ListStudentsResponse>
+    ): void | GaxiosPromise<Schema$ListStudentsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Students$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4541,16 +4242,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/students')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/students').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListStudentsResponse>(parameters, callback);
@@ -4560,23 +4264,19 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Students$Create extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Students$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course to create the student in. This identifier can be
-     * either the Classroom-assigned identifier or an alias.
+     * Identifier of the course to create the student in. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
-     * Enrollment code of the course to create the student in. This code is
-     * required if userId corresponds to the requesting user; it may be omitted
-     * if the requesting user has administrative permissions to create students
-     * for any user.
+     * Enrollment code of the course to create the student in. This code is required if userId corresponds to the requesting user; it may be omitted if the requesting user has administrative permissions to create students for any user.
      */
     enrollmentCode?: string;
 
@@ -4585,69 +4285,58 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Student;
   }
-  export interface Params$Resource$Courses$Students$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Students$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
-     * Identifier of the student to delete. The identifier can be one of the
-     * following:  * the numeric identifier for the user * the email address of
-     * the user * the string literal `"me"`, indicating the requesting user
+     * Identifier of the student to delete. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Students$Get extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Students$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
-     * Identifier of the student to return. The identifier can be one of the
-     * following:  * the numeric identifier for the user * the email address of
-     * the user * the string literal `"me"`, indicating the requesting user
+     * Identifier of the student to return. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Students$List extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Students$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
-     * Maximum number of items to return. Zero means no maximum.  The server may
-     * return fewer than the specified number of results.
+     * Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
      */
     pageSize?: number;
     /**
-     * nextPageToken value returned from a previous list call, indicating that
-     * the subsequent page of results should be returned.  The list request must
-     * be otherwise identical to the one that resulted in this token.
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
      */
     pageToken?: string;
   }
-
 
   export class Resource$Courses$Teachers {
     context: APIRequestContext;
@@ -4655,18 +4344,9 @@ export namespace classroom_v1 {
       this.context = context;
     }
 
-
     /**
      * classroom.courses.teachers.create
-     * @desc Creates a teacher of a course.  This method returns the following
-     * error codes:  * `PERMISSION_DENIED` if the requesting user is not
-     * permitted to create teachers in this course or for access errors. *
-     * `NOT_FOUND` if the requested course ID does not exist. *
-     * `FAILED_PRECONDITION` if the requested user's account is disabled, for
-     * the following request errors:     * CourseMemberLimitReached     *
-     * CourseNotModifiable     * CourseTeacherLimitReached     *
-     * UserGroupsMembershipLimitReached * `ALREADY_EXISTS` if the user is
-     * already a teacher or student in the course.
+     * @desc Creates a teacher of a course.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not  permitted to create teachers in this course or for access errors. * `NOT_FOUND` if the requested course ID does not exist. * `FAILED_PRECONDITION` if the requested user's account is disabled, for the following request errors:     * CourseMemberLimitReached     * CourseNotModifiable     * CourseTeacherLimitReached     * UserGroupsMembershipLimitReached * `ALREADY_EXISTS` if the user is already a teacher or student in the course.
      * @alias classroom.courses.teachers.create
      * @memberOf! ()
      *
@@ -4678,24 +4358,28 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Courses$Teachers$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Teacher>;
+      params?: Params$Resource$Courses$Teachers$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Teacher>;
     create(
-        params: Params$Resource$Courses$Teachers$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Teacher>,
-        callback: BodyResponseCallback<Schema$Teacher>): void;
+      params: Params$Resource$Courses$Teachers$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Teacher>,
+      callback: BodyResponseCallback<Schema$Teacher>
+    ): void;
     create(
-        params: Params$Resource$Courses$Teachers$Create,
-        callback: BodyResponseCallback<Schema$Teacher>): void;
+      params: Params$Resource$Courses$Teachers$Create,
+      callback: BodyResponseCallback<Schema$Teacher>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Teacher>): void;
     create(
-        paramsOrCallback?: Params$Resource$Courses$Teachers$Create|
-        BodyResponseCallback<Schema$Teacher>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Teacher>,
-        callback?: BodyResponseCallback<Schema$Teacher>):
-        void|GaxiosPromise<Schema$Teacher> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Teachers$Create;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Teachers$Create
+        | BodyResponseCallback<Schema$Teacher>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Teacher>,
+      callback?: BodyResponseCallback<Schema$Teacher>
+    ): void | GaxiosPromise<Schema$Teacher> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Teachers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4712,16 +4396,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/teachers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/teachers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Teacher>(parameters, callback);
@@ -4730,15 +4417,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.teachers.delete
-     * @desc Deletes a teacher of a course.  This method returns the following
-     * error codes:  * `PERMISSION_DENIED` if the requesting user is not
-     * permitted to delete teachers of this course or for access errors. *
-     * `NOT_FOUND` if no teacher of this course has the requested ID or if the
-     * course does not exist. * `FAILED_PRECONDITION` if the requested ID
-     * belongs to the primary teacher of this course.
+     * @desc Deletes a teacher of a course.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to delete teachers of this course or for access errors. * `NOT_FOUND` if no teacher of this course has the requested ID or if the course does not exist. * `FAILED_PRECONDITION` if the requested ID belongs to the primary teacher of this course.
      * @alias classroom.courses.teachers.delete
      * @memberOf! ()
      *
@@ -4750,24 +4431,28 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Courses$Teachers$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Courses$Teachers$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Courses$Teachers$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Teachers$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Courses$Teachers$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Teachers$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Courses$Teachers$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Teachers$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Teachers$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Teachers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4784,16 +4469,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/teachers/{userId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/teachers/{userId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4802,14 +4490,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.teachers.get
-     * @desc Returns a teacher of a course.  This method returns the following
-     * error codes:  * `PERMISSION_DENIED` if the requesting user is not
-     * permitted to view teachers of this course or for access errors. *
-     * `NOT_FOUND` if no teacher of this course has the requested ID or if the
-     * course does not exist.
+     * @desc Returns a teacher of a course.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to view teachers of this course or for access errors. * `NOT_FOUND` if no teacher of this course has the requested ID or if the course does not exist.
      * @alias classroom.courses.teachers.get
      * @memberOf! ()
      *
@@ -4820,21 +4503,29 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Courses$Teachers$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Teacher>;
-    get(params: Params$Resource$Courses$Teachers$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Teacher>,
-        callback: BodyResponseCallback<Schema$Teacher>): void;
-    get(params: Params$Resource$Courses$Teachers$Get,
-        callback: BodyResponseCallback<Schema$Teacher>): void;
+    get(
+      params?: Params$Resource$Courses$Teachers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Teacher>;
+    get(
+      params: Params$Resource$Courses$Teachers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Teacher>,
+      callback: BodyResponseCallback<Schema$Teacher>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Teachers$Get,
+      callback: BodyResponseCallback<Schema$Teacher>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Teacher>): void;
-    get(paramsOrCallback?: Params$Resource$Courses$Teachers$Get|
-        BodyResponseCallback<Schema$Teacher>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Teacher>,
-        callback?: BodyResponseCallback<Schema$Teacher>):
-        void|GaxiosPromise<Schema$Teacher> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Teachers$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Teachers$Get
+        | BodyResponseCallback<Schema$Teacher>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Teacher>,
+      callback?: BodyResponseCallback<Schema$Teacher>
+    ): void | GaxiosPromise<Schema$Teacher> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Teachers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4851,16 +4542,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/teachers/{userId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/teachers/{userId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Teacher>(parameters, callback);
@@ -4869,13 +4563,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.teachers.list
-     * @desc Returns a list of teachers of this course that the requester is
-     * permitted to view.  This method returns the following error codes:  *
-     * `NOT_FOUND` if the course does not exist. * `PERMISSION_DENIED` for
-     * access errors.
+     * @desc Returns a list of teachers of this course that the requester is permitted to view.  This method returns the following error codes:  * `NOT_FOUND` if the course does not exist. * `PERMISSION_DENIED` for access errors.
      * @alias classroom.courses.teachers.list
      * @memberOf! ()
      *
@@ -4888,26 +4578,32 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Courses$Teachers$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListTeachersResponse>;
+      params?: Params$Resource$Courses$Teachers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTeachersResponse>;
     list(
-        params: Params$Resource$Courses$Teachers$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListTeachersResponse>,
-        callback: BodyResponseCallback<Schema$ListTeachersResponse>): void;
+      params: Params$Resource$Courses$Teachers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTeachersResponse>,
+      callback: BodyResponseCallback<Schema$ListTeachersResponse>
+    ): void;
     list(
-        params: Params$Resource$Courses$Teachers$List,
-        callback: BodyResponseCallback<Schema$ListTeachersResponse>): void;
+      params: Params$Resource$Courses$Teachers$List,
+      callback: BodyResponseCallback<Schema$ListTeachersResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTeachersResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Courses$Teachers$List|
-        BodyResponseCallback<Schema$ListTeachersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTeachersResponse>,
-        callback?: BodyResponseCallback<Schema$ListTeachersResponse>):
-        void|GaxiosPromise<Schema$ListTeachersResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Teachers$List;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Teachers$List
+        | BodyResponseCallback<Schema$ListTeachersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTeachersResponse>,
+      callback?: BodyResponseCallback<Schema$ListTeachersResponse>
+    ): void | GaxiosPromise<Schema$ListTeachersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Teachers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4924,16 +4620,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/teachers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/teachers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTeachersResponse>(parameters, callback);
@@ -4943,16 +4642,15 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Teachers$Create extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Teachers$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
 
@@ -4961,69 +4659,58 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Teacher;
   }
-  export interface Params$Resource$Courses$Teachers$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Teachers$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
-     * Identifier of the teacher to delete. The identifier can be one of the
-     * following:  * the numeric identifier for the user * the email address of
-     * the user * the string literal `"me"`, indicating the requesting user
+     * Identifier of the teacher to delete. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Teachers$Get extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Teachers$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
-     * Identifier of the teacher to return. The identifier can be one of the
-     * following:  * the numeric identifier for the user * the email address of
-     * the user * the string literal `"me"`, indicating the requesting user
+     * Identifier of the teacher to return. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Teachers$List extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Teachers$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
-     * Maximum number of items to return. Zero means no maximum.  The server may
-     * return fewer than the specified number of results.
+     * Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
      */
     pageSize?: number;
     /**
-     * nextPageToken value returned from a previous list call, indicating that
-     * the subsequent page of results should be returned.  The list request must
-     * be otherwise identical to the one that resulted in this token.
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
      */
     pageToken?: string;
   }
-
 
   export class Resource$Courses$Topics {
     context: APIRequestContext;
@@ -5031,14 +4718,9 @@ export namespace classroom_v1 {
       this.context = context;
     }
 
-
     /**
      * classroom.courses.topics.create
-     * @desc Creates a topic.  This method returns the following error codes:  *
-     * `PERMISSION_DENIED` if the requesting user is not permitted to access the
-     * requested course, create a topic in the requested course, or for access
-     * errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND`
-     * if the requested course does not exist.
+     * @desc Creates a topic.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, create a topic in the requested course, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
      * @alias classroom.courses.topics.create
      * @memberOf! ()
      *
@@ -5050,24 +4732,28 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Courses$Topics$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Topic>;
+      params?: Params$Resource$Courses$Topics$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Topic>;
     create(
-        params: Params$Resource$Courses$Topics$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Topic>,
-        callback: BodyResponseCallback<Schema$Topic>): void;
+      params: Params$Resource$Courses$Topics$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Topic>,
+      callback: BodyResponseCallback<Schema$Topic>
+    ): void;
     create(
-        params: Params$Resource$Courses$Topics$Create,
-        callback: BodyResponseCallback<Schema$Topic>): void;
+      params: Params$Resource$Courses$Topics$Create,
+      callback: BodyResponseCallback<Schema$Topic>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Topic>): void;
     create(
-        paramsOrCallback?: Params$Resource$Courses$Topics$Create|
-        BodyResponseCallback<Schema$Topic>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Topic>,
-        callback?: BodyResponseCallback<Schema$Topic>):
-        void|GaxiosPromise<Schema$Topic> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Topics$Create;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Topics$Create
+        | BodyResponseCallback<Schema$Topic>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Topic>,
+      callback?: BodyResponseCallback<Schema$Topic>
+    ): void | GaxiosPromise<Schema$Topic> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Topics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5084,16 +4770,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/topics')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/topics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -5102,14 +4791,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.topics.delete
-     * @desc Deletes a topic.  This method returns the following error codes:  *
-     * `PERMISSION_DENIED` if the requesting user is not allowed to delete the
-     * requested topic or for access errors. * `FAILED_PRECONDITION` if the
-     * requested topic has already been deleted. * `NOT_FOUND` if no course or
-     * topic exists with the requested ID.
+     * @desc Deletes a topic.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not allowed to delete the requested topic or for access errors. * `FAILED_PRECONDITION` if the requested topic has already been deleted. * `NOT_FOUND` if no course or topic exists with the requested ID.
      * @alias classroom.courses.topics.delete
      * @memberOf! ()
      *
@@ -5121,24 +4805,28 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Courses$Topics$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Courses$Topics$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Courses$Topics$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Topics$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Courses$Topics$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Courses$Topics$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Courses$Topics$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Topics$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Topics$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Topics$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5155,16 +4843,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/topics/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/topics/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5173,14 +4864,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.topics.get
-     * @desc Returns a topic.  This method returns the following error codes:  *
-     * `PERMISSION_DENIED` if the requesting user is not permitted to access the
-     * requested course or topic, or for access errors. * `INVALID_ARGUMENT` if
-     * the request is malformed. * `NOT_FOUND` if the requested course or topic
-     * does not exist.
+     * @desc Returns a topic.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or topic, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or topic does not exist.
      * @alias classroom.courses.topics.get
      * @memberOf! ()
      *
@@ -5191,21 +4877,29 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Courses$Topics$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Topic>;
-    get(params: Params$Resource$Courses$Topics$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Topic>,
-        callback: BodyResponseCallback<Schema$Topic>): void;
-    get(params: Params$Resource$Courses$Topics$Get,
-        callback: BodyResponseCallback<Schema$Topic>): void;
+    get(
+      params?: Params$Resource$Courses$Topics$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Topic>;
+    get(
+      params: Params$Resource$Courses$Topics$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Topic>,
+      callback: BodyResponseCallback<Schema$Topic>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Topics$Get,
+      callback: BodyResponseCallback<Schema$Topic>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Topic>): void;
-    get(paramsOrCallback?: Params$Resource$Courses$Topics$Get|
-        BodyResponseCallback<Schema$Topic>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Topic>,
-        callback?: BodyResponseCallback<Schema$Topic>):
-        void|GaxiosPromise<Schema$Topic> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Topics$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Topics$Get
+        | BodyResponseCallback<Schema$Topic>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Topic>,
+      callback?: BodyResponseCallback<Schema$Topic>
+    ): void | GaxiosPromise<Schema$Topic> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Topics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5222,16 +4916,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/topics/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/topics/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -5240,14 +4937,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.topics.list
-     * @desc Returns the list of topics that the requester is permitted to view.
-     * This method returns the following error codes:  * `PERMISSION_DENIED` if
-     * the requesting user is not permitted to access the requested course or
-     * for access errors. * `INVALID_ARGUMENT` if the request is malformed. *
-     * `NOT_FOUND` if the requested course does not exist.
+     * @desc Returns the list of topics that the requester is permitted to view.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
      * @alias classroom.courses.topics.list
      * @memberOf! ()
      *
@@ -5259,25 +4951,31 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Courses$Topics$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListTopicResponse>;
     list(
-        params: Params$Resource$Courses$Topics$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListTopicResponse>,
-        callback: BodyResponseCallback<Schema$ListTopicResponse>): void;
+      params?: Params$Resource$Courses$Topics$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTopicResponse>;
     list(
-        params: Params$Resource$Courses$Topics$List,
-        callback: BodyResponseCallback<Schema$ListTopicResponse>): void;
+      params: Params$Resource$Courses$Topics$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListTopicResponse>,
+      callback: BodyResponseCallback<Schema$ListTopicResponse>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Topics$List,
+      callback: BodyResponseCallback<Schema$ListTopicResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTopicResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Courses$Topics$List|
-        BodyResponseCallback<Schema$ListTopicResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTopicResponse>,
-        callback?: BodyResponseCallback<Schema$ListTopicResponse>):
-        void|GaxiosPromise<Schema$ListTopicResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Topics$List;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Topics$List
+        | BodyResponseCallback<Schema$ListTopicResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTopicResponse>,
+      callback?: BodyResponseCallback<Schema$ListTopicResponse>
+    ): void | GaxiosPromise<Schema$ListTopicResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Topics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5294,16 +4992,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/topics')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/topics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTopicResponse>(parameters, callback);
@@ -5312,14 +5013,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.courses.topics.patch
-     * @desc Updates one or more fields of a topic.  This method returns the
-     * following error codes:  * `PERMISSION_DENIED` if the requesting developer
-     * project did not create the corresponding topic or for access errors. *
-     * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the
-     * requested course or topic does not exist
+     * @desc Updates one or more fields of a topic.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding topic or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or topic does not exist
      * @alias classroom.courses.topics.patch
      * @memberOf! ()
      *
@@ -5333,24 +5029,28 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Courses$Topics$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Topic>;
+      params?: Params$Resource$Courses$Topics$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Topic>;
     patch(
-        params: Params$Resource$Courses$Topics$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Topic>,
-        callback: BodyResponseCallback<Schema$Topic>): void;
+      params: Params$Resource$Courses$Topics$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Topic>,
+      callback: BodyResponseCallback<Schema$Topic>
+    ): void;
     patch(
-        params: Params$Resource$Courses$Topics$Patch,
-        callback: BodyResponseCallback<Schema$Topic>): void;
+      params: Params$Resource$Courses$Topics$Patch,
+      callback: BodyResponseCallback<Schema$Topic>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Topic>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Courses$Topics$Patch|
-        BodyResponseCallback<Schema$Topic>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Topic>,
-        callback?: BodyResponseCallback<Schema$Topic>):
-        void|GaxiosPromise<Schema$Topic> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Courses$Topics$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Courses$Topics$Patch
+        | BodyResponseCallback<Schema$Topic>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Topic>,
+      callback?: BodyResponseCallback<Schema$Topic>
+    ): void | GaxiosPromise<Schema$Topic> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Topics$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5367,16 +5067,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/courses/{courseId}/topics/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/topics/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -5386,16 +5089,15 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Topics$Create extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Topics$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
 
@@ -5404,16 +5106,15 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Topic;
   }
-  export interface Params$Resource$Courses$Topics$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Topics$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
@@ -5421,12 +5122,12 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Topics$Get extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Topics$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifier of the course.
@@ -5437,41 +5138,35 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Topics$List extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Topics$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
-     * Maximum number of items to return. Zero or unspecified indicates that the
-     * server may assign a maximum.  The server may return fewer than the
-     * specified number of results.
+     * Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
      */
     pageSize?: number;
     /**
-     * nextPageToken value returned from a previous list call, indicating that
-     * the subsequent page of results should be returned.  The list request must
-     * be otherwise identical to the one that resulted in this token.
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Courses$Topics$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Courses$Topics$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the course. This identifier can be either the
-     * Classroom-assigned identifier or an alias.
+     * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
     /**
@@ -5479,13 +5174,7 @@ export namespace classroom_v1 {
      */
     id?: string;
     /**
-     * Mask that identifies which fields on the topic to update. This field is
-     * required to do an update. The update fails if invalid fields are
-     * specified. If a field supports empty values, it can be cleared by
-     * specifying it in the update mask and not in the Topic object. If a field
-     * that does not support empty values is included in the update mask and not
-     * set in the Topic object, an `INVALID_ARGUMENT` error will be returned.
-     * The following fields may be specified:  * `name`
+     * Mask that identifies which fields on the topic to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Topic object. If a field that does not support empty values is included in the update mask and not set in the Topic object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified:  * `name`
      */
     updateMask?: string;
 
@@ -5495,26 +5184,15 @@ export namespace classroom_v1 {
     requestBody?: Schema$Topic;
   }
 
-
-
   export class Resource$Invitations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * classroom.invitations.accept
-     * @desc Accepts an invitation, removing it and adding the invited user to
-     * the teachers or students (as appropriate) of the specified course. Only
-     * the invited user may accept an invitation.  This method returns the
-     * following error codes:  * `PERMISSION_DENIED` if the requesting user is
-     * not permitted to accept the requested invitation or for access errors. *
-     * `FAILED_PRECONDITION` for the following request errors:     *
-     * CourseMemberLimitReached     * CourseNotModifiable     *
-     * CourseTeacherLimitReached     * UserGroupsMembershipLimitReached *
-     * `NOT_FOUND` if no invitation exists with the requested ID.
+     * @desc Accepts an invitation, removing it and adding the invited user to the teachers or students (as appropriate) of the specified course. Only the invited user may accept an invitation.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to accept the requested invitation or for access errors. * `FAILED_PRECONDITION` for the following request errors:     * CourseMemberLimitReached     * CourseNotModifiable     * CourseTeacherLimitReached     * UserGroupsMembershipLimitReached * `NOT_FOUND` if no invitation exists with the requested ID.
      * @alias classroom.invitations.accept
      * @memberOf! ()
      *
@@ -5525,24 +5203,28 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     accept(
-        params?: Params$Resource$Invitations$Accept,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Invitations$Accept,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     accept(
-        params: Params$Resource$Invitations$Accept,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Invitations$Accept,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     accept(
-        params: Params$Resource$Invitations$Accept,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Invitations$Accept,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     accept(callback: BodyResponseCallback<Schema$Empty>): void;
     accept(
-        paramsOrCallback?: Params$Resource$Invitations$Accept|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Invitations$Accept;
+      paramsOrCallback?:
+        | Params$Resource$Invitations$Accept
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Invitations$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5559,16 +5241,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/invitations/{id}:accept')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/invitations/{id}:accept').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5577,18 +5262,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.invitations.create
-     * @desc Creates an invitation. Only one invitation for a user and course
-     * may exist at a time. Delete and re-create an invitation to make changes.
-     * This method returns the following error codes:  * `PERMISSION_DENIED` if
-     * the requesting user is not permitted to create invitations for this
-     * course or for access errors. * `NOT_FOUND` if the course or the user does
-     * not exist. * `FAILED_PRECONDITION` if the requested user's account is
-     * disabled or if the user already has this role or a role with greater
-     * permissions. * `ALREADY_EXISTS` if an invitation for the specified user
-     * and course already exists.
+     * @desc Creates an invitation. Only one invitation for a user and course may exist at a time. Delete and re-create an invitation to make changes.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to create invitations for this course or for access errors. * `NOT_FOUND` if the course or the user does not exist. * `FAILED_PRECONDITION` if the requested user's account is disabled or if the user already has this role or a role with greater permissions. * `ALREADY_EXISTS` if an invitation for the specified user and course already exists.
      * @alias classroom.invitations.create
      * @memberOf! ()
      *
@@ -5599,25 +5275,30 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Invitations$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Invitation>;
+      params?: Params$Resource$Invitations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Invitation>;
     create(
-        params: Params$Resource$Invitations$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Invitation>,
-        callback: BodyResponseCallback<Schema$Invitation>): void;
+      params: Params$Resource$Invitations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Invitation>,
+      callback: BodyResponseCallback<Schema$Invitation>
+    ): void;
     create(
-        params: Params$Resource$Invitations$Create,
-        callback: BodyResponseCallback<Schema$Invitation>): void;
+      params: Params$Resource$Invitations$Create,
+      callback: BodyResponseCallback<Schema$Invitation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Invitation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Invitations$Create|
-        BodyResponseCallback<Schema$Invitation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Invitation>,
-        callback?: BodyResponseCallback<Schema$Invitation>):
-        void|GaxiosPromise<Schema$Invitation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Invitations$Create;
+      paramsOrCallback?:
+        | Params$Resource$Invitations$Create
+        | BodyResponseCallback<Schema$Invitation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Invitation>,
+      callback?: BodyResponseCallback<Schema$Invitation>
+    ): void | GaxiosPromise<Schema$Invitation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Invitations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5634,15 +5315,16 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/invitations').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/invitations').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Invitation>(parameters, callback);
@@ -5651,13 +5333,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.invitations.delete
-     * @desc Deletes an invitation.  This method returns the following error
-     * codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to
-     * delete the requested invitation or for access errors. * `NOT_FOUND` if no
-     * invitation exists with the requested ID.
+     * @desc Deletes an invitation.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to delete the requested invitation or for access errors. * `NOT_FOUND` if no invitation exists with the requested ID.
      * @alias classroom.invitations.delete
      * @memberOf! ()
      *
@@ -5668,24 +5346,28 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Invitations$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Invitations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Invitations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Invitations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Invitations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Invitations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Invitations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Invitations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Invitations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Invitations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5702,16 +5384,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/invitations/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/invitations/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5720,13 +5405,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.invitations.get
-     * @desc Returns an invitation.  This method returns the following error
-     * codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to
-     * view the requested invitation or for access errors. * `NOT_FOUND` if no
-     * invitation exists with the requested ID.
+     * @desc Returns an invitation.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to view the requested invitation or for access errors. * `NOT_FOUND` if no invitation exists with the requested ID.
      * @alias classroom.invitations.get
      * @memberOf! ()
      *
@@ -5736,20 +5417,29 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Invitations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Invitation>;
-    get(params: Params$Resource$Invitations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Invitation>,
-        callback: BodyResponseCallback<Schema$Invitation>): void;
-    get(params: Params$Resource$Invitations$Get,
-        callback: BodyResponseCallback<Schema$Invitation>): void;
+    get(
+      params?: Params$Resource$Invitations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Invitation>;
+    get(
+      params: Params$Resource$Invitations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Invitation>,
+      callback: BodyResponseCallback<Schema$Invitation>
+    ): void;
+    get(
+      params: Params$Resource$Invitations$Get,
+      callback: BodyResponseCallback<Schema$Invitation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Invitation>): void;
-    get(paramsOrCallback?: Params$Resource$Invitations$Get|
-        BodyResponseCallback<Schema$Invitation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Invitation>,
-        callback?: BodyResponseCallback<Schema$Invitation>):
-        void|GaxiosPromise<Schema$Invitation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Invitations$Get
+        | BodyResponseCallback<Schema$Invitation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Invitation>,
+      callback?: BodyResponseCallback<Schema$Invitation>
+    ): void | GaxiosPromise<Schema$Invitation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Invitations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5767,16 +5457,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/invitations/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/invitations/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Invitation>(parameters, callback);
@@ -5785,14 +5478,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.invitations.list
-     * @desc Returns a list of invitations that the requesting user is permitted
-     * to view, restricted to those that match the list request.  *Note:* At
-     * least one of `user_id` or `course_id` must be supplied. Both fields can
-     * be supplied.  This method returns the following error codes:  *
-     * `PERMISSION_DENIED` for access errors.
+     * @desc Returns a list of invitations that the requesting user is permitted to view, restricted to those that match the list request.  *Note:* At least one of `user_id` or `course_id` must be supplied. Both fields can be supplied.  This method returns the following error codes:  * `PERMISSION_DENIED` for access errors.
      * @alias classroom.invitations.list
      * @memberOf! ()
      *
@@ -5805,24 +5493,31 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Invitations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListInvitationsResponse>;
     list(
-        params: Params$Resource$Invitations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListInvitationsResponse>,
-        callback: BodyResponseCallback<Schema$ListInvitationsResponse>): void;
+      params?: Params$Resource$Invitations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInvitationsResponse>;
     list(
-        params: Params$Resource$Invitations$List,
-        callback: BodyResponseCallback<Schema$ListInvitationsResponse>): void;
+      params: Params$Resource$Invitations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInvitationsResponse>,
+      callback: BodyResponseCallback<Schema$ListInvitationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Invitations$List,
+      callback: BodyResponseCallback<Schema$ListInvitationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListInvitationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Invitations$List|
-        BodyResponseCallback<Schema$ListInvitationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListInvitationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListInvitationsResponse>):
-        void|GaxiosPromise<Schema$ListInvitationsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Invitations$List
+        | BodyResponseCallback<Schema$ListInvitationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInvitationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListInvitationsResponse>
+    ): void | GaxiosPromise<Schema$ListInvitationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Invitations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5840,15 +5535,16 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/invitations').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/invitations').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListInvitationsResponse>(parameters, callback);
@@ -5858,37 +5554,36 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Invitations$Accept extends
-      StandardParameters {
+  export interface Params$Resource$Invitations$Accept
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifier of the invitation to accept.
      */
     id?: string;
   }
-  export interface Params$Resource$Invitations$Create extends
-      StandardParameters {
+  export interface Params$Resource$Invitations$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$Invitation;
   }
-  export interface Params$Resource$Invitations$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Invitations$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifier of the invitation to delete.
@@ -5899,7 +5594,7 @@ export namespace classroom_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifier of the invitation to return.
@@ -5910,33 +5605,25 @@ export namespace classroom_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Restricts returned invitations to those for a course with the specified
-     * identifier.
+     * Restricts returned invitations to those for a course with the specified identifier.
      */
     courseId?: string;
     /**
-     * Maximum number of items to return. Zero means no maximum.  The server may
-     * return fewer than the specified number of results.
+     * Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
      */
     pageSize?: number;
     /**
-     * nextPageToken value returned from a previous list call, indicating that
-     * the subsequent page of results should be returned.  The list request must
-     * be otherwise identical to the one that resulted in this token.
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
      */
     pageToken?: string;
     /**
-     * Restricts returned invitations to those for a specific user. The
-     * identifier can be one of the following:  * the numeric identifier for the
-     * user * the email address of the user * the string literal `"me"`,
-     * indicating the requesting user
+     * Restricts returned invitations to those for a specific user. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      */
     userId?: string;
   }
-
 
   export class Resource$Registrations {
     context: APIRequestContext;
@@ -5944,30 +5631,9 @@ export namespace classroom_v1 {
       this.context = context;
     }
 
-
     /**
      * classroom.registrations.create
-     * @desc Creates a `Registration`, causing Classroom to start sending
-     * notifications from the provided `feed` to the destination provided in
-     * `cloudPubSubTopic`.  Returns the created `Registration`. Currently, this
-     * will be the same as the argument, but with server-assigned fields such as
-     * `expiry_time` and `id` filled in.  Note that any value specified for the
-     * `expiry_time` or `id` fields will be ignored.  While Classroom may
-     * validate the `cloudPubSubTopic` and return errors on a best effort basis,
-     * it is the caller's responsibility to ensure that it exists and that
-     * Classroom has permission to publish to it.  This method may return the
-     * following error codes:  * `PERMISSION_DENIED` if:     * the authenticated
-     * user does not have permission to receive       notifications from the
-     * requested field; or     * the credential provided does not include the
-     * appropriate scope for       the requested feed.     * another access
-     * error is encountered. * `INVALID_ARGUMENT` if:     * no
-     * `cloudPubsubTopic` is specified, or the specified `cloudPubsubTopic` is
-     * not valid; or     * no `feed` is specified, or the specified `feed` is
-     * not valid. * `NOT_FOUND` if:     * the specified `feed` cannot be
-     * located, or the requesting user does       not have permission to
-     * determine whether or not it exists; or     * the specified
-     * `cloudPubsubTopic` cannot be located, or Classroom has       not been
-     * granted permission to publish to it.
+     * @desc Creates a `Registration`, causing Classroom to start sending notifications from the provided `feed` to the destination provided in `cloudPubSubTopic`.  Returns the created `Registration`. Currently, this will be the same as the argument, but with server-assigned fields such as `expiry_time` and `id` filled in.  Note that any value specified for the `expiry_time` or `id` fields will be ignored.  While Classroom may validate the `cloudPubSubTopic` and return errors on a best effort basis, it is the caller's responsibility to ensure that it exists and that Classroom has permission to publish to it.  This method may return the following error codes:  * `PERMISSION_DENIED` if:     * the authenticated user does not have permission to receive       notifications from the requested field; or     * the credential provided does not include the appropriate scope for       the requested feed.     * another access error is encountered. * `INVALID_ARGUMENT` if:     * no `cloudPubsubTopic` is specified, or the specified       `cloudPubsubTopic` is not valid; or     * no `feed` is specified, or the specified `feed` is not valid. * `NOT_FOUND` if:     * the specified `feed` cannot be located, or the requesting user does       not have permission to determine whether or not it exists; or     * the specified `cloudPubsubTopic` cannot be located, or Classroom has       not been granted permission to publish to it.
      * @alias classroom.registrations.create
      * @memberOf! ()
      *
@@ -5978,25 +5644,30 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Registrations$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Registration>;
+      params?: Params$Resource$Registrations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Registration>;
     create(
-        params: Params$Resource$Registrations$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Registration>,
-        callback: BodyResponseCallback<Schema$Registration>): void;
+      params: Params$Resource$Registrations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Registration>,
+      callback: BodyResponseCallback<Schema$Registration>
+    ): void;
     create(
-        params: Params$Resource$Registrations$Create,
-        callback: BodyResponseCallback<Schema$Registration>): void;
+      params: Params$Resource$Registrations$Create,
+      callback: BodyResponseCallback<Schema$Registration>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Registration>): void;
     create(
-        paramsOrCallback?: Params$Resource$Registrations$Create|
-        BodyResponseCallback<Schema$Registration>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Registration>,
-        callback?: BodyResponseCallback<Schema$Registration>):
-        void|GaxiosPromise<Schema$Registration> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Registrations$Create;
+      paramsOrCallback?:
+        | Params$Resource$Registrations$Create
+        | BodyResponseCallback<Schema$Registration>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Registration>,
+      callback?: BodyResponseCallback<Schema$Registration>
+    ): void | GaxiosPromise<Schema$Registration> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Registrations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6013,16 +5684,16 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/registrations').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/registrations').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Registration>(parameters, callback);
@@ -6031,11 +5702,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.registrations.delete
-     * @desc Deletes a `Registration`, causing Classroom to stop sending
-     * notifications for that `Registration`.
+     * @desc Deletes a `Registration`, causing Classroom to stop sending notifications for that `Registration`.
      * @alias classroom.registrations.delete
      * @memberOf! ()
      *
@@ -6046,24 +5715,28 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Registrations$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Registrations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Registrations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Registrations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Registrations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Registrations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Registrations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Registrations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Registrations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Registrations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6080,16 +5753,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/registrations/{registrationId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/registrations/{registrationId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['registrationId'],
         pathParams: ['registrationId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6099,25 +5775,24 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Registrations$Create extends
-      StandardParameters {
+  export interface Params$Resource$Registrations$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$Registration;
   }
-  export interface Params$Resource$Registrations$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Registrations$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The `registration_id` of the `Registration` to be deleted.
@@ -6125,25 +5800,21 @@ export namespace classroom_v1 {
     registrationId?: string;
   }
 
-
   export class Resource$Userprofiles {
     context: APIRequestContext;
     guardianInvitations: Resource$Userprofiles$Guardianinvitations;
     guardians: Resource$Userprofiles$Guardians;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.guardianInvitations =
-          new Resource$Userprofiles$Guardianinvitations(this.context);
+      this.guardianInvitations = new Resource$Userprofiles$Guardianinvitations(
+        this.context
+      );
       this.guardians = new Resource$Userprofiles$Guardians(this.context);
     }
 
-
     /**
      * classroom.userProfiles.get
-     * @desc Returns a user profile.  This method returns the following error
-     * codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to
-     * access this user profile, if no profile exists with the requested ID, or
-     * for access errors.
+     * @desc Returns a user profile.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access this user profile, if no profile exists with the requested ID, or for access errors.
      * @alias classroom.userProfiles.get
      * @memberOf! ()
      *
@@ -6153,20 +5824,29 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Userprofiles$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$UserProfile>;
-    get(params: Params$Resource$Userprofiles$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$UserProfile>,
-        callback: BodyResponseCallback<Schema$UserProfile>): void;
-    get(params: Params$Resource$Userprofiles$Get,
-        callback: BodyResponseCallback<Schema$UserProfile>): void;
+    get(
+      params?: Params$Resource$Userprofiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserProfile>;
+    get(
+      params: Params$Resource$Userprofiles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UserProfile>,
+      callback: BodyResponseCallback<Schema$UserProfile>
+    ): void;
+    get(
+      params: Params$Resource$Userprofiles$Get,
+      callback: BodyResponseCallback<Schema$UserProfile>
+    ): void;
     get(callback: BodyResponseCallback<Schema$UserProfile>): void;
-    get(paramsOrCallback?: Params$Resource$Userprofiles$Get|
-        BodyResponseCallback<Schema$UserProfile>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UserProfile>,
-        callback?: BodyResponseCallback<Schema$UserProfile>):
-        void|GaxiosPromise<Schema$UserProfile> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Userprofiles$Get
+        | BodyResponseCallback<Schema$UserProfile>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserProfile>,
+      callback?: BodyResponseCallback<Schema$UserProfile>
+    ): void | GaxiosPromise<Schema$UserProfile> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6184,16 +5864,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/userProfiles/{userId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/userProfiles/{userId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserProfile>(parameters, callback);
@@ -6207,12 +5890,10 @@ export namespace classroom_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifier of the profile to return. The identifier can be one of the
-     * following:  * the numeric identifier for the user * the email address of
-     * the user * the string literal `"me"`, indicating the requesting user
+     * Identifier of the profile to return. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      */
     userId?: string;
   }
@@ -6223,33 +5904,9 @@ export namespace classroom_v1 {
       this.context = context;
     }
 
-
     /**
      * classroom.userProfiles.guardianInvitations.create
-     * @desc Creates a guardian invitation, and sends an email to the guardian
-     * asking them to confirm that they are the student's guardian.  Once the
-     * guardian accepts the invitation, their `state` will change to `COMPLETED`
-     * and they will start receiving guardian notifications. A `Guardian`
-     * resource will also be created to represent the active guardian.  The
-     * request object must have the `student_id` and `invited_email_address`
-     * fields set. Failing to set these fields, or setting any other fields in
-     * the request, will result in an error.  This method returns the following
-     * error codes:  * `PERMISSION_DENIED` if the current user does not have
-     * permission to   manage guardians, if the guardian in question has already
-     * rejected   too many requests for that student, if guardians are not
-     * enabled for the   domain in question, or for other access errors. *
-     * `RESOURCE_EXHAUSTED` if the student or guardian has exceeded the guardian
-     * link limit. * `INVALID_ARGUMENT` if the guardian email address is not
-     * valid (for   example, if it is too long), or if the format of the student
-     * ID provided   cannot be recognized (it is not an email address, nor a
-     * `user_id` from   this API). This error will also be returned if read-only
-     * fields are set,   or if the `state` field is set to to a value other than
-     * `PENDING`. * `NOT_FOUND` if the student ID provided is a valid student
-     * ID, but   Classroom has no record of that student. * `ALREADY_EXISTS` if
-     * there is already a pending guardian invitation for   the student and
-     * `invited_email_address` provided, or if the provided
-     * `invited_email_address` matches the Google account of an existing
-     * `Guardian` for this user.
+     * @desc Creates a guardian invitation, and sends an email to the guardian asking them to confirm that they are the student's guardian.  Once the guardian accepts the invitation, their `state` will change to `COMPLETED` and they will start receiving guardian notifications. A `Guardian` resource will also be created to represent the active guardian.  The request object must have the `student_id` and `invited_email_address` fields set. Failing to set these fields, or setting any other fields in the request, will result in an error.  This method returns the following error codes:  * `PERMISSION_DENIED` if the current user does not have permission to   manage guardians, if the guardian in question has already rejected   too many requests for that student, if guardians are not enabled for the   domain in question, or for other access errors. * `RESOURCE_EXHAUSTED` if the student or guardian has exceeded the guardian   link limit. * `INVALID_ARGUMENT` if the guardian email address is not valid (for   example, if it is too long), or if the format of the student ID provided   cannot be recognized (it is not an email address, nor a `user_id` from   this API). This error will also be returned if read-only fields are set,   or if the `state` field is set to to a value other than `PENDING`. * `NOT_FOUND` if the student ID provided is a valid student ID, but   Classroom has no record of that student. * `ALREADY_EXISTS` if there is already a pending guardian invitation for   the student and `invited_email_address` provided, or if the provided   `invited_email_address` matches the Google account of an existing   `Guardian` for this user.
      * @alias classroom.userProfiles.guardianInvitations.create
      * @memberOf! ()
      *
@@ -6261,26 +5918,30 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Userprofiles$Guardianinvitations$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$GuardianInvitation>;
+      params?: Params$Resource$Userprofiles$Guardianinvitations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GuardianInvitation>;
     create(
-        params: Params$Resource$Userprofiles$Guardianinvitations$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
-        callback: BodyResponseCallback<Schema$GuardianInvitation>): void;
+      params: Params$Resource$Userprofiles$Guardianinvitations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$GuardianInvitation>,
+      callback: BodyResponseCallback<Schema$GuardianInvitation>
+    ): void;
     create(
-        params: Params$Resource$Userprofiles$Guardianinvitations$Create,
-        callback: BodyResponseCallback<Schema$GuardianInvitation>): void;
+      params: Params$Resource$Userprofiles$Guardianinvitations$Create,
+      callback: BodyResponseCallback<Schema$GuardianInvitation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$GuardianInvitation>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Userprofiles$Guardianinvitations$Create|
-        BodyResponseCallback<Schema$GuardianInvitation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GuardianInvitation>,
-        callback?: BodyResponseCallback<Schema$GuardianInvitation>):
-        void|GaxiosPromise<Schema$GuardianInvitation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Userprofiles$Guardianinvitations$Create;
+      paramsOrCallback?:
+        | Params$Resource$Userprofiles$Guardianinvitations$Create
+        | BodyResponseCallback<Schema$GuardianInvitation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GuardianInvitation>,
+      callback?: BodyResponseCallback<Schema$GuardianInvitation>
+    ): void | GaxiosPromise<Schema$GuardianInvitation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userprofiles$Guardianinvitations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6297,17 +5958,18 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/userProfiles/{studentId}/guardianInvitations')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/userProfiles/{studentId}/guardianInvitations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['studentId'],
         pathParams: ['studentId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
@@ -6316,20 +5978,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.userProfiles.guardianInvitations.get
-     * @desc Returns a specific guardian invitation.  This method returns the
-     * following error codes:  * `PERMISSION_DENIED` if the requesting user is
-     * not permitted to view   guardian invitations for the student identified
-     * by the `student_id`, if   guardians are not enabled for the domain in
-     * question, or for other   access errors. * `INVALID_ARGUMENT` if a
-     * `student_id` is specified, but its format cannot   be recognized (it is
-     * not an email address, nor a `student_id` from the   API, nor the literal
-     * string `me`). * `NOT_FOUND` if Classroom cannot find any record of the
-     * given student or   `invitation_id`. May also be returned if the student
-     * exists, but the   requesting user does not have access to see that
-     * student.
+     * @desc Returns a specific guardian invitation.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to view   guardian invitations for the student identified by the `student_id`, if   guardians are not enabled for the domain in question, or for other   access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot   be recognized (it is not an email address, nor a `student_id` from the   API, nor the literal string `me`). * `NOT_FOUND` if Classroom cannot find any record of the given student or   `invitation_id`. May also be returned if the student exists, but the   requesting user does not have access to see that student.
      * @alias classroom.userProfiles.guardianInvitations.get
      * @memberOf! ()
      *
@@ -6340,22 +5991,31 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Userprofiles$Guardianinvitations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$GuardianInvitation>;
-    get(params: Params$Resource$Userprofiles$Guardianinvitations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
-        callback: BodyResponseCallback<Schema$GuardianInvitation>): void;
-    get(params: Params$Resource$Userprofiles$Guardianinvitations$Get,
-        callback: BodyResponseCallback<Schema$GuardianInvitation>): void;
+    get(
+      params?: Params$Resource$Userprofiles$Guardianinvitations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GuardianInvitation>;
+    get(
+      params: Params$Resource$Userprofiles$Guardianinvitations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$GuardianInvitation>,
+      callback: BodyResponseCallback<Schema$GuardianInvitation>
+    ): void;
+    get(
+      params: Params$Resource$Userprofiles$Guardianinvitations$Get,
+      callback: BodyResponseCallback<Schema$GuardianInvitation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$GuardianInvitation>): void;
-    get(paramsOrCallback?: Params$Resource$Userprofiles$Guardianinvitations$Get|
-        BodyResponseCallback<Schema$GuardianInvitation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GuardianInvitation>,
-        callback?: BodyResponseCallback<Schema$GuardianInvitation>):
-        void|GaxiosPromise<Schema$GuardianInvitation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Userprofiles$Guardianinvitations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Userprofiles$Guardianinvitations$Get
+        | BodyResponseCallback<Schema$GuardianInvitation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GuardianInvitation>,
+      callback?: BodyResponseCallback<Schema$GuardianInvitation>
+    ): void | GaxiosPromise<Schema$GuardianInvitation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userprofiles$Guardianinvitations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6372,18 +6032,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['studentId', 'invitationId'],
         pathParams: ['invitationId', 'studentId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
@@ -6392,22 +6053,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.userProfiles.guardianInvitations.list
-     * @desc Returns a list of guardian invitations that the requesting user is
-     * permitted to view, filtered by the parameters provided.  This method
-     * returns the following error codes:  * `PERMISSION_DENIED` if a
-     * `student_id` is specified, and the requesting   user is not permitted to
-     * view guardian invitations for that student, if   `"-"` is specified as
-     * the `student_id` and the user is not a domain   administrator, if
-     * guardians are not enabled for the domain in question,   or for other
-     * access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but
-     * its format cannot   be recognized (it is not an email address, nor a
-     * `student_id` from the   API, nor the literal string `me`). May also be
-     * returned if an invalid   `page_token` or `state` is provided. *
-     * `NOT_FOUND` if a `student_id` is specified, and its format can be
-     * recognized, but Classroom has no record of that student.
+     * @desc Returns a list of guardian invitations that the requesting user is permitted to view, filtered by the parameters provided.  This method returns the following error codes:  * `PERMISSION_DENIED` if a `student_id` is specified, and the requesting   user is not permitted to view guardian invitations for that student, if   `"-"` is specified as the `student_id` and the user is not a domain   administrator, if guardians are not enabled for the domain in question,   or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot   be recognized (it is not an email address, nor a `student_id` from the   API, nor the literal string `me`). May also be returned if an invalid   `page_token` or `state` is provided. * `NOT_FOUND` if a `student_id` is specified, and its format can be   recognized, but Classroom has no record of that student.
      * @alias classroom.userProfiles.guardianInvitations.list
      * @memberOf! ()
      *
@@ -6422,33 +6070,34 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Userprofiles$Guardianinvitations$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListGuardianInvitationsResponse>;
+      params?: Params$Resource$Userprofiles$Guardianinvitations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGuardianInvitationsResponse>;
     list(
-        params: Params$Resource$Userprofiles$Guardianinvitations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListGuardianInvitationsResponse>,
-        callback: BodyResponseCallback<Schema$ListGuardianInvitationsResponse>):
-        void;
+      params: Params$Resource$Userprofiles$Guardianinvitations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGuardianInvitationsResponse>,
+      callback: BodyResponseCallback<Schema$ListGuardianInvitationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Userprofiles$Guardianinvitations$List,
-        callback: BodyResponseCallback<Schema$ListGuardianInvitationsResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$ListGuardianInvitationsResponse>):
-        void;
+      params: Params$Resource$Userprofiles$Guardianinvitations$List,
+      callback: BodyResponseCallback<Schema$ListGuardianInvitationsResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Userprofiles$Guardianinvitations$List|
-        BodyResponseCallback<Schema$ListGuardianInvitationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListGuardianInvitationsResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ListGuardianInvitationsResponse>):
-        void|GaxiosPromise<Schema$ListGuardianInvitationsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Userprofiles$Guardianinvitations$List;
+      callback: BodyResponseCallback<Schema$ListGuardianInvitationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Userprofiles$Guardianinvitations$List
+        | BodyResponseCallback<Schema$ListGuardianInvitationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGuardianInvitationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListGuardianInvitationsResponse>
+    ): void | GaxiosPromise<Schema$ListGuardianInvitationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userprofiles$Guardianinvitations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6465,44 +6114,34 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/userProfiles/{studentId}/guardianInvitations')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/userProfiles/{studentId}/guardianInvitations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['studentId'],
         pathParams: ['studentId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListGuardianInvitationsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListGuardianInvitationsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * classroom.userProfiles.guardianInvitations.patch
-     * @desc Modifies a guardian invitation.  Currently, the only valid
-     * modification is to change the `state` from `PENDING` to `COMPLETE`. This
-     * has the effect of withdrawing the invitation.  This method returns the
-     * following error codes:  * `PERMISSION_DENIED` if the current user does
-     * not have permission to   manage guardians, if guardians are not enabled
-     * for the domain in question   or for other access errors. *
-     * `FAILED_PRECONDITION` if the guardian link is not in the `PENDING` state.
-     * * `INVALID_ARGUMENT` if the format of the student ID provided   cannot be
-     * recognized (it is not an email address, nor a `user_id` from   this API),
-     * or if the passed `GuardianInvitation` has a `state` other than
-     * `COMPLETE`, or if it modifies fields other than `state`. * `NOT_FOUND` if
-     * the student ID provided is a valid student ID, but   Classroom has no
-     * record of that student, or if the `id` field does not   refer to a
-     * guardian invitation known to Classroom.
+     * @desc Modifies a guardian invitation.  Currently, the only valid modification is to change the `state` from `PENDING` to `COMPLETE`. This has the effect of withdrawing the invitation.  This method returns the following error codes:  * `PERMISSION_DENIED` if the current user does not have permission to   manage guardians, if guardians are not enabled for the domain in question   or for other access errors. * `FAILED_PRECONDITION` if the guardian link is not in the `PENDING` state. * `INVALID_ARGUMENT` if the format of the student ID provided   cannot be recognized (it is not an email address, nor a `user_id` from   this API), or if the passed `GuardianInvitation` has a `state` other than   `COMPLETE`, or if it modifies fields other than `state`. * `NOT_FOUND` if the student ID provided is a valid student ID, but   Classroom has no record of that student, or if the `id` field does not   refer to a guardian invitation known to Classroom.
      * @alias classroom.userProfiles.guardianInvitations.patch
      * @memberOf! ()
      *
@@ -6516,26 +6155,30 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Userprofiles$Guardianinvitations$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$GuardianInvitation>;
+      params?: Params$Resource$Userprofiles$Guardianinvitations$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GuardianInvitation>;
     patch(
-        params: Params$Resource$Userprofiles$Guardianinvitations$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
-        callback: BodyResponseCallback<Schema$GuardianInvitation>): void;
+      params: Params$Resource$Userprofiles$Guardianinvitations$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$GuardianInvitation>,
+      callback: BodyResponseCallback<Schema$GuardianInvitation>
+    ): void;
     patch(
-        params: Params$Resource$Userprofiles$Guardianinvitations$Patch,
-        callback: BodyResponseCallback<Schema$GuardianInvitation>): void;
+      params: Params$Resource$Userprofiles$Guardianinvitations$Patch,
+      callback: BodyResponseCallback<Schema$GuardianInvitation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$GuardianInvitation>): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Userprofiles$Guardianinvitations$Patch|
-        BodyResponseCallback<Schema$GuardianInvitation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GuardianInvitation>,
-        callback?: BodyResponseCallback<Schema$GuardianInvitation>):
-        void|GaxiosPromise<Schema$GuardianInvitation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Userprofiles$Guardianinvitations$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Userprofiles$Guardianinvitations$Patch
+        | BodyResponseCallback<Schema$GuardianInvitation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GuardianInvitation>,
+      callback?: BodyResponseCallback<Schema$GuardianInvitation>
+    ): void | GaxiosPromise<Schema$GuardianInvitation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userprofiles$Guardianinvitations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6552,18 +6195,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['studentId', 'invitationId'],
         pathParams: ['invitationId', 'studentId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
@@ -6574,11 +6218,11 @@ export namespace classroom_v1 {
   }
 
   export interface Params$Resource$Userprofiles$Guardianinvitations$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the student (in standard format)
@@ -6590,12 +6234,12 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$GuardianInvitation;
   }
-  export interface Params$Resource$Userprofiles$Guardianinvitations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Userprofiles$Guardianinvitations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The `id` field of the `GuardianInvitation` being requested.
@@ -6606,52 +6250,40 @@ export namespace classroom_v1 {
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardianinvitations$List extends
-      StandardParameters {
+  export interface Params$Resource$Userprofiles$Guardianinvitations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * If specified, only results with the specified `invited_email_address`
-     * will be returned.
+     * If specified, only results with the specified `invited_email_address` will be returned.
      */
     invitedEmailAddress?: string;
     /**
-     * Maximum number of items to return. Zero or unspecified indicates that the
-     * server may assign a maximum.  The server may return fewer than the
-     * specified number of results.
+     * Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
      */
     pageSize?: number;
     /**
-     * nextPageToken value returned from a previous list call, indicating that
-     * the subsequent page of results should be returned.  The list request must
-     * be otherwise identical to the one that resulted in this token.
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
      */
     pageToken?: string;
     /**
-     * If specified, only results with the specified `state` values will be
-     * returned. Otherwise, results with a `state` of `PENDING` will be
-     * returned.
+     * If specified, only results with the specified `state` values will be returned. Otherwise, results with a `state` of `PENDING` will be returned.
      */
     states?: string[];
     /**
-     * The ID of the student whose guardian invitations are to be returned. The
-     * identifier can be one of the following:  * the numeric identifier for the
-     * user * the email address of the user * the string literal `"me"`,
-     * indicating the requesting user * the string literal `"-"`, indicating
-     * that results should be returned for   all students that the requesting
-     * user is permitted to view guardian   invitations.
+     * The ID of the student whose guardian invitations are to be returned. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user * the string literal `"-"`, indicating that results should be returned for   all students that the requesting user is permitted to view guardian   invitations.
      */
     studentId?: string;
   }
   export interface Params$Resource$Userprofiles$Guardianinvitations$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The `id` field of the `GuardianInvitation` to be modified.
@@ -6662,11 +6294,7 @@ export namespace classroom_v1 {
      */
     studentId?: string;
     /**
-     * Mask that identifies which fields on the course to update. This field is
-     * required to do an update. The update will fail if invalid fields are
-     * specified. The following fields are valid:  * `state`  When set in a
-     * query parameter, this field should be specified as
-     * `updateMask=<field1>,<field2>,...`
+     * Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid:  * `state`  When set in a query parameter, this field should be specified as  `updateMask=<field1>,<field2>,...`
      */
     updateMask?: string;
 
@@ -6676,28 +6304,15 @@ export namespace classroom_v1 {
     requestBody?: Schema$GuardianInvitation;
   }
 
-
   export class Resource$Userprofiles$Guardians {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * classroom.userProfiles.guardians.delete
-     * @desc Deletes a guardian.  The guardian will no longer receive guardian
-     * notifications and the guardian will no longer be accessible via the API.
-     * This method returns the following error codes:  * `PERMISSION_DENIED` if
-     * no user that matches the provided `student_id`   is visible to the
-     * requesting user, if the requesting user is not   permitted to manage
-     * guardians for the student identified by the   `student_id`, if guardians
-     * are not enabled for the domain in question,   or for other access errors.
-     * * `INVALID_ARGUMENT` if a `student_id` is specified, but its format
-     * cannot   be recognized (it is not an email address, nor a `student_id`
-     * from the   API). * `NOT_FOUND` if the requesting user is permitted to
-     * modify guardians for   the requested `student_id`, but no `Guardian`
-     * record exists for that   student with the provided `guardian_id`.
+     * @desc Deletes a guardian.  The guardian will no longer receive guardian notifications and the guardian will no longer be accessible via the API.  This method returns the following error codes:  * `PERMISSION_DENIED` if no user that matches the provided `student_id`   is visible to the requesting user, if the requesting user is not   permitted to manage guardians for the student identified by the   `student_id`, if guardians are not enabled for the domain in question,   or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot   be recognized (it is not an email address, nor a `student_id` from the   API). * `NOT_FOUND` if the requesting user is permitted to modify guardians for   the requested `student_id`, but no `Guardian` record exists for that   student with the provided `guardian_id`.
      * @alias classroom.userProfiles.guardians.delete
      * @memberOf! ()
      *
@@ -6709,24 +6324,28 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Userprofiles$Guardians$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Userprofiles$Guardians$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Userprofiles$Guardians$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Userprofiles$Guardians$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Userprofiles$Guardians$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Userprofiles$Guardians$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Userprofiles$Guardians$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Userprofiles$Guardians$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Userprofiles$Guardians$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userprofiles$Guardians$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6743,17 +6362,18 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/userProfiles/{studentId}/guardians/{guardianId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/userProfiles/{studentId}/guardians/{guardianId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['studentId', 'guardianId'],
         pathParams: ['guardianId', 'studentId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6762,20 +6382,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.userProfiles.guardians.get
-     * @desc Returns a specific guardian.  This method returns the following
-     * error codes:  * `PERMISSION_DENIED` if no user that matches the provided
-     * `student_id`   is visible to the requesting user, if the requesting user
-     * is not   permitted to view guardian information for the student
-     * identified by the   `student_id`, if guardians are not enabled for the
-     * domain in question,   or for other access errors. * `INVALID_ARGUMENT` if
-     * a `student_id` is specified, but its format cannot   be recognized (it is
-     * not an email address, nor a `student_id` from the   API, nor the literal
-     * string `me`). * `NOT_FOUND` if the requesting user is permitted to view
-     * guardians for   the requested `student_id`, but no `Guardian` record
-     * exists for that   student that matches the provided `guardian_id`.
+     * @desc Returns a specific guardian.  This method returns the following error codes:  * `PERMISSION_DENIED` if no user that matches the provided `student_id`   is visible to the requesting user, if the requesting user is not   permitted to view guardian information for the student identified by the   `student_id`, if guardians are not enabled for the domain in question,   or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot   be recognized (it is not an email address, nor a `student_id` from the   API, nor the literal string `me`). * `NOT_FOUND` if the requesting user is permitted to view guardians for   the requested `student_id`, but no `Guardian` record exists for that   student that matches the provided `guardian_id`.
      * @alias classroom.userProfiles.guardians.get
      * @memberOf! ()
      *
@@ -6786,21 +6395,29 @@ export namespace classroom_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Userprofiles$Guardians$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Guardian>;
-    get(params: Params$Resource$Userprofiles$Guardians$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Guardian>,
-        callback: BodyResponseCallback<Schema$Guardian>): void;
-    get(params: Params$Resource$Userprofiles$Guardians$Get,
-        callback: BodyResponseCallback<Schema$Guardian>): void;
+    get(
+      params?: Params$Resource$Userprofiles$Guardians$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Guardian>;
+    get(
+      params: Params$Resource$Userprofiles$Guardians$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Guardian>,
+      callback: BodyResponseCallback<Schema$Guardian>
+    ): void;
+    get(
+      params: Params$Resource$Userprofiles$Guardians$Get,
+      callback: BodyResponseCallback<Schema$Guardian>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Guardian>): void;
-    get(paramsOrCallback?: Params$Resource$Userprofiles$Guardians$Get|
-        BodyResponseCallback<Schema$Guardian>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Guardian>,
-        callback?: BodyResponseCallback<Schema$Guardian>):
-        void|GaxiosPromise<Schema$Guardian> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Userprofiles$Guardians$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Userprofiles$Guardians$Get
+        | BodyResponseCallback<Schema$Guardian>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Guardian>,
+      callback?: BodyResponseCallback<Schema$Guardian>
+    ): void | GaxiosPromise<Schema$Guardian> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userprofiles$Guardians$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6817,17 +6434,18 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/userProfiles/{studentId}/guardians/{guardianId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/userProfiles/{studentId}/guardians/{guardianId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['studentId', 'guardianId'],
         pathParams: ['guardianId', 'studentId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Guardian>(parameters, callback);
@@ -6836,25 +6454,9 @@ export namespace classroom_v1 {
       }
     }
 
-
     /**
      * classroom.userProfiles.guardians.list
-     * @desc Returns a list of guardians that the requesting user is permitted
-     * to view, restricted to those that match the request.  To list guardians
-     * for any student that the requesting user may view guardians for, use the
-     * literal character `-` for the student ID.  This method returns the
-     * following error codes:  * `PERMISSION_DENIED` if a `student_id` is
-     * specified, and the requesting   user is not permitted to view guardian
-     * information for that student, if   `"-"` is specified as the `student_id`
-     * and the user is not a domain   administrator, if guardians are not
-     * enabled for the domain in question,   if the `invited_email_address`
-     * filter is set by a user who is not a   domain administrator, or for other
-     * access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but
-     * its format cannot   be recognized (it is not an email address, nor a
-     * `student_id` from the   API, nor the literal string `me`). May also be
-     * returned if an invalid   `page_token` is provided. * `NOT_FOUND` if a
-     * `student_id` is specified, and its format can be   recognized, but
-     * Classroom has no record of that student.
+     * @desc Returns a list of guardians that the requesting user is permitted to view, restricted to those that match the request.  To list guardians for any student that the requesting user may view guardians for, use the literal character `-` for the student ID.  This method returns the following error codes:  * `PERMISSION_DENIED` if a `student_id` is specified, and the requesting   user is not permitted to view guardian information for that student, if   `"-"` is specified as the `student_id` and the user is not a domain   administrator, if guardians are not enabled for the domain in question,   if the `invited_email_address` filter is set by a user who is not a   domain administrator, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot   be recognized (it is not an email address, nor a `student_id` from the   API, nor the literal string `me`). May also be returned if an invalid   `page_token` is provided. * `NOT_FOUND` if a `student_id` is specified, and its format can be   recognized, but Classroom has no record of that student.
      * @alias classroom.userProfiles.guardians.list
      * @memberOf! ()
      *
@@ -6868,26 +6470,32 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Userprofiles$Guardians$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListGuardiansResponse>;
+      params?: Params$Resource$Userprofiles$Guardians$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGuardiansResponse>;
     list(
-        params: Params$Resource$Userprofiles$Guardians$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListGuardiansResponse>,
-        callback: BodyResponseCallback<Schema$ListGuardiansResponse>): void;
+      params: Params$Resource$Userprofiles$Guardians$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGuardiansResponse>,
+      callback: BodyResponseCallback<Schema$ListGuardiansResponse>
+    ): void;
     list(
-        params: Params$Resource$Userprofiles$Guardians$List,
-        callback: BodyResponseCallback<Schema$ListGuardiansResponse>): void;
+      params: Params$Resource$Userprofiles$Guardians$List,
+      callback: BodyResponseCallback<Schema$ListGuardiansResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListGuardiansResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Userprofiles$Guardians$List|
-        BodyResponseCallback<Schema$ListGuardiansResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListGuardiansResponse>,
-        callback?: BodyResponseCallback<Schema$ListGuardiansResponse>):
-        void|GaxiosPromise<Schema$ListGuardiansResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Userprofiles$Guardians$List;
+      paramsOrCallback?:
+        | Params$Resource$Userprofiles$Guardians$List
+        | BodyResponseCallback<Schema$ListGuardiansResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGuardiansResponse>,
+      callback?: BodyResponseCallback<Schema$ListGuardiansResponse>
+    ): void | GaxiosPromise<Schema$ListGuardiansResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userprofiles$Guardians$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6904,16 +6512,19 @@ export namespace classroom_v1 {
       const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/userProfiles/{studentId}/guardians')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/userProfiles/{studentId}/guardians').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['studentId'],
         pathParams: ['studentId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListGuardiansResponse>(parameters, callback);
@@ -6923,74 +6534,59 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Userprofiles$Guardians$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Userprofiles$Guardians$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The `id` field from a `Guardian`.
      */
     guardianId?: string;
     /**
-     * The student whose guardian is to be deleted. One of the following:  * the
-     * numeric identifier for the user * the email address of the user * the
-     * string literal `"me"`, indicating the requesting user
+     * The student whose guardian is to be deleted. One of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardians$Get extends
-      StandardParameters {
+  export interface Params$Resource$Userprofiles$Guardians$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The `id` field from a `Guardian`.
      */
     guardianId?: string;
     /**
-     * The student whose guardian is being requested. One of the following:  *
-     * the numeric identifier for the user * the email address of the user * the
-     * string literal `"me"`, indicating the requesting user
+     * The student whose guardian is being requested. One of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardians$List extends
-      StandardParameters {
+  export interface Params$Resource$Userprofiles$Guardians$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Filter results by the email address that the original invitation was sent
-     * to, resulting in this guardian link. This filter can only be used by
-     * domain administrators.
+     * Filter results by the email address that the original invitation was sent to, resulting in this guardian link. This filter can only be used by domain administrators.
      */
     invitedEmailAddress?: string;
     /**
-     * Maximum number of items to return. Zero or unspecified indicates that the
-     * server may assign a maximum.  The server may return fewer than the
-     * specified number of results.
+     * Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
      */
     pageSize?: number;
     /**
-     * nextPageToken value returned from a previous list call, indicating that
-     * the subsequent page of results should be returned.  The list request must
-     * be otherwise identical to the one that resulted in this token.
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
      */
     pageToken?: string;
     /**
-     * Filter results by the student who the guardian is linked to. The
-     * identifier can be one of the following:  * the numeric identifier for the
-     * user * the email address of the user * the string literal `"me"`,
-     * indicating the requesting user * the string literal `"-"`, indicating
-     * that results should be returned for   all students that the requesting
-     * user has access to view.
+     * Filter results by the student who the guardian is linked to. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user * the string literal `"-"`, indicating that results should be returned for   all students that the requesting user has access to view.
      */
     studentId?: string;
   }

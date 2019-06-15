@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {playcustomapp_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': playcustomapp_v1.Playcustomapp,
+  v1: playcustomapp_v1.Playcustomapp,
 };
 
 export function playcustomapp(version: 'v1'): playcustomapp_v1.Playcustomapp;
-export function playcustomapp(options: playcustomapp_v1.Options):
-    playcustomapp_v1.Playcustomapp;
+export function playcustomapp(
+  options: playcustomapp_v1.Options
+): playcustomapp_v1.Playcustomapp;
 export function playcustomapp<T = playcustomapp_v1.Playcustomapp>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|playcustomapp_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | playcustomapp_v1.Options
+) {
   return getAPI<T>('playcustomapp', versionOrOptions, VERSIONS, this);
 }
 

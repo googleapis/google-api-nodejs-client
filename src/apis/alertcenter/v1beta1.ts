@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +63,7 @@ export namespace alertcenter_v1beta1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,9 +75,7 @@ export namespace alertcenter_v1beta1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -101,7 +109,10 @@ export namespace alertcenter_v1beta1 {
     v1beta1: Resource$V1beta1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.alerts = new Resource$Alerts(this.context);
       this.v1beta1 = new Resource$V1beta1(this.context);
@@ -117,10 +128,7 @@ export namespace alertcenter_v1beta1 {
      */
     email?: string;
     /**
-     * Optional. Details of the login action associated with the warning event.
-     * This is only available for:  * Suspicious login * Suspicious login (less
-     * secure app) * Suspicious programmatic login * User suspended (suspicious
-     * activity)
+     * Optional. Details of the login action associated with the warning event. This is only available for:  * Suspicious login * Suspicious login (less secure app) * Suspicious programmatic login * User suspended (suspicious activity)
      */
     loginDetails?: Schema$LoginDetails;
   }
@@ -153,15 +161,11 @@ export namespace alertcenter_v1beta1 {
      */
     query?: string;
     /**
-     * List of alert ids superseded by this alert. It is used to indicate that
-     * this alert is essentially extension of superseded alerts and we found the
-     * relationship after creating these alerts.
+     * List of alert ids superseded by this alert. It is used to indicate that this alert is essentially extension of superseded alerts and we found the relationship after creating these alerts.
      */
     supersededAlerts?: string[];
     /**
-     * Alert id superseding this alert. It is used to indicate that superseding
-     * alert is essentially extension of this alert and we found the
-     * relationship after creating both alerts.
+     * Alert id superseding this alert. It is used to indicate that superseding alert is essentially extension of this alert and we found the relationship after creating both alerts.
      */
     supersedingAlert?: string;
     /**
@@ -169,8 +173,7 @@ export namespace alertcenter_v1beta1 {
      */
     threshold?: string;
     /**
-     * The trigger sources for this rule.  * GMAIL_EVENTS * DEVICE_EVENTS *
-     * USER_EVENTS
+     * The trigger sources for this rule.  * GMAIL_EVENTS * DEVICE_EVENTS * USER_EVENTS
      */
     triggerSource?: string;
     /**
@@ -199,42 +202,31 @@ export namespace alertcenter_v1beta1 {
      */
     customerId?: string;
     /**
-     * Optional. The data associated with this alert, for example
-     * google.apps.alertcenter.type.DeviceCompromised.
+     * Optional. The data associated with this alert, for example google.apps.alertcenter.type.DeviceCompromised.
      */
-    data?: {[key: string]: any;};
+    data?: {[key: string]: any};
     /**
      * Output only. `True` if this alert is marked for deletion.
      */
     deleted?: boolean;
     /**
-     * Optional. The time the event that caused this alert ceased being active.
-     * If provided, the end time must not be earlier than the start time. If not
-     * provided, it indicates an ongoing alert.
+     * Optional. The time the event that caused this alert ceased being active. If provided, the end time must not be earlier than the start time. If not provided, it indicates an ongoing alert.
      */
     endTime?: string;
     /**
-     * Output only. An optional [Security Investigation
-     * Tool](https://support.google.com/a/answer/7575955) query for this alert.
+     * Output only. An optional [Security Investigation Tool](https://support.google.com/a/answer/7575955) query for this alert.
      */
     securityInvestigationToolLink?: string;
     /**
-     * Required. A unique identifier for the system that reported the alert.
-     * This is output only after alert is created.  Supported sources are any of
-     * the following:  * Google Operations * Mobile device management * Gmail
-     * phishing * Domain wide takeout * Government attack warning * Google
-     * identity
+     * Required. A unique identifier for the system that reported the alert. This is output only after alert is created.  Supported sources are any of the following:  * Google Operations * Mobile device management * Gmail phishing * Domain wide takeout * Government attack warning * Google identity
      */
     source?: string;
     /**
-     * Required. The time the event that caused this alert was started or
-     * detected.
+     * Required. The time the event that caused this alert was started or detected.
      */
     startTime?: string;
     /**
-     * Required. The type of the alert. This is output only after alert is
-     * created. For a list of available alert types see [G Suite Alert
-     * types](/admin-sdk/alertcenter/reference/alert-types).
+     * Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [G Suite Alert types](/admin-sdk/alertcenter/reference/alert-types).
      */
     type?: string;
     /**
@@ -281,8 +273,7 @@ export namespace alertcenter_v1beta1 {
     csv?: Schema$Csv;
   }
   /**
-   * Alert for setting the domain or IP that malicious email comes from as
-   * whitelisted domain or IP in Gmail advanced settings.
+   * Alert for setting the domain or IP that malicious email comes from as whitelisted domain or IP in Gmail advanced settings.
    */
   export interface Schema$BadWhitelist {
     /**
@@ -303,31 +294,24 @@ export namespace alertcenter_v1beta1 {
     sourceIp?: string;
   }
   /**
-   * A reference to a Cloud Pubsub topic.  To register for notifications, the
-   * owner of the topic must grant
-   * `alerts-api-push-notifications@system.gserviceaccount.com` the
-   * `projects.topics.publish` permission.
+   * A reference to a Cloud Pubsub topic.  To register for notifications, the owner of the topic must grant `alerts-api-push-notifications@system.gserviceaccount.com` the  `projects.topics.publish` permission.
    */
   export interface Schema$CloudPubsubTopic {
     /**
-     * Optional. The format of the payload that would be sent. If not specified
-     * the format will be JSON.
+     * Optional. The format of the payload that would be sent. If not specified the format will be JSON.
      */
     payloadFormat?: string;
     /**
-     * The `name` field of a Cloud Pubsub [Topic]
-     * (https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
+     * The `name` field of a Cloud Pubsub [Topic] (https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
      */
     topicName?: string;
   }
   /**
-   * A representation of a CSV file attachment, as a list of column headers and
-   * a list of data rows.
+   * A representation of a CSV file attachment, as a list of column headers and a list of data rows.
    */
   export interface Schema$Csv {
     /**
-     * The list of data rows in a CSV file, as string arrays rather than as a
-     * single comma-separated string.
+     * The list of data rows in a CSV file, as string arrays rather than as a single comma-separated string.
      */
     dataRows?: Schema$CsvRow[];
     /**
@@ -340,8 +324,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$CsvRow {
     /**
-     * The data entries in a CSV file row, as a string array rather than a
-     * single comma-separated string.
+     * The data entries in a CSV file row, as a string array rather than a single comma-separated string.
      */
     entries?: string[];
   }
@@ -363,8 +346,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$DeviceCompromisedSecurityDetail {
     /**
-     * The device compromised state. Possible values are
-     * &quot;`Compromised`&quot; or &quot;`Not Compromised`&quot;.
+     * The device compromised state. Possible values are &quot;`Compromised`&quot; or &quot;`Not Compromised`&quot;.
      */
     deviceCompromisedState?: string;
     /**
@@ -402,8 +384,7 @@ export namespace alertcenter_v1beta1 {
     customerPrimaryDomain?: string;
   }
   /**
-   * A takeout operation for the entire domain was initiated by an admin.
-   * Derived from audit logs.
+   * A takeout operation for the entire domain was initiated by an admin. Derived from audit logs.
    */
   export interface Schema$DomainWideTakeoutInitiated {
     /**
@@ -416,11 +397,7 @@ export namespace alertcenter_v1beta1 {
     takeoutRequestId?: string;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -444,8 +421,7 @@ export namespace alertcenter_v1beta1 {
      */
     md5HashSubject?: string;
     /**
-     * The snippet of the message body text (only available for reported
-     * emails).
+     * The snippet of the message body text (only available for reported emails).
      */
     messageBodySnippet?: string;
     /**
@@ -466,14 +442,11 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$GoogleOperations {
     /**
-     * The list of emails which correspond to the users directly affected by the
-     * incident.
+     * The list of emails which correspond to the users directly affected by the incident.
      */
     affectedUserEmails?: string[];
     /**
-     * Optional. Application-specific data for an incident, provided when the G
-     * Suite application which reported the incident cannot be completely
-     * restored to a valid state.
+     * Optional. Application-specific data for an incident, provided when the G Suite application which reported the incident cannot be completely restored to a valid state.
      */
     attachmentData?: Schema$Attachment;
     /**
@@ -490,8 +463,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$ListAlertFeedbackResponse {
     /**
-     * The list of alert feedback. Feedback entries for each alert are ordered
-     * by creation time descending.
+     * The list of alert feedback. Feedback entries for each alert are ordered by creation time descending.
      */
     feedback?: Schema$AlertFeedback[];
   }
@@ -504,10 +476,7 @@ export namespace alertcenter_v1beta1 {
      */
     alerts?: Schema$Alert[];
     /**
-     * The token for the next page. If not empty, indicates that there may be
-     * more alerts that match the listing request; this value can be used in a
-     * subsequent ListAlertsRequest to get alerts continuing from last result of
-     * the current list call.
+     * The token for the next page. If not empty, indicates that there may be more alerts that match the listing request; this value can be used in a subsequent ListAlertsRequest to get alerts continuing from last result of the current list call.
      */
     nextPageToken?: string;
   }
@@ -516,21 +485,16 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$LoginDetails {
     /**
-     * Optional. The human-readable IP address (for example, `11.22.33.44`) that
-     * is associated with the warning event.
+     * Optional. The human-readable IP address (for example, `11.22.33.44`) that is associated with the warning event.
      */
     ipAddress?: string;
     /**
-     * Optional. The successful login time that is associated with the warning
-     * event. This will not be present for blocked login attempts.
+     * Optional. The successful login time that is associated with the warning event. This will not be present for blocked login attempts.
      */
     loginTime?: string;
   }
   /**
-   * Proto for all phishing alerts with common payload. Supported types are any
-   * of the following:  * User reported phishing * User reported spam spike *
-   * Suspicious message reported * Phishing reclassification * Malware
-   * reclassification
+   * Proto for all phishing alerts with common payload. Supported types are any of the following:  * User reported phishing * User reported spam spike * Suspicious message reported * Phishing reclassification * Malware reclassification
    */
   export interface Schema$MailPhishing {
     /**
@@ -560,8 +524,7 @@ export namespace alertcenter_v1beta1 {
     fromHeader?: string;
   }
   /**
-   * Settings for callback notifications. For more details see [G Suite Alert
-   * Notification](/admin-sdk/alertcenter/guides/notifications).
+   * Settings for callback notifications. For more details see [G Suite Alert Notification](/admin-sdk/alertcenter/guides/notifications).
    */
   export interface Schema$Notification {
     /**
@@ -570,11 +533,7 @@ export namespace alertcenter_v1beta1 {
     cloudPubsubTopic?: Schema$CloudPubsubTopic;
   }
   /**
-   * Alert for a spike in user reported phishing. &lt;aside
-   * class=&quot;warning&quot;&gt;&lt;b&gt;Warning&lt;/b&gt;: This type has been
-   * deprecated. Use
-   * [MailPhishing](/admin-sdk/alertcenter/reference/rest/v1beta1/MailPhishing)
-   * instead.&lt;/aside&gt;
+   * Alert for a spike in user reported phishing. &lt;aside class=&quot;warning&quot;&gt;&lt;b&gt;Warning&lt;/b&gt;: This type has been deprecated. Use [MailPhishing](/admin-sdk/alertcenter/reference/rest/v1beta1/MailPhishing) instead.&lt;/aside&gt;
    */
   export interface Schema$PhishingSpike {
     /**
@@ -671,13 +630,10 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$UndeleteAlertRequest {
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alert is associated with. Inferred from the caller
-     * identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
   }
-
 
   export class Resource$Alerts {
     context: APIRequestContext;
@@ -687,14 +643,9 @@ export namespace alertcenter_v1beta1 {
       this.feedback = new Resource$Alerts$Feedback(this.context);
     }
 
-
     /**
      * alertcenter.alerts.delete
-     * @desc Marks the specified alert for deletion. An alert that has been
-     * marked for deletion is removed from Alert Center after 30 days. Marking
-     * an alert for deletion has no effect on an alert which has already been
-     * marked for deletion. Attempting to mark a nonexistent alert for deletion
-     * results in a `NOT_FOUND` error.
+     * @desc Marks the specified alert for deletion. An alert that has been marked for deletion is removed from Alert Center after 30 days. Marking an alert for deletion has no effect on an alert which has already been marked for deletion. Attempting to mark a nonexistent alert for deletion results in a `NOT_FOUND` error.
      * @alias alertcenter.alerts.delete
      * @memberOf! ()
      *
@@ -705,22 +656,27 @@ export namespace alertcenter_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Alerts$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Alerts$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Alerts$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Alerts$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Alerts$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Alerts$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Alerts$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Alerts$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -738,16 +694,19 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/alerts/{alertId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/alerts/{alertId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -756,11 +715,9 @@ export namespace alertcenter_v1beta1 {
       }
     }
 
-
     /**
      * alertcenter.alerts.get
-     * @desc Gets the specified alert. Attempting to get a nonexistent alert
-     * returns `NOT_FOUND` error.
+     * @desc Gets the specified alert. Attempting to get a nonexistent alert returns `NOT_FOUND` error.
      * @alias alertcenter.alerts.get
      * @memberOf! ()
      *
@@ -771,19 +728,27 @@ export namespace alertcenter_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Alerts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Alert>;
-    get(params: Params$Resource$Alerts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Alert>,
-        callback: BodyResponseCallback<Schema$Alert>): void;
-    get(params: Params$Resource$Alerts$Get,
-        callback: BodyResponseCallback<Schema$Alert>): void;
+    get(
+      params?: Params$Resource$Alerts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Alert>;
+    get(
+      params: Params$Resource$Alerts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Alert>,
+      callback: BodyResponseCallback<Schema$Alert>
+    ): void;
+    get(
+      params: Params$Resource$Alerts$Get,
+      callback: BodyResponseCallback<Schema$Alert>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Alert>): void;
-    get(paramsOrCallback?: Params$Resource$Alerts$Get|
-        BodyResponseCallback<Schema$Alert>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Alert>,
-        callback?: BodyResponseCallback<Schema$Alert>):
-        void|GaxiosPromise<Schema$Alert> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Alerts$Get
+        | BodyResponseCallback<Schema$Alert>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Alert>,
+      callback?: BodyResponseCallback<Schema$Alert>
+    ): void | GaxiosPromise<Schema$Alert> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -801,16 +766,19 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/alerts/{alertId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/alerts/{alertId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Alert>(parameters, callback);
@@ -818,7 +786,6 @@ export namespace alertcenter_v1beta1 {
         return createAPIRequest<Schema$Alert>(parameters);
       }
     }
-
 
     /**
      * alertcenter.alerts.list
@@ -836,23 +803,29 @@ export namespace alertcenter_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Alerts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListAlertsResponse>;
     list(
-        params: Params$Resource$Alerts$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListAlertsResponse>,
-        callback: BodyResponseCallback<Schema$ListAlertsResponse>): void;
+      params?: Params$Resource$Alerts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAlertsResponse>;
     list(
-        params: Params$Resource$Alerts$List,
-        callback: BodyResponseCallback<Schema$ListAlertsResponse>): void;
+      params: Params$Resource$Alerts$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListAlertsResponse>,
+      callback: BodyResponseCallback<Schema$ListAlertsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Alerts$List,
+      callback: BodyResponseCallback<Schema$ListAlertsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListAlertsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Alerts$List|
-        BodyResponseCallback<Schema$ListAlertsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAlertsResponse>,
-        callback?: BodyResponseCallback<Schema$ListAlertsResponse>):
-        void|GaxiosPromise<Schema$ListAlertsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Alerts$List
+        | BodyResponseCallback<Schema$ListAlertsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAlertsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAlertsResponse>
+    ): void | GaxiosPromise<Schema$ListAlertsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -870,15 +843,16 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/alerts').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/alerts').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAlertsResponse>(parameters, callback);
@@ -887,15 +861,9 @@ export namespace alertcenter_v1beta1 {
       }
     }
 
-
     /**
      * alertcenter.alerts.undelete
-     * @desc Restores, or "undeletes", an alert that was marked for deletion
-     * within the past 30 days. Attempting to undelete an alert which was marked
-     * for deletion over 30 days ago (which has been removed from the Alert
-     * Center database) or a nonexistent alert returns a `NOT_FOUND` error.
-     * Attempting to undelete an alert which has not been marked for deletion
-     * has no effect.
+     * @desc Restores, or "undeletes", an alert that was marked for deletion within the past 30 days. Attempting to undelete an alert which was marked for deletion over 30 days ago (which has been removed from the Alert Center database) or a nonexistent alert returns a `NOT_FOUND` error. Attempting to undelete an alert which has not been marked for deletion has no effect.
      * @alias alertcenter.alerts.undelete
      * @memberOf! ()
      *
@@ -906,22 +874,27 @@ export namespace alertcenter_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete(params?: Params$Resource$Alerts$Undelete, options?: MethodOptions):
-        GaxiosPromise<Schema$Alert>;
     undelete(
-        params: Params$Resource$Alerts$Undelete,
-        options: MethodOptions|BodyResponseCallback<Schema$Alert>,
-        callback: BodyResponseCallback<Schema$Alert>): void;
+      params?: Params$Resource$Alerts$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Alert>;
     undelete(
-        params: Params$Resource$Alerts$Undelete,
-        callback: BodyResponseCallback<Schema$Alert>): void;
+      params: Params$Resource$Alerts$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Alert>,
+      callback: BodyResponseCallback<Schema$Alert>
+    ): void;
+    undelete(
+      params: Params$Resource$Alerts$Undelete,
+      callback: BodyResponseCallback<Schema$Alert>
+    ): void;
     undelete(callback: BodyResponseCallback<Schema$Alert>): void;
     undelete(
-        paramsOrCallback?: Params$Resource$Alerts$Undelete|
-        BodyResponseCallback<Schema$Alert>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Alert>,
-        callback?: BodyResponseCallback<Schema$Alert>):
-        void|GaxiosPromise<Schema$Alert> {
+      paramsOrCallback?:
+        | Params$Resource$Alerts$Undelete
+        | BodyResponseCallback<Schema$Alert>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Alert>,
+      callback?: BodyResponseCallback<Schema$Alert>
+    ): void | GaxiosPromise<Schema$Alert> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -939,16 +912,19 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/alerts/{alertId}:undelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/alerts/{alertId}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Alert>(parameters, callback);
@@ -962,16 +938,14 @@ export namespace alertcenter_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The identifier of the alert to delete.
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alert is associated with. Inferred from the caller
-     * identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
   }
@@ -979,16 +953,14 @@ export namespace alertcenter_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The identifier of the alert to retrieve.
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alert is associated with. Inferred from the caller
-     * identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
   }
@@ -996,38 +968,26 @@ export namespace alertcenter_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alerts are associated with. Inferred from the caller
-     * identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
     /**
-     * Optional. A query string for filtering alert results. For more details,
-     * see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and
-     * [Supported query filter
-     * fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
+     * Optional. A query string for filtering alert results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
      */
     filter?: string;
     /**
-     * Optional. The sort order of the list results. If not specified results
-     * may be returned in arbitrary order. You can sort the results in
-     * descending order based on the creation timestamp using
-     * `order_by="create_time desc"`. Currently, supported sorting are
-     * `create_time asc`, `create_time desc`, `update_time desc`
+     * Optional. The sort order of the list results. If not specified results may be returned in arbitrary order. You can sort the results in descending order based on the creation timestamp using `order_by="create_time desc"`. Currently, supported sorting are `create_time asc`, `create_time desc`, `update_time desc`
      */
     orderBy?: string;
     /**
-     * Optional. The requested page size. Server may return fewer items than
-     * requested. If unspecified, server picks an appropriate default.
+     * Optional. The requested page size. Server may return fewer items than requested. If unspecified, server picks an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional. A token identifying a page of results the server should return.
-     * If empty, a new iteration is started. To continue an iteration, pass in
-     * the value from the previous ListAlertsResponse's next_page_token field.
+     * Optional. A token identifying a page of results the server should return. If empty, a new iteration is started. To continue an iteration, pass in the value from the previous ListAlertsResponse's next_page_token field.
      */
     pageToken?: string;
   }
@@ -1035,7 +995,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The identifier of the alert to undelete.
@@ -1054,11 +1014,9 @@ export namespace alertcenter_v1beta1 {
       this.context = context;
     }
 
-
     /**
      * alertcenter.alerts.feedback.create
-     * @desc Creates new feedback for an alert. Attempting to create a feedback
-     * for a non-existent alert returns `NOT_FOUND` error.
+     * @desc Creates new feedback for an alert. Attempting to create a feedback for a non-existent alert returns `NOT_FOUND` error.
      * @alias alertcenter.alerts.feedback.create
      * @memberOf! ()
      *
@@ -1071,25 +1029,30 @@ export namespace alertcenter_v1beta1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Alerts$Feedback$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$AlertFeedback>;
+      params?: Params$Resource$Alerts$Feedback$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AlertFeedback>;
     create(
-        params: Params$Resource$Alerts$Feedback$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$AlertFeedback>,
-        callback: BodyResponseCallback<Schema$AlertFeedback>): void;
+      params: Params$Resource$Alerts$Feedback$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AlertFeedback>,
+      callback: BodyResponseCallback<Schema$AlertFeedback>
+    ): void;
     create(
-        params: Params$Resource$Alerts$Feedback$Create,
-        callback: BodyResponseCallback<Schema$AlertFeedback>): void;
+      params: Params$Resource$Alerts$Feedback$Create,
+      callback: BodyResponseCallback<Schema$AlertFeedback>
+    ): void;
     create(callback: BodyResponseCallback<Schema$AlertFeedback>): void;
     create(
-        paramsOrCallback?: Params$Resource$Alerts$Feedback$Create|
-        BodyResponseCallback<Schema$AlertFeedback>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AlertFeedback>,
-        callback?: BodyResponseCallback<Schema$AlertFeedback>):
-        void|GaxiosPromise<Schema$AlertFeedback> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Alerts$Feedback$Create;
+      paramsOrCallback?:
+        | Params$Resource$Alerts$Feedback$Create
+        | BodyResponseCallback<Schema$AlertFeedback>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AlertFeedback>,
+      callback?: BodyResponseCallback<Schema$AlertFeedback>
+    ): void | GaxiosPromise<Schema$AlertFeedback> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Alerts$Feedback$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1106,16 +1069,19 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/alerts/{alertId}/feedback')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/alerts/{alertId}/feedback').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AlertFeedback>(parameters, callback);
@@ -1124,11 +1090,9 @@ export namespace alertcenter_v1beta1 {
       }
     }
 
-
     /**
      * alertcenter.alerts.feedback.list
-     * @desc Lists all the feedback for an alert. Attempting to list feedbacks
-     * for a non-existent alert returns `NOT_FOUND` error.
+     * @desc Lists all the feedback for an alert. Attempting to list feedbacks for a non-existent alert returns `NOT_FOUND` error.
      * @alias alertcenter.alerts.feedback.list
      * @memberOf! ()
      *
@@ -1141,27 +1105,34 @@ export namespace alertcenter_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Alerts$Feedback$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListAlertFeedbackResponse>;
+      params?: Params$Resource$Alerts$Feedback$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAlertFeedbackResponse>;
     list(
-        params: Params$Resource$Alerts$Feedback$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
-        callback: BodyResponseCallback<Schema$ListAlertFeedbackResponse>): void;
+      params: Params$Resource$Alerts$Feedback$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
+      callback: BodyResponseCallback<Schema$ListAlertFeedbackResponse>
+    ): void;
     list(
-        params: Params$Resource$Alerts$Feedback$List,
-        callback: BodyResponseCallback<Schema$ListAlertFeedbackResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListAlertFeedbackResponse>):
-        void;
+      params: Params$Resource$Alerts$Feedback$List,
+      callback: BodyResponseCallback<Schema$ListAlertFeedbackResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Alerts$Feedback$List|
-        BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
-        callback?: BodyResponseCallback<Schema$ListAlertFeedbackResponse>):
-        void|GaxiosPromise<Schema$ListAlertFeedbackResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Alerts$Feedback$List;
+      callback: BodyResponseCallback<Schema$ListAlertFeedbackResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Alerts$Feedback$List
+        | BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
+      callback?: BodyResponseCallback<Schema$ListAlertFeedbackResponse>
+    ): void | GaxiosPromise<Schema$ListAlertFeedbackResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Alerts$Feedback$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1178,41 +1149,44 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/alerts/{alertId}/feedback')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/alerts/{alertId}/feedback').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAlertFeedbackResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListAlertFeedbackResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Alerts$Feedback$Create extends
-      StandardParameters {
+  export interface Params$Resource$Alerts$Feedback$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The identifier of the alert this feedback belongs to.
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alert is associated with. Inferred from the caller
-     * identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
 
@@ -1221,41 +1195,32 @@ export namespace alertcenter_v1beta1 {
      */
     requestBody?: Schema$AlertFeedback;
   }
-  export interface Params$Resource$Alerts$Feedback$List extends
-      StandardParameters {
+  export interface Params$Resource$Alerts$Feedback$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The alert identifier. The "-" wildcard could be used to
-     * represent all alerts.
+     * Required. The alert identifier. The "-" wildcard could be used to represent all alerts.
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alert feedback are associated with. Inferred from the
-     * caller identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
     /**
-     * Optional. A query string for filtering alert feedback results. For more
-     * details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters)
-     * and [Supported query filter
-     * fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
+     * Optional. A query string for filtering alert feedback results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
      */
     filter?: string;
   }
-
-
 
   export class Resource$V1beta1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * alertcenter.getSettings
@@ -1270,24 +1235,28 @@ export namespace alertcenter_v1beta1 {
      * @return {object} Request object
      */
     getSettings(
-        params?: Params$Resource$V1beta1$Getsettings,
-        options?: MethodOptions): GaxiosPromise<Schema$Settings>;
+      params?: Params$Resource$V1beta1$Getsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Settings>;
     getSettings(
-        params: Params$Resource$V1beta1$Getsettings,
-        options: MethodOptions|BodyResponseCallback<Schema$Settings>,
-        callback: BodyResponseCallback<Schema$Settings>): void;
+      params: Params$Resource$V1beta1$Getsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Settings>,
+      callback: BodyResponseCallback<Schema$Settings>
+    ): void;
     getSettings(
-        params: Params$Resource$V1beta1$Getsettings,
-        callback: BodyResponseCallback<Schema$Settings>): void;
+      params: Params$Resource$V1beta1$Getsettings,
+      callback: BodyResponseCallback<Schema$Settings>
+    ): void;
     getSettings(callback: BodyResponseCallback<Schema$Settings>): void;
     getSettings(
-        paramsOrCallback?: Params$Resource$V1beta1$Getsettings|
-        BodyResponseCallback<Schema$Settings>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Settings>,
-        callback?: BodyResponseCallback<Schema$Settings>):
-        void|GaxiosPromise<Schema$Settings> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$V1beta1$Getsettings;
+      paramsOrCallback?:
+        | Params$Resource$V1beta1$Getsettings
+        | BodyResponseCallback<Schema$Settings>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Settings>,
+      callback?: BodyResponseCallback<Schema$Settings>
+    ): void | GaxiosPromise<Schema$Settings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1beta1$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1304,16 +1273,16 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1beta1/settings').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/settings').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Settings>(parameters, callback);
@@ -1321,7 +1290,6 @@ export namespace alertcenter_v1beta1 {
         return createAPIRequest<Schema$Settings>(parameters);
       }
     }
-
 
     /**
      * alertcenter.updateSettings
@@ -1337,24 +1305,28 @@ export namespace alertcenter_v1beta1 {
      * @return {object} Request object
      */
     updateSettings(
-        params?: Params$Resource$V1beta1$Updatesettings,
-        options?: MethodOptions): GaxiosPromise<Schema$Settings>;
+      params?: Params$Resource$V1beta1$Updatesettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Settings>;
     updateSettings(
-        params: Params$Resource$V1beta1$Updatesettings,
-        options: MethodOptions|BodyResponseCallback<Schema$Settings>,
-        callback: BodyResponseCallback<Schema$Settings>): void;
+      params: Params$Resource$V1beta1$Updatesettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Settings>,
+      callback: BodyResponseCallback<Schema$Settings>
+    ): void;
     updateSettings(
-        params: Params$Resource$V1beta1$Updatesettings,
-        callback: BodyResponseCallback<Schema$Settings>): void;
+      params: Params$Resource$V1beta1$Updatesettings,
+      callback: BodyResponseCallback<Schema$Settings>
+    ): void;
     updateSettings(callback: BodyResponseCallback<Schema$Settings>): void;
     updateSettings(
-        paramsOrCallback?: Params$Resource$V1beta1$Updatesettings|
-        BodyResponseCallback<Schema$Settings>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Settings>,
-        callback?: BodyResponseCallback<Schema$Settings>):
-        void|GaxiosPromise<Schema$Settings> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$V1beta1$Updatesettings;
+      paramsOrCallback?:
+        | Params$Resource$V1beta1$Updatesettings
+        | BodyResponseCallback<Schema$Settings>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Settings>,
+      callback?: BodyResponseCallback<Schema$Settings>
+    ): void | GaxiosPromise<Schema$Settings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1beta1$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1371,16 +1343,16 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1beta1/settings').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/settings').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Settings>(parameters, callback);
@@ -1390,31 +1362,27 @@ export namespace alertcenter_v1beta1 {
     }
   }
 
-  export interface Params$Resource$V1beta1$Getsettings extends
-      StandardParameters {
+  export interface Params$Resource$V1beta1$Getsettings
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alert settings are associated with. Inferred from the
-     * caller identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
   }
-  export interface Params$Resource$V1beta1$Updatesettings extends
-      StandardParameters {
+  export interface Params$Resource$V1beta1$Updatesettings
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The unique identifier of the G Suite organization account of
-     * the customer the alert settings are associated with. Inferred from the
-     * caller identity if not provided.
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
 

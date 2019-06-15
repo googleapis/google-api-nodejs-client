@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {streetviewpublish_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': streetviewpublish_v1.Streetviewpublish,
+  v1: streetviewpublish_v1.Streetviewpublish,
 };
 
-export function streetviewpublish(version: 'v1'):
-    streetviewpublish_v1.Streetviewpublish;
-export function streetviewpublish(options: streetviewpublish_v1.Options):
-    streetviewpublish_v1.Streetviewpublish;
+export function streetviewpublish(
+  version: 'v1'
+): streetviewpublish_v1.Streetviewpublish;
+export function streetviewpublish(
+  options: streetviewpublish_v1.Options
+): streetviewpublish_v1.Streetviewpublish;
 export function streetviewpublish<T = streetviewpublish_v1.Streetviewpublish>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|streetviewpublish_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | streetviewpublish_v1.Options
+) {
   return getAPI<T>('streetviewpublish', versionOrOptions, VERSIONS, this);
 }
 

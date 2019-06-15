@@ -18,21 +18,28 @@ import {container_v1} from './v1';
 import {container_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  'v1': container_v1.Container,
-  'v1beta1': container_v1beta1.Container,
+  v1: container_v1.Container,
+  v1beta1: container_v1beta1.Container,
 };
 
 export function container(version: 'v1'): container_v1.Container;
-export function container(options: container_v1.Options):
-    container_v1.Container;
+export function container(
+  options: container_v1.Options
+): container_v1.Container;
 export function container(version: 'v1beta1'): container_v1beta1.Container;
-export function container(options: container_v1beta1.Options):
-    container_v1beta1.Container;
-export function
-container<T = container_v1.Container | container_v1beta1.Container>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|container_v1.Options|'v1beta1'|
-    container_v1beta1.Options) {
+export function container(
+  options: container_v1beta1.Options
+): container_v1beta1.Container;
+export function container<
+  T = container_v1.Container | container_v1beta1.Container
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | container_v1.Options
+    | 'v1beta1'
+    | container_v1beta1.Options
+) {
   return getAPI<T>('container', versionOrOptions, VERSIONS, this);
 }
 

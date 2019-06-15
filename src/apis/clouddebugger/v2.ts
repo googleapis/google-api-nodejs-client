@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +63,7 @@ export namespace clouddebugger_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,9 +75,7 @@ export namespace clouddebugger_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -83,8 +91,7 @@ export namespace clouddebugger_v2 {
   /**
    * Stackdriver Debugger API
    *
-   * Examines the call stack and variables of a running application without
-   * stopping or slowing it down.
+   * Examines the call stack and variables of a running application without stopping or slowing it down.
    *
    * @example
    * const {google} = require('googleapis');
@@ -102,7 +109,10 @@ export namespace clouddebugger_v2 {
     debugger: Resource$Debugger;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.controller = new Resource$Controller(this.context);
       this.debugger = new Resource$Debugger(this.context);
@@ -127,14 +137,11 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$Breakpoint {
     /**
-     * Action that the agent should perform when the code at the breakpoint
-     * location is hit.
+     * Action that the agent should perform when the code at the breakpoint location is hit.
      */
     action?: string;
     /**
-     * Condition that triggers the breakpoint. The condition is a compound
-     * boolean expression composed using expressions in a programming language
-     * at the source location.
+     * Condition that triggers the breakpoint. The condition is a compound boolean expression composed using expressions in a programming language at the source location.
      */
     condition?: string;
     /**
@@ -142,24 +149,15 @@ export namespace clouddebugger_v2 {
      */
     createTime?: string;
     /**
-     * Values of evaluated expressions at breakpoint time. The evaluated
-     * expressions appear in exactly the same order they are listed in the
-     * `expressions` field. The `name` field holds the original expression text,
-     * the `value` or `members` field holds the result of the evaluated
-     * expression. If the expression cannot be evaluated, the `status` inside
-     * the `Variable` will indicate an error and contain the error text.
+     * Values of evaluated expressions at breakpoint time. The evaluated expressions appear in exactly the same order they are listed in the `expressions` field. The `name` field holds the original expression text, the `value` or `members` field holds the result of the evaluated expression. If the expression cannot be evaluated, the `status` inside the `Variable` will indicate an error and contain the error text.
      */
     evaluatedExpressions?: Schema$Variable[];
     /**
-     * List of read-only expressions to evaluate at the breakpoint location. The
-     * expressions are composed using expressions in the programming language at
-     * the source location. If the breakpoint action is `LOG`, the evaluated
-     * expressions are included in log statements.
+     * List of read-only expressions to evaluate at the breakpoint location. The expressions are composed using expressions in the programming language at the source location. If the breakpoint action is `LOG`, the evaluated expressions are included in log statements.
      */
     expressions?: string[];
     /**
-     * Time this breakpoint was finalized as seen by the server in seconds
-     * resolution.
+     * Time this breakpoint was finalized as seen by the server in seconds resolution.
      */
     finalTime?: string;
     /**
@@ -167,15 +165,13 @@ export namespace clouddebugger_v2 {
      */
     id?: string;
     /**
-     * When true, indicates that this is a final result and the breakpoint state
-     * will not change from here on.
+     * When true, indicates that this is a final result and the breakpoint state will not change from here on.
      */
     isFinalState?: boolean;
     /**
-     * A set of custom breakpoint properties, populated by the agent, to be
-     * displayed to the user.
+     * A set of custom breakpoint properties, populated by the agent, to be displayed to the user.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Breakpoint source location.
      */
@@ -185,28 +181,15 @@ export namespace clouddebugger_v2 {
      */
     logLevel?: string;
     /**
-     * Only relevant when action is `LOG`. Defines the message to log when the
-     * breakpoint hits. The message may include parameter placeholders `$0`,
-     * `$1`, etc. These placeholders are replaced with the evaluated value of
-     * the appropriate expression. Expressions not referenced in
-     * `log_message_format` are not logged.  Example: `Message received, id =
-     * $0, count = $1` with `expressions` = `[ message.id, message.count ]`.
+     * Only relevant when action is `LOG`. Defines the message to log when the breakpoint hits. The message may include parameter placeholders `$0`, `$1`, etc. These placeholders are replaced with the evaluated value of the appropriate expression. Expressions not referenced in `log_message_format` are not logged.  Example: `Message received, id = $0, count = $1` with `expressions` = `[ message.id, message.count ]`.
      */
     logMessageFormat?: string;
     /**
-     * The stack at breakpoint time, where stack_frames[0] represents the most
-     * recently entered function.
+     * The stack at breakpoint time, where stack_frames[0] represents the most recently entered function.
      */
     stackFrames?: Schema$StackFrame[];
     /**
-     * Breakpoint status.  The status includes an error flag and a human
-     * readable message. This field is usually unset. The message can be either
-     * informational or an error message. Regardless, clients should always
-     * display the text message back to the user.  Error status indicates
-     * complete failure of the breakpoint.  Example (non-final state): `Still
-     * loading symbols...`  Examples (final state):  *   `Invalid line number`
-     * referring to location *   `Field f not found in class C` referring to
-     * condition
+     * Breakpoint status.  The status includes an error flag and a human readable message. This field is usually unset. The message can be either informational or an error message. Regardless, clients should always display the text message back to the user.  Error status indicates complete failure of the breakpoint.  Example (non-final state): `Still loading symbols...`  Examples (final state):  *   `Invalid line number` referring to location *   `Field f not found in class C` referring to condition
      */
     status?: Schema$StatusMessage;
     /**
@@ -214,22 +197,12 @@ export namespace clouddebugger_v2 {
      */
     userEmail?: string;
     /**
-     * The `variable_table` exists to aid with computation, memory and network
-     * traffic optimization.  It enables storing a variable once and reference
-     * it from multiple variables, including variables stored in the
-     * `variable_table` itself. For example, the same `this` object, which may
-     * appear at many levels of the stack, can have all of its data stored once
-     * in this table.  The stack frame variables then would hold only a
-     * reference to it.  The variable `var_table_index` field is an index into
-     * this repeated field. The stored objects are nameless and get their name
-     * from the referencing variable. The effective variable is a merge of the
-     * referencing variable and the referenced variable.
+     * The `variable_table` exists to aid with computation, memory and network traffic optimization.  It enables storing a variable once and reference it from multiple variables, including variables stored in the `variable_table` itself. For example, the same `this` object, which may appear at many levels of the stack, can have all of its data stored once in this table.  The stack frame variables then would hold only a reference to it.  The variable `var_table_index` field is an index into this repeated field. The stored objects are nameless and get their name from the referencing variable. The effective variable is a merge of the referencing variable and the referenced variable.
      */
     variableTable?: Schema$Variable[];
   }
   /**
-   * A CloudRepoSourceContext denotes a particular revision in a cloud repo (a
-   * repo hosted by the Google Cloud Platform).
+   * A CloudRepoSourceContext denotes a particular revision in a cloud repo (a repo hosted by the Google Cloud Platform).
    */
   export interface Schema$CloudRepoSourceContext {
     /**
@@ -250,14 +223,11 @@ export namespace clouddebugger_v2 {
     revisionId?: string;
   }
   /**
-   * A CloudWorkspaceId is a unique identifier for a cloud workspace. A cloud
-   * workspace is a place associated with a repo where modified files can be
-   * stored before they are committed.
+   * A CloudWorkspaceId is a unique identifier for a cloud workspace. A cloud workspace is a place associated with a repo where modified files can be stored before they are committed.
    */
   export interface Schema$CloudWorkspaceId {
     /**
-     * The unique name of the workspace within the repo.  This is the name
-     * chosen by the client in the Source API&#39;s CreateWorkspace method.
+     * The unique name of the workspace within the repo.  This is the name chosen by the client in the Source API&#39;s CreateWorkspace method.
      */
     name?: string;
     /**
@@ -270,8 +240,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$CloudWorkspaceSourceContext {
     /**
-     * The ID of the snapshot. An empty snapshot_id refers to the most recent
-     * snapshot.
+     * The ID of the snapshot. An empty snapshot_id refers to the most recent snapshot.
      */
     snapshotId?: string;
     /**
@@ -280,26 +249,19 @@ export namespace clouddebugger_v2 {
     workspaceId?: Schema$CloudWorkspaceId;
   }
   /**
-   * Represents the debugged application. The application may include one or
-   * more replicated processes executing the same code. Each of these processes
-   * is attached with a debugger agent, carrying out the debugging commands.
-   * Agents attached to the same debuggee identify themselves as such by using
-   * exactly the same Debuggee message value when registering.
+   * Represents the debugged application. The application may include one or more replicated processes executing the same code. Each of these processes is attached with a debugger agent, carrying out the debugging commands. Agents attached to the same debuggee identify themselves as such by using exactly the same Debuggee message value when registering.
    */
   export interface Schema$Debuggee {
     /**
-     * Version ID of the agent. Schema: `domain/language-platform/vmajor.minor`
-     * (for example `google.com/java-gcp/v1.1`).
+     * Version ID of the agent. Schema: `domain/language-platform/vmajor.minor` (for example `google.com/java-gcp/v1.1`).
      */
     agentVersion?: string;
     /**
-     * Human readable description of the debuggee. Including a human-readable
-     * project name, environment name and version information is recommended.
+     * Human readable description of the debuggee. Including a human-readable project name, environment name and version information is recommended.
      */
     description?: string;
     /**
-     * References to the locations and revisions of the source code used in the
-     * deployed application.
+     * References to the locations and revisions of the source code used in the deployed application.
      */
     extSourceContexts?: Schema$ExtendedSourceContext[];
     /**
@@ -307,58 +269,40 @@ export namespace clouddebugger_v2 {
      */
     id?: string;
     /**
-     * If set to `true`, indicates that the agent should disable itself and
-     * detach from the debuggee.
+     * If set to `true`, indicates that the agent should disable itself and detach from the debuggee.
      */
     isDisabled?: boolean;
     /**
-     * If set to `true`, indicates that Controller service does not detect any
-     * activity from the debuggee agents and the application is possibly
-     * stopped.
+     * If set to `true`, indicates that Controller service does not detect any activity from the debuggee agents and the application is possibly stopped.
      */
     isInactive?: boolean;
     /**
-     * A set of custom debuggee properties, populated by the agent, to be
-     * displayed to the user.
+     * A set of custom debuggee properties, populated by the agent, to be displayed to the user.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
-     * Project the debuggee is associated with. Use project number or id when
-     * registering a Google Cloud Platform project.
+     * Project the debuggee is associated with. Use project number or id when registering a Google Cloud Platform project.
      */
     project?: string;
     /**
-     * References to the locations and revisions of the source code used in the
-     * deployed application.
+     * References to the locations and revisions of the source code used in the deployed application.
      */
     sourceContexts?: Schema$SourceContext[];
     /**
-     * Human readable message to be displayed to the user about this debuggee.
-     * Absence of this field indicates no status. The message can be either
-     * informational or an error status.
+     * Human readable message to be displayed to the user about this debuggee. Absence of this field indicates no status. The message can be either informational or an error status.
      */
     status?: Schema$StatusMessage;
     /**
-     * Uniquifier to further distinguish the application. It is possible that
-     * different applications might have identical values in the debuggee
-     * message, thus, incorrectly identified as a single application by the
-     * Controller service. This field adds salt to further distinguish the
-     * application. Agents should consider seeding this field with value that
-     * identifies the code, binary, configuration and environment.
+     * Uniquifier to further distinguish the application. It is possible that different applications might have identical values in the debuggee message, thus, incorrectly identified as a single application by the Controller service. This field adds salt to further distinguish the application. Agents should consider seeding this field with value that identifies the code, binary, configuration and environment.
      */
     uniquifier?: string;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * An ExtendedSourceContext is a SourceContext combined with additional
-   * details describing the context.
+   * An ExtendedSourceContext is a SourceContext combined with additional details describing the context.
    */
   export interface Schema$ExtendedSourceContext {
     /**
@@ -368,18 +312,14 @@ export namespace clouddebugger_v2 {
     /**
      * Labels with user defined metadata.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
   }
   /**
    * Represents a message with parameters.
    */
   export interface Schema$FormatMessage {
     /**
-     * Format template for the message. The `format` uses placeholders `$0`,
-     * `$1`, etc. to reference parameters. `$$` can be used to denote the `$`
-     * character.  Examples:  *   `Failed to load &#39;$0&#39; which helps debug
-     * $1 the first time it     is loaded.  Again, $0 is very important.` *
-     * `Please pay $$10 to use $0 instead of $1.`
+     * Format template for the message. The `format` uses placeholders `$0`, `$1`, etc. to reference parameters. `$$` can be used to denote the `$` character.  Examples:  *   `Failed to load &#39;$0&#39; which helps debug $1 the first time it     is loaded.  Again, $0 is very important.` *   `Please pay $$10 to use $0 instead of $1.`
      */
     format?: string;
     /**
@@ -400,9 +340,7 @@ export namespace clouddebugger_v2 {
      */
     aliasName?: string;
     /**
-     * The full project name within the host. Projects may be nested, so
-     * &quot;project/subproject&quot; is a valid project name. The &quot;repo
-     * name&quot; is hostURI/project.
+     * The full project name within the host. Projects may be nested, so &quot;project/subproject&quot; is a valid project name. The &quot;repo name&quot; is hostURI/project.
      */
     gerritProject?: string;
     /**
@@ -419,14 +357,12 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$GetBreakpointResponse {
     /**
-     * Complete breakpoint state. The fields `id` and `location` are guaranteed
-     * to be set.
+     * Complete breakpoint state. The fields `id` and `location` are guaranteed to be set.
      */
     breakpoint?: Schema$Breakpoint;
   }
   /**
-   * A GitSourceContext denotes a particular revision in a third party Git
-   * repository (e.g. GitHub).
+   * A GitSourceContext denotes a particular revision in a third party Git repository (e.g. GitHub).
    */
   export interface Schema$GitSourceContext {
     /**
@@ -443,19 +379,15 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$ListActiveBreakpointsResponse {
     /**
-     * List of all active breakpoints. The fields `id` and `location` are
-     * guaranteed to be set on each breakpoint.
+     * List of all active breakpoints. The fields `id` and `location` are guaranteed to be set on each breakpoint.
      */
     breakpoints?: Schema$Breakpoint[];
     /**
-     * A token that can be used in the next method call to block until the list
-     * of breakpoints changes.
+     * A token that can be used in the next method call to block until the list of breakpoints changes.
      */
     nextWaitToken?: string;
     /**
-     * If set to `true`, indicates that there is no change to the list of active
-     * breakpoints and the server-selected timeout has expired. The
-     * `breakpoints` field would be empty and should be ignored.
+     * If set to `true`, indicates that there is no change to the list of active breakpoints and the server-selected timeout has expired. The `breakpoints` field would be empty and should be ignored.
      */
     waitExpired?: boolean;
   }
@@ -464,16 +396,11 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$ListBreakpointsResponse {
     /**
-     * List of breakpoints matching the request. The fields `id` and `location`
-     * are guaranteed to be set on each breakpoint. The fields: `stack_frames`,
-     * `evaluated_expressions` and `variable_table` are cleared on each
-     * breakpoint regardless of its status.
+     * List of breakpoints matching the request. The fields `id` and `location` are guaranteed to be set on each breakpoint. The fields: `stack_frames`, `evaluated_expressions` and `variable_table` are cleared on each breakpoint regardless of its status.
      */
     breakpoints?: Schema$Breakpoint[];
     /**
-     * A wait token that can be used in the next call to `list` (REST) or
-     * `ListBreakpoints` (RPC) to block until the list of breakpoints has
-     * changes.
+     * A wait token that can be used in the next call to `list` (REST) or `ListBreakpoints` (RPC) to block until the list of breakpoints has changes.
      */
     nextWaitToken?: string;
   }
@@ -482,16 +409,12 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$ListDebuggeesResponse {
     /**
-     * List of debuggees accessible to the calling user. The fields
-     * `debuggee.id` and `description` are guaranteed to be set. The
-     * `description` field is a human readable field provided by agents and can
-     * be displayed to users.
+     * List of debuggees accessible to the calling user. The fields `debuggee.id` and `description` are guaranteed to be set. The `description` field is a human readable field provided by agents and can be displayed to users.
      */
     debuggees?: Schema$Debuggee[];
   }
   /**
-   * Selects a repo using a Google Cloud Platform project ID (e.g.
-   * winged-cargo-31) and a repo name within that project.
+   * Selects a repo using a Google Cloud Platform project ID (e.g. winged-cargo-31) and a repo name within that project.
    */
   export interface Schema$ProjectRepoId {
     /**
@@ -508,8 +431,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$RegisterDebuggeeRequest {
     /**
-     * Debuggee information to register. The fields `project`, `uniquifier`,
-     * `description` and `agent_version` of the debuggee must be set.
+     * Debuggee information to register. The fields `project`, `uniquifier`, `description` and `agent_version` of the debuggee must be set.
      */
     debuggee?: Schema$Debuggee;
   }
@@ -518,11 +440,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$RegisterDebuggeeResponse {
     /**
-     * Debuggee resource. The field `id` is guaranteed to be set (in addition to
-     * the echoed fields). If the field `is_disabled` is set to `true`, the
-     * agent should disable itself by removing all breakpoints and detaching
-     * from the application. It should however continue to poll
-     * `RegisterDebuggee` until reenabled.
+     * Debuggee resource. The field `id` is guaranteed to be set (in addition to the echoed fields). If the field `is_disabled` is set to `true`, the agent should disable itself by removing all breakpoints and detaching from the application. It should however continue to poll `RegisterDebuggee` until reenabled.
      */
     debuggee?: Schema$Debuggee;
   }
@@ -544,14 +462,12 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$SetBreakpointResponse {
     /**
-     * Breakpoint resource. The field `id` is guaranteed to be set (in addition
-     * to the echoed fileds).
+     * Breakpoint resource. The field `id` is guaranteed to be set (in addition to the echoed fileds).
      */
     breakpoint?: Schema$Breakpoint;
   }
   /**
-   * A SourceContext is a reference to a tree of files. A SourceContext together
-   * with a path point to a unique revision of a single file or directory.
+   * A SourceContext is a reference to a tree of files. A SourceContext together with a path point to a unique revision of a single file or directory.
    */
   export interface Schema$SourceContext {
     /**
@@ -576,9 +492,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$SourceLocation {
     /**
-     * Column within a line. The first column in a line as the value `1`. Agents
-     * that do not support setting breakpoints on specific columns ignore this
-     * field.
+     * Column within a line. The first column in a line as the value `1`. Agents that do not support setting breakpoints on specific columns ignore this field.
      */
     column?: number;
     /**
@@ -595,8 +509,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$StackFrame {
     /**
-     * Set of arguments passed to this function. Note that this might not be
-     * populated for all stack frames.
+     * Set of arguments passed to this function. Note that this might not be populated for all stack frames.
      */
     arguments?: Schema$Variable[];
     /**
@@ -604,8 +517,7 @@ export namespace clouddebugger_v2 {
      */
     function?: string;
     /**
-     * Set of local variables at the stack frame location. Note that this might
-     * not be populated for all stack frames.
+     * Set of local variables at the stack frame location. Note that this might not be populated for all stack frames.
      */
     locals?: Schema$Variable[];
     /**
@@ -614,11 +526,7 @@ export namespace clouddebugger_v2 {
     location?: Schema$SourceLocation;
   }
   /**
-   * Represents a contextual status message. The message can indicate an error
-   * or informational status, and refer to specific parts of the containing
-   * object. For example, the `Breakpoint.status` field can indicate an error
-   * referring to the `BREAKPOINT_SOURCE_LOCATION` with the message `Location
-   * not found`.
+   * Represents a contextual status message. The message can indicate an error or informational status, and refer to specific parts of the containing object. For example, the `Breakpoint.status` field can indicate an error referring to the `BREAKPOINT_SOURCE_LOCATION` with the message `Location not found`.
    */
   export interface Schema$StatusMessage {
     /**
@@ -639,66 +547,16 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$UpdateActiveBreakpointRequest {
     /**
-     * Updated breakpoint information. The field `id` must be set. The agent
-     * must echo all Breakpoint specification fields in the update.
+     * Updated breakpoint information. The field `id` must be set. The agent must echo all Breakpoint specification fields in the update.
      */
     breakpoint?: Schema$Breakpoint;
   }
   /**
-   * Response for updating an active breakpoint. The message is defined to allow
-   * future extensions.
+   * Response for updating an active breakpoint. The message is defined to allow future extensions.
    */
   export interface Schema$UpdateActiveBreakpointResponse {}
   /**
-   * Represents a variable or an argument possibly of a compound object type.
-   * Note how the following variables are represented:  1) A simple variable:
-   * int x = 5      { name: &quot;x&quot;, value: &quot;5&quot;, type:
-   * &quot;int&quot; }  // Captured variable  2) A compound object:      struct
-   * T {         int m1;         int m2;     };     T x = { 3, 7 };      {  //
-   * Captured variable         name: &quot;x&quot;,         type: &quot;T&quot;,
-   * members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot;
-   * },         members { name: &quot;m2&quot;, value: &quot;7&quot;, type:
-   * &quot;int&quot; }     }  3) A pointer where the pointee was captured: T x =
-   * { 3, 7 };     T* p = &amp;x;      {   // Captured variable         name:
-   * &quot;p&quot;,         type: &quot;T*&quot;,         value:
-   * &quot;0x00500500&quot;,         members { name: &quot;m1&quot;, value:
-   * &quot;3&quot;, type: &quot;int&quot; },         members { name:
-   * &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; }     }  4) A
-   * pointer where the pointee was not captured:      T* p = new T;      {   //
-   * Captured variable         name: &quot;p&quot;,         type:
-   * &quot;T*&quot;,         value: &quot;0x00400400&quot;         status {
-   * is_error: true, description { format: &quot;unavailable&quot; } }     } The
-   * status should describe the reason for the missing value, such as
-   * `&lt;optimized out&gt;`, `&lt;inaccessible&gt;`, `&lt;pointers limit
-   * reached&gt;`.  Note that a null pointer should not have members.  5) An
-   * unnamed value:      int* p = new int(7);      {   // Captured variable
-   * name: &quot;p&quot;,         value: &quot;0x00500500&quot;,         type:
-   * &quot;int*&quot;,         members { value: &quot;7&quot;, type:
-   * &quot;int&quot; } }  6) An unnamed pointer where the pointee was not
-   * captured:      int* p = new int(7);     int** pp = &amp;p;      {  //
-   * Captured variable         name: &quot;pp&quot;,         value:
-   * &quot;0x00500500&quot;,         type: &quot;int**&quot;,         members {
-   * value: &quot;0x00400400&quot;,             type: &quot;int*&quot; status {
-   * is_error: true,                 description: { format:
-   * &quot;unavailable&quot; } }             }         }     }  To optimize
-   * computation, memory and network traffic, variables that repeat in the
-   * output multiple times can be stored once in a shared variable table and be
-   * referenced using the `var_table_index` field.  The variables stored in the
-   * shared table are nameless and are essentially a partition of the complete
-   * variable. To reconstruct the complete variable, merge the referencing
-   * variable with the referenced variable.  When using the shared variable
-   * table, the following variables:      T x = { 3, 7 };     T* p = &amp;x;
-   * T&amp; r = x;      { name: &quot;x&quot;, var_table_index: 3, type:
-   * &quot;T&quot; }  // Captured variables     { name: &quot;p&quot;, value
-   * &quot;0x00500500&quot;, type=&quot;T*&quot;, var_table_index: 3 }     {
-   * name: &quot;r&quot;, type=&quot;T&amp;&quot;, var_table_index: 3 }      {
-   * // Shared variable table entry #3:         members { name: &quot;m1&quot;,
-   * value: &quot;3&quot;, type: &quot;int&quot; },         members { name:
-   * &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; }     }  Note
-   * that the pointer address is stored with the referencing variable and not
-   * with the referenced variable. This allows the referenced variable to be
-   * shared between pointers and references.  The type field is optional. The
-   * debugger agent may or may not support it.
+   * Represents a variable or an argument possibly of a compound object type. Note how the following variables are represented:  1) A simple variable:      int x = 5      { name: &quot;x&quot;, value: &quot;5&quot;, type: &quot;int&quot; }  // Captured variable  2) A compound object:      struct T {         int m1;         int m2;     };     T x = { 3, 7 };      {  // Captured variable         name: &quot;x&quot;,         type: &quot;T&quot;,         members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; },         members { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; }     }  3) A pointer where the pointee was captured:      T x = { 3, 7 };     T* p = &amp;x;      {   // Captured variable         name: &quot;p&quot;,         type: &quot;T*&quot;,         value: &quot;0x00500500&quot;,         members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; },         members { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; }     }  4) A pointer where the pointee was not captured:      T* p = new T;      {   // Captured variable         name: &quot;p&quot;,         type: &quot;T*&quot;,         value: &quot;0x00400400&quot;         status { is_error: true, description { format: &quot;unavailable&quot; } }     }  The status should describe the reason for the missing value, such as `&lt;optimized out&gt;`, `&lt;inaccessible&gt;`, `&lt;pointers limit reached&gt;`.  Note that a null pointer should not have members.  5) An unnamed value:      int* p = new int(7);      {   // Captured variable         name: &quot;p&quot;,         value: &quot;0x00500500&quot;,         type: &quot;int*&quot;,         members { value: &quot;7&quot;, type: &quot;int&quot; } }  6) An unnamed pointer where the pointee was not captured:      int* p = new int(7);     int** pp = &amp;p;      {  // Captured variable         name: &quot;pp&quot;,         value: &quot;0x00500500&quot;,         type: &quot;int**&quot;,         members {             value: &quot;0x00400400&quot;,             type: &quot;int*&quot;             status {                 is_error: true,                 description: { format: &quot;unavailable&quot; } }             }         }     }  To optimize computation, memory and network traffic, variables that repeat in the output multiple times can be stored once in a shared variable table and be referenced using the `var_table_index` field.  The variables stored in the shared table are nameless and are essentially a partition of the complete variable. To reconstruct the complete variable, merge the referencing variable with the referenced variable.  When using the shared variable table, the following variables:      T x = { 3, 7 };     T* p = &amp;x;     T&amp; r = x;      { name: &quot;x&quot;, var_table_index: 3, type: &quot;T&quot; }  // Captured variables     { name: &quot;p&quot;, value &quot;0x00500500&quot;, type=&quot;T*&quot;, var_table_index: 3 }     { name: &quot;r&quot;, type=&quot;T&amp;&quot;, var_table_index: 3 }      {  // Shared variable table entry #3:         members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; },         members { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; }     }  Note that the pointer address is stored with the referencing variable and not with the referenced variable. This allows the referenced variable to be shared between pointers and references.  The type field is optional. The debugger agent may or may not support it.
    */
   export interface Schema$Variable {
     /**
@@ -710,25 +568,11 @@ export namespace clouddebugger_v2 {
      */
     name?: string;
     /**
-     * Status associated with the variable. This field will usually stay unset.
-     * A status of a single variable only applies to that variable or
-     * expression. The rest of breakpoint data still remains valid. Variables
-     * might be reported in error state even when breakpoint is not in final
-     * state.  The message may refer to variable name with `refers_to` set to
-     * `VARIABLE_NAME`. Alternatively `refers_to` will be set to
-     * `VARIABLE_VALUE`. In either case variable value and members will be
-     * unset.  Example of error message applied to name: `Invalid expression
-     * syntax`.  Example of information message applied to value: `Not
-     * captured`.  Examples of error message applied to value:  *   `Malformed
-     * string`, *   `Field f not found in class C` *   `Null pointer
-     * dereference`
+     * Status associated with the variable. This field will usually stay unset. A status of a single variable only applies to that variable or expression. The rest of breakpoint data still remains valid. Variables might be reported in error state even when breakpoint is not in final state.  The message may refer to variable name with `refers_to` set to `VARIABLE_NAME`. Alternatively `refers_to` will be set to `VARIABLE_VALUE`. In either case variable value and members will be unset.  Example of error message applied to name: `Invalid expression syntax`.  Example of information message applied to value: `Not captured`.  Examples of error message applied to value:  *   `Malformed string`, *   `Field f not found in class C` *   `Null pointer dereference`
      */
     status?: Schema$StatusMessage;
     /**
-     * Variable type (e.g. `MyClass`). If the variable is split with
-     * `var_table_index`, `type` goes next to `value`. The interpretation of a
-     * type is agent specific. It is recommended to include the dynamic type
-     * rather than a static type of an object.
+     * Variable type (e.g. `MyClass`). If the variable is split with `var_table_index`, `type` goes next to `value`. The interpretation of a type is agent specific. It is recommended to include the dynamic type rather than a static type of an object.
      */
     type?: string;
     /**
@@ -736,13 +580,10 @@ export namespace clouddebugger_v2 {
      */
     value?: string;
     /**
-     * Reference to a variable in the shared variable table. More than one
-     * variable can reference the same variable in the table. The
-     * `var_table_index` field is an index into `variable_table` in Breakpoint.
+     * Reference to a variable in the shared variable table. More than one variable can reference the same variable in the table. The `var_table_index` field is an index into `variable_table` in Breakpoint.
      */
     varTableIndex?: number;
   }
-
 
   export class Resource$Controller {
     context: APIRequestContext;
@@ -753,41 +594,31 @@ export namespace clouddebugger_v2 {
     }
   }
 
-
   export class Resource$Controller$Debuggees {
     context: APIRequestContext;
     breakpoints: Resource$Controller$Debuggees$Breakpoints;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.breakpoints =
-          new Resource$Controller$Debuggees$Breakpoints(this.context);
+      this.breakpoints = new Resource$Controller$Debuggees$Breakpoints(
+        this.context
+      );
     }
-
 
     /**
      * clouddebugger.controller.debuggees.register
-     * @desc Registers the debuggee with the controller service.  All agents
-     * attached to the same application must call this method with exactly the
-     * same request content to get back the same stable `debuggee_id`. Agents
-     * should call this method again whenever `google.rpc.Code.NOT_FOUND` is
-     * returned from any controller method.  This protocol allows the controller
-     * service to disable debuggees, recover from data loss, or change the
-     * `debuggee_id` format. Agents must handle `debuggee_id` value changing
-     * upon re-registration.
+     * @desc Registers the debuggee with the controller service.  All agents attached to the same application must call this method with exactly the same request content to get back the same stable `debuggee_id`. Agents should call this method again whenever `google.rpc.Code.NOT_FOUND` is returned from any controller method.  This protocol allows the controller service to disable debuggees, recover from data loss, or change the `debuggee_id` format. Agents must handle `debuggee_id` value changing upon re-registration.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Stackdriver Debugger API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -803,8 +634,10 @@ export namespace clouddebugger_v2 {
      *     auth: authClient,
      *   };
      *
-     *   cloudDebugger.controller.debuggees.register(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudDebugger.controller.debuggees.register(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -818,10 +651,9 @@ export namespace clouddebugger_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -836,28 +668,34 @@ export namespace clouddebugger_v2 {
      * @return {object} Request object
      */
     register(
-        params?: Params$Resource$Controller$Debuggees$Register,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$RegisterDebuggeeResponse>;
+      params?: Params$Resource$Controller$Debuggees$Register,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RegisterDebuggeeResponse>;
     register(
-        params: Params$Resource$Controller$Debuggees$Register,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
-        callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>): void;
+      params: Params$Resource$Controller$Debuggees$Register,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
+      callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>
+    ): void;
     register(
-        params: Params$Resource$Controller$Debuggees$Register,
-        callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>): void;
-    register(callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>):
-        void;
+      params: Params$Resource$Controller$Debuggees$Register,
+      callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>
+    ): void;
     register(
-        paramsOrCallback?: Params$Resource$Controller$Debuggees$Register|
-        BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
-        callback?: BodyResponseCallback<Schema$RegisterDebuggeeResponse>):
-        void|GaxiosPromise<Schema$RegisterDebuggeeResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Controller$Debuggees$Register;
+      callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>
+    ): void;
+    register(
+      paramsOrCallback?:
+        | Params$Resource$Controller$Debuggees$Register
+        | BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
+      callback?: BodyResponseCallback<Schema$RegisterDebuggeeResponse>
+    ): void | GaxiosPromise<Schema$RegisterDebuggeeResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Controller$Debuggees$Register;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -872,19 +710,22 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/controller/debuggees/register')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/controller/debuggees/register').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RegisterDebuggeeResponse>(parameters, callback);
@@ -894,13 +735,12 @@ export namespace clouddebugger_v2 {
     }
   }
 
-  export interface Params$Resource$Controller$Debuggees$Register extends
-      StandardParameters {
+  export interface Params$Resource$Controller$Debuggees$Register
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -914,33 +754,21 @@ export namespace clouddebugger_v2 {
       this.context = context;
     }
 
-
     /**
      * clouddebugger.controller.debuggees.breakpoints.list
-     * @desc Returns the list of all active breakpoints for the debuggee.  The
-     * breakpoint specification (`location`, `condition`, and `expressions`
-     * fields) is semantically immutable, although the field values may change.
-     * For example, an agent may update the location line number to reflect the
-     * actual line where the breakpoint was set, but this doesn't change the
-     * breakpoint semantics.  This means that an agent does not need to check if
-     * a breakpoint has changed when it encounters the same breakpoint on a
-     * successive call. Moreover, an agent should remember the breakpoints that
-     * are completed until the controller removes them from the active list to
-     * avoid setting those breakpoints again.
+     * @desc Returns the list of all active breakpoints for the debuggee.  The breakpoint specification (`location`, `condition`, and `expressions` fields) is semantically immutable, although the field values may change. For example, an agent may update the location line number to reflect the actual line where the breakpoint was set, but this doesn't change the breakpoint semantics.  This means that an agent does not need to check if a breakpoint has changed when it encounters the same breakpoint on a successive call. Moreover, an agent should remember the breakpoints that are completed until the controller removes them from the active list to avoid setting those breakpoints again.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Stackdriver Debugger API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -955,8 +783,10 @@ export namespace clouddebugger_v2 {
      *     auth: authClient,
      *   };
      *
-     *   cloudDebugger.controller.debuggees.breakpoints.list(request,
-     * function(err, response) { if (err) { console.error(err); return;
+     *   cloudDebugger.controller.debuggees.breakpoints.list(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -970,10 +800,9 @@ export namespace clouddebugger_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -990,31 +819,34 @@ export namespace clouddebugger_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Controller$Debuggees$Breakpoints$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListActiveBreakpointsResponse>;
+      params?: Params$Resource$Controller$Debuggees$Breakpoints$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListActiveBreakpointsResponse>;
     list(
-        params: Params$Resource$Controller$Debuggees$Breakpoints$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
-        callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
-        void;
+      params: Params$Resource$Controller$Debuggees$Breakpoints$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
+      callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>
+    ): void;
     list(
-        params: Params$Resource$Controller$Debuggees$Breakpoints$List,
-        callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
-        void;
+      params: Params$Resource$Controller$Debuggees$Breakpoints$List,
+      callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Controller$Debuggees$Breakpoints$List|
-        BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
-        callback?: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
-        void|GaxiosPromise<Schema$ListActiveBreakpointsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Controller$Debuggees$Breakpoints$List;
+      callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Controller$Debuggees$Breakpoints$List
+        | BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
+      callback?: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>
+    ): void | GaxiosPromise<Schema$ListActiveBreakpointsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Controller$Debuggees$Breakpoints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1029,54 +861,49 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v2/controller/debuggees/{debuggeeId}/breakpoints')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v2/controller/debuggees/{debuggeeId}/breakpoints'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['debuggeeId'],
         pathParams: ['debuggeeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListActiveBreakpointsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListActiveBreakpointsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * clouddebugger.controller.debuggees.breakpoints.update
-     * @desc Updates the breakpoint state or mutable fields. The entire
-     * Breakpoint message must be sent back to the controller service.  Updates
-     * to active breakpoint fields are only allowed if the new value does not
-     * change the breakpoint specification. Updates to the `location`,
-     * `condition` and `expressions` fields should not alter the breakpoint
-     * semantics. These may only make changes such as canonicalizing a value or
-     * snapping the location to the correct line of code.
+     * @desc Updates the breakpoint state or mutable fields. The entire Breakpoint message must be sent back to the controller service.  Updates to active breakpoint fields are only allowed if the new value does not change the breakpoint specification. Updates to the `location`, `condition` and `expressions` fields should not alter the breakpoint semantics. These may only make changes such as canonicalizing a value or snapping the location to the correct line of code.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Stackdriver Debugger API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1092,16 +919,17 @@ export namespace clouddebugger_v2 {
      *     id: 'my-id',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
+     *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
      *     auth: authClient,
      *   };
      *
-     *   cloudDebugger.controller.debuggees.breakpoints.update(request,
-     * function(err, response) { if (err) { console.error(err); return;
+     *   cloudDebugger.controller.debuggees.breakpoints.update(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1115,10 +943,9 @@ export namespace clouddebugger_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1135,32 +962,34 @@ export namespace clouddebugger_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Controller$Debuggees$Breakpoints$Update,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$UpdateActiveBreakpointResponse>;
+      params?: Params$Resource$Controller$Debuggees$Breakpoints$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UpdateActiveBreakpointResponse>;
     update(
-        params: Params$Resource$Controller$Debuggees$Breakpoints$Update,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
-        callback: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
-        void;
+      params: Params$Resource$Controller$Debuggees$Breakpoints$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
+      callback: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>
+    ): void;
     update(
-        params: Params$Resource$Controller$Debuggees$Breakpoints$Update,
-        callback: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
-        void;
-    update(callback:
-               BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
-        void;
+      params: Params$Resource$Controller$Debuggees$Breakpoints$Update,
+      callback: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>
+    ): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Controller$Debuggees$Breakpoints$Update|
-        BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
-        callback?: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
-        void|GaxiosPromise<Schema$UpdateActiveBreakpointResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Controller$Debuggees$Breakpoints$Update;
+      callback: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>
+    ): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Controller$Debuggees$Breakpoints$Update
+        | BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
+      callback?: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>
+    ): void | GaxiosPromise<Schema$UpdateActiveBreakpointResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Controller$Debuggees$Breakpoints$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1175,64 +1004,61 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v2/controller/debuggees/{debuggeeId}/breakpoints/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v2/controller/debuggees/{debuggeeId}/breakpoints/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['debuggeeId', 'id'],
         pathParams: ['debuggeeId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UpdateActiveBreakpointResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$UpdateActiveBreakpointResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Controller$Debuggees$Breakpoints$List extends
-      StandardParameters {
+  export interface Params$Resource$Controller$Debuggees$Breakpoints$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifies the debuggee.
      */
     debuggeeId?: string;
     /**
-     * If set to `true` (recommended), returns `google.rpc.Code.OK` status and
-     * sets the `wait_expired` response field to `true` when the server-selected
-     * timeout has expired.  If set to `false` (deprecated), returns
-     * `google.rpc.Code.ABORTED` status when the server-selected timeout has
-     * expired.
+     * If set to `true` (recommended), returns `google.rpc.Code.OK` status and sets the `wait_expired` response field to `true` when the server-selected timeout has expired.  If set to `false` (deprecated), returns `google.rpc.Code.ABORTED` status when the server-selected timeout has expired.
      */
     successOnTimeout?: boolean;
     /**
-     * A token that, if specified, blocks the method call until the list of
-     * active breakpoints has changed, or a server-selected timeout has expired.
-     * The value should be set from the `next_wait_token` field in the last
-     * response. The initial value should be set to `"init"`.
+     * A token that, if specified, blocks the method call until the list of active breakpoints has changed, or a server-selected timeout has expired. The value should be set from the `next_wait_token` field in the last response. The initial value should be set to `"init"`.
      */
     waitToken?: string;
   }
   export interface Params$Resource$Controller$Debuggees$Breakpoints$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifies the debuggee being debugged.
@@ -1249,8 +1075,6 @@ export namespace clouddebugger_v2 {
     requestBody?: Schema$UpdateActiveBreakpointRequest;
   }
 
-
-
   export class Resource$Debugger {
     context: APIRequestContext;
     debuggees: Resource$Debugger$Debuggees;
@@ -1260,16 +1084,15 @@ export namespace clouddebugger_v2 {
     }
   }
 
-
   export class Resource$Debugger$Debuggees {
     context: APIRequestContext;
     breakpoints: Resource$Debugger$Debuggees$Breakpoints;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.breakpoints =
-          new Resource$Debugger$Debuggees$Breakpoints(this.context);
+      this.breakpoints = new Resource$Debugger$Debuggees$Breakpoints(
+        this.context
+      );
     }
-
 
     /**
      * clouddebugger.debugger.debuggees.list
@@ -1280,14 +1103,12 @@ export namespace clouddebugger_v2 {
      * // 1. If not already done, enable the Stackdriver Debugger API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1299,8 +1120,10 @@ export namespace clouddebugger_v2 {
      *     auth: authClient,
      *   };
      *
-     *   cloudDebugger.debugger.debuggees.list(request, function(err, response)
-     * { if (err) { console.error(err); return;
+     *   cloudDebugger.debugger.debuggees.list(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1314,10 +1137,9 @@ export namespace clouddebugger_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1334,26 +1156,32 @@ export namespace clouddebugger_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Debugger$Debuggees$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListDebuggeesResponse>;
+      params?: Params$Resource$Debugger$Debuggees$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDebuggeesResponse>;
     list(
-        params: Params$Resource$Debugger$Debuggees$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDebuggeesResponse>,
-        callback: BodyResponseCallback<Schema$ListDebuggeesResponse>): void;
+      params: Params$Resource$Debugger$Debuggees$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDebuggeesResponse>,
+      callback: BodyResponseCallback<Schema$ListDebuggeesResponse>
+    ): void;
     list(
-        params: Params$Resource$Debugger$Debuggees$List,
-        callback: BodyResponseCallback<Schema$ListDebuggeesResponse>): void;
+      params: Params$Resource$Debugger$Debuggees$List,
+      callback: BodyResponseCallback<Schema$ListDebuggeesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListDebuggeesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Debugger$Debuggees$List|
-        BodyResponseCallback<Schema$ListDebuggeesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDebuggeesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDebuggeesResponse>):
-        void|GaxiosPromise<Schema$ListDebuggeesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Debugger$Debuggees$List;
+      paramsOrCallback?:
+        | Params$Resource$Debugger$Debuggees$List
+        | BodyResponseCallback<Schema$ListDebuggeesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDebuggeesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDebuggeesResponse>
+    ): void | GaxiosPromise<Schema$ListDebuggeesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debugger$Debuggees$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1368,19 +1196,22 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/debugger/debuggees')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/debugger/debuggees').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDebuggeesResponse>(parameters, callback);
@@ -1390,21 +1221,19 @@ export namespace clouddebugger_v2 {
     }
   }
 
-  export interface Params$Resource$Debugger$Debuggees$List extends
-      StandardParameters {
+  export interface Params$Resource$Debugger$Debuggees$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The client version making the call. Schema: `domain/type/version` (e.g.,
-     * `google.com/intellij/v1`).
+     * The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      */
     clientVersion?: string;
     /**
-     * When set to `true`, the result includes all debuggees. Otherwise, the
-     * result includes only debuggees that are active.
+     * When set to `true`, the result includes all debuggees. Otherwise, the result includes only debuggees that are active.
      */
     includeInactive?: boolean;
     /**
@@ -1419,7 +1248,6 @@ export namespace clouddebugger_v2 {
       this.context = context;
     }
 
-
     /**
      * clouddebugger.debugger.debuggees.breakpoints.delete
      * @desc Deletes the breakpoint from the debuggee.
@@ -1429,14 +1257,12 @@ export namespace clouddebugger_v2 {
      * // 1. If not already done, enable the Stackdriver Debugger API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1454,8 +1280,10 @@ export namespace clouddebugger_v2 {
      *     auth: authClient,
      *   };
      *
-     *   cloudDebugger.debugger.debuggees.breakpoints.delete(request,
-     * function(err) { if (err) { console.error(err); return;
+     *   cloudDebugger.debugger.debuggees.breakpoints.delete(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *   });
      * });
@@ -1466,10 +1294,9 @@ export namespace clouddebugger_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1486,25 +1313,28 @@ export namespace clouddebugger_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Debugger$Debuggees$Breakpoints$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Debugger$Debuggees$Breakpoints$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Debugger$Debuggees$Breakpoints$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debugger$Debuggees$Breakpoints$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1519,21 +1349,22 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['debuggeeId', 'breakpointId'],
         pathParams: ['breakpointId', 'debuggeeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1541,7 +1372,6 @@ export namespace clouddebugger_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * clouddebugger.debugger.debuggees.breakpoints.get
@@ -1552,14 +1382,12 @@ export namespace clouddebugger_v2 {
      * // 1. If not already done, enable the Stackdriver Debugger API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1577,8 +1405,10 @@ export namespace clouddebugger_v2 {
      *     auth: authClient,
      *   };
      *
-     *   cloudDebugger.debugger.debuggees.breakpoints.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudDebugger.debugger.debuggees.breakpoints.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1592,10 +1422,9 @@ export namespace clouddebugger_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1611,23 +1440,33 @@ export namespace clouddebugger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$GetBreakpointResponse>;
-    get(params: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetBreakpointResponse>,
-        callback: BodyResponseCallback<Schema$GetBreakpointResponse>): void;
-    get(params: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
-        callback: BodyResponseCallback<Schema$GetBreakpointResponse>): void;
+    get(
+      params?: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetBreakpointResponse>;
+    get(
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetBreakpointResponse>,
+      callback: BodyResponseCallback<Schema$GetBreakpointResponse>
+    ): void;
+    get(
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
+      callback: BodyResponseCallback<Schema$GetBreakpointResponse>
+    ): void;
     get(callback: BodyResponseCallback<Schema$GetBreakpointResponse>): void;
-    get(paramsOrCallback?: Params$Resource$Debugger$Debuggees$Breakpoints$Get|
-        BodyResponseCallback<Schema$GetBreakpointResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetBreakpointResponse>,
-        callback?: BodyResponseCallback<Schema$GetBreakpointResponse>):
-        void|GaxiosPromise<Schema$GetBreakpointResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Debugger$Debuggees$Breakpoints$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Debugger$Debuggees$Breakpoints$Get
+        | BodyResponseCallback<Schema$GetBreakpointResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetBreakpointResponse>,
+      callback?: BodyResponseCallback<Schema$GetBreakpointResponse>
+    ): void | GaxiosPromise<Schema$GetBreakpointResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debugger$Debuggees$Breakpoints$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1642,21 +1481,22 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['debuggeeId', 'breakpointId'],
         pathParams: ['breakpointId', 'debuggeeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetBreakpointResponse>(parameters, callback);
@@ -1664,7 +1504,6 @@ export namespace clouddebugger_v2 {
         return createAPIRequest<Schema$GetBreakpointResponse>(parameters);
       }
     }
-
 
     /**
      * clouddebugger.debugger.debuggees.breakpoints.list
@@ -1675,14 +1514,12 @@ export namespace clouddebugger_v2 {
      * // 1. If not already done, enable the Stackdriver Debugger API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1697,8 +1534,10 @@ export namespace clouddebugger_v2 {
      *     auth: authClient,
      *   };
      *
-     *   cloudDebugger.debugger.debuggees.breakpoints.list(request,
-     * function(err, response) { if (err) { console.error(err); return;
+     *   cloudDebugger.debugger.debuggees.breakpoints.list(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1712,10 +1551,9 @@ export namespace clouddebugger_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1736,26 +1574,32 @@ export namespace clouddebugger_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Debugger$Debuggees$Breakpoints$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListBreakpointsResponse>;
+      params?: Params$Resource$Debugger$Debuggees$Breakpoints$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBreakpointsResponse>;
     list(
-        params: Params$Resource$Debugger$Debuggees$Breakpoints$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListBreakpointsResponse>,
-        callback: BodyResponseCallback<Schema$ListBreakpointsResponse>): void;
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBreakpointsResponse>,
+      callback: BodyResponseCallback<Schema$ListBreakpointsResponse>
+    ): void;
     list(
-        params: Params$Resource$Debugger$Debuggees$Breakpoints$List,
-        callback: BodyResponseCallback<Schema$ListBreakpointsResponse>): void;
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$List,
+      callback: BodyResponseCallback<Schema$ListBreakpointsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListBreakpointsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Debugger$Debuggees$Breakpoints$List|
-        BodyResponseCallback<Schema$ListBreakpointsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListBreakpointsResponse>,
-        callback?: BodyResponseCallback<Schema$ListBreakpointsResponse>):
-        void|GaxiosPromise<Schema$ListBreakpointsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Debugger$Debuggees$Breakpoints$List;
+      paramsOrCallback?:
+        | Params$Resource$Debugger$Debuggees$Breakpoints$List
+        | BodyResponseCallback<Schema$ListBreakpointsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBreakpointsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBreakpointsResponse>
+    ): void | GaxiosPromise<Schema$ListBreakpointsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debugger$Debuggees$Breakpoints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1770,19 +1614,21 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['debuggeeId'],
         pathParams: ['debuggeeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListBreakpointsResponse>(parameters, callback);
@@ -1790,7 +1636,6 @@ export namespace clouddebugger_v2 {
         return createAPIRequest<Schema$ListBreakpointsResponse>(parameters);
       }
     }
-
 
     /**
      * clouddebugger.debugger.debuggees.breakpoints.set
@@ -1801,14 +1646,12 @@ export namespace clouddebugger_v2 {
      * // 1. If not already done, enable the Stackdriver Debugger API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouddebugger
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1827,8 +1670,10 @@ export namespace clouddebugger_v2 {
      *     auth: authClient,
      *   };
      *
-     *   cloudDebugger.debugger.debuggees.breakpoints.set(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudDebugger.debugger.debuggees.breakpoints.set(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1842,10 +1687,9 @@ export namespace clouddebugger_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1861,23 +1705,33 @@ export namespace clouddebugger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    set(params?: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
-        options?: MethodOptions): GaxiosPromise<Schema$SetBreakpointResponse>;
-    set(params: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SetBreakpointResponse>,
-        callback: BodyResponseCallback<Schema$SetBreakpointResponse>): void;
-    set(params: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
-        callback: BodyResponseCallback<Schema$SetBreakpointResponse>): void;
+    set(
+      params?: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SetBreakpointResponse>;
+    set(
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SetBreakpointResponse>,
+      callback: BodyResponseCallback<Schema$SetBreakpointResponse>
+    ): void;
+    set(
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
+      callback: BodyResponseCallback<Schema$SetBreakpointResponse>
+    ): void;
     set(callback: BodyResponseCallback<Schema$SetBreakpointResponse>): void;
-    set(paramsOrCallback?: Params$Resource$Debugger$Debuggees$Breakpoints$Set|
-        BodyResponseCallback<Schema$SetBreakpointResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SetBreakpointResponse>,
-        callback?: BodyResponseCallback<Schema$SetBreakpointResponse>):
-        void|GaxiosPromise<Schema$SetBreakpointResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Debugger$Debuggees$Breakpoints$Set;
+    set(
+      paramsOrCallback?:
+        | Params$Resource$Debugger$Debuggees$Breakpoints$Set
+        | BodyResponseCallback<Schema$SetBreakpointResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SetBreakpointResponse>,
+      callback?: BodyResponseCallback<Schema$SetBreakpointResponse>
+    ): void | GaxiosPromise<Schema$SetBreakpointResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debugger$Debuggees$Breakpoints$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1892,20 +1746,21 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v2/debugger/debuggees/{debuggeeId}/breakpoints/set')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints/set'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['debuggeeId'],
         pathParams: ['debuggeeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SetBreakpointResponse>(parameters, callback);
@@ -1915,20 +1770,19 @@ export namespace clouddebugger_v2 {
     }
   }
 
-  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the breakpoint to delete.
      */
     breakpointId?: string;
     /**
-     * The client version making the call. Schema: `domain/type/version` (e.g.,
-     * `google.com/intellij/v1`).
+     * The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      */
     clientVersion?: string;
     /**
@@ -1936,20 +1790,19 @@ export namespace clouddebugger_v2 {
      */
     debuggeeId?: string;
   }
-  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Get extends
-      StandardParameters {
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the breakpoint to get.
      */
     breakpointId?: string;
     /**
-     * The client version making the call. Schema: `domain/type/version` (e.g.,
-     * `google.com/intellij/v1`).
+     * The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      */
     clientVersion?: string;
     /**
@@ -1957,20 +1810,19 @@ export namespace clouddebugger_v2 {
      */
     debuggeeId?: string;
   }
-  export interface Params$Resource$Debugger$Debuggees$Breakpoints$List extends
-      StandardParameters {
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Only breakpoints with the specified action will pass the filter.
      */
     'action.value'?: string;
     /**
-     * The client version making the call. Schema: `domain/type/version` (e.g.,
-     * `google.com/intellij/v1`).
+     * The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      */
     clientVersion?: string;
     /**
@@ -1978,39 +1830,31 @@ export namespace clouddebugger_v2 {
      */
     debuggeeId?: string;
     /**
-     * When set to `true`, the response includes the list of breakpoints set by
-     * any user. Otherwise, it includes only breakpoints set by the caller.
+     * When set to `true`, the response includes the list of breakpoints set by any user. Otherwise, it includes only breakpoints set by the caller.
      */
     includeAllUsers?: boolean;
     /**
-     * When set to `true`, the response includes active and inactive
-     * breakpoints. Otherwise, it includes only active breakpoints.
+     * When set to `true`, the response includes active and inactive breakpoints. Otherwise, it includes only active breakpoints.
      */
     includeInactive?: boolean;
     /**
-     * This field is deprecated. The following fields are always stripped out of
-     * the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
+     * This field is deprecated. The following fields are always stripped out of the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
      */
     stripResults?: boolean;
     /**
-     * A wait token that, if specified, blocks the call until the breakpoints
-     * list has changed, or a server selected timeout has expired.  The value
-     * should be set from the last response. The error code
-     * `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should
-     * be called again with the same `wait_token`.
+     * A wait token that, if specified, blocks the call until the breakpoints list has changed, or a server selected timeout has expired.  The value should be set from the last response. The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be called again with the same `wait_token`.
      */
     waitToken?: string;
   }
-  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Set extends
-      StandardParameters {
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Set
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The client version making the call. Schema: `domain/type/version` (e.g.,
-     * `google.com/intellij/v1`).
+     * The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      */
     clientVersion?: string;
     /**

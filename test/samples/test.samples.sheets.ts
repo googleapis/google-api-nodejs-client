@@ -20,7 +20,7 @@ nock.disableNetConnect();
 
 // tslint:disable: no-any
 const samples: any = {
-  append: require('../../../samples/sheets/append')
+  append: require('../../../samples/sheets/append'),
 };
 
 for (const p in samples) {
@@ -37,10 +37,12 @@ describe('sheets samples', () => {
   it('should append values', async () => {
     const range = 'A1:A10';
     const scope = nock(baseUrl)
-                      .post(`/v4/spreadsheets/aSheetId/values/${
-                          encodeURIComponent(
-                              range)}:append?valueInputOption=USER_ENTERED`)
-                      .reply(200, {});
+      .post(
+        `/v4/spreadsheets/aSheetId/values/${encodeURIComponent(
+          range
+        )}:append?valueInputOption=USER_ENTERED`
+      )
+      .reply(200, {});
     const data = await samples.append.runSample('aSheetId', 'A1:A10');
     assert(data);
     scope.done();

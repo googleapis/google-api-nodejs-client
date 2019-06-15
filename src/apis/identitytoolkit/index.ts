@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {identitytoolkit_v3} from './v3';
 
 export const VERSIONS = {
-  'v3': identitytoolkit_v3.Identitytoolkit,
+  v3: identitytoolkit_v3.Identitytoolkit,
 };
 
-export function identitytoolkit(version: 'v3'):
-    identitytoolkit_v3.Identitytoolkit;
-export function identitytoolkit(options: identitytoolkit_v3.Options):
-    identitytoolkit_v3.Identitytoolkit;
+export function identitytoolkit(
+  version: 'v3'
+): identitytoolkit_v3.Identitytoolkit;
+export function identitytoolkit(
+  options: identitytoolkit_v3.Options
+): identitytoolkit_v3.Identitytoolkit;
 export function identitytoolkit<T = identitytoolkit_v3.Identitytoolkit>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v3'|identitytoolkit_v3.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v3' | identitytoolkit_v3.Options
+) {
   return getAPI<T>('identitytoolkit', versionOrOptions, VERSIONS, this);
 }
 

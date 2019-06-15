@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace pagespeedonline_v5 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace pagespeedonline_v5 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -66,8 +75,7 @@ export namespace pagespeedonline_v5 {
   /**
    * PageSpeed Insights API
    *
-   * Analyzes the performance of a web page and provides tailored suggestions to
-   * make that page faster.
+   * Analyzes the performance of a web page and provides tailored suggestions to make that page faster.
    *
    * @example
    * const {google} = require('googleapis');
@@ -84,7 +92,10 @@ export namespace pagespeedonline_v5 {
     pagespeedapi: Resource$Pagespeedapi;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.pagespeedapi = new Resource$Pagespeedapi(this.context);
     }
@@ -99,7 +110,7 @@ export namespace pagespeedonline_v5 {
     /**
      * Freeform details section of the audit.
      */
-    details?: {[key: string]: any;};
+    details?: {[key: string]: any};
     /**
      * The value that should be displayed on the UI for this audit.
      */
@@ -131,7 +142,7 @@ export namespace pagespeedonline_v5 {
     /**
      * An array of references to all the audit members of this category.
      */
-    auditRefs?: Array<{group?: string; id?: string; weight?: number;}>;
+    auditRefs?: Array<{group?: string; id?: string; weight?: number}>;
     /**
      * A more detailed description of the category and its importance.
      */
@@ -154,7 +165,7 @@ export namespace pagespeedonline_v5 {
     /**
      * Map of audits in the LHR.
      */
-    audits?: {[key: string]: Schema$LighthouseAuditResultV5;};
+    audits?: {[key: string]: Schema$LighthouseAuditResultV5};
     /**
      * Map of categories in the LHR.
      */
@@ -168,12 +179,15 @@ export namespace pagespeedonline_v5 {
     /**
      * Map of category groups in the LHR.
      */
-    categoryGroups?: {[key: string]: {description?: string; title?: string;};};
+    categoryGroups?: {[key: string]: {description?: string; title?: string}};
     /**
      * The configuration settings for this LHR.
      */
-    configSettings?:
-        {emulatedFormFactor?: string; locale?: string; onlyCategories?: any;};
+    configSettings?: {
+      emulatedFormFactor?: string;
+      locale?: string;
+      onlyCategories?: any;
+    };
     /**
      * Environment settings that were used when making this LHR.
      */
@@ -222,18 +236,26 @@ export namespace pagespeedonline_v5 {
      */
     requestedUrl?: string;
     /**
-     * A top-level error message that, if present, indicates a serious enough
-     * problem that this Lighthouse result may need to be discarded.
+     * A top-level error message that, if present, indicates a serious enough problem that this Lighthouse result may need to be discarded.
      */
-    runtimeError?: {code?: string; message?: string;};
+    runtimeError?: {code?: string; message?: string};
     /**
      * List of all run warnings in the LHR. Will always output to at least `[]`.
      */
     runWarnings?: any[];
     /**
+     * The Stack Pack advice strings.
+     */
+    stackPacks?: Array<{
+      descriptions?: {[key: string]: string};
+      iconDataURL?: string;
+      id?: string;
+      title?: string;
+    }>;
+    /**
      * Timing information for this LHR.
      */
-    timing?: {total?: number;};
+    timing?: {total?: number};
     /**
      * The user agent that was used to run this LHR.
      */
@@ -248,8 +270,11 @@ export namespace pagespeedonline_v5 {
     metrics?: {
       [key: string]: {
         category?: string;
-        distributions?:
-            Array<{max?: number; min?: number; proportion?: number;}>;
+        distributions?: Array<{
+          max?: number;
+          min?: number;
+          proportion?: number;
+        }>;
         percentile?: number;
       };
     };
@@ -265,8 +290,7 @@ export namespace pagespeedonline_v5 {
      */
     captchaResult?: string;
     /**
-     * Canonicalized and final URL for the document, after following page
-     * redirects (if any).
+     * Canonicalized and final URL for the document, after following page redirects (if any).
      */
     id?: string;
     /**
@@ -288,9 +312,8 @@ export namespace pagespeedonline_v5 {
     /**
      * The version of PageSpeed used to generate these results.
      */
-    version?: {major?: number; minor?: number;};
+    version?: {major?: number; minor?: number};
   }
-
 
   export class Resource$Pagespeedapi {
     context: APIRequestContext;
@@ -298,12 +321,9 @@ export namespace pagespeedonline_v5 {
       this.context = context;
     }
 
-
     /**
      * pagespeedonline.pagespeedapi.runpagespeed
-     * @desc Runs PageSpeed analysis on the page at the specified URL, and
-     * returns PageSpeed scores, a list of suggestions to make that page faster,
-     * and other information.
+     * @desc Runs PageSpeed analysis on the page at the specified URL, and returns PageSpeed scores, a list of suggestions to make that page faster, and other information.
      * @alias pagespeedonline.pagespeedapi.runpagespeed
      * @memberOf! ()
      *
@@ -319,32 +339,34 @@ export namespace pagespeedonline_v5 {
      * @return {object} Request object
      */
     runpagespeed(
-        params?: Params$Resource$Pagespeedapi$Runpagespeed,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$PagespeedApiPagespeedResponseV5>;
+      params?: Params$Resource$Pagespeedapi$Runpagespeed,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PagespeedApiPagespeedResponseV5>;
     runpagespeed(
-        params: Params$Resource$Pagespeedapi$Runpagespeed,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV5>,
-        callback: BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV5>):
-        void;
+      params: Params$Resource$Pagespeedapi$Runpagespeed,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV5>,
+      callback: BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV5>
+    ): void;
     runpagespeed(
-        params: Params$Resource$Pagespeedapi$Runpagespeed,
-        callback: BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV5>):
-        void;
+      params: Params$Resource$Pagespeedapi$Runpagespeed,
+      callback: BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV5>
+    ): void;
     runpagespeed(
-        callback: BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV5>):
-        void;
+      callback: BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV5>
+    ): void;
     runpagespeed(
-        paramsOrCallback?: Params$Resource$Pagespeedapi$Runpagespeed|
-        BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV5>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV5>,
-        callback?:
-            BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV5>):
-        void|GaxiosPromise<Schema$PagespeedApiPagespeedResponseV5> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Pagespeedapi$Runpagespeed;
+      paramsOrCallback?:
+        | Params$Resource$Pagespeedapi$Runpagespeed
+        | BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV5>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV5>,
+      callback?: BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV5>
+    ): void | GaxiosPromise<Schema$PagespeedApiPagespeedResponseV5> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Pagespeedapi$Runpagespeed;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -361,37 +383,42 @@ export namespace pagespeedonline_v5 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/pagespeedonline/v5/runPagespeed')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/pagespeedonline/v5/runPagespeed').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['url'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PagespeedApiPagespeedResponseV5>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$PagespeedApiPagespeedResponseV5>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Pagespeedapi$Runpagespeed extends
-      StandardParameters {
+  export interface Params$Resource$Pagespeedapi$Runpagespeed
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A Lighthouse category to run; if none are given, only Performance
-     * category will be run
+     * A Lighthouse category to run; if none are given, only Performance category will be run
      */
     category?: string[];
     /**
@@ -399,8 +426,7 @@ export namespace pagespeedonline_v5 {
      */
     locale?: string;
     /**
-     * The analysis strategy (desktop or mobile) to use, and desktop is the
-     * default
+     * The analysis strategy (desktop or mobile) to use, and desktop is the default
      */
     strategy?: string;
     /**

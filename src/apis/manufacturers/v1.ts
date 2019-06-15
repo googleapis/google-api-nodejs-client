@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +63,7 @@ export namespace manufacturers_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,9 +75,7 @@ export namespace manufacturers_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -100,55 +108,49 @@ export namespace manufacturers_v1 {
     accounts: Resource$Accounts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.accounts = new Resource$Accounts(this.context);
     }
   }
 
   /**
-   * Attributes of the product. For more information, see
-   * https://support.google.com/manufacturers/answer/6124116.
+   * Attributes of the product. For more information, see https://support.google.com/manufacturers/answer/6124116.
    */
   export interface Schema$Attributes {
     /**
-     * The additional images of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#addlimage.
+     * The additional images of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#addlimage.
      */
     additionalImageLink?: Schema$Image[];
     /**
-     * The target age group of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#agegroup.
+     * The target age group of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#agegroup.
      */
     ageGroup?: string;
     /**
-     * The brand name of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#brand.
+     * The brand name of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#brand.
      */
     brand?: string;
     /**
-     * The capacity of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#capacity.
+     * The capacity of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#capacity.
      */
     capacity?: Schema$Capacity;
     /**
-     * The color of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#color.
+     * The color of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#color.
      */
     color?: string;
     /**
-     * The count of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#count.
+     * The count of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#count.
      */
     count?: Schema$Count;
     /**
-     * The description of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#description.
+     * The description of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#description.
      */
     description?: string;
     /**
-     * The disclosure date of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#disclosure.
+     * The disclosure date of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#disclosure.
      */
     disclosureDate?: string;
     /**
@@ -156,33 +158,27 @@ export namespace manufacturers_v1 {
      */
     excludedDestination?: string[];
     /**
-     * The rich format description of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#featuredesc.
+     * The rich format description of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#featuredesc.
      */
     featureDescription?: Schema$FeatureDescription[];
     /**
-     * The flavor of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#flavor.
+     * The flavor of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#flavor.
      */
     flavor?: string;
     /**
-     * The format of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#format.
+     * The format of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#format.
      */
     format?: string;
     /**
-     * The target gender of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#gender.
+     * The target gender of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#gender.
      */
     gender?: string;
     /**
-     * The Global Trade Item Number (GTIN) of the product. For more information,
-     * see https://support.google.com/manufacturers/answer/6124116#gtin.
+     * The Global Trade Item Number (GTIN) of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#gtin.
      */
     gtin?: string[];
     /**
-     * The image of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#image.
+     * The image of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#image.
      */
     imageLink?: Schema$Image;
     /**
@@ -190,105 +186,84 @@ export namespace manufacturers_v1 {
      */
     includedDestination?: string[];
     /**
-     * The item group id of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#itemgroupid.
+     * The item group id of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#itemgroupid.
      */
     itemGroupId?: string;
     /**
-     * The material of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#material.
+     * The material of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#material.
      */
     material?: string;
     /**
-     * The Manufacturer Part Number (MPN) of the product. For more information,
-     * see https://support.google.com/manufacturers/answer/6124116#mpn.
+     * The Manufacturer Part Number (MPN) of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#mpn.
      */
     mpn?: string;
     /**
-     * The pattern of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#pattern.
+     * The pattern of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#pattern.
      */
     pattern?: string;
     /**
-     * The details of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#productdetail.
+     * The details of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productdetail.
      */
     productDetail?: Schema$ProductDetail[];
     /**
-     * The name of the group of products related to the product. For more
-     * information, see
-     * https://support.google.com/manufacturers/answer/6124116#productline.
+     * The name of the group of products related to the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productline.
      */
     productLine?: string;
     /**
-     * The canonical name of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#productname.
+     * The canonical name of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productname.
      */
     productName?: string;
     /**
-     * The URL of the detail page of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#productpage.
+     * The URL of the detail page of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productpage.
      */
     productPageUrl?: string;
     /**
-     * The type or category of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#producttype.
+     * The type or category of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#producttype.
      */
     productType?: string[];
     /**
-     * The release date of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#release.
+     * The release date of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#release.
      */
     releaseDate?: string;
     /**
-     * The scent of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#scent.
+     * The scent of the product. For more information, see  https://support.google.com/manufacturers/answer/6124116#scent.
      */
     scent?: string;
     /**
-     * The size of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#size.
+     * The size of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#size.
      */
     size?: string;
     /**
-     * The size system of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#sizesystem.
+     * The size system of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#sizesystem.
      */
     sizeSystem?: string;
     /**
-     * The size type of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#sizetype.
+     * The size type of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#sizetype.
      */
     sizeType?: string;
     /**
-     * The suggested retail price (MSRP) of the product. For more information,
-     * see https://support.google.com/manufacturers/answer/6124116#price.
+     * The suggested retail price (MSRP) of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#price.
      */
     suggestedRetailPrice?: Schema$Price;
     /**
-     * The target client id. Should only be used in the accounts of the data
-     * partners.
+     * The target client id. Should only be used in the accounts of the data partners.
      */
     targetClientId?: string;
     /**
-     * The theme of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#theme.
+     * The theme of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#theme.
      */
     theme?: string;
     /**
-     * The title of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#title.
+     * The title of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#title.
      */
     title?: string;
     /**
-     * The videos of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#video.
+     * The videos of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#video.
      */
     videoLink?: string[];
   }
   /**
-   * The capacity of a product. For more information, see
-   * https://support.google.com/manufacturers/answer/6124116#capacity.
+   * The capacity of a product. For more information, see https://support.google.com/manufacturers/answer/6124116#capacity.
    */
   export interface Schema$Capacity {
     /**
@@ -301,8 +276,7 @@ export namespace manufacturers_v1 {
     value?: string;
   }
   /**
-   * The number of products in a single package. For more information, see
-   * https://support.google.com/manufacturers/answer/6124116#count.
+   * The number of products in a single package. For more information, see https://support.google.com/manufacturers/answer/6124116#count.
    */
   export interface Schema$Count {
     /**
@@ -328,16 +302,11 @@ export namespace manufacturers_v1 {
     status?: string;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * A feature description of the product. For more information, see
-   * https://support.google.com/manufacturers/answer/6124116#featuredesc.
+   * A feature description of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#featuredesc.
    */
   export interface Schema$FeatureDescription {
     /**
@@ -358,9 +327,7 @@ export namespace manufacturers_v1 {
    */
   export interface Schema$Image {
     /**
-     * The URL of the image. For crawled images, this is the provided URL. For
-     * uploaded images, this is a serving URL from Google if the image has been
-     * processed successfully.
+     * The URL of the image. For crawled images, this is the provided URL. For uploaded images, this is a serving URL from Google if the image has been processed successfully.
      */
     imageUrl?: string;
     /**
@@ -377,9 +344,7 @@ export namespace manufacturers_v1 {
    */
   export interface Schema$Issue {
     /**
-     * If present, the attribute that triggered the issue. For more information
-     * about attributes, see
-     * https://support.google.com/manufacturers/answer/6124116.
+     * If present, the attribute that triggered the issue. For more information about attributes, see https://support.google.com/manufacturers/answer/6124116.
      */
     attribute?: string;
     /**
@@ -407,8 +372,7 @@ export namespace manufacturers_v1 {
      */
     title?: string;
     /**
-     * The server-generated type of the issue, for example,
-     * “INCORRECT_TEXT_FORMATTING”, “IMAGE_NOT_SERVEABLE”, etc.
+     * The server-generated type of the issue, for example, “INCORRECT_TEXT_FORMATTING”, “IMAGE_NOT_SERVEABLE”, etc.
      */
     type?: string;
   }
@@ -440,13 +404,11 @@ export namespace manufacturers_v1 {
    */
   export interface Schema$Product {
     /**
-     * Attributes of the product uploaded to the Manufacturer Center. Manually
-     * edited attributes are taken into account.
+     * Attributes of the product uploaded to the Manufacturer Center. Manually edited attributes are taken into account.
      */
     attributes?: Schema$Attributes;
     /**
-     * The content language of the product as a two-letter ISO 639-1 language
-     * code (for example, en).
+     * The content language of the product as a two-letter ISO 639-1 language code (for example, en).
      */
     contentLanguage?: string;
     /**
@@ -458,34 +420,24 @@ export namespace manufacturers_v1 {
      */
     issues?: Schema$Issue[];
     /**
-     * Name in the format `{target_country}:{content_language}:{product_id}`.
-     * `target_country`   - The target country of the product as a CLDR
-     * territory                      code (for example, US). `content_language`
-     * - The content language of the product as a two-letter ISO 639-1 language
-     * code (for example, en).  `product_id`     -   The ID of the product. For
-     * more information, see
-     * https://support.google.com/manufacturers/answer/6124116#id.
+     * Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
      */
     name?: string;
     /**
-     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID
-     * of the Manufacturer Center account.
+     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
      */
     parent?: string;
     /**
-     * The ID of the product. For more information, see
-     * https://support.google.com/manufacturers/answer/6124116#id.
+     * The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
      */
     productId?: string;
     /**
-     * The target country of the product as a CLDR territory code (for example,
-     * US).
+     * The target country of the product as a CLDR territory code (for example, US).
      */
     targetCountry?: string;
   }
   /**
-   * A product detail of the product. For more information, see
-   * https://support.google.com/manufacturers/answer/6124116#productdetail.
+   * A product detail of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productdetail.
    */
   export interface Schema$ProductDetail {
     /**
@@ -502,7 +454,6 @@ export namespace manufacturers_v1 {
     sectionName?: string;
   }
 
-
   export class Resource$Accounts {
     context: APIRequestContext;
     products: Resource$Accounts$Products;
@@ -512,13 +463,11 @@ export namespace manufacturers_v1 {
     }
   }
 
-
   export class Resource$Accounts$Products {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * manufacturers.accounts.products.delete
@@ -534,24 +483,28 @@ export namespace manufacturers_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accounts$Products$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Accounts$Products$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Accounts$Products$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Accounts$Products$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Accounts$Products$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Accounts$Products$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Accounts$Products$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Products$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Products$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -566,19 +519,22 @@ export namespace manufacturers_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://manufacturers.googleapis.com/';
+        options.rootUrl || 'https://manufacturers.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/products/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/products/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'name'],
         pathParams: ['name', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -587,14 +543,9 @@ export namespace manufacturers_v1 {
       }
     }
 
-
     /**
      * manufacturers.accounts.products.get
-     * @desc Gets the product from a Manufacturer Center account, including
-     * product issues.  A recently updated product takes around 15 minutes to
-     * process. Changes are only visible after it has been processed. While some
-     * issues may be available once the product has been processed, other issues
-     * may take days to appear.
+     * @desc Gets the product from a Manufacturer Center account, including product issues.  A recently updated product takes around 15 minutes to process. Changes are only visible after it has been processed. While some issues may be available once the product has been processed, other issues may take days to appear.
      * @alias manufacturers.accounts.products.get
      * @memberOf! ()
      *
@@ -606,21 +557,29 @@ export namespace manufacturers_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Products$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Product>;
-    get(params: Params$Resource$Accounts$Products$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback: BodyResponseCallback<Schema$Product>): void;
-    get(params: Params$Resource$Accounts$Products$Get,
-        callback: BodyResponseCallback<Schema$Product>): void;
+    get(
+      params?: Params$Resource$Accounts$Products$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Product>;
+    get(
+      params: Params$Resource$Accounts$Products$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Products$Get,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Product>): void;
-    get(paramsOrCallback?: Params$Resource$Accounts$Products$Get|
-        BodyResponseCallback<Schema$Product>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback?: BodyResponseCallback<Schema$Product>):
-        void|GaxiosPromise<Schema$Product> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Products$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Products$Get
+        | BodyResponseCallback<Schema$Product>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback?: BodyResponseCallback<Schema$Product>
+    ): void | GaxiosPromise<Schema$Product> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -635,19 +594,22 @@ export namespace manufacturers_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://manufacturers.googleapis.com/';
+        options.rootUrl || 'https://manufacturers.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/products/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/products/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'name'],
         pathParams: ['name', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -655,7 +617,6 @@ export namespace manufacturers_v1 {
         return createAPIRequest<Schema$Product>(parameters);
       }
     }
-
 
     /**
      * manufacturers.accounts.products.list
@@ -673,26 +634,32 @@ export namespace manufacturers_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accounts$Products$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListProductsResponse>;
+      params?: Params$Resource$Accounts$Products$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListProductsResponse>;
     list(
-        params: Params$Resource$Accounts$Products$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListProductsResponse>,
-        callback: BodyResponseCallback<Schema$ListProductsResponse>): void;
+      params: Params$Resource$Accounts$Products$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProductsResponse>,
+      callback: BodyResponseCallback<Schema$ListProductsResponse>
+    ): void;
     list(
-        params: Params$Resource$Accounts$Products$List,
-        callback: BodyResponseCallback<Schema$ListProductsResponse>): void;
+      params: Params$Resource$Accounts$Products$List,
+      callback: BodyResponseCallback<Schema$ListProductsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListProductsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Accounts$Products$List|
-        BodyResponseCallback<Schema$ListProductsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListProductsResponse>,
-        callback?: BodyResponseCallback<Schema$ListProductsResponse>):
-        void|GaxiosPromise<Schema$ListProductsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Products$List;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Products$List
+        | BodyResponseCallback<Schema$ListProductsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProductsResponse>,
+      callback?: BodyResponseCallback<Schema$ListProductsResponse>
+    ): void | GaxiosPromise<Schema$ListProductsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -707,19 +674,22 @@ export namespace manufacturers_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://manufacturers.googleapis.com/';
+        options.rootUrl || 'https://manufacturers.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/products')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/products').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListProductsResponse>(parameters, callback);
@@ -728,21 +698,9 @@ export namespace manufacturers_v1 {
       }
     }
 
-
     /**
      * manufacturers.accounts.products.update
-     * @desc Inserts or updates the attributes of the product in a Manufacturer
-     * Center account.  Creates a product with the provided attributes. If the
-     * product already exists, then all attributes are replaced with the new
-     * ones. The checks at upload time are minimal. All required attributes need
-     * to be present for a product to be valid. Issues may show up later after
-     * the API has accepted a new upload for a product and it is possible to
-     * overwrite an existing valid product with an invalid product. To detect
-     * this, you should retrieve the product and check it for issues once the
-     * new version is available.  Uploaded attributes first need to be processed
-     * before they can be retrieved. Until then, new products will be
-     * unavailable, and retrieval of previously uploaded products will return
-     * the original state of the product.
+     * @desc Inserts or updates the attributes of the product in a Manufacturer Center account.  Creates a product with the provided attributes. If the product already exists, then all attributes are replaced with the new ones. The checks at upload time are minimal. All required attributes need to be present for a product to be valid. Issues may show up later after the API has accepted a new upload for a product and it is possible to overwrite an existing valid product with an invalid product. To detect this, you should retrieve the product and check it for issues once the new version is available.  Uploaded attributes first need to be processed before they can be retrieved. Until then, new products will be unavailable, and retrieval of previously uploaded products will return the original state of the product.
      * @alias manufacturers.accounts.products.update
      * @memberOf! ()
      *
@@ -755,24 +713,28 @@ export namespace manufacturers_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Accounts$Products$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Accounts$Products$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     update(
-        params: Params$Resource$Accounts$Products$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Accounts$Products$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     update(
-        params: Params$Resource$Accounts$Products$Update,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Accounts$Products$Update,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Empty>): void;
     update(
-        paramsOrCallback?: Params$Resource$Accounts$Products$Update|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Products$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Products$Update
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Products$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -787,19 +749,22 @@ export namespace manufacturers_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://manufacturers.googleapis.com/';
+        options.rootUrl || 'https://manufacturers.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/products/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/products/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'name'],
         pathParams: ['name', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -809,72 +774,55 @@ export namespace manufacturers_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Products$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Products$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name in the format `{target_country}:{content_language}:{product_id}`.
-     * `target_country`   - The target country of the product as a CLDR
-     * territory                      code (for example, US). `content_language`
-     * - The content language of the product as a two-letter ISO 639-1 language
-     * code (for example, en).  `product_id`     -   The ID of the product. For
-     * more information, see
-     * https://support.google.com/manufacturers/answer/6124116#id.
+     * Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
      */
     name?: string;
     /**
-     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID
-     * of the Manufacturer Center account.
+     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Products$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Products$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The information to be included in the response. Only sections listed here
-     * will be returned.
+     * The information to be included in the response. Only sections listed here will be returned.
      */
     include?: string[];
     /**
-     * Name in the format `{target_country}:{content_language}:{product_id}`.
-     * `target_country`   - The target country of the product as a CLDR
-     * territory                      code (for example, US). `content_language`
-     * - The content language of the product as a two-letter ISO 639-1 language
-     * code (for example, en).  `product_id`     -   The ID of the product. For
-     * more information, see
-     * https://support.google.com/manufacturers/answer/6124116#id.
+     * Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
      */
     name?: string;
     /**
-     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID
-     * of the Manufacturer Center account.
+     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Products$List extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Products$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The information to be included in the response. Only sections listed here
-     * will be returned.
+     * The information to be included in the response. Only sections listed here will be returned.
      */
     include?: string[];
     /**
-     * Maximum number of product statuses to return in the response, used for
-     * paging.
+     * Maximum number of product statuses to return in the response, used for paging.
      */
     pageSize?: number;
     /**
@@ -882,31 +830,23 @@ export namespace manufacturers_v1 {
      */
     pageToken?: string;
     /**
-     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID
-     * of the Manufacturer Center account.
+     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Products$Update extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Products$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name in the format `{target_country}:{content_language}:{product_id}`.
-     * `target_country`   - The target country of the product as a CLDR
-     * territory                      code (for example, US). `content_language`
-     * - The content language of the product as a two-letter ISO 639-1 language
-     * code (for example, en).  `product_id`     -   The ID of the product. For
-     * more information, see
-     * https://support.google.com/manufacturers/answer/6124116#id.
+     * Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
      */
     name?: string;
     /**
-     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID
-     * of the Manufacturer Center account.
+     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
      */
     parent?: string;
 

@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace fusiontables_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace fusiontables_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -88,7 +97,10 @@ export namespace fusiontables_v2 {
     template: Resource$Template;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.column = new Resource$Column(this.context);
       this.query = new Resource$Query(this.context);
@@ -100,8 +112,7 @@ export namespace fusiontables_v2 {
   }
 
   /**
-   * Specifies the minimum and maximum values, the color, opacity, icon and
-   * weight of a bucket within a StyleSetting.
+   * Specifies the minimum and maximum values, the color, opacity, icon and weight of a bucket within a StyleSetting.
    */
   export interface Schema$Bucket {
     /**
@@ -113,13 +124,11 @@ export namespace fusiontables_v2 {
      */
     icon?: string;
     /**
-     * Maximum value in the selected column for a row to be styled according to
-     * the bucket color, opacity, icon, or weight.
+     * Maximum value in the selected column for a row to be styled according to the bucket color, opacity, icon, or weight.
      */
     max?: number;
     /**
-     * Minimum value in the selected column for a row to be styled according to
-     * the bucket color, opacity, icon, or weight.
+     * Minimum value in the selected column for a row to be styled according to the bucket color, opacity, icon, or weight.
      */
     min?: number;
     /**
@@ -136,10 +145,9 @@ export namespace fusiontables_v2 {
    */
   export interface Schema$Column {
     /**
-     * Identifier of the base column. If present, this column is derived from
-     * the specified base column.
+     * Identifier of the base column. If present, this column is derived from the specified base column.
      */
-    baseColumn?: {columnId?: number; tableIndex?: number;};
+    baseColumn?: {columnId?: number; tableIndex?: number};
     /**
      * Identifier for the column.
      */
@@ -157,41 +165,15 @@ export namespace fusiontables_v2 {
      */
     description?: string;
     /**
-     * Format pattern. Acceptable values are DT_DATE_MEDIUMe.g Dec 24, 2008
-     * DT_DATE_SHORTfor example 12/24/08 DT_DATE_TIME_MEDIUMfor example Dec 24,
-     * 2008 8:30:45 PM DT_DATE_TIME_SHORTfor example 12/24/08 8:30 PM
-     * DT_DAY_MONTH_2_DIGIT_YEARfor example 24/12/08
-     * DT_DAY_MONTH_2_DIGIT_YEAR_TIMEfor example 24/12/08 20:30
-     * DT_DAY_MONTH_2_DIGIT_YEAR_TIME_MERIDIANfor example 24/12/08 8:30 PM
-     * DT_DAY_MONTH_4_DIGIT_YEARfor example 24/12/2008
-     * DT_DAY_MONTH_4_DIGIT_YEAR_TIMEfor example 24/12/2008 20:30
-     * DT_DAY_MONTH_4_DIGIT_YEAR_TIME_MERIDIANfor example 24/12/2008 8:30 PM
-     * DT_ISO_YEAR_MONTH_DAYfor example 2008-12-24 DT_ISO_YEAR_MONTH_DAY_TIMEfor
-     * example 2008-12-24 20:30:45 DT_MONTH_DAY_4_DIGIT_YEARfor example
-     * 12/24/2008 DT_TIME_LONGfor example 8:30:45 PM UTC-6 DT_TIME_MEDIUMfor
-     * example 8:30:45 PM DT_TIME_SHORTfor example 8:30 PM DT_YEAR_ONLYfor
-     * example 2008 HIGHLIGHT_UNTYPED_CELLSHighlight cell data that does not
-     * match the data type NONENo formatting (default) NUMBER_CURRENCYfor
-     * example $1234.56 NUMBER_DEFAULTfor example 1,234.56 NUMBER_INTEGERfor
-     * example 1235 NUMBER_NO_SEPARATORfor example 1234.56 NUMBER_PERCENTfor
-     * example 123,456% NUMBER_SCIENTIFICfor example 1E3
-     * STRING_EIGHT_LINE_IMAGEDisplays thumbnail images as tall as eight lines
-     * of text STRING_FOUR_LINE_IMAGEDisplays thumbnail images as tall as four
-     * lines of text STRING_JSON_TEXTAllows editing of text as JSON in UI
-     * STRING_JSON_LISTAllows editing of text as a JSON list in UI
-     * STRING_LINKTreats cell as a link (must start with http:// or https://)
-     * STRING_ONE_LINE_IMAGEDisplays thumbnail images as tall as one line of
-     * text STRING_VIDEO_OR_MAPDisplay a video or map thumbnail
+     * Format pattern. Acceptable values are DT_DATE_MEDIUMe.g Dec 24, 2008 DT_DATE_SHORTfor example 12/24/08 DT_DATE_TIME_MEDIUMfor example Dec 24, 2008 8:30:45 PM DT_DATE_TIME_SHORTfor example 12/24/08 8:30 PM DT_DAY_MONTH_2_DIGIT_YEARfor example 24/12/08 DT_DAY_MONTH_2_DIGIT_YEAR_TIMEfor example 24/12/08 20:30 DT_DAY_MONTH_2_DIGIT_YEAR_TIME_MERIDIANfor example 24/12/08 8:30 PM DT_DAY_MONTH_4_DIGIT_YEARfor example 24/12/2008 DT_DAY_MONTH_4_DIGIT_YEAR_TIMEfor example 24/12/2008 20:30 DT_DAY_MONTH_4_DIGIT_YEAR_TIME_MERIDIANfor example 24/12/2008 8:30 PM DT_ISO_YEAR_MONTH_DAYfor example 2008-12-24 DT_ISO_YEAR_MONTH_DAY_TIMEfor example 2008-12-24 20:30:45 DT_MONTH_DAY_4_DIGIT_YEARfor example 12/24/2008 DT_TIME_LONGfor example 8:30:45 PM UTC-6 DT_TIME_MEDIUMfor example 8:30:45 PM DT_TIME_SHORTfor example 8:30 PM DT_YEAR_ONLYfor example 2008 HIGHLIGHT_UNTYPED_CELLSHighlight cell data that does not match the data type NONENo formatting (default) NUMBER_CURRENCYfor example $1234.56 NUMBER_DEFAULTfor example 1,234.56 NUMBER_INTEGERfor example 1235 NUMBER_NO_SEPARATORfor example 1234.56 NUMBER_PERCENTfor example 123,456% NUMBER_SCIENTIFICfor example 1E3 STRING_EIGHT_LINE_IMAGEDisplays thumbnail images as tall as eight lines of text STRING_FOUR_LINE_IMAGEDisplays thumbnail images as tall as four lines of text STRING_JSON_TEXTAllows editing of text as JSON in UI STRING_JSON_LISTAllows editing of text as a JSON list in UI STRING_LINKTreats cell as a link (must start with http:// or https://) STRING_ONE_LINE_IMAGEDisplays thumbnail images as tall as one line of text STRING_VIDEO_OR_MAPDisplay a video or map thumbnail
      */
     formatPattern?: string;
     /**
-     * Column graph predicate. Used to map table to graph data model
-     * (subject,predicate,object) See W3C Graph-based Data Model.
+     * Column graph predicate. Used to map table to graph data model (subject,predicate,object) See W3C Graph-based Data Model.
      */
     graphPredicate?: string;
     /**
-     * The kind of item this is. For a column, this is always
-     * fusiontables#column.
+     * The kind of item this is. For a column, this is always fusiontables#column.
      */
     kind?: string;
     /**
@@ -207,8 +189,7 @@ export namespace fusiontables_v2 {
      */
     validateData?: boolean;
     /**
-     * List of valid values used to validate data and supply a drop-down list of
-     * values in the web application.
+     * List of valid values used to validate data and supply a drop-down list of values in the web application.
      */
     validValues?: string[];
   }
@@ -221,13 +202,11 @@ export namespace fusiontables_v2 {
      */
     items?: Schema$Column[];
     /**
-     * The kind of item this is. For a column list, this is always
-     * fusiontables#columnList.
+     * The kind of item this is. For a column list, this is always fusiontables#columnList.
      */
     kind?: string;
     /**
-     * Token used to access the next page of this result. No token is displayed
-     * if there are no more pages left.
+     * Token used to access the next page of this result. No token is displayed if there are no more pages left.
      */
     nextPageToken?: string;
     /**
@@ -254,8 +233,7 @@ export namespace fusiontables_v2 {
    */
   export interface Schema$Import {
     /**
-     * The kind of item this is. For an import, this is always
-     * fusiontables#import.
+     * The kind of item this is. For an import, this is always fusiontables#import.
      */
     kind?: string;
     /**
@@ -285,8 +263,7 @@ export namespace fusiontables_v2 {
      */
     strokeColor?: string;
     /**
-     * Column-value, gradient or buckets styler that is used to determine the
-     * line color and opacity.
+     * Column-value, gradient or buckets styler that is used to determine the line color and opacity.
      */
     strokeColorStyler?: Schema$StyleFunction;
     /**
@@ -298,8 +275,7 @@ export namespace fusiontables_v2 {
      */
     strokeWeight?: number;
     /**
-     * Column-value or bucket styler that is used to determine the width of the
-     * line.
+     * Column-value or bucket styler that is used to determine the width of the line.
      */
     strokeWeightStyler?: Schema$StyleFunction;
   }
@@ -321,8 +297,7 @@ export namespace fusiontables_v2 {
    */
   export interface Schema$PointStyle {
     /**
-     * Name of the icon. Use values defined in
-     * http://www.google.com/fusiontables/DataSource?dsrcid=308519
+     * Name of the icon. Use values defined in http://www.google.com/fusiontables/DataSource?dsrcid=308519
      */
     iconName?: string;
     /**
@@ -352,13 +327,11 @@ export namespace fusiontables_v2 {
      */
     fillColor?: string;
     /**
-     * Column-value, gradient, or bucket styler that is used to determine the
-     * interior color and opacity of the polygon.
+     * Column-value, gradient, or bucket styler that is used to determine the interior color and opacity of the polygon.
      */
     fillColorStyler?: Schema$StyleFunction;
     /**
-     * Opacity of the interior of the polygon: 0.0 (transparent) to 1.0
-     * (opaque).
+     * Opacity of the interior of the polygon: 0.0 (transparent) to 1.0 (opaque).
      */
     fillOpacity?: number;
     /**
@@ -366,8 +339,7 @@ export namespace fusiontables_v2 {
      */
     strokeColor?: string;
     /**
-     * Column-value, gradient or buckets styler that is used to determine the
-     * border color and opacity.
+     * Column-value, gradient or buckets styler that is used to determine the border color and opacity.
      */
     strokeColorStyler?: Schema$StyleFunction;
     /**
@@ -379,8 +351,7 @@ export namespace fusiontables_v2 {
      */
     strokeWeight?: number;
     /**
-     * Column-value or bucket styler that is used to determine the width of the
-     * polygon border.
+     * Column-value or bucket styler that is used to determine the width of the polygon border.
      */
     strokeWeightStyler?: Schema$StyleFunction;
   }
@@ -393,14 +364,11 @@ export namespace fusiontables_v2 {
      */
     columns?: string[];
     /**
-     * The kind of item this is. For responses to SQL queries, this is always
-     * fusiontables#sqlresponse.
+     * The kind of item this is. For responses to SQL queries, this is always fusiontables#sqlresponse.
      */
     kind?: string;
     /**
-     * The rows in the table. For each cell we print out whatever cell value
-     * (e.g., numeric, string) exists. Thus it is important that each cell
-     * contains only one value.
+     * The rows in the table. For each cell we print out whatever cell value (e.g., numeric, string) exists. Thus it is important that each cell contains only one value.
      */
     rows?: any[][];
   }
@@ -409,8 +377,7 @@ export namespace fusiontables_v2 {
    */
   export interface Schema$StyleFunction {
     /**
-     * Bucket function that assigns a style based on the range a column value
-     * falls into.
+     * Bucket function that assigns a style based on the range a column value falls into.
      */
     buckets?: Schema$Bucket[];
     /**
@@ -418,35 +385,24 @@ export namespace fusiontables_v2 {
      */
     columnName?: string;
     /**
-     * Gradient function that interpolates a range of colors based on column
-     * value.
+     * Gradient function that interpolates a range of colors based on column value.
      */
     gradient?: {
-      colors?: Array<{color?: string; opacity?: number;}>;
+      colors?: Array<{color?: string; opacity?: number}>;
       max?: number;
       min?: number;
     };
     /**
-     * Stylers can be one of three kinds: &quot;fusiontables#fromColumn if the
-     * column value is to be used as is, i.e., the column values can have colors
-     * in #RRGGBBAA format or integer line widths or icon names;
-     * fusiontables#gradient if the styling of the row is to be based on
-     * applying the gradient function on the column value; or
-     * fusiontables#buckets if the styling is to based on the bucket into which
-     * the the column value falls.
+     * Stylers can be one of three kinds: &quot;fusiontables#fromColumn if the column value is to be used as is, i.e., the column values can have colors in #RRGGBBAA format or integer line widths or icon names; fusiontables#gradient if the styling of the row is to be based on applying the gradient function on the column value; or fusiontables#buckets if the styling is to based on the bucket into which the the column value falls.
      */
     kind?: string;
   }
   /**
-   * Represents a complete StyleSettings object. The primary key is a
-   * combination of the tableId and a styleId.
+   * Represents a complete StyleSettings object. The primary key is a combination of the tableId and a styleId.
    */
   export interface Schema$StyleSetting {
     /**
-     * The kind of item this is. A StyleSetting contains the style definitions
-     * for points, lines, and polygons in a table. Since a table can have any
-     * one or all of them, a style definition can have point, line and polygon
-     * style definitions.
+     * The kind of item this is. A StyleSetting contains the style definitions for points, lines, and polygons in a table. Since a table can have any one or all of them, a style definition can have point, line and polygon style definitions.
      */
     kind?: string;
     /**
@@ -483,13 +439,11 @@ export namespace fusiontables_v2 {
      */
     items?: Schema$StyleSetting[];
     /**
-     * The kind of item this is. For a style list, this is always
-     * fusiontables#styleSettingList .
+     * The kind of item this is. For a style list, this is always fusiontables#styleSettingList .
      */
     kind?: string;
     /**
-     * Token used to access the next page of this result. No token is displayed
-     * if there are no more styles left.
+     * Token used to access the next page of this result. No token is displayed if there are no more styles left.
      */
     nextPageToken?: string;
     /**
@@ -563,19 +517,16 @@ export namespace fusiontables_v2 {
      */
     items?: Schema$Table[];
     /**
-     * The kind of item this is. For table list, this is always
-     * fusiontables#tableList.
+     * The kind of item this is. For table list, this is always fusiontables#tableList.
      */
     kind?: string;
     /**
-     * Token used to access the next page of this result. No token is displayed
-     * if there are no more pages left.
+     * Token used to access the next page of this result. No token is displayed if there are no more pages left.
      */
     nextPageToken?: string;
   }
   /**
-   * A background task on a table, initiated for time- or resource-consuming
-   * operations such as changing column types or deleting all rows.
+   * A background task on a table, initiated for time- or resource-consuming operations such as changing column types or deleting all rows.
    */
   export interface Schema$Task {
     /**
@@ -587,8 +538,7 @@ export namespace fusiontables_v2 {
      */
     progress?: string;
     /**
-     * false while the table is busy with some other task. true if this
-     * background task is currently running.
+     * false while the table is busy with some other task. true if this background task is currently running.
      */
     started?: boolean;
     /**
@@ -613,8 +563,7 @@ export namespace fusiontables_v2 {
      */
     kind?: string;
     /**
-     * Token used to access the next page of this result. No token is displayed
-     * if there are no more pages left.
+     * Token used to access the next page of this result. No token is displayed if there are no more pages left.
      */
     nextPageToken?: string;
     /**
@@ -627,20 +576,15 @@ export namespace fusiontables_v2 {
    */
   export interface Schema$Template {
     /**
-     * List of columns from which the template is to be automatically
-     * constructed. Only one of body or automaticColumns can be specified.
+     * List of columns from which the template is to be automatically constructed. Only one of body or automaticColumns can be specified.
      */
     automaticColumnNames?: string[];
     /**
-     * Body of the template. It contains HTML with {column_name} to insert
-     * values from a particular column. The body is sanitized to remove certain
-     * tags, e.g., script. Only one of body or automaticColumns can be
-     * specified.
+     * Body of the template. It contains HTML with {column_name} to insert values from a particular column. The body is sanitized to remove certain tags, e.g., script. Only one of body or automaticColumns can be specified.
      */
     body?: string;
     /**
-     * The kind of item this is. For a template, this is always
-     * fusiontables#template.
+     * The kind of item this is. For a template, this is always fusiontables#template.
      */
     kind?: string;
     /**
@@ -652,8 +596,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
     /**
-     * Identifier for the template, unique within the context of a particular
-     * table.
+     * Identifier for the template, unique within the context of a particular table.
      */
     templateId?: number;
   }
@@ -666,13 +609,11 @@ export namespace fusiontables_v2 {
      */
     items?: Schema$Template[];
     /**
-     * The kind of item this is. For a template list, this is always
-     * fusiontables#templateList .
+     * The kind of item this is. For a template list, this is always fusiontables#templateList .
      */
     kind?: string;
     /**
-     * Token used to access the next page of this result. No token is displayed
-     * if there are no more pages left.
+     * Token used to access the next page of this result. No token is displayed if there are no more pages left.
      */
     nextPageToken?: string;
     /**
@@ -681,13 +622,11 @@ export namespace fusiontables_v2 {
     totalItems?: number;
   }
 
-
   export class Resource$Column {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * fusiontables.column.delete
@@ -702,21 +641,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Column$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Column$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Column$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Column$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Column$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Column$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Column$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Column$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Column$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -734,17 +679,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fusiontables/v2/tables/{tableId}/columns/{columnId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/columns/{columnId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -752,7 +698,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * fusiontables.column.get
@@ -767,19 +712,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Column$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Column>;
-    get(params: Params$Resource$Column$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Column>,
-        callback: BodyResponseCallback<Schema$Column>): void;
-    get(params: Params$Resource$Column$Get,
-        callback: BodyResponseCallback<Schema$Column>): void;
+    get(
+      params?: Params$Resource$Column$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Column>;
+    get(
+      params: Params$Resource$Column$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Column>,
+      callback: BodyResponseCallback<Schema$Column>
+    ): void;
+    get(
+      params: Params$Resource$Column$Get,
+      callback: BodyResponseCallback<Schema$Column>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Column>): void;
-    get(paramsOrCallback?: Params$Resource$Column$Get|
-        BodyResponseCallback<Schema$Column>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Column>,
-        callback?: BodyResponseCallback<Schema$Column>):
-        void|GaxiosPromise<Schema$Column> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Column$Get
+        | BodyResponseCallback<Schema$Column>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Column>,
+      callback?: BodyResponseCallback<Schema$Column>
+    ): void | GaxiosPromise<Schema$Column> {
       let params = (paramsOrCallback || {}) as Params$Resource$Column$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -797,17 +750,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fusiontables/v2/tables/{tableId}/columns/{columnId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/columns/{columnId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Column>(parameters, callback);
@@ -815,7 +769,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$Column>(parameters);
       }
     }
-
 
     /**
      * fusiontables.column.insert
@@ -830,22 +783,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Column$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Column>;
     insert(
-        params: Params$Resource$Column$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Column>,
-        callback: BodyResponseCallback<Schema$Column>): void;
+      params?: Params$Resource$Column$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Column>;
     insert(
-        params: Params$Resource$Column$Insert,
-        callback: BodyResponseCallback<Schema$Column>): void;
+      params: Params$Resource$Column$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Column>,
+      callback: BodyResponseCallback<Schema$Column>
+    ): void;
+    insert(
+      params: Params$Resource$Column$Insert,
+      callback: BodyResponseCallback<Schema$Column>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Column>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Column$Insert|
-        BodyResponseCallback<Schema$Column>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Column>,
-        callback?: BodyResponseCallback<Schema$Column>):
-        void|GaxiosPromise<Schema$Column> {
+      paramsOrCallback?:
+        | Params$Resource$Column$Insert
+        | BodyResponseCallback<Schema$Column>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Column>,
+      callback?: BodyResponseCallback<Schema$Column>
+    ): void | GaxiosPromise<Schema$Column> {
       let params = (paramsOrCallback || {}) as Params$Resource$Column$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -863,16 +821,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}/columns')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/columns'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Column>(parameters, callback);
@@ -880,7 +840,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$Column>(parameters);
       }
     }
-
 
     /**
      * fusiontables.column.list
@@ -896,23 +855,29 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Column$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ColumnList>;
     list(
-        params: Params$Resource$Column$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ColumnList>,
-        callback: BodyResponseCallback<Schema$ColumnList>): void;
+      params?: Params$Resource$Column$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ColumnList>;
     list(
-        params: Params$Resource$Column$List,
-        callback: BodyResponseCallback<Schema$ColumnList>): void;
+      params: Params$Resource$Column$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ColumnList>,
+      callback: BodyResponseCallback<Schema$ColumnList>
+    ): void;
+    list(
+      params: Params$Resource$Column$List,
+      callback: BodyResponseCallback<Schema$ColumnList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ColumnList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Column$List|
-        BodyResponseCallback<Schema$ColumnList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ColumnList>,
-        callback?: BodyResponseCallback<Schema$ColumnList>):
-        void|GaxiosPromise<Schema$ColumnList> {
+      paramsOrCallback?:
+        | Params$Resource$Column$List
+        | BodyResponseCallback<Schema$ColumnList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ColumnList>,
+      callback?: BodyResponseCallback<Schema$ColumnList>
+    ): void | GaxiosPromise<Schema$ColumnList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Column$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -930,16 +895,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}/columns')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/columns'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ColumnList>(parameters, callback);
@@ -948,11 +915,9 @@ export namespace fusiontables_v2 {
       }
     }
 
-
     /**
      * fusiontables.column.patch
-     * @desc Updates the name or type of an existing column. This method
-     * supports patch semantics.
+     * @desc Updates the name or type of an existing column. This method supports patch semantics.
      * @alias fusiontables.column.patch
      * @memberOf! ()
      *
@@ -964,22 +929,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Column$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Column>;
     patch(
-        params: Params$Resource$Column$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Column>,
-        callback: BodyResponseCallback<Schema$Column>): void;
+      params?: Params$Resource$Column$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Column>;
     patch(
-        params: Params$Resource$Column$Patch,
-        callback: BodyResponseCallback<Schema$Column>): void;
+      params: Params$Resource$Column$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Column>,
+      callback: BodyResponseCallback<Schema$Column>
+    ): void;
+    patch(
+      params: Params$Resource$Column$Patch,
+      callback: BodyResponseCallback<Schema$Column>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Column>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Column$Patch|
-        BodyResponseCallback<Schema$Column>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Column>,
-        callback?: BodyResponseCallback<Schema$Column>):
-        void|GaxiosPromise<Schema$Column> {
+      paramsOrCallback?:
+        | Params$Resource$Column$Patch
+        | BodyResponseCallback<Schema$Column>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Column>,
+      callback?: BodyResponseCallback<Schema$Column>
+    ): void | GaxiosPromise<Schema$Column> {
       let params = (paramsOrCallback || {}) as Params$Resource$Column$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -997,17 +967,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fusiontables/v2/tables/{tableId}/columns/{columnId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/columns/{columnId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Column>(parameters, callback);
@@ -1015,7 +986,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$Column>(parameters);
       }
     }
-
 
     /**
      * fusiontables.column.update
@@ -1031,22 +1001,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Column$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Column>;
     update(
-        params: Params$Resource$Column$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Column>,
-        callback: BodyResponseCallback<Schema$Column>): void;
+      params?: Params$Resource$Column$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Column>;
     update(
-        params: Params$Resource$Column$Update,
-        callback: BodyResponseCallback<Schema$Column>): void;
+      params: Params$Resource$Column$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Column>,
+      callback: BodyResponseCallback<Schema$Column>
+    ): void;
+    update(
+      params: Params$Resource$Column$Update,
+      callback: BodyResponseCallback<Schema$Column>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Column>): void;
     update(
-        paramsOrCallback?: Params$Resource$Column$Update|
-        BodyResponseCallback<Schema$Column>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Column>,
-        callback?: BodyResponseCallback<Schema$Column>):
-        void|GaxiosPromise<Schema$Column> {
+      paramsOrCallback?:
+        | Params$Resource$Column$Update
+        | BodyResponseCallback<Schema$Column>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Column>,
+      callback?: BodyResponseCallback<Schema$Column>
+    ): void | GaxiosPromise<Schema$Column> {
       let params = (paramsOrCallback || {}) as Params$Resource$Column$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1064,17 +1039,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fusiontables/v2/tables/{tableId}/columns/{columnId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/columns/{columnId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Column>(parameters, callback);
@@ -1088,7 +1064,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name or identifier for the column being deleted.
@@ -1103,7 +1079,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name or identifier for the column that is being requested.
@@ -1118,7 +1094,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Table for which a new column is being added.
@@ -1134,7 +1110,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of columns to return. Default is 5.
@@ -1153,7 +1129,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name or identifier for the column that is being updated.
@@ -1173,7 +1149,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name or identifier for the column that is being updated.
@@ -1190,18 +1166,15 @@ export namespace fusiontables_v2 {
     requestBody?: Schema$Column;
   }
 
-
   export class Resource$Query {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * fusiontables.query.sql
-     * @desc Executes a Fusion Tables SQL statement, which can be any of  -
-     * SELECT - INSERT - UPDATE - DELETE - SHOW - DESCRIBE - CREATE statement.
+     * @desc Executes a Fusion Tables SQL statement, which can be any of  - SELECT - INSERT - UPDATE - DELETE - SHOW - DESCRIBE - CREATE statement.
      * @alias fusiontables.query.sql
      * @memberOf! ()
      *
@@ -1213,20 +1186,29 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sql(params?: Params$Resource$Query$Sql,
-        options?: MethodOptions): GaxiosPromise<Schema$Sqlresponse>;
-    sql(params: Params$Resource$Query$Sql,
-        options: MethodOptions|BodyResponseCallback<Schema$Sqlresponse>,
-        callback: BodyResponseCallback<Schema$Sqlresponse>): void;
-    sql(params: Params$Resource$Query$Sql,
-        callback: BodyResponseCallback<Schema$Sqlresponse>): void;
+    sql(
+      params?: Params$Resource$Query$Sql,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Sqlresponse>;
+    sql(
+      params: Params$Resource$Query$Sql,
+      options: MethodOptions | BodyResponseCallback<Schema$Sqlresponse>,
+      callback: BodyResponseCallback<Schema$Sqlresponse>
+    ): void;
+    sql(
+      params: Params$Resource$Query$Sql,
+      callback: BodyResponseCallback<Schema$Sqlresponse>
+    ): void;
     sql(callback: BodyResponseCallback<Schema$Sqlresponse>): void;
-    sql(paramsOrCallback?: Params$Resource$Query$Sql|
-        BodyResponseCallback<Schema$Sqlresponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Sqlresponse>,
-        callback?: BodyResponseCallback<Schema$Sqlresponse>):
-        void|GaxiosPromise<Schema$Sqlresponse> {
+    sql(
+      paramsOrCallback?:
+        | Params$Resource$Query$Sql
+        | BodyResponseCallback<Schema$Sqlresponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Sqlresponse>,
+      callback?: BodyResponseCallback<Schema$Sqlresponse>
+    ): void | GaxiosPromise<Schema$Sqlresponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Query$Sql;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1244,16 +1226,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/query')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/fusiontables/v2/query').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['sql'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Sqlresponse>(parameters, callback);
@@ -1262,11 +1247,9 @@ export namespace fusiontables_v2 {
       }
     }
 
-
     /**
      * fusiontables.query.sqlGet
-     * @desc Executes a SQL statement which can be any of  - SELECT - SHOW -
-     * DESCRIBE
+     * @desc Executes a SQL statement which can be any of  - SELECT - SHOW - DESCRIBE
      * @alias fusiontables.query.sqlGet
      * @memberOf! ()
      *
@@ -1278,23 +1261,29 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sqlGet(params?: Params$Resource$Query$Sqlget, options?: MethodOptions):
-        GaxiosPromise<Schema$Sqlresponse>;
     sqlGet(
-        params: Params$Resource$Query$Sqlget,
-        options: MethodOptions|BodyResponseCallback<Schema$Sqlresponse>,
-        callback: BodyResponseCallback<Schema$Sqlresponse>): void;
+      params?: Params$Resource$Query$Sqlget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Sqlresponse>;
     sqlGet(
-        params: Params$Resource$Query$Sqlget,
-        callback: BodyResponseCallback<Schema$Sqlresponse>): void;
+      params: Params$Resource$Query$Sqlget,
+      options: MethodOptions | BodyResponseCallback<Schema$Sqlresponse>,
+      callback: BodyResponseCallback<Schema$Sqlresponse>
+    ): void;
+    sqlGet(
+      params: Params$Resource$Query$Sqlget,
+      callback: BodyResponseCallback<Schema$Sqlresponse>
+    ): void;
     sqlGet(callback: BodyResponseCallback<Schema$Sqlresponse>): void;
     sqlGet(
-        paramsOrCallback?: Params$Resource$Query$Sqlget|
-        BodyResponseCallback<Schema$Sqlresponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Sqlresponse>,
-        callback?: BodyResponseCallback<Schema$Sqlresponse>):
-        void|GaxiosPromise<Schema$Sqlresponse> {
+      paramsOrCallback?:
+        | Params$Resource$Query$Sqlget
+        | BodyResponseCallback<Schema$Sqlresponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Sqlresponse>,
+      callback?: BodyResponseCallback<Schema$Sqlresponse>
+    ): void | GaxiosPromise<Schema$Sqlresponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Query$Sqlget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1312,16 +1301,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/query')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/fusiontables/v2/query').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['sql'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Sqlresponse>(parameters, callback);
@@ -1335,20 +1327,18 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether column names are included in the first row. Default is true.
      */
     hdrs?: boolean;
     /**
-     * A Fusion Tables SQL statement, which can be any of  - SELECT - INSERT -
-     * UPDATE - DELETE - SHOW - DESCRIBE - CREATE
+     * A Fusion Tables SQL statement, which can be any of  - SELECT - INSERT - UPDATE - DELETE - SHOW - DESCRIBE - CREATE
      */
     sql?: string;
     /**
-     * Whether typed values are returned in the (JSON) response: numbers for
-     * numeric values and parsed geometries for KML values. Default is true.
+     * Whether typed values are returned in the (JSON) response: numbers for numeric values and parsed geometries for KML values. Default is true.
      */
     typed?: boolean;
   }
@@ -1356,7 +1346,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether column names are included (in the first row). Default is true.
@@ -1367,19 +1357,16 @@ export namespace fusiontables_v2 {
      */
     sql?: string;
     /**
-     * Whether typed values are returned in the (JSON) response: numbers for
-     * numeric values and parsed geometries for KML values. Default is true.
+     * Whether typed values are returned in the (JSON) response: numbers for numeric values and parsed geometries for KML values. Default is true.
      */
     typed?: boolean;
   }
-
 
   export class Resource$Style {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * fusiontables.style.delete
@@ -1394,21 +1381,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Style$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Style$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Style$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Style$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Style$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Style$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Style$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Style$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Style$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1426,17 +1419,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fusiontables/v2/tables/{tableId}/styles/{styleId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/styles/{styleId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1444,7 +1438,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * fusiontables.style.get
@@ -1459,20 +1452,29 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Style$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$StyleSetting>;
-    get(params: Params$Resource$Style$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
-        callback: BodyResponseCallback<Schema$StyleSetting>): void;
-    get(params: Params$Resource$Style$Get,
-        callback: BodyResponseCallback<Schema$StyleSetting>): void;
+    get(
+      params?: Params$Resource$Style$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StyleSetting>;
+    get(
+      params: Params$Resource$Style$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$StyleSetting>,
+      callback: BodyResponseCallback<Schema$StyleSetting>
+    ): void;
+    get(
+      params: Params$Resource$Style$Get,
+      callback: BodyResponseCallback<Schema$StyleSetting>
+    ): void;
     get(callback: BodyResponseCallback<Schema$StyleSetting>): void;
-    get(paramsOrCallback?: Params$Resource$Style$Get|
-        BodyResponseCallback<Schema$StyleSetting>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StyleSetting>,
-        callback?: BodyResponseCallback<Schema$StyleSetting>):
-        void|GaxiosPromise<Schema$StyleSetting> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Style$Get
+        | BodyResponseCallback<Schema$StyleSetting>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StyleSetting>,
+      callback?: BodyResponseCallback<Schema$StyleSetting>
+    ): void | GaxiosPromise<Schema$StyleSetting> {
       let params = (paramsOrCallback || {}) as Params$Resource$Style$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1490,17 +1492,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fusiontables/v2/tables/{tableId}/styles/{styleId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/styles/{styleId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StyleSetting>(parameters, callback);
@@ -1508,7 +1511,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$StyleSetting>(parameters);
       }
     }
-
 
     /**
      * fusiontables.style.insert
@@ -1523,23 +1525,29 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Style$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$StyleSetting>;
     insert(
-        params: Params$Resource$Style$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
-        callback: BodyResponseCallback<Schema$StyleSetting>): void;
+      params?: Params$Resource$Style$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StyleSetting>;
     insert(
-        params: Params$Resource$Style$Insert,
-        callback: BodyResponseCallback<Schema$StyleSetting>): void;
+      params: Params$Resource$Style$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$StyleSetting>,
+      callback: BodyResponseCallback<Schema$StyleSetting>
+    ): void;
+    insert(
+      params: Params$Resource$Style$Insert,
+      callback: BodyResponseCallback<Schema$StyleSetting>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$StyleSetting>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Style$Insert|
-        BodyResponseCallback<Schema$StyleSetting>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StyleSetting>,
-        callback?: BodyResponseCallback<Schema$StyleSetting>):
-        void|GaxiosPromise<Schema$StyleSetting> {
+      paramsOrCallback?:
+        | Params$Resource$Style$Insert
+        | BodyResponseCallback<Schema$StyleSetting>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StyleSetting>,
+      callback?: BodyResponseCallback<Schema$StyleSetting>
+    ): void | GaxiosPromise<Schema$StyleSetting> {
       let params = (paramsOrCallback || {}) as Params$Resource$Style$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1557,16 +1565,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}/styles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/styles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StyleSetting>(parameters, callback);
@@ -1574,7 +1585,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$StyleSetting>(parameters);
       }
     }
-
 
     /**
      * fusiontables.style.list
@@ -1590,23 +1600,29 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Style$List, options?: MethodOptions):
-        GaxiosPromise<Schema$StyleSettingList>;
     list(
-        params: Params$Resource$Style$List,
-        options: MethodOptions|BodyResponseCallback<Schema$StyleSettingList>,
-        callback: BodyResponseCallback<Schema$StyleSettingList>): void;
+      params?: Params$Resource$Style$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StyleSettingList>;
     list(
-        params: Params$Resource$Style$List,
-        callback: BodyResponseCallback<Schema$StyleSettingList>): void;
+      params: Params$Resource$Style$List,
+      options: MethodOptions | BodyResponseCallback<Schema$StyleSettingList>,
+      callback: BodyResponseCallback<Schema$StyleSettingList>
+    ): void;
+    list(
+      params: Params$Resource$Style$List,
+      callback: BodyResponseCallback<Schema$StyleSettingList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$StyleSettingList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Style$List|
-        BodyResponseCallback<Schema$StyleSettingList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StyleSettingList>,
-        callback?: BodyResponseCallback<Schema$StyleSettingList>):
-        void|GaxiosPromise<Schema$StyleSettingList> {
+      paramsOrCallback?:
+        | Params$Resource$Style$List
+        | BodyResponseCallback<Schema$StyleSettingList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StyleSettingList>,
+      callback?: BodyResponseCallback<Schema$StyleSettingList>
+    ): void | GaxiosPromise<Schema$StyleSettingList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Style$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1624,16 +1640,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}/styles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/styles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StyleSettingList>(parameters, callback);
@@ -1641,7 +1660,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$StyleSettingList>(parameters);
       }
     }
-
 
     /**
      * fusiontables.style.patch
@@ -1657,23 +1675,29 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Style$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$StyleSetting>;
     patch(
-        params: Params$Resource$Style$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
-        callback: BodyResponseCallback<Schema$StyleSetting>): void;
+      params?: Params$Resource$Style$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StyleSetting>;
     patch(
-        params: Params$Resource$Style$Patch,
-        callback: BodyResponseCallback<Schema$StyleSetting>): void;
+      params: Params$Resource$Style$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$StyleSetting>,
+      callback: BodyResponseCallback<Schema$StyleSetting>
+    ): void;
+    patch(
+      params: Params$Resource$Style$Patch,
+      callback: BodyResponseCallback<Schema$StyleSetting>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$StyleSetting>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Style$Patch|
-        BodyResponseCallback<Schema$StyleSetting>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StyleSetting>,
-        callback?: BodyResponseCallback<Schema$StyleSetting>):
-        void|GaxiosPromise<Schema$StyleSetting> {
+      paramsOrCallback?:
+        | Params$Resource$Style$Patch
+        | BodyResponseCallback<Schema$StyleSetting>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StyleSetting>,
+      callback?: BodyResponseCallback<Schema$StyleSetting>
+    ): void | GaxiosPromise<Schema$StyleSetting> {
       let params = (paramsOrCallback || {}) as Params$Resource$Style$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1691,17 +1715,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fusiontables/v2/tables/{tableId}/styles/{styleId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/styles/{styleId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StyleSetting>(parameters, callback);
@@ -1709,7 +1734,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$StyleSetting>(parameters);
       }
     }
-
 
     /**
      * fusiontables.style.update
@@ -1725,23 +1749,29 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Style$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$StyleSetting>;
     update(
-        params: Params$Resource$Style$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
-        callback: BodyResponseCallback<Schema$StyleSetting>): void;
+      params?: Params$Resource$Style$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StyleSetting>;
     update(
-        params: Params$Resource$Style$Update,
-        callback: BodyResponseCallback<Schema$StyleSetting>): void;
+      params: Params$Resource$Style$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$StyleSetting>,
+      callback: BodyResponseCallback<Schema$StyleSetting>
+    ): void;
+    update(
+      params: Params$Resource$Style$Update,
+      callback: BodyResponseCallback<Schema$StyleSetting>
+    ): void;
     update(callback: BodyResponseCallback<Schema$StyleSetting>): void;
     update(
-        paramsOrCallback?: Params$Resource$Style$Update|
-        BodyResponseCallback<Schema$StyleSetting>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StyleSetting>,
-        callback?: BodyResponseCallback<Schema$StyleSetting>):
-        void|GaxiosPromise<Schema$StyleSetting> {
+      paramsOrCallback?:
+        | Params$Resource$Style$Update
+        | BodyResponseCallback<Schema$StyleSetting>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StyleSetting>,
+      callback?: BodyResponseCallback<Schema$StyleSetting>
+    ): void | GaxiosPromise<Schema$StyleSetting> {
       let params = (paramsOrCallback || {}) as Params$Resource$Style$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1759,17 +1789,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fusiontables/v2/tables/{tableId}/styles/{styleId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/styles/{styleId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StyleSetting>(parameters, callback);
@@ -1783,7 +1814,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifier (within a table) for the style being deleted
@@ -1798,7 +1829,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifier (integer) for a specific style in a table
@@ -1813,7 +1844,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Table for which a new style is being added
@@ -1829,7 +1860,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of styles to return. Optional. Default is 5.
@@ -1848,7 +1879,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifier (within a table) for the style being updated.
@@ -1868,7 +1899,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifier (within a table) for the style being updated.
@@ -1885,13 +1916,11 @@ export namespace fusiontables_v2 {
     requestBody?: Schema$StyleSetting;
   }
 
-
   export class Resource$Table {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * fusiontables.table.copy
@@ -1906,22 +1935,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    copy(params?: Params$Resource$Table$Copy, options?: MethodOptions):
-        GaxiosPromise<Schema$Table>;
     copy(
-        params: Params$Resource$Table$Copy,
-        options: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params?: Params$Resource$Table$Copy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Table>;
     copy(
-        params: Params$Resource$Table$Copy,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params: Params$Resource$Table$Copy,
+      options: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
+    copy(
+      params: Params$Resource$Table$Copy,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     copy(callback: BodyResponseCallback<Schema$Table>): void;
     copy(
-        paramsOrCallback?: Params$Resource$Table$Copy|
-        BodyResponseCallback<Schema$Table>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>):
-        void|GaxiosPromise<Schema$Table> {
+      paramsOrCallback?:
+        | Params$Resource$Table$Copy
+        | BodyResponseCallback<Schema$Table>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>
+    ): void | GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1939,16 +1973,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}/copy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/copy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -1956,7 +1993,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$Table>(parameters);
       }
     }
-
 
     /**
      * fusiontables.table.delete
@@ -1970,21 +2006,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Table$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Table$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Table$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Table$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Table$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Table$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Table$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Table$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2002,16 +2044,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2019,7 +2064,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * fusiontables.table.get
@@ -2033,19 +2077,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Table$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Table>;
-    get(params: Params$Resource$Table$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback: BodyResponseCallback<Schema$Table>): void;
-    get(params: Params$Resource$Table$Get,
-        callback: BodyResponseCallback<Schema$Table>): void;
+    get(
+      params?: Params$Resource$Table$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Table>;
+    get(
+      params: Params$Resource$Table$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
+    get(
+      params: Params$Resource$Table$Get,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Table>): void;
-    get(paramsOrCallback?: Params$Resource$Table$Get|
-        BodyResponseCallback<Schema$Table>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>):
-        void|GaxiosPromise<Schema$Table> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Table$Get
+        | BodyResponseCallback<Schema$Table>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>
+    ): void | GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2063,16 +2115,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2080,7 +2135,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$Table>(parameters);
       }
     }
-
 
     /**
      * fusiontables.table.importRows
@@ -2103,22 +2157,26 @@ export namespace fusiontables_v2 {
      * @return {object} Request object
      */
     importRows(
-        params?: Params$Resource$Table$Importrows,
-        options?: MethodOptions): GaxiosPromise<Schema$Import>;
+      params?: Params$Resource$Table$Importrows,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Import>;
     importRows(
-        params: Params$Resource$Table$Importrows,
-        options: MethodOptions|BodyResponseCallback<Schema$Import>,
-        callback: BodyResponseCallback<Schema$Import>): void;
+      params: Params$Resource$Table$Importrows,
+      options: MethodOptions | BodyResponseCallback<Schema$Import>,
+      callback: BodyResponseCallback<Schema$Import>
+    ): void;
     importRows(
-        params: Params$Resource$Table$Importrows,
-        callback: BodyResponseCallback<Schema$Import>): void;
+      params: Params$Resource$Table$Importrows,
+      callback: BodyResponseCallback<Schema$Import>
+    ): void;
     importRows(callback: BodyResponseCallback<Schema$Import>): void;
     importRows(
-        paramsOrCallback?: Params$Resource$Table$Importrows|
-        BodyResponseCallback<Schema$Import>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Import>,
-        callback?: BodyResponseCallback<Schema$Import>):
-        void|GaxiosPromise<Schema$Import> {
+      paramsOrCallback?:
+        | Params$Resource$Table$Importrows
+        | BodyResponseCallback<Schema$Import>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Import>,
+      callback?: BodyResponseCallback<Schema$Import>
+    ): void | GaxiosPromise<Schema$Import> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$Importrows;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2136,18 +2194,22 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}/import')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/fusiontables/v2/tables/{tableId}/import')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl + '/upload/fusiontables/v2/tables/{tableId}/import'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Import>(parameters, callback);
@@ -2155,7 +2217,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$Import>(parameters);
       }
     }
-
 
     /**
      * fusiontables.table.importTable
@@ -2175,24 +2236,28 @@ export namespace fusiontables_v2 {
      * @return {object} Request object
      */
     importTable(
-        params?: Params$Resource$Table$Importtable,
-        options?: MethodOptions): GaxiosPromise<Schema$Table>;
+      params?: Params$Resource$Table$Importtable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Table>;
     importTable(
-        params: Params$Resource$Table$Importtable,
-        options: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params: Params$Resource$Table$Importtable,
+      options: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     importTable(
-        params: Params$Resource$Table$Importtable,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params: Params$Resource$Table$Importtable,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     importTable(callback: BodyResponseCallback<Schema$Table>): void;
     importTable(
-        paramsOrCallback?: Params$Resource$Table$Importtable|
-        BodyResponseCallback<Schema$Table>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>):
-        void|GaxiosPromise<Schema$Table> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Table$Importtable;
+      paramsOrCallback?:
+        | Params$Resource$Table$Importtable
+        | BodyResponseCallback<Schema$Table>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>
+    ): void | GaxiosPromise<Schema$Table> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Table$Importtable;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2209,18 +2274,23 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/import')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/fusiontables/v2/tables/import')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/fusiontables/v2/tables/import').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['name'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2228,7 +2298,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$Table>(parameters);
       }
     }
-
 
     /**
      * fusiontables.table.insert
@@ -2242,22 +2311,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Table$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Table>;
     insert(
-        params: Params$Resource$Table$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params?: Params$Resource$Table$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Table>;
     insert(
-        params: Params$Resource$Table$Insert,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params: Params$Resource$Table$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
+    insert(
+      params: Params$Resource$Table$Insert,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Table>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Table$Insert|
-        BodyResponseCallback<Schema$Table>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>):
-        void|GaxiosPromise<Schema$Table> {
+      paramsOrCallback?:
+        | Params$Resource$Table$Insert
+        | BodyResponseCallback<Schema$Table>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>
+    ): void | GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2275,16 +2349,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/fusiontables/v2/tables').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2292,7 +2369,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$Table>(parameters);
       }
     }
-
 
     /**
      * fusiontables.table.list
@@ -2307,23 +2383,29 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Table$List, options?: MethodOptions):
-        GaxiosPromise<Schema$TableList>;
     list(
-        params: Params$Resource$Table$List,
-        options: MethodOptions|BodyResponseCallback<Schema$TableList>,
-        callback: BodyResponseCallback<Schema$TableList>): void;
+      params?: Params$Resource$Table$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TableList>;
     list(
-        params: Params$Resource$Table$List,
-        callback: BodyResponseCallback<Schema$TableList>): void;
+      params: Params$Resource$Table$List,
+      options: MethodOptions | BodyResponseCallback<Schema$TableList>,
+      callback: BodyResponseCallback<Schema$TableList>
+    ): void;
+    list(
+      params: Params$Resource$Table$List,
+      callback: BodyResponseCallback<Schema$TableList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$TableList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Table$List|
-        BodyResponseCallback<Schema$TableList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TableList>,
-        callback?: BodyResponseCallback<Schema$TableList>):
-        void|GaxiosPromise<Schema$TableList> {
+      paramsOrCallback?:
+        | Params$Resource$Table$List
+        | BodyResponseCallback<Schema$TableList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TableList>,
+      callback?: BodyResponseCallback<Schema$TableList>
+    ): void | GaxiosPromise<Schema$TableList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2341,16 +2423,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/fusiontables/v2/tables').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TableList>(parameters, callback);
@@ -2359,12 +2444,9 @@ export namespace fusiontables_v2 {
       }
     }
 
-
     /**
      * fusiontables.table.patch
-     * @desc Updates an existing table. Unless explicitly requested, only the
-     * name, description, and attribution will be updated. This method supports
-     * patch semantics.
+     * @desc Updates an existing table. Unless explicitly requested, only the name, description, and attribution will be updated. This method supports patch semantics.
      * @alias fusiontables.table.patch
      * @memberOf! ()
      *
@@ -2376,22 +2458,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Table$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Table>;
     patch(
-        params: Params$Resource$Table$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params?: Params$Resource$Table$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Table>;
     patch(
-        params: Params$Resource$Table$Patch,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params: Params$Resource$Table$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
+    patch(
+      params: Params$Resource$Table$Patch,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Table>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Table$Patch|
-        BodyResponseCallback<Schema$Table>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>):
-        void|GaxiosPromise<Schema$Table> {
+      paramsOrCallback?:
+        | Params$Resource$Table$Patch
+        | BodyResponseCallback<Schema$Table>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>
+    ): void | GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2409,16 +2496,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2427,12 +2517,9 @@ export namespace fusiontables_v2 {
       }
     }
 
-
     /**
      * fusiontables.table.refetchSheet
-     * @desc Replaces rows of the table with the rows of the spreadsheet that is
-     * first imported from. Current rows remain visible until all replacement
-     * rows are ready.
+     * @desc Replaces rows of the table with the rows of the spreadsheet that is first imported from. Current rows remain visible until all replacement rows are ready.
      * @alias fusiontables.table.refetchSheet
      * @memberOf! ()
      *
@@ -2443,24 +2530,28 @@ export namespace fusiontables_v2 {
      * @return {object} Request object
      */
     refetchSheet(
-        params?: Params$Resource$Table$Refetchsheet,
-        options?: MethodOptions): GaxiosPromise<Schema$Task>;
+      params?: Params$Resource$Table$Refetchsheet,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Task>;
     refetchSheet(
-        params: Params$Resource$Table$Refetchsheet,
-        options: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback: BodyResponseCallback<Schema$Task>): void;
+      params: Params$Resource$Table$Refetchsheet,
+      options: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
     refetchSheet(
-        params: Params$Resource$Table$Refetchsheet,
-        callback: BodyResponseCallback<Schema$Task>): void;
+      params: Params$Resource$Table$Refetchsheet,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
     refetchSheet(callback: BodyResponseCallback<Schema$Task>): void;
     refetchSheet(
-        paramsOrCallback?: Params$Resource$Table$Refetchsheet|
-        BodyResponseCallback<Schema$Task>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>):
-        void|GaxiosPromise<Schema$Task> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Table$Refetchsheet;
+      paramsOrCallback?:
+        | Params$Resource$Table$Refetchsheet
+        | BodyResponseCallback<Schema$Task>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>
+    ): void | GaxiosPromise<Schema$Task> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Table$Refetchsheet;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2477,16 +2568,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}/refetch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/refetch'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -2495,11 +2588,9 @@ export namespace fusiontables_v2 {
       }
     }
 
-
     /**
      * fusiontables.table.replaceRows
-     * @desc Replaces rows of an existing table. Current rows remain visible
-     * until all replacement rows are ready.
+     * @desc Replaces rows of an existing table. Current rows remain visible until all replacement rows are ready.
      * @alias fusiontables.table.replaceRows
      * @memberOf! ()
      *
@@ -2518,24 +2609,28 @@ export namespace fusiontables_v2 {
      * @return {object} Request object
      */
     replaceRows(
-        params?: Params$Resource$Table$Replacerows,
-        options?: MethodOptions): GaxiosPromise<Schema$Task>;
+      params?: Params$Resource$Table$Replacerows,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Task>;
     replaceRows(
-        params: Params$Resource$Table$Replacerows,
-        options: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback: BodyResponseCallback<Schema$Task>): void;
+      params: Params$Resource$Table$Replacerows,
+      options: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
     replaceRows(
-        params: Params$Resource$Table$Replacerows,
-        callback: BodyResponseCallback<Schema$Task>): void;
+      params: Params$Resource$Table$Replacerows,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
     replaceRows(callback: BodyResponseCallback<Schema$Task>): void;
     replaceRows(
-        paramsOrCallback?: Params$Resource$Table$Replacerows|
-        BodyResponseCallback<Schema$Task>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>):
-        void|GaxiosPromise<Schema$Task> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Table$Replacerows;
+      paramsOrCallback?:
+        | Params$Resource$Table$Replacerows
+        | BodyResponseCallback<Schema$Task>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>
+    ): void | GaxiosPromise<Schema$Task> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Table$Replacerows;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2552,18 +2647,21 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}/replace')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/replace'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/fusiontables/v2/tables/{tableId}/replace')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl + '/upload/fusiontables/v2/tables/{tableId}/replace'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -2572,11 +2670,9 @@ export namespace fusiontables_v2 {
       }
     }
 
-
     /**
      * fusiontables.table.update
-     * @desc Updates an existing table. Unless explicitly requested, only the
-     * name, description, and attribution will be updated.
+     * @desc Updates an existing table. Unless explicitly requested, only the name, description, and attribution will be updated.
      * @alias fusiontables.table.update
      * @memberOf! ()
      *
@@ -2588,22 +2684,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Table$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Table>;
     update(
-        params: Params$Resource$Table$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params?: Params$Resource$Table$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Table>;
     update(
-        params: Params$Resource$Table$Update,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params: Params$Resource$Table$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
+    update(
+      params: Params$Resource$Table$Update,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Table>): void;
     update(
-        paramsOrCallback?: Params$Resource$Table$Update|
-        BodyResponseCallback<Schema$Table>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>):
-        void|GaxiosPromise<Schema$Table> {
+      paramsOrCallback?:
+        | Params$Resource$Table$Update
+        | BodyResponseCallback<Schema$Table>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>
+    ): void | GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2621,16 +2722,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2644,7 +2748,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to also copy tabs, styles, and templates. Default is false.
@@ -2659,7 +2763,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the table to be deleted.
@@ -2670,7 +2774,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifier for the table being requested.
@@ -2681,41 +2785,32 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The delimiter used to separate cell values. This can only consist of a
-     * single character. Default is ,.
+     * The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
      */
     delimiter?: string;
     /**
-     * The encoding of the content. Default is UTF-8. Use auto-detect if you are
-     * unsure of the encoding.
+     * The encoding of the content. Default is UTF-8. Use auto-detect if you are unsure of the encoding.
      */
     encoding?: string;
     /**
-     * The index of the line up to which data will be imported. Default is to
-     * import the entire file. If endLine is negative, it is an offset from the
-     * end of the file; the imported content will exclude the last endLine
-     * lines.
+     * The index of the line up to which data will be imported. Default is to import the entire file. If endLine is negative, it is an offset from the end of the file; the imported content will exclude the last endLine lines.
      */
     endLine?: number;
     /**
-     * Whether the imported CSV must have the same number of values for each
-     * row. If false, rows with fewer values will be padded with empty values.
-     * Default is true.
+     * Whether the imported CSV must have the same number of values for each row. If false, rows with fewer values will be padded with empty values. Default is true.
      */
     isStrict?: boolean;
     /**
-     * The index of the first line from which to start importing, inclusive.
-     * Default is 0.
+     * The index of the first line from which to start importing, inclusive. Default is 0.
      */
     startLine?: number;
     /**
      * The table into which new rows are being imported.
      */
     tableId?: string;
-
 
     /**
      * Media metadata
@@ -2732,28 +2827,25 @@ export namespace fusiontables_v2 {
       body?: any;
     };
   }
-  export interface Params$Resource$Table$Importtable extends
-      StandardParameters {
+  export interface Params$Resource$Table$Importtable
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The delimiter used to separate cell values. This can only consist of a
-     * single character. Default is ,.
+     * The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
      */
     delimiter?: string;
     /**
-     * The encoding of the content. Default is UTF-8. Use auto-detect if you are
-     * unsure of the encoding.
+     * The encoding of the content. Default is UTF-8. Use auto-detect if you are unsure of the encoding.
      */
     encoding?: string;
     /**
      * The name to be assigned to the new table.
      */
     name?: string;
-
 
     /**
      * Media metadata
@@ -2774,8 +2866,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -2786,7 +2877,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of tables to return. Default is 5.
@@ -2801,12 +2892,10 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Whether the view definition is also updated. The specified view
-     * definition replaces the existing one. Only a view can be updated with a
-     * new definition.
+     * Whether the view definition is also updated. The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      */
     replaceViewDefinition?: boolean;
     /**
@@ -2819,59 +2908,49 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$Table;
   }
-  export interface Params$Resource$Table$Refetchsheet extends
-      StandardParameters {
+  export interface Params$Resource$Table$Refetchsheet
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Table whose rows will be replaced from the spreadsheet.
      */
     tableId?: string;
   }
-  export interface Params$Resource$Table$Replacerows extends
-      StandardParameters {
+  export interface Params$Resource$Table$Replacerows
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The delimiter used to separate cell values. This can only consist of a
-     * single character. Default is ,.
+     * The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
      */
     delimiter?: string;
     /**
-     * The encoding of the content. Default is UTF-8. Use 'auto-detect' if you
-     * are unsure of the encoding.
+     * The encoding of the content. Default is UTF-8. Use 'auto-detect' if you are unsure of the encoding.
      */
     encoding?: string;
     /**
-     * The index of the line up to which data will be imported. Default is to
-     * import the entire file. If endLine is negative, it is an offset from the
-     * end of the file; the imported content will exclude the last endLine
-     * lines.
+     * The index of the line up to which data will be imported. Default is to import the entire file. If endLine is negative, it is an offset from the end of the file; the imported content will exclude the last endLine lines.
      */
     endLine?: number;
     /**
-     * Whether the imported CSV must have the same number of column values for
-     * each row. If true, throws an exception if the CSV does not have the same
-     * number of columns. If false, rows with fewer column values will be padded
-     * with empty values. Default is true.
+     * Whether the imported CSV must have the same number of column values for each row. If true, throws an exception if the CSV does not have the same number of columns. If false, rows with fewer column values will be padded with empty values. Default is true.
      */
     isStrict?: boolean;
     /**
-     * The index of the first line from which to start importing, inclusive.
-     * Default is 0.
+     * The index of the first line from which to start importing, inclusive. Default is 0.
      */
     startLine?: number;
     /**
      * Table whose rows will be replaced.
      */
     tableId?: string;
-
 
     /**
      * Media metadata
@@ -2892,12 +2971,10 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Whether the view definition is also updated. The specified view
-     * definition replaces the existing one. Only a view can be updated with a
-     * new definition.
+     * Whether the view definition is also updated. The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      */
     replaceViewDefinition?: boolean;
     /**
@@ -2911,18 +2988,15 @@ export namespace fusiontables_v2 {
     requestBody?: Schema$Table;
   }
 
-
   export class Resource$Task {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * fusiontables.task.delete
-     * @desc Deletes a specific task by its ID, unless that task has already
-     * started running.
+     * @desc Deletes a specific task by its ID, unless that task has already started running.
      * @alias fusiontables.task.delete
      * @memberOf! ()
      *
@@ -2933,21 +3007,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Task$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Task$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Task$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Task$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Task$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Task$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Task$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Task$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Task$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2965,17 +3045,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/fusiontables/v2/tables/{tableId}/tasks/{taskId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/tasks/{taskId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId', 'taskId'],
         pathParams: ['tableId', 'taskId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2983,7 +3064,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * fusiontables.task.get
@@ -2998,19 +3078,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Task$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Task>;
-    get(params: Params$Resource$Task$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback: BodyResponseCallback<Schema$Task>): void;
-    get(params: Params$Resource$Task$Get,
-        callback: BodyResponseCallback<Schema$Task>): void;
+    get(
+      params?: Params$Resource$Task$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Task>;
+    get(
+      params: Params$Resource$Task$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
+    get(
+      params: Params$Resource$Task$Get,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Task>): void;
-    get(paramsOrCallback?: Params$Resource$Task$Get|
-        BodyResponseCallback<Schema$Task>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>):
-        void|GaxiosPromise<Schema$Task> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Task$Get
+        | BodyResponseCallback<Schema$Task>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>
+    ): void | GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as Params$Resource$Task$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3028,17 +3116,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/fusiontables/v2/tables/{tableId}/tasks/{taskId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/tasks/{taskId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId', 'taskId'],
         pathParams: ['tableId', 'taskId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -3046,7 +3135,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$Task>(parameters);
       }
     }
-
 
     /**
      * fusiontables.task.list
@@ -3063,22 +3151,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Task$List, options?: MethodOptions):
-        GaxiosPromise<Schema$TaskList>;
     list(
-        params: Params$Resource$Task$List,
-        options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-        callback: BodyResponseCallback<Schema$TaskList>): void;
+      params?: Params$Resource$Task$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TaskList>;
     list(
-        params: Params$Resource$Task$List,
-        callback: BodyResponseCallback<Schema$TaskList>): void;
+      params: Params$Resource$Task$List,
+      options: MethodOptions | BodyResponseCallback<Schema$TaskList>,
+      callback: BodyResponseCallback<Schema$TaskList>
+    ): void;
+    list(
+      params: Params$Resource$Task$List,
+      callback: BodyResponseCallback<Schema$TaskList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$TaskList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Task$List|
-        BodyResponseCallback<Schema$TaskList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-        callback?: BodyResponseCallback<Schema$TaskList>):
-        void|GaxiosPromise<Schema$TaskList> {
+      paramsOrCallback?:
+        | Params$Resource$Task$List
+        | BodyResponseCallback<Schema$TaskList>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>
+    ): void | GaxiosPromise<Schema$TaskList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Task$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3096,16 +3189,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}/tasks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/tasks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -3119,7 +3215,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Table from which the task is being deleted.
@@ -3134,7 +3230,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Table to which the task belongs.
@@ -3149,7 +3245,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of tasks to return. Default is 5.
@@ -3169,13 +3265,11 @@ export namespace fusiontables_v2 {
     tableId?: string;
   }
 
-
   export class Resource$Template {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * fusiontables.template.delete
@@ -3190,21 +3284,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Template$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Template$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Template$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Template$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Template$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Template$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Template$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Template$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Template$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3222,17 +3322,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fusiontables/v2/tables/{tableId}/templates/{templateId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/fusiontables/v2/tables/{tableId}/templates/{templateId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3240,7 +3342,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * fusiontables.template.get
@@ -3255,19 +3356,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Template$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Template>;
-    get(params: Params$Resource$Template$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Template>,
-        callback: BodyResponseCallback<Schema$Template>): void;
-    get(params: Params$Resource$Template$Get,
-        callback: BodyResponseCallback<Schema$Template>): void;
+    get(
+      params?: Params$Resource$Template$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Template>;
+    get(
+      params: Params$Resource$Template$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Template>,
+      callback: BodyResponseCallback<Schema$Template>
+    ): void;
+    get(
+      params: Params$Resource$Template$Get,
+      callback: BodyResponseCallback<Schema$Template>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Template>): void;
-    get(paramsOrCallback?: Params$Resource$Template$Get|
-        BodyResponseCallback<Schema$Template>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Template>,
-        callback?: BodyResponseCallback<Schema$Template>):
-        void|GaxiosPromise<Schema$Template> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Template$Get
+        | BodyResponseCallback<Schema$Template>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Template>,
+      callback?: BodyResponseCallback<Schema$Template>
+    ): void | GaxiosPromise<Schema$Template> {
       let params = (paramsOrCallback || {}) as Params$Resource$Template$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3285,17 +3394,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fusiontables/v2/tables/{tableId}/templates/{templateId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/fusiontables/v2/tables/{tableId}/templates/{templateId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Template>(parameters, callback);
@@ -3303,7 +3414,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$Template>(parameters);
       }
     }
-
 
     /**
      * fusiontables.template.insert
@@ -3318,22 +3428,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Template$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Template>;
     insert(
-        params: Params$Resource$Template$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Template>,
-        callback: BodyResponseCallback<Schema$Template>): void;
+      params?: Params$Resource$Template$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Template>;
     insert(
-        params: Params$Resource$Template$Insert,
-        callback: BodyResponseCallback<Schema$Template>): void;
+      params: Params$Resource$Template$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Template>,
+      callback: BodyResponseCallback<Schema$Template>
+    ): void;
+    insert(
+      params: Params$Resource$Template$Insert,
+      callback: BodyResponseCallback<Schema$Template>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Template>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Template$Insert|
-        BodyResponseCallback<Schema$Template>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Template>,
-        callback?: BodyResponseCallback<Schema$Template>):
-        void|GaxiosPromise<Schema$Template> {
+      paramsOrCallback?:
+        | Params$Resource$Template$Insert
+        | BodyResponseCallback<Schema$Template>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Template>,
+      callback?: BodyResponseCallback<Schema$Template>
+    ): void | GaxiosPromise<Schema$Template> {
       let params = (paramsOrCallback || {}) as Params$Resource$Template$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3351,16 +3466,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}/templates')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/templates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Template>(parameters, callback);
@@ -3368,7 +3485,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$Template>(parameters);
       }
     }
-
 
     /**
      * fusiontables.template.list
@@ -3384,23 +3500,29 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Template$List, options?: MethodOptions):
-        GaxiosPromise<Schema$TemplateList>;
     list(
-        params: Params$Resource$Template$List,
-        options: MethodOptions|BodyResponseCallback<Schema$TemplateList>,
-        callback: BodyResponseCallback<Schema$TemplateList>): void;
+      params?: Params$Resource$Template$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TemplateList>;
     list(
-        params: Params$Resource$Template$List,
-        callback: BodyResponseCallback<Schema$TemplateList>): void;
+      params: Params$Resource$Template$List,
+      options: MethodOptions | BodyResponseCallback<Schema$TemplateList>,
+      callback: BodyResponseCallback<Schema$TemplateList>
+    ): void;
+    list(
+      params: Params$Resource$Template$List,
+      callback: BodyResponseCallback<Schema$TemplateList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$TemplateList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Template$List|
-        BodyResponseCallback<Schema$TemplateList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TemplateList>,
-        callback?: BodyResponseCallback<Schema$TemplateList>):
-        void|GaxiosPromise<Schema$TemplateList> {
+      paramsOrCallback?:
+        | Params$Resource$Template$List
+        | BodyResponseCallback<Schema$TemplateList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TemplateList>,
+      callback?: BodyResponseCallback<Schema$TemplateList>
+    ): void | GaxiosPromise<Schema$TemplateList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Template$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3418,16 +3540,18 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fusiontables/v2/tables/{tableId}/templates')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fusiontables/v2/tables/{tableId}/templates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TemplateList>(parameters, callback);
@@ -3435,7 +3559,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$TemplateList>(parameters);
       }
     }
-
 
     /**
      * fusiontables.template.patch
@@ -3451,22 +3574,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Template$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Template>;
     patch(
-        params: Params$Resource$Template$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Template>,
-        callback: BodyResponseCallback<Schema$Template>): void;
+      params?: Params$Resource$Template$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Template>;
     patch(
-        params: Params$Resource$Template$Patch,
-        callback: BodyResponseCallback<Schema$Template>): void;
+      params: Params$Resource$Template$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Template>,
+      callback: BodyResponseCallback<Schema$Template>
+    ): void;
+    patch(
+      params: Params$Resource$Template$Patch,
+      callback: BodyResponseCallback<Schema$Template>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Template>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Template$Patch|
-        BodyResponseCallback<Schema$Template>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Template>,
-        callback?: BodyResponseCallback<Schema$Template>):
-        void|GaxiosPromise<Schema$Template> {
+      paramsOrCallback?:
+        | Params$Resource$Template$Patch
+        | BodyResponseCallback<Schema$Template>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Template>,
+      callback?: BodyResponseCallback<Schema$Template>
+    ): void | GaxiosPromise<Schema$Template> {
       let params = (paramsOrCallback || {}) as Params$Resource$Template$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3484,17 +3612,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fusiontables/v2/tables/{tableId}/templates/{templateId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/fusiontables/v2/tables/{tableId}/templates/{templateId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Template>(parameters, callback);
@@ -3502,7 +3632,6 @@ export namespace fusiontables_v2 {
         return createAPIRequest<Schema$Template>(parameters);
       }
     }
-
 
     /**
      * fusiontables.template.update
@@ -3518,22 +3647,27 @@ export namespace fusiontables_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Template$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Template>;
     update(
-        params: Params$Resource$Template$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Template>,
-        callback: BodyResponseCallback<Schema$Template>): void;
+      params?: Params$Resource$Template$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Template>;
     update(
-        params: Params$Resource$Template$Update,
-        callback: BodyResponseCallback<Schema$Template>): void;
+      params: Params$Resource$Template$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Template>,
+      callback: BodyResponseCallback<Schema$Template>
+    ): void;
+    update(
+      params: Params$Resource$Template$Update,
+      callback: BodyResponseCallback<Schema$Template>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Template>): void;
     update(
-        paramsOrCallback?: Params$Resource$Template$Update|
-        BodyResponseCallback<Schema$Template>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Template>,
-        callback?: BodyResponseCallback<Schema$Template>):
-        void|GaxiosPromise<Schema$Template> {
+      paramsOrCallback?:
+        | Params$Resource$Template$Update
+        | BodyResponseCallback<Schema$Template>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Template>,
+      callback?: BodyResponseCallback<Schema$Template>
+    ): void | GaxiosPromise<Schema$Template> {
       let params = (paramsOrCallback || {}) as Params$Resource$Template$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3551,17 +3685,19 @@ export namespace fusiontables_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fusiontables/v2/tables/{tableId}/templates/{templateId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/fusiontables/v2/tables/{tableId}/templates/{templateId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Template>(parameters, callback);
@@ -3575,7 +3711,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Table from which the template is being deleted
@@ -3590,7 +3726,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Table to which the template belongs
@@ -3605,7 +3741,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Table for which a new template is being created
@@ -3621,7 +3757,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of templates to return. Optional. Default is 5.
@@ -3640,7 +3776,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Table to which the updated template belongs
@@ -3660,7 +3796,7 @@ export namespace fusiontables_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Table to which the updated template belongs

@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {tasks_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': tasks_v1.Tasks,
+  v1: tasks_v1.Tasks,
 };
 
 export function tasks(version: 'v1'): tasks_v1.Tasks;
 export function tasks(options: tasks_v1.Options): tasks_v1.Tasks;
 export function tasks<T = tasks_v1.Tasks>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|tasks_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | tasks_v1.Options
+) {
   return getAPI<T>('tasks', versionOrOptions, VERSIONS, this);
 }
 

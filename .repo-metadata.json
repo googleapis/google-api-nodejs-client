@@ -1,0 +1,9 @@
+{
+  "name": "googleapis",
+  "name_pretty": "Google APIs Node.js Client",
+  "release_level": "beta",
+  "language": "nodejs",
+  "repo": "googleapis/google-api-nodejs-client",
+  "distribution_name": "googleapis",
+  "client_documentation": "https://googleapis.dev/nodejs/googleapis/latest"
+}

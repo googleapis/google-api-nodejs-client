@@ -21,11 +21,13 @@ export const VERSIONS = {
 };
 
 export function adsensehost(version: 'v4.1'): adsensehost_v4_1.Adsensehost;
-export function adsensehost(options: adsensehost_v4_1.Options):
-    adsensehost_v4_1.Adsensehost;
+export function adsensehost(
+  options: adsensehost_v4_1.Options
+): adsensehost_v4_1.Adsensehost;
 export function adsensehost<T = adsensehost_v4_1.Adsensehost>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v4.1'|adsensehost_v4_1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v4.1' | adsensehost_v4_1.Options
+) {
   return getAPI<T>('adsensehost', versionOrOptions, VERSIONS, this);
 }
 

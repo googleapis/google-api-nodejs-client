@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace civicinfo_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace civicinfo_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -66,8 +75,7 @@ export namespace civicinfo_v2 {
   /**
    * Google Civic Information API
    *
-   * Provides polling places, early vote locations, contest data, election
-   * officials, and government representatives for U.S. residential addresses.
+   * Provides polling places, early vote locations, contest data, election officials, and government representatives for U.S. residential addresses.
    *
    * @example
    * const {google} = require('googleapis');
@@ -86,7 +94,10 @@ export namespace civicinfo_v2 {
     representatives: Resource$Representatives;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.divisions = new Resource$Divisions(this.context);
       this.elections = new Resource$Elections(this.context);
@@ -103,14 +114,11 @@ export namespace civicinfo_v2 {
      */
     electionAdministrationBody?: Schema$AdministrativeBody;
     /**
-     * An ID for this object. IDs may change in future requests and should not
-     * be cached. Access to this field requires special access that can be
-     * requested from the Request more link on the Quotas page.
+     * An ID for this object. IDs may change in future requests and should not be cached. Access to this field requires special access that can be requested from the Request more link on the Quotas page.
      */
     id?: string;
     /**
-     * The city or county that provides election information for this voter.
-     * This object can have the same elements as state.
+     * The city or county that provides election information for this voter. This object can have the same elements as state.
      */
     local_jurisdiction?: Schema$AdministrationRegion;
     /**
@@ -118,25 +126,21 @@ export namespace civicinfo_v2 {
      */
     name?: string;
     /**
-     * A list of sources for this area. If multiple sources are listed the data
-     * has been aggregated from those sources.
+     * A list of sources for this area. If multiple sources are listed the data has been aggregated from those sources.
      */
     sources?: Schema$Source[];
   }
   /**
-   * Information about an election administrative body (e.g. County Board of
-   * Elections).
+   * Information about an election administrative body (e.g. County Board of Elections).
    */
   export interface Schema$AdministrativeBody {
     /**
-     * A URL provided by this administrative body for information on absentee
-     * voting.
+     * A URL provided by this administrative body for information on absentee voting.
      */
     absenteeVotingInfoUrl?: string;
     addressLines?: string[];
     /**
-     * A URL provided by this administrative body to give contest information to
-     * the voter.
+     * A URL provided by this administrative body to give contest information to the voter.
      */
     ballotInfoUrl?: string;
     /**
@@ -144,8 +148,7 @@ export namespace civicinfo_v2 {
      */
     correspondenceAddress?: Schema$SimpleAddressType;
     /**
-     * A URL provided by this administrative body for looking up general
-     * election information.
+     * A URL provided by this administrative body for looking up general election information.
      */
     electionInfoUrl?: string;
     /**
@@ -153,18 +156,15 @@ export namespace civicinfo_v2 {
      */
     electionOfficials?: Schema$ElectionOfficial[];
     /**
-     * A URL provided by this administrative body for confirming that the voter
-     * is registered to vote.
+     * A URL provided by this administrative body for confirming that the voter is registered to vote.
      */
     electionRegistrationConfirmationUrl?: string;
     /**
-     * A URL provided by this administrative body for looking up how to register
-     * to vote.
+     * A URL provided by this administrative body for looking up how to register to vote.
      */
     electionRegistrationUrl?: string;
     /**
-     * A URL provided by this administrative body describing election rules to
-     * the voter.
+     * A URL provided by this administrative body describing election rules to the voter.
      */
     electionRulesUrl?: string;
     /**
@@ -205,10 +205,7 @@ export namespace civicinfo_v2 {
      */
     email?: string;
     /**
-     * The candidate&#39;s name. If this is a joint ticket it will indicate the
-     * name of the candidate at the top of a ticket followed by a / and that
-     * name of candidate at the bottom of the ticket. e.g. &quot;Mitt Romney /
-     * Paul Ryan&quot;
+     * The candidate&#39;s name. If this is a joint ticket it will indicate the name of the candidate at the top of a ticket followed by a / and that name of candidate at the bottom of the ticket. e.g. &quot;Mitt Romney / Paul Ryan&quot;
      */
     name?: string;
     /**
@@ -237,9 +234,7 @@ export namespace civicinfo_v2 {
      */
     id?: string;
     /**
-     * The type of channel. The following is a list of types of channels, but is
-     * not exhaustive. More channel types may be added at a later time. One of:
-     * GooglePlus, YouTube, Facebook, Twitter
+     * The type of channel. The following is a list of types of channels, but is not exhaustive. More channel types may be added at a later time. One of: GooglePlus, YouTube, Facebook, Twitter
      */
     type?: string;
   }
@@ -248,8 +243,7 @@ export namespace civicinfo_v2 {
    */
   export interface Schema$Contest {
     /**
-     * A number specifying the position of this contest on the voter&#39;s
-     * ballot.
+     * A number specifying the position of this contest on the voter&#39;s ballot.
      */
     ballotPlacement?: string;
     /**
@@ -265,22 +259,15 @@ export namespace civicinfo_v2 {
      */
     district?: Schema$ElectoralDistrict;
     /**
-     * A description of any additional eligibility requirements for voting in
-     * this contest.
+     * A description of any additional eligibility requirements for voting in this contest.
      */
     electorateSpecifications?: string;
     /**
-     * An ID for this object. IDs may change in future requests and should not
-     * be cached. Access to this field requires special access that can be
-     * requested from the Request more link on the Quotas page.
+     * An ID for this object. IDs may change in future requests and should not be cached. Access to this field requires special access that can be requested from the Request more link on the Quotas page.
      */
     id?: string;
     /**
-     * The levels of government of the office for this contest. There may be
-     * more than one in cases where a jurisdiction effectively acts at two
-     * different levels of government; for example, the mayor of the District of
-     * Columbia acts at &quot;locality&quot; level, but also effectively at both
-     * &quot;administrative-area-2&quot; and &quot;administrative-area-1&quot;.
+     * The levels of government of the office for this contest. There may be more than one in cases where a jurisdiction effectively acts at two different levels of government; for example, the mayor of the District of Columbia acts at &quot;locality&quot; level, but also effectively at both &quot;administrative-area-2&quot; and &quot;administrative-area-1&quot;.
      */
     level?: string[];
     /**
@@ -300,60 +287,43 @@ export namespace civicinfo_v2 {
      */
     primaryParty?: string;
     /**
-     * The set of ballot responses for the referendum. A ballot response
-     * represents a line on the ballot. Common examples might include
-     * &quot;yes&quot; or &quot;no&quot; for referenda. This field is only
-     * populated for contests of type &#39;Referendum&#39;.
+     * The set of ballot responses for the referendum. A ballot response represents a line on the ballot. Common examples might include &quot;yes&quot; or &quot;no&quot; for referenda. This field is only populated for contests of type &#39;Referendum&#39;.
      */
     referendumBallotResponses?: string[];
     /**
-     * Specifies a short summary of the referendum that is typically on the
-     * ballot below the title but above the text. This field is only populated
-     * for contests of type &#39;Referendum&#39;.
+     * Specifies a short summary of the referendum that is typically on the ballot below the title but above the text. This field is only populated for contests of type &#39;Referendum&#39;.
      */
     referendumBrief?: string;
     /**
-     * A statement in opposition to the referendum. It does not necessarily
-     * appear on the ballot. This field is only populated for contests of type
-     * &#39;Referendum&#39;.
+     * A statement in opposition to the referendum. It does not necessarily appear on the ballot. This field is only populated for contests of type &#39;Referendum&#39;.
      */
     referendumConStatement?: string;
     /**
-     * Specifies what effect abstaining (not voting) on the proposition will
-     * have (i.e. whether abstaining is considered a vote against it). This
-     * field is only populated for contests of type &#39;Referendum&#39;.
+     * Specifies what effect abstaining (not voting) on the proposition will have (i.e. whether abstaining is considered a vote against it). This field is only populated for contests of type &#39;Referendum&#39;.
      */
     referendumEffectOfAbstain?: string;
     /**
-     * The threshold of votes that the referendum needs in order to pass, e.g.
-     * &quot;two-thirds&quot;. This field is only populated for contests of type
-     * &#39;Referendum&#39;.
+     * The threshold of votes that the referendum needs in order to pass, e.g. &quot;two-thirds&quot;. This field is only populated for contests of type &#39;Referendum&#39;.
      */
     referendumPassageThreshold?: string;
     /**
-     * A statement in favor of the referendum. It does not necessarily appear on
-     * the ballot. This field is only populated for contests of type
-     * &#39;Referendum&#39;.
+     * A statement in favor of the referendum. It does not necessarily appear on the ballot. This field is only populated for contests of type &#39;Referendum&#39;.
      */
     referendumProStatement?: string;
     /**
-     * A brief description of the referendum. This field is only populated for
-     * contests of type &#39;Referendum&#39;.
+     * A brief description of the referendum. This field is only populated for contests of type &#39;Referendum&#39;.
      */
     referendumSubtitle?: string;
     /**
-     * The full text of the referendum. This field is only populated for
-     * contests of type &#39;Referendum&#39;.
+     * The full text of the referendum. This field is only populated for contests of type &#39;Referendum&#39;.
      */
     referendumText?: string;
     /**
-     * The title of the referendum (e.g. &#39;Proposition 42&#39;). This field
-     * is only populated for contests of type &#39;Referendum&#39;.
+     * The title of the referendum (e.g. &#39;Proposition 42&#39;). This field is only populated for contests of type &#39;Referendum&#39;.
      */
     referendumTitle?: string;
     /**
-     * A link to the referendum. This field is only populated for contests of
-     * type &#39;Referendum&#39;.
+     * A link to the referendum. This field is only populated for contests of type &#39;Referendum&#39;.
      */
     referendumUrl?: string;
     /**
@@ -361,20 +331,15 @@ export namespace civicinfo_v2 {
      */
     roles?: string[];
     /**
-     * A list of sources for this contest. If multiple sources are listed, the
-     * data has been aggregated from those sources.
+     * A list of sources for this contest. If multiple sources are listed, the data has been aggregated from those sources.
      */
     sources?: Schema$Source[];
     /**
-     * &quot;Yes&quot; or &quot;No&quot; depending on whether this a contest
-     * being held outside the normal election cycle.
+     * &quot;Yes&quot; or &quot;No&quot; depending on whether this a contest being held outside the normal election cycle.
      */
     special?: string;
     /**
-     * The type of contest. Usually this will be &#39;General&#39;,
-     * &#39;Primary&#39;, or &#39;Run-off&#39; for contests with candidates. For
-     * referenda this will be &#39;Referendum&#39;. For Retention contests this
-     * will typically be &#39;Retention&#39;.
+     * The type of contest. Usually this will be &#39;General&#39;, &#39;Primary&#39;, or &#39;Run-off&#39; for contests with candidates. For referenda this will be &#39;Referendum&#39;. For Retention contests this will typically be &#39;Retention&#39;.
      */
     type?: string;
   }
@@ -398,24 +363,17 @@ export namespace civicinfo_v2 {
    */
   export interface Schema$DivisionSearchResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;civicinfo#divisionSearchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#divisionSearchResponse&quot;.
      */
     kind?: string;
     results?: Schema$DivisionSearchResult[];
   }
   /**
-   * Represents a political geographic division that matches the requested
-   * query.
+   * Represents a political geographic division that matches the requested query.
    */
   export interface Schema$DivisionSearchResult {
     /**
-     * Other Open Civic Data identifiers that refer to the same division -- for
-     * example, those that refer to other political divisions whose boundaries
-     * are defined to be coterminous with this one. For example,
-     * ocd-division/country:us/state:wy will include an alias of
-     * ocd-division/country:us/state:wy/cd:1, since Wyoming has only one
-     * Congressional district.
+     * Other Open Civic Data identifiers that refer to the same division -- for example, those that refer to other political divisions whose boundaries are defined to be coterminous with this one. For example, ocd-division/country:us/state:wy will include an alias of ocd-division/country:us/state:wy/cd:1, since Wyoming has only one Congressional district.
      */
     aliases?: string[];
     /**
@@ -444,11 +402,7 @@ export namespace civicinfo_v2 {
      */
     name?: string;
     /**
-     * The political division of the election. Represented as an OCD Division
-     * ID. Voters within these political jurisdictions are covered by this
-     * election. This is typically a state such as
-     * ocd-division/country:us/state:ca or for the midterms or general election
-     * the entire US (i.e. ocd-division/country:us).
+     * The political division of the election. Represented as an OCD Division ID. Voters within these political jurisdictions are covered by this election. This is typically a state such as ocd-division/country:us/state:ca or for the midterms or general election the entire US (i.e. ocd-division/country:us).
      */
     ocdDivisionId?: string;
   }
@@ -489,8 +443,7 @@ export namespace civicinfo_v2 {
      */
     elections?: Schema$Election[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;civicinfo#electionsQueryResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#electionsQueryResponse&quot;.
      */
     kind?: string;
   }
@@ -499,9 +452,7 @@ export namespace civicinfo_v2 {
    */
   export interface Schema$ElectoralDistrict {
     /**
-     * An identifier for this district, relative to its scope. For example, the
-     * 34th State Senate district would have id &quot;34&quot; and a scope of
-     * stateUpper.
+     * An identifier for this district, relative to its scope. For example, the 34th State Senate district would have id &quot;34&quot; and a scope of stateUpper.
      */
     id?: string;
     kgForeignKey?: string;
@@ -510,10 +461,7 @@ export namespace civicinfo_v2 {
      */
     name?: string;
     /**
-     * The geographic scope of this district. If unspecified the district&#39;s
-     * geography is not known. One of: national, statewide, congressional,
-     * stateUpper, stateLower, countywide, judicial, schoolBoard, cityWide,
-     * township, countyCouncil, cityCouncil, ward, special
+     * The geographic scope of this district. If unspecified the district&#39;s geography is not known. One of: national, statewide, congressional, stateUpper, stateLower, countywide, judicial, schoolBoard, cityWide, township, countyCouncil, cityCouncil, ward, special
      */
     scope?: string;
   }
@@ -525,15 +473,7 @@ export namespace civicinfo_v2 {
    */
   export interface Schema$GeographicDivision {
     /**
-     * Any other valid OCD IDs that refer to the same division.  Because OCD IDs
-     * are meant to be human-readable and at least somewhat predictable, there
-     * are occasionally several identifiers for a single division. These
-     * identifiers are defined to be equivalent to one another, and one is
-     * always indicated as the primary identifier. The primary identifier will
-     * be returned in ocd_id above, and any other equivalent valid identifiers
-     * will be returned in this list.  For example, if this division&#39;s OCD
-     * ID is ocd-division/country:us/district:dc, this will contain
-     * ocd-division/country:us/state:dc.
+     * Any other valid OCD IDs that refer to the same division.  Because OCD IDs are meant to be human-readable and at least somewhat predictable, there are occasionally several identifiers for a single division. These identifiers are defined to be equivalent to one another, and one is always indicated as the primary identifier. The primary identifier will be returned in ocd_id above, and any other equivalent valid identifiers will be returned in this list.  For example, if this division&#39;s OCD ID is ocd-division/country:us/district:dc, this will contain ocd-division/country:us/state:dc.
      */
     alsoKnownAs?: string[];
     /**
@@ -541,9 +481,7 @@ export namespace civicinfo_v2 {
      */
     name?: string;
     /**
-     * List of indices in the offices array, one for each office elected from
-     * this division. Will only be present if includeOffices was true (or
-     * absent) in the request.
+     * List of indices in the offices array, one for each office elected from this division. Will only be present if includeOffices was true (or absent) in the request.
      */
     officeIndices?: number[];
   }
@@ -588,11 +526,7 @@ export namespace civicinfo_v2 {
      */
     divisionId?: string;
     /**
-     * The levels of government of which this office is part. There may be more
-     * than one in cases where a jurisdiction effectively acts at two different
-     * levels of government; for example, the mayor of the District of Columbia
-     * acts at &quot;locality&quot; level, but also effectively at both
-     * &quot;administrative-area-2&quot; and &quot;administrative-area-1&quot;.
+     * The levels of government of which this office is part. There may be more than one in cases where a jurisdiction effectively acts at two different levels of government; for example, the mayor of the District of Columbia acts at &quot;locality&quot; level, but also effectively at both &quot;administrative-area-2&quot; and &quot;administrative-area-1&quot;.
      */
     levels?: string[];
     /**
@@ -600,20 +534,15 @@ export namespace civicinfo_v2 {
      */
     name?: string;
     /**
-     * List of indices in the officials array of people who presently hold this
-     * office.
+     * List of indices in the officials array of people who presently hold this office.
      */
     officialIndices?: number[];
     /**
-     * The roles which this office fulfills. Roles are not meant to be
-     * exhaustive, or to exactly specify the entire set of responsibilities of a
-     * given office, but are meant to be rough categories that are useful for
-     * general selection from or sorting of a list of offices.
+     * The roles which this office fulfills. Roles are not meant to be exhaustive, or to exactly specify the entire set of responsibilities of a given office, but are meant to be rough categories that are useful for general selection from or sorting of a list of offices.
      */
     roles?: string[];
     /**
-     * A list of sources for this office. If multiple sources are listed, the
-     * data has been aggregated from those sources.
+     * A list of sources for this office. If multiple sources are listed, the data has been aggregated from those sources.
      */
     sources?: Schema$Source[];
   }
@@ -661,9 +590,7 @@ export namespace civicinfo_v2 {
     temporaryData?: Schema$MessageSet;
   }
   /**
-   * A location where a voter can vote. This may be an early vote site, an
-   * election day voting location, or a drop off location for a completed
-   * ballot.
+   * A location where a voter can vote. This may be an early vote site, an election day voting location, or a drop off location for a completed ballot.
    */
   export interface Schema$PollingLocation {
     /**
@@ -671,33 +598,23 @@ export namespace civicinfo_v2 {
      */
     address?: Schema$SimpleAddressType;
     /**
-     * The last date that this early vote site or drop off location may be used.
-     * This field is not populated for polling locations.
+     * The last date that this early vote site or drop off location may be used. This field is not populated for polling locations.
      */
     endDate?: string;
     /**
-     * An ID for this object. IDs may change in future requests and should not
-     * be cached. Access to this field requires special access that can be
-     * requested from the Request more link on the Quotas page.
+     * An ID for this object. IDs may change in future requests and should not be cached. Access to this field requires special access that can be requested from the Request more link on the Quotas page.
      */
     id?: string;
     /**
-     * Latitude of the location, in degrees north of the equator. Only some
-     * locations -- generally, ballot drop boxes for vote-by-mail elections --
-     * will have this set; for others, use a geocoding service like the Google
-     * Maps API to resolve the address to a geographic point.
+     * Latitude of the location, in degrees north of the equator. Only some locations -- generally, ballot drop boxes for vote-by-mail elections -- will have this set; for others, use a geocoding service like the Google Maps API to resolve the address to a geographic point.
      */
     latitude?: number;
     /**
-     * Longitude of the location, in degrees east of the Prime Meridian. Only
-     * some locations -- generally, ballot drop boxes for vote-by-mail elections
-     * -- will have this set; for others, use a geocoding service like the
-     * Google Maps API to resolve the address to a geographic point.
+     * Longitude of the location, in degrees east of the Prime Meridian. Only some locations -- generally, ballot drop boxes for vote-by-mail elections -- will have this set; for others, use a geocoding service like the Google Maps API to resolve the address to a geographic point.
      */
     longitude?: number;
     /**
-     * The name of the early vote site or drop off location. This field is not
-     * populated for polling locations.
+     * The name of the early vote site or drop off location. This field is not populated for polling locations.
      */
     name?: string;
     /**
@@ -709,18 +626,15 @@ export namespace civicinfo_v2 {
      */
     pollingHours?: string;
     /**
-     * A list of sources for this location. If multiple sources are listed the
-     * data has been aggregated from those sources.
+     * A list of sources for this location. If multiple sources are listed the data has been aggregated from those sources.
      */
     sources?: Schema$Source[];
     /**
-     * The first date that this early vote site or drop off location may be
-     * used. This field is not populated for polling locations.
+     * The first date that this early vote site or drop off location may be used. This field is not populated for polling locations.
      */
     startDate?: string;
     /**
-     * The services provided by this early vote site or drop off location. This
-     * field is not populated for polling locations.
+     * The services provided by this early vote site or drop off location. This field is not populated for polling locations.
      */
     voterServices?: string;
   }
@@ -762,21 +676,18 @@ export namespace civicinfo_v2 {
     /**
      * Political geographic divisions that contain the requested address.
      */
-    divisions?: {[key: string]: Schema$GeographicDivision;};
+    divisions?: {[key: string]: Schema$GeographicDivision};
     /**
-     * Elected offices referenced by the divisions listed above. Will only be
-     * present if includeOffices was true in the request.
+     * Elected offices referenced by the divisions listed above. Will only be present if includeOffices was true in the request.
      */
     offices?: Schema$Office[];
     /**
-     * Officials holding the offices listed above. Will only be present if
-     * includeOffices was true in the request.
+     * Officials holding the offices listed above. Will only be present if includeOffices was true in the request.
      */
     officials?: Schema$Official[];
   }
   /**
-   * A request for political geography and representative information for an
-   * address.
+   * A request for political geography and representative information for an address.
    */
   export interface Schema$RepresentativeInfoRequest {
     contextParams?: Schema$ContextParams;
@@ -788,10 +699,9 @@ export namespace civicinfo_v2 {
     /**
      * Political geographic divisions that contain the requested address.
      */
-    divisions?: {[key: string]: Schema$GeographicDivision;};
+    divisions?: {[key: string]: Schema$GeographicDivision};
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;civicinfo#representativeInfoResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#representativeInfoResponse&quot;.
      */
     kind?: string;
     /**
@@ -799,13 +709,11 @@ export namespace civicinfo_v2 {
      */
     normalizedInput?: Schema$SimpleAddressType;
     /**
-     * Elected offices referenced by the divisions listed above. Will only be
-     * present if includeOffices was true in the request.
+     * Elected offices referenced by the divisions listed above. Will only be present if includeOffices was true in the request.
      */
     offices?: Schema$Office[];
     /**
-     * Officials holding the offices listed above. Will only be present if
-     * includeOffices was true in the request.
+     * Officials holding the offices listed above. Will only be present if includeOffices was true in the request.
      */
     officials?: Schema$Official[];
   }
@@ -921,16 +829,11 @@ export namespace civicinfo_v2 {
      */
     contests?: Schema$Contest[];
     /**
-     * Locations where a voter is eligible to drop off a completed ballot. The
-     * voter must have received and completed a ballot prior to arriving at the
-     * location. The location may not have ballots available on the premises.
-     * These locations could be open on or before election day as indicated in
-     * the pollingHours field.
+     * Locations where a voter is eligible to drop off a completed ballot. The voter must have received and completed a ballot prior to arriving at the location. The location may not have ballots available on the premises. These locations could be open on or before election day as indicated in the pollingHours field.
      */
     dropOffLocations?: Schema$PollingLocation[];
     /**
-     * Locations where the voter is eligible to vote early, prior to election
-     * day.
+     * Locations where the voter is eligible to vote early, prior to election day.
      */
     earlyVoteSites?: Schema$PollingLocation[];
     /**
@@ -938,13 +841,11 @@ export namespace civicinfo_v2 {
      */
     election?: Schema$Election;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;civicinfo#voterInfoResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#voterInfoResponse&quot;.
      */
     kind?: string;
     /**
-     * Specifies whether voters in the precinct vote only by mailing their
-     * ballots (with the possible option of dropping off their ballots as well).
+     * Specifies whether voters in the precinct vote only by mailing their ballots (with the possible option of dropping off their ballots as well).
      */
     mailOnly?: boolean;
     /**
@@ -952,16 +853,7 @@ export namespace civicinfo_v2 {
      */
     normalizedInput?: Schema$SimpleAddressType;
     /**
-     * When there are multiple elections for a voter address, the otherElections
-     * field is populated in the API response and there are two
-     * possibilities: 1. If the earliest election is not the intended election,
-     * specify the election ID of the desired election in a second API request
-     * using the electionId field. 2. If these elections occur on the same day,
-     * the API doesn?t return any polling location, contest, or election
-     * official information to ensure that an additional query is made. For
-     * user-facing applications, we recommend displaying these elections to the
-     * user to disambiguate. A second API request using the electionId field
-     * should be made for the election that is relevant to the user.
+     * When there are multiple elections for a voter address, the otherElections field is populated in the API response and there are two possibilities: 1. If the earliest election is not the intended election, specify the election ID of the desired election in a second API request using the electionId field. 2. If these elections occur on the same day, the API doesn?t return any polling location, contest, or election official information to ensure that an additional query is made. For user-facing applications, we recommend displaying these elections to the user to disambiguate. A second API request using the electionId field should be made for the election that is relevant to the user.
      */
     otherElections?: Schema$Election[];
     /**
@@ -971,8 +863,7 @@ export namespace civicinfo_v2 {
     precinctId?: string;
     segments?: Schema$StreetSegment[];
     /**
-     * Local Election Information for the state that the voter votes in. For the
-     * US, there will only be one element in this array.
+     * Local Election Information for the state that the voter votes in. For the US, there will only be one element in this array.
      */
     state?: Schema$AdministrationRegion[];
   }
@@ -983,13 +874,11 @@ export namespace civicinfo_v2 {
     response?: Schema$VoterInfoResponse;
   }
 
-
   export class Resource$Divisions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * civicinfo.divisions.search
@@ -1004,24 +893,31 @@ export namespace civicinfo_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: Params$Resource$Divisions$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$DivisionSearchResponse>;
     search(
-        params: Params$Resource$Divisions$Search,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DivisionSearchResponse>,
-        callback: BodyResponseCallback<Schema$DivisionSearchResponse>): void;
+      params?: Params$Resource$Divisions$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DivisionSearchResponse>;
     search(
-        params: Params$Resource$Divisions$Search,
-        callback: BodyResponseCallback<Schema$DivisionSearchResponse>): void;
+      params: Params$Resource$Divisions$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DivisionSearchResponse>,
+      callback: BodyResponseCallback<Schema$DivisionSearchResponse>
+    ): void;
+    search(
+      params: Params$Resource$Divisions$Search,
+      callback: BodyResponseCallback<Schema$DivisionSearchResponse>
+    ): void;
     search(callback: BodyResponseCallback<Schema$DivisionSearchResponse>): void;
     search(
-        paramsOrCallback?: Params$Resource$Divisions$Search|
-        BodyResponseCallback<Schema$DivisionSearchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DivisionSearchResponse>,
-        callback?: BodyResponseCallback<Schema$DivisionSearchResponse>):
-        void|GaxiosPromise<Schema$DivisionSearchResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Divisions$Search
+        | BodyResponseCallback<Schema$DivisionSearchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DivisionSearchResponse>,
+      callback?: BodyResponseCallback<Schema$DivisionSearchResponse>
+    ): void | GaxiosPromise<Schema$DivisionSearchResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Divisions$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1039,16 +935,19 @@ export namespace civicinfo_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/civicinfo/v2/divisions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/civicinfo/v2/divisions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DivisionSearchResponse>(parameters, callback);
@@ -1062,14 +961,10 @@ export namespace civicinfo_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The search query. Queries can cover any parts of a OCD ID or a human
-     * readable division name. All words given in the query are treated as
-     * required patterns. In addition to that, most query operators of the
-     * Apache Lucene library are supported. See
-     * http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
+     * The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
      */
     query?: string;
 
@@ -1079,13 +974,11 @@ export namespace civicinfo_v2 {
     requestBody?: Schema$DivisionSearchRequest;
   }
 
-
   export class Resource$Elections {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * civicinfo.elections.electionQuery
@@ -1100,27 +993,34 @@ export namespace civicinfo_v2 {
      * @return {object} Request object
      */
     electionQuery(
-        params?: Params$Resource$Elections$Electionquery,
-        options?: MethodOptions): GaxiosPromise<Schema$ElectionsQueryResponse>;
+      params?: Params$Resource$Elections$Electionquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ElectionsQueryResponse>;
     electionQuery(
-        params: Params$Resource$Elections$Electionquery,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ElectionsQueryResponse>,
-        callback: BodyResponseCallback<Schema$ElectionsQueryResponse>): void;
+      params: Params$Resource$Elections$Electionquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ElectionsQueryResponse>,
+      callback: BodyResponseCallback<Schema$ElectionsQueryResponse>
+    ): void;
     electionQuery(
-        params: Params$Resource$Elections$Electionquery,
-        callback: BodyResponseCallback<Schema$ElectionsQueryResponse>): void;
+      params: Params$Resource$Elections$Electionquery,
+      callback: BodyResponseCallback<Schema$ElectionsQueryResponse>
+    ): void;
     electionQuery(
-        callback: BodyResponseCallback<Schema$ElectionsQueryResponse>): void;
+      callback: BodyResponseCallback<Schema$ElectionsQueryResponse>
+    ): void;
     electionQuery(
-        paramsOrCallback?: Params$Resource$Elections$Electionquery|
-        BodyResponseCallback<Schema$ElectionsQueryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ElectionsQueryResponse>,
-        callback?: BodyResponseCallback<Schema$ElectionsQueryResponse>):
-        void|GaxiosPromise<Schema$ElectionsQueryResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Elections$Electionquery;
+      paramsOrCallback?:
+        | Params$Resource$Elections$Electionquery
+        | BodyResponseCallback<Schema$ElectionsQueryResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ElectionsQueryResponse>,
+      callback?: BodyResponseCallback<Schema$ElectionsQueryResponse>
+    ): void | GaxiosPromise<Schema$ElectionsQueryResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Elections$Electionquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1137,16 +1037,19 @@ export namespace civicinfo_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/civicinfo/v2/elections')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/civicinfo/v2/elections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ElectionsQueryResponse>(parameters, callback);
@@ -1155,11 +1058,9 @@ export namespace civicinfo_v2 {
       }
     }
 
-
     /**
      * civicinfo.elections.voterInfoQuery
-     * @desc Looks up information relevant to a voter based on the voter's
-     * registered address.
+     * @desc Looks up information relevant to a voter based on the voter's registered address.
      * @alias civicinfo.elections.voterInfoQuery
      * @memberOf! ()
      *
@@ -1174,26 +1075,32 @@ export namespace civicinfo_v2 {
      * @return {object} Request object
      */
     voterInfoQuery(
-        params?: Params$Resource$Elections$Voterinfoquery,
-        options?: MethodOptions): GaxiosPromise<Schema$VoterInfoResponse>;
+      params?: Params$Resource$Elections$Voterinfoquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VoterInfoResponse>;
     voterInfoQuery(
-        params: Params$Resource$Elections$Voterinfoquery,
-        options: MethodOptions|BodyResponseCallback<Schema$VoterInfoResponse>,
-        callback: BodyResponseCallback<Schema$VoterInfoResponse>): void;
+      params: Params$Resource$Elections$Voterinfoquery,
+      options: MethodOptions | BodyResponseCallback<Schema$VoterInfoResponse>,
+      callback: BodyResponseCallback<Schema$VoterInfoResponse>
+    ): void;
     voterInfoQuery(
-        params: Params$Resource$Elections$Voterinfoquery,
-        callback: BodyResponseCallback<Schema$VoterInfoResponse>): void;
-    voterInfoQuery(callback: BodyResponseCallback<Schema$VoterInfoResponse>):
-        void;
+      params: Params$Resource$Elections$Voterinfoquery,
+      callback: BodyResponseCallback<Schema$VoterInfoResponse>
+    ): void;
     voterInfoQuery(
-        paramsOrCallback?: Params$Resource$Elections$Voterinfoquery|
-        BodyResponseCallback<Schema$VoterInfoResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VoterInfoResponse>,
-        callback?: BodyResponseCallback<Schema$VoterInfoResponse>):
-        void|GaxiosPromise<Schema$VoterInfoResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Elections$Voterinfoquery;
+      callback: BodyResponseCallback<Schema$VoterInfoResponse>
+    ): void;
+    voterInfoQuery(
+      paramsOrCallback?:
+        | Params$Resource$Elections$Voterinfoquery
+        | BodyResponseCallback<Schema$VoterInfoResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VoterInfoResponse>,
+      callback?: BodyResponseCallback<Schema$VoterInfoResponse>
+    ): void | GaxiosPromise<Schema$VoterInfoResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Elections$Voterinfoquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1210,16 +1117,19 @@ export namespace civicinfo_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/civicinfo/v2/voterinfo')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/civicinfo/v2/voterinfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['address'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VoterInfoResponse>(parameters, callback);
@@ -1229,36 +1139,31 @@ export namespace civicinfo_v2 {
     }
   }
 
-  export interface Params$Resource$Elections$Electionquery extends
-      StandardParameters {
+  export interface Params$Resource$Elections$Electionquery
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$ElectionsQueryRequest;
   }
-  export interface Params$Resource$Elections$Voterinfoquery extends
-      StandardParameters {
+  export interface Params$Resource$Elections$Voterinfoquery
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The registered address of the voter to look up.
      */
     address?: string;
     /**
-     * The unique ID of the election to look up. A list of election IDs can be
-     * obtained at https://www.googleapis.com/civicinfo/{version}/electionsIf no
-     * election ID is specified in the query and there is more than one election
-     * with data for the given voter, the additional elections are provided in
-     * the otherElections response field.
+     * The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/electionsIf no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
      */
     electionId?: string;
     /**
@@ -1266,9 +1171,7 @@ export namespace civicinfo_v2 {
      */
     officialOnly?: boolean;
     /**
-     * If set to true, the query will return the success codeand include any
-     * partial information when it is unable to determine a matching address or
-     * unable to determine the election for electionId=0 queries.
+     * If set to true, the query will return the success codeand include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
      */
     returnAllAvailableData?: boolean;
 
@@ -1278,18 +1181,15 @@ export namespace civicinfo_v2 {
     requestBody?: Schema$VoterInfoRequest;
   }
 
-
   export class Resource$Representatives {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * civicinfo.representatives.representativeInfoByAddress
-     * @desc Looks up political geography and representative information for a
-     * single address.
+     * @desc Looks up political geography and representative information for a single address.
      * @alias civicinfo.representatives.representativeInfoByAddress
      * @memberOf! ()
      *
@@ -1304,38 +1204,39 @@ export namespace civicinfo_v2 {
      * @return {object} Request object
      */
     representativeInfoByAddress(
-        params?: Params$Resource$Representatives$Representativeinfobyaddress,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$RepresentativeInfoResponse>;
+      params?: Params$Resource$Representatives$Representativeinfobyaddress,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RepresentativeInfoResponse>;
     representativeInfoByAddress(
-        params: Params$Resource$Representatives$Representativeinfobyaddress,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RepresentativeInfoResponse>,
-        callback: BodyResponseCallback<Schema$RepresentativeInfoResponse>):
-        void;
+      params: Params$Resource$Representatives$Representativeinfobyaddress,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RepresentativeInfoResponse>,
+      callback: BodyResponseCallback<Schema$RepresentativeInfoResponse>
+    ): void;
     representativeInfoByAddress(
-        params: Params$Resource$Representatives$Representativeinfobyaddress,
-        callback: BodyResponseCallback<Schema$RepresentativeInfoResponse>):
-        void;
+      params: Params$Resource$Representatives$Representativeinfobyaddress,
+      callback: BodyResponseCallback<Schema$RepresentativeInfoResponse>
+    ): void;
     representativeInfoByAddress(
-        callback: BodyResponseCallback<Schema$RepresentativeInfoResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$RepresentativeInfoResponse>
+    ): void;
     representativeInfoByAddress(
-        paramsOrCallback?:
-            Params$Resource$Representatives$Representativeinfobyaddress|
-        BodyResponseCallback<Schema$RepresentativeInfoResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RepresentativeInfoResponse>,
-        callback?: BodyResponseCallback<Schema$RepresentativeInfoResponse>):
-        void|GaxiosPromise<Schema$RepresentativeInfoResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Representatives$Representativeinfobyaddress;
+      paramsOrCallback?:
+        | Params$Resource$Representatives$Representativeinfobyaddress
+        | BodyResponseCallback<Schema$RepresentativeInfoResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RepresentativeInfoResponse>,
+      callback?: BodyResponseCallback<Schema$RepresentativeInfoResponse>
+    ): void | GaxiosPromise<Schema$RepresentativeInfoResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Representatives$Representativeinfobyaddress;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Representatives$Representativeinfobyaddress;
+        params = {} as Params$Resource$Representatives$Representativeinfobyaddress;
         options = {};
       }
 
@@ -1347,30 +1248,33 @@ export namespace civicinfo_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/civicinfo/v2/representatives')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/civicinfo/v2/representatives').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RepresentativeInfoResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$RepresentativeInfoResponse>(parameters);
       }
     }
 
-
     /**
      * civicinfo.representatives.representativeInfoByDivision
-     * @desc Looks up representative information for a single geographic
-     * division.
+     * @desc Looks up representative information for a single geographic division.
      * @alias civicinfo.representatives.representativeInfoByDivision
      * @memberOf! ()
      *
@@ -1385,34 +1289,39 @@ export namespace civicinfo_v2 {
      * @return {object} Request object
      */
     representativeInfoByDivision(
-        params?: Params$Resource$Representatives$Representativeinfobydivision,
-        options?: MethodOptions): GaxiosPromise<Schema$RepresentativeInfoData>;
+      params?: Params$Resource$Representatives$Representativeinfobydivision,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RepresentativeInfoData>;
     representativeInfoByDivision(
-        params: Params$Resource$Representatives$Representativeinfobydivision,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RepresentativeInfoData>,
-        callback: BodyResponseCallback<Schema$RepresentativeInfoData>): void;
+      params: Params$Resource$Representatives$Representativeinfobydivision,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RepresentativeInfoData>,
+      callback: BodyResponseCallback<Schema$RepresentativeInfoData>
+    ): void;
     representativeInfoByDivision(
-        params: Params$Resource$Representatives$Representativeinfobydivision,
-        callback: BodyResponseCallback<Schema$RepresentativeInfoData>): void;
+      params: Params$Resource$Representatives$Representativeinfobydivision,
+      callback: BodyResponseCallback<Schema$RepresentativeInfoData>
+    ): void;
     representativeInfoByDivision(
-        callback: BodyResponseCallback<Schema$RepresentativeInfoData>): void;
+      callback: BodyResponseCallback<Schema$RepresentativeInfoData>
+    ): void;
     representativeInfoByDivision(
-        paramsOrCallback?:
-            Params$Resource$Representatives$Representativeinfobydivision|
-        BodyResponseCallback<Schema$RepresentativeInfoData>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RepresentativeInfoData>,
-        callback?: BodyResponseCallback<Schema$RepresentativeInfoData>):
-        void|GaxiosPromise<Schema$RepresentativeInfoData> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Representatives$Representativeinfobydivision;
+      paramsOrCallback?:
+        | Params$Resource$Representatives$Representativeinfobydivision
+        | BodyResponseCallback<Schema$RepresentativeInfoData>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RepresentativeInfoData>,
+      callback?: BodyResponseCallback<Schema$RepresentativeInfoData>
+    ): void | GaxiosPromise<Schema$RepresentativeInfoData> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Representatives$Representativeinfobydivision;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Representatives$Representativeinfobydivision;
+        params = {} as Params$Resource$Representatives$Representativeinfobydivision;
         options = {};
       }
 
@@ -1424,16 +1333,19 @@ export namespace civicinfo_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/civicinfo/v2/representatives/{ocdId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/civicinfo/v2/representatives/{ocdId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['ocdId'],
         pathParams: ['ocdId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RepresentativeInfoData>(parameters, callback);
@@ -1444,32 +1356,26 @@ export namespace civicinfo_v2 {
   }
 
   export interface Params$Resource$Representatives$Representativeinfobyaddress
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The address to look up. May only be specified if the field ocdId is not
-     * given in the URL.
+     * The address to look up. May only be specified if the field ocdId is not given in the URL.
      */
     address?: string;
     /**
-     * Whether to return information about offices and officials. If false, only
-     * the top-level district information will be returned.
+     * Whether to return information about offices and officials. If false, only the top-level district information will be returned.
      */
     includeOffices?: boolean;
     /**
-     * A list of office levels to filter by. Only offices that serve at least
-     * one of these levels will be returned. Divisions that don't contain a
-     * matching office will not be returned.
+     * A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
      */
     levels?: string[];
     /**
-     * A list of office roles to filter by. Only offices fulfilling one of these
-     * roles will be returned. Divisions that don't contain a matching office
-     * will not be returned.
+     * A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
      */
     roles?: string[];
 
@@ -1479,16 +1385,14 @@ export namespace civicinfo_v2 {
     requestBody?: Schema$RepresentativeInfoRequest;
   }
   export interface Params$Resource$Representatives$Representativeinfobydivision
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A list of office levels to filter by. Only offices that serve at least
-     * one of these levels will be returned. Divisions that don't contain a
-     * matching office will not be returned.
+     * A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
      */
     levels?: string[];
     /**
@@ -1496,16 +1400,11 @@ export namespace civicinfo_v2 {
      */
     ocdId?: string;
     /**
-     * If true, information about all divisions contained in the division
-     * requested will be included as well. For example, if querying
-     * ocd-division/country:us/district:dc, this would also return all DC's
-     * wards and ANCs.
+     * If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
      */
     recursive?: boolean;
     /**
-     * A list of office roles to filter by. Only offices fulfilling one of these
-     * roles will be returned. Divisions that don't contain a matching office
-     * will not be returned.
+     * A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
      */
     roles?: string[];
 

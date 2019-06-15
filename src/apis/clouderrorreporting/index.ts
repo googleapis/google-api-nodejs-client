@@ -17,18 +17,21 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {clouderrorreporting_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  'v1beta1': clouderrorreporting_v1beta1.Clouderrorreporting,
+  v1beta1: clouderrorreporting_v1beta1.Clouderrorreporting,
 };
 
-export function clouderrorreporting(version: 'v1beta1'):
-    clouderrorreporting_v1beta1.Clouderrorreporting;
 export function clouderrorreporting(
-    options: clouderrorreporting_v1beta1.Options):
-    clouderrorreporting_v1beta1.Clouderrorreporting;
-export function
-clouderrorreporting<T = clouderrorreporting_v1beta1.Clouderrorreporting>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1beta1'|clouderrorreporting_v1beta1.Options) {
+  version: 'v1beta1'
+): clouderrorreporting_v1beta1.Clouderrorreporting;
+export function clouderrorreporting(
+  options: clouderrorreporting_v1beta1.Options
+): clouderrorreporting_v1beta1.Clouderrorreporting;
+export function clouderrorreporting<
+  T = clouderrorreporting_v1beta1.Clouderrorreporting
+>(
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1beta1' | clouderrorreporting_v1beta1.Options
+) {
   return getAPI<T>('clouderrorreporting', versionOrOptions, VERSIONS, this);
 }
 

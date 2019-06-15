@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace content_v2_1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace content_v2_1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -66,8 +75,7 @@ export namespace content_v2_1 {
   /**
    * Content API for Shopping
    *
-   * Manages product items, inventory, and Merchant Center accounts for Google
-   * Shopping.
+   * Manages product items, inventory, and Merchant Center accounts for Google Shopping.
    *
    * @example
    * const {google} = require('googleapis');
@@ -98,7 +106,10 @@ export namespace content_v2_1 {
     shippingsettings: Resource$Shippingsettings;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.accounts = new Resource$Accounts(this.context);
       this.accountstatuses = new Resource$Accountstatuses(this.context);
@@ -119,17 +130,11 @@ export namespace content_v2_1 {
   }
 
   /**
-   * Account data. After the creation of a new account it may take a few minutes
-   * before it is fully operational. The methods delete, insert, patch, and
-   * update require the admin role.
+   * Account data. After the creation of a new account it may take a few minutes before it is fully operational. The methods delete, insert, patch, and update require the admin role.
    */
   export interface Schema$Account {
     /**
-     * List of linked Ads accounts that are active or pending approval. To
-     * create a new link request, add a new link with status active to the list.
-     * It will remain in a pending state until approved or rejected either in
-     * the Ads interface or through the AdWords API. To delete an active link,
-     * or to cancel a link request, remove it from the list.
+     * List of linked Ads accounts that are active or pending approval. To create a new link request, add a new link with status active to the list. It will remain in a pending state until approved or rejected either in the Ads interface or through the AdWords API. To delete an active link, or to cancel a link request, remove it from the list.
      */
     adsLinks?: Schema$AccountAdsLink[];
     /**
@@ -141,8 +146,7 @@ export namespace content_v2_1 {
      */
     businessInformation?: Schema$AccountBusinessInformation;
     /**
-     * The GMB account which is linked or in the process of being linked with
-     * the Merchant Center account.
+     * The GMB account which is linked or in the process of being linked with the Merchant Center account.
      */
     googleMyBusinessLink?: Schema$AccountGoogleMyBusinessLink;
     /**
@@ -150,8 +154,7 @@ export namespace content_v2_1 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#account&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#account&quot;.
      */
     kind?: string;
     /**
@@ -163,8 +166,7 @@ export namespace content_v2_1 {
      */
     sellerId?: string;
     /**
-     * Users with access to the account. Every account (except for subaccounts)
-     * must have at least one admin user.
+     * Users with access to the account. Every account (except for subaccounts) must have at least one admin user.
      */
     users?: Schema$AccountUser[];
     /**
@@ -172,11 +174,7 @@ export namespace content_v2_1 {
      */
     websiteUrl?: string;
     /**
-     * List of linked YouTube channels that are active or pending approval. To
-     * create a new link request, add a new link with status active to the list.
-     * It will remain in a pending state until approved or rejected in the YT
-     * Creator Studio interface. To delete an active link, or to cancel a link
-     * request, remove it from the list.
+     * List of linked YouTube channels that are active or pending approval. To create a new link request, add a new link with status active to the list. It will remain in a pending state until approved or rejected in the YT Creator Studio interface. To delete an active link, or to cancel a link request, remove it from the list.
      */
     youtubeChannelLinks?: Schema$AccountYouTubeChannelLink[];
   }
@@ -186,8 +184,7 @@ export namespace content_v2_1 {
      */
     country?: string;
     /**
-     * City, town or commune. May also include dependent localities or
-     * sublocalities (e.g. neighborhoods or suburbs).
+     * City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
      */
     locality?: string;
     /**
@@ -195,9 +192,7 @@ export namespace content_v2_1 {
      */
     postalCode?: string;
     /**
-     * Top-level administrative subdivision of the country. For example, a state
-     * like California (&quot;CA&quot;) or a province like Quebec
-     * (&quot;QC&quot;).
+     * Top-level administrative subdivision of the country. For example, a state like California (&quot;CA&quot;) or a province like Quebec (&quot;QC&quot;).
      */
     region?: string;
     /**
@@ -211,16 +206,7 @@ export namespace content_v2_1 {
      */
     adsId?: string;
     /**
-     * Status of the link between this Merchant Center account and the Ads
-     * account. Upon retrieval, it represents the actual status of the link and
-     * can be either active if it was approved in Google Ads or pending if
-     * it&#39;s pending approval. Upon insertion, it represents the intended
-     * status of the link. Re-uploading a link with status active when it&#39;s
-     * still pending or with status pending when it&#39;s already active will
-     * have no effect: the status will remain unchanged. Re-uploading a link
-     * with deprecated status inactive is equivalent to not submitting the link
-     * at all and will delete the link if it was active or cancel the link
-     * request if it was pending.
+     * Status of the link between this Merchant Center account and the Ads account. Upon retrieval, it represents the actual status of the link and can be either active if it was approved in Google Ads or pending if it&#39;s pending approval. Upon insertion, it represents the intended status of the link. Re-uploading a link with status active when it&#39;s still pending or with status pending when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status inactive is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.
      */
     status?: string;
   }
@@ -254,21 +240,17 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountGoogleMyBusinessLink {
     /**
-     * The GMB email address of which a specific account within a GMB account. A
-     * sample account within a GMB account could be a business account with set
-     * of locations, managed under the GMB account.
+     * The GMB email address of which a specific account within a GMB account. A sample account within a GMB account could be a business account with set of locations, managed under the GMB account.
      */
     gmbEmail?: string;
     /**
-     * Status of the link between this Merchant Center account and the GMB
-     * account.
+     * Status of the link between this Merchant Center account and the GMB account.
      */
     status?: string;
   }
   export interface Schema$AccountIdentifier {
     /**
-     * The aggregator ID, set for aggregators and subaccounts (in that case, it
-     * represents the aggregator of the subaccount).
+     * The aggregator ID, set for aggregators and subaccounts (in that case, it represents the aggregator of the subaccount).
      */
     aggregatorId?: string;
     /**
@@ -278,22 +260,17 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountsAuthInfoResponse {
     /**
-     * The account identifiers corresponding to the authenticated user. - For an
-     * individual account: only the merchant ID is defined - For an aggregator:
-     * only the aggregator ID is defined - For a subaccount of an MCA: both the
-     * merchant ID and the aggregator ID are defined.
+     * The account identifiers corresponding to the authenticated user. - For an individual account: only the merchant ID is defined - For an aggregator: only the aggregator ID is defined - For a subaccount of an MCA: both the merchant ID and the aggregator ID are defined.
      */
     accountIdentifiers?: Schema$AccountIdentifier[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#accountsAuthInfoResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsAuthInfoResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$AccountsClaimWebsiteResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#accountsClaimWebsiteResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsClaimWebsiteResponse&quot;.
      */
     kind?: string;
   }
@@ -308,8 +285,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$AccountsCustomBatchRequestEntry {
     /**
-     * The account to create or update. Only defined if the method is insert or
-     * update.
+     * The account to create or update. Only defined if the method is insert or update.
      */
     account?: Schema$Account;
     /**
@@ -321,8 +297,7 @@ export namespace content_v2_1 {
      */
     batchId?: number;
     /**
-     * Whether the account should be deleted if the account has offers. Only
-     * applicable if the method is delete.
+     * Whether the account should be deleted if the account has offers. Only applicable if the method is delete.
      */
     force?: boolean;
     /**
@@ -338,15 +313,13 @@ export namespace content_v2_1 {
      */
     method?: string;
     /**
-     * Only applicable if the method is claimwebsite. Indicates whether or not
-     * to take the claim from another account in case there is a conflict.
+     * Only applicable if the method is claimwebsite. Indicates whether or not to take the claim from another account in case there is a conflict.
      */
     overwrite?: boolean;
   }
   export interface Schema$AccountsCustomBatchRequestEntryLinkRequest {
     /**
-     * Action to perform for this link. The &quot;request&quot; action is only
-     * available to select merchants.
+     * Action to perform for this link. The &quot;request&quot; action is only available to select merchants.
      */
     action?: string;
     /**
@@ -364,8 +337,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$AccountsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#accountsCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsCustomBatchResponse&quot;.
      */
     kind?: string;
   }
@@ -374,8 +346,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$AccountsCustomBatchResponseEntry {
     /**
-     * The retrieved, created, or updated account. Not defined if the method was
-     * delete, claimwebsite or link.
+     * The retrieved, created, or updated account. Not defined if the method was delete, claimwebsite or link.
      */
     account?: Schema$Account;
     /**
@@ -387,15 +358,13 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#accountsCustomBatchResponseEntry&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsCustomBatchResponseEntry&quot;.
      */
     kind?: string;
   }
   export interface Schema$AccountsLinkRequest {
     /**
-     * Action to perform for this link. The &quot;request&quot; action is only
-     * available to select merchants.
+     * Action to perform for this link. The &quot;request&quot; action is only available to select merchants.
      */
     action?: string;
     /**
@@ -409,15 +378,13 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountsLinkResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#accountsLinkResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsLinkResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$AccountsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#accountsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -427,8 +394,7 @@ export namespace content_v2_1 {
     resources?: Schema$Account[];
   }
   /**
-   * The status of an account, i.e., information about its products, which is
-   * computed offline and not returned immediately at insertion time.
+   * The status of an account, i.e., information about its products, which is computed offline and not returned immediately at insertion time.
    */
   export interface Schema$AccountStatus {
     /**
@@ -440,13 +406,11 @@ export namespace content_v2_1 {
      */
     accountLevelIssues?: Schema$AccountStatusAccountLevelIssue[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#accountStatus&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountStatus&quot;.
      */
     kind?: string;
     /**
-     * List of product-related data by channel, destination, and country. Data
-     * in this field may be delayed by up to 30 minutes.
+     * List of product-related data by channel, destination, and country. Data in this field may be delayed by up to 30 minutes.
      */
     products?: Schema$AccountStatusProducts[];
     /**
@@ -503,8 +467,7 @@ export namespace content_v2_1 {
      */
     batchId?: number;
     /**
-     * If set, only issues for the specified destinations are returned,
-     * otherwise only issues for the Shopping destination.
+     * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
     destinations?: string[];
     /**
@@ -522,8 +485,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$AccountstatusesCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#accountstatusesCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountstatusesCustomBatchResponse&quot;.
      */
     kind?: string;
   }
@@ -532,8 +494,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$AccountstatusesCustomBatchResponseEntry {
     /**
-     * The requested account status. Defined if and only if the request was
-     * successful.
+     * The requested account status. Defined if and only if the request was successful.
      */
     accountStatus?: Schema$AccountStatus;
     /**
@@ -547,8 +508,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountstatusesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#accountstatusesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountstatusesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -640,13 +600,11 @@ export namespace content_v2_1 {
      */
     accountId?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#accountTax&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountTax&quot;.
      */
     kind?: string;
     /**
-     * Tax rules. Updating the tax rules will enable US taxes (not reversible).
-     * Defining no rules is equivalent to not charging tax at all.
+     * Tax rules. Updating the tax rules will enable US taxes (not reversible). Defining no rules is equivalent to not charging tax at all.
      */
     rules?: Schema$AccountTaxTaxRule[];
   }
@@ -684,8 +642,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$AccounttaxCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#accounttaxCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accounttaxCustomBatchResponse&quot;.
      */
     kind?: string;
   }
@@ -706,15 +663,13 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#accounttaxCustomBatchResponseEntry&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accounttaxCustomBatchResponseEntry&quot;.
      */
     kind?: string;
   }
   export interface Schema$AccounttaxListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#accounttaxListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accounttaxListResponse&quot;.
      */
     kind?: string;
     /**
@@ -732,13 +687,11 @@ export namespace content_v2_1 {
      */
     country?: string;
     /**
-     * State (or province) is which the tax is applicable, described by its
-     * location ID (also called criteria ID).
+     * State (or province) is which the tax is applicable, described by its location ID (also called criteria ID).
      */
     locationId?: string;
     /**
-     * Explicit tax rate in percent, represented as a floating point number
-     * without the percentage character. Must not be negative.
+     * Explicit tax rate in percent, represented as a floating point number without the percentage character. Must not be negative.
      */
     ratePercent?: string;
     /**
@@ -746,8 +699,7 @@ export namespace content_v2_1 {
      */
     shippingTaxed?: boolean;
     /**
-     * Whether the tax rate is taken from a global tax table or specified
-     * explicitly.
+     * Whether the tax rate is taken from a global tax table or specified explicitly.
      */
     useGlobalRate?: boolean;
   }
@@ -779,23 +731,13 @@ export namespace content_v2_1 {
      */
     channelId?: string;
     /**
-     * Status of the link between this Merchant Center account and the YouTube
-     * channel. Upon retrieval, it represents the actual status of the link and
-     * can be either active if it was approved in YT Creator Studio or pending
-     * if it&#39;s pending approval. Upon insertion, it represents the intended
-     * status of the link. Re-uploading a link with status active when it&#39;s
-     * still pending or with status pending when it&#39;s already active will
-     * have no effect: the status will remain unchanged. Re-uploading a link
-     * with deprecated status inactive is equivalent to not submitting the link
-     * at all and will delete the link if it was active or cancel the link
-     * request if it was pending.
+     * Status of the link between this Merchant Center account and the YouTube channel. Upon retrieval, it represents the actual status of the link and can be either active if it was approved in YT Creator Studio or pending if it&#39;s pending approval. Upon insertion, it represents the intended status of the link. Re-uploading a link with status active when it&#39;s still pending or with status pending when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status inactive is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.
      */
     status?: string;
   }
   export interface Schema$Amount {
     /**
-     * [required] The pre-tax or post-tax price depending on the location of the
-     * order.
+     * [required] The pre-tax or post-tax price depending on the location of the order.
      */
     priceAmount?: Schema$Price;
     /**
@@ -805,23 +747,15 @@ export namespace content_v2_1 {
   }
   export interface Schema$CarrierRate {
     /**
-     * Carrier service, such as &quot;UPS&quot; or &quot;Fedex&quot;. The list
-     * of supported carriers can be retrieved via the getSupportedCarriers
-     * method. Required.
+     * Carrier service, such as &quot;UPS&quot; or &quot;Fedex&quot;. The list of supported carriers can be retrieved via the getSupportedCarriers method. Required.
      */
     carrierName?: string;
     /**
-     * Carrier service, such as &quot;ground&quot; or &quot;2 days&quot;. The
-     * list of supported services for a carrier can be retrieved via the
-     * getSupportedCarriers method. Required.
+     * Carrier service, such as &quot;ground&quot; or &quot;2 days&quot;. The list of supported services for a carrier can be retrieved via the getSupportedCarriers method. Required.
      */
     carrierService?: string;
     /**
-     * Additive shipping rate modifier. Can be negative. For example {
-     * &quot;value&quot;: &quot;1&quot;, &quot;currency&quot; : &quot;USD&quot;
-     * } adds $1 to the rate, { &quot;value&quot;: &quot;-3&quot;,
-     * &quot;currency&quot; : &quot;USD&quot; } removes $3 from the rate.
-     * Optional.
+     * Additive shipping rate modifier. Can be negative. For example { &quot;value&quot;: &quot;1&quot;, &quot;currency&quot; : &quot;USD&quot; } adds $1 to the rate, { &quot;value&quot;: &quot;-3&quot;, &quot;currency&quot; : &quot;USD&quot; } removes $3 from the rate. Optional.
      */
     flatAdjustment?: Schema$Price;
     /**
@@ -833,16 +767,13 @@ export namespace content_v2_1 {
      */
     originPostalCode?: string;
     /**
-     * Multiplicative shipping rate modifier as a number in decimal notation.
-     * Can be negative. For example &quot;5.4&quot; increases the rate by 5.4%,
-     * &quot;-3&quot; decreases the rate by 3%. Optional.
+     * Multiplicative shipping rate modifier as a number in decimal notation. Can be negative. For example &quot;5.4&quot; increases the rate by 5.4%, &quot;-3&quot; decreases the rate by 3%. Optional.
      */
     percentageAdjustment?: string;
   }
   export interface Schema$CarriersCarrier {
     /**
-     * The CLDR country code of the carrier (e.g., &quot;US&quot;). Always
-     * present.
+     * The CLDR country code of the carrier (e.g., &quot;US&quot;). Always present.
      */
     country?: string;
     /**
@@ -850,20 +781,17 @@ export namespace content_v2_1 {
      */
     name?: string;
     /**
-     * A list of supported services (e.g., &quot;ground&quot;) for that carrier.
-     * Contains at least one service.
+     * A list of supported services (e.g., &quot;ground&quot;) for that carrier. Contains at least one service.
      */
     services?: string[];
   }
   export interface Schema$CustomAttribute {
     /**
-     * Subattributes within this attribute group. Exactly one of value or
-     * groupValues must be provided.
+     * Subattributes within this attribute group. Exactly one of value or groupValues must be provided.
      */
     groupValues?: Schema$CustomAttribute[];
     /**
-     * The name of the attribute. Underscores will be replaced by spaces upon
-     * insertion.
+     * The name of the attribute. Underscores will be replaced by spaces upon insertion.
      */
     name?: string;
     /**
@@ -877,19 +805,15 @@ export namespace content_v2_1 {
   }
   export interface Schema$CutoffTime {
     /**
-     * Hour of the cutoff time until which an order has to be placed to be
-     * processed in the same day. Required.
+     * Hour of the cutoff time until which an order has to be placed to be processed in the same day. Required.
      */
     hour?: number;
     /**
-     * Minute of the cutoff time until which an order has to be placed to be
-     * processed in the same day. Required.
+     * Minute of the cutoff time until which an order has to be placed to be processed in the same day. Required.
      */
     minute?: number;
     /**
-     * Timezone identifier for the cutoff time. A list of identifiers can be
-     * found in  the AdWords API documentation. E.g. &quot;Europe/Zurich&quot;.
-     * Required.
+     * Timezone identifier for the cutoff time. A list of identifiers can be found in  the AdWords API documentation. E.g. &quot;Europe/Zurich&quot;. Required.
      */
     timezone?: string;
   }
@@ -898,13 +822,11 @@ export namespace content_v2_1 {
    */
   export interface Schema$Datafeed {
     /**
-     * The two-letter ISO 639-1 language in which the attributes are defined in
-     * the data feed.
+     * The two-letter ISO 639-1 language in which the attributes are defined in the data feed.
      */
     attributeLanguage?: string;
     /**
-     * The type of data feed. For product inventory feeds, only feeds for local
-     * stores, not online stores, are supported.
+     * The type of data feed. For product inventory feeds, only feeds for local stores, not online stores, are supported.
      */
     contentType?: string;
     /**
@@ -924,8 +846,7 @@ export namespace content_v2_1 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#datafeed&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeed&quot;.
      */
     kind?: string;
     /**
@@ -938,10 +859,7 @@ export namespace content_v2_1 {
     targets?: Schema$DatafeedTarget[];
   }
   /**
-   * The required fields vary based on the frequency of fetching. For a monthly
-   * fetch schedule, day_of_month and hour are required. For a weekly fetch
-   * schedule, weekday and hour are required. For a daily fetch schedule, only
-   * hour is required.
+   * The required fields vary based on the frequency of fetching. For a monthly fetch schedule, day_of_month and hour are required. For a weekly fetch schedule, weekday and hour are required. For a daily fetch schedule, only hour is required.
    */
   export interface Schema$DatafeedFetchSchedule {
     /**
@@ -949,10 +867,7 @@ export namespace content_v2_1 {
      */
     dayOfMonth?: number;
     /**
-     * The URL where the feed file can be fetched. Google Merchant Center will
-     * support automatic scheduled uploads using the HTTP, HTTPS, FTP, or SFTP
-     * protocols, so the value will need to be a valid link using one of those
-     * four protocols.
+     * The URL where the feed file can be fetched. Google Merchant Center will support automatic scheduled uploads using the HTTP, HTTPS, FTP, or SFTP protocols, so the value will need to be a valid link using one of those four protocols.
      */
     fetchUrl?: string;
     /**
@@ -972,8 +887,7 @@ export namespace content_v2_1 {
      */
     paused?: boolean;
     /**
-     * Time zone used for schedule. UTC by default. E.g.,
-     * &quot;America/Los_Angeles&quot;.
+     * Time zone used for schedule. UTC by default. E.g., &quot;America/Los_Angeles&quot;.
      */
     timeZone?: string;
     /**
@@ -987,19 +901,15 @@ export namespace content_v2_1 {
   }
   export interface Schema$DatafeedFormat {
     /**
-     * Delimiter for the separation of values in a delimiter-separated values
-     * feed. If not specified, the delimiter will be auto-detected. Ignored for
-     * non-DSV data feeds.
+     * Delimiter for the separation of values in a delimiter-separated values feed. If not specified, the delimiter will be auto-detected. Ignored for non-DSV data feeds.
      */
     columnDelimiter?: string;
     /**
-     * Character encoding scheme of the data feed. If not specified, the
-     * encoding will be auto-detected.
+     * Character encoding scheme of the data feed. If not specified, the encoding will be auto-detected.
      */
     fileEncoding?: string;
     /**
-     * Specifies how double quotes are interpreted. If not specified, the mode
-     * will be auto-detected. Ignored for non-DSV data feeds.
+     * Specifies how double quotes are interpreted. If not specified, the mode will be auto-detected. Ignored for non-DSV data feeds.
      */
     quotingMode?: string;
   }
@@ -1037,8 +947,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$DatafeedsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#datafeedsCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedsCustomBatchResponse&quot;.
      */
     kind?: string;
   }
@@ -1051,8 +960,7 @@ export namespace content_v2_1 {
      */
     batchId?: number;
     /**
-     * The requested data feed. Defined if and only if the request was
-     * successful.
+     * The requested data feed. Defined if and only if the request was successful.
      */
     datafeed?: Schema$Datafeed;
     /**
@@ -1062,15 +970,13 @@ export namespace content_v2_1 {
   }
   export interface Schema$DatafeedsFetchNowResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#datafeedsFetchNowResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedsFetchNowResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$DatafeedsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#datafeedsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -1080,13 +986,11 @@ export namespace content_v2_1 {
     resources?: Schema$Datafeed[];
   }
   /**
-   * The status of a datafeed, i.e., the result of the last retrieval of the
-   * datafeed computed asynchronously when the feed processing is finished.
+   * The status of a datafeed, i.e., the result of the last retrieval of the datafeed computed asynchronously when the feed processing is finished.
    */
   export interface Schema$DatafeedStatus {
     /**
-     * The country for which the status is reported, represented as a  CLDR
-     * territory code.
+     * The country for which the status is reported, represented as a  CLDR territory code.
      */
     country?: string;
     /**
@@ -1106,8 +1010,7 @@ export namespace content_v2_1 {
      */
     itemsValid?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#datafeedStatus&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedStatus&quot;.
      */
     kind?: string;
     /**
@@ -1163,9 +1066,7 @@ export namespace content_v2_1 {
      */
     batchId?: number;
     /**
-     * The country for which to get the datafeed status. If this parameter is
-     * provided then language must also be provided. Note that for multi-target
-     * datafeeds this parameter is required.
+     * The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that for multi-target datafeeds this parameter is required.
      */
     country?: string;
     /**
@@ -1173,9 +1074,7 @@ export namespace content_v2_1 {
      */
     datafeedId?: string;
     /**
-     * The language for which to get the datafeed status. If this parameter is
-     * provided then country must also be provided. Note that for multi-target
-     * datafeeds this parameter is required.
+     * The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that for multi-target datafeeds this parameter is required.
      */
     language?: string;
     /**
@@ -1190,8 +1089,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$DatafeedstatusesCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#datafeedstatusesCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedstatusesCustomBatchResponse&quot;.
      */
     kind?: string;
   }
@@ -1204,8 +1102,7 @@ export namespace content_v2_1 {
      */
     batchId?: number;
     /**
-     * The requested data feed status. Defined if and only if the request was
-     * successful.
+     * The requested data feed status. Defined if and only if the request was successful.
      */
     datafeedStatus?: Schema$DatafeedStatus;
     /**
@@ -1215,8 +1112,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$DatafeedstatusesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#datafeedstatusesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedstatusesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -1244,65 +1140,49 @@ export namespace content_v2_1 {
   }
   export interface Schema$DatafeedTarget {
     /**
-     * The country where the items in the feed will be included in the search
-     * index, represented as a  CLDR territory code.
+     * The country where the items in the feed will be included in the search index, represented as a  CLDR territory code.
      */
     country?: string;
     /**
-     * The list of destinations to exclude for this target (corresponds to
-     * unchecked check boxes in Merchant Center).
+     * The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center).
      */
     excludedDestinations?: string[];
     /**
-     * The list of destinations to include for this target (corresponds to
-     * checked check boxes in Merchant Center). Default destinations are always
-     * included unless provided in the excluded_destination field.
+     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in the excluded_destination field.
      */
     includedDestinations?: string[];
     /**
-     * The two-letter ISO 639-1 language of the items in the feed. Must be a
-     * valid language for targets[].country.
+     * The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for targets[].country.
      */
     language?: string;
   }
   export interface Schema$DeliveryTime {
     /**
-     * Business days cutoff time definition. If not configured the cutoff time
-     * will be defaulted to 8AM PST.
+     * Business days cutoff time definition. If not configured the cutoff time will be defaulted to 8AM PST.
      */
     cutoffTime?: Schema$CutoffTime;
     /**
-     * Holiday cutoff definitions. If configured, they specify order cutoff
-     * times for holiday-specific shipping.
+     * Holiday cutoff definitions. If configured, they specify order cutoff times for holiday-specific shipping.
      */
     holidayCutoffs?: Schema$HolidayCutoff[];
     /**
-     * Maximum number of business days spent before an order is shipped. 0 means
-     * same day shipped, 1 means next day shipped. Must be greater than or equal
-     * to minHandlingTimeInDays.
+     * Maximum number of business days spent before an order is shipped. 0 means same day shipped, 1 means next day shipped. Must be greater than or equal to minHandlingTimeInDays.
      */
     maxHandlingTimeInDays?: number;
     /**
-     * Maximum number of business days that is spent in transit. 0 means same
-     * day delivery, 1 means next day delivery. Must be greater than or equal to
-     * minTransitTimeInDays.
+     * Maximum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Must be greater than or equal to minTransitTimeInDays.
      */
     maxTransitTimeInDays?: number;
     /**
-     * Minimum number of business days spent before an order is shipped. 0 means
-     * same day shipped, 1 means next day shipped.
+     * Minimum number of business days spent before an order is shipped. 0 means same day shipped, 1 means next day shipped.
      */
     minHandlingTimeInDays?: number;
     /**
-     * Minimum number of business days that is spent in transit. 0 means same
-     * day delivery, 1 means next day delivery. Either
-     * {min,max}transitTimeInDays or transitTimeTable must be set, but not both.
+     * Minimum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Either {min,max}transitTimeInDays or transitTimeTable must be set, but not both.
      */
     minTransitTimeInDays?: number;
     /**
-     * Transit time table, number of business days spent in transit based on row
-     * and column dimensions. Either {min,max}transitTimeInDays or
-     * transitTimeTable can be set, but not both.
+     * Transit time table, number of business days spent in transit based on row and column dimensions. Either {min,max}transitTimeInDays or transitTimeTable can be set, but not both.
      */
     transitTimeTable?: Schema$TransitTable;
   }
@@ -1369,71 +1249,41 @@ export namespace content_v2_1 {
     type?: string;
   }
   /**
-   * A non-empty list of row or column headers for a table. Exactly one of
-   * prices, weights, numItems, postalCodeGroupNames, or location must be set.
+   * A non-empty list of row or column headers for a table. Exactly one of prices, weights, numItems, postalCodeGroupNames, or location must be set.
    */
   export interface Schema$Headers {
     /**
-     * A list of location ID sets. Must be non-empty. Can only be set if all
-     * other fields are not set.
+     * A list of location ID sets. Must be non-empty. Can only be set if all other fields are not set.
      */
     locations?: Schema$LocationIdSet[];
     /**
-     * A list of inclusive number of items upper bounds. The last value can be
-     * &quot;infinity&quot;. For example [&quot;10&quot;, &quot;50&quot;,
-     * &quot;infinity&quot;] represents the headers &quot;&lt;= 10 items&quot;,
-     * &quot; 50 items&quot;. Must be non-empty. Can only be set if all other
-     * fields are not set.
+     * A list of inclusive number of items upper bounds. The last value can be &quot;infinity&quot;. For example [&quot;10&quot;, &quot;50&quot;, &quot;infinity&quot;] represents the headers &quot;&lt;= 10 items&quot;, &quot; 50 items&quot;. Must be non-empty. Can only be set if all other fields are not set.
      */
     numberOfItems?: string[];
     /**
-     * A list of postal group names. The last value can be &quot;all other
-     * locations&quot;. Example: [&quot;zone 1&quot;, &quot;zone 2&quot;,
-     * &quot;all other locations&quot;]. The referred postal code groups must
-     * match the delivery country of the service. Must be non-empty. Can only be
-     * set if all other fields are not set.
+     * A list of postal group names. The last value can be &quot;all other locations&quot;. Example: [&quot;zone 1&quot;, &quot;zone 2&quot;, &quot;all other locations&quot;]. The referred postal code groups must match the delivery country of the service. Must be non-empty. Can only be set if all other fields are not set.
      */
     postalCodeGroupNames?: string[];
     /**
-     * A list of inclusive order price upper bounds. The last price&#39;s value
-     * can be &quot;infinity&quot;. For example [{&quot;value&quot;:
-     * &quot;10&quot;, &quot;currency&quot;: &quot;USD&quot;},
-     * {&quot;value&quot;: &quot;500&quot;, &quot;currency&quot;:
-     * &quot;USD&quot;}, {&quot;value&quot;: &quot;infinity&quot;,
-     * &quot;currency&quot;: &quot;USD&quot;}] represents the headers
-     * &quot;&lt;= $10&quot;, &quot; $500&quot;. All prices within a service
-     * must have the same currency. Must be non-empty. Can only be set if all
-     * other fields are not set.
+     * A list of inclusive order price upper bounds. The last price&#39;s value can be &quot;infinity&quot;. For example [{&quot;value&quot;: &quot;10&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;500&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;currency&quot;: &quot;USD&quot;}] represents the headers &quot;&lt;= $10&quot;, &quot; $500&quot;. All prices within a service must have the same currency. Must be non-empty. Can only be set if all other fields are not set.
      */
     prices?: Schema$Price[];
     /**
-     * A list of inclusive order weight upper bounds. The last weight&#39;s
-     * value can be &quot;infinity&quot;. For example [{&quot;value&quot;:
-     * &quot;10&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;:
-     * &quot;50&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;:
-     * &quot;infinity&quot;, &quot;unit&quot;: &quot;kg&quot;}] represents the
-     * headers &quot;&lt;= 10kg&quot;, &quot; 50kg&quot;. All weights within a
-     * service must have the same unit. Must be non-empty. Can only be set if
-     * all other fields are not set.
+     * A list of inclusive order weight upper bounds. The last weight&#39;s value can be &quot;infinity&quot;. For example [{&quot;value&quot;: &quot;10&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;50&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;unit&quot;: &quot;kg&quot;}] represents the headers &quot;&lt;= 10kg&quot;, &quot; 50kg&quot;. All weights within a service must have the same unit. Must be non-empty. Can only be set if all other fields are not set.
      */
     weights?: Schema$Weight[];
   }
   export interface Schema$HolidayCutoff {
     /**
-     * Date of the order deadline, in ISO 8601 format. E.g.
-     * &quot;2016-11-29&quot; for 29th November 2016. Required.
+     * Date of the order deadline, in ISO 8601 format. E.g. &quot;2016-11-29&quot; for 29th November 2016. Required.
      */
     deadlineDate?: string;
     /**
-     * Hour of the day on the deadline date until which the order has to be
-     * placed to qualify for the delivery guarantee. Possible values are: 0
-     * (midnight), 1, ..., 12 (noon), 13, ..., 23. Required.
+     * Hour of the day on the deadline date until which the order has to be placed to qualify for the delivery guarantee. Possible values are: 0 (midnight), 1, ..., 12 (noon), 13, ..., 23. Required.
      */
     deadlineHour?: number;
     /**
-     * Timezone identifier for the deadline hour. A list of identifiers can be
-     * found in  the AdWords API documentation. E.g. &quot;Europe/Zurich&quot;.
-     * Required.
+     * Timezone identifier for the deadline hour. A list of identifiers can be found in  the AdWords API documentation. E.g. &quot;Europe/Zurich&quot;. Required.
      */
     deadlineTimezone?: string;
     /**
@@ -1441,40 +1291,29 @@ export namespace content_v2_1 {
      */
     holidayId?: string;
     /**
-     * Date on which the deadline will become visible to consumers in ISO 8601
-     * format. E.g. &quot;2016-10-31&quot; for 31st October 2016. Required.
+     * Date on which the deadline will become visible to consumers in ISO 8601 format. E.g. &quot;2016-10-31&quot; for 31st October 2016. Required.
      */
     visibleFromDate?: string;
   }
   export interface Schema$HolidaysHoliday {
     /**
-     * The CLDR territory code of the country in which the holiday is available.
-     * E.g. &quot;US&quot;, &quot;DE&quot;, &quot;GB&quot;. A holiday cutoff can
-     * only be configured in a shipping settings service with matching delivery
-     * country. Always present.
+     * The CLDR territory code of the country in which the holiday is available. E.g. &quot;US&quot;, &quot;DE&quot;, &quot;GB&quot;. A holiday cutoff can only be configured in a shipping settings service with matching delivery country. Always present.
      */
     countryCode?: string;
     /**
-     * Date of the holiday, in ISO 8601 format. E.g. &quot;2016-12-25&quot; for
-     * Christmas 2016. Always present.
+     * Date of the holiday, in ISO 8601 format. E.g. &quot;2016-12-25&quot; for Christmas 2016. Always present.
      */
     date?: string;
     /**
-     * Date on which the order has to arrive at the customer&#39;s, in ISO 8601
-     * format. E.g. &quot;2016-12-24&quot; for 24th December 2016. Always
-     * present.
+     * Date on which the order has to arrive at the customer&#39;s, in ISO 8601 format. E.g. &quot;2016-12-24&quot; for 24th December 2016. Always present.
      */
     deliveryGuaranteeDate?: string;
     /**
-     * Hour of the day in the delivery location&#39;s timezone on the guaranteed
-     * delivery date by which the order has to arrive at the customer&#39;s.
-     * Possible values are: 0 (midnight), 1, ..., 12 (noon), 13, ..., 23. Always
-     * present.
+     * Hour of the day in the delivery location&#39;s timezone on the guaranteed delivery date by which the order has to arrive at the customer&#39;s. Possible values are: 0 (midnight), 1, ..., 12 (noon), 13, ..., 23. Always present.
      */
     deliveryGuaranteeHour?: string;
     /**
-     * Unique identifier for the holiday to be used when configuring holiday
-     * cutoffs. Always present.
+     * Unique identifier for the holiday to be used when configuring holiday cutoffs. Always present.
      */
     id?: string;
     /**
@@ -1591,13 +1430,11 @@ export namespace content_v2_1 {
     posExternalAccountId?: string;
   }
   /**
-   * Local Inventory ads (LIA) settings. All methods except listposdataproviders
-   * require the admin role.
+   * Local Inventory ads (LIA) settings. All methods except listposdataproviders require the admin role.
    */
   export interface Schema$LiaSettings {
     /**
-     * The ID of the account to which these LIA settings belong. Ignored upon
-     * update, always present in get request responses.
+     * The ID of the account to which these LIA settings belong. Ignored upon update, always present in get request responses.
      */
     accountId?: string;
     /**
@@ -1605,8 +1442,7 @@ export namespace content_v2_1 {
      */
     countrySettings?: Schema$LiaCountrySettings[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#liaSettings&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liaSettings&quot;.
      */
     kind?: string;
   }
@@ -1626,13 +1462,11 @@ export namespace content_v2_1 {
      */
     batchId?: number;
     /**
-     * Inventory validation contact email. Required only for
-     * SetInventoryValidationContact.
+     * Inventory validation contact email. Required only for SetInventoryValidationContact.
      */
     contactEmail?: string;
     /**
-     * Inventory validation contact name. Required only for
-     * SetInventoryValidationContact.
+     * Inventory validation contact name. Required only for SetInventoryValidationContact.
      */
     contactName?: string;
     /**
@@ -1667,8 +1501,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$LiasettingsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#liasettingsCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsCustomBatchResponse&quot;.
      */
     kind?: string;
   }
@@ -1686,8 +1519,7 @@ export namespace content_v2_1 {
      */
     gmbAccounts?: Schema$GmbAccounts;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#liasettingsCustomBatchResponseEntry&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsCustomBatchResponseEntry&quot;.
      */
     kind?: string;
     /**
@@ -1709,15 +1541,13 @@ export namespace content_v2_1 {
      */
     gmbAccounts?: Schema$GmbAccountsGmbAccount[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#liasettingsGetAccessibleGmbAccountsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsGetAccessibleGmbAccountsResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$LiasettingsListPosDataProvidersResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#liasettingsListPosDataProvidersResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsListPosDataProvidersResponse&quot;.
      */
     kind?: string;
     /**
@@ -1727,8 +1557,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$LiasettingsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#liasettingsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -1739,43 +1568,37 @@ export namespace content_v2_1 {
   }
   export interface Schema$LiasettingsRequestGmbAccessResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#liasettingsRequestGmbAccessResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsRequestGmbAccessResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$LiasettingsRequestInventoryVerificationResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#liasettingsRequestInventoryVerificationResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsRequestInventoryVerificationResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$LiasettingsSetInventoryVerificationContactResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#liasettingsSetInventoryVerificationContactResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsSetInventoryVerificationContactResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$LiasettingsSetPosDataProviderResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#liasettingsSetPosDataProviderResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsSetPosDataProviderResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$LocationIdSet {
     /**
-     * A non-empty list of location IDs. They must all be of the same location
-     * type (e.g., state).
+     * A non-empty list of location IDs. They must all be of the same location type (e.g., state).
      */
     locationIds?: string[];
   }
   export interface Schema$LoyaltyPoints {
     /**
-     * Name of loyalty points program. It is recommended to limit the name to 12
-     * full-width characters or 24 Roman characters.
+     * Name of loyalty points program. It is recommended to limit the name to 12 full-width characters or 24 Roman characters.
      */
     name?: string;
     /**
@@ -1783,9 +1606,7 @@ export namespace content_v2_1 {
      */
     pointsValue?: string;
     /**
-     * The ratio of a point when converted to currency. Google assumes currency
-     * based on Merchant Center settings. If ratio is left out, it defaults
-     * to 1.0.
+     * The ratio of a point when converted to currency. Google assumes currency based on Merchant Center settings. If ratio is left out, it defaults to 1.0.
      */
     ratio?: number;
   }
@@ -1830,8 +1651,7 @@ export namespace content_v2_1 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#order&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#order&quot;.
      */
     kind?: string;
     /**
@@ -1844,15 +1664,11 @@ export namespace content_v2_1 {
      */
     merchantOrderId?: string;
     /**
-     * The net amount for the order (price part). For example, if an order was
-     * originally for $100 and a refund was issued for $20, the net amount will
-     * be $80.
+     * The net amount for the order (price part). For example, if an order was originally for $100 and a refund was issued for $20, the net amount will be $80.
      */
     netPriceAmount?: Schema$Price;
     /**
-     * The net amount for the order (tax part). Note that in certain cases due
-     * to taxable base adjustment netTaxAmount might not match to a sum of tax
-     * field across all lineItems and refunds.
+     * The net amount for the order (tax part). Note that in certain cases due to taxable base adjustment netTaxAmount might not match to a sum of tax field across all lineItems and refunds.
      */
     netTaxAmount?: Schema$Price;
     /**
@@ -1898,9 +1714,7 @@ export namespace content_v2_1 {
      */
     country?: string;
     /**
-     * Strings representing the lines of the printed label for mailing the
-     * order, for example: John Smith 1600 Amphitheatre Parkway Mountain View,
-     * CA, 94043 United States
+     * Strings representing the lines of the printed label for mailing the order, for example: John Smith 1600 Amphitheatre Parkway Mountain View, CA, 94043 United States
      */
     fullAddress?: string[];
     /**
@@ -1908,8 +1722,7 @@ export namespace content_v2_1 {
      */
     isPostOfficeBox?: boolean;
     /**
-     * City, town or commune. May also include dependent localities or
-     * sublocalities (e.g. neighborhoods or suburbs).
+     * City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
      */
     locality?: string;
     /**
@@ -1921,9 +1734,7 @@ export namespace content_v2_1 {
      */
     recipientName?: string;
     /**
-     * Top-level administrative subdivision of the country. For example, a state
-     * like California (&quot;CA&quot;) or a province like Quebec
-     * (&quot;QC&quot;).
+     * Top-level administrative subdivision of the country. For example, a state like California (&quot;CA&quot;) or a province like Quebec (&quot;QC&quot;).
      */
     region?: string;
     /**
@@ -1945,10 +1756,7 @@ export namespace content_v2_1 {
      */
     quantity?: number;
     /**
-     * The reason for the cancellation. Orders that are cancelled with a
-     * noInventory reason will lead to the removal of the product from Shopping
-     * Actions until you make an update to that product. This will not affect
-     * your Shopping ads.
+     * The reason for the cancellation. Orders that are cancelled with a noInventory reason will lead to the removal of the product from Shopping Actions until you make an update to that product. This will not affect your Shopping ads.
      */
     reason?: string;
     /**
@@ -1962,26 +1770,21 @@ export namespace content_v2_1 {
      */
     fullName?: string;
     /**
-     * Customer&#39;s marketing preferences.
+     * Customer&#39;s marketing preferences. Contains the marketing opt-in information that is current at the time that the merchant call. User preference selections can change from one order to the next so preferences must be checked with every order.
      */
     marketingRightsInfo?: Schema$OrderCustomerMarketingRightsInfo;
   }
   export interface Schema$OrderCustomerMarketingRightsInfo {
     /**
-     * Last known user selection regarding marketing preferences. In certain
-     * cases this selection might not be known, so this field would be empty.
+     * Last known customer selection regarding marketing preferences. In certain cases this selection might not be known, so this field would be empty. If a customer selected granted in their most recent order, they can be subscribed to marketing emails. Customers who have chosen denied must not be subscribed, or must be unsubscribed if already opted-in.
      */
     explicitMarketingPreference?: string;
     /**
-     * Timestamp when last time marketing preference was updated. Could be
-     * empty, if user wasn&#39;t offered a selection yet.
+     * Timestamp when last time marketing preference was updated. Could be empty, if user wasn&#39;t offered a selection yet.
      */
     lastUpdatedTimestamp?: string;
     /**
-     * Email address that can be used for marketing purposes. The field may be
-     * empty even if explicitMarketingPreference is &#39;granted&#39;. This
-     * happens when retrieving an old order from the customer who deleted their
-     * account.
+     * Email address that can be used for marketing purposes. The field may be empty even if explicitMarketingPreference is &#39;granted&#39;. This happens when retrieving an old order from the customer who deleted their account.
      */
     marketingEmailAddress?: string;
   }
@@ -2009,14 +1812,11 @@ export namespace content_v2_1 {
      */
     lineItemInvoices?: Schema$ShipmentInvoiceLineItemInvoice[];
     /**
-     * [required] The ID of the operation, unique across all operations for a
-     * given order.
+     * [required] The ID of the operation, unique across all operations for a given order.
      */
     operationId?: string;
     /**
-     * [required] ID of the shipment group. It is assigned by the merchant in
-     * the shipLineItems method and is used to group multiple line items that
-     * have the same kind of shipping charges.
+     * [required] ID of the shipment group. It is assigned by the merchant in the shipLineItems method and is used to group multiple line items that have the same kind of shipping charges.
      */
     shipmentGroupId?: string;
   }
@@ -2026,8 +1826,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#orderinvoicesCreateChargeInvoiceResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderinvoicesCreateChargeInvoiceResponse&quot;.
      */
     kind?: string;
   }
@@ -2037,23 +1836,17 @@ export namespace content_v2_1 {
      */
     invoiceId?: string;
     /**
-     * [required] The ID of the operation, unique across all operations for a
-     * given order.
+     * [required] The ID of the operation, unique across all operations for a given order.
      */
     operationId?: string;
     /**
-     * Option to create a refund-only invoice. Exactly one of refundOnlyOption
-     * or returnOption must be provided.
+     * Option to create a refund-only invoice. Exactly one of refundOnlyOption or returnOption must be provided.
      */
-    refundOnlyOption?:
-        Schema$OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceRefundOption;
+    refundOnlyOption?: Schema$OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceRefundOption;
     /**
-     * Option to create an invoice for a refund and mark all items within the
-     * invoice as returned. Exactly one of refundOnlyOption or returnOption must
-     * be provided.
+     * Option to create an invoice for a refund and mark all items within the invoice as returned. Exactly one of refundOnlyOption or returnOption must be provided.
      */
-    returnOption?:
-        Schema$OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceReturnOption;
+    returnOption?: Schema$OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceReturnOption;
     /**
      * Invoice details for different shipment groups.
      */
@@ -2065,8 +1858,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#orderinvoicesCreateRefundInvoiceResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderinvoicesCreateRefundInvoiceResponse&quot;.
      */
     kind?: string;
   }
@@ -2104,14 +1896,11 @@ export namespace content_v2_1 {
      */
     id?: string;
     /**
-     * Total price for the line item. For example, if two items for $10 are
-     * purchased, the total price will be $20.
+     * Total price for the line item. For example, if two items for $10 are purchased, the total price will be $20.
      */
     price?: Schema$Price;
     /**
-     * Product data as seen by customer from the time of the order placement.
-     * Note that certain attributes values (e.g. title or gtin) might be
-     * reformatted and no longer match values submitted via product feed.
+     * Product data as seen by customer from the time of the order placement. Note that certain attributes values (e.g. title or gtin) might be reformatted and no longer match values submitted via product feed.
      */
     product?: Schema$OrderLineItemProduct;
     /**
@@ -2151,9 +1940,7 @@ export namespace content_v2_1 {
      */
     shippingDetails?: Schema$OrderLineItemShippingDetails;
     /**
-     * Total tax amount for the line item. For example, if two items are
-     * purchased, and each have a cost tax of $2, the total tax amount will be
-     * $4.
+     * Total tax amount for the line item. For example, if two items are purchased, and each have a cost tax of $2, the total tax amount will be $4.
      */
     tax?: Schema$Price;
   }
@@ -2215,9 +2002,7 @@ export namespace content_v2_1 {
      */
     title?: string;
     /**
-     * Variant attributes for the item. These are dimensions of the product,
-     * such as color, gender, material, pattern, and size. You can find a
-     * comprehensive list of variant attributes here.
+     * Variant attributes for the item. These are dimensions of the product, such as color, gender, material, pattern, and size. You can find a comprehensive list of variant attributes here.
      */
     variantAttributes?: Schema$OrderLineItemProductVariantAttribute[];
   }
@@ -2271,8 +2056,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderLineItemShippingDetailsMethod {
     /**
-     * The carrier for the shipping. Optional. See shipments[].carrier for a
-     * list of acceptable values.
+     * The carrier for the shipping. Optional. See shipments[].carrier for a list of acceptable values.
      */
     carrier?: string;
     /**
@@ -2290,20 +2074,17 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderMerchantProvidedAnnotation {
     /**
-     * Key for additional merchant provided (as key-value pairs) annotation
-     * about the line item.
+     * Key for additional merchant provided (as key-value pairs) annotation about the line item.
      */
     key?: string;
     /**
-     * Value for additional merchant provided (as key-value pairs) annotation
-     * about the line item.
+     * Value for additional merchant provided (as key-value pairs) annotation about the line item.
      */
     value?: string;
   }
   export interface Schema$OrderPromotion {
     /**
-     * Items which this promotion may be applied to. If empty, there are no
-     * restrictions on applicable items and quantity.
+     * Items which this promotion may be applied to. If empty, there are no restrictions on applicable items and quantity.
      */
     applicableItems?: Schema$OrderPromotionItem[];
     /**
@@ -2315,13 +2096,11 @@ export namespace content_v2_1 {
      */
     funder?: string;
     /**
-     * This field is used to identify promotions within merchants&#39; own
-     * systems.
+     * This field is used to identify promotions within merchants&#39; own systems.
      */
     merchantPromotionId?: string;
     /**
-     * Estimated discount applied to price. Amount is pre-tax or post-tax
-     * depending on location of order.
+     * Estimated discount applied to price. Amount is pre-tax or post-tax depending on location of order.
      */
     priceValue?: Schema$Price;
     /**
@@ -2406,8 +2185,7 @@ export namespace content_v2_1 {
      */
     disbursements?: Schema$OrderReportDisbursement[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#orderreportsListDisbursementsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderreportsListDisbursementsResponse&quot;.
      */
     kind?: string;
     /**
@@ -2417,8 +2195,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderreportsListTransactionsResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#orderreportsListTransactionsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderreportsListTransactionsResponse&quot;.
      */
     kind?: string;
     /**
@@ -2492,8 +2269,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderreturnsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#orderreturnsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderreturnsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -2514,22 +2290,19 @@ export namespace content_v2_1 {
      */
     executionStatus?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersAcknowledgeResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersAcknowledgeResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$OrdersAdvanceTestOrderResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersAdvanceTestOrderResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersAdvanceTestOrderResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$OrdersCancelLineItemRequest {
     /**
-     * The ID of the line item to cancel. Either lineItemId or productId is
-     * required.
+     * The ID of the line item to cancel. Either lineItemId or productId is required.
      */
     lineItemId?: string;
     /**
@@ -2537,8 +2310,7 @@ export namespace content_v2_1 {
      */
     operationId?: string;
     /**
-     * The ID of the product to cancel. This is the REST ID used in the products
-     * service. Either lineItemId or productId is required.
+     * The ID of the product to cancel. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
     productId?: string;
     /**
@@ -2560,8 +2332,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersCancelLineItemResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCancelLineItemResponse&quot;.
      */
     kind?: string;
   }
@@ -2585,8 +2356,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersCancelResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCancelResponse&quot;.
      */
     kind?: string;
   }
@@ -2598,23 +2368,17 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCancelTestOrderByCustomerResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersCancelTestOrderByCustomerResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCancelTestOrderByCustomerResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$OrdersCreateTestOrderRequest {
     /**
-     * The  CLDR territory code of the country of the test order to create.
-     * Affects the currency and addresses of orders created via template_name,
-     * or the addresses of orders created via test_order.  Acceptable values
-     * are:   - &quot;US&quot;  - &quot;FR&quot;  Defaults to US.
+     * The  CLDR territory code of the country of the test order to create. Affects the currency and addresses of orders created via template_name, or the addresses of orders created via test_order.  Acceptable values are:   - &quot;US&quot;  - &quot;FR&quot;  Defaults to US.
      */
     country?: string;
     /**
-     * The test order template to use. Specify as an alternative to testOrder as
-     * a shortcut for retrieving a template and then creating an order using
-     * that template.
+     * The test order template to use. Specify as an alternative to testOrder as a shortcut for retrieving a template and then creating an order using that template.
      */
     templateName?: string;
     /**
@@ -2624,8 +2388,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCreateTestOrderResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersCreateTestOrderResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCreateTestOrderResponse&quot;.
      */
     kind?: string;
     /**
@@ -2641,8 +2404,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCreateTestReturnResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersCreateTestReturnResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCreateTestReturnResponse&quot;.
      */
     kind?: string;
     /**
@@ -2662,13 +2424,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo {
     /**
-     * The carrier handling the shipment. See shipments[].carrier in the  Orders
-     * resource representation for a list of acceptable values.
+     * The carrier handling the shipment. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
      */
     carrier?: string;
     /**
-     * The ID of the shipment. This is assigned by the merchant and is unique to
-     * each shipment.
+     * The ID of the shipment. This is assigned by the merchant and is unique to each shipment.
      */
     shipmentId?: string;
     /**
@@ -2678,8 +2438,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersGetByMerchantOrderIdResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersGetByMerchantOrderIdResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersGetByMerchantOrderIdResponse&quot;.
      */
     kind?: string;
     /**
@@ -2689,8 +2448,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersGetTestOrderTemplateResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersGetTestOrderTemplateResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersGetTestOrderTemplateResponse&quot;.
      */
     kind?: string;
     /**
@@ -2700,14 +2458,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment.  Acceptable values for US are:   -
-     * &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  -
-     * &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  -
-     * &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  -
-     * &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  -
-     * &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  -
-     * &quot;uds&quot;    Acceptable values for FR are:   -
-     * &quot;colissimo&quot;  - &quot;chronopost&quot;
+     * The carrier handling the shipment.  Acceptable values for US are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;    Acceptable values for FR are:   - &quot;colissimo&quot;  - &quot;chronopost&quot;
      */
     carrier?: string;
     /**
@@ -2715,8 +2466,7 @@ export namespace content_v2_1 {
      */
     creationDate?: string;
     /**
-     * Date on which the shipment has been delivered, in ISO 8601 format.
-     * Present only if status is delivered
+     * Date on which the shipment has been delivered, in ISO 8601 format. Present only if status is delivered
      */
     deliveryDate?: string;
     /**
@@ -2738,13 +2488,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderShipmentLineItemShipment {
     /**
-     * The ID of the line item that is shipped. Either lineItemId or productId
-     * is required.
+     * The ID of the line item that is shipped. Either lineItemId or productId is required.
      */
     lineItemId?: string;
     /**
-     * The ID of the product to ship. This is the REST ID used in the products
-     * service. Either lineItemId or productId is required.
+     * The ID of the product to ship. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
     productId?: string;
     /**
@@ -2754,8 +2502,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersInStoreRefundLineItemRequest {
     /**
-     * The ID of the line item to return. Either lineItemId or productId is
-     * required.
+     * The ID of the line item to return. Either lineItemId or productId is required.
      */
     lineItemId?: string;
     /**
@@ -2763,13 +2510,11 @@ export namespace content_v2_1 {
      */
     operationId?: string;
     /**
-     * The amount to be refunded. This may be pre-tax or post-tax depending on
-     * the location of the order. Required.
+     * The amount to be refunded. This may be pre-tax or post-tax depending on the location of the order. Required.
      */
     priceAmount?: Schema$Price;
     /**
-     * The ID of the product to return. This is the REST ID used in the products
-     * service. Either lineItemId or productId is required.
+     * The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
     productId?: string;
     /**
@@ -2795,15 +2540,13 @@ export namespace content_v2_1 {
      */
     executionStatus?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersInStoreRefundLineItemResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersInStoreRefundLineItemResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$OrdersListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersListResponse&quot;.
      */
     kind?: string;
     /**
@@ -2814,8 +2557,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersRejectReturnLineItemRequest {
     /**
-     * The ID of the line item to return. Either lineItemId or productId is
-     * required.
+     * The ID of the line item to return. Either lineItemId or productId is required.
      */
     lineItemId?: string;
     /**
@@ -2823,8 +2565,7 @@ export namespace content_v2_1 {
      */
     operationId?: string;
     /**
-     * The ID of the product to return. This is the REST ID used in the products
-     * service. Either lineItemId or productId is required.
+     * The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
     productId?: string;
     /**
@@ -2846,15 +2587,13 @@ export namespace content_v2_1 {
      */
     executionStatus?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersRejectReturnLineItemResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersRejectReturnLineItemResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$OrdersReturnRefundLineItemRequest {
     /**
-     * The ID of the line item to return. Either lineItemId or productId is
-     * required.
+     * The ID of the line item to return. Either lineItemId or productId is required.
      */
     lineItemId?: string;
     /**
@@ -2862,13 +2601,11 @@ export namespace content_v2_1 {
      */
     operationId?: string;
     /**
-     * The amount to be refunded. This may be pre-tax or post-tax depending on
-     * the location of the order. If omitted, refundless return is assumed.
+     * The amount to be refunded. This may be pre-tax or post-tax depending on the location of the order. If omitted, refundless return is assumed.
      */
     priceAmount?: Schema$Price;
     /**
-     * The ID of the product to return. This is the REST ID used in the products
-     * service. Either lineItemId or productId is required.
+     * The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
     productId?: string;
     /**
@@ -2884,8 +2621,7 @@ export namespace content_v2_1 {
      */
     reasonText?: string;
     /**
-     * The amount of tax to be refunded. Optional, but if filled, then
-     * priceAmount must be set. Calculated automatically if not provided.
+     * The amount of tax to be refunded. Optional, but if filled, then priceAmount must be set. Calculated automatically if not provided.
      */
     taxAmount?: Schema$Price;
   }
@@ -2895,16 +2631,14 @@ export namespace content_v2_1 {
      */
     executionStatus?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersReturnRefundLineItemResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersReturnRefundLineItemResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$OrdersSetLineItemMetadataRequest {
     annotations?: Schema$OrderMerchantProvidedAnnotation[];
     /**
-     * The ID of the line item to set metadata. Either lineItemId or productId
-     * is required.
+     * The ID of the line item to set metadata. Either lineItemId or productId is required.
      */
     lineItemId?: string;
     /**
@@ -2912,8 +2646,7 @@ export namespace content_v2_1 {
      */
     operationId?: string;
     /**
-     * The ID of the product to set metadata. This is the REST ID used in the
-     * products service. Either lineItemId or productId is required.
+     * The ID of the product to set metadata. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
     productId?: string;
   }
@@ -2923,8 +2656,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersSetLineItemMetadataResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersSetLineItemMetadataResponse&quot;.
      */
     kind?: string;
   }
@@ -2938,16 +2670,13 @@ export namespace content_v2_1 {
      */
     operationId?: string;
     /**
-     * ID of the shipment group. Required for orders that use the orderinvoices
-     * service.
+     * ID of the shipment group. Required for orders that use the orderinvoices service.
      */
     shipmentGroupId?: string;
     /**
-     * Shipment information. This field is repeated because a single line item
-     * can be shipped in several packages (and have several tracking IDs).
+     * Shipment information. This field is repeated because a single line item can be shipped in several packages (and have several tracking IDs).
      */
-    shipmentInfos?:
-        Schema$OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo[];
+    shipmentInfos?: Schema$OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo[];
   }
   export interface Schema$OrdersShipLineItemsResponse {
     /**
@@ -2955,21 +2684,17 @@ export namespace content_v2_1 {
      */
     executionStatus?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersShipLineItemsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersShipLineItemsResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$OrdersUpdateLineItemShippingDetailsRequest {
     /**
-     * Updated delivery by date, in ISO 8601 format. If not specified only ship
-     * by date is updated.  Provided date should be within 1 year timeframe and
-     * can not be a date in the past.
+     * Updated delivery by date, in ISO 8601 format. If not specified only ship by date is updated.  Provided date should be within 1 year timeframe and can not be a date in the past.
      */
     deliverByDate?: string;
     /**
-     * The ID of the line item to set metadata. Either lineItemId or productId
-     * is required.
+     * The ID of the line item to set metadata. Either lineItemId or productId is required.
      */
     lineItemId?: string;
     /**
@@ -2977,14 +2702,11 @@ export namespace content_v2_1 {
      */
     operationId?: string;
     /**
-     * The ID of the product to set metadata. This is the REST ID used in the
-     * products service. Either lineItemId or productId is required.
+     * The ID of the product to set metadata. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
     productId?: string;
     /**
-     * Updated ship by date, in ISO 8601 format. If not specified only deliver
-     * by date is updated.  Provided date should be within 1 year timeframe and
-     * can not be a date in the past.
+     * Updated ship by date, in ISO 8601 format. If not specified only deliver by date is updated.  Provided date should be within 1 year timeframe and can not be a date in the past.
      */
     shipByDate?: string;
   }
@@ -2994,15 +2716,13 @@ export namespace content_v2_1 {
      */
     executionStatus?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersUpdateLineItemShippingDetailsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateLineItemShippingDetailsResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$OrdersUpdateMerchantOrderIdRequest {
     /**
-     * The merchant order id to be assigned to the order. Must be unique per
-     * merchant.
+     * The merchant order id to be assigned to the order. Must be unique per merchant.
      */
     merchantOrderId?: string;
     /**
@@ -3016,21 +2736,17 @@ export namespace content_v2_1 {
      */
     executionStatus?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersUpdateMerchantOrderIdResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateMerchantOrderIdResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$OrdersUpdateShipmentRequest {
     /**
-     * The carrier handling the shipment. Not updated if missing. See
-     * shipments[].carrier in the  Orders resource representation for a list of
-     * acceptable values.
+     * The carrier handling the shipment. Not updated if missing. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
      */
     carrier?: string;
     /**
-     * Date on which the shipment has been delivered, in ISO 8601 format.
-     * Optional and can be provided only if status is delivered.
+     * Date on which the shipment has been delivered, in ISO 8601 format. Optional and can be provided only if status is delivered.
      */
     deliveryDate?: string;
     /**
@@ -3056,8 +2772,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#ordersUpdateShipmentResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateShipmentResponse&quot;.
      */
     kind?: string;
   }
@@ -3104,8 +2819,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$PosCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#posCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#posCustomBatchResponse&quot;.
      */
     kind?: string;
   }
@@ -3123,8 +2837,7 @@ export namespace content_v2_1 {
      */
     inventory?: Schema$PosInventory;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#posCustomBatchResponseEntry&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#posCustomBatchResponseEntry&quot;.
      */
     kind?: string;
     /**
@@ -3177,8 +2890,7 @@ export namespace content_v2_1 {
      */
     itemId?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#posInventory&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#posInventory&quot;.
      */
     kind?: string;
     /**
@@ -3190,8 +2902,7 @@ export namespace content_v2_1 {
      */
     quantity?: string;
     /**
-     * The identifier of the merchant&#39;s store. Either a storeCode inserted
-     * via the API or the code of the store in Google My Business.
+     * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string;
     /**
@@ -3225,8 +2936,7 @@ export namespace content_v2_1 {
      */
     quantity?: string;
     /**
-     * The identifier of the merchant&#39;s store. Either a storeCode inserted
-     * via the API or the code of the store in Google My Business.
+     * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string;
     /**
@@ -3252,8 +2962,7 @@ export namespace content_v2_1 {
      */
     itemId?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#posInventoryResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#posInventoryResponse&quot;.
      */
     kind?: string;
     /**
@@ -3265,8 +2974,7 @@ export namespace content_v2_1 {
      */
     quantity?: string;
     /**
-     * The identifier of the merchant&#39;s store. Either a storeCode inserted
-     * via the API or the code of the store in Google My Business.
+     * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string;
     /**
@@ -3280,8 +2988,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$PosListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#posListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#posListResponse&quot;.
      */
     kind?: string;
     resources?: Schema$PosStore[];
@@ -3303,8 +3010,7 @@ export namespace content_v2_1 {
      */
     itemId?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#posSale&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#posSale&quot;.
      */
     kind?: string;
     /**
@@ -3312,8 +3018,7 @@ export namespace content_v2_1 {
      */
     price?: Schema$Price;
     /**
-     * The relative change of the available quantity. Negative for items
-     * returned.
+     * The relative change of the available quantity. Negative for items returned.
      */
     quantity?: string;
     /**
@@ -3321,8 +3026,7 @@ export namespace content_v2_1 {
      */
     saleId?: string;
     /**
-     * The identifier of the merchant&#39;s store. Either a storeCode inserted
-     * via the API or the code of the store in Google My Business.
+     * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string;
     /**
@@ -3352,8 +3056,7 @@ export namespace content_v2_1 {
      */
     price?: Schema$Price;
     /**
-     * The relative change of the available quantity. Negative for items
-     * returned.
+     * The relative change of the available quantity. Negative for items returned.
      */
     quantity?: string;
     /**
@@ -3361,8 +3064,7 @@ export namespace content_v2_1 {
      */
     saleId?: string;
     /**
-     * The identifier of the merchant&#39;s store. Either a storeCode inserted
-     * via the API or the code of the store in Google My Business.
+     * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string;
     /**
@@ -3388,8 +3090,7 @@ export namespace content_v2_1 {
      */
     itemId?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#posSaleResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#posSaleResponse&quot;.
      */
     kind?: string;
     /**
@@ -3397,8 +3098,7 @@ export namespace content_v2_1 {
      */
     price?: Schema$Price;
     /**
-     * The relative change of the available quantity. Negative for items
-     * returned.
+     * The relative change of the available quantity. Negative for items returned.
      */
     quantity?: string;
     /**
@@ -3406,8 +3106,7 @@ export namespace content_v2_1 {
      */
     saleId?: string;
     /**
-     * The identifier of the merchant&#39;s store. Either a storeCode inserted
-     * via the API or the code of the store in Google My Business.
+     * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string;
     /**
@@ -3424,8 +3123,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$PosStore {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#posStore&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#posStore&quot;.
      */
     kind?: string;
     /**
@@ -3439,8 +3137,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$PostalCodeGroup {
     /**
-     * The CLDR territory code of the country the postal code group applies to.
-     * Required.
+     * The CLDR territory code of the country the postal code group applies to. Required.
      */
     country?: string;
     /**
@@ -3454,19 +3151,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$PostalCodeRange {
     /**
-     * A postal code or a pattern of the form prefix* denoting the inclusive
-     * lower bound of the range defining the area. Examples values:
-     * &quot;94108&quot;, &quot;9410*&quot;, &quot;9*&quot;. Required.
+     * A postal code or a pattern of the form prefix* denoting the inclusive lower bound of the range defining the area. Examples values: &quot;94108&quot;, &quot;9410*&quot;, &quot;9*&quot;. Required.
      */
     postalCodeRangeBegin?: string;
     /**
-     * A postal code or a pattern of the form prefix* denoting the inclusive
-     * upper bound of the range defining the area. It must have the same length
-     * as postalCodeRangeBegin: if postalCodeRangeBegin is a postal code then
-     * postalCodeRangeEnd must be a postal code too; if postalCodeRangeBegin is
-     * a pattern then postalCodeRangeEnd must be a pattern with the same prefix
-     * length. Optional: if not set, then the area is defined as being all the
-     * postal codes matching postalCodeRangeBegin.
+     * A postal code or a pattern of the form prefix* denoting the inclusive upper bound of the range defining the area. It must have the same length as postalCodeRangeBegin: if postalCodeRangeBegin is a postal code then postalCodeRangeEnd must be a postal code too; if postalCodeRangeBegin is a pattern then postalCodeRangeEnd must be a pattern with the same prefix length. Optional: if not set, then the area is defined as being all the postal codes matching postalCodeRangeBegin.
      */
     postalCodeRangeEnd?: string;
   }
@@ -3481,8 +3170,7 @@ export namespace content_v2_1 {
     value?: string;
   }
   /**
-   * Product data. After inserting, updating, or deleting a product, it may take
-   * several minutes before changes take effect.
+   * Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.
    */
   export interface Schema$Product {
     /**
@@ -3490,8 +3178,7 @@ export namespace content_v2_1 {
      */
     additionalImageLinks?: string[];
     /**
-     * Used to group items in an arbitrary way. Only for CPA%, discouraged
-     * otherwise.
+     * Used to group items in an arbitrary way. Only for CPA%, discouraged otherwise.
      */
     adsGrouping?: string;
     /**
@@ -3499,8 +3186,7 @@ export namespace content_v2_1 {
      */
     adsLabels?: string[];
     /**
-     * Allows advertisers to override the item URL when the product is shown
-     * within the context of Product Ads.
+     * Allows advertisers to override the item URL when the product is shown within the context of Product Ads.
      */
     adsRedirect?: string;
     /**
@@ -3516,8 +3202,7 @@ export namespace content_v2_1 {
      */
     availability?: string;
     /**
-     * The day a pre-ordered product becomes available for delivery, in ISO 8601
-     * format.
+     * The day a pre-ordered product becomes available for delivery, in ISO 8601 format.
      */
     availabilityDate?: string;
     /**
@@ -3545,11 +3230,7 @@ export namespace content_v2_1 {
      */
     costOfGoodsSold?: Schema$Price;
     /**
-     * A list of custom (merchant-provided) attributes. It can also be used for
-     * submitting any attribute of the feed specification in its generic form
-     * (e.g., { &quot;name&quot;: &quot;size type&quot;, &quot;value&quot;:
-     * &quot;regular&quot; }). This is useful for submitting attributes not
-     * explicitly exposed by the API.
+     * A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., { &quot;name&quot;: &quot;size type&quot;, &quot;value&quot;: &quot;regular&quot; }). This is useful for submitting attributes not explicitly exposed by the API.
      */
     customAttributes?: Schema$CustomAttribute[];
     /**
@@ -3581,8 +3262,7 @@ export namespace content_v2_1 {
      */
     displayAdsId?: string;
     /**
-     * URL directly to your item&#39;s landing page for dynamic remarketing
-     * campaigns.
+     * URL directly to your item&#39;s landing page for dynamic remarketing campaigns.
      */
     displayAdsLink?: string;
     /**
@@ -3602,15 +3282,11 @@ export namespace content_v2_1 {
      */
     energyEfficiencyClass?: string;
     /**
-     * The list of destinations to exclude for this target (corresponds to
-     * unchecked check boxes in Merchant Center).
+     * The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center).
      */
     excludedDestinations?: string[];
     /**
-     * Date on which the item should expire, as specified upon insertion, in ISO
-     * 8601 format. The actual expiration date in Google Shopping is exposed in
-     * productstatuses as googleExpirationDate and might be earlier if
-     * expirationDate is too far in the future.
+     * Date on which the item should expire, as specified upon insertion, in ISO 8601 format. The actual expiration date in Google Shopping is exposed in productstatuses as googleExpirationDate and might be earlier if expirationDate is too far in the future.
      */
     expirationDate?: string;
     /**
@@ -3626,16 +3302,11 @@ export namespace content_v2_1 {
      */
     gtin?: string;
     /**
-     * The REST ID of the product. Content API methods that operate on products
-     * take this as their productId parameter. The REST ID for a product is of
-     * the form channel:contentLanguage:targetCountry:offerId.
+     * The REST ID of the product. Content API methods that operate on products take this as their productId parameter. The REST ID for a product is of the form channel:contentLanguage:targetCountry:offerId.
      */
     id?: string;
     /**
-     * False when the item does not have unique product identifiers appropriate
-     * to its category, such as GTIN, MPN, and brand. Required according to the
-     * Unique Product Identifier Rules for all target countries except for
-     * Canada.
+     * False when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand. Required according to the Unique Product Identifier Rules for all target countries except for Canada.
      */
     identifierExists?: boolean;
     /**
@@ -3643,9 +3314,7 @@ export namespace content_v2_1 {
      */
     imageLink?: string;
     /**
-     * The list of destinations to include for this target (corresponds to
-     * checked check boxes in Merchant Center). Default destinations are always
-     * included unless provided in the excluded_destination field.
+     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in the excluded_destination field.
      */
     includedDestinations?: string[];
     /**
@@ -3653,8 +3322,7 @@ export namespace content_v2_1 {
      */
     installment?: Schema$Installment;
     /**
-     * Whether the item is a merchant-defined bundle. A bundle is a custom
-     * grouping of different products sold by a merchant for a single price.
+     * Whether the item is a merchant-defined bundle. A bundle is a custom grouping of different products sold by a merchant for a single price.
      */
     isBundle?: boolean;
     /**
@@ -3662,8 +3330,7 @@ export namespace content_v2_1 {
      */
     itemGroupId?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#product&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#product&quot;.
      */
     kind?: string;
     /**
@@ -3707,11 +3374,7 @@ export namespace content_v2_1 {
      */
     multipack?: string;
     /**
-     * A unique identifier for the item. Leading and trailing whitespaces are
-     * stripped and multiple whitespaces are replaced by a single whitespace
-     * upon submission. Only valid unicode characters are accepted. See the
-     * products feed specification for details. Note: Content API methods that
-     * operate on products take the REST ID of the product, not this identifier.
+     * A unique identifier for the item. Leading and trailing whitespaces are stripped and multiple whitespaces are replaced by a single whitespace upon submission. Only valid unicode characters are accepted. See the products feed specification for details. Note: Content API methods that operate on products take the REST ID of the product, not this identifier.
      */
     offerId?: string;
     /**
@@ -3723,7 +3386,7 @@ export namespace content_v2_1 {
      */
     price?: Schema$Price;
     /**
-     * Categories of the item (formatted as in products feed specification).
+     * Categories of the item (formatted as in products data specification).
      */
     productTypes?: string[];
     /**
@@ -3735,13 +3398,11 @@ export namespace content_v2_1 {
      */
     salePrice?: Schema$Price;
     /**
-     * Date range during which the item is on sale (see products feed
-     * specification).
+     * Date range during which the item is on sale (see products data specification).
      */
     salePriceEffectiveDate?: string;
     /**
-     * The quantity of the product that is available for selling on Google.
-     * Supported only for online products.
+     * The quantity of the product that is available for selling on Google. Supported only for online products.
      */
     sellOnGoogleQuantity?: string;
     /**
@@ -3753,8 +3414,7 @@ export namespace content_v2_1 {
      */
     shippingHeight?: Schema$ProductShippingDimension;
     /**
-     * The shipping label of the product, used to group product in account-level
-     * shipping rules.
+     * The shipping label of the product, used to group product in account-level shipping rules.
      */
     shippingLabel?: string;
     /**
@@ -3790,6 +3450,10 @@ export namespace content_v2_1 {
      */
     targetCountry?: string;
     /**
+     * The tax category of the product, used to configure detailed tax nexus in account-level tax settings.
+     */
+    taxCategory?: string;
+    /**
      * Tax information.
      */
     taxes?: Schema$ProductTax[];
@@ -3797,6 +3461,10 @@ export namespace content_v2_1 {
      * Title of the item.
      */
     title?: string;
+    /**
+     * The transit time label of the product, used to group product in account-level transit time tables.
+     */
+    transitTimeLabel?: string;
     /**
      * The preference of the denominator of the unit price.
      */
@@ -3844,8 +3512,7 @@ export namespace content_v2_1 {
      */
     product?: Schema$Product;
     /**
-     * The ID of the product to get or delete. Only defined if the method is get
-     * or delete.
+     * The ID of the product to get or delete. Only defined if the method is get or delete.
      */
     productId?: string;
   }
@@ -3855,8 +3522,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$ProductsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#productsCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#productsCustomBatchResponse&quot;.
      */
     kind?: string;
   }
@@ -3873,13 +3539,11 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#productsCustomBatchResponseEntry&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#productsCustomBatchResponseEntry&quot;.
      */
     kind?: string;
     /**
-     * The inserted product. Only defined if the method is insert and if the
-     * request was successful.
+     * The inserted product. Only defined if the method is insert and if the request was successful.
      */
     product?: Schema$Product;
   }
@@ -3889,19 +3553,15 @@ export namespace content_v2_1 {
      */
     country?: string;
     /**
-     * The location where the shipping is applicable, represented by a location
-     * group name.
+     * The location where the shipping is applicable, represented by a location group name.
      */
     locationGroupName?: string;
     /**
-     * The numeric ID of a location that the shipping rate applies to as defined
-     * in the AdWords API.
+     * The numeric ID of a location that the shipping rate applies to as defined in the AdWords API.
      */
     locationId?: string;
     /**
-     * The postal code range that the shipping rate applies to, represented by a
-     * postal code, a postal code prefix followed by a * wildcard, a range
-     * between two postal codes or two postal code prefixes of equal length.
+     * The postal code range that the shipping rate applies to, represented by a postal code, a postal code prefix followed by a * wildcard, a range between two postal codes or two postal code prefixes of equal length.
      */
     postalCode?: string;
     /**
@@ -3923,8 +3583,7 @@ export namespace content_v2_1 {
      */
     unit?: string;
     /**
-     * The dimension of the product used to calculate the shipping cost of the
-     * item.
+     * The dimension of the product used to calculate the shipping cost of the item.
      */
     value?: number;
   }
@@ -3934,15 +3593,13 @@ export namespace content_v2_1 {
      */
     unit?: string;
     /**
-     * The weight of the product used to calculate the shipping cost of the
-     * item.
+     * The weight of the product used to calculate the shipping cost of the item.
      */
     value?: number;
   }
   export interface Schema$ProductsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#productsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#productsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -3952,8 +3609,7 @@ export namespace content_v2_1 {
     resources?: Schema$Product[];
   }
   /**
-   * The status of a product, i.e., information about a product computed
-   * asynchronously.
+   * The status of a product, i.e., information about a product computed asynchronously.
    */
   export interface Schema$ProductStatus {
     /**
@@ -3973,8 +3629,7 @@ export namespace content_v2_1 {
      */
     itemLevelIssues?: Schema$ProductStatusItemLevelIssue[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#productStatus&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#productStatus&quot;.
      */
     kind?: string;
     /**
@@ -4016,8 +3671,7 @@ export namespace content_v2_1 {
      */
     batchId?: number;
     /**
-     * If set, only issues for the specified destinations are returned,
-     * otherwise only issues for the Shopping destination.
+     * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
     destinations?: string[];
     includeAttributes?: boolean;
@@ -4037,8 +3691,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$ProductstatusesCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#productstatusesCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#productstatusesCustomBatchResponse&quot;.
      */
     kind?: string;
   }
@@ -4055,8 +3708,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#productstatusesCustomBatchResponseEntry&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#productstatusesCustomBatchResponseEntry&quot;.
      */
     kind?: string;
     /**
@@ -4066,8 +3718,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ProductstatusesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#productstatusesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#productstatusesListResponse&quot;.
      */
     kind?: string;
     /**
@@ -4112,20 +3763,15 @@ export namespace content_v2_1 {
   }
   export interface Schema$ProductTax {
     /**
-     * The country within which the item is taxed, specified as a CLDR territory
-     * code.
+     * The country within which the item is taxed, specified as a CLDR territory code.
      */
     country?: string;
     /**
-     * The numeric ID of a location that the tax rate applies to as defined in
-     * the AdWords API.
+     * The numeric ID of a location that the tax rate applies to as defined in the AdWords API.
      */
     locationId?: string;
     /**
-     * The postal code range that the tax rate applies to, represented by a ZIP
-     * code, a ZIP code prefix using * wildcard, a range between two ZIP codes
-     * or two ZIP code prefixes of equal length. Examples: 94114, 94*,
-     * 94002-95460, 94*-95*.
+     * The postal code range that the tax rate applies to, represented by a ZIP code, a ZIP code prefix using * wildcard, a range between two ZIP codes or two ZIP code prefixes of equal length. Examples: 94114, 94*, 94002-95460, 94*-95*.
      */
     postalCode?: string;
     /**
@@ -4163,35 +3809,27 @@ export namespace content_v2_1 {
   }
   export interface Schema$RateGroup {
     /**
-     * A list of shipping labels defining the products to which this rate group
-     * applies to. This is a disjunction: only one of the labels has to match
-     * for the rate group to apply. May only be empty for the last rate group of
-     * a service. Required.
+     * A list of shipping labels defining the products to which this rate group applies to. This is a disjunction: only one of the labels has to match for the rate group to apply. May only be empty for the last rate group of a service. Required.
      */
     applicableShippingLabels?: string[];
     /**
-     * A list of carrier rates that can be referred to by mainTable or
-     * singleValue.
+     * A list of carrier rates that can be referred to by mainTable or singleValue.
      */
     carrierRates?: Schema$CarrierRate[];
     /**
-     * A table defining the rate group, when singleValue is not expressive
-     * enough. Can only be set if singleValue is not set.
+     * A table defining the rate group, when singleValue is not expressive enough. Can only be set if singleValue is not set.
      */
     mainTable?: Schema$Table;
     /**
-     * Name of the rate group. Optional. If set has to be unique within shipping
-     * service.
+     * Name of the rate group. Optional. If set has to be unique within shipping service.
      */
     name?: string;
     /**
-     * The value of the rate group (e.g. flat rate $10). Can only be set if
-     * mainTable and subtables are not set.
+     * The value of the rate group (e.g. flat rate $10). Can only be set if mainTable and subtables are not set.
      */
     singleValue?: Schema$Value;
     /**
-     * A list of subtables referred to by mainTable. Can only be set if
-     * mainTable is set.
+     * A list of subtables referred to by mainTable. Can only be set if mainTable is set.
      */
     subtables?: Schema$Table[];
   }
@@ -4200,8 +3838,7 @@ export namespace content_v2_1 {
     reasonCode?: string;
   }
   /**
-   * Regional inventory resource. contains the regional name and all attributes
-   * which are overridden for the specified region.
+   * Regional inventory resource. contains the regional name and all attributes which are overridden for the specified region.
    */
   export interface Schema$RegionalInventory {
     /**
@@ -4209,13 +3846,11 @@ export namespace content_v2_1 {
      */
     availability?: string;
     /**
-     * A list of custom (merchant-provided) attributes. It can also be used for
-     * submitting any attribute of the feed specification in its generic form.
+     * A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form.
      */
     customAttributes?: Schema$CustomAttribute[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#regionalInventory&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#regionalInventory&quot;.
      */
     kind?: string;
     /**
@@ -4227,14 +3862,11 @@ export namespace content_v2_1 {
      */
     regionId?: string;
     /**
-     * The sale price of the product. Mandatory if sale_price_effective_date is
-     * defined.
+     * The sale price of the product. Mandatory if sale_price_effective_date is defined.
      */
     salePrice?: Schema$Price;
     /**
-     * A date range represented by a pair of ISO 8601 dates separated by a
-     * space, comma, or slash. Both dates might be specified as &#39;null&#39;
-     * if undecided.
+     * A date range represented by a pair of ISO 8601 dates separated by a space, comma, or slash. Both dates might be specified as &#39;null&#39; if undecided.
      */
     salePriceEffectiveDate?: string;
   }
@@ -4272,8 +3904,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$RegionalinventoryCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#regionalinventoryCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#regionalinventoryCustomBatchResponse&quot;.
      */
     kind?: string;
   }
@@ -4290,8 +3921,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#regionalinventoryCustomBatchResponseEntry&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#regionalinventoryCustomBatchResponseEntry&quot;.
      */
     kind?: string;
     /**
@@ -4310,9 +3940,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$Row {
     /**
-     * The list of cells that constitute the row. Must have the same length as
-     * columnHeaders for two-dimensional tables, a length of 1 for
-     * one-dimensional tables. Required.
+     * The list of cells that constitute the row. Must have the same length as columnHeaders for two-dimensional tables, a length of 1 for one-dimensional tables. Required.
      */
     cells?: Schema$Value[];
   }
@@ -4322,18 +3950,15 @@ export namespace content_v2_1 {
      */
     active?: boolean;
     /**
-     * The CLDR code of the currency to which this service applies. Must match
-     * that of the prices in rate groups.
+     * The CLDR code of the currency to which this service applies. Must match that of the prices in rate groups.
      */
     currency?: string;
     /**
-     * The CLDR territory code of the country to which the service applies.
-     * Required.
+     * The CLDR territory code of the country to which the service applies. Required.
      */
     deliveryCountry?: string;
     /**
-     * Time spent in various aspects from order to the delivery of the product.
-     * Required.
+     * Time spent in various aspects from order to the delivery of the product. Required.
      */
     deliveryTime?: Schema$DeliveryTime;
     /**
@@ -4341,20 +3966,15 @@ export namespace content_v2_1 {
      */
     eligibility?: string;
     /**
-     * Minimum order value for this service. If set, indicates that customers
-     * will have to spend at least this amount. All prices within a service must
-     * have the same currency.
+     * Minimum order value for this service. If set, indicates that customers will have to spend at least this amount. All prices within a service must have the same currency.
      */
     minimumOrderValue?: Schema$Price;
     /**
-     * Free-form name of the service. Must be unique within target account.
-     * Required.
+     * Free-form name of the service. Must be unique within target account. Required.
      */
     name?: string;
     /**
-     * Shipping rate group definitions. Only the last one is allowed to have an
-     * empty applicableShippingLabels, which means &quot;everything else&quot;.
-     * The other applicableShippingLabels must not overlap.
+     * Shipping rate group definitions. Only the last one is allowed to have an empty applicableShippingLabels, which means &quot;everything else&quot;. The other applicableShippingLabels must not overlap.
      */
     rateGroups?: Schema$RateGroup[];
   }
@@ -4368,9 +3988,7 @@ export namespace content_v2_1 {
      */
     lineItemInvoices?: Schema$ShipmentInvoiceLineItemInvoice[];
     /**
-     * [required] ID of the shipment group. It is assigned by the merchant in
-     * the shipLineItems method and is used to group multiple line items that
-     * have the same kind of shipping charges.
+     * [required] ID of the shipment group. It is assigned by the merchant in the shipLineItems method and is used to group multiple line items that have the same kind of shipping charges.
      */
     shipmentGroupId?: string;
   }
@@ -4380,15 +3998,11 @@ export namespace content_v2_1 {
      */
     lineItemId?: string;
     /**
-     * ID of the product. This is the REST ID used in the products service.
-     * Either lineItemId or productId must be set.
+     * ID of the product. This is the REST ID used in the products service. Either lineItemId or productId must be set.
      */
     productId?: string;
     /**
-     * [required] The shipment unit ID is assigned by the merchant and defines
-     * individual quantities within a line item. The same ID can be assigned to
-     * units that are the same while units that differ must be assigned a
-     * different ID (for example: free or promotional units).
+     * [required] The shipment unit ID is assigned by the merchant and defines individual quantities within a line item. The same ID can be assigned to units that are the same while units that differ must be assigned a different ID (for example: free or promotional units).
      */
     shipmentUnitIds?: string[];
     /**
@@ -4401,18 +4015,15 @@ export namespace content_v2_1 {
     trackingNumber?: string;
   }
   /**
-   * The merchant account&#39;s shipping settings. All methods except
-   * getsupportedcarriers and getsupportedholidays require the admin role.
+   * The merchant account&#39;s shipping settings. All methods except getsupportedcarriers and getsupportedholidays require the admin role.
    */
   export interface Schema$ShippingSettings {
     /**
-     * The ID of the account to which these account shipping settings belong.
-     * Ignored upon update, always present in get request responses.
+     * The ID of the account to which these account shipping settings belong. Ignored upon update, always present in get request responses.
      */
     accountId?: string;
     /**
-     * A list of postal code groups that can be referred to in services.
-     * Optional.
+     * A list of postal code groups that can be referred to in services. Optional.
      */
     postalCodeGroups?: Schema$PostalCodeGroup[];
     /**
@@ -4444,8 +4055,7 @@ export namespace content_v2_1 {
     merchantId?: string;
     method?: string;
     /**
-     * The account shipping settings to update. Only defined if the method is
-     * update.
+     * The account shipping settings to update. Only defined if the method is update.
      */
     shippingSettings?: Schema$ShippingSettings;
   }
@@ -4455,8 +4065,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$ShippingsettingsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#shippingsettingsCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsCustomBatchResponse&quot;.
      */
     kind?: string;
   }
@@ -4473,8 +4082,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#shippingsettingsCustomBatchResponseEntry&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsCustomBatchResponseEntry&quot;.
      */
     kind?: string;
     /**
@@ -4488,8 +4096,7 @@ export namespace content_v2_1 {
      */
     carriers?: Schema$CarriersCarrier[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#shippingsettingsGetSupportedCarriersResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsGetSupportedCarriersResponse&quot;.
      */
     kind?: string;
   }
@@ -4499,15 +4106,13 @@ export namespace content_v2_1 {
      */
     holidays?: Schema$HolidaysHoliday[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#shippingsettingsGetSupportedHolidaysResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsGetSupportedHolidaysResponse&quot;.
      */
     kind?: string;
   }
   export interface Schema$ShippingsettingsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#shippingsettingsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsListResponse&quot;.
      */
     kind?: string;
     /**
@@ -4518,8 +4123,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$Table {
     /**
-     * Headers of the table&#39;s columns. Optional: if not set then the table
-     * has only one dimension.
+     * Headers of the table&#39;s columns. Optional: if not set then the table has only one dimension.
      */
     columnHeaders?: Schema$Headers;
     /**
@@ -4531,8 +4135,7 @@ export namespace content_v2_1 {
      */
     rowHeaders?: Schema$Headers;
     /**
-     * The list of rows that constitute the table. Must have the same length as
-     * rowHeaders. Required.
+     * The list of rows that constitute the table. Must have the same length as rowHeaders. Required.
      */
     rows?: Schema$Row[];
   }
@@ -4542,8 +4145,7 @@ export namespace content_v2_1 {
      */
     enableOrderinvoices?: boolean;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#testOrder&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#testOrder&quot;.
      */
     kind?: string;
     /**
@@ -4551,8 +4153,7 @@ export namespace content_v2_1 {
      */
     lineItems?: Schema$TestOrderLineItem[];
     /**
-     * Determines if test order must be pulled by merchant or pushed to merchant
-     * via push integration.
+     * Determines if test order must be pulled by merchant or pushed to merchant via push integration.
      */
     notificationMode?: string;
     /**
@@ -4572,9 +4173,7 @@ export namespace content_v2_1 {
      */
     promotions?: Schema$OrderPromotion[];
     /**
-     * The price of shipping for all items. Shipping tax is automatically
-     * calculated for MFL orders. For non-MFL orders, tax settings from Merchant
-     * Center are applied. Note that shipping is not taxed in certain states.
+     * The price of shipping for all items. Shipping tax is automatically calculated for MFL orders. For non-MFL orders, tax settings from Merchant Center are applied. Note that shipping is not taxed in certain states.
      */
     shippingCost?: Schema$Price;
     /**
@@ -4634,9 +4233,7 @@ export namespace content_v2_1 {
      */
     offerId?: string;
     /**
-     * The price for the product. Tax is automatically calculated for MFL
-     * orders. For non-MFL orders, tax settings from Merchant Center are
-     * applied.
+     * The price for the product. Tax is automatically calculated for MFL orders. For non-MFL orders, tax settings from Merchant Center are applied.
      */
     price?: Schema$Price;
     /**
@@ -4654,17 +4251,12 @@ export namespace content_v2_1 {
   }
   export interface Schema$TransitTable {
     /**
-     * A list of postal group names. The last value can be &quot;all other
-     * locations&quot;. Example: [&quot;zone 1&quot;, &quot;zone 2&quot;,
-     * &quot;all other locations&quot;]. The referred postal code groups must
-     * match the delivery country of the service.
+     * A list of postal group names. The last value can be &quot;all other locations&quot;. Example: [&quot;zone 1&quot;, &quot;zone 2&quot;, &quot;all other locations&quot;]. The referred postal code groups must match the delivery country of the service.
      */
     postalCodeGroupNames?: string[];
     rows?: Schema$TransitTableTransitTimeRow[];
     /**
-     * A list of transit time labels. The last value can be &quot;all other
-     * labels&quot;. Example: [&quot;food&quot;, &quot;electronics&quot;,
-     * &quot;all other labels&quot;].
+     * A list of transit time labels. The last value can be &quot;all other labels&quot;. Example: [&quot;food&quot;, &quot;electronics&quot;, &quot;all other labels&quot;].
      */
     transitTimeLabels?: string[];
   }
@@ -4677,8 +4269,7 @@ export namespace content_v2_1 {
      */
     maxTransitTimeInDays?: number;
     /**
-     * Transit time range (min-max) in business days. 0 means same day delivery,
-     * 1 means next day delivery.
+     * Transit time range (min-max) in business days. 0 means same day delivery, 1 means next day delivery.
      */
     minTransitTimeInDays?: number;
   }
@@ -4688,8 +4279,7 @@ export namespace content_v2_1 {
      */
     additionalCharges?: Schema$UnitInvoiceAdditionalCharge[];
     /**
-     * [required] Pre-tax or post-tax price of the unit depending on the
-     * locality of the order.
+     * [required] Pre-tax or post-tax price of the unit depending on the locality of the order.
      */
     unitPrice?: Schema$Price;
     /**
@@ -4713,8 +4303,7 @@ export namespace content_v2_1 {
      */
     taxAmount?: Schema$Price;
     /**
-     * Optional name of the tax type. This should only be provided if taxType is
-     * otherFeeTax.
+     * Optional name of the tax type. This should only be provided if taxType is otherFeeTax.
      */
     taxName?: string;
     /**
@@ -4723,14 +4312,11 @@ export namespace content_v2_1 {
     taxType?: string;
   }
   /**
-   * The single value of a rate group or the value of a rate group table&#39;s
-   * cell. Exactly one of noShipping, flatRate, pricePercentage,
-   * carrierRateName, subtableName must be set.
+   * The single value of a rate group or the value of a rate group table&#39;s cell. Exactly one of noShipping, flatRate, pricePercentage, carrierRateName, subtableName must be set.
    */
   export interface Schema$Value {
     /**
-     * The name of a carrier rate referring to a carrier rate defined in the
-     * same rate group. Can only be set if all other fields are not set.
+     * The name of a carrier rate referring to a carrier rate defined in the same rate group. Can only be set if all other fields are not set.
      */
     carrierRateName?: string;
     /**
@@ -4738,18 +4324,15 @@ export namespace content_v2_1 {
      */
     flatRate?: Schema$Price;
     /**
-     * If true, then the product can&#39;t ship. Must be true when set, can only
-     * be set if all other fields are not set.
+     * If true, then the product can&#39;t ship. Must be true when set, can only be set if all other fields are not set.
      */
     noShipping?: boolean;
     /**
-     * A percentage of the price represented as a number in decimal notation
-     * (e.g., &quot;5.4&quot;). Can only be set if all other fields are not set.
+     * A percentage of the price represented as a number in decimal notation (e.g., &quot;5.4&quot;). Can only be set if all other fields are not set.
      */
     pricePercentage?: string;
     /**
-     * The name of a subtable. Can only be set in table cells (i.e., not for
-     * single values), and only if all other fields are not set.
+     * The name of a subtable. Can only be set in table cells (i.e., not for single values), and only if all other fields are not set.
      */
     subtableName?: string;
   }
@@ -4764,13 +4347,11 @@ export namespace content_v2_1 {
     value?: string;
   }
 
-
   export class Resource$Accounts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * content.accounts.authinfo
@@ -4784,27 +4365,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     authinfo(
-        params?: Params$Resource$Accounts$Authinfo, options?: MethodOptions):
-        GaxiosPromise<Schema$AccountsAuthInfoResponse>;
+      params?: Params$Resource$Accounts$Authinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountsAuthInfoResponse>;
     authinfo(
-        params: Params$Resource$Accounts$Authinfo,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccountsAuthInfoResponse>,
-        callback: BodyResponseCallback<Schema$AccountsAuthInfoResponse>): void;
+      params: Params$Resource$Accounts$Authinfo,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountsAuthInfoResponse>,
+      callback: BodyResponseCallback<Schema$AccountsAuthInfoResponse>
+    ): void;
     authinfo(
-        params: Params$Resource$Accounts$Authinfo,
-        callback: BodyResponseCallback<Schema$AccountsAuthInfoResponse>): void;
-    authinfo(callback: BodyResponseCallback<Schema$AccountsAuthInfoResponse>):
-        void;
+      params: Params$Resource$Accounts$Authinfo,
+      callback: BodyResponseCallback<Schema$AccountsAuthInfoResponse>
+    ): void;
     authinfo(
-        paramsOrCallback?: Params$Resource$Accounts$Authinfo|
-        BodyResponseCallback<Schema$AccountsAuthInfoResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountsAuthInfoResponse>,
-        callback?: BodyResponseCallback<Schema$AccountsAuthInfoResponse>):
-        void|GaxiosPromise<Schema$AccountsAuthInfoResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Authinfo;
+      callback: BodyResponseCallback<Schema$AccountsAuthInfoResponse>
+    ): void;
+    authinfo(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Authinfo
+        | BodyResponseCallback<Schema$AccountsAuthInfoResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountsAuthInfoResponse>,
+      callback?: BodyResponseCallback<Schema$AccountsAuthInfoResponse>
+    ): void | GaxiosPromise<Schema$AccountsAuthInfoResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Authinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4821,16 +4409,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/accounts/authinfo')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/accounts/authinfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountsAuthInfoResponse>(parameters, callback);
@@ -4838,7 +4429,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$AccountsAuthInfoResponse>(parameters);
       }
     }
-
 
     /**
      * content.accounts.claimwebsite
@@ -4855,31 +4445,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     claimwebsite(
-        params?: Params$Resource$Accounts$Claimwebsite,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AccountsClaimWebsiteResponse>;
+      params?: Params$Resource$Accounts$Claimwebsite,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountsClaimWebsiteResponse>;
     claimwebsite(
-        params: Params$Resource$Accounts$Claimwebsite,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>,
-        callback: BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>):
-        void;
+      params: Params$Resource$Accounts$Claimwebsite,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>,
+      callback: BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>
+    ): void;
     claimwebsite(
-        params: Params$Resource$Accounts$Claimwebsite,
-        callback: BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>):
-        void;
-    claimwebsite(callback:
-                     BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>):
-        void;
+      params: Params$Resource$Accounts$Claimwebsite,
+      callback: BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>
+    ): void;
     claimwebsite(
-        paramsOrCallback?: Params$Resource$Accounts$Claimwebsite|
-        BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>,
-        callback?: BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>):
-        void|GaxiosPromise<Schema$AccountsClaimWebsiteResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Claimwebsite;
+      callback: BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>
+    ): void;
+    claimwebsite(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Claimwebsite
+        | BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>,
+      callback?: BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>
+    ): void | GaxiosPromise<Schema$AccountsClaimWebsiteResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Claimwebsite;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4896,33 +4489,35 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/accounts/{accountId}/claimwebsite')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/accounts/{accountId}/claimwebsite'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountsClaimWebsiteResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AccountsClaimWebsiteResponse>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * content.accounts.custombatch
-     * @desc Retrieves, inserts, updates, and deletes multiple Merchant Center
-     * (sub-)accounts in a single request.
+     * @desc Retrieves, inserts, updates, and deletes multiple Merchant Center (sub-)accounts in a single request.
      * @alias content.accounts.custombatch
      * @memberOf! ()
      *
@@ -4933,30 +4528,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     custombatch(
-        params?: Params$Resource$Accounts$Custombatch, options?: MethodOptions):
-        GaxiosPromise<Schema$AccountsCustomBatchResponse>;
+      params?: Params$Resource$Accounts$Custombatch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountsCustomBatchResponse>;
     custombatch(
-        params: Params$Resource$Accounts$Custombatch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccountsCustomBatchResponse>,
-        callback: BodyResponseCallback<Schema$AccountsCustomBatchResponse>):
-        void;
+      params: Params$Resource$Accounts$Custombatch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountsCustomBatchResponse>,
+      callback: BodyResponseCallback<Schema$AccountsCustomBatchResponse>
+    ): void;
     custombatch(
-        params: Params$Resource$Accounts$Custombatch,
-        callback: BodyResponseCallback<Schema$AccountsCustomBatchResponse>):
-        void;
-    custombatch(callback:
-                    BodyResponseCallback<Schema$AccountsCustomBatchResponse>):
-        void;
+      params: Params$Resource$Accounts$Custombatch,
+      callback: BodyResponseCallback<Schema$AccountsCustomBatchResponse>
+    ): void;
     custombatch(
-        paramsOrCallback?: Params$Resource$Accounts$Custombatch|
-        BodyResponseCallback<Schema$AccountsCustomBatchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountsCustomBatchResponse>,
-        callback?: BodyResponseCallback<Schema$AccountsCustomBatchResponse>):
-        void|GaxiosPromise<Schema$AccountsCustomBatchResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Custombatch;
+      callback: BodyResponseCallback<Schema$AccountsCustomBatchResponse>
+    ): void;
+    custombatch(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Custombatch
+        | BodyResponseCallback<Schema$AccountsCustomBatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountsCustomBatchResponse>,
+      callback?: BodyResponseCallback<Schema$AccountsCustomBatchResponse>
+    ): void | GaxiosPromise<Schema$AccountsCustomBatchResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4973,25 +4572,29 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/accounts/batch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/accounts/batch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountsCustomBatchResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AccountsCustomBatchResponse>(parameters);
       }
     }
-
 
     /**
      * content.accounts.delete
@@ -5007,21 +4610,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Accounts$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Accounts$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Accounts$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Accounts$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Accounts$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5039,16 +4648,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5056,7 +4667,6 @@ export namespace content_v2_1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * content.accounts.get
@@ -5071,19 +4681,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Account>;
-    get(params: Params$Resource$Accounts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback: BodyResponseCallback<Schema$Account>): void;
-    get(params: Params$Resource$Accounts$Get,
-        callback: BodyResponseCallback<Schema$Account>): void;
+    get(
+      params?: Params$Resource$Accounts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Account>;
+    get(
+      params: Params$Resource$Accounts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Get,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Account>): void;
-    get(paramsOrCallback?: Params$Resource$Accounts$Get|
-        BodyResponseCallback<Schema$Account>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>):
-        void|GaxiosPromise<Schema$Account> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Get
+        | BodyResponseCallback<Schema$Account>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>
+    ): void | GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5101,16 +4719,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -5118,7 +4738,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$Account>(parameters);
       }
     }
-
 
     /**
      * content.accounts.insert
@@ -5133,22 +4752,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Accounts$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Account>;
     insert(
-        params: Params$Resource$Accounts$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params?: Params$Resource$Accounts$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Account>;
     insert(
-        params: Params$Resource$Accounts$Insert,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params: Params$Resource$Accounts$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    insert(
+      params: Params$Resource$Accounts$Insert,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Account>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Accounts$Insert|
-        BodyResponseCallback<Schema$Account>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>):
-        void|GaxiosPromise<Schema$Account> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Insert
+        | BodyResponseCallback<Schema$Account>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>
+    ): void | GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5166,16 +4790,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/accounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/accounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -5184,11 +4811,9 @@ export namespace content_v2_1 {
       }
     }
 
-
     /**
      * content.accounts.link
-     * @desc Performs an action on a link between a Merchant Center account and
-     * another account.
+     * @desc Performs an action on a link between two Merchant Center accounts, namely accountId and linkedAccountId.
      * @alias content.accounts.link
      * @memberOf! ()
      *
@@ -5200,24 +4825,31 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    link(params?: Params$Resource$Accounts$Link, options?: MethodOptions):
-        GaxiosPromise<Schema$AccountsLinkResponse>;
     link(
-        params: Params$Resource$Accounts$Link,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccountsLinkResponse>,
-        callback: BodyResponseCallback<Schema$AccountsLinkResponse>): void;
+      params?: Params$Resource$Accounts$Link,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountsLinkResponse>;
     link(
-        params: Params$Resource$Accounts$Link,
-        callback: BodyResponseCallback<Schema$AccountsLinkResponse>): void;
+      params: Params$Resource$Accounts$Link,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountsLinkResponse>,
+      callback: BodyResponseCallback<Schema$AccountsLinkResponse>
+    ): void;
+    link(
+      params: Params$Resource$Accounts$Link,
+      callback: BodyResponseCallback<Schema$AccountsLinkResponse>
+    ): void;
     link(callback: BodyResponseCallback<Schema$AccountsLinkResponse>): void;
     link(
-        paramsOrCallback?: Params$Resource$Accounts$Link|
-        BodyResponseCallback<Schema$AccountsLinkResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountsLinkResponse>,
-        callback?: BodyResponseCallback<Schema$AccountsLinkResponse>):
-        void|GaxiosPromise<Schema$AccountsLinkResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Link
+        | BodyResponseCallback<Schema$AccountsLinkResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountsLinkResponse>,
+      callback?: BodyResponseCallback<Schema$AccountsLinkResponse>
+    ): void | GaxiosPromise<Schema$AccountsLinkResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Link;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5235,17 +4867,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/accounts/{accountId}/link')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}/link'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountsLinkResponse>(parameters, callback);
@@ -5253,7 +4886,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$AccountsLinkResponse>(parameters);
       }
     }
-
 
     /**
      * content.accounts.list
@@ -5269,24 +4901,31 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Accounts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$AccountsListResponse>;
     list(
-        params: Params$Resource$Accounts$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccountsListResponse>,
-        callback: BodyResponseCallback<Schema$AccountsListResponse>): void;
+      params?: Params$Resource$Accounts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountsListResponse>;
     list(
-        params: Params$Resource$Accounts$List,
-        callback: BodyResponseCallback<Schema$AccountsListResponse>): void;
+      params: Params$Resource$Accounts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountsListResponse>,
+      callback: BodyResponseCallback<Schema$AccountsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$List,
+      callback: BodyResponseCallback<Schema$AccountsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$AccountsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Accounts$List|
-        BodyResponseCallback<Schema$AccountsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountsListResponse>,
-        callback?: BodyResponseCallback<Schema$AccountsListResponse>):
-        void|GaxiosPromise<Schema$AccountsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$List
+        | BodyResponseCallback<Schema$AccountsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountsListResponse>,
+      callback?: BodyResponseCallback<Schema$AccountsListResponse>
+    ): void | GaxiosPromise<Schema$AccountsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5304,16 +4943,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/accounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/accounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountsListResponse>(parameters, callback);
@@ -5321,7 +4963,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$AccountsListResponse>(parameters);
       }
     }
-
 
     /**
      * content.accounts.update
@@ -5337,22 +4978,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Accounts$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Account>;
     update(
-        params: Params$Resource$Accounts$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params?: Params$Resource$Accounts$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Account>;
     update(
-        params: Params$Resource$Accounts$Update,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params: Params$Resource$Accounts$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    update(
+      params: Params$Resource$Accounts$Update,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Account>): void;
     update(
-        paramsOrCallback?: Params$Resource$Accounts$Update|
-        BodyResponseCallback<Schema$Account>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>):
-        void|GaxiosPromise<Schema$Account> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Update
+        | BodyResponseCallback<Schema$Account>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>
+    ): void | GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5370,16 +5016,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -5389,44 +5037,39 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Authinfo extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Authinfo
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Accounts$Claimwebsite extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Claimwebsite
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account whose website is claimed.
      */
     accountId?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
     /**
-     * Only available to selected merchants. When set to True, this flag removes
-     * any existing claim on the requested website by another account and
-     * replaces it with a claim from this account.
+     * Only available to selected merchants. When set to True, this flag removes any existing claim on the requested website by another account and replaces it with a claim from this account.
      */
     overwrite?: boolean;
   }
-  export interface Params$Resource$Accounts$Custombatch extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Custombatch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -5437,7 +5080,7 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account.
@@ -5448,8 +5091,7 @@ export namespace content_v2_1 {
      */
     force?: boolean;
     /**
-     * The ID of the managing account. This must be a multi-client account, and
-     * accountId must be the ID of a sub-account of this account.
+     * The ID of the managing account. This must be a multi-client account, and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
   }
@@ -5457,16 +5099,14 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account.
      */
     accountId?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
   }
@@ -5474,7 +5114,7 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the managing account. This must be a multi-client account.
@@ -5490,16 +5130,14 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account that should be linked.
      */
     accountId?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
 
@@ -5512,11 +5150,10 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of accounts to return in the response, used for
-     * paging.
+     * The maximum number of accounts to return in the response, used for paging.
      */
     maxResults?: number;
     /**
@@ -5532,16 +5169,14 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account.
      */
     accountId?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
 
@@ -5551,18 +5186,15 @@ export namespace content_v2_1 {
     requestBody?: Schema$Account;
   }
 
-
   export class Resource$Accountstatuses {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * content.accountstatuses.custombatch
-     * @desc Retrieves multiple Merchant Center account statuses in a single
-     * request.
+     * @desc Retrieves multiple Merchant Center account statuses in a single request.
      * @alias content.accountstatuses.custombatch
      * @memberOf! ()
      *
@@ -5573,35 +5205,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     custombatch(
-        params?: Params$Resource$Accountstatuses$Custombatch,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AccountstatusesCustomBatchResponse>;
+      params?: Params$Resource$Accountstatuses$Custombatch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountstatusesCustomBatchResponse>;
     custombatch(
-        params: Params$Resource$Accountstatuses$Custombatch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>,
-        callback:
-            BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>):
-        void;
+      params: Params$Resource$Accountstatuses$Custombatch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>,
+      callback: BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>
+    ): void;
     custombatch(
-        params: Params$Resource$Accountstatuses$Custombatch,
-        callback:
-            BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>):
-        void;
+      params: Params$Resource$Accountstatuses$Custombatch,
+      callback: BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>
+    ): void;
     custombatch(
-        callback:
-            BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>
+    ): void;
     custombatch(
-        paramsOrCallback?: Params$Resource$Accountstatuses$Custombatch|
-        BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>,
-        callback?:
-            BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>):
-        void|GaxiosPromise<Schema$AccountstatusesCustomBatchResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accountstatuses$Custombatch;
+      paramsOrCallback?:
+        | Params$Resource$Accountstatuses$Custombatch
+        | BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>,
+      callback?: BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>
+    ): void | GaxiosPromise<Schema$AccountstatusesCustomBatchResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountstatuses$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5618,31 +5249,35 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/accountstatuses/batch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/accountstatuses/batch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountstatusesCustomBatchResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AccountstatusesCustomBatchResponse>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * content.accountstatuses.get
-     * @desc Retrieves the status of a Merchant Center account. No
-     * itemLevelIssues are returned for multi-client accounts.
+     * @desc Retrieves the status of a Merchant Center account. No itemLevelIssues are returned for multi-client accounts.
      * @alias content.accountstatuses.get
      * @memberOf! ()
      *
@@ -5654,22 +5289,31 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accountstatuses$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AccountStatus>;
-    get(params: Params$Resource$Accountstatuses$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AccountStatus>,
-        callback: BodyResponseCallback<Schema$AccountStatus>): void;
-    get(params: Params$Resource$Accountstatuses$Get,
-        callback: BodyResponseCallback<Schema$AccountStatus>): void;
+    get(
+      params?: Params$Resource$Accountstatuses$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountStatus>;
+    get(
+      params: Params$Resource$Accountstatuses$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountStatus>,
+      callback: BodyResponseCallback<Schema$AccountStatus>
+    ): void;
+    get(
+      params: Params$Resource$Accountstatuses$Get,
+      callback: BodyResponseCallback<Schema$AccountStatus>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AccountStatus>): void;
-    get(paramsOrCallback?: Params$Resource$Accountstatuses$Get|
-        BodyResponseCallback<Schema$AccountStatus>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountStatus>,
-        callback?: BodyResponseCallback<Schema$AccountStatus>):
-        void|GaxiosPromise<Schema$AccountStatus> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accountstatuses$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accountstatuses$Get
+        | BodyResponseCallback<Schema$AccountStatus>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountStatus>,
+      callback?: BodyResponseCallback<Schema$AccountStatus>
+    ): void | GaxiosPromise<Schema$AccountStatus> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountstatuses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5686,17 +5330,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/accountstatuses/{accountId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/accountstatuses/{accountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountStatus>(parameters, callback);
@@ -5705,11 +5350,9 @@ export namespace content_v2_1 {
       }
     }
 
-
     /**
      * content.accountstatuses.list
-     * @desc Lists the statuses of the sub-accounts in your Merchant Center
-     * account.
+     * @desc Lists the statuses of the sub-accounts in your Merchant Center account.
      * @alias content.accountstatuses.list
      * @memberOf! ()
      *
@@ -5723,29 +5366,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accountstatuses$List, options?: MethodOptions):
-        GaxiosPromise<Schema$AccountstatusesListResponse>;
+      params?: Params$Resource$Accountstatuses$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountstatusesListResponse>;
     list(
-        params: Params$Resource$Accountstatuses$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccountstatusesListResponse>,
-        callback: BodyResponseCallback<Schema$AccountstatusesListResponse>):
-        void;
+      params: Params$Resource$Accountstatuses$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountstatusesListResponse>,
+      callback: BodyResponseCallback<Schema$AccountstatusesListResponse>
+    ): void;
     list(
-        params: Params$Resource$Accountstatuses$List,
-        callback: BodyResponseCallback<Schema$AccountstatusesListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$AccountstatusesListResponse>):
-        void;
+      params: Params$Resource$Accountstatuses$List,
+      callback: BodyResponseCallback<Schema$AccountstatusesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Accountstatuses$List|
-        BodyResponseCallback<Schema$AccountstatusesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountstatusesListResponse>,
-        callback?: BodyResponseCallback<Schema$AccountstatusesListResponse>):
-        void|GaxiosPromise<Schema$AccountstatusesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accountstatuses$List;
+      callback: BodyResponseCallback<Schema$AccountstatusesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accountstatuses$List
+        | BodyResponseCallback<Schema$AccountstatusesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountstatusesListResponse>,
+      callback?: BodyResponseCallback<Schema$AccountstatusesListResponse>
+    ): void | GaxiosPromise<Schema$AccountstatusesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountstatuses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5762,77 +5410,75 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/accountstatuses')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/accountstatuses'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountstatusesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AccountstatusesListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Accountstatuses$Custombatch extends
-      StandardParameters {
+  export interface Params$Resource$Accountstatuses$Custombatch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$AccountstatusesCustomBatchRequest;
   }
-  export interface Params$Resource$Accountstatuses$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accountstatuses$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account.
      */
     accountId?: string;
     /**
-     * If set, only issues for the specified destinations are returned,
-     * otherwise only issues for the Shopping destination.
+     * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
     destinations?: string[];
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Accountstatuses$List extends
-      StandardParameters {
+  export interface Params$Resource$Accountstatuses$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * If set, only issues for the specified destinations are returned,
-     * otherwise only issues for the Shopping destination.
+     * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
     destinations?: string[];
     /**
-     * The maximum number of account statuses to return in the response, used
-     * for paging.
+     * The maximum number of account statuses to return in the response, used for paging.
      */
     maxResults?: number;
     /**
@@ -5845,18 +5491,15 @@ export namespace content_v2_1 {
     pageToken?: string;
   }
 
-
   export class Resource$Accounttax {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * content.accounttax.custombatch
-     * @desc Retrieves and updates tax settings of multiple accounts in a single
-     * request.
+     * @desc Retrieves and updates tax settings of multiple accounts in a single request.
      * @alias content.accounttax.custombatch
      * @memberOf! ()
      *
@@ -5867,31 +5510,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     custombatch(
-        params?: Params$Resource$Accounttax$Custombatch,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AccounttaxCustomBatchResponse>;
+      params?: Params$Resource$Accounttax$Custombatch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccounttaxCustomBatchResponse>;
     custombatch(
-        params: Params$Resource$Accounttax$Custombatch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>,
-        callback: BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>):
-        void;
+      params: Params$Resource$Accounttax$Custombatch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>,
+      callback: BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>
+    ): void;
     custombatch(
-        params: Params$Resource$Accounttax$Custombatch,
-        callback: BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>):
-        void;
-    custombatch(callback:
-                    BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>):
-        void;
+      params: Params$Resource$Accounttax$Custombatch,
+      callback: BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>
+    ): void;
     custombatch(
-        paramsOrCallback?: Params$Resource$Accounttax$Custombatch|
-        BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>,
-        callback?: BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>):
-        void|GaxiosPromise<Schema$AccounttaxCustomBatchResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounttax$Custombatch;
+      callback: BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>
+    ): void;
+    custombatch(
+      paramsOrCallback?:
+        | Params$Resource$Accounttax$Custombatch
+        | BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>,
+      callback?: BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>
+    ): void | GaxiosPromise<Schema$AccounttaxCustomBatchResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttax$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5908,26 +5554,31 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/accounttax/batch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/accounttax/batch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccounttaxCustomBatchResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AccounttaxCustomBatchResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.accounttax.get
@@ -5942,20 +5593,29 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounttax$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AccountTax>;
-    get(params: Params$Resource$Accounttax$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AccountTax>,
-        callback: BodyResponseCallback<Schema$AccountTax>): void;
-    get(params: Params$Resource$Accounttax$Get,
-        callback: BodyResponseCallback<Schema$AccountTax>): void;
+    get(
+      params?: Params$Resource$Accounttax$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountTax>;
+    get(
+      params: Params$Resource$Accounttax$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountTax>,
+      callback: BodyResponseCallback<Schema$AccountTax>
+    ): void;
+    get(
+      params: Params$Resource$Accounttax$Get,
+      callback: BodyResponseCallback<Schema$AccountTax>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AccountTax>): void;
-    get(paramsOrCallback?: Params$Resource$Accounttax$Get|
-        BodyResponseCallback<Schema$AccountTax>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountTax>,
-        callback?: BodyResponseCallback<Schema$AccountTax>):
-        void|GaxiosPromise<Schema$AccountTax> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounttax$Get
+        | BodyResponseCallback<Schema$AccountTax>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountTax>,
+      callback?: BodyResponseCallback<Schema$AccountTax>
+    ): void | GaxiosPromise<Schema$AccountTax> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounttax$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5973,17 +5633,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/accounttax/{accountId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/accounttax/{accountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountTax>(parameters, callback);
@@ -5992,11 +5653,9 @@ export namespace content_v2_1 {
       }
     }
 
-
     /**
      * content.accounttax.list
-     * @desc Lists the tax settings of the sub-accounts in your Merchant Center
-     * account.
+     * @desc Lists the tax settings of the sub-accounts in your Merchant Center account.
      * @alias content.accounttax.list
      * @memberOf! ()
      *
@@ -6008,24 +5667,31 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Accounttax$List, options?: MethodOptions):
-        GaxiosPromise<Schema$AccounttaxListResponse>;
     list(
-        params: Params$Resource$Accounttax$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccounttaxListResponse>,
-        callback: BodyResponseCallback<Schema$AccounttaxListResponse>): void;
+      params?: Params$Resource$Accounttax$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccounttaxListResponse>;
     list(
-        params: Params$Resource$Accounttax$List,
-        callback: BodyResponseCallback<Schema$AccounttaxListResponse>): void;
+      params: Params$Resource$Accounttax$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccounttaxListResponse>,
+      callback: BodyResponseCallback<Schema$AccounttaxListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounttax$List,
+      callback: BodyResponseCallback<Schema$AccounttaxListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$AccounttaxListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Accounttax$List|
-        BodyResponseCallback<Schema$AccounttaxListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccounttaxListResponse>,
-        callback?: BodyResponseCallback<Schema$AccounttaxListResponse>):
-        void|GaxiosPromise<Schema$AccounttaxListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Accounttax$List
+        | BodyResponseCallback<Schema$AccounttaxListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccounttaxListResponse>,
+      callback?: BodyResponseCallback<Schema$AccounttaxListResponse>
+    ): void | GaxiosPromise<Schema$AccounttaxListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounttax$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6043,16 +5709,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/accounttax')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/accounttax').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccounttaxListResponse>(parameters, callback);
@@ -6060,7 +5729,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$AccounttaxListResponse>(parameters);
       }
     }
-
 
     /**
      * content.accounttax.update
@@ -6076,25 +5744,31 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Accounttax$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$AccountTax>;
     update(
-        params: Params$Resource$Accounttax$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$AccountTax>,
-        callback: BodyResponseCallback<Schema$AccountTax>): void;
+      params?: Params$Resource$Accounttax$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountTax>;
     update(
-        params: Params$Resource$Accounttax$Update,
-        callback: BodyResponseCallback<Schema$AccountTax>): void;
+      params: Params$Resource$Accounttax$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountTax>,
+      callback: BodyResponseCallback<Schema$AccountTax>
+    ): void;
+    update(
+      params: Params$Resource$Accounttax$Update,
+      callback: BodyResponseCallback<Schema$AccountTax>
+    ): void;
     update(callback: BodyResponseCallback<Schema$AccountTax>): void;
     update(
-        paramsOrCallback?: Params$Resource$Accounttax$Update|
-        BodyResponseCallback<Schema$AccountTax>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountTax>,
-        callback?: BodyResponseCallback<Schema$AccountTax>):
-        void|GaxiosPromise<Schema$AccountTax> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounttax$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accounttax$Update
+        | BodyResponseCallback<Schema$AccountTax>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountTax>,
+      callback?: BodyResponseCallback<Schema$AccountTax>
+    ): void | GaxiosPromise<Schema$AccountTax> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttax$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6111,17 +5785,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/accounttax/{accountId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/accounttax/{accountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountTax>(parameters, callback);
@@ -6131,13 +5806,12 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Accounttax$Custombatch extends
-      StandardParameters {
+  export interface Params$Resource$Accounttax$Custombatch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -6148,16 +5822,14 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account for which to get/update account tax settings.
      */
     accountId?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
   }
@@ -6165,11 +5837,10 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of tax settings to return in the response, used for
-     * paging.
+     * The maximum number of tax settings to return in the response, used for paging.
      */
     maxResults?: number;
     /**
@@ -6181,21 +5852,19 @@ export namespace content_v2_1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounttax$Update extends
-      StandardParameters {
+  export interface Params$Resource$Accounttax$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account for which to get/update account tax settings.
      */
     accountId?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
 
@@ -6205,18 +5874,15 @@ export namespace content_v2_1 {
     requestBody?: Schema$AccountTax;
   }
 
-
   export class Resource$Datafeeds {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * content.datafeeds.custombatch
-     * @desc Deletes, fetches, gets, inserts and updates multiple datafeeds in a
-     * single request.
+     * @desc Deletes, fetches, gets, inserts and updates multiple datafeeds in a single request.
      * @alias content.datafeeds.custombatch
      * @memberOf! ()
      *
@@ -6227,31 +5893,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     custombatch(
-        params?: Params$Resource$Datafeeds$Custombatch,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$DatafeedsCustomBatchResponse>;
+      params?: Params$Resource$Datafeeds$Custombatch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DatafeedsCustomBatchResponse>;
     custombatch(
-        params: Params$Resource$Datafeeds$Custombatch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>,
-        callback: BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>):
-        void;
+      params: Params$Resource$Datafeeds$Custombatch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>,
+      callback: BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>
+    ): void;
     custombatch(
-        params: Params$Resource$Datafeeds$Custombatch,
-        callback: BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>):
-        void;
-    custombatch(callback:
-                    BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>):
-        void;
+      params: Params$Resource$Datafeeds$Custombatch,
+      callback: BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>
+    ): void;
     custombatch(
-        paramsOrCallback?: Params$Resource$Datafeeds$Custombatch|
-        BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>,
-        callback?: BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>):
-        void|GaxiosPromise<Schema$DatafeedsCustomBatchResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Datafeeds$Custombatch;
+      callback: BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>
+    ): void;
+    custombatch(
+      paramsOrCallback?:
+        | Params$Resource$Datafeeds$Custombatch
+        | BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>,
+      callback?: BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>
+    ): void | GaxiosPromise<Schema$DatafeedsCustomBatchResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Datafeeds$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6268,26 +5937,31 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/datafeeds/batch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/datafeeds/batch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedsCustomBatchResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$DatafeedsCustomBatchResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.datafeeds.delete
@@ -6302,21 +5976,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Datafeeds$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Datafeeds$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Datafeeds$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Datafeeds$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Datafeeds$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Datafeeds$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Datafeeds$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Datafeeds$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6334,17 +6014,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/datafeeds/{datafeedId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/datafeeds/{datafeedId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6352,7 +6033,6 @@ export namespace content_v2_1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * content.datafeeds.fetchnow
@@ -6368,27 +6048,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     fetchnow(
-        params?: Params$Resource$Datafeeds$Fetchnow, options?: MethodOptions):
-        GaxiosPromise<Schema$DatafeedsFetchNowResponse>;
+      params?: Params$Resource$Datafeeds$Fetchnow,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DatafeedsFetchNowResponse>;
     fetchnow(
-        params: Params$Resource$Datafeeds$Fetchnow,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DatafeedsFetchNowResponse>,
-        callback: BodyResponseCallback<Schema$DatafeedsFetchNowResponse>): void;
+      params: Params$Resource$Datafeeds$Fetchnow,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatafeedsFetchNowResponse>,
+      callback: BodyResponseCallback<Schema$DatafeedsFetchNowResponse>
+    ): void;
     fetchnow(
-        params: Params$Resource$Datafeeds$Fetchnow,
-        callback: BodyResponseCallback<Schema$DatafeedsFetchNowResponse>): void;
-    fetchnow(callback: BodyResponseCallback<Schema$DatafeedsFetchNowResponse>):
-        void;
+      params: Params$Resource$Datafeeds$Fetchnow,
+      callback: BodyResponseCallback<Schema$DatafeedsFetchNowResponse>
+    ): void;
     fetchnow(
-        paramsOrCallback?: Params$Resource$Datafeeds$Fetchnow|
-        BodyResponseCallback<Schema$DatafeedsFetchNowResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DatafeedsFetchNowResponse>,
-        callback?: BodyResponseCallback<Schema$DatafeedsFetchNowResponse>):
-        void|GaxiosPromise<Schema$DatafeedsFetchNowResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Datafeeds$Fetchnow;
+      callback: BodyResponseCallback<Schema$DatafeedsFetchNowResponse>
+    ): void;
+    fetchnow(
+      paramsOrCallback?:
+        | Params$Resource$Datafeeds$Fetchnow
+        | BodyResponseCallback<Schema$DatafeedsFetchNowResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatafeedsFetchNowResponse>,
+      callback?: BodyResponseCallback<Schema$DatafeedsFetchNowResponse>
+    ): void | GaxiosPromise<Schema$DatafeedsFetchNowResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Datafeeds$Fetchnow;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6405,32 +6092,33 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/datafeeds/{datafeedId}/fetchNow')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/datafeeds/{datafeedId}/fetchNow'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedsFetchNowResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$DatafeedsFetchNowResponse>(parameters);
       }
     }
 
-
     /**
      * content.datafeeds.get
-     * @desc Retrieves a datafeed configuration from your Merchant Center
-     * account.
+     * @desc Retrieves a datafeed configuration from your Merchant Center account.
      * @alias content.datafeeds.get
      * @memberOf! ()
      *
@@ -6441,19 +6129,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Datafeeds$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Datafeed>;
-    get(params: Params$Resource$Datafeeds$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Datafeed>,
-        callback: BodyResponseCallback<Schema$Datafeed>): void;
-    get(params: Params$Resource$Datafeeds$Get,
-        callback: BodyResponseCallback<Schema$Datafeed>): void;
+    get(
+      params?: Params$Resource$Datafeeds$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Datafeed>;
+    get(
+      params: Params$Resource$Datafeeds$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Datafeed>,
+      callback: BodyResponseCallback<Schema$Datafeed>
+    ): void;
+    get(
+      params: Params$Resource$Datafeeds$Get,
+      callback: BodyResponseCallback<Schema$Datafeed>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Datafeed>): void;
-    get(paramsOrCallback?: Params$Resource$Datafeeds$Get|
-        BodyResponseCallback<Schema$Datafeed>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Datafeed>,
-        callback?: BodyResponseCallback<Schema$Datafeed>):
-        void|GaxiosPromise<Schema$Datafeed> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Datafeeds$Get
+        | BodyResponseCallback<Schema$Datafeed>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Datafeed>,
+      callback?: BodyResponseCallback<Schema$Datafeed>
+    ): void | GaxiosPromise<Schema$Datafeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6471,17 +6167,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/datafeeds/{datafeedId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/datafeeds/{datafeedId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Datafeed>(parameters, callback);
@@ -6490,11 +6187,9 @@ export namespace content_v2_1 {
       }
     }
 
-
     /**
      * content.datafeeds.insert
-     * @desc Registers a datafeed configuration with your Merchant Center
-     * account.
+     * @desc Registers a datafeed configuration with your Merchant Center account.
      * @alias content.datafeeds.insert
      * @memberOf! ()
      *
@@ -6505,22 +6200,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Datafeeds$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Datafeed>;
     insert(
-        params: Params$Resource$Datafeeds$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Datafeed>,
-        callback: BodyResponseCallback<Schema$Datafeed>): void;
+      params?: Params$Resource$Datafeeds$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Datafeed>;
     insert(
-        params: Params$Resource$Datafeeds$Insert,
-        callback: BodyResponseCallback<Schema$Datafeed>): void;
+      params: Params$Resource$Datafeeds$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Datafeed>,
+      callback: BodyResponseCallback<Schema$Datafeed>
+    ): void;
+    insert(
+      params: Params$Resource$Datafeeds$Insert,
+      callback: BodyResponseCallback<Schema$Datafeed>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Datafeed>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Datafeeds$Insert|
-        BodyResponseCallback<Schema$Datafeed>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Datafeed>,
-        callback?: BodyResponseCallback<Schema$Datafeed>):
-        void|GaxiosPromise<Schema$Datafeed> {
+      paramsOrCallback?:
+        | Params$Resource$Datafeeds$Insert
+        | BodyResponseCallback<Schema$Datafeed>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Datafeed>,
+      callback?: BodyResponseCallback<Schema$Datafeed>
+    ): void | GaxiosPromise<Schema$Datafeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6538,16 +6238,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/datafeeds')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/datafeeds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Datafeed>(parameters, callback);
@@ -6556,11 +6259,9 @@ export namespace content_v2_1 {
       }
     }
 
-
     /**
      * content.datafeeds.list
-     * @desc Lists the configurations for datafeeds in your Merchant Center
-     * account.
+     * @desc Lists the configurations for datafeeds in your Merchant Center account.
      * @alias content.datafeeds.list
      * @memberOf! ()
      *
@@ -6572,24 +6273,31 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Datafeeds$List, options?: MethodOptions):
-        GaxiosPromise<Schema$DatafeedsListResponse>;
     list(
-        params: Params$Resource$Datafeeds$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DatafeedsListResponse>,
-        callback: BodyResponseCallback<Schema$DatafeedsListResponse>): void;
+      params?: Params$Resource$Datafeeds$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DatafeedsListResponse>;
     list(
-        params: Params$Resource$Datafeeds$List,
-        callback: BodyResponseCallback<Schema$DatafeedsListResponse>): void;
+      params: Params$Resource$Datafeeds$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatafeedsListResponse>,
+      callback: BodyResponseCallback<Schema$DatafeedsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Datafeeds$List,
+      callback: BodyResponseCallback<Schema$DatafeedsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$DatafeedsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Datafeeds$List|
-        BodyResponseCallback<Schema$DatafeedsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DatafeedsListResponse>,
-        callback?: BodyResponseCallback<Schema$DatafeedsListResponse>):
-        void|GaxiosPromise<Schema$DatafeedsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Datafeeds$List
+        | BodyResponseCallback<Schema$DatafeedsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatafeedsListResponse>,
+      callback?: BodyResponseCallback<Schema$DatafeedsListResponse>
+    ): void | GaxiosPromise<Schema$DatafeedsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6607,16 +6315,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/datafeeds')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/datafeeds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedsListResponse>(parameters, callback);
@@ -6624,7 +6335,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$DatafeedsListResponse>(parameters);
       }
     }
-
 
     /**
      * content.datafeeds.update
@@ -6640,22 +6350,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Datafeeds$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Datafeed>;
     update(
-        params: Params$Resource$Datafeeds$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Datafeed>,
-        callback: BodyResponseCallback<Schema$Datafeed>): void;
+      params?: Params$Resource$Datafeeds$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Datafeed>;
     update(
-        params: Params$Resource$Datafeeds$Update,
-        callback: BodyResponseCallback<Schema$Datafeed>): void;
+      params: Params$Resource$Datafeeds$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Datafeed>,
+      callback: BodyResponseCallback<Schema$Datafeed>
+    ): void;
+    update(
+      params: Params$Resource$Datafeeds$Update,
+      callback: BodyResponseCallback<Schema$Datafeed>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Datafeed>): void;
     update(
-        paramsOrCallback?: Params$Resource$Datafeeds$Update|
-        BodyResponseCallback<Schema$Datafeed>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Datafeed>,
-        callback?: BodyResponseCallback<Schema$Datafeed>):
-        void|GaxiosPromise<Schema$Datafeed> {
+      paramsOrCallback?:
+        | Params$Resource$Datafeeds$Update
+        | BodyResponseCallback<Schema$Datafeed>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Datafeed>,
+      callback?: BodyResponseCallback<Schema$Datafeed>
+    ): void | GaxiosPromise<Schema$Datafeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6673,17 +6388,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/datafeeds/{datafeedId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/datafeeds/{datafeedId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Datafeed>(parameters, callback);
@@ -6693,13 +6409,12 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Datafeeds$Custombatch extends
-      StandardParameters {
+  export interface Params$Resource$Datafeeds$Custombatch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -6710,32 +6425,30 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the datafeed.
      */
     datafeedId?: string;
     /**
-     * The ID of the account that manages the datafeed. This account cannot be a
-     * multi-client account.
+     * The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Datafeeds$Fetchnow extends
-      StandardParameters {
+  export interface Params$Resource$Datafeeds$Fetchnow
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the datafeed to be fetched.
      */
     datafeedId?: string;
     /**
-     * The ID of the account that manages the datafeed. This account cannot be a
-     * multi-client account.
+     * The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      */
     merchantId?: string;
   }
@@ -6743,15 +6456,14 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the datafeed.
      */
     datafeedId?: string;
     /**
-     * The ID of the account that manages the datafeed. This account cannot be a
-     * multi-client account.
+     * The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      */
     merchantId?: string;
   }
@@ -6759,11 +6471,10 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the datafeed. This account cannot be a
-     * multi-client account.
+     * The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      */
     merchantId?: string;
 
@@ -6776,16 +6487,14 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of products to return in the response, used for
-     * paging.
+     * The maximum number of products to return in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * The ID of the account that manages the datafeeds. This account cannot be
-     * a multi-client account.
+     * The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -6797,15 +6506,14 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the datafeed.
      */
     datafeedId?: string;
     /**
-     * The ID of the account that manages the datafeed. This account cannot be a
-     * multi-client account.
+     * The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      */
     merchantId?: string;
 
@@ -6815,18 +6523,15 @@ export namespace content_v2_1 {
     requestBody?: Schema$Datafeed;
   }
 
-
   export class Resource$Datafeedstatuses {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * content.datafeedstatuses.custombatch
-     * @desc Gets multiple Merchant Center datafeed statuses in a single
-     * request.
+     * @desc Gets multiple Merchant Center datafeed statuses in a single request.
      * @alias content.datafeedstatuses.custombatch
      * @memberOf! ()
      *
@@ -6837,35 +6542,36 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     custombatch(
-        params?: Params$Resource$Datafeedstatuses$Custombatch,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$DatafeedstatusesCustomBatchResponse>;
+      params?: Params$Resource$Datafeedstatuses$Custombatch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DatafeedstatusesCustomBatchResponse>;
     custombatch(
-        params: Params$Resource$Datafeedstatuses$Custombatch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>,
-        callback:
-            BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>):
-        void;
+      params: Params$Resource$Datafeedstatuses$Custombatch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>,
+      callback: BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>
+    ): void;
     custombatch(
-        params: Params$Resource$Datafeedstatuses$Custombatch,
-        callback:
-            BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>):
-        void;
+      params: Params$Resource$Datafeedstatuses$Custombatch,
+      callback: BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>
+    ): void;
     custombatch(
-        callback:
-            BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>
+    ): void;
     custombatch(
-        paramsOrCallback?: Params$Resource$Datafeedstatuses$Custombatch|
-        BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>,
-        callback?:
-            BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>):
-        void|GaxiosPromise<Schema$DatafeedstatusesCustomBatchResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Datafeedstatuses$Custombatch;
+      paramsOrCallback?:
+        | Params$Resource$Datafeedstatuses$Custombatch
+        | BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>,
+      callback?: BodyResponseCallback<
+        Schema$DatafeedstatusesCustomBatchResponse
+      >
+    ): void | GaxiosPromise<Schema$DatafeedstatusesCustomBatchResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Datafeedstatuses$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6882,31 +6588,35 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/datafeedstatuses/batch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/datafeedstatuses/batch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedstatusesCustomBatchResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$DatafeedstatusesCustomBatchResponse>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * content.datafeedstatuses.get
-     * @desc Retrieves the status of a datafeed from your Merchant Center
-     * account.
+     * @desc Retrieves the status of a datafeed from your Merchant Center account.
      * @alias content.datafeedstatuses.get
      * @memberOf! ()
      *
@@ -6919,22 +6629,31 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Datafeedstatuses$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DatafeedStatus>;
-    get(params: Params$Resource$Datafeedstatuses$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$DatafeedStatus>,
-        callback: BodyResponseCallback<Schema$DatafeedStatus>): void;
-    get(params: Params$Resource$Datafeedstatuses$Get,
-        callback: BodyResponseCallback<Schema$DatafeedStatus>): void;
+    get(
+      params?: Params$Resource$Datafeedstatuses$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DatafeedStatus>;
+    get(
+      params: Params$Resource$Datafeedstatuses$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DatafeedStatus>,
+      callback: BodyResponseCallback<Schema$DatafeedStatus>
+    ): void;
+    get(
+      params: Params$Resource$Datafeedstatuses$Get,
+      callback: BodyResponseCallback<Schema$DatafeedStatus>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DatafeedStatus>): void;
-    get(paramsOrCallback?: Params$Resource$Datafeedstatuses$Get|
-        BodyResponseCallback<Schema$DatafeedStatus>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DatafeedStatus>,
-        callback?: BodyResponseCallback<Schema$DatafeedStatus>):
-        void|GaxiosPromise<Schema$DatafeedStatus> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Datafeedstatuses$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Datafeedstatuses$Get
+        | BodyResponseCallback<Schema$DatafeedStatus>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatafeedStatus>,
+      callback?: BodyResponseCallback<Schema$DatafeedStatus>
+    ): void | GaxiosPromise<Schema$DatafeedStatus> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Datafeedstatuses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6951,17 +6670,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/datafeedstatuses/{datafeedId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/datafeedstatuses/{datafeedId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedStatus>(parameters, callback);
@@ -6970,11 +6691,9 @@ export namespace content_v2_1 {
       }
     }
 
-
     /**
      * content.datafeedstatuses.list
-     * @desc Lists the statuses of the datafeeds in your Merchant Center
-     * account.
+     * @desc Lists the statuses of the datafeeds in your Merchant Center account.
      * @alias content.datafeedstatuses.list
      * @memberOf! ()
      *
@@ -6987,30 +6706,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Datafeedstatuses$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$DatafeedstatusesListResponse>;
+      params?: Params$Resource$Datafeedstatuses$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DatafeedstatusesListResponse>;
     list(
-        params: Params$Resource$Datafeedstatuses$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DatafeedstatusesListResponse>,
-        callback: BodyResponseCallback<Schema$DatafeedstatusesListResponse>):
-        void;
+      params: Params$Resource$Datafeedstatuses$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatafeedstatusesListResponse>,
+      callback: BodyResponseCallback<Schema$DatafeedstatusesListResponse>
+    ): void;
     list(
-        params: Params$Resource$Datafeedstatuses$List,
-        callback: BodyResponseCallback<Schema$DatafeedstatusesListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$DatafeedstatusesListResponse>):
-        void;
+      params: Params$Resource$Datafeedstatuses$List,
+      callback: BodyResponseCallback<Schema$DatafeedstatusesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Datafeedstatuses$List|
-        BodyResponseCallback<Schema$DatafeedstatusesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DatafeedstatusesListResponse>,
-        callback?: BodyResponseCallback<Schema$DatafeedstatusesListResponse>):
-        void|GaxiosPromise<Schema$DatafeedstatusesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Datafeedstatuses$List;
+      callback: BodyResponseCallback<Schema$DatafeedstatusesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Datafeedstatuses$List
+        | BodyResponseCallback<Schema$DatafeedstatusesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatafeedstatusesListResponse>,
+      callback?: BodyResponseCallback<Schema$DatafeedstatusesListResponse>
+    ): void | GaxiosPromise<Schema$DatafeedstatusesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Datafeedstatuses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7027,52 +6750,53 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/datafeedstatuses')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/datafeedstatuses'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedstatusesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$DatafeedstatusesListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Datafeedstatuses$Custombatch extends
-      StandardParameters {
+  export interface Params$Resource$Datafeedstatuses$Custombatch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$DatafeedstatusesCustomBatchRequest;
   }
-  export interface Params$Resource$Datafeedstatuses$Get extends
-      StandardParameters {
+  export interface Params$Resource$Datafeedstatuses$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The country for which to get the datafeed status. If this parameter is
-     * provided then language must also be provided. Note that this parameter is
-     * required for feeds targeting multiple countries and languages, since a
-     * feed may have a different status for each target.
+     * The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
      */
     country?: string;
     /**
@@ -7080,33 +6804,27 @@ export namespace content_v2_1 {
      */
     datafeedId?: string;
     /**
-     * The language for which to get the datafeed status. If this parameter is
-     * provided then country must also be provided. Note that this parameter is
-     * required for feeds targeting multiple countries and languages, since a
-     * feed may have a different status for each target.
+     * The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
      */
     language?: string;
     /**
-     * The ID of the account that manages the datafeed. This account cannot be a
-     * multi-client account.
+     * The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Datafeedstatuses$List extends
-      StandardParameters {
+  export interface Params$Resource$Datafeedstatuses$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of products to return in the response, used for
-     * paging.
+     * The maximum number of products to return in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * The ID of the account that manages the datafeeds. This account cannot be
-     * a multi-client account.
+     * The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -7115,18 +6833,15 @@ export namespace content_v2_1 {
     pageToken?: string;
   }
 
-
   export class Resource$Liasettings {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * content.liasettings.custombatch
-     * @desc Retrieves and/or updates the LIA settings of multiple accounts in a
-     * single request.
+     * @desc Retrieves and/or updates the LIA settings of multiple accounts in a single request.
      * @alias content.liasettings.custombatch
      * @memberOf! ()
      *
@@ -7137,31 +6852,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     custombatch(
-        params?: Params$Resource$Liasettings$Custombatch,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$LiasettingsCustomBatchResponse>;
+      params?: Params$Resource$Liasettings$Custombatch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiasettingsCustomBatchResponse>;
     custombatch(
-        params: Params$Resource$Liasettings$Custombatch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>,
-        callback: BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>):
-        void;
+      params: Params$Resource$Liasettings$Custombatch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>,
+      callback: BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>
+    ): void;
     custombatch(
-        params: Params$Resource$Liasettings$Custombatch,
-        callback: BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>):
-        void;
+      params: Params$Resource$Liasettings$Custombatch,
+      callback: BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>
+    ): void;
     custombatch(
-        callback: BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>
+    ): void;
     custombatch(
-        paramsOrCallback?: Params$Resource$Liasettings$Custombatch|
-        BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>,
-        callback?: BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>):
-        void|GaxiosPromise<Schema$LiasettingsCustomBatchResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Liasettings$Custombatch;
+      paramsOrCallback?:
+        | Params$Resource$Liasettings$Custombatch
+        | BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>,
+      callback?: BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>
+    ): void | GaxiosPromise<Schema$LiasettingsCustomBatchResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Liasettings$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7178,26 +6896,31 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/liasettings/batch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/liasettings/batch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsCustomBatchResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$LiasettingsCustomBatchResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.liasettings.get
@@ -7212,20 +6935,29 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Liasettings$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$LiaSettings>;
-    get(params: Params$Resource$Liasettings$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LiaSettings>,
-        callback: BodyResponseCallback<Schema$LiaSettings>): void;
-    get(params: Params$Resource$Liasettings$Get,
-        callback: BodyResponseCallback<Schema$LiaSettings>): void;
+    get(
+      params?: Params$Resource$Liasettings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiaSettings>;
+    get(
+      params: Params$Resource$Liasettings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LiaSettings>,
+      callback: BodyResponseCallback<Schema$LiaSettings>
+    ): void;
+    get(
+      params: Params$Resource$Liasettings$Get,
+      callback: BodyResponseCallback<Schema$LiaSettings>
+    ): void;
     get(callback: BodyResponseCallback<Schema$LiaSettings>): void;
-    get(paramsOrCallback?: Params$Resource$Liasettings$Get|
-        BodyResponseCallback<Schema$LiaSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiaSettings>,
-        callback?: BodyResponseCallback<Schema$LiaSettings>):
-        void|GaxiosPromise<Schema$LiaSettings> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Liasettings$Get
+        | BodyResponseCallback<Schema$LiaSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiaSettings>,
+      callback?: BodyResponseCallback<Schema$LiaSettings>
+    ): void | GaxiosPromise<Schema$LiaSettings> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liasettings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7243,17 +6975,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/liasettings/{accountId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/liasettings/{accountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiaSettings>(parameters, callback);
@@ -7261,7 +6994,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$LiaSettings>(parameters);
       }
     }
-
 
     /**
      * content.liasettings.getaccessiblegmbaccounts
@@ -7277,33 +7009,50 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     getaccessiblegmbaccounts(
-        params?: Params$Resource$Liasettings$Getaccessiblegmbaccounts,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$LiasettingsGetAccessibleGmbAccountsResponse>;
+      params?: Params$Resource$Liasettings$Getaccessiblegmbaccounts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiasettingsGetAccessibleGmbAccountsResponse>;
     getaccessiblegmbaccounts(
-        params: Params$Resource$Liasettings$Getaccessiblegmbaccounts,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$LiasettingsGetAccessibleGmbAccountsResponse>,
-        callback: BodyResponseCallback<
-            Schema$LiasettingsGetAccessibleGmbAccountsResponse>): void;
+      params: Params$Resource$Liasettings$Getaccessiblegmbaccounts,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$LiasettingsGetAccessibleGmbAccountsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$LiasettingsGetAccessibleGmbAccountsResponse
+      >
+    ): void;
     getaccessiblegmbaccounts(
-        params: Params$Resource$Liasettings$Getaccessiblegmbaccounts,
-        callback: BodyResponseCallback<
-            Schema$LiasettingsGetAccessibleGmbAccountsResponse>): void;
+      params: Params$Resource$Liasettings$Getaccessiblegmbaccounts,
+      callback: BodyResponseCallback<
+        Schema$LiasettingsGetAccessibleGmbAccountsResponse
+      >
+    ): void;
     getaccessiblegmbaccounts(
-        callback: BodyResponseCallback<
-            Schema$LiasettingsGetAccessibleGmbAccountsResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$LiasettingsGetAccessibleGmbAccountsResponse
+      >
+    ): void;
     getaccessiblegmbaccounts(
-        paramsOrCallback?: Params$Resource$Liasettings$Getaccessiblegmbaccounts|
-        BodyResponseCallback<
-            Schema$LiasettingsGetAccessibleGmbAccountsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$LiasettingsGetAccessibleGmbAccountsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$LiasettingsGetAccessibleGmbAccountsResponse>):
-        void|GaxiosPromise<Schema$LiasettingsGetAccessibleGmbAccountsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Liasettings$Getaccessiblegmbaccounts;
+      paramsOrCallback?:
+        | Params$Resource$Liasettings$Getaccessiblegmbaccounts
+        | BodyResponseCallback<
+            Schema$LiasettingsGetAccessibleGmbAccountsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$LiasettingsGetAccessibleGmbAccountsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$LiasettingsGetAccessibleGmbAccountsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$LiasettingsGetAccessibleGmbAccountsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Liasettings$Getaccessiblegmbaccounts;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7320,33 +7069,35 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/liasettings/{accountId}/accessiblegmbaccounts')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/liasettings/{accountId}/accessiblegmbaccounts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsGetAccessibleGmbAccountsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$LiasettingsGetAccessibleGmbAccountsResponse>(parameters);
+          Schema$LiasettingsGetAccessibleGmbAccountsResponse
+        >(parameters);
       }
     }
 
-
     /**
      * content.liasettings.list
-     * @desc Lists the LIA settings of the sub-accounts in your Merchant Center
-     * account.
+     * @desc Lists the LIA settings of the sub-accounts in your Merchant Center account.
      * @alias content.liasettings.list
      * @memberOf! ()
      *
@@ -7358,24 +7109,31 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Liasettings$List, options?: MethodOptions):
-        GaxiosPromise<Schema$LiasettingsListResponse>;
     list(
-        params: Params$Resource$Liasettings$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LiasettingsListResponse>,
-        callback: BodyResponseCallback<Schema$LiasettingsListResponse>): void;
+      params?: Params$Resource$Liasettings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiasettingsListResponse>;
     list(
-        params: Params$Resource$Liasettings$List,
-        callback: BodyResponseCallback<Schema$LiasettingsListResponse>): void;
+      params: Params$Resource$Liasettings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiasettingsListResponse>,
+      callback: BodyResponseCallback<Schema$LiasettingsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Liasettings$List,
+      callback: BodyResponseCallback<Schema$LiasettingsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$LiasettingsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Liasettings$List|
-        BodyResponseCallback<Schema$LiasettingsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiasettingsListResponse>,
-        callback?: BodyResponseCallback<Schema$LiasettingsListResponse>):
-        void|GaxiosPromise<Schema$LiasettingsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Liasettings$List
+        | BodyResponseCallback<Schema$LiasettingsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiasettingsListResponse>,
+      callback?: BodyResponseCallback<Schema$LiasettingsListResponse>
+    ): void | GaxiosPromise<Schema$LiasettingsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liasettings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7393,16 +7151,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/liasettings')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/liasettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsListResponse>(parameters, callback);
@@ -7411,11 +7172,9 @@ export namespace content_v2_1 {
       }
     }
 
-
     /**
      * content.liasettings.listposdataproviders
-     * @desc Retrieves the list of POS data providers that have active settings
-     * for the all eiligible countries.
+     * @desc Retrieves the list of POS data providers that have active settings for the all eiligible countries.
      * @alias content.liasettings.listposdataproviders
      * @memberOf! ()
      *
@@ -7425,31 +7184,42 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     listposdataproviders(
-        params?: Params$Resource$Liasettings$Listposdataproviders,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$LiasettingsListPosDataProvidersResponse>;
+      params?: Params$Resource$Liasettings$Listposdataproviders,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiasettingsListPosDataProvidersResponse>;
     listposdataproviders(
-        params: Params$Resource$Liasettings$Listposdataproviders,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LiasettingsListPosDataProvidersResponse>,
-        callback: BodyResponseCallback<
-            Schema$LiasettingsListPosDataProvidersResponse>): void;
+      params: Params$Resource$Liasettings$Listposdataproviders,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiasettingsListPosDataProvidersResponse>,
+      callback: BodyResponseCallback<
+        Schema$LiasettingsListPosDataProvidersResponse
+      >
+    ): void;
     listposdataproviders(
-        params: Params$Resource$Liasettings$Listposdataproviders,
-        callback: BodyResponseCallback<
-            Schema$LiasettingsListPosDataProvidersResponse>): void;
-    listposdataproviders(callback: BodyResponseCallback<
-                         Schema$LiasettingsListPosDataProvidersResponse>): void;
+      params: Params$Resource$Liasettings$Listposdataproviders,
+      callback: BodyResponseCallback<
+        Schema$LiasettingsListPosDataProvidersResponse
+      >
+    ): void;
     listposdataproviders(
-        paramsOrCallback?: Params$Resource$Liasettings$Listposdataproviders|
-        BodyResponseCallback<Schema$LiasettingsListPosDataProvidersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiasettingsListPosDataProvidersResponse>,
-        callback?: BodyResponseCallback<
-            Schema$LiasettingsListPosDataProvidersResponse>):
-        void|GaxiosPromise<Schema$LiasettingsListPosDataProvidersResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Liasettings$Listposdataproviders;
+      callback: BodyResponseCallback<
+        Schema$LiasettingsListPosDataProvidersResponse
+      >
+    ): void;
+    listposdataproviders(
+      paramsOrCallback?:
+        | Params$Resource$Liasettings$Listposdataproviders
+        | BodyResponseCallback<Schema$LiasettingsListPosDataProvidersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiasettingsListPosDataProvidersResponse>,
+      callback?: BodyResponseCallback<
+        Schema$LiasettingsListPosDataProvidersResponse
+      >
+    ): void | GaxiosPromise<Schema$LiasettingsListPosDataProvidersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Liasettings$Listposdataproviders;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7466,26 +7236,30 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/liasettings/posdataproviders')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/liasettings/posdataproviders'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsListPosDataProvidersResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$LiasettingsListPosDataProvidersResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.liasettings.requestgmbaccess
@@ -7502,35 +7276,36 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     requestgmbaccess(
-        params?: Params$Resource$Liasettings$Requestgmbaccess,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$LiasettingsRequestGmbAccessResponse>;
+      params?: Params$Resource$Liasettings$Requestgmbaccess,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiasettingsRequestGmbAccessResponse>;
     requestgmbaccess(
-        params: Params$Resource$Liasettings$Requestgmbaccess,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>,
-        callback:
-            BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>):
-        void;
+      params: Params$Resource$Liasettings$Requestgmbaccess,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>,
+      callback: BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>
+    ): void;
     requestgmbaccess(
-        params: Params$Resource$Liasettings$Requestgmbaccess,
-        callback:
-            BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>):
-        void;
+      params: Params$Resource$Liasettings$Requestgmbaccess,
+      callback: BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>
+    ): void;
     requestgmbaccess(
-        callback:
-            BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>
+    ): void;
     requestgmbaccess(
-        paramsOrCallback?: Params$Resource$Liasettings$Requestgmbaccess|
-        BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>,
-        callback?:
-            BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>):
-        void|GaxiosPromise<Schema$LiasettingsRequestGmbAccessResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Liasettings$Requestgmbaccess;
+      paramsOrCallback?:
+        | Params$Resource$Liasettings$Requestgmbaccess
+        | BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>,
+      callback?: BodyResponseCallback<
+        Schema$LiasettingsRequestGmbAccessResponse
+      >
+    ): void | GaxiosPromise<Schema$LiasettingsRequestGmbAccessResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Liasettings$Requestgmbaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7547,28 +7322,31 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/liasettings/{accountId}/requestgmbaccess')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/liasettings/{accountId}/requestgmbaccess'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId', 'gmbEmail'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsRequestGmbAccessResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$LiasettingsRequestGmbAccessResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.liasettings.requestinventoryverification
@@ -7585,34 +7363,50 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     requestinventoryverification(
-        params?: Params$Resource$Liasettings$Requestinventoryverification,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$LiasettingsRequestInventoryVerificationResponse>;
+      params?: Params$Resource$Liasettings$Requestinventoryverification,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiasettingsRequestInventoryVerificationResponse>;
     requestinventoryverification(
-        params: Params$Resource$Liasettings$Requestinventoryverification,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$LiasettingsRequestInventoryVerificationResponse>,
-        callback: BodyResponseCallback<
-            Schema$LiasettingsRequestInventoryVerificationResponse>): void;
+      params: Params$Resource$Liasettings$Requestinventoryverification,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$LiasettingsRequestInventoryVerificationResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$LiasettingsRequestInventoryVerificationResponse
+      >
+    ): void;
     requestinventoryverification(
-        params: Params$Resource$Liasettings$Requestinventoryverification,
-        callback: BodyResponseCallback<
-            Schema$LiasettingsRequestInventoryVerificationResponse>): void;
+      params: Params$Resource$Liasettings$Requestinventoryverification,
+      callback: BodyResponseCallback<
+        Schema$LiasettingsRequestInventoryVerificationResponse
+      >
+    ): void;
     requestinventoryverification(
-        callback: BodyResponseCallback<
-            Schema$LiasettingsRequestInventoryVerificationResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$LiasettingsRequestInventoryVerificationResponse
+      >
+    ): void;
     requestinventoryverification(
-        paramsOrCallback?:
-            Params$Resource$Liasettings$Requestinventoryverification|
-        BodyResponseCallback<
-            Schema$LiasettingsRequestInventoryVerificationResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$LiasettingsRequestInventoryVerificationResponse>,
-        callback?: BodyResponseCallback<
-            Schema$LiasettingsRequestInventoryVerificationResponse>): void|
-        GaxiosPromise<Schema$LiasettingsRequestInventoryVerificationResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Liasettings$Requestinventoryverification;
+      paramsOrCallback?:
+        | Params$Resource$Liasettings$Requestinventoryverification
+        | BodyResponseCallback<
+            Schema$LiasettingsRequestInventoryVerificationResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$LiasettingsRequestInventoryVerificationResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$LiasettingsRequestInventoryVerificationResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$LiasettingsRequestInventoryVerificationResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Liasettings$Requestinventoryverification;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7629,29 +7423,30 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/liasettings/{accountId}/requestinventoryverification/{country}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/liasettings/{accountId}/requestinventoryverification/{country}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId', 'country'],
         pathParams: ['accountId', 'country', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$LiasettingsRequestInventoryVerificationResponse>(
-            parameters, callback);
+          Schema$LiasettingsRequestInventoryVerificationResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$LiasettingsRequestInventoryVerificationResponse>(parameters);
+          Schema$LiasettingsRequestInventoryVerificationResponse
+        >(parameters);
       }
     }
-
 
     /**
      * content.liasettings.setinventoryverificationcontact
@@ -7671,42 +7466,55 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     setinventoryverificationcontact(
-        params?: Params$Resource$Liasettings$Setinventoryverificationcontact,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$LiasettingsSetInventoryVerificationContactResponse>;
+      params?: Params$Resource$Liasettings$Setinventoryverificationcontact,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiasettingsSetInventoryVerificationContactResponse>;
     setinventoryverificationcontact(
-        params: Params$Resource$Liasettings$Setinventoryverificationcontact,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$LiasettingsSetInventoryVerificationContactResponse>,
-        callback: BodyResponseCallback<
-            Schema$LiasettingsSetInventoryVerificationContactResponse>): void;
+      params: Params$Resource$Liasettings$Setinventoryverificationcontact,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$LiasettingsSetInventoryVerificationContactResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$LiasettingsSetInventoryVerificationContactResponse
+      >
+    ): void;
     setinventoryverificationcontact(
-        params: Params$Resource$Liasettings$Setinventoryverificationcontact,
-        callback: BodyResponseCallback<
-            Schema$LiasettingsSetInventoryVerificationContactResponse>): void;
+      params: Params$Resource$Liasettings$Setinventoryverificationcontact,
+      callback: BodyResponseCallback<
+        Schema$LiasettingsSetInventoryVerificationContactResponse
+      >
+    ): void;
     setinventoryverificationcontact(
-        callback: BodyResponseCallback<
-            Schema$LiasettingsSetInventoryVerificationContactResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$LiasettingsSetInventoryVerificationContactResponse
+      >
+    ): void;
     setinventoryverificationcontact(
-        paramsOrCallback?:
-            Params$Resource$Liasettings$Setinventoryverificationcontact|
-        BodyResponseCallback<
-            Schema$LiasettingsSetInventoryVerificationContactResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$LiasettingsSetInventoryVerificationContactResponse>,
-        callback?: BodyResponseCallback<
-            Schema$LiasettingsSetInventoryVerificationContactResponse>):
-        void|GaxiosPromise<
-            Schema$LiasettingsSetInventoryVerificationContactResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Liasettings$Setinventoryverificationcontact;
+      paramsOrCallback?:
+        | Params$Resource$Liasettings$Setinventoryverificationcontact
+        | BodyResponseCallback<
+            Schema$LiasettingsSetInventoryVerificationContactResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$LiasettingsSetInventoryVerificationContactResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$LiasettingsSetInventoryVerificationContactResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$LiasettingsSetInventoryVerificationContactResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Liasettings$Setinventoryverificationcontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Liasettings$Setinventoryverificationcontact;
+        params = {} as Params$Resource$Liasettings$Setinventoryverificationcontact;
         options = {};
       }
 
@@ -7718,33 +7526,37 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/liasettings/{accountId}/setinventoryverificationcontact')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/liasettings/{accountId}/setinventoryverificationcontact'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [
-          'merchantId', 'accountId', 'contactEmail', 'contactName', 'country',
-          'language'
+          'merchantId',
+          'accountId',
+          'contactEmail',
+          'contactName',
+          'country',
+          'language',
         ],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$LiasettingsSetInventoryVerificationContactResponse>(
-            parameters, callback);
+          Schema$LiasettingsSetInventoryVerificationContactResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$LiasettingsSetInventoryVerificationContactResponse>(
-            parameters);
+          Schema$LiasettingsSetInventoryVerificationContactResponse
+        >(parameters);
       }
     }
-
 
     /**
      * content.liasettings.setposdataprovider
@@ -7763,35 +7575,42 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     setposdataprovider(
-        params?: Params$Resource$Liasettings$Setposdataprovider,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$LiasettingsSetPosDataProviderResponse>;
+      params?: Params$Resource$Liasettings$Setposdataprovider,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiasettingsSetPosDataProviderResponse>;
     setposdataprovider(
-        params: Params$Resource$Liasettings$Setposdataprovider,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>,
-        callback:
-            BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>):
-        void;
+      params: Params$Resource$Liasettings$Setposdataprovider,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>,
+      callback: BodyResponseCallback<
+        Schema$LiasettingsSetPosDataProviderResponse
+      >
+    ): void;
     setposdataprovider(
-        params: Params$Resource$Liasettings$Setposdataprovider,
-        callback:
-            BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>):
-        void;
+      params: Params$Resource$Liasettings$Setposdataprovider,
+      callback: BodyResponseCallback<
+        Schema$LiasettingsSetPosDataProviderResponse
+      >
+    ): void;
     setposdataprovider(
-        callback:
-            BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>):
-        void;
+      callback: BodyResponseCallback<
+        Schema$LiasettingsSetPosDataProviderResponse
+      >
+    ): void;
     setposdataprovider(
-        paramsOrCallback?: Params$Resource$Liasettings$Setposdataprovider|
-        BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>,
-        callback?:
-            BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>):
-        void|GaxiosPromise<Schema$LiasettingsSetPosDataProviderResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Liasettings$Setposdataprovider;
+      paramsOrCallback?:
+        | Params$Resource$Liasettings$Setposdataprovider
+        | BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>,
+      callback?: BodyResponseCallback<
+        Schema$LiasettingsSetPosDataProviderResponse
+      >
+    ): void | GaxiosPromise<Schema$LiasettingsSetPosDataProviderResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Liasettings$Setposdataprovider;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7808,28 +7627,31 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/liasettings/{accountId}/setposdataprovider')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/liasettings/{accountId}/setposdataprovider'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId', 'country'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsSetPosDataProviderResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$LiasettingsSetPosDataProviderResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.liasettings.update
@@ -7846,25 +7668,30 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Liasettings$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$LiaSettings>;
+      params?: Params$Resource$Liasettings$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiaSettings>;
     update(
-        params: Params$Resource$Liasettings$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$LiaSettings>,
-        callback: BodyResponseCallback<Schema$LiaSettings>): void;
+      params: Params$Resource$Liasettings$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$LiaSettings>,
+      callback: BodyResponseCallback<Schema$LiaSettings>
+    ): void;
     update(
-        params: Params$Resource$Liasettings$Update,
-        callback: BodyResponseCallback<Schema$LiaSettings>): void;
+      params: Params$Resource$Liasettings$Update,
+      callback: BodyResponseCallback<Schema$LiaSettings>
+    ): void;
     update(callback: BodyResponseCallback<Schema$LiaSettings>): void;
     update(
-        paramsOrCallback?: Params$Resource$Liasettings$Update|
-        BodyResponseCallback<Schema$LiaSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiaSettings>,
-        callback?: BodyResponseCallback<Schema$LiaSettings>):
-        void|GaxiosPromise<Schema$LiaSettings> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Liasettings$Update;
+      paramsOrCallback?:
+        | Params$Resource$Liasettings$Update
+        | BodyResponseCallback<Schema$LiaSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiaSettings>,
+      callback?: BodyResponseCallback<Schema$LiaSettings>
+    ): void | GaxiosPromise<Schema$LiaSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Liasettings$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7881,17 +7708,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/liasettings/{accountId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/liasettings/{accountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiaSettings>(parameters, callback);
@@ -7901,13 +7729,12 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Liasettings$Custombatch extends
-      StandardParameters {
+  export interface Params$Resource$Liasettings$Custombatch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -7918,35 +7745,30 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account for which to get or update LIA settings.
      */
     accountId?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$Getaccessiblegmbaccounts extends
-      StandardParameters {
+  export interface Params$Resource$Liasettings$Getaccessiblegmbaccounts
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account for which to retrieve accessible Google My Business
-     * accounts.
+     * The ID of the account for which to retrieve accessible Google My Business accounts.
      */
     accountId?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
   }
@@ -7954,11 +7776,10 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of LIA settings to return in the response, used for
-     * paging.
+     * The maximum number of LIA settings to return in the response, used for paging.
      */
     maxResults?: number;
     /**
@@ -7970,19 +7791,19 @@ export namespace content_v2_1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Liasettings$Listposdataproviders extends
-      StandardParameters {
+  export interface Params$Resource$Liasettings$Listposdataproviders
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Liasettings$Requestgmbaccess extends
-      StandardParameters {
+  export interface Params$Resource$Liasettings$Requestgmbaccess
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account for which GMB access is requested.
@@ -7993,22 +7814,19 @@ export namespace content_v2_1 {
      */
     gmbEmail?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
   }
   export interface Params$Resource$Liasettings$Requestinventoryverification
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     accountId?: string;
     /**
@@ -8016,22 +7834,19 @@ export namespace content_v2_1 {
      */
     country?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
   }
   export interface Params$Resource$Liasettings$Setinventoryverificationcontact
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     accountId?: string;
     /**
@@ -8051,22 +7866,19 @@ export namespace content_v2_1 {
      */
     language?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$Setposdataprovider extends
-      StandardParameters {
+  export interface Params$Resource$Liasettings$Setposdataprovider
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account for which to retrieve accessible Google My Business
-     * accounts.
+     * The ID of the account for which to retrieve accessible Google My Business accounts.
      */
     accountId?: string;
     /**
@@ -8074,9 +7886,7 @@ export namespace content_v2_1 {
      */
     country?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
     /**
@@ -8088,21 +7898,19 @@ export namespace content_v2_1 {
      */
     posExternalAccountId?: string;
   }
-  export interface Params$Resource$Liasettings$Update extends
-      StandardParameters {
+  export interface Params$Resource$Liasettings$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account for which to get or update LIA settings.
      */
     accountId?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
 
@@ -8112,18 +7920,15 @@ export namespace content_v2_1 {
     requestBody?: Schema$LiaSettings;
   }
 
-
   export class Resource$Orderinvoices {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * content.orderinvoices.createchargeinvoice
-     * @desc Creates a charge invoice for a shipment group, and triggers a
-     * charge capture for non-facilitated payment orders.
+     * @desc Creates a charge invoice for a shipment group, and triggers a charge capture for orderinvoice enabled orders.
      * @alias content.orderinvoices.createchargeinvoice
      * @memberOf! ()
      *
@@ -8136,31 +7941,42 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     createchargeinvoice(
-        params?: Params$Resource$Orderinvoices$Createchargeinvoice,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrderinvoicesCreateChargeInvoiceResponse>;
+      params?: Params$Resource$Orderinvoices$Createchargeinvoice,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrderinvoicesCreateChargeInvoiceResponse>;
     createchargeinvoice(
-        params: Params$Resource$Orderinvoices$Createchargeinvoice,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrderinvoicesCreateChargeInvoiceResponse>,
-        callback: BodyResponseCallback<
-            Schema$OrderinvoicesCreateChargeInvoiceResponse>): void;
+      params: Params$Resource$Orderinvoices$Createchargeinvoice,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrderinvoicesCreateChargeInvoiceResponse>,
+      callback: BodyResponseCallback<
+        Schema$OrderinvoicesCreateChargeInvoiceResponse
+      >
+    ): void;
     createchargeinvoice(
-        params: Params$Resource$Orderinvoices$Createchargeinvoice,
-        callback: BodyResponseCallback<
-            Schema$OrderinvoicesCreateChargeInvoiceResponse>): void;
-    createchargeinvoice(callback: BodyResponseCallback<
-                        Schema$OrderinvoicesCreateChargeInvoiceResponse>): void;
+      params: Params$Resource$Orderinvoices$Createchargeinvoice,
+      callback: BodyResponseCallback<
+        Schema$OrderinvoicesCreateChargeInvoiceResponse
+      >
+    ): void;
     createchargeinvoice(
-        paramsOrCallback?: Params$Resource$Orderinvoices$Createchargeinvoice|
-        BodyResponseCallback<Schema$OrderinvoicesCreateChargeInvoiceResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrderinvoicesCreateChargeInvoiceResponse>,
-        callback?: BodyResponseCallback<
-            Schema$OrderinvoicesCreateChargeInvoiceResponse>):
-        void|GaxiosPromise<Schema$OrderinvoicesCreateChargeInvoiceResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orderinvoices$Createchargeinvoice;
+      callback: BodyResponseCallback<
+        Schema$OrderinvoicesCreateChargeInvoiceResponse
+      >
+    ): void;
+    createchargeinvoice(
+      paramsOrCallback?:
+        | Params$Resource$Orderinvoices$Createchargeinvoice
+        | BodyResponseCallback<Schema$OrderinvoicesCreateChargeInvoiceResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrderinvoicesCreateChargeInvoiceResponse>,
+      callback?: BodyResponseCallback<
+        Schema$OrderinvoicesCreateChargeInvoiceResponse
+      >
+    ): void | GaxiosPromise<Schema$OrderinvoicesCreateChargeInvoiceResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orderinvoices$Createchargeinvoice;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8177,36 +7993,35 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orderinvoices/{orderId}/createChargeInvoice')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orderinvoices/{orderId}/createChargeInvoice'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrderinvoicesCreateChargeInvoiceResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$OrderinvoicesCreateChargeInvoiceResponse>(parameters);
+          Schema$OrderinvoicesCreateChargeInvoiceResponse
+        >(parameters);
       }
     }
 
-
     /**
      * content.orderinvoices.createrefundinvoice
-     * @desc Creates a refund invoice for one or more shipment groups, and
-     * triggers a refund for non-facilitated payment orders. This can only be
-     * used for line items that have previously been charged using
-     * createChargeInvoice. All amounts (except for the summary) are incremental
-     * with respect to the previous invoice.
+     * @desc Creates a refund invoice for one or more shipment groups, and triggers a refund for orderinvoice enabled orders. This can only be used for line items that have previously been charged using createChargeInvoice. All amounts (except for the summary) are incremental with respect to the previous invoice.
      * @alias content.orderinvoices.createrefundinvoice
      * @memberOf! ()
      *
@@ -8219,31 +8034,42 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     createrefundinvoice(
-        params?: Params$Resource$Orderinvoices$Createrefundinvoice,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrderinvoicesCreateRefundInvoiceResponse>;
+      params?: Params$Resource$Orderinvoices$Createrefundinvoice,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrderinvoicesCreateRefundInvoiceResponse>;
     createrefundinvoice(
-        params: Params$Resource$Orderinvoices$Createrefundinvoice,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrderinvoicesCreateRefundInvoiceResponse>,
-        callback: BodyResponseCallback<
-            Schema$OrderinvoicesCreateRefundInvoiceResponse>): void;
+      params: Params$Resource$Orderinvoices$Createrefundinvoice,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrderinvoicesCreateRefundInvoiceResponse>,
+      callback: BodyResponseCallback<
+        Schema$OrderinvoicesCreateRefundInvoiceResponse
+      >
+    ): void;
     createrefundinvoice(
-        params: Params$Resource$Orderinvoices$Createrefundinvoice,
-        callback: BodyResponseCallback<
-            Schema$OrderinvoicesCreateRefundInvoiceResponse>): void;
-    createrefundinvoice(callback: BodyResponseCallback<
-                        Schema$OrderinvoicesCreateRefundInvoiceResponse>): void;
+      params: Params$Resource$Orderinvoices$Createrefundinvoice,
+      callback: BodyResponseCallback<
+        Schema$OrderinvoicesCreateRefundInvoiceResponse
+      >
+    ): void;
     createrefundinvoice(
-        paramsOrCallback?: Params$Resource$Orderinvoices$Createrefundinvoice|
-        BodyResponseCallback<Schema$OrderinvoicesCreateRefundInvoiceResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrderinvoicesCreateRefundInvoiceResponse>,
-        callback?: BodyResponseCallback<
-            Schema$OrderinvoicesCreateRefundInvoiceResponse>):
-        void|GaxiosPromise<Schema$OrderinvoicesCreateRefundInvoiceResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orderinvoices$Createrefundinvoice;
+      callback: BodyResponseCallback<
+        Schema$OrderinvoicesCreateRefundInvoiceResponse
+      >
+    ): void;
+    createrefundinvoice(
+      paramsOrCallback?:
+        | Params$Resource$Orderinvoices$Createrefundinvoice
+        | BodyResponseCallback<Schema$OrderinvoicesCreateRefundInvoiceResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrderinvoicesCreateRefundInvoiceResponse>,
+      callback?: BodyResponseCallback<
+        Schema$OrderinvoicesCreateRefundInvoiceResponse
+      >
+    ): void | GaxiosPromise<Schema$OrderinvoicesCreateRefundInvoiceResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orderinvoices$Createrefundinvoice;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8260,39 +8086,42 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orderinvoices/{orderId}/createRefundInvoice')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orderinvoices/{orderId}/createRefundInvoice'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrderinvoicesCreateRefundInvoiceResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$OrderinvoicesCreateRefundInvoiceResponse>(parameters);
+          Schema$OrderinvoicesCreateRefundInvoiceResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Orderinvoices$Createchargeinvoice extends
-      StandardParameters {
+  export interface Params$Resource$Orderinvoices$Createchargeinvoice
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -8305,16 +8134,15 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$OrderinvoicesCreateChargeInvoiceRequest;
   }
-  export interface Params$Resource$Orderinvoices$Createrefundinvoice extends
-      StandardParameters {
+  export interface Params$Resource$Orderinvoices$Createrefundinvoice
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -8328,18 +8156,15 @@ export namespace content_v2_1 {
     requestBody?: Schema$OrderinvoicesCreateRefundInvoiceRequest;
   }
 
-
   export class Resource$Orderreports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * content.orderreports.listdisbursements
-     * @desc Retrieves a report for disbursements from your Merchant Center
-     * account.
+     * @desc Retrieves a report for disbursements from your Merchant Center account.
      * @alias content.orderreports.listdisbursements
      * @memberOf! ()
      *
@@ -8354,35 +8179,42 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     listdisbursements(
-        params?: Params$Resource$Orderreports$Listdisbursements,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrderreportsListDisbursementsResponse>;
+      params?: Params$Resource$Orderreports$Listdisbursements,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrderreportsListDisbursementsResponse>;
     listdisbursements(
-        params: Params$Resource$Orderreports$Listdisbursements,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
-        callback:
-            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
-        void;
+      params: Params$Resource$Orderreports$Listdisbursements,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
+      callback: BodyResponseCallback<
+        Schema$OrderreportsListDisbursementsResponse
+      >
+    ): void;
     listdisbursements(
-        params: Params$Resource$Orderreports$Listdisbursements,
-        callback:
-            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
-        void;
+      params: Params$Resource$Orderreports$Listdisbursements,
+      callback: BodyResponseCallback<
+        Schema$OrderreportsListDisbursementsResponse
+      >
+    ): void;
     listdisbursements(
-        callback:
-            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
-        void;
+      callback: BodyResponseCallback<
+        Schema$OrderreportsListDisbursementsResponse
+      >
+    ): void;
     listdisbursements(
-        paramsOrCallback?: Params$Resource$Orderreports$Listdisbursements|
-        BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
-        callback?:
-            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
-        void|GaxiosPromise<Schema$OrderreportsListDisbursementsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orderreports$Listdisbursements;
+      paramsOrCallback?:
+        | Params$Resource$Orderreports$Listdisbursements
+        | BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
+      callback?: BodyResponseCallback<
+        Schema$OrderreportsListDisbursementsResponse
+      >
+    ): void | GaxiosPromise<Schema$OrderreportsListDisbursementsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orderreports$Listdisbursements;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8399,32 +8231,34 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/orderreports/disbursements')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/orderreports/disbursements'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'disbursementStartDate'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrderreportsListDisbursementsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrderreportsListDisbursementsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * content.orderreports.listtransactions
-     * @desc Retrieves a list of transactions for a disbursement from your
-     * Merchant Center account.
+     * @desc Retrieves a list of transactions for a disbursement from your Merchant Center account.
      * @alias content.orderreports.listtransactions
      * @memberOf! ()
      *
@@ -8440,35 +8274,42 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     listtransactions(
-        params?: Params$Resource$Orderreports$Listtransactions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrderreportsListTransactionsResponse>;
+      params?: Params$Resource$Orderreports$Listtransactions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrderreportsListTransactionsResponse>;
     listtransactions(
-        params: Params$Resource$Orderreports$Listtransactions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
-        callback:
-            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
-        void;
+      params: Params$Resource$Orderreports$Listtransactions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
+      callback: BodyResponseCallback<
+        Schema$OrderreportsListTransactionsResponse
+      >
+    ): void;
     listtransactions(
-        params: Params$Resource$Orderreports$Listtransactions,
-        callback:
-            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
-        void;
+      params: Params$Resource$Orderreports$Listtransactions,
+      callback: BodyResponseCallback<
+        Schema$OrderreportsListTransactionsResponse
+      >
+    ): void;
     listtransactions(
-        callback:
-            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
-        void;
+      callback: BodyResponseCallback<
+        Schema$OrderreportsListTransactionsResponse
+      >
+    ): void;
     listtransactions(
-        paramsOrCallback?: Params$Resource$Orderreports$Listtransactions|
-        BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
-        callback?:
-            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
-        void|GaxiosPromise<Schema$OrderreportsListTransactionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orderreports$Listtransactions;
+      paramsOrCallback?:
+        | Params$Resource$Orderreports$Listtransactions
+        | BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
+      callback?: BodyResponseCallback<
+        Schema$OrderreportsListTransactionsResponse
+      >
+    ): void | GaxiosPromise<Schema$OrderreportsListTransactionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orderreports$Listtransactions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8485,40 +8326,46 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orderreports/disbursements/{disbursementId}/transactions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orderreports/disbursements/{disbursementId}/transactions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['merchantId', 'disbursementId', 'transactionStartDate'],
+        requiredParams: [
+          'merchantId',
+          'disbursementId',
+          'transactionStartDate',
+        ],
         pathParams: ['disbursementId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrderreportsListTransactionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrderreportsListTransactionsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Orderreports$Listdisbursements extends
-      StandardParameters {
+  export interface Params$Resource$Orderreports$Listdisbursements
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The last date which disbursements occurred. In ISO 8601 format. Default:
-     * current date.
+     * The last date which disbursements occurred. In ISO 8601 format. Default: current date.
      */
     disbursementEndDate?: string;
     /**
@@ -8526,13 +8373,11 @@ export namespace content_v2_1 {
      */
     disbursementStartDate?: string;
     /**
-     * The maximum number of disbursements to return in the response, used for
-     * paging.
+     * The maximum number of disbursements to return in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -8540,25 +8385,23 @@ export namespace content_v2_1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Orderreports$Listtransactions extends
-      StandardParameters {
+  export interface Params$Resource$Orderreports$Listtransactions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Google-provided ID of the disbursement (found in Wallet).
      */
     disbursementId?: string;
     /**
-     * The maximum number of disbursements to return in the response, used for
-     * paging.
+     * The maximum number of disbursements to return in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -8566,8 +8409,7 @@ export namespace content_v2_1 {
      */
     pageToken?: string;
     /**
-     * The last date in which transaction occurred. In ISO 8601 format. Default:
-     * current date.
+     * The last date in which transaction occurred. In ISO 8601 format. Default: current date.
      */
     transactionEndDate?: string;
     /**
@@ -8576,13 +8418,11 @@ export namespace content_v2_1 {
     transactionStartDate?: string;
   }
 
-
   export class Resource$Orderreturns {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * content.orderreturns.get
@@ -8597,20 +8437,29 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Orderreturns$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$MerchantOrderReturn>;
-    get(params: Params$Resource$Orderreturns$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$MerchantOrderReturn>,
-        callback: BodyResponseCallback<Schema$MerchantOrderReturn>): void;
-    get(params: Params$Resource$Orderreturns$Get,
-        callback: BodyResponseCallback<Schema$MerchantOrderReturn>): void;
+    get(
+      params?: Params$Resource$Orderreturns$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MerchantOrderReturn>;
+    get(
+      params: Params$Resource$Orderreturns$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MerchantOrderReturn>,
+      callback: BodyResponseCallback<Schema$MerchantOrderReturn>
+    ): void;
+    get(
+      params: Params$Resource$Orderreturns$Get,
+      callback: BodyResponseCallback<Schema$MerchantOrderReturn>
+    ): void;
     get(callback: BodyResponseCallback<Schema$MerchantOrderReturn>): void;
-    get(paramsOrCallback?: Params$Resource$Orderreturns$Get|
-        BodyResponseCallback<Schema$MerchantOrderReturn>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MerchantOrderReturn>,
-        callback?: BodyResponseCallback<Schema$MerchantOrderReturn>):
-        void|GaxiosPromise<Schema$MerchantOrderReturn> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Orderreturns$Get
+        | BodyResponseCallback<Schema$MerchantOrderReturn>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MerchantOrderReturn>,
+      callback?: BodyResponseCallback<Schema$MerchantOrderReturn>
+    ): void | GaxiosPromise<Schema$MerchantOrderReturn> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orderreturns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8628,17 +8477,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/orderreturns/{returnId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/orderreturns/{returnId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'returnId'],
         pathParams: ['merchantId', 'returnId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$MerchantOrderReturn>(parameters, callback);
@@ -8646,7 +8496,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$MerchantOrderReturn>(parameters);
       }
     }
-
 
     /**
      * content.orderreturns.list
@@ -8665,26 +8514,33 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Orderreturns$List, options?: MethodOptions):
-        GaxiosPromise<Schema$OrderreturnsListResponse>;
     list(
-        params: Params$Resource$Orderreturns$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrderreturnsListResponse>,
-        callback: BodyResponseCallback<Schema$OrderreturnsListResponse>): void;
+      params?: Params$Resource$Orderreturns$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrderreturnsListResponse>;
     list(
-        params: Params$Resource$Orderreturns$List,
-        callback: BodyResponseCallback<Schema$OrderreturnsListResponse>): void;
+      params: Params$Resource$Orderreturns$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrderreturnsListResponse>,
+      callback: BodyResponseCallback<Schema$OrderreturnsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Orderreturns$List,
+      callback: BodyResponseCallback<Schema$OrderreturnsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$OrderreturnsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Orderreturns$List|
-        BodyResponseCallback<Schema$OrderreturnsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrderreturnsListResponse>,
-        callback?: BodyResponseCallback<Schema$OrderreturnsListResponse>):
-        void|GaxiosPromise<Schema$OrderreturnsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Orderreturns$List;
+      paramsOrCallback?:
+        | Params$Resource$Orderreturns$List
+        | BodyResponseCallback<Schema$OrderreturnsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrderreturnsListResponse>,
+      callback?: BodyResponseCallback<Schema$OrderreturnsListResponse>
+    ): void | GaxiosPromise<Schema$OrderreturnsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orderreturns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8701,16 +8557,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/orderreturns')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/orderreturns').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrderreturnsListResponse>(parameters, callback);
@@ -8724,11 +8583,10 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -8736,32 +8594,27 @@ export namespace content_v2_1 {
      */
     returnId?: string;
   }
-  export interface Params$Resource$Orderreturns$List extends
-      StandardParameters {
+  export interface Params$Resource$Orderreturns$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Obtains order returns created before this date (inclusively), in ISO 8601
-     * format.
+     * Obtains order returns created before this date (inclusively), in ISO 8601 format.
      */
     createdEndDate?: string;
     /**
-     * Obtains order returns created after this date (inclusively), in ISO 8601
-     * format.
+     * Obtains order returns created after this date (inclusively), in ISO 8601 format.
      */
     createdStartDate?: string;
     /**
-     * The maximum number of order returns to return in the response, used for
-     * paging. The default value is 25 returns per page, and the maximum allowed
-     * value is 250 returns per page.
+     * The maximum number of order returns to return in the response, used for paging. The default value is 25 returns per page, and the maximum allowed value is 250 returns per page.
      */
     maxResults?: number;
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -8774,13 +8627,11 @@ export namespace content_v2_1 {
     pageToken?: string;
   }
 
-
   export class Resource$Orders {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * content.orders.acknowledge
@@ -8797,27 +8648,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     acknowledge(
-        params?: Params$Resource$Orders$Acknowledge, options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersAcknowledgeResponse>;
+      params?: Params$Resource$Orders$Acknowledge,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersAcknowledgeResponse>;
     acknowledge(
-        params: Params$Resource$Orders$Acknowledge,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersAcknowledgeResponse>,
-        callback: BodyResponseCallback<Schema$OrdersAcknowledgeResponse>): void;
+      params: Params$Resource$Orders$Acknowledge,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersAcknowledgeResponse>,
+      callback: BodyResponseCallback<Schema$OrdersAcknowledgeResponse>
+    ): void;
     acknowledge(
-        params: Params$Resource$Orders$Acknowledge,
-        callback: BodyResponseCallback<Schema$OrdersAcknowledgeResponse>): void;
+      params: Params$Resource$Orders$Acknowledge,
+      callback: BodyResponseCallback<Schema$OrdersAcknowledgeResponse>
+    ): void;
     acknowledge(
-        callback: BodyResponseCallback<Schema$OrdersAcknowledgeResponse>): void;
+      callback: BodyResponseCallback<Schema$OrdersAcknowledgeResponse>
+    ): void;
     acknowledge(
-        paramsOrCallback?: Params$Resource$Orders$Acknowledge|
-        BodyResponseCallback<Schema$OrdersAcknowledgeResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersAcknowledgeResponse>,
-        callback?: BodyResponseCallback<Schema$OrdersAcknowledgeResponse>):
-        void|GaxiosPromise<Schema$OrdersAcknowledgeResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Orders$Acknowledge;
+      paramsOrCallback?:
+        | Params$Resource$Orders$Acknowledge
+        | BodyResponseCallback<Schema$OrdersAcknowledgeResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersAcknowledgeResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersAcknowledgeResponse>
+    ): void | GaxiosPromise<Schema$OrdersAcknowledgeResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Acknowledge;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8834,31 +8692,33 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/orders/{orderId}/acknowledge')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orders/{orderId}/acknowledge'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersAcknowledgeResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersAcknowledgeResponse>(parameters);
       }
     }
 
-
     /**
      * content.orders.advancetestorder
-     * @desc Sandbox only. Moves a test order from state "inProgress" to state
-     * "pendingShipment".
+     * @desc Sandbox only. Moves a test order from state "inProgress" to state "pendingShipment".
      * @alias content.orders.advancetestorder
      * @memberOf! ()
      *
@@ -8870,31 +8730,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     advancetestorder(
-        params?: Params$Resource$Orders$Advancetestorder,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersAdvanceTestOrderResponse>;
+      params?: Params$Resource$Orders$Advancetestorder,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersAdvanceTestOrderResponse>;
     advancetestorder(
-        params: Params$Resource$Orders$Advancetestorder,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>,
-        callback: BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>):
-        void;
+      params: Params$Resource$Orders$Advancetestorder,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>,
+      callback: BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>
+    ): void;
     advancetestorder(
-        params: Params$Resource$Orders$Advancetestorder,
-        callback: BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>):
-        void;
+      params: Params$Resource$Orders$Advancetestorder,
+      callback: BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>
+    ): void;
     advancetestorder(
-        callback: BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>
+    ): void;
     advancetestorder(
-        paramsOrCallback?: Params$Resource$Orders$Advancetestorder|
-        BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>,
-        callback?: BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>):
-        void|GaxiosPromise<Schema$OrdersAdvanceTestOrderResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Orders$Advancetestorder;
+      paramsOrCallback?:
+        | Params$Resource$Orders$Advancetestorder
+        | BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>
+    ): void | GaxiosPromise<Schema$OrdersAdvanceTestOrderResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Advancetestorder;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8911,27 +8774,31 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/testorders/{orderId}/advance')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/testorders/{orderId}/advance'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersAdvanceTestOrderResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersAdvanceTestOrderResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.orders.cancel
@@ -8947,24 +8814,31 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: Params$Resource$Orders$Cancel, options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersCancelResponse>;
     cancel(
-        params: Params$Resource$Orders$Cancel,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersCancelResponse>,
-        callback: BodyResponseCallback<Schema$OrdersCancelResponse>): void;
+      params?: Params$Resource$Orders$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersCancelResponse>;
     cancel(
-        params: Params$Resource$Orders$Cancel,
-        callback: BodyResponseCallback<Schema$OrdersCancelResponse>): void;
+      params: Params$Resource$Orders$Cancel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersCancelResponse>,
+      callback: BodyResponseCallback<Schema$OrdersCancelResponse>
+    ): void;
+    cancel(
+      params: Params$Resource$Orders$Cancel,
+      callback: BodyResponseCallback<Schema$OrdersCancelResponse>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$OrdersCancelResponse>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Orders$Cancel|
-        BodyResponseCallback<Schema$OrdersCancelResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersCancelResponse>,
-        callback?: BodyResponseCallback<Schema$OrdersCancelResponse>):
-        void|GaxiosPromise<Schema$OrdersCancelResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Orders$Cancel
+        | BodyResponseCallback<Schema$OrdersCancelResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersCancelResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersCancelResponse>
+    ): void | GaxiosPromise<Schema$OrdersCancelResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8982,17 +8856,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/orders/{orderId}/cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/orders/{orderId}/cancel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCancelResponse>(parameters, callback);
@@ -9000,7 +8875,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$OrdersCancelResponse>(parameters);
       }
     }
-
 
     /**
      * content.orders.cancellineitem
@@ -9017,31 +8891,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     cancellineitem(
-        params?: Params$Resource$Orders$Cancellineitem,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersCancelLineItemResponse>;
+      params?: Params$Resource$Orders$Cancellineitem,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersCancelLineItemResponse>;
     cancellineitem(
-        params: Params$Resource$Orders$Cancellineitem,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersCancelLineItemResponse>,
-        callback: BodyResponseCallback<Schema$OrdersCancelLineItemResponse>):
-        void;
+      params: Params$Resource$Orders$Cancellineitem,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersCancelLineItemResponse>,
+      callback: BodyResponseCallback<Schema$OrdersCancelLineItemResponse>
+    ): void;
     cancellineitem(
-        params: Params$Resource$Orders$Cancellineitem,
-        callback: BodyResponseCallback<Schema$OrdersCancelLineItemResponse>):
-        void;
+      params: Params$Resource$Orders$Cancellineitem,
+      callback: BodyResponseCallback<Schema$OrdersCancelLineItemResponse>
+    ): void;
     cancellineitem(
-        callback: BodyResponseCallback<Schema$OrdersCancelLineItemResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$OrdersCancelLineItemResponse>
+    ): void;
     cancellineitem(
-        paramsOrCallback?: Params$Resource$Orders$Cancellineitem|
-        BodyResponseCallback<Schema$OrdersCancelLineItemResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersCancelLineItemResponse>,
-        callback?: BodyResponseCallback<Schema$OrdersCancelLineItemResponse>):
-        void|GaxiosPromise<Schema$OrdersCancelLineItemResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Orders$Cancellineitem;
+      paramsOrCallback?:
+        | Params$Resource$Orders$Cancellineitem
+        | BodyResponseCallback<Schema$OrdersCancelLineItemResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersCancelLineItemResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersCancelLineItemResponse>
+    ): void | GaxiosPromise<Schema$OrdersCancelLineItemResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Cancellineitem;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9058,33 +8935,35 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orders/{orderId}/cancelLineItem')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orders/{orderId}/cancelLineItem'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCancelLineItemResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersCancelLineItemResponse>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * content.orders.canceltestorderbycustomer
-     * @desc Sandbox only. Cancels a test order for customer-initiated
-     * cancellation.
+     * @desc Sandbox only. Cancels a test order for customer-initiated cancellation.
      * @alias content.orders.canceltestorderbycustomer
      * @memberOf! ()
      *
@@ -9097,32 +8976,42 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     canceltestorderbycustomer(
-        params?: Params$Resource$Orders$Canceltestorderbycustomer,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse>;
+      params?: Params$Resource$Orders$Canceltestorderbycustomer,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse>;
     canceltestorderbycustomer(
-        params: Params$Resource$Orders$Canceltestorderbycustomer,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
-        callback: BodyResponseCallback<
-            Schema$OrdersCancelTestOrderByCustomerResponse>): void;
+      params: Params$Resource$Orders$Canceltestorderbycustomer,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+      callback: BodyResponseCallback<
+        Schema$OrdersCancelTestOrderByCustomerResponse
+      >
+    ): void;
     canceltestorderbycustomer(
-        params: Params$Resource$Orders$Canceltestorderbycustomer,
-        callback: BodyResponseCallback<
-            Schema$OrdersCancelTestOrderByCustomerResponse>): void;
-    canceltestorderbycustomer(callback: BodyResponseCallback<
-                              Schema$OrdersCancelTestOrderByCustomerResponse>):
-        void;
+      params: Params$Resource$Orders$Canceltestorderbycustomer,
+      callback: BodyResponseCallback<
+        Schema$OrdersCancelTestOrderByCustomerResponse
+      >
+    ): void;
     canceltestorderbycustomer(
-        paramsOrCallback?: Params$Resource$Orders$Canceltestorderbycustomer|
-        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
-        callback?: BodyResponseCallback<
-            Schema$OrdersCancelTestOrderByCustomerResponse>):
-        void|GaxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orders$Canceltestorderbycustomer;
+      callback: BodyResponseCallback<
+        Schema$OrdersCancelTestOrderByCustomerResponse
+      >
+    ): void;
+    canceltestorderbycustomer(
+      paramsOrCallback?:
+        | Params$Resource$Orders$Canceltestorderbycustomer
+        | BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+      callback?: BodyResponseCallback<
+        Schema$OrdersCancelTestOrderByCustomerResponse
+      >
+    ): void | GaxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Canceltestorderbycustomer;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9139,28 +9028,31 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/testorders/{orderId}/cancelByCustomer')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/testorders/{orderId}/cancelByCustomer'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.orders.createtestorder
@@ -9176,31 +9068,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     createtestorder(
-        params?: Params$Resource$Orders$Createtestorder,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersCreateTestOrderResponse>;
+      params?: Params$Resource$Orders$Createtestorder,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersCreateTestOrderResponse>;
     createtestorder(
-        params: Params$Resource$Orders$Createtestorder,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>,
-        callback: BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>):
-        void;
+      params: Params$Resource$Orders$Createtestorder,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>,
+      callback: BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>
+    ): void;
     createtestorder(
-        params: Params$Resource$Orders$Createtestorder,
-        callback: BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>):
-        void;
+      params: Params$Resource$Orders$Createtestorder,
+      callback: BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>
+    ): void;
     createtestorder(
-        callback: BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>
+    ): void;
     createtestorder(
-        paramsOrCallback?: Params$Resource$Orders$Createtestorder|
-        BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>,
-        callback?: BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>):
-        void|GaxiosPromise<Schema$OrdersCreateTestOrderResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Orders$Createtestorder;
+      paramsOrCallback?:
+        | Params$Resource$Orders$Createtestorder
+        | BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>
+    ): void | GaxiosPromise<Schema$OrdersCreateTestOrderResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Createtestorder;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9217,26 +9112,31 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/testorders')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/testorders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCreateTestOrderResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersCreateTestOrderResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.orders.createtestreturn
@@ -9253,31 +9153,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     createtestreturn(
-        params?: Params$Resource$Orders$Createtestreturn,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersCreateTestReturnResponse>;
+      params?: Params$Resource$Orders$Createtestreturn,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersCreateTestReturnResponse>;
     createtestreturn(
-        params: Params$Resource$Orders$Createtestreturn,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>,
-        callback: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>):
-        void;
+      params: Params$Resource$Orders$Createtestreturn,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>,
+      callback: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>
+    ): void;
     createtestreturn(
-        params: Params$Resource$Orders$Createtestreturn,
-        callback: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>):
-        void;
+      params: Params$Resource$Orders$Createtestreturn,
+      callback: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>
+    ): void;
     createtestreturn(
-        callback: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>
+    ): void;
     createtestreturn(
-        paramsOrCallback?: Params$Resource$Orders$Createtestreturn|
-        BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>,
-        callback?: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>):
-        void|GaxiosPromise<Schema$OrdersCreateTestReturnResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Orders$Createtestreturn;
+      paramsOrCallback?:
+        | Params$Resource$Orders$Createtestreturn
+        | BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>
+    ): void | GaxiosPromise<Schema$OrdersCreateTestReturnResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Createtestreturn;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9294,27 +9197,30 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/orders/{orderId}/testreturn')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/orders/{orderId}/testreturn'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCreateTestReturnResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersCreateTestReturnResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.orders.get
@@ -9329,19 +9235,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Orders$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Order>;
-    get(params: Params$Resource$Orders$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Order>,
-        callback: BodyResponseCallback<Schema$Order>): void;
-    get(params: Params$Resource$Orders$Get,
-        callback: BodyResponseCallback<Schema$Order>): void;
+    get(
+      params?: Params$Resource$Orders$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Order>;
+    get(
+      params: Params$Resource$Orders$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Order>,
+      callback: BodyResponseCallback<Schema$Order>
+    ): void;
+    get(
+      params: Params$Resource$Orders$Get,
+      callback: BodyResponseCallback<Schema$Order>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Order>): void;
-    get(paramsOrCallback?: Params$Resource$Orders$Get|
-        BodyResponseCallback<Schema$Order>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Order>,
-        callback?: BodyResponseCallback<Schema$Order>):
-        void|GaxiosPromise<Schema$Order> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Orders$Get
+        | BodyResponseCallback<Schema$Order>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Order>,
+      callback?: BodyResponseCallback<Schema$Order>
+    ): void | GaxiosPromise<Schema$Order> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9359,16 +9273,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/orders/{orderId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/orders/{orderId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Order>(parameters, callback);
@@ -9376,7 +9292,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$Order>(parameters);
       }
     }
-
 
     /**
      * content.orders.getbymerchantorderid
@@ -9392,35 +9307,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     getbymerchantorderid(
-        params?: Params$Resource$Orders$Getbymerchantorderid,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersGetByMerchantOrderIdResponse>;
+      params?: Params$Resource$Orders$Getbymerchantorderid,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersGetByMerchantOrderIdResponse>;
     getbymerchantorderid(
-        params: Params$Resource$Orders$Getbymerchantorderid,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>,
-        callback:
-            BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>):
-        void;
+      params: Params$Resource$Orders$Getbymerchantorderid,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>,
+      callback: BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>
+    ): void;
     getbymerchantorderid(
-        params: Params$Resource$Orders$Getbymerchantorderid,
-        callback:
-            BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>):
-        void;
+      params: Params$Resource$Orders$Getbymerchantorderid,
+      callback: BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>
+    ): void;
     getbymerchantorderid(
-        callback:
-            BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>
+    ): void;
     getbymerchantorderid(
-        paramsOrCallback?: Params$Resource$Orders$Getbymerchantorderid|
-        BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>,
-        callback?:
-            BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>):
-        void|GaxiosPromise<Schema$OrdersGetByMerchantOrderIdResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orders$Getbymerchantorderid;
+      paramsOrCallback?:
+        | Params$Resource$Orders$Getbymerchantorderid
+        | BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>
+    ): void | GaxiosPromise<Schema$OrdersGetByMerchantOrderIdResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Getbymerchantorderid;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9437,33 +9351,35 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/ordersbymerchantid/{merchantOrderId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/ordersbymerchantid/{merchantOrderId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'merchantOrderId'],
         pathParams: ['merchantId', 'merchantOrderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersGetByMerchantOrderIdResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersGetByMerchantOrderIdResponse>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * content.orders.gettestordertemplate
-     * @desc Sandbox only. Retrieves an order template that can be used to
-     * quickly create a new order in sandbox.
+     * @desc Sandbox only. Retrieves an order template that can be used to quickly create a new order in sandbox.
      * @alias content.orders.gettestordertemplate
      * @memberOf! ()
      *
@@ -9476,35 +9392,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     gettestordertemplate(
-        params?: Params$Resource$Orders$Gettestordertemplate,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersGetTestOrderTemplateResponse>;
+      params?: Params$Resource$Orders$Gettestordertemplate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersGetTestOrderTemplateResponse>;
     gettestordertemplate(
-        params: Params$Resource$Orders$Gettestordertemplate,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>,
-        callback:
-            BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>):
-        void;
+      params: Params$Resource$Orders$Gettestordertemplate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>,
+      callback: BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>
+    ): void;
     gettestordertemplate(
-        params: Params$Resource$Orders$Gettestordertemplate,
-        callback:
-            BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>):
-        void;
+      params: Params$Resource$Orders$Gettestordertemplate,
+      callback: BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>
+    ): void;
     gettestordertemplate(
-        callback:
-            BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>
+    ): void;
     gettestordertemplate(
-        paramsOrCallback?: Params$Resource$Orders$Gettestordertemplate|
-        BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>,
-        callback?:
-            BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>):
-        void|GaxiosPromise<Schema$OrdersGetTestOrderTemplateResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orders$Gettestordertemplate;
+      paramsOrCallback?:
+        | Params$Resource$Orders$Gettestordertemplate
+        | BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>
+    ): void | GaxiosPromise<Schema$OrdersGetTestOrderTemplateResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Gettestordertemplate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9521,40 +9436,35 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/testordertemplates/{templateName}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/testordertemplates/{templateName}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'templateName'],
         pathParams: ['merchantId', 'templateName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersGetTestOrderTemplateResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersGetTestOrderTemplateResponse>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * content.orders.instorerefundlineitem
-     * @desc Notifies that item return and refund was handled directly by
-     * merchant outside of Google payments processing (e.g. cash refund done in
-     * store). Note: We recommend calling the returnrefundlineitem method to
-     * refund in-store returns. We will issue the refund directly to the
-     * customer. This helps to prevent possible differences arising between
-     * merchant and Google transaction records. We also recommend having the
-     * point of sale system communicate with Google to ensure that customers do
-     * not receive a double refund by first refunding via Google then via an
-     * in-store return.
+     * @desc Notifies that item return and refund was handled directly by merchant outside of Google payments processing (e.g. cash refund done in store). Note: We recommend calling the returnrefundlineitem method to refund in-store returns. We will issue the refund directly to the customer. This helps to prevent possible differences arising between merchant and Google transaction records. We also recommend having the point of sale system communicate with Google to ensure that customers do not receive a double refund by first refunding via Google then via an in-store return.
      * @alias content.orders.instorerefundlineitem
      * @memberOf! ()
      *
@@ -9567,35 +9477,36 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     instorerefundlineitem(
-        params?: Params$Resource$Orders$Instorerefundlineitem,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersInStoreRefundLineItemResponse>;
+      params?: Params$Resource$Orders$Instorerefundlineitem,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersInStoreRefundLineItemResponse>;
     instorerefundlineitem(
-        params: Params$Resource$Orders$Instorerefundlineitem,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>,
-        callback:
-            BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>):
-        void;
+      params: Params$Resource$Orders$Instorerefundlineitem,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>,
+      callback: BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>
+    ): void;
     instorerefundlineitem(
-        params: Params$Resource$Orders$Instorerefundlineitem,
-        callback:
-            BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>):
-        void;
+      params: Params$Resource$Orders$Instorerefundlineitem,
+      callback: BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>
+    ): void;
     instorerefundlineitem(
-        callback:
-            BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>
+    ): void;
     instorerefundlineitem(
-        paramsOrCallback?: Params$Resource$Orders$Instorerefundlineitem|
-        BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>,
-        callback?:
-            BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>):
-        void|GaxiosPromise<Schema$OrdersInStoreRefundLineItemResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orders$Instorerefundlineitem;
+      paramsOrCallback?:
+        | Params$Resource$Orders$Instorerefundlineitem
+        | BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>,
+      callback?: BodyResponseCallback<
+        Schema$OrdersInStoreRefundLineItemResponse
+      >
+    ): void | GaxiosPromise<Schema$OrdersInStoreRefundLineItemResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Instorerefundlineitem;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9612,28 +9523,31 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orders/{orderId}/inStoreRefundLineItem')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orders/{orderId}/inStoreRefundLineItem'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersInStoreRefundLineItemResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersInStoreRefundLineItemResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.orders.list
@@ -9654,23 +9568,29 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Orders$List, options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersListResponse>;
     list(
-        params: Params$Resource$Orders$List,
-        options: MethodOptions|BodyResponseCallback<Schema$OrdersListResponse>,
-        callback: BodyResponseCallback<Schema$OrdersListResponse>): void;
+      params?: Params$Resource$Orders$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersListResponse>;
     list(
-        params: Params$Resource$Orders$List,
-        callback: BodyResponseCallback<Schema$OrdersListResponse>): void;
+      params: Params$Resource$Orders$List,
+      options: MethodOptions | BodyResponseCallback<Schema$OrdersListResponse>,
+      callback: BodyResponseCallback<Schema$OrdersListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Orders$List,
+      callback: BodyResponseCallback<Schema$OrdersListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$OrdersListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Orders$List|
-        BodyResponseCallback<Schema$OrdersListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersListResponse>,
-        callback?: BodyResponseCallback<Schema$OrdersListResponse>):
-        void|GaxiosPromise<Schema$OrdersListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Orders$List
+        | BodyResponseCallback<Schema$OrdersListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersListResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersListResponse>
+    ): void | GaxiosPromise<Schema$OrdersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9688,16 +9608,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/orders')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/orders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersListResponse>(parameters, callback);
@@ -9705,7 +9628,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$OrdersListResponse>(parameters);
       }
     }
-
 
     /**
      * content.orders.rejectreturnlineitem
@@ -9722,35 +9644,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     rejectreturnlineitem(
-        params?: Params$Resource$Orders$Rejectreturnlineitem,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersRejectReturnLineItemResponse>;
+      params?: Params$Resource$Orders$Rejectreturnlineitem,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersRejectReturnLineItemResponse>;
     rejectreturnlineitem(
-        params: Params$Resource$Orders$Rejectreturnlineitem,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>,
-        callback:
-            BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>):
-        void;
+      params: Params$Resource$Orders$Rejectreturnlineitem,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>,
+      callback: BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>
+    ): void;
     rejectreturnlineitem(
-        params: Params$Resource$Orders$Rejectreturnlineitem,
-        callback:
-            BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>):
-        void;
+      params: Params$Resource$Orders$Rejectreturnlineitem,
+      callback: BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>
+    ): void;
     rejectreturnlineitem(
-        callback:
-            BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>
+    ): void;
     rejectreturnlineitem(
-        paramsOrCallback?: Params$Resource$Orders$Rejectreturnlineitem|
-        BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>,
-        callback?:
-            BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>):
-        void|GaxiosPromise<Schema$OrdersRejectReturnLineItemResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orders$Rejectreturnlineitem;
+      paramsOrCallback?:
+        | Params$Resource$Orders$Rejectreturnlineitem
+        | BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>
+    ): void | GaxiosPromise<Schema$OrdersRejectReturnLineItemResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Rejectreturnlineitem;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9767,33 +9688,35 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orders/{orderId}/rejectReturnLineItem')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orders/{orderId}/rejectReturnLineItem'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersRejectReturnLineItemResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersRejectReturnLineItemResponse>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * content.orders.returnrefundlineitem
-     * @desc Returns and refunds a line item. Note that this method can only be
-     * called on fully shipped orders.
+     * @desc Returns and refunds a line item. Note that this method can only be called on fully shipped orders.
      * @alias content.orders.returnrefundlineitem
      * @memberOf! ()
      *
@@ -9806,35 +9729,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     returnrefundlineitem(
-        params?: Params$Resource$Orders$Returnrefundlineitem,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersReturnRefundLineItemResponse>;
+      params?: Params$Resource$Orders$Returnrefundlineitem,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersReturnRefundLineItemResponse>;
     returnrefundlineitem(
-        params: Params$Resource$Orders$Returnrefundlineitem,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>,
-        callback:
-            BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>):
-        void;
+      params: Params$Resource$Orders$Returnrefundlineitem,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>,
+      callback: BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>
+    ): void;
     returnrefundlineitem(
-        params: Params$Resource$Orders$Returnrefundlineitem,
-        callback:
-            BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>):
-        void;
+      params: Params$Resource$Orders$Returnrefundlineitem,
+      callback: BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>
+    ): void;
     returnrefundlineitem(
-        callback:
-            BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>
+    ): void;
     returnrefundlineitem(
-        paramsOrCallback?: Params$Resource$Orders$Returnrefundlineitem|
-        BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>,
-        callback?:
-            BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>):
-        void|GaxiosPromise<Schema$OrdersReturnRefundLineItemResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orders$Returnrefundlineitem;
+      paramsOrCallback?:
+        | Params$Resource$Orders$Returnrefundlineitem
+        | BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>
+    ): void | GaxiosPromise<Schema$OrdersReturnRefundLineItemResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Returnrefundlineitem;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9851,36 +9773,35 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orders/{orderId}/returnRefundLineItem')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orders/{orderId}/returnRefundLineItem'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersReturnRefundLineItemResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersReturnRefundLineItemResponse>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * content.orders.setlineitemmetadata
-     * @desc Sets (or overrides if it already exists) merchant provided
-     * annotations in the form of key-value pairs. A common use case would be to
-     * supply us with additional structured information about a line item that
-     * cannot be provided via other methods. Submitted key-value pairs can be
-     * retrieved as part of the orders resource.
+     * @desc Sets (or overrides if it already exists) merchant provided annotations in the form of key-value pairs. A common use case would be to supply us with additional structured information about a line item that cannot be provided via other methods. Submitted key-value pairs can be retrieved as part of the orders resource.
      * @alias content.orders.setlineitemmetadata
      * @memberOf! ()
      *
@@ -9893,35 +9814,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     setlineitemmetadata(
-        params?: Params$Resource$Orders$Setlineitemmetadata,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersSetLineItemMetadataResponse>;
+      params?: Params$Resource$Orders$Setlineitemmetadata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersSetLineItemMetadataResponse>;
     setlineitemmetadata(
-        params: Params$Resource$Orders$Setlineitemmetadata,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>,
-        callback:
-            BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>):
-        void;
+      params: Params$Resource$Orders$Setlineitemmetadata,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>,
+      callback: BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>
+    ): void;
     setlineitemmetadata(
-        params: Params$Resource$Orders$Setlineitemmetadata,
-        callback:
-            BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>):
-        void;
+      params: Params$Resource$Orders$Setlineitemmetadata,
+      callback: BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>
+    ): void;
     setlineitemmetadata(
-        callback:
-            BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>
+    ): void;
     setlineitemmetadata(
-        paramsOrCallback?: Params$Resource$Orders$Setlineitemmetadata|
-        BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>,
-        callback?:
-            BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>):
-        void|GaxiosPromise<Schema$OrdersSetLineItemMetadataResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orders$Setlineitemmetadata;
+      paramsOrCallback?:
+        | Params$Resource$Orders$Setlineitemmetadata
+        | BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>
+    ): void | GaxiosPromise<Schema$OrdersSetLineItemMetadataResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Setlineitemmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9938,28 +9858,31 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orders/{orderId}/setLineItemMetadata')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orders/{orderId}/setLineItemMetadata'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersSetLineItemMetadataResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersSetLineItemMetadataResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.orders.shiplineitems
@@ -9976,30 +9899,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     shiplineitems(
-        params?: Params$Resource$Orders$Shiplineitems, options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersShipLineItemsResponse>;
+      params?: Params$Resource$Orders$Shiplineitems,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersShipLineItemsResponse>;
     shiplineitems(
-        params: Params$Resource$Orders$Shiplineitems,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersShipLineItemsResponse>,
-        callback: BodyResponseCallback<Schema$OrdersShipLineItemsResponse>):
-        void;
+      params: Params$Resource$Orders$Shiplineitems,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersShipLineItemsResponse>,
+      callback: BodyResponseCallback<Schema$OrdersShipLineItemsResponse>
+    ): void;
     shiplineitems(
-        params: Params$Resource$Orders$Shiplineitems,
-        callback: BodyResponseCallback<Schema$OrdersShipLineItemsResponse>):
-        void;
-    shiplineitems(callback:
-                      BodyResponseCallback<Schema$OrdersShipLineItemsResponse>):
-        void;
+      params: Params$Resource$Orders$Shiplineitems,
+      callback: BodyResponseCallback<Schema$OrdersShipLineItemsResponse>
+    ): void;
     shiplineitems(
-        paramsOrCallback?: Params$Resource$Orders$Shiplineitems|
-        BodyResponseCallback<Schema$OrdersShipLineItemsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersShipLineItemsResponse>,
-        callback?: BodyResponseCallback<Schema$OrdersShipLineItemsResponse>):
-        void|GaxiosPromise<Schema$OrdersShipLineItemsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Orders$Shiplineitems;
+      callback: BodyResponseCallback<Schema$OrdersShipLineItemsResponse>
+    ): void;
+    shiplineitems(
+      paramsOrCallback?:
+        | Params$Resource$Orders$Shiplineitems
+        | BodyResponseCallback<Schema$OrdersShipLineItemsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersShipLineItemsResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersShipLineItemsResponse>
+    ): void | GaxiosPromise<Schema$OrdersShipLineItemsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Shiplineitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10016,26 +9943,29 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/orders/{orderId}/shipLineItems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orders/{orderId}/shipLineItems'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersShipLineItemsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersShipLineItemsResponse>(parameters);
       }
     }
-
 
     /**
      * content.orders.updatelineitemshippingdetails
@@ -10052,33 +9982,50 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     updatelineitemshippingdetails(
-        params?: Params$Resource$Orders$Updatelineitemshippingdetails,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersUpdateLineItemShippingDetailsResponse>;
+      params?: Params$Resource$Orders$Updatelineitemshippingdetails,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersUpdateLineItemShippingDetailsResponse>;
     updatelineitemshippingdetails(
-        params: Params$Resource$Orders$Updatelineitemshippingdetails,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$OrdersUpdateLineItemShippingDetailsResponse>,
-        callback: BodyResponseCallback<
-            Schema$OrdersUpdateLineItemShippingDetailsResponse>): void;
+      params: Params$Resource$Orders$Updatelineitemshippingdetails,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$OrdersUpdateLineItemShippingDetailsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$OrdersUpdateLineItemShippingDetailsResponse
+      >
+    ): void;
     updatelineitemshippingdetails(
-        params: Params$Resource$Orders$Updatelineitemshippingdetails,
-        callback: BodyResponseCallback<
-            Schema$OrdersUpdateLineItemShippingDetailsResponse>): void;
+      params: Params$Resource$Orders$Updatelineitemshippingdetails,
+      callback: BodyResponseCallback<
+        Schema$OrdersUpdateLineItemShippingDetailsResponse
+      >
+    ): void;
     updatelineitemshippingdetails(
-        callback: BodyResponseCallback<
-            Schema$OrdersUpdateLineItemShippingDetailsResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$OrdersUpdateLineItemShippingDetailsResponse
+      >
+    ): void;
     updatelineitemshippingdetails(
-        paramsOrCallback?: Params$Resource$Orders$Updatelineitemshippingdetails|
-        BodyResponseCallback<
-            Schema$OrdersUpdateLineItemShippingDetailsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$OrdersUpdateLineItemShippingDetailsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$OrdersUpdateLineItemShippingDetailsResponse>):
-        void|GaxiosPromise<Schema$OrdersUpdateLineItemShippingDetailsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orders$Updatelineitemshippingdetails;
+      paramsOrCallback?:
+        | Params$Resource$Orders$Updatelineitemshippingdetails
+        | BodyResponseCallback<
+            Schema$OrdersUpdateLineItemShippingDetailsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$OrdersUpdateLineItemShippingDetailsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$OrdersUpdateLineItemShippingDetailsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$OrdersUpdateLineItemShippingDetailsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Updatelineitemshippingdetails;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10095,28 +10042,31 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orders/{orderId}/updateLineItemShippingDetails')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orders/{orderId}/updateLineItemShippingDetails'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateLineItemShippingDetailsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$OrdersUpdateLineItemShippingDetailsResponse>(parameters);
+          Schema$OrdersUpdateLineItemShippingDetailsResponse
+        >(parameters);
       }
     }
-
 
     /**
      * content.orders.updatemerchantorderid
@@ -10133,35 +10083,36 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     updatemerchantorderid(
-        params?: Params$Resource$Orders$Updatemerchantorderid,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersUpdateMerchantOrderIdResponse>;
+      params?: Params$Resource$Orders$Updatemerchantorderid,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersUpdateMerchantOrderIdResponse>;
     updatemerchantorderid(
-        params: Params$Resource$Orders$Updatemerchantorderid,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>,
-        callback:
-            BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>):
-        void;
+      params: Params$Resource$Orders$Updatemerchantorderid,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>,
+      callback: BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>
+    ): void;
     updatemerchantorderid(
-        params: Params$Resource$Orders$Updatemerchantorderid,
-        callback:
-            BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>):
-        void;
+      params: Params$Resource$Orders$Updatemerchantorderid,
+      callback: BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>
+    ): void;
     updatemerchantorderid(
-        callback:
-            BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>
+    ): void;
     updatemerchantorderid(
-        paramsOrCallback?: Params$Resource$Orders$Updatemerchantorderid|
-        BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>,
-        callback?:
-            BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>):
-        void|GaxiosPromise<Schema$OrdersUpdateMerchantOrderIdResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orders$Updatemerchantorderid;
+      paramsOrCallback?:
+        | Params$Resource$Orders$Updatemerchantorderid
+        | BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>,
+      callback?: BodyResponseCallback<
+        Schema$OrdersUpdateMerchantOrderIdResponse
+      >
+    ): void | GaxiosPromise<Schema$OrdersUpdateMerchantOrderIdResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Updatemerchantorderid;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10178,28 +10129,31 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orders/{orderId}/updateMerchantOrderId')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orders/{orderId}/updateMerchantOrderId'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateMerchantOrderIdResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersUpdateMerchantOrderIdResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.orders.updateshipment
@@ -10216,31 +10170,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     updateshipment(
-        params?: Params$Resource$Orders$Updateshipment,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersUpdateShipmentResponse>;
+      params?: Params$Resource$Orders$Updateshipment,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersUpdateShipmentResponse>;
     updateshipment(
-        params: Params$Resource$Orders$Updateshipment,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>,
-        callback: BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>):
-        void;
+      params: Params$Resource$Orders$Updateshipment,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>,
+      callback: BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>
+    ): void;
     updateshipment(
-        params: Params$Resource$Orders$Updateshipment,
-        callback: BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>):
-        void;
+      params: Params$Resource$Orders$Updateshipment,
+      callback: BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>
+    ): void;
     updateshipment(
-        callback: BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>
+    ): void;
     updateshipment(
-        paramsOrCallback?: Params$Resource$Orders$Updateshipment|
-        BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>,
-        callback?: BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>):
-        void|GaxiosPromise<Schema$OrdersUpdateShipmentResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Orders$Updateshipment;
+      paramsOrCallback?:
+        | Params$Resource$Orders$Updateshipment
+        | BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>
+    ): void | GaxiosPromise<Schema$OrdersUpdateShipmentResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Updateshipment;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10257,39 +10214,42 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orders/{orderId}/updateShipment')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orders/{orderId}/updateShipment'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateShipmentResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrdersUpdateShipmentResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Orders$Acknowledge extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Acknowledge
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10302,16 +10262,15 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$OrdersAcknowledgeRequest;
   }
-  export interface Params$Resource$Orders$Advancetestorder extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Advancetestorder
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10323,11 +10282,10 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10340,16 +10298,15 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$OrdersCancelRequest;
   }
-  export interface Params$Resource$Orders$Cancellineitem extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Cancellineitem
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10362,16 +10319,15 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$OrdersCancelLineItemRequest;
   }
-  export interface Params$Resource$Orders$Canceltestorderbycustomer extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Canceltestorderbycustomer
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10384,16 +10340,15 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$OrdersCancelTestOrderByCustomerRequest;
   }
-  export interface Params$Resource$Orders$Createtestorder extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Createtestorder
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that should manage the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that should manage the order. This cannot be a multi-client account.
      */
     merchantId?: string;
 
@@ -10402,16 +10357,15 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$OrdersCreateTestOrderRequest;
   }
-  export interface Params$Resource$Orders$Createtestreturn extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Createtestreturn
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10428,11 +10382,10 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10440,16 +10393,15 @@ export namespace content_v2_1 {
      */
     orderId?: string;
   }
-  export interface Params$Resource$Orders$Getbymerchantorderid extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Getbymerchantorderid
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10457,20 +10409,19 @@ export namespace content_v2_1 {
      */
     merchantOrderId?: string;
   }
-  export interface Params$Resource$Orders$Gettestordertemplate extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Gettestordertemplate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The country of the template to retrieve. Defaults to US.
      */
     country?: string;
     /**
-     * The ID of the account that should manage the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that should manage the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10478,16 +10429,15 @@ export namespace content_v2_1 {
      */
     templateName?: string;
   }
-  export interface Params$Resource$Orders$Instorerefundlineitem extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Instorerefundlineitem
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10504,35 +10454,22 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Obtains orders that match the acknowledgement status. When set to true,
-     * obtains orders that have been acknowledged. When false, obtains orders
-     * that have not been acknowledged. We recommend using this filter set to
-     * false, in conjunction with the acknowledge call, such that only
-     * un-acknowledged orders are returned.
+     * Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to false, in conjunction with the acknowledge call, such that only un-acknowledged orders are returned.
      */
     acknowledged?: boolean;
     /**
-     * The maximum number of orders to return in the response, used for paging.
-     * The default value is 25 orders per page, and the maximum allowed value is
-     * 250 orders per page. Known issue: All List calls will return all Orders
-     * without limit regardless of the value of this field.
+     * The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page. Known issue: All List calls will return all Orders without limit regardless of the value of this field.
      */
     maxResults?: number;
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
-     * The ordering of the returned list. The only supported value are
-     * placedDate desc and placedDate asc for now, which returns orders sorted
-     * by placement date. "placedDate desc" stands for listing orders by
-     * placement date, from oldest to most recent. "placedDate asc" stands for
-     * listing orders by placement date, from most recent to oldest. In future
-     * releases we'll support other sorting criteria.
+     * The ordering of the returned list. The only supported value are placedDate desc and placedDate asc for now, which returns orders sorted by placement date. "placedDate desc" stands for listing orders by placement date, from oldest to most recent. "placedDate asc" stands for listing orders by placement date, from most recent to oldest. In future releases we'll support other sorting criteria.
      */
     orderBy?: string;
     /**
@@ -10548,24 +10485,19 @@ export namespace content_v2_1 {
      */
     placedDateStart?: string;
     /**
-     * Obtains orders that match any of the specified statuses. Multiple values
-     * can be specified with comma separation. Additionally, please note that
-     * active is a shortcut for pendingShipment and partiallyShipped, and
-     * completed is a shortcut for shipped , partiallyDelivered, delivered,
-     * partiallyReturned, returned, and canceled.
+     * Obtains orders that match any of the specified statuses. Multiple values can be specified with comma separation. Additionally, please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped , partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
      */
     statuses?: string[];
   }
-  export interface Params$Resource$Orders$Rejectreturnlineitem extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Rejectreturnlineitem
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10578,16 +10510,15 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$OrdersRejectReturnLineItemRequest;
   }
-  export interface Params$Resource$Orders$Returnrefundlineitem extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Returnrefundlineitem
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10600,16 +10531,15 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$OrdersReturnRefundLineItemRequest;
   }
-  export interface Params$Resource$Orders$Setlineitemmetadata extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Setlineitemmetadata
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10622,16 +10552,15 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$OrdersSetLineItemMetadataRequest;
   }
-  export interface Params$Resource$Orders$Shiplineitems extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Shiplineitems
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10644,16 +10573,15 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$OrdersShipLineItemsRequest;
   }
-  export interface Params$Resource$Orders$Updatelineitemshippingdetails extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Updatelineitemshippingdetails
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10666,16 +10594,15 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$OrdersUpdateLineItemShippingDetailsRequest;
   }
-  export interface Params$Resource$Orders$Updatemerchantorderid extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Updatemerchantorderid
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10688,16 +10615,15 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$OrdersUpdateMerchantOrderIdRequest;
   }
-  export interface Params$Resource$Orders$Updateshipment extends
-      StandardParameters {
+  export interface Params$Resource$Orders$Updateshipment
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
+     * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -10711,13 +10637,11 @@ export namespace content_v2_1 {
     requestBody?: Schema$OrdersUpdateShipmentRequest;
   }
 
-
   export class Resource$Pos {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * content.pos.custombatch
@@ -10732,25 +10656,32 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     custombatch(
-        params?: Params$Resource$Pos$Custombatch,
-        options?: MethodOptions): GaxiosPromise<Schema$PosCustomBatchResponse>;
+      params?: Params$Resource$Pos$Custombatch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PosCustomBatchResponse>;
     custombatch(
-        params: Params$Resource$Pos$Custombatch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PosCustomBatchResponse>,
-        callback: BodyResponseCallback<Schema$PosCustomBatchResponse>): void;
+      params: Params$Resource$Pos$Custombatch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PosCustomBatchResponse>,
+      callback: BodyResponseCallback<Schema$PosCustomBatchResponse>
+    ): void;
     custombatch(
-        params: Params$Resource$Pos$Custombatch,
-        callback: BodyResponseCallback<Schema$PosCustomBatchResponse>): void;
-    custombatch(callback: BodyResponseCallback<Schema$PosCustomBatchResponse>):
-        void;
+      params: Params$Resource$Pos$Custombatch,
+      callback: BodyResponseCallback<Schema$PosCustomBatchResponse>
+    ): void;
     custombatch(
-        paramsOrCallback?: Params$Resource$Pos$Custombatch|
-        BodyResponseCallback<Schema$PosCustomBatchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PosCustomBatchResponse>,
-        callback?: BodyResponseCallback<Schema$PosCustomBatchResponse>):
-        void|GaxiosPromise<Schema$PosCustomBatchResponse> {
+      callback: BodyResponseCallback<Schema$PosCustomBatchResponse>
+    ): void;
+    custombatch(
+      paramsOrCallback?:
+        | Params$Resource$Pos$Custombatch
+        | BodyResponseCallback<Schema$PosCustomBatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PosCustomBatchResponse>,
+      callback?: BodyResponseCallback<Schema$PosCustomBatchResponse>
+    ): void | GaxiosPromise<Schema$PosCustomBatchResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10768,16 +10699,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/pos/batch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/pos/batch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PosCustomBatchResponse>(parameters, callback);
@@ -10785,7 +10719,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$PosCustomBatchResponse>(parameters);
       }
     }
-
 
     /**
      * content.pos.delete
@@ -10801,21 +10734,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Pos$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Pos$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Pos$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Pos$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Pos$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Pos$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Pos$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Pos$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10833,18 +10772,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store/{storeCode}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store/{storeCode}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'targetMerchantId', 'storeCode'],
         pathParams: ['merchantId', 'storeCode', 'targetMerchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10852,7 +10792,6 @@ export namespace content_v2_1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * content.pos.get
@@ -10868,19 +10807,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Pos$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$PosStore>;
-    get(params: Params$Resource$Pos$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$PosStore>,
-        callback: BodyResponseCallback<Schema$PosStore>): void;
-    get(params: Params$Resource$Pos$Get,
-        callback: BodyResponseCallback<Schema$PosStore>): void;
+    get(
+      params?: Params$Resource$Pos$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PosStore>;
+    get(
+      params: Params$Resource$Pos$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PosStore>,
+      callback: BodyResponseCallback<Schema$PosStore>
+    ): void;
+    get(
+      params: Params$Resource$Pos$Get,
+      callback: BodyResponseCallback<Schema$PosStore>
+    ): void;
     get(callback: BodyResponseCallback<Schema$PosStore>): void;
-    get(paramsOrCallback?: Params$Resource$Pos$Get|
-        BodyResponseCallback<Schema$PosStore>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$PosStore>,
-        callback?: BodyResponseCallback<Schema$PosStore>):
-        void|GaxiosPromise<Schema$PosStore> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Pos$Get
+        | BodyResponseCallback<Schema$PosStore>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$PosStore>,
+      callback?: BodyResponseCallback<Schema$PosStore>
+    ): void | GaxiosPromise<Schema$PosStore> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10898,18 +10845,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store/{storeCode}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store/{storeCode}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'targetMerchantId', 'storeCode'],
         pathParams: ['merchantId', 'storeCode', 'targetMerchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PosStore>(parameters, callback);
@@ -10917,7 +10865,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$PosStore>(parameters);
       }
     }
-
 
     /**
      * content.pos.insert
@@ -10933,22 +10880,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Pos$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$PosStore>;
     insert(
-        params: Params$Resource$Pos$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$PosStore>,
-        callback: BodyResponseCallback<Schema$PosStore>): void;
+      params?: Params$Resource$Pos$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PosStore>;
     insert(
-        params: Params$Resource$Pos$Insert,
-        callback: BodyResponseCallback<Schema$PosStore>): void;
+      params: Params$Resource$Pos$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$PosStore>,
+      callback: BodyResponseCallback<Schema$PosStore>
+    ): void;
+    insert(
+      params: Params$Resource$Pos$Insert,
+      callback: BodyResponseCallback<Schema$PosStore>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$PosStore>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Pos$Insert|
-        BodyResponseCallback<Schema$PosStore>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$PosStore>,
-        callback?: BodyResponseCallback<Schema$PosStore>):
-        void|GaxiosPromise<Schema$PosStore> {
+      paramsOrCallback?:
+        | Params$Resource$Pos$Insert
+        | BodyResponseCallback<Schema$PosStore>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$PosStore>,
+      callback?: BodyResponseCallback<Schema$PosStore>
+    ): void | GaxiosPromise<Schema$PosStore> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10966,17 +10918,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'targetMerchantId'],
         pathParams: ['merchantId', 'targetMerchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PosStore>(parameters, callback);
@@ -10984,7 +10938,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$PosStore>(parameters);
       }
     }
-
 
     /**
      * content.pos.inventory
@@ -11000,25 +10953,33 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    inventory(params?: Params$Resource$Pos$Inventory, options?: MethodOptions):
-        GaxiosPromise<Schema$PosInventoryResponse>;
     inventory(
-        params: Params$Resource$Pos$Inventory,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PosInventoryResponse>,
-        callback: BodyResponseCallback<Schema$PosInventoryResponse>): void;
+      params?: Params$Resource$Pos$Inventory,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PosInventoryResponse>;
     inventory(
-        params: Params$Resource$Pos$Inventory,
-        callback: BodyResponseCallback<Schema$PosInventoryResponse>): void;
-    inventory(callback: BodyResponseCallback<Schema$PosInventoryResponse>):
-        void;
+      params: Params$Resource$Pos$Inventory,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PosInventoryResponse>,
+      callback: BodyResponseCallback<Schema$PosInventoryResponse>
+    ): void;
     inventory(
-        paramsOrCallback?: Params$Resource$Pos$Inventory|
-        BodyResponseCallback<Schema$PosInventoryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PosInventoryResponse>,
-        callback?: BodyResponseCallback<Schema$PosInventoryResponse>):
-        void|GaxiosPromise<Schema$PosInventoryResponse> {
+      params: Params$Resource$Pos$Inventory,
+      callback: BodyResponseCallback<Schema$PosInventoryResponse>
+    ): void;
+    inventory(
+      callback: BodyResponseCallback<Schema$PosInventoryResponse>
+    ): void;
+    inventory(
+      paramsOrCallback?:
+        | Params$Resource$Pos$Inventory
+        | BodyResponseCallback<Schema$PosInventoryResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PosInventoryResponse>,
+      callback?: BodyResponseCallback<Schema$PosInventoryResponse>
+    ): void | GaxiosPromise<Schema$PosInventoryResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Inventory;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11036,18 +10997,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/pos/{targetMerchantId}/inventory')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/pos/{targetMerchantId}/inventory'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'targetMerchantId'],
         pathParams: ['merchantId', 'targetMerchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PosInventoryResponse>(parameters, callback);
@@ -11055,7 +11017,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$PosInventoryResponse>(parameters);
       }
     }
-
 
     /**
      * content.pos.list
@@ -11070,23 +11031,29 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Pos$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PosListResponse>;
     list(
-        params: Params$Resource$Pos$List,
-        options: MethodOptions|BodyResponseCallback<Schema$PosListResponse>,
-        callback: BodyResponseCallback<Schema$PosListResponse>): void;
+      params?: Params$Resource$Pos$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PosListResponse>;
     list(
-        params: Params$Resource$Pos$List,
-        callback: BodyResponseCallback<Schema$PosListResponse>): void;
+      params: Params$Resource$Pos$List,
+      options: MethodOptions | BodyResponseCallback<Schema$PosListResponse>,
+      callback: BodyResponseCallback<Schema$PosListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Pos$List,
+      callback: BodyResponseCallback<Schema$PosListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PosListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Pos$List|
-        BodyResponseCallback<Schema$PosListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PosListResponse>,
-        callback?: BodyResponseCallback<Schema$PosListResponse>):
-        void|GaxiosPromise<Schema$PosListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Pos$List
+        | BodyResponseCallback<Schema$PosListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PosListResponse>,
+      callback?: BodyResponseCallback<Schema$PosListResponse>
+    ): void | GaxiosPromise<Schema$PosListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11104,17 +11071,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'targetMerchantId'],
         pathParams: ['merchantId', 'targetMerchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PosListResponse>(parameters, callback);
@@ -11122,7 +11091,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$PosListResponse>(parameters);
       }
     }
-
 
     /**
      * content.pos.sale
@@ -11138,23 +11106,29 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sale(params?: Params$Resource$Pos$Sale, options?: MethodOptions):
-        GaxiosPromise<Schema$PosSaleResponse>;
     sale(
-        params: Params$Resource$Pos$Sale,
-        options: MethodOptions|BodyResponseCallback<Schema$PosSaleResponse>,
-        callback: BodyResponseCallback<Schema$PosSaleResponse>): void;
+      params?: Params$Resource$Pos$Sale,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PosSaleResponse>;
     sale(
-        params: Params$Resource$Pos$Sale,
-        callback: BodyResponseCallback<Schema$PosSaleResponse>): void;
+      params: Params$Resource$Pos$Sale,
+      options: MethodOptions | BodyResponseCallback<Schema$PosSaleResponse>,
+      callback: BodyResponseCallback<Schema$PosSaleResponse>
+    ): void;
+    sale(
+      params: Params$Resource$Pos$Sale,
+      callback: BodyResponseCallback<Schema$PosSaleResponse>
+    ): void;
     sale(callback: BodyResponseCallback<Schema$PosSaleResponse>): void;
     sale(
-        paramsOrCallback?: Params$Resource$Pos$Sale|
-        BodyResponseCallback<Schema$PosSaleResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PosSaleResponse>,
-        callback?: BodyResponseCallback<Schema$PosSaleResponse>):
-        void|GaxiosPromise<Schema$PosSaleResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Pos$Sale
+        | BodyResponseCallback<Schema$PosSaleResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PosSaleResponse>,
+      callback?: BodyResponseCallback<Schema$PosSaleResponse>
+    ): void | GaxiosPromise<Schema$PosSaleResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Sale;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11172,17 +11146,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/pos/{targetMerchantId}/sale')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/pos/{targetMerchantId}/sale'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'targetMerchantId'],
         pathParams: ['merchantId', 'targetMerchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PosSaleResponse>(parameters, callback);
@@ -11196,8 +11171,7 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -11208,7 +11182,7 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the POS or inventory data provider.
@@ -11227,7 +11201,7 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the POS or inventory data provider.
@@ -11246,7 +11220,7 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the POS or inventory data provider.
@@ -11266,7 +11240,7 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the POS or inventory data provider.
@@ -11286,7 +11260,7 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the POS or inventory data provider.
@@ -11301,7 +11275,7 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the POS or inventory data provider.
@@ -11318,18 +11292,15 @@ export namespace content_v2_1 {
     requestBody?: Schema$PosSaleRequest;
   }
 
-
   export class Resource$Products {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * content.products.custombatch
-     * @desc Retrieves, inserts, and deletes multiple products in a single
-     * request.
+     * @desc Retrieves, inserts, and deletes multiple products in a single request.
      * @alias content.products.custombatch
      * @memberOf! ()
      *
@@ -11340,30 +11311,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     custombatch(
-        params?: Params$Resource$Products$Custombatch, options?: MethodOptions):
-        GaxiosPromise<Schema$ProductsCustomBatchResponse>;
+      params?: Params$Resource$Products$Custombatch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductsCustomBatchResponse>;
     custombatch(
-        params: Params$Resource$Products$Custombatch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ProductsCustomBatchResponse>,
-        callback: BodyResponseCallback<Schema$ProductsCustomBatchResponse>):
-        void;
+      params: Params$Resource$Products$Custombatch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductsCustomBatchResponse>,
+      callback: BodyResponseCallback<Schema$ProductsCustomBatchResponse>
+    ): void;
     custombatch(
-        params: Params$Resource$Products$Custombatch,
-        callback: BodyResponseCallback<Schema$ProductsCustomBatchResponse>):
-        void;
-    custombatch(callback:
-                    BodyResponseCallback<Schema$ProductsCustomBatchResponse>):
-        void;
+      params: Params$Resource$Products$Custombatch,
+      callback: BodyResponseCallback<Schema$ProductsCustomBatchResponse>
+    ): void;
     custombatch(
-        paramsOrCallback?: Params$Resource$Products$Custombatch|
-        BodyResponseCallback<Schema$ProductsCustomBatchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProductsCustomBatchResponse>,
-        callback?: BodyResponseCallback<Schema$ProductsCustomBatchResponse>):
-        void|GaxiosPromise<Schema$ProductsCustomBatchResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Products$Custombatch;
+      callback: BodyResponseCallback<Schema$ProductsCustomBatchResponse>
+    ): void;
+    custombatch(
+      paramsOrCallback?:
+        | Params$Resource$Products$Custombatch
+        | BodyResponseCallback<Schema$ProductsCustomBatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductsCustomBatchResponse>,
+      callback?: BodyResponseCallback<Schema$ProductsCustomBatchResponse>
+    ): void | GaxiosPromise<Schema$ProductsCustomBatchResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Products$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11380,25 +11355,29 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/products/batch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/products/batch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProductsCustomBatchResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ProductsCustomBatchResponse>(parameters);
       }
     }
-
 
     /**
      * content.products.delete
@@ -11413,21 +11392,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Products$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Products$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Products$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Products$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Products$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Products$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Products$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Products$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11445,16 +11430,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/products/{productId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/products/{productId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -11462,7 +11449,6 @@ export namespace content_v2_1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * content.products.get
@@ -11477,19 +11463,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Products$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Product>;
-    get(params: Params$Resource$Products$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback: BodyResponseCallback<Schema$Product>): void;
-    get(params: Params$Resource$Products$Get,
-        callback: BodyResponseCallback<Schema$Product>): void;
+    get(
+      params?: Params$Resource$Products$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Product>;
+    get(
+      params: Params$Resource$Products$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
+    get(
+      params: Params$Resource$Products$Get,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Product>): void;
-    get(paramsOrCallback?: Params$Resource$Products$Get|
-        BodyResponseCallback<Schema$Product>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback?: BodyResponseCallback<Schema$Product>):
-        void|GaxiosPromise<Schema$Product> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Products$Get
+        | BodyResponseCallback<Schema$Product>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback?: BodyResponseCallback<Schema$Product>
+    ): void | GaxiosPromise<Schema$Product> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11507,16 +11501,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/products/{productId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/products/{productId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -11525,12 +11521,9 @@ export namespace content_v2_1 {
       }
     }
 
-
     /**
      * content.products.insert
-     * @desc Uploads a product to your Merchant Center account. If an item with
-     * the same channel, contentLanguage, offerId, and targetCountry already
-     * exists, this method updates that entry.
+     * @desc Uploads a product to your Merchant Center account. If an item with the same channel, contentLanguage, offerId, and targetCountry already exists, this method updates that entry.
      * @alias content.products.insert
      * @memberOf! ()
      *
@@ -11541,22 +11534,27 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Products$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Product>;
     insert(
-        params: Params$Resource$Products$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback: BodyResponseCallback<Schema$Product>): void;
+      params?: Params$Resource$Products$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Product>;
     insert(
-        params: Params$Resource$Products$Insert,
-        callback: BodyResponseCallback<Schema$Product>): void;
+      params: Params$Resource$Products$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
+    insert(
+      params: Params$Resource$Products$Insert,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Product>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Products$Insert|
-        BodyResponseCallback<Schema$Product>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback?: BodyResponseCallback<Schema$Product>):
-        void|GaxiosPromise<Schema$Product> {
+      paramsOrCallback?:
+        | Params$Resource$Products$Insert
+        | BodyResponseCallback<Schema$Product>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback?: BodyResponseCallback<Schema$Product>
+    ): void | GaxiosPromise<Schema$Product> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11574,16 +11572,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/products')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/products').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -11591,7 +11592,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$Product>(parameters);
       }
     }
-
 
     /**
      * content.products.list
@@ -11607,24 +11607,31 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Products$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ProductsListResponse>;
     list(
-        params: Params$Resource$Products$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ProductsListResponse>,
-        callback: BodyResponseCallback<Schema$ProductsListResponse>): void;
+      params?: Params$Resource$Products$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductsListResponse>;
     list(
-        params: Params$Resource$Products$List,
-        callback: BodyResponseCallback<Schema$ProductsListResponse>): void;
+      params: Params$Resource$Products$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductsListResponse>,
+      callback: BodyResponseCallback<Schema$ProductsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Products$List,
+      callback: BodyResponseCallback<Schema$ProductsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ProductsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Products$List|
-        BodyResponseCallback<Schema$ProductsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProductsListResponse>,
-        callback?: BodyResponseCallback<Schema$ProductsListResponse>):
-        void|GaxiosPromise<Schema$ProductsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Products$List
+        | BodyResponseCallback<Schema$ProductsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductsListResponse>,
+      callback?: BodyResponseCallback<Schema$ProductsListResponse>
+    ): void | GaxiosPromise<Schema$ProductsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11642,16 +11649,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/products')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/products').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProductsListResponse>(parameters, callback);
@@ -11661,13 +11671,12 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Products$Custombatch extends
-      StandardParameters {
+  export interface Params$Resource$Products$Custombatch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -11678,11 +11687,10 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that contains the product. This account cannot be a
-     * multi-client account.
+     * The ID of the account that contains the product. This account cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -11694,11 +11702,10 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that contains the product. This account cannot be a
-     * multi-client account.
+     * The ID of the account that contains the product. This account cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -11710,11 +11717,10 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that contains the product. This account cannot be a
-     * multi-client account.
+     * The ID of the account that contains the product. This account cannot be a multi-client account.
      */
     merchantId?: string;
 
@@ -11727,16 +11733,14 @@ export namespace content_v2_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of products to return in the response, used for
-     * paging.
+     * The maximum number of products to return in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * The ID of the account that contains the products. This account cannot be
-     * a multi-client account.
+     * The ID of the account that contains the products. This account cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -11745,13 +11749,11 @@ export namespace content_v2_1 {
     pageToken?: string;
   }
 
-
   export class Resource$Productstatuses {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * content.productstatuses.custombatch
@@ -11766,35 +11768,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     custombatch(
-        params?: Params$Resource$Productstatuses$Custombatch,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ProductstatusesCustomBatchResponse>;
+      params?: Params$Resource$Productstatuses$Custombatch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductstatusesCustomBatchResponse>;
     custombatch(
-        params: Params$Resource$Productstatuses$Custombatch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>,
-        callback:
-            BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>):
-        void;
+      params: Params$Resource$Productstatuses$Custombatch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>,
+      callback: BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>
+    ): void;
     custombatch(
-        params: Params$Resource$Productstatuses$Custombatch,
-        callback:
-            BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>):
-        void;
+      params: Params$Resource$Productstatuses$Custombatch,
+      callback: BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>
+    ): void;
     custombatch(
-        callback:
-            BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>
+    ): void;
     custombatch(
-        paramsOrCallback?: Params$Resource$Productstatuses$Custombatch|
-        BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>):
-        void|GaxiosPromise<Schema$ProductstatusesCustomBatchResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Productstatuses$Custombatch;
+      paramsOrCallback?:
+        | Params$Resource$Productstatuses$Custombatch
+        | BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>,
+      callback?: BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>
+    ): void | GaxiosPromise<Schema$ProductstatusesCustomBatchResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Productstatuses$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11811,26 +11812,31 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/productstatuses/batch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/productstatuses/batch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProductstatusesCustomBatchResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ProductstatusesCustomBatchResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.productstatuses.get
@@ -11846,22 +11852,31 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Productstatuses$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ProductStatus>;
-    get(params: Params$Resource$Productstatuses$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ProductStatus>,
-        callback: BodyResponseCallback<Schema$ProductStatus>): void;
-    get(params: Params$Resource$Productstatuses$Get,
-        callback: BodyResponseCallback<Schema$ProductStatus>): void;
+    get(
+      params?: Params$Resource$Productstatuses$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductStatus>;
+    get(
+      params: Params$Resource$Productstatuses$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ProductStatus>,
+      callback: BodyResponseCallback<Schema$ProductStatus>
+    ): void;
+    get(
+      params: Params$Resource$Productstatuses$Get,
+      callback: BodyResponseCallback<Schema$ProductStatus>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ProductStatus>): void;
-    get(paramsOrCallback?: Params$Resource$Productstatuses$Get|
-        BodyResponseCallback<Schema$ProductStatus>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProductStatus>,
-        callback?: BodyResponseCallback<Schema$ProductStatus>):
-        void|GaxiosPromise<Schema$ProductStatus> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Productstatuses$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Productstatuses$Get
+        | BodyResponseCallback<Schema$ProductStatus>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductStatus>,
+      callback?: BodyResponseCallback<Schema$ProductStatus>
+    ): void | GaxiosPromise<Schema$ProductStatus> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Productstatuses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11878,17 +11893,18 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/productstatuses/{productId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/productstatuses/{productId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProductStatus>(parameters, callback);
@@ -11896,7 +11912,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$ProductStatus>(parameters);
       }
     }
-
 
     /**
      * content.productstatuses.list
@@ -11914,29 +11929,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Productstatuses$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ProductstatusesListResponse>;
+      params?: Params$Resource$Productstatuses$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductstatusesListResponse>;
     list(
-        params: Params$Resource$Productstatuses$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ProductstatusesListResponse>,
-        callback: BodyResponseCallback<Schema$ProductstatusesListResponse>):
-        void;
+      params: Params$Resource$Productstatuses$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductstatusesListResponse>,
+      callback: BodyResponseCallback<Schema$ProductstatusesListResponse>
+    ): void;
     list(
-        params: Params$Resource$Productstatuses$List,
-        callback: BodyResponseCallback<Schema$ProductstatusesListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ProductstatusesListResponse>):
-        void;
+      params: Params$Resource$Productstatuses$List,
+      callback: BodyResponseCallback<Schema$ProductstatusesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Productstatuses$List|
-        BodyResponseCallback<Schema$ProductstatusesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProductstatusesListResponse>,
-        callback?: BodyResponseCallback<Schema$ProductstatusesListResponse>):
-        void|GaxiosPromise<Schema$ProductstatusesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Productstatuses$List;
+      callback: BodyResponseCallback<Schema$ProductstatusesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Productstatuses$List
+        | BodyResponseCallback<Schema$ProductstatusesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductstatusesListResponse>,
+      callback?: BodyResponseCallback<Schema$ProductstatusesListResponse>
+    ): void | GaxiosPromise<Schema$ProductstatusesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Productstatuses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11953,54 +11973,55 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/productstatuses')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/productstatuses'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProductstatusesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ProductstatusesListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Productstatuses$Custombatch extends
-      StandardParameters {
+  export interface Params$Resource$Productstatuses$Custombatch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$ProductstatusesCustomBatchRequest;
   }
-  export interface Params$Resource$Productstatuses$Get extends
-      StandardParameters {
+  export interface Params$Resource$Productstatuses$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * If set, only issues for the specified destinations are returned,
-     * otherwise only issues for the Shopping destination.
+     * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
     destinations?: string[];
     /**
-     * The ID of the account that contains the product. This account cannot be a
-     * multi-client account.
+     * The ID of the account that contains the product. This account cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -12008,26 +12029,23 @@ export namespace content_v2_1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Productstatuses$List extends
-      StandardParameters {
+  export interface Params$Resource$Productstatuses$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * If set, only issues for the specified destinations are returned,
-     * otherwise only issues for the Shopping destination.
+     * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
     destinations?: string[];
     /**
-     * The maximum number of product statuses to return in the response, used
-     * for paging.
+     * The maximum number of product statuses to return in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * The ID of the account that contains the products. This account cannot be
-     * a multi-client account.
+     * The ID of the account that contains the products. This account cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -12036,18 +12054,15 @@ export namespace content_v2_1 {
     pageToken?: string;
   }
 
-
   export class Resource$Regionalinventory {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * content.regionalinventory.custombatch
-     * @desc Updates regional inventory for multiple products or regions in a
-     * single request.
+     * @desc Updates regional inventory for multiple products or regions in a single request.
      * @alias content.regionalinventory.custombatch
      * @memberOf! ()
      *
@@ -12058,35 +12073,42 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     custombatch(
-        params?: Params$Resource$Regionalinventory$Custombatch,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$RegionalinventoryCustomBatchResponse>;
+      params?: Params$Resource$Regionalinventory$Custombatch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RegionalinventoryCustomBatchResponse>;
     custombatch(
-        params: Params$Resource$Regionalinventory$Custombatch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>,
-        callback:
-            BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>):
-        void;
+      params: Params$Resource$Regionalinventory$Custombatch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>,
+      callback: BodyResponseCallback<
+        Schema$RegionalinventoryCustomBatchResponse
+      >
+    ): void;
     custombatch(
-        params: Params$Resource$Regionalinventory$Custombatch,
-        callback:
-            BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>):
-        void;
+      params: Params$Resource$Regionalinventory$Custombatch,
+      callback: BodyResponseCallback<
+        Schema$RegionalinventoryCustomBatchResponse
+      >
+    ): void;
     custombatch(
-        callback:
-            BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>):
-        void;
+      callback: BodyResponseCallback<
+        Schema$RegionalinventoryCustomBatchResponse
+      >
+    ): void;
     custombatch(
-        paramsOrCallback?: Params$Resource$Regionalinventory$Custombatch|
-        BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>,
-        callback?:
-            BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>):
-        void|GaxiosPromise<Schema$RegionalinventoryCustomBatchResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Regionalinventory$Custombatch;
+      paramsOrCallback?:
+        | Params$Resource$Regionalinventory$Custombatch
+        | BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>,
+      callback?: BodyResponseCallback<
+        Schema$RegionalinventoryCustomBatchResponse
+      >
+    ): void | GaxiosPromise<Schema$RegionalinventoryCustomBatchResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionalinventory$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12103,32 +12125,35 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/regionalinventory/batch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/regionalinventory/batch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RegionalinventoryCustomBatchResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$RegionalinventoryCustomBatchResponse>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * content.regionalinventory.insert
-     * @desc Update the regional inventory of a product in your Merchant Center
-     * account. If a regional inventory with the same region ID already exists,
-     * this method updates that entry.
+     * @desc Update the regional inventory of a product in your Merchant Center account. If a regional inventory with the same region ID already exists, this method updates that entry.
      * @alias content.regionalinventory.insert
      * @memberOf! ()
      *
@@ -12141,25 +12166,30 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Regionalinventory$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$RegionalInventory>;
+      params?: Params$Resource$Regionalinventory$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RegionalInventory>;
     insert(
-        params: Params$Resource$Regionalinventory$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$RegionalInventory>,
-        callback: BodyResponseCallback<Schema$RegionalInventory>): void;
+      params: Params$Resource$Regionalinventory$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$RegionalInventory>,
+      callback: BodyResponseCallback<Schema$RegionalInventory>
+    ): void;
     insert(
-        params: Params$Resource$Regionalinventory$Insert,
-        callback: BodyResponseCallback<Schema$RegionalInventory>): void;
+      params: Params$Resource$Regionalinventory$Insert,
+      callback: BodyResponseCallback<Schema$RegionalInventory>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$RegionalInventory>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Regionalinventory$Insert|
-        BodyResponseCallback<Schema$RegionalInventory>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RegionalInventory>,
-        callback?: BodyResponseCallback<Schema$RegionalInventory>):
-        void|GaxiosPromise<Schema$RegionalInventory> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Regionalinventory$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Regionalinventory$Insert
+        | BodyResponseCallback<Schema$RegionalInventory>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RegionalInventory>,
+      callback?: BodyResponseCallback<Schema$RegionalInventory>
+    ): void | GaxiosPromise<Schema$RegionalInventory> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionalinventory$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12176,18 +12206,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/products/{productId}/regionalinventory')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/products/{productId}/regionalinventory'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RegionalInventory>(parameters, callback);
@@ -12197,29 +12228,27 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Regionalinventory$Custombatch extends
-      StandardParameters {
+  export interface Params$Resource$Regionalinventory$Custombatch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$RegionalinventoryCustomBatchRequest;
   }
-  export interface Params$Resource$Regionalinventory$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Regionalinventory$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the account that contains the product. This account cannot be a
-     * multi-client account.
+     * The ID of the account that contains the product. This account cannot be a multi-client account.
      */
     merchantId?: string;
     /**
@@ -12233,18 +12262,15 @@ export namespace content_v2_1 {
     requestBody?: Schema$RegionalInventory;
   }
 
-
   export class Resource$Shippingsettings {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * content.shippingsettings.custombatch
-     * @desc Retrieves and updates the shipping settings of multiple accounts in
-     * a single request.
+     * @desc Retrieves and updates the shipping settings of multiple accounts in a single request.
      * @alias content.shippingsettings.custombatch
      * @memberOf! ()
      *
@@ -12255,35 +12281,36 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     custombatch(
-        params?: Params$Resource$Shippingsettings$Custombatch,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ShippingsettingsCustomBatchResponse>;
+      params?: Params$Resource$Shippingsettings$Custombatch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ShippingsettingsCustomBatchResponse>;
     custombatch(
-        params: Params$Resource$Shippingsettings$Custombatch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>,
-        callback:
-            BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>):
-        void;
+      params: Params$Resource$Shippingsettings$Custombatch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>,
+      callback: BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>
+    ): void;
     custombatch(
-        params: Params$Resource$Shippingsettings$Custombatch,
-        callback:
-            BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>):
-        void;
+      params: Params$Resource$Shippingsettings$Custombatch,
+      callback: BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>
+    ): void;
     custombatch(
-        callback:
-            BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>
+    ): void;
     custombatch(
-        paramsOrCallback?: Params$Resource$Shippingsettings$Custombatch|
-        BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>):
-        void|GaxiosPromise<Schema$ShippingsettingsCustomBatchResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Shippingsettings$Custombatch;
+      paramsOrCallback?:
+        | Params$Resource$Shippingsettings$Custombatch
+        | BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>,
+      callback?: BodyResponseCallback<
+        Schema$ShippingsettingsCustomBatchResponse
+      >
+    ): void | GaxiosPromise<Schema$ShippingsettingsCustomBatchResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shippingsettings$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12300,26 +12327,31 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/shippingsettings/batch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/content/v2.1/shippingsettings/batch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsCustomBatchResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ShippingsettingsCustomBatchResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.shippingsettings.get
@@ -12334,22 +12366,31 @@ export namespace content_v2_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Shippingsettings$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ShippingSettings>;
-    get(params: Params$Resource$Shippingsettings$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ShippingSettings>,
-        callback: BodyResponseCallback<Schema$ShippingSettings>): void;
-    get(params: Params$Resource$Shippingsettings$Get,
-        callback: BodyResponseCallback<Schema$ShippingSettings>): void;
+    get(
+      params?: Params$Resource$Shippingsettings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ShippingSettings>;
+    get(
+      params: Params$Resource$Shippingsettings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ShippingSettings>,
+      callback: BodyResponseCallback<Schema$ShippingSettings>
+    ): void;
+    get(
+      params: Params$Resource$Shippingsettings$Get,
+      callback: BodyResponseCallback<Schema$ShippingSettings>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ShippingSettings>): void;
-    get(paramsOrCallback?: Params$Resource$Shippingsettings$Get|
-        BodyResponseCallback<Schema$ShippingSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ShippingSettings>,
-        callback?: BodyResponseCallback<Schema$ShippingSettings>):
-        void|GaxiosPromise<Schema$ShippingSettings> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Shippingsettings$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Shippingsettings$Get
+        | BodyResponseCallback<Schema$ShippingSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ShippingSettings>,
+      callback?: BodyResponseCallback<Schema$ShippingSettings>
+    ): void | GaxiosPromise<Schema$ShippingSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shippingsettings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12366,17 +12407,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/shippingsettings/{accountId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/shippingsettings/{accountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ShippingSettings>(parameters, callback);
@@ -12384,7 +12427,6 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$ShippingSettings>(parameters);
       }
     }
-
 
     /**
      * content.shippingsettings.getsupportedcarriers
@@ -12399,34 +12441,50 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     getsupportedcarriers(
-        params?: Params$Resource$Shippingsettings$Getsupportedcarriers,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ShippingsettingsGetSupportedCarriersResponse>;
+      params?: Params$Resource$Shippingsettings$Getsupportedcarriers,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ShippingsettingsGetSupportedCarriersResponse>;
     getsupportedcarriers(
-        params: Params$Resource$Shippingsettings$Getsupportedcarriers,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$ShippingsettingsGetSupportedCarriersResponse>,
-        callback: BodyResponseCallback<
-            Schema$ShippingsettingsGetSupportedCarriersResponse>): void;
+      params: Params$Resource$Shippingsettings$Getsupportedcarriers,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedCarriersResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedCarriersResponse
+      >
+    ): void;
     getsupportedcarriers(
-        params: Params$Resource$Shippingsettings$Getsupportedcarriers,
-        callback: BodyResponseCallback<
-            Schema$ShippingsettingsGetSupportedCarriersResponse>): void;
-    getsupportedcarriers(callback: BodyResponseCallback<
-                         Schema$ShippingsettingsGetSupportedCarriersResponse>):
-        void;
+      params: Params$Resource$Shippingsettings$Getsupportedcarriers,
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedCarriersResponse
+      >
+    ): void;
     getsupportedcarriers(
-        paramsOrCallback?:
-            Params$Resource$Shippingsettings$Getsupportedcarriers|
-        BodyResponseCallback<
-            Schema$ShippingsettingsGetSupportedCarriersResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$ShippingsettingsGetSupportedCarriersResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ShippingsettingsGetSupportedCarriersResponse>): void|
-        GaxiosPromise<Schema$ShippingsettingsGetSupportedCarriersResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Shippingsettings$Getsupportedcarriers;
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedCarriersResponse
+      >
+    ): void;
+    getsupportedcarriers(
+      paramsOrCallback?:
+        | Params$Resource$Shippingsettings$Getsupportedcarriers
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedCarriersResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedCarriersResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedCarriersResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$ShippingsettingsGetSupportedCarriersResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shippingsettings$Getsupportedcarriers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12443,26 +12501,30 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/supportedCarriers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/supportedCarriers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsGetSupportedCarriersResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ShippingsettingsGetSupportedCarriersResponse>(parameters);
+          Schema$ShippingsettingsGetSupportedCarriersResponse
+        >(parameters);
       }
     }
-
 
     /**
      * content.shippingsettings.getsupportedholidays
@@ -12477,34 +12539,50 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     getsupportedholidays(
-        params?: Params$Resource$Shippingsettings$Getsupportedholidays,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ShippingsettingsGetSupportedHolidaysResponse>;
+      params?: Params$Resource$Shippingsettings$Getsupportedholidays,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ShippingsettingsGetSupportedHolidaysResponse>;
     getsupportedholidays(
-        params: Params$Resource$Shippingsettings$Getsupportedholidays,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$ShippingsettingsGetSupportedHolidaysResponse>,
-        callback: BodyResponseCallback<
-            Schema$ShippingsettingsGetSupportedHolidaysResponse>): void;
+      params: Params$Resource$Shippingsettings$Getsupportedholidays,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedHolidaysResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedHolidaysResponse
+      >
+    ): void;
     getsupportedholidays(
-        params: Params$Resource$Shippingsettings$Getsupportedholidays,
-        callback: BodyResponseCallback<
-            Schema$ShippingsettingsGetSupportedHolidaysResponse>): void;
-    getsupportedholidays(callback: BodyResponseCallback<
-                         Schema$ShippingsettingsGetSupportedHolidaysResponse>):
-        void;
+      params: Params$Resource$Shippingsettings$Getsupportedholidays,
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedHolidaysResponse
+      >
+    ): void;
     getsupportedholidays(
-        paramsOrCallback?:
-            Params$Resource$Shippingsettings$Getsupportedholidays|
-        BodyResponseCallback<
-            Schema$ShippingsettingsGetSupportedHolidaysResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$ShippingsettingsGetSupportedHolidaysResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ShippingsettingsGetSupportedHolidaysResponse>): void|
-        GaxiosPromise<Schema$ShippingsettingsGetSupportedHolidaysResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Shippingsettings$Getsupportedholidays;
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedHolidaysResponse
+      >
+    ): void;
+    getsupportedholidays(
+      paramsOrCallback?:
+        | Params$Resource$Shippingsettings$Getsupportedholidays
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedHolidaysResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedHolidaysResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedHolidaysResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$ShippingsettingsGetSupportedHolidaysResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shippingsettings$Getsupportedholidays;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12521,31 +12599,34 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/supportedHolidays')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/supportedHolidays'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsGetSupportedHolidaysResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ShippingsettingsGetSupportedHolidaysResponse>(parameters);
+          Schema$ShippingsettingsGetSupportedHolidaysResponse
+        >(parameters);
       }
     }
 
-
     /**
      * content.shippingsettings.list
-     * @desc Lists the shipping settings of the sub-accounts in your Merchant
-     * Center account.
+     * @desc Lists the shipping settings of the sub-accounts in your Merchant Center account.
      * @alias content.shippingsettings.list
      * @memberOf! ()
      *
@@ -12558,30 +12639,34 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Shippingsettings$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ShippingsettingsListResponse>;
+      params?: Params$Resource$Shippingsettings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ShippingsettingsListResponse>;
     list(
-        params: Params$Resource$Shippingsettings$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ShippingsettingsListResponse>,
-        callback: BodyResponseCallback<Schema$ShippingsettingsListResponse>):
-        void;
+      params: Params$Resource$Shippingsettings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ShippingsettingsListResponse>,
+      callback: BodyResponseCallback<Schema$ShippingsettingsListResponse>
+    ): void;
     list(
-        params: Params$Resource$Shippingsettings$List,
-        callback: BodyResponseCallback<Schema$ShippingsettingsListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ShippingsettingsListResponse>):
-        void;
+      params: Params$Resource$Shippingsettings$List,
+      callback: BodyResponseCallback<Schema$ShippingsettingsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Shippingsettings$List|
-        BodyResponseCallback<Schema$ShippingsettingsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ShippingsettingsListResponse>,
-        callback?: BodyResponseCallback<Schema$ShippingsettingsListResponse>):
-        void|GaxiosPromise<Schema$ShippingsettingsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Shippingsettings$List;
+      callback: BodyResponseCallback<Schema$ShippingsettingsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Shippingsettings$List
+        | BodyResponseCallback<Schema$ShippingsettingsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ShippingsettingsListResponse>,
+      callback?: BodyResponseCallback<Schema$ShippingsettingsListResponse>
+    ): void | GaxiosPromise<Schema$ShippingsettingsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shippingsettings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12598,26 +12683,30 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/content/v2.1/{merchantId}/shippingsettings')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/shippingsettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ShippingsettingsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * content.shippingsettings.update
@@ -12634,25 +12723,30 @@ export namespace content_v2_1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Shippingsettings$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ShippingSettings>;
+      params?: Params$Resource$Shippingsettings$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ShippingSettings>;
     update(
-        params: Params$Resource$Shippingsettings$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ShippingSettings>,
-        callback: BodyResponseCallback<Schema$ShippingSettings>): void;
+      params: Params$Resource$Shippingsettings$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ShippingSettings>,
+      callback: BodyResponseCallback<Schema$ShippingSettings>
+    ): void;
     update(
-        params: Params$Resource$Shippingsettings$Update,
-        callback: BodyResponseCallback<Schema$ShippingSettings>): void;
+      params: Params$Resource$Shippingsettings$Update,
+      callback: BodyResponseCallback<Schema$ShippingSettings>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ShippingSettings>): void;
     update(
-        paramsOrCallback?: Params$Resource$Shippingsettings$Update|
-        BodyResponseCallback<Schema$ShippingSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ShippingSettings>,
-        callback?: BodyResponseCallback<Schema$ShippingSettings>):
-        void|GaxiosPromise<Schema$ShippingSettings> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Shippingsettings$Update;
+      paramsOrCallback?:
+        | Params$Resource$Shippingsettings$Update
+        | BodyResponseCallback<Schema$ShippingSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ShippingSettings>,
+      callback?: BodyResponseCallback<Schema$ShippingSettings>
+    ): void | GaxiosPromise<Schema$ShippingSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shippingsettings$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12669,17 +12763,19 @@ export namespace content_v2_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/content/v2.1/{merchantId}/shippingsettings/{accountId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/shippingsettings/{accountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ShippingSettings>(parameters, callback);
@@ -12689,71 +12785,67 @@ export namespace content_v2_1 {
     }
   }
 
-  export interface Params$Resource$Shippingsettings$Custombatch extends
-      StandardParameters {
+  export interface Params$Resource$Shippingsettings$Custombatch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$ShippingsettingsCustomBatchRequest;
   }
-  export interface Params$Resource$Shippingsettings$Get extends
-      StandardParameters {
+  export interface Params$Resource$Shippingsettings$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account for which to get/update shipping settings.
      */
     accountId?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Shippingsettings$Getsupportedcarriers extends
-      StandardParameters {
+  export interface Params$Resource$Shippingsettings$Getsupportedcarriers
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account for which to retrieve the supported carriers.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Shippingsettings$Getsupportedholidays extends
-      StandardParameters {
+  export interface Params$Resource$Shippingsettings$Getsupportedholidays
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account for which to retrieve the supported holidays.
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Shippingsettings$List extends
-      StandardParameters {
+  export interface Params$Resource$Shippingsettings$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of shipping settings to return in the response, used
-     * for paging.
+     * The maximum number of shipping settings to return in the response, used for paging.
      */
     maxResults?: number;
     /**
@@ -12765,21 +12857,19 @@ export namespace content_v2_1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Shippingsettings$Update extends
-      StandardParameters {
+  export interface Params$Resource$Shippingsettings$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account for which to get/update shipping settings.
      */
     accountId?: string;
     /**
-     * The ID of the managing account. If this parameter is not the same as
-     * accountId, then this account must be a multi-client account and accountId
-     * must be the ID of a sub-account of this account.
+     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      */
     merchantId?: string;
 

@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +63,7 @@ export namespace chat_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,9 +75,7 @@ export namespace chat_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -100,17 +108,17 @@ export namespace chat_v1 {
     spaces: Resource$Spaces;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.spaces = new Resource$Spaces(this.context);
     }
   }
 
   /**
-   * List of string parameters to supply when the action method is invoked. For
-   * example, consider three snooze buttons: snooze now, snooze 1 day, snooze
-   * next week. You might use action method = snooze(), passing the snooze type
-   * and snooze time in the list of string parameters.
+   * List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze 1 day, snooze next week. You might use action method = snooze(), passing the snooze type and snooze time in the list of string parameters.
    */
   export interface Schema$ActionParameter {
     /**
@@ -131,32 +139,20 @@ export namespace chat_v1 {
      */
     type?: string;
     /**
-     * URL for users to auth or config. (Only for REQUEST_CONFIG response
-     * types.)
+     * URL for users to auth or config. (Only for REQUEST_CONFIG response types.)
      */
     url?: string;
   }
   /**
-   * Annotations associated with the plain-text body of the message.  Example
-   * plain-text message body: ``` Hello @FooBot how are you!&quot; ```  The
-   * corresponding annotations metadata: ``` &quot;annotations&quot;:[{
-   * &quot;type&quot;:&quot;USER_MENTION&quot;,   &quot;startIndex&quot;:6,
-   * &quot;length&quot;:7,   &quot;userMention&quot;: {     &quot;user&quot;: {
-   * &quot;name&quot;:&quot;users/107946847022116401880&quot;,
-   * &quot;displayName&quot;:&quot;FooBot&quot;,
-   * &quot;avatarUrl&quot;:&quot;https://goo.gl/aeDtrS&quot;,
-   * &quot;type&quot;:&quot;BOT&quot;     },
-   * &quot;type&quot;:&quot;MENTION&quot;    } }] ```
+   * Annotations associated with the plain-text body of the message.  Example plain-text message body: ``` Hello @FooBot how are you!&quot; ```  The corresponding annotations metadata: ``` &quot;annotations&quot;:[{   &quot;type&quot;:&quot;USER_MENTION&quot;,   &quot;startIndex&quot;:6,   &quot;length&quot;:7,   &quot;userMention&quot;: {     &quot;user&quot;: {       &quot;name&quot;:&quot;users/107946847022116401880&quot;,       &quot;displayName&quot;:&quot;FooBot&quot;,       &quot;avatarUrl&quot;:&quot;https://goo.gl/aeDtrS&quot;,       &quot;type&quot;:&quot;BOT&quot;     },     &quot;type&quot;:&quot;MENTION&quot;    } }] ```
    */
   export interface Schema$Annotation {
     /**
-     * Length of the substring in the plain-text message body this annotation
-     * corresponds to.
+     * Length of the substring in the plain-text message body this annotation corresponds to.
      */
     length?: number;
     /**
-     * Start index (0-based, inclusive) in the plain-text message body this
-     * annotation corresponds to.
+     * Start index (0-based, inclusive) in the plain-text message body this annotation corresponds to.
      */
     startIndex?: number;
     /**
@@ -203,9 +199,7 @@ export namespace chat_v1 {
     sections?: Schema$Section[];
   }
   /**
-   * A card action is the action associated with the card. For an invoice card,
-   * a typical action would be: delete invoice, email invoice or open the
-   * invoice in browser.
+   * A card action is the action associated with the card. For an invoice card, a typical action would be: delete invoice, email invoice or open the invoice in browser.
    */
   export interface Schema$CardAction {
     /**
@@ -231,9 +225,7 @@ export namespace chat_v1 {
      */
     subtitle?: string;
     /**
-     * The title must be specified. The header has a fixed height: if both a
-     * title and subtitle is specified, each will take up 1 line. If only the
-     * title is specified, it will take up both lines.
+     * The title must be specified. The header has a fixed height: if both a title and subtitle is specified, each will take up 1 line. If only the title is specified, it will take up both lines.
      */
     title?: string;
   }
@@ -242,16 +234,11 @@ export namespace chat_v1 {
    */
   export interface Schema$DeprecatedEvent {
     /**
-     * The form action data associated with an interactive card that was
-     * clicked. Only populated for CARD_CLICKED events. See the [Interactive
-     * Cards guide](/hangouts/chat/how-tos/cards-onclick) for more information.
+     * The form action data associated with an interactive card that was clicked. Only populated for CARD_CLICKED events. See the [Interactive Cards guide](/hangouts/chat/how-tos/cards-onclick) for more information.
      */
     action?: Schema$FormAction;
     /**
-     * The URL the bot should redirect the user to after they have completed an
-     * authorization or configuration flow outside of Hangouts Chat. See the
-     * [Authorizing access to 3p services guide](/hangouts/chat/how-tos/auth-3p)
-     * for more information.
+     * The URL the bot should redirect the user to after they have completed an authorization or configuration flow outside of Hangouts Chat. See the [Authorizing access to 3p services guide](/hangouts/chat/how-tos/auth-3p) for more information.
      */
     configCompleteRedirectUrl?: string;
     /**
@@ -267,17 +254,11 @@ export namespace chat_v1 {
      */
     space?: Schema$Space;
     /**
-     * The bot-defined key for the thread related to the event. See the
-     * thread_key field of the `spaces.message.create` request for more
-     * information.
+     * The bot-defined key for the thread related to the event. See the thread_key field of the `spaces.message.create` request for more information.
      */
     threadKey?: string;
     /**
-     * A secret value that bots can use to verify if a request is from Google.
-     * The token is randomly generated by Google, remains static, and can be
-     * obtained from the Hangouts Chat API configuration page in the Cloud
-     * Console. Developers can revoke/regenerate it if needed from the same
-     * page.
+     * A secret value that bots can use to verify if a request is from Google. The token is randomly generated by Google, remains static, and can be obtained from the Hangouts Chat API configuration page in the Cloud Console. Developers can revoke/regenerate it if needed from the same page.
      */
     token?: string;
     /**
@@ -290,21 +271,15 @@ export namespace chat_v1 {
     user?: Schema$User;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * A form action describes the behavior when the form is submitted. For
-   * example, an Apps Script can be invoked to handle the form.
+   * A form action describes the behavior when the form is submitted. For example, an Apps Script can be invoked to handle the form.
    */
   export interface Schema$FormAction {
     /**
-     * Apps Script function to invoke when the containing element is
-     * clicked/activated.
+     * Apps Script function to invoke when the containing element is clicked/activated.
      */
     actionMethodName?: string;
     /**
@@ -334,8 +309,7 @@ export namespace chat_v1 {
    */
   export interface Schema$ImageButton {
     /**
-     * The icon specified by an enum that indices to an icon provided by Chat
-     * API.
+     * The icon specified by an enum that indices to an icon provided by Chat API.
      */
     icon?: string;
     /**
@@ -343,8 +317,7 @@ export namespace chat_v1 {
      */
     iconUrl?: string;
     /**
-     * The name of this image_button which will be used for accessibility.
-     * Default value will be provided if developers don&#39;t specify.
+     * The name of this image_button which will be used for accessibility. Default value will be provided if developers don&#39;t specify.
      */
     name?: string;
     /**
@@ -353,8 +326,7 @@ export namespace chat_v1 {
     onClick?: Schema$OnClick;
   }
   /**
-   * A UI element contains a key (label) and a value (content). And this element
-   * may also contain some actions such as onclick button.
+   * A UI element contains a key (label) and a value (content). And this element may also contain some actions such as onclick button.
    */
   export interface Schema$KeyValue {
     /**
@@ -374,8 +346,7 @@ export namespace chat_v1 {
      */
     contentMultiline?: boolean;
     /**
-     * An enum value that will be replaced by the Chat API with the
-     * corresponding icon image.
+     * An enum value that will be replaced by the Chat API with the corresponding icon image.
      */
     icon?: string;
     /**
@@ -383,8 +354,7 @@ export namespace chat_v1 {
      */
     iconUrl?: string;
     /**
-     * The onclick action. Only the top label, bottom label and content region
-     * are clickable.
+     * The onclick action. Only the top label, bottom label and content region are clickable.
      */
     onClick?: Schema$OnClick;
     /**
@@ -398,16 +368,13 @@ export namespace chat_v1 {
      */
     memberships?: Schema$Membership[];
     /**
-     * Continuation token to retrieve the next page of results. It will be empty
-     * for the last page of results.
+     * Continuation token to retrieve the next page of results. It will be empty for the last page of results.
      */
     nextPageToken?: string;
   }
   export interface Schema$ListSpacesResponse {
     /**
-     * Continuation token to retrieve the next page of results. It will be empty
-     * for the last page of results. Tokens expire in an hour. An error is
-     * thrown if an expired token is passed.
+     * Continuation token to retrieve the next page of results. It will be empty for the last page of results. Tokens expire in an hour. An error is thrown if an expired token is passed.
      */
     nextPageToken?: string;
     /**
@@ -420,8 +387,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Membership {
     /**
-     * The creation time of the membership a.k.a the time at which the member
-     * joined the space, if applicable.
+     * The creation time of the membership a.k.a the time at which the member joined the space, if applicable.
      */
     createTime?: string;
     /**
@@ -429,9 +395,7 @@ export namespace chat_v1 {
      */
     member?: Schema$User;
     /**
-     * Resource name of the membership, in the form
-     * &quot;spaces/x/members/*&quot;.  Example:
-     * spaces/AAAAMpdlehY/members/105115627578887013105
+     * Resource name of the membership, in the form &quot;spaces/x/members/*&quot;.  Example: spaces/AAAAMpdlehY/members/105115627578887013105
      */
     name?: string;
     /**
@@ -444,8 +408,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Message {
     /**
-     * Input only. Parameters that a bot can use to configure how its response
-     * is posted.
+     * Input only. Parameters that a bot can use to configure how its response is posted.
      */
     actionResponse?: Schema$ActionResponse;
     /**
@@ -457,30 +420,23 @@ export namespace chat_v1 {
      */
     argumentText?: string;
     /**
-     * Rich, formatted and interactive cards that can be used to display UI
-     * elements such as: formatted texts, buttons, clickable images. Cards are
-     * normally displayed below the plain-text body of the message.
+     * Rich, formatted and interactive cards that can be used to display UI elements such as: formatted texts, buttons, clickable images. Cards are normally displayed below the plain-text body of the message.
      */
     cards?: Schema$Card[];
     /**
-     * Output only. The time at which the message was created in Hangouts Chat
-     * server.
+     * Output only. The time at which the message was created in Hangouts Chat server.
      */
     createTime?: string;
     /**
-     * A plain-text description of the message&#39;s cards, used when the actual
-     * cards cannot be displayed (e.g. mobile notifications).
+     * A plain-text description of the message&#39;s cards, used when the actual cards cannot be displayed (e.g. mobile notifications).
      */
     fallbackText?: string;
     /**
-     * Resource name, in the form &quot;spaces/x/messages/*&quot;.  Example:
-     * spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Resource name, in the form &quot;spaces/x/messages/*&quot;.  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string;
     /**
-     * Text for generating preview chips. This text will not be displayed to the
-     * user, but any links to images, web pages, videos, etc. included here will
-     * generate preview chips.
+     * Text for generating preview chips. This text will not be displayed to the user, but any links to images, web pages, videos, etc. included here will generate preview chips.
      */
     previewText?: string;
     /**
@@ -523,10 +479,7 @@ export namespace chat_v1 {
     url?: string;
   }
   /**
-   * A section contains a collection of widgets that are rendered (vertically)
-   * in the order that they are specified. Across all platforms, cards have a
-   * narrow fixed width, so there is currently no need for layout properties
-   * (e.g. float).
+   * A section contains a collection of widgets that are rendered (vertically) in the order that they are specified. Across all platforms, cards have a narrow fixed width, so there is currently no need for layout properties (e.g. float).
    */
   export interface Schema$Section {
     /**
@@ -547,8 +500,7 @@ export namespace chat_v1 {
      */
     displayName?: string;
     /**
-     * Resource name of the space, in the form &quot;spaces/*&quot;.  Example:
-     * spaces/AAAAMpdlehYs
+     * Resource name of the space, in the form &quot;spaces/*&quot;.  Example: spaces/AAAAMpdlehYs
      */
     name?: string;
     /**
@@ -580,8 +532,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Thread {
     /**
-     * Resource name, in the form &quot;spaces/x/threads/*&quot;.  Example:
-     * spaces/AAAAMpdlehY/threads/UMxbHmzDlr4
+     * Resource name, in the form &quot;spaces/x/threads/*&quot;.  Example: spaces/AAAAMpdlehY/threads/UMxbHmzDlr4
      */
     name?: string;
   }
@@ -620,8 +571,7 @@ export namespace chat_v1 {
    */
   export interface Schema$WidgetMarkup {
     /**
-     * A list of buttons. Buttons is also oneof data and only one of these
-     * fields should be set.
+     * A list of buttons. Buttons is also oneof data and only one of these fields should be set.
      */
     buttons?: Schema$Button[];
     /**
@@ -638,7 +588,6 @@ export namespace chat_v1 {
     textParagraph?: Schema$TextParagraph;
   }
 
-
   export class Resource$Spaces {
     context: APIRequestContext;
     members: Resource$Spaces$Members;
@@ -648,7 +597,6 @@ export namespace chat_v1 {
       this.members = new Resource$Spaces$Members(this.context);
       this.messages = new Resource$Spaces$Messages(this.context);
     }
-
 
     /**
      * chat.spaces.get
@@ -662,19 +610,27 @@ export namespace chat_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Spaces$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Space>;
-    get(params: Params$Resource$Spaces$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Space>,
-        callback: BodyResponseCallback<Schema$Space>): void;
-    get(params: Params$Resource$Spaces$Get,
-        callback: BodyResponseCallback<Schema$Space>): void;
+    get(
+      params?: Params$Resource$Spaces$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Space>;
+    get(
+      params: Params$Resource$Spaces$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Space>,
+      callback: BodyResponseCallback<Schema$Space>
+    ): void;
+    get(
+      params: Params$Resource$Spaces$Get,
+      callback: BodyResponseCallback<Schema$Space>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Space>): void;
-    get(paramsOrCallback?: Params$Resource$Spaces$Get|
-        BodyResponseCallback<Schema$Space>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Space>,
-        callback?: BodyResponseCallback<Schema$Space>):
-        void|GaxiosPromise<Schema$Space> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Get
+        | BodyResponseCallback<Schema$Space>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Space>,
+      callback?: BodyResponseCallback<Schema$Space>
+    ): void | GaxiosPromise<Schema$Space> {
       let params = (paramsOrCallback || {}) as Params$Resource$Spaces$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -692,15 +648,16 @@ export namespace chat_v1 {
       const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Space>(parameters, callback);
@@ -708,7 +665,6 @@ export namespace chat_v1 {
         return createAPIRequest<Schema$Space>(parameters);
       }
     }
-
 
     /**
      * chat.spaces.list
@@ -723,23 +679,29 @@ export namespace chat_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Spaces$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListSpacesResponse>;
     list(
-        params: Params$Resource$Spaces$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListSpacesResponse>,
-        callback: BodyResponseCallback<Schema$ListSpacesResponse>): void;
+      params?: Params$Resource$Spaces$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSpacesResponse>;
     list(
-        params: Params$Resource$Spaces$List,
-        callback: BodyResponseCallback<Schema$ListSpacesResponse>): void;
+      params: Params$Resource$Spaces$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSpacesResponse>,
+      callback: BodyResponseCallback<Schema$ListSpacesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Spaces$List,
+      callback: BodyResponseCallback<Schema$ListSpacesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListSpacesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Spaces$List|
-        BodyResponseCallback<Schema$ListSpacesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListSpacesResponse>,
-        callback?: BodyResponseCallback<Schema$ListSpacesResponse>):
-        void|GaxiosPromise<Schema$ListSpacesResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Spaces$List
+        | BodyResponseCallback<Schema$ListSpacesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSpacesResponse>,
+      callback?: BodyResponseCallback<Schema$ListSpacesResponse>
+    ): void | GaxiosPromise<Schema$ListSpacesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Spaces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -757,15 +719,16 @@ export namespace chat_v1 {
       const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/spaces').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/spaces').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListSpacesResponse>(parameters, callback);
@@ -779,11 +742,10 @@ export namespace chat_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Resource name of the space, in the form "spaces/x".  Example:
-     * spaces/AAAAMpdlehY
+     * Required. Resource name of the space, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
      */
     name?: string;
   }
@@ -791,11 +753,10 @@ export namespace chat_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Requested page size. The value is capped at 1000. Server may return fewer
-     * results than requested. If unspecified, server will default to 100.
+     * Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
      */
     pageSize?: number;
     /**
@@ -810,7 +771,6 @@ export namespace chat_v1 {
       this.context = context;
     }
 
-
     /**
      * chat.spaces.members.get
      * @desc Returns a membership.
@@ -823,22 +783,31 @@ export namespace chat_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Spaces$Members$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Membership>;
-    get(params: Params$Resource$Spaces$Members$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Membership>,
-        callback: BodyResponseCallback<Schema$Membership>): void;
-    get(params: Params$Resource$Spaces$Members$Get,
-        callback: BodyResponseCallback<Schema$Membership>): void;
+    get(
+      params?: Params$Resource$Spaces$Members$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Membership>;
+    get(
+      params: Params$Resource$Spaces$Members$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Membership>,
+      callback: BodyResponseCallback<Schema$Membership>
+    ): void;
+    get(
+      params: Params$Resource$Spaces$Members$Get,
+      callback: BodyResponseCallback<Schema$Membership>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Membership>): void;
-    get(paramsOrCallback?: Params$Resource$Spaces$Members$Get|
-        BodyResponseCallback<Schema$Membership>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Membership>,
-        callback?: BodyResponseCallback<Schema$Membership>):
-        void|GaxiosPromise<Schema$Membership> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Spaces$Members$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Members$Get
+        | BodyResponseCallback<Schema$Membership>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Membership>,
+      callback?: BodyResponseCallback<Schema$Membership>
+    ): void | GaxiosPromise<Schema$Membership> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Members$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -855,15 +824,16 @@ export namespace chat_v1 {
       const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Membership>(parameters, callback);
@@ -871,7 +841,6 @@ export namespace chat_v1 {
         return createAPIRequest<Schema$Membership>(parameters);
       }
     }
-
 
     /**
      * chat.spaces.members.list
@@ -887,26 +856,33 @@ export namespace chat_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Spaces$Members$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListMembershipsResponse>;
     list(
-        params: Params$Resource$Spaces$Members$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListMembershipsResponse>,
-        callback: BodyResponseCallback<Schema$ListMembershipsResponse>): void;
+      params?: Params$Resource$Spaces$Members$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMembershipsResponse>;
     list(
-        params: Params$Resource$Spaces$Members$List,
-        callback: BodyResponseCallback<Schema$ListMembershipsResponse>): void;
+      params: Params$Resource$Spaces$Members$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMembershipsResponse>,
+      callback: BodyResponseCallback<Schema$ListMembershipsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Spaces$Members$List,
+      callback: BodyResponseCallback<Schema$ListMembershipsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListMembershipsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Spaces$Members$List|
-        BodyResponseCallback<Schema$ListMembershipsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListMembershipsResponse>,
-        callback?: BodyResponseCallback<Schema$ListMembershipsResponse>):
-        void|GaxiosPromise<Schema$ListMembershipsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Spaces$Members$List;
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Members$List
+        | BodyResponseCallback<Schema$ListMembershipsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMembershipsResponse>,
+      callback?: BodyResponseCallback<Schema$ListMembershipsResponse>
+    ): void | GaxiosPromise<Schema$ListMembershipsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Members$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -923,16 +899,19 @@ export namespace chat_v1 {
       const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/members')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/members').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListMembershipsResponse>(parameters, callback);
@@ -942,30 +921,27 @@ export namespace chat_v1 {
     }
   }
 
-  export interface Params$Resource$Spaces$Members$Get extends
-      StandardParameters {
+  export interface Params$Resource$Spaces$Members$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Resource name of the membership to be retrieved, in the form
-     * "spaces/x/members/x".  Example:
-     * spaces/AAAAMpdlehY/members/105115627578887013105
+     * Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x".  Example: spaces/AAAAMpdlehY/members/105115627578887013105
      */
     name?: string;
   }
-  export interface Params$Resource$Spaces$Members$List extends
-      StandardParameters {
+  export interface Params$Resource$Spaces$Members$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Requested page size. The value is capped at 1000. Server may return fewer
-     * results than requested. If unspecified, server will default to 100.
+     * Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
      */
     pageSize?: number;
     /**
@@ -973,19 +949,16 @@ export namespace chat_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the space for which membership list is to
-     * be fetched, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
+     * Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
      */
     parent?: string;
   }
-
 
   export class Resource$Spaces$Messages {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * chat.spaces.messages.create
@@ -1002,24 +975,28 @@ export namespace chat_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Spaces$Messages$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Message>;
+      params?: Params$Resource$Spaces$Messages$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
     create(
-        params: Params$Resource$Spaces$Messages$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Spaces$Messages$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     create(
-        params: Params$Resource$Spaces$Messages$Create,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Spaces$Messages$Create,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Message>): void;
     create(
-        paramsOrCallback?: Params$Resource$Spaces$Messages$Create|
-        BodyResponseCallback<Schema$Message>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback?: BodyResponseCallback<Schema$Message>):
-        void|GaxiosPromise<Schema$Message> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Spaces$Messages$Create;
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Messages$Create
+        | BodyResponseCallback<Schema$Message>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>
+    ): void | GaxiosPromise<Schema$Message> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Messages$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1036,16 +1013,19 @@ export namespace chat_v1 {
       const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/messages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/messages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -1053,7 +1033,6 @@ export namespace chat_v1 {
         return createAPIRequest<Schema$Message>(parameters);
       }
     }
-
 
     /**
      * chat.spaces.messages.delete
@@ -1068,24 +1047,28 @@ export namespace chat_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Spaces$Messages$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Spaces$Messages$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Spaces$Messages$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Spaces$Messages$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Spaces$Messages$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Spaces$Messages$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Spaces$Messages$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Spaces$Messages$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Messages$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Messages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1102,15 +1085,16 @@ export namespace chat_v1 {
       const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1118,7 +1102,6 @@ export namespace chat_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * chat.spaces.messages.get
@@ -1132,21 +1115,29 @@ export namespace chat_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Spaces$Messages$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Message>;
-    get(params: Params$Resource$Spaces$Messages$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback: BodyResponseCallback<Schema$Message>): void;
-    get(params: Params$Resource$Spaces$Messages$Get,
-        callback: BodyResponseCallback<Schema$Message>): void;
+    get(
+      params?: Params$Resource$Spaces$Messages$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
+    get(
+      params: Params$Resource$Spaces$Messages$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    get(
+      params: Params$Resource$Spaces$Messages$Get,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Message>): void;
-    get(paramsOrCallback?: Params$Resource$Spaces$Messages$Get|
-        BodyResponseCallback<Schema$Message>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback?: BodyResponseCallback<Schema$Message>):
-        void|GaxiosPromise<Schema$Message> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Spaces$Messages$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Messages$Get
+        | BodyResponseCallback<Schema$Message>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>
+    ): void | GaxiosPromise<Schema$Message> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Messages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1163,15 +1154,16 @@ export namespace chat_v1 {
       const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -1179,7 +1171,6 @@ export namespace chat_v1 {
         return createAPIRequest<Schema$Message>(parameters);
       }
     }
-
 
     /**
      * chat.spaces.messages.update
@@ -1196,24 +1187,28 @@ export namespace chat_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Spaces$Messages$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Message>;
+      params?: Params$Resource$Spaces$Messages$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
     update(
-        params: Params$Resource$Spaces$Messages$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Spaces$Messages$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     update(
-        params: Params$Resource$Spaces$Messages$Update,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Spaces$Messages$Update,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Message>): void;
     update(
-        paramsOrCallback?: Params$Resource$Spaces$Messages$Update|
-        BodyResponseCallback<Schema$Message>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback?: BodyResponseCallback<Schema$Message>):
-        void|GaxiosPromise<Schema$Message> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Spaces$Messages$Update;
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Messages$Update
+        | BodyResponseCallback<Schema$Message>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>
+    ): void | GaxiosPromise<Schema$Message> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Messages$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1230,15 +1225,16 @@ export namespace chat_v1 {
       const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -1248,26 +1244,19 @@ export namespace chat_v1 {
     }
   }
 
-  export interface Params$Resource$Spaces$Messages$Create extends
-      StandardParameters {
+  export interface Params$Resource$Spaces$Messages$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Space resource name, in the form "spaces/x". Example:
-     * spaces/AAAAMpdlehY
+     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      */
     parent?: string;
     /**
-     * Opaque thread identifier string that can be specified to group messages
-     * into a single thread. If this is the first message with a given thread
-     * identifier, a new thread is created. Subsequent messages with the same
-     * thread identifier will be posted into the same thread. This relieves bots
-     * and webhooks from having to store the Hangouts Chat thread ID of a thread
-     * (created earlier by them) to post further updates to it.  Has no effect
-     * if thread field, corresponding to an existing thread, is set in message.
+     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it.  Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
 
@@ -1276,49 +1265,43 @@ export namespace chat_v1 {
      */
     requestBody?: Schema$Message;
   }
-  export interface Params$Resource$Spaces$Messages$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Spaces$Messages$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Resource name of the message to be deleted, in the form
-     * "spaces/x/messages/x"  Example:
-     * spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x"  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string;
   }
-  export interface Params$Resource$Spaces$Messages$Get extends
-      StandardParameters {
+  export interface Params$Resource$Spaces$Messages$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Resource name of the message to be retrieved, in the form
-     * "spaces/x/messages/x".  Example:
-     * spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string;
   }
-  export interface Params$Resource$Spaces$Messages$Update extends
-      StandardParameters {
+  export interface Params$Resource$Spaces$Messages$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name, in the form "spaces/x/messages/x".  Example:
-     * spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Resource name, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string;
     /**
-     * Required. The field paths to be updated.  Currently supported field
-     * paths: "text", "cards".
+     * Required. The field paths to be updated.  Currently supported field paths: "text", "cards".
      */
     updateMask?: string;
 

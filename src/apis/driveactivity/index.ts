@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {driveactivity_v2} from './v2';
 
 export const VERSIONS = {
-  'v2': driveactivity_v2.Driveactivity,
+  v2: driveactivity_v2.Driveactivity,
 };
 
 export function driveactivity(version: 'v2'): driveactivity_v2.Driveactivity;
-export function driveactivity(options: driveactivity_v2.Options):
-    driveactivity_v2.Driveactivity;
+export function driveactivity(
+  options: driveactivity_v2.Options
+): driveactivity_v2.Driveactivity;
 export function driveactivity<T = driveactivity_v2.Driveactivity>(
-    this: GoogleConfigurable, versionOrOptions: 'v2'|driveactivity_v2.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v2' | driveactivity_v2.Options
+) {
   return getAPI<T>('driveactivity', versionOrOptions, VERSIONS, this);
 }
 

@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace adsensehost_v4_1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace adsensehost_v4_1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -66,8 +75,7 @@ export namespace adsensehost_v4_1 {
   /**
    * AdSense Host API
    *
-   * Generates performance reports, generates ad codes, and provides publisher
-   * management capabilities for AdSense Hosts.
+   * Generates performance reports, generates ad codes, and provides publisher management capabilities for AdSense Hosts.
    *
    * @example
    * const {google} = require('googleapis');
@@ -89,7 +97,10 @@ export namespace adsensehost_v4_1 {
     urlchannels: Resource$Urlchannels;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.accounts = new Resource$Accounts(this.context);
       this.adclients = new Resource$Adclients(this.context);
@@ -146,8 +157,7 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * This ad client&#39;s product code, which corresponds to the PRODUCT_CODE
-     * report dimension.
+     * This ad client&#39;s product code, which corresponds to the PRODUCT_CODE report dimension.
      */
     productCode?: string;
     /**
@@ -169,9 +179,7 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through ad clients. To retrieve the next
-     * page of results, set the next request&#39;s &quot;pageToken&quot; value
-     * to this.
+     * Continuation token used to page through ad clients. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
@@ -187,9 +195,7 @@ export namespace adsensehost_v4_1 {
   }
   export interface Schema$AdStyle {
     /**
-     * The colors included in the style. These are represented as six
-     * hexadecimal characters, similar to HTML color codes, but without the
-     * leading hash.
+     * The colors included in the style. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash.
      */
     colors?: {
       background?: string;
@@ -199,14 +205,13 @@ export namespace adsensehost_v4_1 {
       url?: string;
     };
     /**
-     * The style of the corners in the ad (deprecated: never populated,
-     * ignored).
+     * The style of the corners in the ad (deprecated: never populated, ignored).
      */
     corners?: string;
     /**
      * The font which is included in the style.
      */
-    font?: {family?: string; size?: string;};
+    font?: {family?: string; size?: string};
     /**
      * Kind this is, in this case adsensehost#adStyle.
      */
@@ -218,11 +223,10 @@ export namespace adsensehost_v4_1 {
      */
     code?: string;
     /**
-     * Settings specific to content ads (AFC) and highend mobile content ads
-     * (AFMC - deprecated).
+     * Settings specific to content ads (AFC) and highend mobile content ads (AFMC - deprecated).
      */
     contentAdsSettings?: {
-      backupOption?: {color?: string; type?: string; url?: string;};
+      backupOption?: {color?: string; type?: string; url?: string};
       size?: string;
       type?: string;
     };
@@ -231,8 +235,7 @@ export namespace adsensehost_v4_1 {
      */
     customStyle?: Schema$AdStyle;
     /**
-     * Unique identifier of this ad unit. This should be considered an opaque
-     * identifier; it is not safe to rely on it being in any particular format.
+     * Unique identifier of this ad unit. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
      */
     id?: string;
     /**
@@ -253,11 +256,7 @@ export namespace adsensehost_v4_1 {
      */
     name?: string;
     /**
-     * Status of this ad unit. Possible values are: NEW: Indicates that the ad
-     * unit was created within the last seven days and does not yet have any
-     * activity associated with it.  ACTIVE: Indicates that there has been
-     * activity on this ad unit in the last seven days.  INACTIVE: Indicates
-     * that there has been no activity on this ad unit in the last seven days.
+     * Status of this ad unit. Possible values are: NEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.  ACTIVE: Indicates that there has been activity on this ad unit in the last seven days.  INACTIVE: Indicates that there has been no activity on this ad unit in the last seven days.
      */
     status?: string;
   }
@@ -275,16 +274,13 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through ad units. To retrieve the next
-     * page of results, set the next request&#39;s &quot;pageToken&quot; value
-     * to this.
+     * Continuation token used to page through ad units. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
   export interface Schema$AssociationSession {
     /**
-     * Hosted account id of the associated publisher after association. Present
-     * if status is ACCEPTED.
+     * Hosted account id of the associated publisher after association. Present if status is ACCEPTED.
      */
     accountId?: string;
     /**
@@ -296,23 +292,19 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * The products to associate with the user. Options: AFC, AFG, AFV, AFS
-     * (deprecated), AFMC (deprecated)
+     * The products to associate with the user. Options: AFC, AFG, AFV, AFS (deprecated), AFMC (deprecated)
      */
     productCodes?: string[];
     /**
-     * Redirect URL of this association session. Used to redirect users into the
-     * AdSense association flow.
+     * Redirect URL of this association session. Used to redirect users into the AdSense association flow.
      */
     redirectUrl?: string;
     /**
-     * Status of the completed association, available once the association
-     * callback token has been verified. One of ACCEPTED, REJECTED, or ERROR.
+     * Status of the completed association, available once the association callback token has been verified. One of ACCEPTED, REJECTED, or ERROR.
      */
     status?: string;
     /**
-     * The preferred locale of the user themselves when going through the
-     * AdSense association flow.
+     * The preferred locale of the user themselves when going through the AdSense association flow.
      */
     userLocale?: string;
     /**
@@ -330,9 +322,7 @@ export namespace adsensehost_v4_1 {
      */
     code?: string;
     /**
-     * Unique identifier of this custom channel. This should be considered an
-     * opaque identifier; it is not safe to rely on it being in any particular
-     * format.
+     * Unique identifier of this custom channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
      */
     id?: string;
     /**
@@ -358,44 +348,33 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through custom channels. To retrieve the
-     * next page of results, set the next request&#39;s &quot;pageToken&quot;
-     * value to this.
+     * Continuation token used to page through custom channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
   export interface Schema$Report {
     /**
-     * The averages of the report. This is the same length as any other row in
-     * the report; cells corresponding to dimension columns are empty.
+     * The averages of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
      */
     averages?: string[];
     /**
-     * The header information of the columns requested in the report. This is a
-     * list of headers; one for each dimension in the request, followed by one
-     * for each metric in the request.
+     * The header information of the columns requested in the report. This is a list of headers; one for each dimension in the request, followed by one for each metric in the request.
      */
-    headers?: Array<{currency?: string; name?: string; type?: string;}>;
+    headers?: Array<{currency?: string; name?: string; type?: string}>;
     /**
      * Kind this is, in this case adsensehost#report.
      */
     kind?: string;
     /**
-     * The output rows of the report. Each row is a list of cells; one for each
-     * dimension in the request, followed by one for each metric in the request.
-     * The dimension cells contain strings, and the metric cells contain
-     * numbers.
+     * The output rows of the report. Each row is a list of cells; one for each dimension in the request, followed by one for each metric in the request. The dimension cells contain strings, and the metric cells contain numbers.
      */
     rows?: string[][];
     /**
-     * The total number of rows matched by the report request. Fewer rows may be
-     * returned in the response due to being limited by the row count requested
-     * or the report row limit.
+     * The total number of rows matched by the report request. Fewer rows may be returned in the response due to being limited by the row count requested or the report row limit.
      */
     totalMatchedRows?: string;
     /**
-     * The totals of the report. This is the same length as any other row in the
-     * report; cells corresponding to dimension columns are empty.
+     * The totals of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
      */
     totals?: string[];
     /**
@@ -405,9 +384,7 @@ export namespace adsensehost_v4_1 {
   }
   export interface Schema$UrlChannel {
     /**
-     * Unique identifier of this URL channel. This should be considered an
-     * opaque identifier; it is not safe to rely on it being in any particular
-     * format.
+     * Unique identifier of this URL channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
      */
     id?: string;
     /**
@@ -415,8 +392,7 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * URL Pattern of this URL channel. Does not include &quot;http://&quot; or
-     * &quot;https://&quot;. Example: www.example.com/home
+     * URL Pattern of this URL channel. Does not include &quot;http://&quot; or &quot;https://&quot;. Example: www.example.com/home
      */
     urlPattern?: string;
   }
@@ -434,13 +410,10 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through URL channels. To retrieve the
-     * next page of results, set the next request&#39;s &quot;pageToken&quot;
-     * value to this.
+     * Continuation token used to page through URL channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
-
 
   export class Resource$Accounts {
     context: APIRequestContext;
@@ -454,7 +427,6 @@ export namespace adsensehost_v4_1 {
       this.reports = new Resource$Accounts$Reports(this.context);
     }
 
-
     /**
      * adsensehost.accounts.get
      * @desc Get information about the selected associated AdSense account.
@@ -467,19 +439,27 @@ export namespace adsensehost_v4_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Account>;
-    get(params: Params$Resource$Accounts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback: BodyResponseCallback<Schema$Account>): void;
-    get(params: Params$Resource$Accounts$Get,
-        callback: BodyResponseCallback<Schema$Account>): void;
+    get(
+      params?: Params$Resource$Accounts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Account>;
+    get(
+      params: Params$Resource$Accounts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Get,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Account>): void;
-    get(paramsOrCallback?: Params$Resource$Accounts$Get|
-        BodyResponseCallback<Schema$Account>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>):
-        void|GaxiosPromise<Schema$Account> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Get
+        | BodyResponseCallback<Schema$Account>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>
+    ): void | GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -497,16 +477,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -515,11 +498,9 @@ export namespace adsensehost_v4_1 {
       }
     }
 
-
     /**
      * adsensehost.accounts.list
-     * @desc List hosted accounts associated with this AdSense account by ad
-     * client id.
+     * @desc List hosted accounts associated with this AdSense account by ad client id.
      * @alias adsensehost.accounts.list
      * @memberOf! ()
      *
@@ -529,22 +510,27 @@ export namespace adsensehost_v4_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Accounts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$Accounts>;
     list(
-        params: Params$Resource$Accounts$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Accounts>,
-        callback: BodyResponseCallback<Schema$Accounts>): void;
+      params?: Params$Resource$Accounts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Accounts>;
     list(
-        params: Params$Resource$Accounts$List,
-        callback: BodyResponseCallback<Schema$Accounts>): void;
+      params: Params$Resource$Accounts$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Accounts>,
+      callback: BodyResponseCallback<Schema$Accounts>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$List,
+      callback: BodyResponseCallback<Schema$Accounts>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Accounts>): void;
     list(
-        paramsOrCallback?: Params$Resource$Accounts$List|
-        BodyResponseCallback<Schema$Accounts>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Accounts>,
-        callback?: BodyResponseCallback<Schema$Accounts>):
-        void|GaxiosPromise<Schema$Accounts> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$List
+        | BodyResponseCallback<Schema$Accounts>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Accounts>,
+      callback?: BodyResponseCallback<Schema$Accounts>
+    ): void | GaxiosPromise<Schema$Accounts> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -562,16 +548,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adsensehost/v4.1/accounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/adsensehost/v4.1/accounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['filterAdClientId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Accounts>(parameters, callback);
@@ -585,7 +574,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account to get information about.
@@ -596,7 +585,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Ad clients to list accounts for.
@@ -610,11 +599,9 @@ export namespace adsensehost_v4_1 {
       this.context = context;
     }
 
-
     /**
      * adsensehost.accounts.adclients.get
-     * @desc Get information about one of the ad clients in the specified
-     * publisher's AdSense account.
+     * @desc Get information about one of the ad clients in the specified publisher's AdSense account.
      * @alias adsensehost.accounts.adclients.get
      * @memberOf! ()
      *
@@ -625,21 +612,29 @@ export namespace adsensehost_v4_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Adclients$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AdClient>;
-    get(params: Params$Resource$Accounts$Adclients$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AdClient>,
-        callback: BodyResponseCallback<Schema$AdClient>): void;
-    get(params: Params$Resource$Accounts$Adclients$Get,
-        callback: BodyResponseCallback<Schema$AdClient>): void;
+    get(
+      params?: Params$Resource$Accounts$Adclients$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdClient>;
+    get(
+      params: Params$Resource$Accounts$Adclients$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AdClient>,
+      callback: BodyResponseCallback<Schema$AdClient>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Adclients$Get,
+      callback: BodyResponseCallback<Schema$AdClient>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AdClient>): void;
-    get(paramsOrCallback?: Params$Resource$Accounts$Adclients$Get|
-        BodyResponseCallback<Schema$AdClient>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdClient>,
-        callback?: BodyResponseCallback<Schema$AdClient>):
-        void|GaxiosPromise<Schema$AdClient> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Adclients$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adclients$Get
+        | BodyResponseCallback<Schema$AdClient>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdClient>,
+      callback?: BodyResponseCallback<Schema$AdClient>
+    ): void | GaxiosPromise<Schema$AdClient> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adclients$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -656,18 +651,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdClient>(parameters, callback);
@@ -675,7 +671,6 @@ export namespace adsensehost_v4_1 {
         return createAPIRequest<Schema$AdClient>(parameters);
       }
     }
-
 
     /**
      * adsensehost.accounts.adclients.list
@@ -692,25 +687,30 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accounts$Adclients$List,
-        options?: MethodOptions): GaxiosPromise<Schema$AdClients>;
+      params?: Params$Resource$Accounts$Adclients$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdClients>;
     list(
-        params: Params$Resource$Accounts$Adclients$List,
-        options: MethodOptions|BodyResponseCallback<Schema$AdClients>,
-        callback: BodyResponseCallback<Schema$AdClients>): void;
+      params: Params$Resource$Accounts$Adclients$List,
+      options: MethodOptions | BodyResponseCallback<Schema$AdClients>,
+      callback: BodyResponseCallback<Schema$AdClients>
+    ): void;
     list(
-        params: Params$Resource$Accounts$Adclients$List,
-        callback: BodyResponseCallback<Schema$AdClients>): void;
+      params: Params$Resource$Accounts$Adclients$List,
+      callback: BodyResponseCallback<Schema$AdClients>
+    ): void;
     list(callback: BodyResponseCallback<Schema$AdClients>): void;
     list(
-        paramsOrCallback?: Params$Resource$Accounts$Adclients$List|
-        BodyResponseCallback<Schema$AdClients>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AdClients>,
-        callback?: BodyResponseCallback<Schema$AdClients>):
-        void|GaxiosPromise<Schema$AdClients> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Adclients$List;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adclients$List
+        | BodyResponseCallback<Schema$AdClients>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdClients>,
+      callback?: BodyResponseCallback<Schema$AdClients>
+    ): void | GaxiosPromise<Schema$AdClients> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adclients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -727,17 +727,18 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/adclients')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/adsensehost/v4.1/accounts/{accountId}/adclients'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdClients>(parameters, callback);
@@ -747,12 +748,12 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Adclients$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account which contains the ad client.
@@ -763,30 +764,26 @@ export namespace adsensehost_v4_1 {
      */
     adClientId?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$List extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Adclients$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account for which to list ad clients.
      */
     accountId?: string;
     /**
-     * The maximum number of ad clients to include in the response, used for
-     * paging.
+     * The maximum number of ad clients to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through ad clients. To retrieve the
-     * next page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
-
 
   export class Resource$Accounts$Adunits {
     context: APIRequestContext;
@@ -794,11 +791,9 @@ export namespace adsensehost_v4_1 {
       this.context = context;
     }
 
-
     /**
      * adsensehost.accounts.adunits.delete
-     * @desc Delete the specified ad unit from the specified publisher AdSense
-     * account.
+     * @desc Delete the specified ad unit from the specified publisher AdSense account.
      * @alias adsensehost.accounts.adunits.delete
      * @memberOf! ()
      *
@@ -811,24 +806,28 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accounts$Adunits$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$AdUnit>;
+      params?: Params$Resource$Accounts$Adunits$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdUnit>;
     delete(
-        params: Params$Resource$Accounts$Adunits$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-        callback: BodyResponseCallback<Schema$AdUnit>): void;
+      params: Params$Resource$Accounts$Adunits$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
+      callback: BodyResponseCallback<Schema$AdUnit>
+    ): void;
     delete(
-        params: Params$Resource$Accounts$Adunits$Delete,
-        callback: BodyResponseCallback<Schema$AdUnit>): void;
+      params: Params$Resource$Accounts$Adunits$Delete,
+      callback: BodyResponseCallback<Schema$AdUnit>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$AdUnit>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Accounts$Adunits$Delete|
-        BodyResponseCallback<Schema$AdUnit>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-        callback?: BodyResponseCallback<Schema$AdUnit>):
-        void|GaxiosPromise<Schema$AdUnit> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Adunits$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adunits$Delete
+        | BodyResponseCallback<Schema$AdUnit>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>
+    ): void | GaxiosPromise<Schema$AdUnit> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adunits$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -845,18 +844,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -864,7 +864,6 @@ export namespace adsensehost_v4_1 {
         return createAPIRequest<Schema$AdUnit>(parameters);
       }
     }
-
 
     /**
      * adsensehost.accounts.adunits.get
@@ -880,21 +879,29 @@ export namespace adsensehost_v4_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Adunits$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AdUnit>;
-    get(params: Params$Resource$Accounts$Adunits$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-        callback: BodyResponseCallback<Schema$AdUnit>): void;
-    get(params: Params$Resource$Accounts$Adunits$Get,
-        callback: BodyResponseCallback<Schema$AdUnit>): void;
+    get(
+      params?: Params$Resource$Accounts$Adunits$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdUnit>;
+    get(
+      params: Params$Resource$Accounts$Adunits$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
+      callback: BodyResponseCallback<Schema$AdUnit>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Adunits$Get,
+      callback: BodyResponseCallback<Schema$AdUnit>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AdUnit>): void;
-    get(paramsOrCallback?: Params$Resource$Accounts$Adunits$Get|
-        BodyResponseCallback<Schema$AdUnit>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-        callback?: BodyResponseCallback<Schema$AdUnit>):
-        void|GaxiosPromise<Schema$AdUnit> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Adunits$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adunits$Get
+        | BodyResponseCallback<Schema$AdUnit>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>
+    ): void | GaxiosPromise<Schema$AdUnit> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adunits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -911,18 +918,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -931,11 +939,9 @@ export namespace adsensehost_v4_1 {
       }
     }
 
-
     /**
      * adsensehost.accounts.adunits.getAdCode
-     * @desc Get ad code for the specified ad unit, attaching the specified host
-     * custom channels.
+     * @desc Get ad code for the specified ad unit, attaching the specified host custom channels.
      * @alias adsensehost.accounts.adunits.getAdCode
      * @memberOf! ()
      *
@@ -949,24 +955,28 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     getAdCode(
-        params?: Params$Resource$Accounts$Adunits$Getadcode,
-        options?: MethodOptions): GaxiosPromise<Schema$AdCode>;
+      params?: Params$Resource$Accounts$Adunits$Getadcode,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdCode>;
     getAdCode(
-        params: Params$Resource$Accounts$Adunits$Getadcode,
-        options: MethodOptions|BodyResponseCallback<Schema$AdCode>,
-        callback: BodyResponseCallback<Schema$AdCode>): void;
+      params: Params$Resource$Accounts$Adunits$Getadcode,
+      options: MethodOptions | BodyResponseCallback<Schema$AdCode>,
+      callback: BodyResponseCallback<Schema$AdCode>
+    ): void;
     getAdCode(
-        params: Params$Resource$Accounts$Adunits$Getadcode,
-        callback: BodyResponseCallback<Schema$AdCode>): void;
+      params: Params$Resource$Accounts$Adunits$Getadcode,
+      callback: BodyResponseCallback<Schema$AdCode>
+    ): void;
     getAdCode(callback: BodyResponseCallback<Schema$AdCode>): void;
     getAdCode(
-        paramsOrCallback?: Params$Resource$Accounts$Adunits$Getadcode|
-        BodyResponseCallback<Schema$AdCode>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdCode>,
-        callback?: BodyResponseCallback<Schema$AdCode>):
-        void|GaxiosPromise<Schema$AdCode> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Adunits$Getadcode;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adunits$Getadcode
+        | BodyResponseCallback<Schema$AdCode>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdCode>,
+      callback?: BodyResponseCallback<Schema$AdCode>
+    ): void | GaxiosPromise<Schema$AdCode> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adunits$Getadcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -983,18 +993,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdCode>(parameters, callback);
@@ -1003,11 +1014,9 @@ export namespace adsensehost_v4_1 {
       }
     }
 
-
     /**
      * adsensehost.accounts.adunits.insert
-     * @desc Insert the supplied ad unit into the specified publisher AdSense
-     * account.
+     * @desc Insert the supplied ad unit into the specified publisher AdSense account.
      * @alias adsensehost.accounts.adunits.insert
      * @memberOf! ()
      *
@@ -1020,24 +1029,28 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Accounts$Adunits$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$AdUnit>;
+      params?: Params$Resource$Accounts$Adunits$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdUnit>;
     insert(
-        params: Params$Resource$Accounts$Adunits$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-        callback: BodyResponseCallback<Schema$AdUnit>): void;
+      params: Params$Resource$Accounts$Adunits$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
+      callback: BodyResponseCallback<Schema$AdUnit>
+    ): void;
     insert(
-        params: Params$Resource$Accounts$Adunits$Insert,
-        callback: BodyResponseCallback<Schema$AdUnit>): void;
+      params: Params$Resource$Accounts$Adunits$Insert,
+      callback: BodyResponseCallback<Schema$AdUnit>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$AdUnit>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Accounts$Adunits$Insert|
-        BodyResponseCallback<Schema$AdUnit>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-        callback?: BodyResponseCallback<Schema$AdUnit>):
-        void|GaxiosPromise<Schema$AdUnit> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Adunits$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adunits$Insert
+        | BodyResponseCallback<Schema$AdUnit>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>
+    ): void | GaxiosPromise<Schema$AdUnit> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adunits$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1054,18 +1067,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -1073,7 +1087,6 @@ export namespace adsensehost_v4_1 {
         return createAPIRequest<Schema$AdUnit>(parameters);
       }
     }
-
 
     /**
      * adsensehost.accounts.adunits.list
@@ -1092,24 +1105,28 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accounts$Adunits$List,
-        options?: MethodOptions): GaxiosPromise<Schema$AdUnits>;
+      params?: Params$Resource$Accounts$Adunits$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdUnits>;
     list(
-        params: Params$Resource$Accounts$Adunits$List,
-        options: MethodOptions|BodyResponseCallback<Schema$AdUnits>,
-        callback: BodyResponseCallback<Schema$AdUnits>): void;
+      params: Params$Resource$Accounts$Adunits$List,
+      options: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
+      callback: BodyResponseCallback<Schema$AdUnits>
+    ): void;
     list(
-        params: Params$Resource$Accounts$Adunits$List,
-        callback: BodyResponseCallback<Schema$AdUnits>): void;
+      params: Params$Resource$Accounts$Adunits$List,
+      callback: BodyResponseCallback<Schema$AdUnits>
+    ): void;
     list(callback: BodyResponseCallback<Schema$AdUnits>): void;
     list(
-        paramsOrCallback?: Params$Resource$Accounts$Adunits$List|
-        BodyResponseCallback<Schema$AdUnits>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdUnits>,
-        callback?: BodyResponseCallback<Schema$AdUnits>):
-        void|GaxiosPromise<Schema$AdUnits> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Adunits$List;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adunits$List
+        | BodyResponseCallback<Schema$AdUnits>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
+      callback?: BodyResponseCallback<Schema$AdUnits>
+    ): void | GaxiosPromise<Schema$AdUnits> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1126,18 +1143,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdUnits>(parameters, callback);
@@ -1146,11 +1164,9 @@ export namespace adsensehost_v4_1 {
       }
     }
 
-
     /**
      * adsensehost.accounts.adunits.patch
-     * @desc Update the supplied ad unit in the specified publisher AdSense
-     * account. This method supports patch semantics.
+     * @desc Update the supplied ad unit in the specified publisher AdSense account. This method supports patch semantics.
      * @alias adsensehost.accounts.adunits.patch
      * @memberOf! ()
      *
@@ -1164,24 +1180,28 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Accounts$Adunits$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$AdUnit>;
+      params?: Params$Resource$Accounts$Adunits$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdUnit>;
     patch(
-        params: Params$Resource$Accounts$Adunits$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-        callback: BodyResponseCallback<Schema$AdUnit>): void;
+      params: Params$Resource$Accounts$Adunits$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
+      callback: BodyResponseCallback<Schema$AdUnit>
+    ): void;
     patch(
-        params: Params$Resource$Accounts$Adunits$Patch,
-        callback: BodyResponseCallback<Schema$AdUnit>): void;
+      params: Params$Resource$Accounts$Adunits$Patch,
+      callback: BodyResponseCallback<Schema$AdUnit>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$AdUnit>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Accounts$Adunits$Patch|
-        BodyResponseCallback<Schema$AdUnit>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-        callback?: BodyResponseCallback<Schema$AdUnit>):
-        void|GaxiosPromise<Schema$AdUnit> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Adunits$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adunits$Patch
+        | BodyResponseCallback<Schema$AdUnit>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>
+    ): void | GaxiosPromise<Schema$AdUnit> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adunits$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1198,18 +1218,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -1218,11 +1239,9 @@ export namespace adsensehost_v4_1 {
       }
     }
 
-
     /**
      * adsensehost.accounts.adunits.update
-     * @desc Update the supplied ad unit in the specified publisher AdSense
-     * account.
+     * @desc Update the supplied ad unit in the specified publisher AdSense account.
      * @alias adsensehost.accounts.adunits.update
      * @memberOf! ()
      *
@@ -1235,24 +1254,28 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Accounts$Adunits$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$AdUnit>;
+      params?: Params$Resource$Accounts$Adunits$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdUnit>;
     update(
-        params: Params$Resource$Accounts$Adunits$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-        callback: BodyResponseCallback<Schema$AdUnit>): void;
+      params: Params$Resource$Accounts$Adunits$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
+      callback: BodyResponseCallback<Schema$AdUnit>
+    ): void;
     update(
-        params: Params$Resource$Accounts$Adunits$Update,
-        callback: BodyResponseCallback<Schema$AdUnit>): void;
+      params: Params$Resource$Accounts$Adunits$Update,
+      callback: BodyResponseCallback<Schema$AdUnit>
+    ): void;
     update(callback: BodyResponseCallback<Schema$AdUnit>): void;
     update(
-        paramsOrCallback?: Params$Resource$Accounts$Adunits$Update|
-        BodyResponseCallback<Schema$AdUnit>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-        callback?: BodyResponseCallback<Schema$AdUnit>):
-        void|GaxiosPromise<Schema$AdUnit> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Adunits$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adunits$Update
+        | BodyResponseCallback<Schema$AdUnit>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>
+    ): void | GaxiosPromise<Schema$AdUnit> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adunits$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1269,18 +1292,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -1290,12 +1314,12 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Adunits$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Adunits$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account which contains the ad unit.
@@ -1310,12 +1334,12 @@ export namespace adsensehost_v4_1 {
      */
     adUnitId?: string;
   }
-  export interface Params$Resource$Accounts$Adunits$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Adunits$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account which contains the ad unit.
@@ -1330,12 +1354,12 @@ export namespace adsensehost_v4_1 {
      */
     adUnitId?: string;
   }
-  export interface Params$Resource$Accounts$Adunits$Getadcode extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Adunits$Getadcode
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account which contains the ad client.
@@ -1354,12 +1378,12 @@ export namespace adsensehost_v4_1 {
      */
     hostCustomChannelId?: string[];
   }
-  export interface Params$Resource$Accounts$Adunits$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Adunits$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account which will contain the ad unit.
@@ -1375,12 +1399,12 @@ export namespace adsensehost_v4_1 {
      */
     requestBody?: Schema$AdUnit;
   }
-  export interface Params$Resource$Accounts$Adunits$List extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Adunits$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account which contains the ad client.
@@ -1395,23 +1419,20 @@ export namespace adsensehost_v4_1 {
      */
     includeInactive?: boolean;
     /**
-     * The maximum number of ad units to include in the response, used for
-     * paging.
+     * The maximum number of ad units to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through ad units. To retrieve the next
-     * page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Adunits$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Adunits$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account which contains the ad client.
@@ -1431,12 +1452,12 @@ export namespace adsensehost_v4_1 {
      */
     requestBody?: Schema$AdUnit;
   }
-  export interface Params$Resource$Accounts$Adunits$Update extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Adunits$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account which contains the ad client.
@@ -1453,19 +1474,15 @@ export namespace adsensehost_v4_1 {
     requestBody?: Schema$AdUnit;
   }
 
-
   export class Resource$Accounts$Reports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * adsensehost.accounts.reports.generate
-     * @desc Generate an AdSense report based on the report request sent in the
-     * query parameters. Returns the result as JSON; to retrieve output in CSV
-     * format specify "alt=csv" as a query parameter.
+     * @desc Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
      * @alias adsensehost.accounts.reports.generate
      * @memberOf! ()
      *
@@ -1485,24 +1502,28 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     generate(
-        params?: Params$Resource$Accounts$Reports$Generate,
-        options?: MethodOptions): GaxiosPromise<Schema$Report>;
+      params?: Params$Resource$Accounts$Reports$Generate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
     generate(
-        params: Params$Resource$Accounts$Reports$Generate,
-        options: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params: Params$Resource$Accounts$Reports$Generate,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     generate(
-        params: Params$Resource$Accounts$Reports$Generate,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params: Params$Resource$Accounts$Reports$Generate,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     generate(callback: BodyResponseCallback<Schema$Report>): void;
     generate(
-        paramsOrCallback?: Params$Resource$Accounts$Reports$Generate|
-        BodyResponseCallback<Schema$Report>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>):
-        void|GaxiosPromise<Schema$Report> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Reports$Generate;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Reports$Generate
+        | BodyResponseCallback<Schema$Report>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>
+    ): void | GaxiosPromise<Schema$Report> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1519,16 +1540,18 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/reports')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/adsensehost/v4.1/accounts/{accountId}/reports'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'startDate', 'endDate'],
         pathParams: ['accountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1538,12 +1561,12 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Reports$Generate extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Reports$Generate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Hosted account upon which to report.
@@ -1562,8 +1585,7 @@ export namespace adsensehost_v4_1 {
      */
     filter?: string[];
     /**
-     * Optional locale to use for translating report output to a local language.
-     * Defaults to "en_US" if not specified.
+     * Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
      */
     locale?: string;
     /**
@@ -1575,9 +1597,7 @@ export namespace adsensehost_v4_1 {
      */
     metric?: string[];
     /**
-     * The name of a dimension or metric to sort the resulting report on,
-     * optionally prefixed with "+" to sort ascending or "-" to sort descending.
-     * If no prefix is specified, the column is sorted ascending.
+     * The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
      */
     sort?: string[];
     /**
@@ -1590,19 +1610,15 @@ export namespace adsensehost_v4_1 {
     startIndex?: number;
   }
 
-
-
   export class Resource$Adclients {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * adsensehost.adclients.get
-     * @desc Get information about one of the ad clients in the Host AdSense
-     * account.
+     * @desc Get information about one of the ad clients in the Host AdSense account.
      * @alias adsensehost.adclients.get
      * @memberOf! ()
      *
@@ -1612,19 +1628,27 @@ export namespace adsensehost_v4_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Adclients$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AdClient>;
-    get(params: Params$Resource$Adclients$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AdClient>,
-        callback: BodyResponseCallback<Schema$AdClient>): void;
-    get(params: Params$Resource$Adclients$Get,
-        callback: BodyResponseCallback<Schema$AdClient>): void;
+    get(
+      params?: Params$Resource$Adclients$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdClient>;
+    get(
+      params: Params$Resource$Adclients$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AdClient>,
+      callback: BodyResponseCallback<Schema$AdClient>
+    ): void;
+    get(
+      params: Params$Resource$Adclients$Get,
+      callback: BodyResponseCallback<Schema$AdClient>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AdClient>): void;
-    get(paramsOrCallback?: Params$Resource$Adclients$Get|
-        BodyResponseCallback<Schema$AdClient>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdClient>,
-        callback?: BodyResponseCallback<Schema$AdClient>):
-        void|GaxiosPromise<Schema$AdClient> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Adclients$Get
+        | BodyResponseCallback<Schema$AdClient>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdClient>,
+      callback?: BodyResponseCallback<Schema$AdClient>
+    ): void | GaxiosPromise<Schema$AdClient> {
       let params = (paramsOrCallback || {}) as Params$Resource$Adclients$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1642,16 +1666,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adsensehost/v4.1/adclients/{adClientId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/adsensehost/v4.1/adclients/{adClientId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdClient>(parameters, callback);
@@ -1659,7 +1686,6 @@ export namespace adsensehost_v4_1 {
         return createAPIRequest<Schema$AdClient>(parameters);
       }
     }
-
 
     /**
      * adsensehost.adclients.list
@@ -1674,23 +1700,29 @@ export namespace adsensehost_v4_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Adclients$List, options?: MethodOptions):
-        GaxiosPromise<Schema$AdClients>;
     list(
-        params: Params$Resource$Adclients$List,
-        options: MethodOptions|BodyResponseCallback<Schema$AdClients>,
-        callback: BodyResponseCallback<Schema$AdClients>): void;
+      params?: Params$Resource$Adclients$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdClients>;
     list(
-        params: Params$Resource$Adclients$List,
-        callback: BodyResponseCallback<Schema$AdClients>): void;
+      params: Params$Resource$Adclients$List,
+      options: MethodOptions | BodyResponseCallback<Schema$AdClients>,
+      callback: BodyResponseCallback<Schema$AdClients>
+    ): void;
+    list(
+      params: Params$Resource$Adclients$List,
+      callback: BodyResponseCallback<Schema$AdClients>
+    ): void;
     list(callback: BodyResponseCallback<Schema$AdClients>): void;
     list(
-        paramsOrCallback?: Params$Resource$Adclients$List|
-        BodyResponseCallback<Schema$AdClients>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AdClients>,
-        callback?: BodyResponseCallback<Schema$AdClients>):
-        void|GaxiosPromise<Schema$AdClients> {
+      paramsOrCallback?:
+        | Params$Resource$Adclients$List
+        | BodyResponseCallback<Schema$AdClients>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdClients>,
+      callback?: BodyResponseCallback<Schema$AdClients>
+    ): void | GaxiosPromise<Schema$AdClients> {
       let params = (paramsOrCallback || {}) as Params$Resource$Adclients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1708,16 +1740,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adsensehost/v4.1/adclients')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/adsensehost/v4.1/adclients').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdClients>(parameters, callback);
@@ -1731,7 +1766,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Ad client to get.
@@ -1742,21 +1777,17 @@ export namespace adsensehost_v4_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of ad clients to include in the response, used for
-     * paging.
+     * The maximum number of ad clients to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through ad clients. To retrieve the
-     * next page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
-
 
   export class Resource$Associationsessions {
     context: APIRequestContext;
@@ -1764,11 +1795,9 @@ export namespace adsensehost_v4_1 {
       this.context = context;
     }
 
-
     /**
      * adsensehost.associationsessions.start
-     * @desc Create an association session for initiating an association with an
-     * AdSense user.
+     * @desc Create an association session for initiating an association with an AdSense user.
      * @alias adsensehost.associationsessions.start
      * @memberOf! ()
      *
@@ -1782,25 +1811,30 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     start(
-        params?: Params$Resource$Associationsessions$Start,
-        options?: MethodOptions): GaxiosPromise<Schema$AssociationSession>;
+      params?: Params$Resource$Associationsessions$Start,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssociationSession>;
     start(
-        params: Params$Resource$Associationsessions$Start,
-        options: MethodOptions|BodyResponseCallback<Schema$AssociationSession>,
-        callback: BodyResponseCallback<Schema$AssociationSession>): void;
+      params: Params$Resource$Associationsessions$Start,
+      options: MethodOptions | BodyResponseCallback<Schema$AssociationSession>,
+      callback: BodyResponseCallback<Schema$AssociationSession>
+    ): void;
     start(
-        params: Params$Resource$Associationsessions$Start,
-        callback: BodyResponseCallback<Schema$AssociationSession>): void;
+      params: Params$Resource$Associationsessions$Start,
+      callback: BodyResponseCallback<Schema$AssociationSession>
+    ): void;
     start(callback: BodyResponseCallback<Schema$AssociationSession>): void;
     start(
-        paramsOrCallback?: Params$Resource$Associationsessions$Start|
-        BodyResponseCallback<Schema$AssociationSession>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AssociationSession>,
-        callback?: BodyResponseCallback<Schema$AssociationSession>):
-        void|GaxiosPromise<Schema$AssociationSession> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Associationsessions$Start;
+      paramsOrCallback?:
+        | Params$Resource$Associationsessions$Start
+        | BodyResponseCallback<Schema$AssociationSession>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AssociationSession>,
+      callback?: BodyResponseCallback<Schema$AssociationSession>
+    ): void | GaxiosPromise<Schema$AssociationSession> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Associationsessions$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1817,16 +1851,18 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adsensehost/v4.1/associationsessions/start')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/adsensehost/v4.1/associationsessions/start'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['productCode', 'websiteUrl'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AssociationSession>(parameters, callback);
@@ -1835,11 +1871,9 @@ export namespace adsensehost_v4_1 {
       }
     }
 
-
     /**
      * adsensehost.associationsessions.verify
-     * @desc Verify an association session after the association callback
-     * returns from AdSense signup.
+     * @desc Verify an association session after the association callback returns from AdSense signup.
      * @alias adsensehost.associationsessions.verify
      * @memberOf! ()
      *
@@ -1850,25 +1884,30 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     verify(
-        params?: Params$Resource$Associationsessions$Verify,
-        options?: MethodOptions): GaxiosPromise<Schema$AssociationSession>;
+      params?: Params$Resource$Associationsessions$Verify,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssociationSession>;
     verify(
-        params: Params$Resource$Associationsessions$Verify,
-        options: MethodOptions|BodyResponseCallback<Schema$AssociationSession>,
-        callback: BodyResponseCallback<Schema$AssociationSession>): void;
+      params: Params$Resource$Associationsessions$Verify,
+      options: MethodOptions | BodyResponseCallback<Schema$AssociationSession>,
+      callback: BodyResponseCallback<Schema$AssociationSession>
+    ): void;
     verify(
-        params: Params$Resource$Associationsessions$Verify,
-        callback: BodyResponseCallback<Schema$AssociationSession>): void;
+      params: Params$Resource$Associationsessions$Verify,
+      callback: BodyResponseCallback<Schema$AssociationSession>
+    ): void;
     verify(callback: BodyResponseCallback<Schema$AssociationSession>): void;
     verify(
-        paramsOrCallback?: Params$Resource$Associationsessions$Verify|
-        BodyResponseCallback<Schema$AssociationSession>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AssociationSession>,
-        callback?: BodyResponseCallback<Schema$AssociationSession>):
-        void|GaxiosPromise<Schema$AssociationSession> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Associationsessions$Verify;
+      paramsOrCallback?:
+        | Params$Resource$Associationsessions$Verify
+        | BodyResponseCallback<Schema$AssociationSession>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AssociationSession>,
+      callback?: BodyResponseCallback<Schema$AssociationSession>
+    ): void | GaxiosPromise<Schema$AssociationSession> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Associationsessions$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1885,16 +1924,18 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adsensehost/v4.1/associationsessions/verify')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/adsensehost/v4.1/associationsessions/verify'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['token'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AssociationSession>(parameters, callback);
@@ -1904,12 +1945,12 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Associationsessions$Start extends
-      StandardParameters {
+  export interface Params$Resource$Associationsessions$Start
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Products to associate with the user.
@@ -1928,12 +1969,12 @@ export namespace adsensehost_v4_1 {
      */
     websiteUrl?: string;
   }
-  export interface Params$Resource$Associationsessions$Verify extends
-      StandardParameters {
+  export interface Params$Resource$Associationsessions$Verify
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The token returned to the association callback URL.
@@ -1941,13 +1982,11 @@ export namespace adsensehost_v4_1 {
     token?: string;
   }
 
-
   export class Resource$Customchannels {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * adsensehost.customchannels.delete
@@ -1963,25 +2002,30 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Customchannels$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomChannel>;
+      params?: Params$Resource$Customchannels$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomChannel>;
     delete(
-        params: Params$Resource$Customchannels$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
-        callback: BodyResponseCallback<Schema$CustomChannel>): void;
+      params: Params$Resource$Customchannels$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomChannel>,
+      callback: BodyResponseCallback<Schema$CustomChannel>
+    ): void;
     delete(
-        params: Params$Resource$Customchannels$Delete,
-        callback: BodyResponseCallback<Schema$CustomChannel>): void;
+      params: Params$Resource$Customchannels$Delete,
+      callback: BodyResponseCallback<Schema$CustomChannel>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$CustomChannel>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Customchannels$Delete|
-        BodyResponseCallback<Schema$CustomChannel>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomChannel>,
-        callback?: BodyResponseCallback<Schema$CustomChannel>):
-        void|GaxiosPromise<Schema$CustomChannel> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Customchannels$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Customchannels$Delete
+        | BodyResponseCallback<Schema$CustomChannel>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>
+    ): void | GaxiosPromise<Schema$CustomChannel> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customchannels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1998,18 +2042,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId', 'customChannelId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2017,7 +2062,6 @@ export namespace adsensehost_v4_1 {
         return createAPIRequest<Schema$CustomChannel>(parameters);
       }
     }
-
 
     /**
      * adsensehost.customchannels.get
@@ -2032,22 +2076,31 @@ export namespace adsensehost_v4_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Customchannels$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomChannel>;
-    get(params: Params$Resource$Customchannels$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
-        callback: BodyResponseCallback<Schema$CustomChannel>): void;
-    get(params: Params$Resource$Customchannels$Get,
-        callback: BodyResponseCallback<Schema$CustomChannel>): void;
+    get(
+      params?: Params$Resource$Customchannels$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomChannel>;
+    get(
+      params: Params$Resource$Customchannels$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomChannel>,
+      callback: BodyResponseCallback<Schema$CustomChannel>
+    ): void;
+    get(
+      params: Params$Resource$Customchannels$Get,
+      callback: BodyResponseCallback<Schema$CustomChannel>
+    ): void;
     get(callback: BodyResponseCallback<Schema$CustomChannel>): void;
-    get(paramsOrCallback?: Params$Resource$Customchannels$Get|
-        BodyResponseCallback<Schema$CustomChannel>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomChannel>,
-        callback?: BodyResponseCallback<Schema$CustomChannel>):
-        void|GaxiosPromise<Schema$CustomChannel> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Customchannels$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customchannels$Get
+        | BodyResponseCallback<Schema$CustomChannel>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>
+    ): void | GaxiosPromise<Schema$CustomChannel> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customchannels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2064,18 +2117,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId', 'customChannelId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2083,7 +2137,6 @@ export namespace adsensehost_v4_1 {
         return createAPIRequest<Schema$CustomChannel>(parameters);
       }
     }
-
 
     /**
      * adsensehost.customchannels.insert
@@ -2099,25 +2152,30 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Customchannels$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomChannel>;
+      params?: Params$Resource$Customchannels$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomChannel>;
     insert(
-        params: Params$Resource$Customchannels$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
-        callback: BodyResponseCallback<Schema$CustomChannel>): void;
+      params: Params$Resource$Customchannels$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomChannel>,
+      callback: BodyResponseCallback<Schema$CustomChannel>
+    ): void;
     insert(
-        params: Params$Resource$Customchannels$Insert,
-        callback: BodyResponseCallback<Schema$CustomChannel>): void;
+      params: Params$Resource$Customchannels$Insert,
+      callback: BodyResponseCallback<Schema$CustomChannel>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$CustomChannel>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Customchannels$Insert|
-        BodyResponseCallback<Schema$CustomChannel>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomChannel>,
-        callback?: BodyResponseCallback<Schema$CustomChannel>):
-        void|GaxiosPromise<Schema$CustomChannel> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Customchannels$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Customchannels$Insert
+        | BodyResponseCallback<Schema$CustomChannel>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>
+    ): void | GaxiosPromise<Schema$CustomChannel> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customchannels$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2134,17 +2192,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/adsensehost/v4.1/adclients/{adClientId}/customchannels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/adclients/{adClientId}/customchannels'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2152,7 +2212,6 @@ export namespace adsensehost_v4_1 {
         return createAPIRequest<Schema$CustomChannel>(parameters);
       }
     }
-
 
     /**
      * adsensehost.customchannels.list
@@ -2168,25 +2227,31 @@ export namespace adsensehost_v4_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Customchannels$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CustomChannels>;
     list(
-        params: Params$Resource$Customchannels$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomChannels>,
-        callback: BodyResponseCallback<Schema$CustomChannels>): void;
+      params?: Params$Resource$Customchannels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomChannels>;
     list(
-        params: Params$Resource$Customchannels$List,
-        callback: BodyResponseCallback<Schema$CustomChannels>): void;
+      params: Params$Resource$Customchannels$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomChannels>,
+      callback: BodyResponseCallback<Schema$CustomChannels>
+    ): void;
+    list(
+      params: Params$Resource$Customchannels$List,
+      callback: BodyResponseCallback<Schema$CustomChannels>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CustomChannels>): void;
     list(
-        paramsOrCallback?: Params$Resource$Customchannels$List|
-        BodyResponseCallback<Schema$CustomChannels>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomChannels>,
-        callback?: BodyResponseCallback<Schema$CustomChannels>):
-        void|GaxiosPromise<Schema$CustomChannels> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Customchannels$List;
+      paramsOrCallback?:
+        | Params$Resource$Customchannels$List
+        | BodyResponseCallback<Schema$CustomChannels>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomChannels>,
+      callback?: BodyResponseCallback<Schema$CustomChannels>
+    ): void | GaxiosPromise<Schema$CustomChannels> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2203,17 +2268,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/adsensehost/v4.1/adclients/{adClientId}/customchannels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/adclients/{adClientId}/customchannels'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(parameters, callback);
@@ -2222,11 +2289,9 @@ export namespace adsensehost_v4_1 {
       }
     }
 
-
     /**
      * adsensehost.customchannels.patch
-     * @desc Update a custom channel in the host AdSense account. This method
-     * supports patch semantics.
+     * @desc Update a custom channel in the host AdSense account. This method supports patch semantics.
      * @alias adsensehost.customchannels.patch
      * @memberOf! ()
      *
@@ -2239,25 +2304,30 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Customchannels$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomChannel>;
+      params?: Params$Resource$Customchannels$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomChannel>;
     patch(
-        params: Params$Resource$Customchannels$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
-        callback: BodyResponseCallback<Schema$CustomChannel>): void;
+      params: Params$Resource$Customchannels$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomChannel>,
+      callback: BodyResponseCallback<Schema$CustomChannel>
+    ): void;
     patch(
-        params: Params$Resource$Customchannels$Patch,
-        callback: BodyResponseCallback<Schema$CustomChannel>): void;
+      params: Params$Resource$Customchannels$Patch,
+      callback: BodyResponseCallback<Schema$CustomChannel>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$CustomChannel>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Customchannels$Patch|
-        BodyResponseCallback<Schema$CustomChannel>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomChannel>,
-        callback?: BodyResponseCallback<Schema$CustomChannel>):
-        void|GaxiosPromise<Schema$CustomChannel> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Customchannels$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Customchannels$Patch
+        | BodyResponseCallback<Schema$CustomChannel>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>
+    ): void | GaxiosPromise<Schema$CustomChannel> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customchannels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2274,17 +2344,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/adsensehost/v4.1/adclients/{adClientId}/customchannels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/adclients/{adClientId}/customchannels'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2292,7 +2364,6 @@ export namespace adsensehost_v4_1 {
         return createAPIRequest<Schema$CustomChannel>(parameters);
       }
     }
-
 
     /**
      * adsensehost.customchannels.update
@@ -2308,25 +2379,30 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Customchannels$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomChannel>;
+      params?: Params$Resource$Customchannels$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomChannel>;
     update(
-        params: Params$Resource$Customchannels$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
-        callback: BodyResponseCallback<Schema$CustomChannel>): void;
+      params: Params$Resource$Customchannels$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomChannel>,
+      callback: BodyResponseCallback<Schema$CustomChannel>
+    ): void;
     update(
-        params: Params$Resource$Customchannels$Update,
-        callback: BodyResponseCallback<Schema$CustomChannel>): void;
+      params: Params$Resource$Customchannels$Update,
+      callback: BodyResponseCallback<Schema$CustomChannel>
+    ): void;
     update(callback: BodyResponseCallback<Schema$CustomChannel>): void;
     update(
-        paramsOrCallback?: Params$Resource$Customchannels$Update|
-        BodyResponseCallback<Schema$CustomChannel>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomChannel>,
-        callback?: BodyResponseCallback<Schema$CustomChannel>):
-        void|GaxiosPromise<Schema$CustomChannel> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Customchannels$Update;
+      paramsOrCallback?:
+        | Params$Resource$Customchannels$Update
+        | BodyResponseCallback<Schema$CustomChannel>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>
+    ): void | GaxiosPromise<Schema$CustomChannel> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customchannels$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2343,17 +2419,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/adsensehost/v4.1/adclients/{adClientId}/customchannels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/adclients/{adClientId}/customchannels'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2363,12 +2441,12 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Customchannels$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Customchannels$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Ad client from which to delete the custom channel.
@@ -2379,12 +2457,12 @@ export namespace adsensehost_v4_1 {
      */
     customChannelId?: string;
   }
-  export interface Params$Resource$Customchannels$Get extends
-      StandardParameters {
+  export interface Params$Resource$Customchannels$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Ad client from which to get the custom channel.
@@ -2395,12 +2473,12 @@ export namespace adsensehost_v4_1 {
      */
     customChannelId?: string;
   }
-  export interface Params$Resource$Customchannels$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Customchannels$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Ad client to which the new custom channel will be added.
@@ -2412,35 +2490,32 @@ export namespace adsensehost_v4_1 {
      */
     requestBody?: Schema$CustomChannel;
   }
-  export interface Params$Resource$Customchannels$List extends
-      StandardParameters {
+  export interface Params$Resource$Customchannels$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Ad client for which to list custom channels.
      */
     adClientId?: string;
     /**
-     * The maximum number of custom channels to include in the response, used
-     * for paging.
+     * The maximum number of custom channels to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through custom channels. To retrieve
-     * the next page, set this parameter to the value of "nextPageToken" from
-     * the previous response.
+     * A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Customchannels$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Customchannels$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Ad client in which the custom channel will be updated.
@@ -2456,12 +2531,12 @@ export namespace adsensehost_v4_1 {
      */
     requestBody?: Schema$CustomChannel;
   }
-  export interface Params$Resource$Customchannels$Update extends
-      StandardParameters {
+  export interface Params$Resource$Customchannels$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Ad client in which the custom channel will be updated.
@@ -2474,19 +2549,15 @@ export namespace adsensehost_v4_1 {
     requestBody?: Schema$CustomChannel;
   }
 
-
   export class Resource$Reports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * adsensehost.reports.generate
-     * @desc Generate an AdSense report based on the report request sent in the
-     * query parameters. Returns the result as JSON; to retrieve output in CSV
-     * format specify "alt=csv" as a query parameter.
+     * @desc Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
      * @alias adsensehost.reports.generate
      * @memberOf! ()
      *
@@ -2505,22 +2576,26 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     generate(
-        params?: Params$Resource$Reports$Generate,
-        options?: MethodOptions): GaxiosPromise<Schema$Report>;
+      params?: Params$Resource$Reports$Generate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
     generate(
-        params: Params$Resource$Reports$Generate,
-        options: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params: Params$Resource$Reports$Generate,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     generate(
-        params: Params$Resource$Reports$Generate,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params: Params$Resource$Reports$Generate,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     generate(callback: BodyResponseCallback<Schema$Report>): void;
     generate(
-        paramsOrCallback?: Params$Resource$Reports$Generate|
-        BodyResponseCallback<Schema$Report>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>):
-        void|GaxiosPromise<Schema$Report> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$Generate
+        | BodyResponseCallback<Schema$Report>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>
+    ): void | GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2538,16 +2613,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adsensehost/v4.1/reports')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/adsensehost/v4.1/reports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['startDate', 'endDate'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -2561,7 +2639,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Dimensions to base the report on.
@@ -2576,8 +2654,7 @@ export namespace adsensehost_v4_1 {
      */
     filter?: string[];
     /**
-     * Optional locale to use for translating report output to a local language.
-     * Defaults to "en_US" if not specified.
+     * Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
      */
     locale?: string;
     /**
@@ -2589,9 +2666,7 @@ export namespace adsensehost_v4_1 {
      */
     metric?: string[];
     /**
-     * The name of a dimension or metric to sort the resulting report on,
-     * optionally prefixed with "+" to sort ascending or "-" to sort descending.
-     * If no prefix is specified, the column is sorted ascending.
+     * The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
      */
     sort?: string[];
     /**
@@ -2604,13 +2679,11 @@ export namespace adsensehost_v4_1 {
     startIndex?: number;
   }
 
-
   export class Resource$Urlchannels {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * adsensehost.urlchannels.delete
@@ -2626,25 +2699,30 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Urlchannels$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$UrlChannel>;
+      params?: Params$Resource$Urlchannels$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UrlChannel>;
     delete(
-        params: Params$Resource$Urlchannels$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$UrlChannel>,
-        callback: BodyResponseCallback<Schema$UrlChannel>): void;
+      params: Params$Resource$Urlchannels$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$UrlChannel>,
+      callback: BodyResponseCallback<Schema$UrlChannel>
+    ): void;
     delete(
-        params: Params$Resource$Urlchannels$Delete,
-        callback: BodyResponseCallback<Schema$UrlChannel>): void;
+      params: Params$Resource$Urlchannels$Delete,
+      callback: BodyResponseCallback<Schema$UrlChannel>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$UrlChannel>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Urlchannels$Delete|
-        BodyResponseCallback<Schema$UrlChannel>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UrlChannel>,
-        callback?: BodyResponseCallback<Schema$UrlChannel>):
-        void|GaxiosPromise<Schema$UrlChannel> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Urlchannels$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Urlchannels$Delete
+        | BodyResponseCallback<Schema$UrlChannel>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlChannel>,
+      callback?: BodyResponseCallback<Schema$UrlChannel>
+    ): void | GaxiosPromise<Schema$UrlChannel> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Urlchannels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2661,18 +2739,19 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adsensehost/v4.1/adclients/{adClientId}/urlchannels/{urlChannelId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adsensehost/v4.1/adclients/{adClientId}/urlchannels/{urlChannelId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['adClientId', 'urlChannelId'],
         pathParams: ['adClientId', 'urlChannelId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UrlChannel>(parameters, callback);
@@ -2680,7 +2759,6 @@ export namespace adsensehost_v4_1 {
         return createAPIRequest<Schema$UrlChannel>(parameters);
       }
     }
-
 
     /**
      * adsensehost.urlchannels.insert
@@ -2696,25 +2774,30 @@ export namespace adsensehost_v4_1 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Urlchannels$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$UrlChannel>;
+      params?: Params$Resource$Urlchannels$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UrlChannel>;
     insert(
-        params: Params$Resource$Urlchannels$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$UrlChannel>,
-        callback: BodyResponseCallback<Schema$UrlChannel>): void;
+      params: Params$Resource$Urlchannels$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$UrlChannel>,
+      callback: BodyResponseCallback<Schema$UrlChannel>
+    ): void;
     insert(
-        params: Params$Resource$Urlchannels$Insert,
-        callback: BodyResponseCallback<Schema$UrlChannel>): void;
+      params: Params$Resource$Urlchannels$Insert,
+      callback: BodyResponseCallback<Schema$UrlChannel>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$UrlChannel>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Urlchannels$Insert|
-        BodyResponseCallback<Schema$UrlChannel>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UrlChannel>,
-        callback?: BodyResponseCallback<Schema$UrlChannel>):
-        void|GaxiosPromise<Schema$UrlChannel> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Urlchannels$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Urlchannels$Insert
+        | BodyResponseCallback<Schema$UrlChannel>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlChannel>,
+      callback?: BodyResponseCallback<Schema$UrlChannel>
+    ): void | GaxiosPromise<Schema$UrlChannel> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Urlchannels$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2731,17 +2814,18 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/adsensehost/v4.1/adclients/{adClientId}/urlchannels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/adsensehost/v4.1/adclients/{adClientId}/urlchannels'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UrlChannel>(parameters, callback);
@@ -2749,7 +2833,6 @@ export namespace adsensehost_v4_1 {
         return createAPIRequest<Schema$UrlChannel>(parameters);
       }
     }
-
 
     /**
      * adsensehost.urlchannels.list
@@ -2765,23 +2848,29 @@ export namespace adsensehost_v4_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Urlchannels$List, options?: MethodOptions):
-        GaxiosPromise<Schema$UrlChannels>;
     list(
-        params: Params$Resource$Urlchannels$List,
-        options: MethodOptions|BodyResponseCallback<Schema$UrlChannels>,
-        callback: BodyResponseCallback<Schema$UrlChannels>): void;
+      params?: Params$Resource$Urlchannels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UrlChannels>;
     list(
-        params: Params$Resource$Urlchannels$List,
-        callback: BodyResponseCallback<Schema$UrlChannels>): void;
+      params: Params$Resource$Urlchannels$List,
+      options: MethodOptions | BodyResponseCallback<Schema$UrlChannels>,
+      callback: BodyResponseCallback<Schema$UrlChannels>
+    ): void;
+    list(
+      params: Params$Resource$Urlchannels$List,
+      callback: BodyResponseCallback<Schema$UrlChannels>
+    ): void;
     list(callback: BodyResponseCallback<Schema$UrlChannels>): void;
     list(
-        paramsOrCallback?: Params$Resource$Urlchannels$List|
-        BodyResponseCallback<Schema$UrlChannels>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UrlChannels>,
-        callback?: BodyResponseCallback<Schema$UrlChannels>):
-        void|GaxiosPromise<Schema$UrlChannels> {
+      paramsOrCallback?:
+        | Params$Resource$Urlchannels$List
+        | BodyResponseCallback<Schema$UrlChannels>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlChannels>,
+      callback?: BodyResponseCallback<Schema$UrlChannels>
+    ): void | GaxiosPromise<Schema$UrlChannels> {
       let params = (paramsOrCallback || {}) as Params$Resource$Urlchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2799,17 +2888,18 @@ export namespace adsensehost_v4_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/adsensehost/v4.1/adclients/{adClientId}/urlchannels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/adsensehost/v4.1/adclients/{adClientId}/urlchannels'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UrlChannels>(parameters, callback);
@@ -2819,12 +2909,12 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Urlchannels$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Urlchannels$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Ad client from which to delete the URL channel.
@@ -2835,12 +2925,12 @@ export namespace adsensehost_v4_1 {
      */
     urlChannelId?: string;
   }
-  export interface Params$Resource$Urlchannels$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Urlchannels$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Ad client to which the new URL channel will be added.
@@ -2856,21 +2946,18 @@ export namespace adsensehost_v4_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Ad client for which to list URL channels.
      */
     adClientId?: string;
     /**
-     * The maximum number of URL channels to include in the response, used for
-     * paging.
+     * The maximum number of URL channels to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through URL channels. To retrieve the
-     * next page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }

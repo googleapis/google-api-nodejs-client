@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace youtubeAnalytics_v1beta1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace youtubeAnalytics_v1beta1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -85,7 +94,10 @@ export namespace youtubeAnalytics_v1beta1 {
     reports: Resource$Reports;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.groupItems = new Resource$Groupitems(this.context);
       this.groups = new Resource$Groups(this.context);
@@ -94,22 +106,21 @@ export namespace youtubeAnalytics_v1beta1 {
   }
 
   export interface Schema$Group {
-    contentDetails?: {itemCount?: string; itemType?: string;};
+    contentDetails?: {itemCount?: string; itemType?: string};
     etag?: string;
     id?: string;
     kind?: string;
-    snippet?: {publishedAt?: string; title?: string;};
+    snippet?: {publishedAt?: string; title?: string};
   }
   export interface Schema$GroupItem {
     etag?: string;
     groupId?: string;
     id?: string;
     kind?: string;
-    resource?: {id?: string; kind?: string;};
+    resource?: {id?: string; kind?: string};
   }
   /**
-   * A paginated list of grouList resources returned in response to a
-   * youtubeAnalytics.groupApi.list request.
+   * A paginated list of grouList resources returned in response to a youtubeAnalytics.groupApi.list request.
    */
   export interface Schema$GroupItemListResponse {
     etag?: string;
@@ -117,8 +128,7 @@ export namespace youtubeAnalytics_v1beta1 {
     kind?: string;
   }
   /**
-   * A paginated list of grouList resources returned in response to a
-   * youtubeAnalytics.groupApi.list request.
+   * A paginated list of grouList resources returned in response to a youtubeAnalytics.groupApi.list request.
    */
   export interface Schema$GroupListResponse {
     etag?: string;
@@ -127,51 +137,32 @@ export namespace youtubeAnalytics_v1beta1 {
     nextPageToken?: string;
   }
   /**
-   * Contains a single result table. The table is returned as an array of rows
-   * that contain the values for the cells of the table. Depending on the metric
-   * or dimension, the cell can contain a string (video ID, country code) or a
-   * number (number of views or number of likes).
+   * Contains a single result table. The table is returned as an array of rows that contain the values for the cells of the table. Depending on the metric or dimension, the cell can contain a string (video ID, country code) or a number (number of views or number of likes).
    */
   export interface Schema$ResultTable {
     /**
-     * This value specifies information about the data returned in the rows
-     * fields. Each item in the columnHeaders list identifies a field returned
-     * in the rows value, which contains a list of comma-delimited data. The
-     * columnHeaders list will begin with the dimensions specified in the API
-     * request, which will be followed by the metrics specified in the API
-     * request. The order of both dimensions and metrics will match the ordering
-     * in the API request. For example, if the API request contains the
-     * parameters dimensions=ageGroup,gender&amp;metrics=viewerPercentage, the
-     * API response will return columns in this order:
-     * ageGroup,gender,viewerPercentage.
+     * This value specifies information about the data returned in the rows fields. Each item in the columnHeaders list identifies a field returned in the rows value, which contains a list of comma-delimited data. The columnHeaders list will begin with the dimensions specified in the API request, which will be followed by the metrics specified in the API request. The order of both dimensions and metrics will match the ordering in the API request. For example, if the API request contains the parameters dimensions=ageGroup,gender&amp;metrics=viewerPercentage, the API response will return columns in this order: ageGroup,gender,viewerPercentage.
      */
-    columnHeaders?:
-        Array<{columnType?: string; dataType?: string; name?: string;}>;
+    columnHeaders?: Array<{
+      columnType?: string;
+      dataType?: string;
+      name?: string;
+    }>;
     /**
-     * This value specifies the type of data included in the API response. For
-     * the query method, the kind property value will be
-     * youtubeAnalytics#resultTable.
+     * This value specifies the type of data included in the API response. For the query method, the kind property value will be youtubeAnalytics#resultTable.
      */
     kind?: string;
     /**
-     * The list contains all rows of the result table. Each item in the list is
-     * an array that contains comma-delimited data corresponding to a single row
-     * of data. The order of the comma-delimited data fields will match the
-     * order of the columns listed in the columnHeaders field. If no data is
-     * available for the given query, the rows element will be omitted from the
-     * response. The response for a query with the day dimension will not
-     * contain rows for the most recent days.
+     * The list contains all rows of the result table. Each item in the list is an array that contains comma-delimited data corresponding to a single row of data. The order of the comma-delimited data fields will match the order of the columns listed in the columnHeaders field. If no data is available for the given query, the rows element will be omitted from the response. The response for a query with the day dimension will not contain rows for the most recent days.
      */
     rows?: any[][];
   }
-
 
   export class Resource$Groupitems {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtubeAnalytics.groupItems.delete
@@ -186,23 +177,29 @@ export namespace youtubeAnalytics_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Groupitems$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Groupitems$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Groupitems$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Groupitems$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Groupitems$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Groupitems$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Groupitems$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Groupitems$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Groupitems$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groupitems$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -219,16 +216,19 @@ export namespace youtubeAnalytics_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/analytics/v1beta1/groupItems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/groupItems').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -236,7 +236,6 @@ export namespace youtubeAnalytics_v1beta1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtubeAnalytics.groupItems.insert
@@ -251,25 +250,31 @@ export namespace youtubeAnalytics_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Groupitems$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$GroupItem>;
     insert(
-        params: Params$Resource$Groupitems$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$GroupItem>,
-        callback: BodyResponseCallback<Schema$GroupItem>): void;
+      params?: Params$Resource$Groupitems$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GroupItem>;
     insert(
-        params: Params$Resource$Groupitems$Insert,
-        callback: BodyResponseCallback<Schema$GroupItem>): void;
+      params: Params$Resource$Groupitems$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$GroupItem>,
+      callback: BodyResponseCallback<Schema$GroupItem>
+    ): void;
+    insert(
+      params: Params$Resource$Groupitems$Insert,
+      callback: BodyResponseCallback<Schema$GroupItem>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$GroupItem>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Groupitems$Insert|
-        BodyResponseCallback<Schema$GroupItem>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GroupItem>,
-        callback?: BodyResponseCallback<Schema$GroupItem>):
-        void|GaxiosPromise<Schema$GroupItem> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Groupitems$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Groupitems$Insert
+        | BodyResponseCallback<Schema$GroupItem>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GroupItem>,
+      callback?: BodyResponseCallback<Schema$GroupItem>
+    ): void | GaxiosPromise<Schema$GroupItem> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groupitems$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -286,16 +291,19 @@ export namespace youtubeAnalytics_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/analytics/v1beta1/groupItems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/groupItems').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GroupItem>(parameters, callback);
@@ -304,11 +312,9 @@ export namespace youtubeAnalytics_v1beta1 {
       }
     }
 
-
     /**
      * youtubeAnalytics.groupItems.list
-     * @desc Returns a collection of group items that match the API request
-     * parameters.
+     * @desc Returns a collection of group items that match the API request parameters.
      * @alias youtubeAnalytics.groupItems.list
      * @memberOf! ()
      *
@@ -319,24 +325,31 @@ export namespace youtubeAnalytics_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Groupitems$List, options?: MethodOptions):
-        GaxiosPromise<Schema$GroupItemListResponse>;
     list(
-        params: Params$Resource$Groupitems$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GroupItemListResponse>,
-        callback: BodyResponseCallback<Schema$GroupItemListResponse>): void;
+      params?: Params$Resource$Groupitems$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GroupItemListResponse>;
     list(
-        params: Params$Resource$Groupitems$List,
-        callback: BodyResponseCallback<Schema$GroupItemListResponse>): void;
+      params: Params$Resource$Groupitems$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GroupItemListResponse>,
+      callback: BodyResponseCallback<Schema$GroupItemListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Groupitems$List,
+      callback: BodyResponseCallback<Schema$GroupItemListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$GroupItemListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Groupitems$List|
-        BodyResponseCallback<Schema$GroupItemListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GroupItemListResponse>,
-        callback?: BodyResponseCallback<Schema$GroupItemListResponse>):
-        void|GaxiosPromise<Schema$GroupItemListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Groupitems$List
+        | BodyResponseCallback<Schema$GroupItemListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GroupItemListResponse>,
+      callback?: BodyResponseCallback<Schema$GroupItemListResponse>
+    ): void | GaxiosPromise<Schema$GroupItemListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groupitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -354,16 +367,19 @@ export namespace youtubeAnalytics_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/analytics/v1beta1/groupItems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/groupItems').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['groupId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GroupItemListResponse>(parameters, callback);
@@ -373,50 +389,31 @@ export namespace youtubeAnalytics_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Groupitems$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Groupitems$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies the YouTube group item ID for the group that
-     * is being deleted.
+     * The id parameter specifies the YouTube group item ID for the group that is being deleted.
      */
     id?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Groupitems$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Groupitems$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
 
@@ -429,35 +426,23 @@ export namespace youtubeAnalytics_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies the unique ID of the group for which you want
-     * to retrieve group items.
+     * The id parameter specifies the unique ID of the group for which you want to retrieve group items.
      */
     groupId?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
-
 
   export class Resource$Groups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtubeAnalytics.groups.delete
@@ -472,21 +457,27 @@ export namespace youtubeAnalytics_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Groups$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Groups$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Groups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Groups$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Groups$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Groups$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Groups$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -504,16 +495,19 @@ export namespace youtubeAnalytics_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/analytics/v1beta1/groups')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/groups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -521,7 +515,6 @@ export namespace youtubeAnalytics_v1beta1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtubeAnalytics.groups.insert
@@ -536,22 +529,27 @@ export namespace youtubeAnalytics_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Groups$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Group>;
     insert(
-        params: Params$Resource$Groups$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback: BodyResponseCallback<Schema$Group>): void;
+      params?: Params$Resource$Groups$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Group>;
     insert(
-        params: Params$Resource$Groups$Insert,
-        callback: BodyResponseCallback<Schema$Group>): void;
+      params: Params$Resource$Groups$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
+    insert(
+      params: Params$Resource$Groups$Insert,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Group>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Groups$Insert|
-        BodyResponseCallback<Schema$Group>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>):
-        void|GaxiosPromise<Schema$Group> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$Insert
+        | BodyResponseCallback<Schema$Group>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>
+    ): void | GaxiosPromise<Schema$Group> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -569,16 +567,19 @@ export namespace youtubeAnalytics_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/analytics/v1beta1/groups')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/groups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -587,13 +588,9 @@ export namespace youtubeAnalytics_v1beta1 {
       }
     }
 
-
     /**
      * youtubeAnalytics.groups.list
-     * @desc Returns a collection of groups that match the API request
-     * parameters. For example, you can retrieve all groups that the
-     * authenticated user owns, or you can retrieve one or more groups by their
-     * unique IDs.
+     * @desc Returns a collection of groups that match the API request parameters. For example, you can retrieve all groups that the authenticated user owns, or you can retrieve one or more groups by their unique IDs.
      * @alias youtubeAnalytics.groups.list
      * @memberOf! ()
      *
@@ -606,23 +603,29 @@ export namespace youtubeAnalytics_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Groups$List, options?: MethodOptions):
-        GaxiosPromise<Schema$GroupListResponse>;
     list(
-        params: Params$Resource$Groups$List,
-        options: MethodOptions|BodyResponseCallback<Schema$GroupListResponse>,
-        callback: BodyResponseCallback<Schema$GroupListResponse>): void;
+      params?: Params$Resource$Groups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GroupListResponse>;
     list(
-        params: Params$Resource$Groups$List,
-        callback: BodyResponseCallback<Schema$GroupListResponse>): void;
+      params: Params$Resource$Groups$List,
+      options: MethodOptions | BodyResponseCallback<Schema$GroupListResponse>,
+      callback: BodyResponseCallback<Schema$GroupListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Groups$List,
+      callback: BodyResponseCallback<Schema$GroupListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$GroupListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Groups$List|
-        BodyResponseCallback<Schema$GroupListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GroupListResponse>,
-        callback?: BodyResponseCallback<Schema$GroupListResponse>):
-        void|GaxiosPromise<Schema$GroupListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$List
+        | BodyResponseCallback<Schema$GroupListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GroupListResponse>,
+      callback?: BodyResponseCallback<Schema$GroupListResponse>
+    ): void | GaxiosPromise<Schema$GroupListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -640,16 +643,19 @@ export namespace youtubeAnalytics_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/analytics/v1beta1/groups')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/groups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GroupListResponse>(parameters, callback);
@@ -657,7 +663,6 @@ export namespace youtubeAnalytics_v1beta1 {
         return createAPIRequest<Schema$GroupListResponse>(parameters);
       }
     }
-
 
     /**
      * youtubeAnalytics.groups.update
@@ -672,22 +677,27 @@ export namespace youtubeAnalytics_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Groups$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Group>;
     update(
-        params: Params$Resource$Groups$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback: BodyResponseCallback<Schema$Group>): void;
+      params?: Params$Resource$Groups$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Group>;
     update(
-        params: Params$Resource$Groups$Update,
-        callback: BodyResponseCallback<Schema$Group>): void;
+      params: Params$Resource$Groups$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
+    update(
+      params: Params$Resource$Groups$Update,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Group>): void;
     update(
-        paramsOrCallback?: Params$Resource$Groups$Update|
-        BodyResponseCallback<Schema$Group>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>):
-        void|GaxiosPromise<Schema$Group> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$Update
+        | BodyResponseCallback<Schema$Group>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>
+    ): void | GaxiosPromise<Schema$Group> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -705,16 +715,19 @@ export namespace youtubeAnalytics_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/analytics/v1beta1/groups')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/groups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -728,24 +741,14 @@ export namespace youtubeAnalytics_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies the YouTube group ID for the group that is
-     * being deleted.
+     * The id parameter specifies the YouTube group ID for the group that is being deleted.
      */
     id?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
@@ -753,19 +756,10 @@ export namespace youtubeAnalytics_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
 
@@ -778,36 +772,22 @@ export namespace youtubeAnalytics_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies a comma-separated list of the YouTube group
-     * ID(s) for the resource(s) that are being retrieved. In a group resource,
-     * the id property specifies the group's YouTube group ID.
+     * The id parameter specifies a comma-separated list of the YouTube group ID(s) for the resource(s) that are being retrieved. In a group resource, the id property specifies the group's YouTube group ID.
      */
     id?: string;
     /**
-     * Set this parameter's value to true to instruct the API to only return
-     * groups owned by the authenticated user.
+     * Set this parameter's value to true to instruct the API to only return groups owned by the authenticated user.
      */
     mine?: boolean;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken property
-     * identifies the next page that can be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identifies the next page that can be retrieved.
      */
     pageToken?: string;
   }
@@ -815,19 +795,10 @@ export namespace youtubeAnalytics_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
 
@@ -837,13 +808,11 @@ export namespace youtubeAnalytics_v1beta1 {
     requestBody?: Schema$Group;
   }
 
-
   export class Resource$Reports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtubeAnalytics.reports.query
@@ -867,23 +836,29 @@ export namespace youtubeAnalytics_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query(params?: Params$Resource$Reports$Query, options?: MethodOptions):
-        GaxiosPromise<Schema$ResultTable>;
     query(
-        params: Params$Resource$Reports$Query,
-        options: MethodOptions|BodyResponseCallback<Schema$ResultTable>,
-        callback: BodyResponseCallback<Schema$ResultTable>): void;
+      params?: Params$Resource$Reports$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResultTable>;
     query(
-        params: Params$Resource$Reports$Query,
-        callback: BodyResponseCallback<Schema$ResultTable>): void;
+      params: Params$Resource$Reports$Query,
+      options: MethodOptions | BodyResponseCallback<Schema$ResultTable>,
+      callback: BodyResponseCallback<Schema$ResultTable>
+    ): void;
+    query(
+      params: Params$Resource$Reports$Query,
+      callback: BodyResponseCallback<Schema$ResultTable>
+    ): void;
     query(callback: BodyResponseCallback<Schema$ResultTable>): void;
     query(
-        paramsOrCallback?: Params$Resource$Reports$Query|
-        BodyResponseCallback<Schema$ResultTable>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ResultTable>,
-        callback?: BodyResponseCallback<Schema$ResultTable>):
-        void|GaxiosPromise<Schema$ResultTable> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$Query
+        | BodyResponseCallback<Schema$ResultTable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResultTable>,
+      callback?: BodyResponseCallback<Schema$ResultTable>
+    ): void | GaxiosPromise<Schema$ResultTable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -901,16 +876,19 @@ export namespace youtubeAnalytics_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/analytics/v1beta1/reports')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/reports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ResultTable>(parameters, callback);
@@ -924,51 +902,30 @@ export namespace youtubeAnalytics_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The currency to which financial metrics should be converted. The default
-     * is US Dollar (USD). If the result contains no financial metrics, this
-     * flag will be ignored. Responds with an error if the specified currency is
-     * not recognized.
+     * The currency to which financial metrics should be converted. The default is US Dollar (USD). If the result contains no financial metrics, this flag will be ignored. Responds with an error if the specified currency is not recognized.
      */
     currency?: string;
     /**
-     * A comma-separated list of YouTube Analytics dimensions, such as views or
-     * ageGroup,gender. See the Available Reports document for a list of the
-     * reports that you can retrieve and the dimensions used for those reports.
-     * Also see the Dimensions document for definitions of those dimensions.
+     * A comma-separated list of YouTube Analytics dimensions, such as views or ageGroup,gender. See the Available Reports document for a list of the reports that you can retrieve and the dimensions used for those reports. Also see the Dimensions document for definitions of those dimensions.
      */
     dimensions?: string;
     /**
-     * The end date for fetching YouTube Analytics data. The value should be in
-     * YYYY-MM-DD format.
+     * The end date for fetching YouTube Analytics data. The value should be in YYYY-MM-DD format.
      */
     'end-date'?: string;
     /**
-     * A list of filters that should be applied when retrieving YouTube
-     * Analytics data. The Available Reports document identifies the dimensions
-     * that can be used to filter each report, and the Dimensions document
-     * defines those dimensions. If a request uses multiple filters, join them
-     * together with a semicolon (;), and the returned result table will satisfy
-     * both filters. For example, a filters parameter value of
-     * video==dMH0bHeiRNg;country==IT restricts the result set to include data
-     * for the given video in Italy.
+     * A list of filters that should be applied when retrieving YouTube Analytics data. The Available Reports document identifies the dimensions that can be used to filter each report, and the Dimensions document defines those dimensions. If a request uses multiple filters, join them together with a semicolon (;), and the returned result table will satisfy both filters. For example, a filters parameter value of video==dMH0bHeiRNg;country==IT restricts the result set to include data for the given video in Italy.
      */
     filters?: string;
     /**
-     * Identifies the YouTube channel or content owner for which you are
-     * retrieving YouTube Analytics data. - To request data for a YouTube user,
-     * set the ids parameter value to channel==CHANNEL_ID, where CHANNEL_ID
-     * specifies the unique YouTube channel ID. - To request data for a YouTube
-     * CMS content owner, set the ids parameter value to
-     * contentOwner==OWNER_NAME, where OWNER_NAME is the CMS name of the content
-     * owner.
+     * Identifies the YouTube channel or content owner for which you are retrieving YouTube Analytics data. - To request data for a YouTube user, set the ids parameter value to channel==CHANNEL_ID, where CHANNEL_ID specifies the unique YouTube channel ID. - To request data for a YouTube CMS content owner, set the ids parameter value to contentOwner==OWNER_NAME, where OWNER_NAME is the CMS name of the content owner.
      */
     ids?: string;
     /**
-     * If set to true historical data (i.e. channel data from before the linking
-     * of the channel to the content owner) will be retrieved.
+     * If set to true historical data (i.e. channel data from before the linking of the channel to the content owner) will be retrieved.
      */
     'include-historical-channel-data'?: boolean;
     /**
@@ -976,27 +933,19 @@ export namespace youtubeAnalytics_v1beta1 {
      */
     'max-results'?: number;
     /**
-     * A comma-separated list of YouTube Analytics metrics, such as views or
-     * likes,dislikes. See the Available Reports document for a list of the
-     * reports that you can retrieve and the metrics available in each report,
-     * and see the Metrics document for definitions of those metrics.
+     * A comma-separated list of YouTube Analytics metrics, such as views or likes,dislikes. See the Available Reports document for a list of the reports that you can retrieve and the metrics available in each report, and see the Metrics document for definitions of those metrics.
      */
     metrics?: string;
     /**
-     * A comma-separated list of dimensions or metrics that determine the sort
-     * order for YouTube Analytics data. By default the sort order is ascending.
-     * The '-' prefix causes descending sort order.
+     * A comma-separated list of dimensions or metrics that determine the sort order for YouTube Analytics data. By default the sort order is ascending. The '-' prefix causes descending sort order.
      */
     sort?: string;
     /**
-     * The start date for fetching YouTube Analytics data. The value should be
-     * in YYYY-MM-DD format.
+     * The start date for fetching YouTube Analytics data. The value should be in YYYY-MM-DD format.
      */
     'start-date'?: string;
     /**
-     * An index of the first entity to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter (one-based,
-     * inclusive).
+     * An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter (one-based, inclusive).
      */
     'start-index'?: number;
   }

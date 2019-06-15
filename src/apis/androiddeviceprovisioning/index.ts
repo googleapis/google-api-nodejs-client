@@ -17,20 +17,27 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {androiddeviceprovisioning_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': androiddeviceprovisioning_v1.Androiddeviceprovisioning,
+  v1: androiddeviceprovisioning_v1.Androiddeviceprovisioning,
 };
 
-export function androiddeviceprovisioning(version: 'v1'):
-    androiddeviceprovisioning_v1.Androiddeviceprovisioning;
 export function androiddeviceprovisioning(
-    options: androiddeviceprovisioning_v1.Options):
-    androiddeviceprovisioning_v1.Androiddeviceprovisioning;
+  version: 'v1'
+): androiddeviceprovisioning_v1.Androiddeviceprovisioning;
+export function androiddeviceprovisioning(
+  options: androiddeviceprovisioning_v1.Options
+): androiddeviceprovisioning_v1.Androiddeviceprovisioning;
 export function androiddeviceprovisioning<
-    T = androiddeviceprovisioning_v1.Androiddeviceprovisioning>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|androiddeviceprovisioning_v1.Options) {
+  T = androiddeviceprovisioning_v1.Androiddeviceprovisioning
+>(
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | androiddeviceprovisioning_v1.Options
+) {
   return getAPI<T>(
-      'androiddeviceprovisioning', versionOrOptions, VERSIONS, this);
+    'androiddeviceprovisioning',
+    versionOrOptions,
+    VERSIONS,
+    this
+  );
 }
 
 const auth = new AuthPlus();

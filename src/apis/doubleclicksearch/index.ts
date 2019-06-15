@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {doubleclicksearch_v2} from './v2';
 
 export const VERSIONS = {
-  'v2': doubleclicksearch_v2.Doubleclicksearch,
+  v2: doubleclicksearch_v2.Doubleclicksearch,
 };
 
-export function doubleclicksearch(version: 'v2'):
-    doubleclicksearch_v2.Doubleclicksearch;
-export function doubleclicksearch(options: doubleclicksearch_v2.Options):
-    doubleclicksearch_v2.Doubleclicksearch;
+export function doubleclicksearch(
+  version: 'v2'
+): doubleclicksearch_v2.Doubleclicksearch;
+export function doubleclicksearch(
+  options: doubleclicksearch_v2.Options
+): doubleclicksearch_v2.Doubleclicksearch;
 export function doubleclicksearch<T = doubleclicksearch_v2.Doubleclicksearch>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v2'|doubleclicksearch_v2.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v2' | doubleclicksearch_v2.Options
+) {
   return getAPI<T>('doubleclicksearch', versionOrOptions, VERSIONS, this);
 }
 

@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +63,7 @@ export namespace accessapproval_v1beta1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,9 +75,7 @@ export namespace accessapproval_v1beta1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -102,7 +110,10 @@ export namespace accessapproval_v1beta1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.folders = new Resource$Folders(this.context);
       this.organizations = new Resource$Organizations(this.context);
@@ -115,18 +126,11 @@ export namespace accessapproval_v1beta1 {
    */
   export interface Schema$AccessApprovalSettings {
     /**
-     * The resource name of the settings. Format is one of: &lt;ol&gt;
-     * &lt;li&gt;&quot;projects/{project_id}/accessApprovalSettings&quot;&lt;/li&gt;
-     * &lt;li&gt;&quot;folders/{folder_id}/accessApprovalSettings&quot;&lt;/li&gt;
-     * &lt;li&gt;&quot;organizations/{organization_id}/accessApprovalSettings&quot;&lt;/li&gt;
-     * &lt;ol&gt;
+     * The resource name of the settings. Format is one of: &lt;ol&gt;   &lt;li&gt;&quot;projects/{project_id}/accessApprovalSettings&quot;&lt;/li&gt;   &lt;li&gt;&quot;folders/{folder_id}/accessApprovalSettings&quot;&lt;/li&gt;   &lt;li&gt;&quot;organizations/{organization_id}/accessApprovalSettings&quot;&lt;/li&gt; &lt;ol&gt;
      */
     name?: string;
     /**
-     * A list of email addresses to which notifications relating to approval
-     * requests should be sent. Notifications relating to a resource will be
-     * sent to all emails in the settings of ancestor resources of that
-     * resource.
+     * A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to a resource will be sent to all emails in the settings of ancestor resources of that resource.
      */
     notificationEmails?: string[];
   }
@@ -135,29 +139,11 @@ export namespace accessapproval_v1beta1 {
    */
   export interface Schema$AccessLocations {
     /**
-     * The &quot;home office&quot; location of the principal. A two-letter
-     * country code (ISO 3166-1 alpha-2), such as &quot;US&quot;, &quot;DE&quot;
-     * or &quot;GB&quot; or a region code. In some limited situations Google
-     * systems may refer refer to a region code instead of a country code.
-     * Possible Region Codes: &lt;ol&gt;   &lt;li&gt;ASI: Asia&lt;/li&gt;
-     * &lt;li&gt;EUR: Europe&lt;/li&gt;   &lt;li&gt;OCE: Oceania&lt;/li&gt;
-     * &lt;li&gt;AFR: Africa&lt;/li&gt;   &lt;li&gt;NAM: North
-     * America&lt;/li&gt;   &lt;li&gt;SAM: South America&lt;/li&gt;
-     * &lt;li&gt;ANT: Antarctica&lt;/li&gt;   &lt;li&gt;ANY: Any
-     * location&lt;/li&gt; &lt;/ol&gt;
+     * The &quot;home office&quot; location of the principal. A two-letter country code (ISO 3166-1 alpha-2), such as &quot;US&quot;, &quot;DE&quot; or &quot;GB&quot; or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: &lt;ol&gt;   &lt;li&gt;ASI: Asia&lt;/li&gt;   &lt;li&gt;EUR: Europe&lt;/li&gt;   &lt;li&gt;OCE: Oceania&lt;/li&gt;   &lt;li&gt;AFR: Africa&lt;/li&gt;   &lt;li&gt;NAM: North America&lt;/li&gt;   &lt;li&gt;SAM: South America&lt;/li&gt;   &lt;li&gt;ANT: Antarctica&lt;/li&gt;   &lt;li&gt;ANY: Any location&lt;/li&gt; &lt;/ol&gt;
      */
     principalOfficeCountry?: string;
     /**
-     * Physical location of the principal at the time of the access. A
-     * two-letter country code (ISO 3166-1 alpha-2), such as &quot;US&quot;,
-     * &quot;DE&quot; or &quot;GB&quot; or a region code. In some limited
-     * situations Google systems may refer refer to a region code instead of a
-     * country code. Possible Region Codes: &lt;ol&gt;   &lt;li&gt;ASI:
-     * Asia&lt;/li&gt;   &lt;li&gt;EUR: Europe&lt;/li&gt;   &lt;li&gt;OCE:
-     * Oceania&lt;/li&gt;   &lt;li&gt;AFR: Africa&lt;/li&gt;   &lt;li&gt;NAM:
-     * North America&lt;/li&gt;   &lt;li&gt;SAM: South America&lt;/li&gt;
-     * &lt;li&gt;ANT: Antarctica&lt;/li&gt;   &lt;li&gt;ANY: Any
-     * location&lt;/li&gt; &lt;/ol&gt;
+     * Physical location of the principal at the time of the access. A two-letter country code (ISO 3166-1 alpha-2), such as &quot;US&quot;, &quot;DE&quot; or &quot;GB&quot; or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: &lt;ol&gt;   &lt;li&gt;ASI: Asia&lt;/li&gt;   &lt;li&gt;EUR: Europe&lt;/li&gt;   &lt;li&gt;OCE: Oceania&lt;/li&gt;   &lt;li&gt;AFR: Africa&lt;/li&gt;   &lt;li&gt;NAM: North America&lt;/li&gt;   &lt;li&gt;SAM: South America&lt;/li&gt;   &lt;li&gt;ANT: Antarctica&lt;/li&gt;   &lt;li&gt;ANY: Any location&lt;/li&gt; &lt;/ol&gt;
      */
     principalPhysicalLocationCountry?: string;
   }
@@ -184,14 +170,11 @@ export namespace accessapproval_v1beta1 {
      */
     dismiss?: Schema$DismissDecision;
     /**
-     * The resource name of the request. Format is
-     * &quot;{projects|folders|organizations}/{id}/approvalRequests/{approval_request_id}&quot;.
+     * The resource name of the request. Format is &quot;{projects|folders|organizations}/{id}/approvalRequests/{approval_request_id}&quot;.
      */
     name?: string;
     /**
-     * The requested expiration for the approval. If the request is approved,
-     * access will be granted from the time of approval until the expiration
-     * time.
+     * The requested expiration for the approval. If the request is approved, access will be granted from the time of approval until the expiration time.
      */
     requestedExpiration?: string;
     /**
@@ -203,16 +186,13 @@ export namespace accessapproval_v1beta1 {
      */
     requestedReason?: Schema$AccessReason;
     /**
-     * The resource for which approval is being requested. The format of the
-     * resource name is defined at
-     * https://cloud.google.com/apis/design/resource_names. The resource name
-     * here may either be a &quot;full&quot; resource name (e.g.
-     * &quot;//library.googleapis.com/shelves/shelf1/books/book2&quot;) or a
-     * &quot;relative&quot; resource name (e.g.
-     * &quot;shelves/shelf1/books/book2&quot;) as described in the resource name
-     * specification.
+     * The resource for which approval is being requested. The format of the resource name is defined at https://cloud.google.com/apis/design/resource_names. The resource name here may either be a &quot;full&quot; resource name (e.g. &quot;//library.googleapis.com/shelves/shelf1/books/book2&quot;) or a &quot;relative&quot; resource name (e.g. &quot;shelves/shelf1/books/book2&quot;) as described in the resource name specification.
      */
     requestedResourceName?: string;
+    /**
+     * Properties related to the resource represented by requested_resource_name.
+     */
+    requestedResourceProperties?: Schema$ResourceProperties;
     /**
      * The time at which approval was requested.
      */
@@ -262,27 +242,33 @@ export namespace accessapproval_v1beta1 {
      */
     approvalRequests?: Schema$ApprovalRequest[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no
-     * more.
+     * Token to retrieve the next page of results, or empty if there are no more.
      */
     nextPageToken?: string;
   }
-
+  /**
+   * The properties associated with the resource of the request.
+   */
+  export interface Schema$ResourceProperties {
+    /**
+     * Whether an approval will exclude the descendants of the resource being requested.
+     */
+    excludesDescendants?: boolean;
+  }
 
   export class Resource$Folders {
     context: APIRequestContext;
     approvalRequests: Resource$Folders$Approvalrequests;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.approvalRequests =
-          new Resource$Folders$Approvalrequests(this.context);
+      this.approvalRequests = new Resource$Folders$Approvalrequests(
+        this.context
+      );
     }
-
 
     /**
      * accessapproval.folders.getAccessApprovalSettings
-     * @desc Gets the settings associated with a project, folder, or
-     * organization.
+     * @desc Gets the settings associated with a project, folder, or organization.
      * @alias accessapproval.folders.getAccessApprovalSettings
      * @memberOf! ()
      *
@@ -293,27 +279,34 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     getAccessApprovalSettings(
-        params?: Params$Resource$Folders$Getaccessapprovalsettings,
-        options?: MethodOptions): GaxiosPromise<Schema$AccessApprovalSettings>;
+      params?: Params$Resource$Folders$Getaccessapprovalsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessApprovalSettings>;
     getAccessApprovalSettings(
-        params: Params$Resource$Folders$Getaccessapprovalsettings,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      params: Params$Resource$Folders$Getaccessapprovalsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     getAccessApprovalSettings(
-        params: Params$Resource$Folders$Getaccessapprovalsettings,
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      params: Params$Resource$Folders$Getaccessapprovalsettings,
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     getAccessApprovalSettings(
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     getAccessApprovalSettings(
-        paramsOrCallback?: Params$Resource$Folders$Getaccessapprovalsettings|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        callback?: BodyResponseCallback<Schema$AccessApprovalSettings>):
-        void|GaxiosPromise<Schema$AccessApprovalSettings> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Folders$Getaccessapprovalsettings;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Getaccessapprovalsettings
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Getaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -328,18 +321,19 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
@@ -348,11 +342,9 @@ export namespace accessapproval_v1beta1 {
       }
     }
 
-
     /**
      * accessapproval.folders.updateAccessApprovalSettings
-     * @desc Updates the settings associated with a project, folder, or
-     * organization. Completely replaces the existing settings.
+     * @desc Updates the settings associated with a project, folder, or organization. Completely replaces the existing settings.
      * @alias accessapproval.folders.updateAccessApprovalSettings
      * @memberOf! ()
      *
@@ -364,27 +356,34 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     updateAccessApprovalSettings(
-        params?: Params$Resource$Folders$Updateaccessapprovalsettings,
-        options?: MethodOptions): GaxiosPromise<Schema$AccessApprovalSettings>;
+      params?: Params$Resource$Folders$Updateaccessapprovalsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessApprovalSettings>;
     updateAccessApprovalSettings(
-        params: Params$Resource$Folders$Updateaccessapprovalsettings,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      params: Params$Resource$Folders$Updateaccessapprovalsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     updateAccessApprovalSettings(
-        params: Params$Resource$Folders$Updateaccessapprovalsettings,
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      params: Params$Resource$Folders$Updateaccessapprovalsettings,
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     updateAccessApprovalSettings(
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     updateAccessApprovalSettings(
-        paramsOrCallback?: Params$Resource$Folders$Updateaccessapprovalsettings|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        callback?: BodyResponseCallback<Schema$AccessApprovalSettings>):
-        void|GaxiosPromise<Schema$AccessApprovalSettings> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Folders$Updateaccessapprovalsettings;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Updateaccessapprovalsettings
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Updateaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -399,18 +398,19 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
@@ -420,30 +420,27 @@ export namespace accessapproval_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Folders$Getaccessapprovalsettings extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Getaccessapprovalsettings
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the AccessApprovalSettings to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Updateaccessapprovalsettings extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Updateaccessapprovalsettings
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the settings. Format is one of: <ol>
-     * <li>"projects/{project_id}/accessApprovalSettings"</li>
-     * <li>"folders/{folder_id}/accessApprovalSettings"</li>
-     * <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
+     * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
     name?: string;
 
@@ -459,12 +456,9 @@ export namespace accessapproval_v1beta1 {
       this.context = context;
     }
 
-
     /**
      * accessapproval.folders.approvalRequests.approve
-     * @desc Approves a request and returns the updated ApprovalRequest. Returns
-     * NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if
-     * the request exists but is not in a pending state.
+     * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @alias accessapproval.folders.approvalRequests.approve
      * @memberOf! ()
      *
@@ -476,25 +470,30 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     approve(
-        params?: Params$Resource$Folders$Approvalrequests$Approve,
-        options?: MethodOptions): GaxiosPromise<Schema$ApprovalRequest>;
+      params?: Params$Resource$Folders$Approvalrequests$Approve,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApprovalRequest>;
     approve(
-        params: Params$Resource$Folders$Approvalrequests$Approve,
-        options: MethodOptions|BodyResponseCallback<Schema$ApprovalRequest>,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+      params: Params$Resource$Folders$Approvalrequests$Approve,
+      options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     approve(
-        params: Params$Resource$Folders$Approvalrequests$Approve,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+      params: Params$Resource$Folders$Approvalrequests$Approve,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     approve(callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
     approve(
-        paramsOrCallback?: Params$Resource$Folders$Approvalrequests$Approve|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        callback?: BodyResponseCallback<Schema$ApprovalRequest>):
-        void|GaxiosPromise<Schema$ApprovalRequest> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Folders$Approvalrequests$Approve;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Approvalrequests$Approve
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback?: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Approvalrequests$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -509,19 +508,22 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}:approve')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}:approve').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
@@ -530,14 +532,9 @@ export namespace accessapproval_v1beta1 {
       }
     }
 
-
     /**
      * accessapproval.folders.approvalRequests.dismiss
-     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE:
-     * This does not deny access to the resource if another request has been
-     * made and approved. It is equivalent in effect to ignoring the request
-     * altogether.  Returns NOT_FOUND if the request does not exist.  Returns
-     * FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @alias accessapproval.folders.approvalRequests.dismiss
      * @memberOf! ()
      *
@@ -549,25 +546,30 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     dismiss(
-        params?: Params$Resource$Folders$Approvalrequests$Dismiss,
-        options?: MethodOptions): GaxiosPromise<Schema$ApprovalRequest>;
+      params?: Params$Resource$Folders$Approvalrequests$Dismiss,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApprovalRequest>;
     dismiss(
-        params: Params$Resource$Folders$Approvalrequests$Dismiss,
-        options: MethodOptions|BodyResponseCallback<Schema$ApprovalRequest>,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+      params: Params$Resource$Folders$Approvalrequests$Dismiss,
+      options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     dismiss(
-        params: Params$Resource$Folders$Approvalrequests$Dismiss,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+      params: Params$Resource$Folders$Approvalrequests$Dismiss,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     dismiss(callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
     dismiss(
-        paramsOrCallback?: Params$Resource$Folders$Approvalrequests$Dismiss|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        callback?: BodyResponseCallback<Schema$ApprovalRequest>):
-        void|GaxiosPromise<Schema$ApprovalRequest> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Folders$Approvalrequests$Dismiss;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Approvalrequests$Dismiss
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback?: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Approvalrequests$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -582,19 +584,22 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}:dismiss')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}:dismiss').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
@@ -603,11 +608,9 @@ export namespace accessapproval_v1beta1 {
       }
     }
 
-
     /**
      * accessapproval.folders.approvalRequests.get
-     * @desc Gets an approval request. Returns NOT_FOUND if the request does not
-     * exist.
+     * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
      * @alias accessapproval.folders.approvalRequests.get
      * @memberOf! ()
      *
@@ -617,22 +620,31 @@ export namespace accessapproval_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Folders$Approvalrequests$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ApprovalRequest>;
-    get(params: Params$Resource$Folders$Approvalrequests$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ApprovalRequest>,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
-    get(params: Params$Resource$Folders$Approvalrequests$Get,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+    get(
+      params?: Params$Resource$Folders$Approvalrequests$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApprovalRequest>;
+    get(
+      params: Params$Resource$Folders$Approvalrequests$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Approvalrequests$Get,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
-    get(paramsOrCallback?: Params$Resource$Folders$Approvalrequests$Get|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        callback?: BodyResponseCallback<Schema$ApprovalRequest>):
-        void|GaxiosPromise<Schema$ApprovalRequest> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Folders$Approvalrequests$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Approvalrequests$Get
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback?: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Approvalrequests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -647,18 +659,19 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
@@ -667,12 +680,9 @@ export namespace accessapproval_v1beta1 {
       }
     }
 
-
     /**
      * accessapproval.folders.approvalRequests.list
-     * @desc Lists approval requests associated with a project, folder, or
-     * organization. Approval requests can be filtered by state (pending,
-     * active, dismissed). The order is reverse chronological.
+     * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
      * @alias accessapproval.folders.approvalRequests.list
      * @memberOf! ()
      *
@@ -686,30 +696,34 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Folders$Approvalrequests$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListApprovalRequestsResponse>;
+      params?: Params$Resource$Folders$Approvalrequests$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListApprovalRequestsResponse>;
     list(
-        params: Params$Resource$Folders$Approvalrequests$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-        callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>):
-        void;
+      params: Params$Resource$Folders$Approvalrequests$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+      callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+    ): void;
     list(
-        params: Params$Resource$Folders$Approvalrequests$List,
-        callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>):
-        void;
+      params: Params$Resource$Folders$Approvalrequests$List,
+      callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Folders$Approvalrequests$List|
-        BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-        callback?: BodyResponseCallback<Schema$ListApprovalRequestsResponse>):
-        void|GaxiosPromise<Schema$ListApprovalRequestsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Folders$Approvalrequests$List;
+      callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Approvalrequests$List
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+      callback?: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+    ): void | GaxiosPromise<Schema$ListApprovalRequestsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Approvalrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -724,36 +738,42 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/approvalRequests')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/approvalRequests').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Folders$Approvalrequests$Approve extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Approvalrequests$Approve
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the approval request to approve.
@@ -765,12 +785,12 @@ export namespace accessapproval_v1beta1 {
      */
     requestBody?: Schema$ApproveApprovalRequestMessage;
   }
-  export interface Params$Resource$Folders$Approvalrequests$Dismiss extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Approvalrequests$Dismiss
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the ApprovalRequest to dismiss.
@@ -782,32 +802,27 @@ export namespace accessapproval_v1beta1 {
      */
     requestBody?: Schema$DismissApprovalRequestMessage;
   }
-  export interface Params$Resource$Folders$Approvalrequests$Get extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Approvalrequests$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the approval request to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Approvalrequests$List extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Approvalrequests$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter on the type of approval requests to retrieve. Must be one of the
-     * following values: <ol>   <li>[not set]: Requests that are pending or have
-     * active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only
-     * pending requests.</li>   <li>ACTIVE: Only active (i.e. currently
-     * approved) requests.</li>   <li>DISMISSED: Only dismissed (including
-     * expired) requests.</li> </ol>
+     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */
     filter?: string;
     /**
@@ -819,28 +834,24 @@ export namespace accessapproval_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The parent resource. This may be "projects/{project_id}",
-     * "folders/{folder_id}", or "organizations/{organization_id}".
+     * The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
      */
     parent?: string;
   }
-
-
 
   export class Resource$Organizations {
     context: APIRequestContext;
     approvalRequests: Resource$Organizations$Approvalrequests;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.approvalRequests =
-          new Resource$Organizations$Approvalrequests(this.context);
+      this.approvalRequests = new Resource$Organizations$Approvalrequests(
+        this.context
+      );
     }
-
 
     /**
      * accessapproval.organizations.getAccessApprovalSettings
-     * @desc Gets the settings associated with a project, folder, or
-     * organization.
+     * @desc Gets the settings associated with a project, folder, or organization.
      * @alias accessapproval.organizations.getAccessApprovalSettings
      * @memberOf! ()
      *
@@ -851,28 +862,34 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     getAccessApprovalSettings(
-        params?: Params$Resource$Organizations$Getaccessapprovalsettings,
-        options?: MethodOptions): GaxiosPromise<Schema$AccessApprovalSettings>;
+      params?: Params$Resource$Organizations$Getaccessapprovalsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessApprovalSettings>;
     getAccessApprovalSettings(
-        params: Params$Resource$Organizations$Getaccessapprovalsettings,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      params: Params$Resource$Organizations$Getaccessapprovalsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     getAccessApprovalSettings(
-        params: Params$Resource$Organizations$Getaccessapprovalsettings,
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      params: Params$Resource$Organizations$Getaccessapprovalsettings,
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     getAccessApprovalSettings(
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     getAccessApprovalSettings(
-        paramsOrCallback?:
-            Params$Resource$Organizations$Getaccessapprovalsettings|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        callback?: BodyResponseCallback<Schema$AccessApprovalSettings>):
-        void|GaxiosPromise<Schema$AccessApprovalSettings> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Getaccessapprovalsettings;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Getaccessapprovalsettings
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Getaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -887,18 +904,19 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
@@ -907,11 +925,9 @@ export namespace accessapproval_v1beta1 {
       }
     }
 
-
     /**
      * accessapproval.organizations.updateAccessApprovalSettings
-     * @desc Updates the settings associated with a project, folder, or
-     * organization. Completely replaces the existing settings.
+     * @desc Updates the settings associated with a project, folder, or organization. Completely replaces the existing settings.
      * @alias accessapproval.organizations.updateAccessApprovalSettings
      * @memberOf! ()
      *
@@ -923,34 +939,39 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     updateAccessApprovalSettings(
-        params?: Params$Resource$Organizations$Updateaccessapprovalsettings,
-        options?: MethodOptions): GaxiosPromise<Schema$AccessApprovalSettings>;
+      params?: Params$Resource$Organizations$Updateaccessapprovalsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessApprovalSettings>;
     updateAccessApprovalSettings(
-        params: Params$Resource$Organizations$Updateaccessapprovalsettings,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      params: Params$Resource$Organizations$Updateaccessapprovalsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     updateAccessApprovalSettings(
-        params: Params$Resource$Organizations$Updateaccessapprovalsettings,
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      params: Params$Resource$Organizations$Updateaccessapprovalsettings,
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     updateAccessApprovalSettings(
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     updateAccessApprovalSettings(
-        paramsOrCallback?:
-            Params$Resource$Organizations$Updateaccessapprovalsettings|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        callback?: BodyResponseCallback<Schema$AccessApprovalSettings>):
-        void|GaxiosPromise<Schema$AccessApprovalSettings> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Updateaccessapprovalsettings;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Updateaccessapprovalsettings
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Updateaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Organizations$Updateaccessapprovalsettings;
+        params = {} as Params$Resource$Organizations$Updateaccessapprovalsettings;
         options = {};
       }
 
@@ -960,18 +981,19 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
@@ -982,11 +1004,11 @@ export namespace accessapproval_v1beta1 {
   }
 
   export interface Params$Resource$Organizations$Getaccessapprovalsettings
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the AccessApprovalSettings to retrieve.
@@ -994,17 +1016,14 @@ export namespace accessapproval_v1beta1 {
     name?: string;
   }
   export interface Params$Resource$Organizations$Updateaccessapprovalsettings
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the settings. Format is one of: <ol>
-     * <li>"projects/{project_id}/accessApprovalSettings"</li>
-     * <li>"folders/{folder_id}/accessApprovalSettings"</li>
-     * <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
+     * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
     name?: string;
 
@@ -1020,12 +1039,9 @@ export namespace accessapproval_v1beta1 {
       this.context = context;
     }
 
-
     /**
      * accessapproval.organizations.approvalRequests.approve
-     * @desc Approves a request and returns the updated ApprovalRequest. Returns
-     * NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if
-     * the request exists but is not in a pending state.
+     * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @alias accessapproval.organizations.approvalRequests.approve
      * @memberOf! ()
      *
@@ -1037,26 +1053,30 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     approve(
-        params?: Params$Resource$Organizations$Approvalrequests$Approve,
-        options?: MethodOptions): GaxiosPromise<Schema$ApprovalRequest>;
+      params?: Params$Resource$Organizations$Approvalrequests$Approve,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApprovalRequest>;
     approve(
-        params: Params$Resource$Organizations$Approvalrequests$Approve,
-        options: MethodOptions|BodyResponseCallback<Schema$ApprovalRequest>,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+      params: Params$Resource$Organizations$Approvalrequests$Approve,
+      options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     approve(
-        params: Params$Resource$Organizations$Approvalrequests$Approve,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+      params: Params$Resource$Organizations$Approvalrequests$Approve,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     approve(callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
     approve(
-        paramsOrCallback?:
-            Params$Resource$Organizations$Approvalrequests$Approve|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        callback?: BodyResponseCallback<Schema$ApprovalRequest>):
-        void|GaxiosPromise<Schema$ApprovalRequest> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Approvalrequests$Approve;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Approvalrequests$Approve
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback?: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Approvalrequests$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1071,19 +1091,22 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}:approve')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}:approve').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
@@ -1092,14 +1115,9 @@ export namespace accessapproval_v1beta1 {
       }
     }
 
-
     /**
      * accessapproval.organizations.approvalRequests.dismiss
-     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE:
-     * This does not deny access to the resource if another request has been
-     * made and approved. It is equivalent in effect to ignoring the request
-     * altogether.  Returns NOT_FOUND if the request does not exist.  Returns
-     * FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @alias accessapproval.organizations.approvalRequests.dismiss
      * @memberOf! ()
      *
@@ -1111,26 +1129,30 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     dismiss(
-        params?: Params$Resource$Organizations$Approvalrequests$Dismiss,
-        options?: MethodOptions): GaxiosPromise<Schema$ApprovalRequest>;
+      params?: Params$Resource$Organizations$Approvalrequests$Dismiss,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApprovalRequest>;
     dismiss(
-        params: Params$Resource$Organizations$Approvalrequests$Dismiss,
-        options: MethodOptions|BodyResponseCallback<Schema$ApprovalRequest>,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+      params: Params$Resource$Organizations$Approvalrequests$Dismiss,
+      options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     dismiss(
-        params: Params$Resource$Organizations$Approvalrequests$Dismiss,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+      params: Params$Resource$Organizations$Approvalrequests$Dismiss,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     dismiss(callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
     dismiss(
-        paramsOrCallback?:
-            Params$Resource$Organizations$Approvalrequests$Dismiss|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        callback?: BodyResponseCallback<Schema$ApprovalRequest>):
-        void|GaxiosPromise<Schema$ApprovalRequest> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Approvalrequests$Dismiss;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Approvalrequests$Dismiss
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback?: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Approvalrequests$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1145,19 +1167,22 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}:dismiss')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}:dismiss').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
@@ -1166,11 +1191,9 @@ export namespace accessapproval_v1beta1 {
       }
     }
 
-
     /**
      * accessapproval.organizations.approvalRequests.get
-     * @desc Gets an approval request. Returns NOT_FOUND if the request does not
-     * exist.
+     * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
      * @alias accessapproval.organizations.approvalRequests.get
      * @memberOf! ()
      *
@@ -1180,22 +1203,31 @@ export namespace accessapproval_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Organizations$Approvalrequests$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ApprovalRequest>;
-    get(params: Params$Resource$Organizations$Approvalrequests$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ApprovalRequest>,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
-    get(params: Params$Resource$Organizations$Approvalrequests$Get,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+    get(
+      params?: Params$Resource$Organizations$Approvalrequests$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApprovalRequest>;
+    get(
+      params: Params$Resource$Organizations$Approvalrequests$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Approvalrequests$Get,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
-    get(paramsOrCallback?: Params$Resource$Organizations$Approvalrequests$Get|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        callback?: BodyResponseCallback<Schema$ApprovalRequest>):
-        void|GaxiosPromise<Schema$ApprovalRequest> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Approvalrequests$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Approvalrequests$Get
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback?: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Approvalrequests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1210,18 +1242,19 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
@@ -1230,12 +1263,9 @@ export namespace accessapproval_v1beta1 {
       }
     }
 
-
     /**
      * accessapproval.organizations.approvalRequests.list
-     * @desc Lists approval requests associated with a project, folder, or
-     * organization. Approval requests can be filtered by state (pending,
-     * active, dismissed). The order is reverse chronological.
+     * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
      * @alias accessapproval.organizations.approvalRequests.list
      * @memberOf! ()
      *
@@ -1249,30 +1279,34 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Organizations$Approvalrequests$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListApprovalRequestsResponse>;
+      params?: Params$Resource$Organizations$Approvalrequests$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListApprovalRequestsResponse>;
     list(
-        params: Params$Resource$Organizations$Approvalrequests$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-        callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>):
-        void;
+      params: Params$Resource$Organizations$Approvalrequests$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+      callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+    ): void;
     list(
-        params: Params$Resource$Organizations$Approvalrequests$List,
-        callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>):
-        void;
+      params: Params$Resource$Organizations$Approvalrequests$List,
+      callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Organizations$Approvalrequests$List|
-        BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-        callback?: BodyResponseCallback<Schema$ListApprovalRequestsResponse>):
-        void|GaxiosPromise<Schema$ListApprovalRequestsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Approvalrequests$List;
+      callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Approvalrequests$List
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+      callback?: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+    ): void | GaxiosPromise<Schema$ListApprovalRequestsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Approvalrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1287,36 +1321,42 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/approvalRequests')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/approvalRequests').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Organizations$Approvalrequests$Approve
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the approval request to approve.
@@ -1329,11 +1369,11 @@ export namespace accessapproval_v1beta1 {
     requestBody?: Schema$ApproveApprovalRequestMessage;
   }
   export interface Params$Resource$Organizations$Approvalrequests$Dismiss
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the ApprovalRequest to dismiss.
@@ -1345,32 +1385,27 @@ export namespace accessapproval_v1beta1 {
      */
     requestBody?: Schema$DismissApprovalRequestMessage;
   }
-  export interface Params$Resource$Organizations$Approvalrequests$Get extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Approvalrequests$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the approval request to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Approvalrequests$List extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Approvalrequests$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter on the type of approval requests to retrieve. Must be one of the
-     * following values: <ol>   <li>[not set]: Requests that are pending or have
-     * active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only
-     * pending requests.</li>   <li>ACTIVE: Only active (i.e. currently
-     * approved) requests.</li>   <li>DISMISSED: Only dismissed (including
-     * expired) requests.</li> </ol>
+     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */
     filter?: string;
     /**
@@ -1382,28 +1417,24 @@ export namespace accessapproval_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The parent resource. This may be "projects/{project_id}",
-     * "folders/{folder_id}", or "organizations/{organization_id}".
+     * The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
      */
     parent?: string;
   }
-
-
 
   export class Resource$Projects {
     context: APIRequestContext;
     approvalRequests: Resource$Projects$Approvalrequests;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.approvalRequests =
-          new Resource$Projects$Approvalrequests(this.context);
+      this.approvalRequests = new Resource$Projects$Approvalrequests(
+        this.context
+      );
     }
-
 
     /**
      * accessapproval.projects.getAccessApprovalSettings
-     * @desc Gets the settings associated with a project, folder, or
-     * organization.
+     * @desc Gets the settings associated with a project, folder, or organization.
      * @alias accessapproval.projects.getAccessApprovalSettings
      * @memberOf! ()
      *
@@ -1414,27 +1445,34 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     getAccessApprovalSettings(
-        params?: Params$Resource$Projects$Getaccessapprovalsettings,
-        options?: MethodOptions): GaxiosPromise<Schema$AccessApprovalSettings>;
+      params?: Params$Resource$Projects$Getaccessapprovalsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessApprovalSettings>;
     getAccessApprovalSettings(
-        params: Params$Resource$Projects$Getaccessapprovalsettings,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      params: Params$Resource$Projects$Getaccessapprovalsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     getAccessApprovalSettings(
-        params: Params$Resource$Projects$Getaccessapprovalsettings,
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      params: Params$Resource$Projects$Getaccessapprovalsettings,
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     getAccessApprovalSettings(
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     getAccessApprovalSettings(
-        paramsOrCallback?: Params$Resource$Projects$Getaccessapprovalsettings|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        callback?: BodyResponseCallback<Schema$AccessApprovalSettings>):
-        void|GaxiosPromise<Schema$AccessApprovalSettings> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Getaccessapprovalsettings;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getaccessapprovalsettings
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1449,18 +1487,19 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
@@ -1469,11 +1508,9 @@ export namespace accessapproval_v1beta1 {
       }
     }
 
-
     /**
      * accessapproval.projects.updateAccessApprovalSettings
-     * @desc Updates the settings associated with a project, folder, or
-     * organization. Completely replaces the existing settings.
+     * @desc Updates the settings associated with a project, folder, or organization. Completely replaces the existing settings.
      * @alias accessapproval.projects.updateAccessApprovalSettings
      * @memberOf! ()
      *
@@ -1485,28 +1522,34 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     updateAccessApprovalSettings(
-        params?: Params$Resource$Projects$Updateaccessapprovalsettings,
-        options?: MethodOptions): GaxiosPromise<Schema$AccessApprovalSettings>;
+      params?: Params$Resource$Projects$Updateaccessapprovalsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessApprovalSettings>;
     updateAccessApprovalSettings(
-        params: Params$Resource$Projects$Updateaccessapprovalsettings,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      params: Params$Resource$Projects$Updateaccessapprovalsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     updateAccessApprovalSettings(
-        params: Params$Resource$Projects$Updateaccessapprovalsettings,
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      params: Params$Resource$Projects$Updateaccessapprovalsettings,
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     updateAccessApprovalSettings(
-        callback: BodyResponseCallback<Schema$AccessApprovalSettings>): void;
+      callback: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void;
     updateAccessApprovalSettings(
-        paramsOrCallback?:
-            Params$Resource$Projects$Updateaccessapprovalsettings|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccessApprovalSettings>,
-        callback?: BodyResponseCallback<Schema$AccessApprovalSettings>):
-        void|GaxiosPromise<Schema$AccessApprovalSettings> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Updateaccessapprovalsettings;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Updateaccessapprovalsettings
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
+    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Updateaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1521,18 +1564,19 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
@@ -1542,30 +1586,27 @@ export namespace accessapproval_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getaccessapprovalsettings extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Getaccessapprovalsettings
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the AccessApprovalSettings to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Updateaccessapprovalsettings extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Updateaccessapprovalsettings
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the settings. Format is one of: <ol>
-     * <li>"projects/{project_id}/accessApprovalSettings"</li>
-     * <li>"folders/{folder_id}/accessApprovalSettings"</li>
-     * <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
+     * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
     name?: string;
 
@@ -1581,12 +1622,9 @@ export namespace accessapproval_v1beta1 {
       this.context = context;
     }
 
-
     /**
      * accessapproval.projects.approvalRequests.approve
-     * @desc Approves a request and returns the updated ApprovalRequest. Returns
-     * NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if
-     * the request exists but is not in a pending state.
+     * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @alias accessapproval.projects.approvalRequests.approve
      * @memberOf! ()
      *
@@ -1598,25 +1636,30 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     approve(
-        params?: Params$Resource$Projects$Approvalrequests$Approve,
-        options?: MethodOptions): GaxiosPromise<Schema$ApprovalRequest>;
+      params?: Params$Resource$Projects$Approvalrequests$Approve,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApprovalRequest>;
     approve(
-        params: Params$Resource$Projects$Approvalrequests$Approve,
-        options: MethodOptions|BodyResponseCallback<Schema$ApprovalRequest>,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+      params: Params$Resource$Projects$Approvalrequests$Approve,
+      options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     approve(
-        params: Params$Resource$Projects$Approvalrequests$Approve,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+      params: Params$Resource$Projects$Approvalrequests$Approve,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     approve(callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
     approve(
-        paramsOrCallback?: Params$Resource$Projects$Approvalrequests$Approve|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        callback?: BodyResponseCallback<Schema$ApprovalRequest>):
-        void|GaxiosPromise<Schema$ApprovalRequest> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Approvalrequests$Approve;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Approvalrequests$Approve
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback?: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Approvalrequests$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1631,19 +1674,22 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}:approve')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}:approve').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
@@ -1652,14 +1698,9 @@ export namespace accessapproval_v1beta1 {
       }
     }
 
-
     /**
      * accessapproval.projects.approvalRequests.dismiss
-     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE:
-     * This does not deny access to the resource if another request has been
-     * made and approved. It is equivalent in effect to ignoring the request
-     * altogether.  Returns NOT_FOUND if the request does not exist.  Returns
-     * FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @alias accessapproval.projects.approvalRequests.dismiss
      * @memberOf! ()
      *
@@ -1671,25 +1712,30 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     dismiss(
-        params?: Params$Resource$Projects$Approvalrequests$Dismiss,
-        options?: MethodOptions): GaxiosPromise<Schema$ApprovalRequest>;
+      params?: Params$Resource$Projects$Approvalrequests$Dismiss,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApprovalRequest>;
     dismiss(
-        params: Params$Resource$Projects$Approvalrequests$Dismiss,
-        options: MethodOptions|BodyResponseCallback<Schema$ApprovalRequest>,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+      params: Params$Resource$Projects$Approvalrequests$Dismiss,
+      options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     dismiss(
-        params: Params$Resource$Projects$Approvalrequests$Dismiss,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+      params: Params$Resource$Projects$Approvalrequests$Dismiss,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     dismiss(callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
     dismiss(
-        paramsOrCallback?: Params$Resource$Projects$Approvalrequests$Dismiss|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        callback?: BodyResponseCallback<Schema$ApprovalRequest>):
-        void|GaxiosPromise<Schema$ApprovalRequest> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Approvalrequests$Dismiss;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Approvalrequests$Dismiss
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback?: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Approvalrequests$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1704,19 +1750,22 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}:dismiss')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}:dismiss').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
@@ -1725,11 +1774,9 @@ export namespace accessapproval_v1beta1 {
       }
     }
 
-
     /**
      * accessapproval.projects.approvalRequests.get
-     * @desc Gets an approval request. Returns NOT_FOUND if the request does not
-     * exist.
+     * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
      * @alias accessapproval.projects.approvalRequests.get
      * @memberOf! ()
      *
@@ -1739,22 +1786,31 @@ export namespace accessapproval_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Approvalrequests$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ApprovalRequest>;
-    get(params: Params$Resource$Projects$Approvalrequests$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ApprovalRequest>,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
-    get(params: Params$Resource$Projects$Approvalrequests$Get,
-        callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+    get(
+      params?: Params$Resource$Projects$Approvalrequests$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApprovalRequest>;
+    get(
+      params: Params$Resource$Projects$Approvalrequests$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Approvalrequests$Get,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Approvalrequests$Get|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ApprovalRequest>,
-        callback?: BodyResponseCallback<Schema$ApprovalRequest>):
-        void|GaxiosPromise<Schema$ApprovalRequest> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Approvalrequests$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Approvalrequests$Get
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback?: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Approvalrequests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1769,18 +1825,19 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
@@ -1789,12 +1846,9 @@ export namespace accessapproval_v1beta1 {
       }
     }
 
-
     /**
      * accessapproval.projects.approvalRequests.list
-     * @desc Lists approval requests associated with a project, folder, or
-     * organization. Approval requests can be filtered by state (pending,
-     * active, dismissed). The order is reverse chronological.
+     * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
      * @alias accessapproval.projects.approvalRequests.list
      * @memberOf! ()
      *
@@ -1808,30 +1862,34 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Approvalrequests$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListApprovalRequestsResponse>;
+      params?: Params$Resource$Projects$Approvalrequests$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListApprovalRequestsResponse>;
     list(
-        params: Params$Resource$Projects$Approvalrequests$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-        callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>):
-        void;
+      params: Params$Resource$Projects$Approvalrequests$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+      callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Approvalrequests$List,
-        callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>):
-        void;
+      params: Params$Resource$Projects$Approvalrequests$List,
+      callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Approvalrequests$List|
-        BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-        callback?: BodyResponseCallback<Schema$ListApprovalRequestsResponse>):
-        void|GaxiosPromise<Schema$ListApprovalRequestsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Approvalrequests$List;
+      callback: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Approvalrequests$List
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+      callback?: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+    ): void | GaxiosPromise<Schema$ListApprovalRequestsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Approvalrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1846,36 +1904,42 @@ export namespace accessapproval_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accessapproval.googleapis.com/';
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/approvalRequests')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/approvalRequests').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Projects$Approvalrequests$Approve extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Approvalrequests$Approve
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the approval request to approve.
@@ -1887,12 +1951,12 @@ export namespace accessapproval_v1beta1 {
      */
     requestBody?: Schema$ApproveApprovalRequestMessage;
   }
-  export interface Params$Resource$Projects$Approvalrequests$Dismiss extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Approvalrequests$Dismiss
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the ApprovalRequest to dismiss.
@@ -1904,32 +1968,27 @@ export namespace accessapproval_v1beta1 {
      */
     requestBody?: Schema$DismissApprovalRequestMessage;
   }
-  export interface Params$Resource$Projects$Approvalrequests$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Approvalrequests$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the approval request to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Approvalrequests$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Approvalrequests$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter on the type of approval requests to retrieve. Must be one of the
-     * following values: <ol>   <li>[not set]: Requests that are pending or have
-     * active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only
-     * pending requests.</li>   <li>ACTIVE: Only active (i.e. currently
-     * approved) requests.</li>   <li>DISMISSED: Only dismissed (including
-     * expired) requests.</li> </ol>
+     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */
     filter?: string;
     /**
@@ -1941,8 +2000,7 @@ export namespace accessapproval_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The parent resource. This may be "projects/{project_id}",
-     * "folders/{folder_id}", or "organizations/{organization_id}".
+     * The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
      */
     parent?: string;
   }

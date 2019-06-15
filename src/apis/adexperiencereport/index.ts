@@ -17,17 +17,21 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {adexperiencereport_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': adexperiencereport_v1.Adexperiencereport,
+  v1: adexperiencereport_v1.Adexperiencereport,
 };
 
-export function adexperiencereport(version: 'v1'):
-    adexperiencereport_v1.Adexperiencereport;
-export function adexperiencereport(options: adexperiencereport_v1.Options):
-    adexperiencereport_v1.Adexperiencereport;
-export function
-adexperiencereport<T = adexperiencereport_v1.Adexperiencereport>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|adexperiencereport_v1.Options) {
+export function adexperiencereport(
+  version: 'v1'
+): adexperiencereport_v1.Adexperiencereport;
+export function adexperiencereport(
+  options: adexperiencereport_v1.Options
+): adexperiencereport_v1.Adexperiencereport;
+export function adexperiencereport<
+  T = adexperiencereport_v1.Adexperiencereport
+>(
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | adexperiencereport_v1.Options
+) {
   return getAPI<T>('adexperiencereport', versionOrOptions, VERSIONS, this);
 }
 

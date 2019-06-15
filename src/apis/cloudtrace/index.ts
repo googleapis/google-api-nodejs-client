@@ -18,20 +18,24 @@ import {cloudtrace_v1} from './v1';
 import {cloudtrace_v2} from './v2';
 
 export const VERSIONS = {
-  'v1': cloudtrace_v1.Cloudtrace,
-  'v2': cloudtrace_v2.Cloudtrace,
+  v1: cloudtrace_v1.Cloudtrace,
+  v2: cloudtrace_v2.Cloudtrace,
 };
 
 export function cloudtrace(version: 'v1'): cloudtrace_v1.Cloudtrace;
-export function cloudtrace(options: cloudtrace_v1.Options):
-    cloudtrace_v1.Cloudtrace;
+export function cloudtrace(
+  options: cloudtrace_v1.Options
+): cloudtrace_v1.Cloudtrace;
 export function cloudtrace(version: 'v2'): cloudtrace_v2.Cloudtrace;
-export function cloudtrace(options: cloudtrace_v2.Options):
-    cloudtrace_v2.Cloudtrace;
-export function
-cloudtrace<T = cloudtrace_v1.Cloudtrace | cloudtrace_v2.Cloudtrace>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|cloudtrace_v1.Options|'v2'|cloudtrace_v2.Options) {
+export function cloudtrace(
+  options: cloudtrace_v2.Options
+): cloudtrace_v2.Cloudtrace;
+export function cloudtrace<
+  T = cloudtrace_v1.Cloudtrace | cloudtrace_v2.Cloudtrace
+>(
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | cloudtrace_v1.Options | 'v2' | cloudtrace_v2.Options
+) {
   return getAPI<T>('cloudtrace', versionOrOptions, VERSIONS, this);
 }
 

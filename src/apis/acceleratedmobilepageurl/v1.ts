@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +63,7 @@ export namespace acceleratedmobilepageurl_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,9 +75,7 @@ export namespace acceleratedmobilepageurl_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -83,8 +91,7 @@ export namespace acceleratedmobilepageurl_v1 {
   /**
    * Accelerated Mobile Pages (AMP) URL API
    *
-   * Retrieves the list of AMP URLs (and equivalent AMP Cache URLs) for a given
-   * list of public URL(s).
+   * Retrieves the list of AMP URLs (and equivalent AMP Cache URLs) for a given list of public URL(s).
    *
    * @example
    * const {google} = require('googleapis');
@@ -101,7 +108,10 @@ export namespace acceleratedmobilepageurl_v1 {
     ampUrls: Resource$Ampurls;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.ampUrls = new Resource$Ampurls(this.context);
     }
@@ -116,8 +126,7 @@ export namespace acceleratedmobilepageurl_v1 {
      */
     ampUrl?: string;
     /**
-     * The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to
-     * the cached document in the Google AMP Cache.
+     * The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to the cached document in the Google AMP Cache.
      */
     cdnAmpUrl?: string;
     /**
@@ -151,9 +160,7 @@ export namespace acceleratedmobilepageurl_v1 {
      */
     lookupStrategy?: string;
     /**
-     * List of URLs to look up for the paired AMP URLs. The URLs are
-     * case-sensitive. Up to 50 URLs per lookup (see [Usage
-     * Limits](/amp/cache/reference/limits)).
+     * List of URLs to look up for the paired AMP URLs. The URLs are case-sensitive. Up to 50 URLs per lookup (see [Usage Limits](/amp/cache/reference/limits)).
      */
     urls?: string[];
   }
@@ -162,10 +169,7 @@ export namespace acceleratedmobilepageurl_v1 {
    */
   export interface Schema$BatchGetAmpUrlsResponse {
     /**
-     * For each URL in BatchAmpUrlsRequest, the URL response. The response might
-     * not be in the same order as URLs in the batch request. If
-     * BatchAmpUrlsRequest contains duplicate URLs, AmpUrl is generated only
-     * once.
+     * For each URL in BatchAmpUrlsRequest, the URL response. The response might not be in the same order as URLs in the batch request. If BatchAmpUrlsRequest contains duplicate URLs, AmpUrl is generated only once.
      */
     ampUrls?: Schema$AmpUrl[];
     /**
@@ -174,18 +178,15 @@ export namespace acceleratedmobilepageurl_v1 {
     urlErrors?: Schema$AmpUrlError[];
   }
 
-
   export class Resource$Ampurls {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * acceleratedmobilepageurl.ampUrls.batchGet
-     * @desc Returns AMP URL(s) and equivalent [AMP Cache
-     * URL(s)](/amp/cache/overview#amp-cache-url-format).
+     * @desc Returns AMP URL(s) and equivalent [AMP Cache URL(s)](/amp/cache/overview#amp-cache-url-format).
      * @alias acceleratedmobilepageurl.ampUrls.batchGet
      * @memberOf! ()
      *
@@ -196,25 +197,32 @@ export namespace acceleratedmobilepageurl_v1 {
      * @return {object} Request object
      */
     batchGet(
-        params?: Params$Resource$Ampurls$Batchget,
-        options?: MethodOptions): GaxiosPromise<Schema$BatchGetAmpUrlsResponse>;
+      params?: Params$Resource$Ampurls$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchGetAmpUrlsResponse>;
     batchGet(
-        params: Params$Resource$Ampurls$Batchget,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
-        callback: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>): void;
+      params: Params$Resource$Ampurls$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>
+    ): void;
     batchGet(
-        params: Params$Resource$Ampurls$Batchget,
-        callback: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>): void;
-    batchGet(callback: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>):
-        void;
+      params: Params$Resource$Ampurls$Batchget,
+      callback: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>
+    ): void;
     batchGet(
-        paramsOrCallback?: Params$Resource$Ampurls$Batchget|
-        BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
-        callback?: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>):
-        void|GaxiosPromise<Schema$BatchGetAmpUrlsResponse> {
+      callback: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Ampurls$Batchget
+        | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>
+    ): void | GaxiosPromise<Schema$BatchGetAmpUrlsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ampurls$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -230,19 +238,22 @@ export namespace acceleratedmobilepageurl_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://acceleratedmobilepageurl.googleapis.com/';
+        options.rootUrl || 'https://acceleratedmobilepageurl.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/ampUrls:batchGet')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/ampUrls:batchGet').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters, callback);
@@ -256,8 +267,7 @@ export namespace acceleratedmobilepageurl_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

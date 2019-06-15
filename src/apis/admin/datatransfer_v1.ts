@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace admin_datatransfer_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace admin_datatransfer_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -84,7 +93,10 @@ export namespace admin_datatransfer_v1 {
     transfers: Resource$Transfers;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.applications = new Resource$Applications(this.context);
       this.transfers = new Resource$Transfers(this.context);
@@ -112,9 +124,7 @@ export namespace admin_datatransfer_v1 {
      */
     name?: string;
     /**
-     * The list of all possible transfer parameters for this application. These
-     * parameters can be used to select the data of the user in this application
-     * to be transfered.
+     * The list of all possible transfer parameters for this application. These parameters can be used to select the data of the user in this application to be transfered.
      */
     transferParams?: Schema$ApplicationTransferParam[];
   }
@@ -127,8 +137,7 @@ export namespace admin_datatransfer_v1 {
      */
     applicationId?: string;
     /**
-     * The transfer parameters for the application. These parameters are used to
-     * select the data which will get transfered in context of this application.
+     * The transfer parameters for the application. These parameters are used to select the data which will get transfered in context of this application.
      */
     applicationTransferParams?: Schema$ApplicationTransferParam[];
     /**
@@ -141,8 +150,7 @@ export namespace admin_datatransfer_v1 {
    */
   export interface Schema$ApplicationsListResponse {
     /**
-     * List of applications that support data transfer and are also installed
-     * for the customer.
+     * List of applications that support data transfer and are also installed for the customer.
      */
     applications?: Schema$Application[];
     /**
@@ -167,8 +175,7 @@ export namespace admin_datatransfer_v1 {
      */
     key?: string;
     /**
-     * The value of the coressponding transfer parameter. eg: &#39;PRIVATE&#39;
-     * or &#39;SHARED&#39;
+     * The value of the coressponding transfer parameter. eg: &#39;PRIVATE&#39; or &#39;SHARED&#39;
      */
     value?: string[];
   }
@@ -177,11 +184,7 @@ export namespace admin_datatransfer_v1 {
    */
   export interface Schema$DataTransfer {
     /**
-     * List of per application data transfer resources. It contains data
-     * transfer details of the applications associated with this transfer
-     * resource. Note that this list is also used to specify the applications
-     * for which data transfer has to be done at the time of the transfer
-     * resource creation.
+     * List of per application data transfer resources. It contains data transfer details of the applications associated with this transfer resource. Note that this list is also used to specify the applications for which data transfer has to be done at the time of the transfer resource creation.
      */
     applicationDataTransfers?: Schema$ApplicationDataTransfer[];
     /**
@@ -235,18 +238,15 @@ export namespace admin_datatransfer_v1 {
     nextPageToken?: string;
   }
 
-
   export class Resource$Applications {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * datatransfer.applications.get
-     * @desc Retrieves information about an application for the given
-     * application ID.
+     * @desc Retrieves information about an application for the given application ID.
      * @alias datatransfer.applications.get
      * @memberOf! ()
      *
@@ -256,20 +256,29 @@ export namespace admin_datatransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Applications$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Application>;
-    get(params: Params$Resource$Applications$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Application>,
-        callback: BodyResponseCallback<Schema$Application>): void;
-    get(params: Params$Resource$Applications$Get,
-        callback: BodyResponseCallback<Schema$Application>): void;
+    get(
+      params?: Params$Resource$Applications$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Application>;
+    get(
+      params: Params$Resource$Applications$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Application>,
+      callback: BodyResponseCallback<Schema$Application>
+    ): void;
+    get(
+      params: Params$Resource$Applications$Get,
+      callback: BodyResponseCallback<Schema$Application>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Application>): void;
-    get(paramsOrCallback?: Params$Resource$Applications$Get|
-        BodyResponseCallback<Schema$Application>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Application>,
-        callback?: BodyResponseCallback<Schema$Application>):
-        void|GaxiosPromise<Schema$Application> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Applications$Get
+        | BodyResponseCallback<Schema$Application>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Application>,
+      callback?: BodyResponseCallback<Schema$Application>
+    ): void | GaxiosPromise<Schema$Application> {
       let params = (paramsOrCallback || {}) as Params$Resource$Applications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -287,17 +296,18 @@ export namespace admin_datatransfer_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/admin/datatransfer/v1/applications/{applicationId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/admin/datatransfer/v1/applications/{applicationId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Application>(parameters, callback);
@@ -305,7 +315,6 @@ export namespace admin_datatransfer_v1 {
         return createAPIRequest<Schema$Application>(parameters);
       }
     }
-
 
     /**
      * datatransfer.applications.list
@@ -321,26 +330,33 @@ export namespace admin_datatransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Applications$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ApplicationsListResponse>;
     list(
-        params: Params$Resource$Applications$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ApplicationsListResponse>,
-        callback: BodyResponseCallback<Schema$ApplicationsListResponse>): void;
+      params?: Params$Resource$Applications$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApplicationsListResponse>;
     list(
-        params: Params$Resource$Applications$List,
-        callback: BodyResponseCallback<Schema$ApplicationsListResponse>): void;
+      params: Params$Resource$Applications$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApplicationsListResponse>,
+      callback: BodyResponseCallback<Schema$ApplicationsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Applications$List,
+      callback: BodyResponseCallback<Schema$ApplicationsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ApplicationsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Applications$List|
-        BodyResponseCallback<Schema$ApplicationsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ApplicationsListResponse>,
-        callback?: BodyResponseCallback<Schema$ApplicationsListResponse>):
-        void|GaxiosPromise<Schema$ApplicationsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Applications$List;
+      paramsOrCallback?:
+        | Params$Resource$Applications$List
+        | BodyResponseCallback<Schema$ApplicationsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApplicationsListResponse>,
+      callback?: BodyResponseCallback<Schema$ApplicationsListResponse>
+    ): void | GaxiosPromise<Schema$ApplicationsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -357,16 +373,19 @@ export namespace admin_datatransfer_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/admin/datatransfer/v1/applications')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/admin/datatransfer/v1/applications').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ApplicationsListResponse>(parameters, callback);
@@ -380,19 +399,19 @@ export namespace admin_datatransfer_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the application resource to be retrieved.
      */
     applicationId?: string;
   }
-  export interface Params$Resource$Applications$List extends
-      StandardParameters {
+  export interface Params$Resource$Applications$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Immutable ID of the Google Apps account.
@@ -408,13 +427,11 @@ export namespace admin_datatransfer_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Transfers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * datatransfer.transfers.get
@@ -428,20 +445,29 @@ export namespace admin_datatransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Transfers$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DataTransfer>;
-    get(params: Params$Resource$Transfers$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
-        callback: BodyResponseCallback<Schema$DataTransfer>): void;
-    get(params: Params$Resource$Transfers$Get,
-        callback: BodyResponseCallback<Schema$DataTransfer>): void;
+    get(
+      params?: Params$Resource$Transfers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DataTransfer>;
+    get(
+      params: Params$Resource$Transfers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DataTransfer>,
+      callback: BodyResponseCallback<Schema$DataTransfer>
+    ): void;
+    get(
+      params: Params$Resource$Transfers$Get,
+      callback: BodyResponseCallback<Schema$DataTransfer>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DataTransfer>): void;
-    get(paramsOrCallback?: Params$Resource$Transfers$Get|
-        BodyResponseCallback<Schema$DataTransfer>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DataTransfer>,
-        callback?: BodyResponseCallback<Schema$DataTransfer>):
-        void|GaxiosPromise<Schema$DataTransfer> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Transfers$Get
+        | BodyResponseCallback<Schema$DataTransfer>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DataTransfer>,
+      callback?: BodyResponseCallback<Schema$DataTransfer>
+    ): void | GaxiosPromise<Schema$DataTransfer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transfers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -459,17 +485,18 @@ export namespace admin_datatransfer_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/admin/datatransfer/v1/transfers/{dataTransferId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/admin/datatransfer/v1/transfers/{dataTransferId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['dataTransferId'],
         pathParams: ['dataTransferId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DataTransfer>(parameters, callback);
@@ -477,7 +504,6 @@ export namespace admin_datatransfer_v1 {
         return createAPIRequest<Schema$DataTransfer>(parameters);
       }
     }
-
 
     /**
      * datatransfer.transfers.insert
@@ -491,23 +517,29 @@ export namespace admin_datatransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Transfers$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$DataTransfer>;
     insert(
-        params: Params$Resource$Transfers$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
-        callback: BodyResponseCallback<Schema$DataTransfer>): void;
+      params?: Params$Resource$Transfers$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DataTransfer>;
     insert(
-        params: Params$Resource$Transfers$Insert,
-        callback: BodyResponseCallback<Schema$DataTransfer>): void;
+      params: Params$Resource$Transfers$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$DataTransfer>,
+      callback: BodyResponseCallback<Schema$DataTransfer>
+    ): void;
+    insert(
+      params: Params$Resource$Transfers$Insert,
+      callback: BodyResponseCallback<Schema$DataTransfer>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$DataTransfer>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Transfers$Insert|
-        BodyResponseCallback<Schema$DataTransfer>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DataTransfer>,
-        callback?: BodyResponseCallback<Schema$DataTransfer>):
-        void|GaxiosPromise<Schema$DataTransfer> {
+      paramsOrCallback?:
+        | Params$Resource$Transfers$Insert
+        | BodyResponseCallback<Schema$DataTransfer>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DataTransfer>,
+      callback?: BodyResponseCallback<Schema$DataTransfer>
+    ): void | GaxiosPromise<Schema$DataTransfer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transfers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -525,16 +557,19 @@ export namespace admin_datatransfer_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/admin/datatransfer/v1/transfers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/admin/datatransfer/v1/transfers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DataTransfer>(parameters, callback);
@@ -543,11 +578,9 @@ export namespace admin_datatransfer_v1 {
       }
     }
 
-
     /**
      * datatransfer.transfers.list
-     * @desc Lists the transfers for a customer by source user, destination
-     * user, or status.
+     * @desc Lists the transfers for a customer by source user, destination user, or status.
      * @alias datatransfer.transfers.list
      * @memberOf! ()
      *
@@ -562,25 +595,33 @@ export namespace admin_datatransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Transfers$List, options?: MethodOptions):
-        GaxiosPromise<Schema$DataTransfersListResponse>;
     list(
-        params: Params$Resource$Transfers$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DataTransfersListResponse>,
-        callback: BodyResponseCallback<Schema$DataTransfersListResponse>): void;
+      params?: Params$Resource$Transfers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DataTransfersListResponse>;
     list(
-        params: Params$Resource$Transfers$List,
-        callback: BodyResponseCallback<Schema$DataTransfersListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$DataTransfersListResponse>):
-        void;
+      params: Params$Resource$Transfers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DataTransfersListResponse>,
+      callback: BodyResponseCallback<Schema$DataTransfersListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Transfers$List|
-        BodyResponseCallback<Schema$DataTransfersListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DataTransfersListResponse>,
-        callback?: BodyResponseCallback<Schema$DataTransfersListResponse>):
-        void|GaxiosPromise<Schema$DataTransfersListResponse> {
+      params: Params$Resource$Transfers$List,
+      callback: BodyResponseCallback<Schema$DataTransfersListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$DataTransfersListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Transfers$List
+        | BodyResponseCallback<Schema$DataTransfersListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DataTransfersListResponse>,
+      callback?: BodyResponseCallback<Schema$DataTransfersListResponse>
+    ): void | GaxiosPromise<Schema$DataTransfersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transfers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -598,20 +639,25 @@ export namespace admin_datatransfer_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/admin/datatransfer/v1/transfers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/admin/datatransfer/v1/transfers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DataTransfersListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$DataTransfersListResponse>(parameters);
       }
@@ -622,11 +668,10 @@ export namespace admin_datatransfer_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the resource to be retrieved. This is returned in the response from
-     * the insert method.
+     * ID of the resource to be retrieved. This is returned in the response from the insert method.
      */
     dataTransferId?: string;
   }
@@ -634,8 +679,7 @@ export namespace admin_datatransfer_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -646,7 +690,7 @@ export namespace admin_datatransfer_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Immutable ID of the Google Apps account.

@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace discovery_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace discovery_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -66,8 +75,7 @@ export namespace discovery_v1 {
   /**
    * API Discovery Service
    *
-   * Provides information about other Google APIs, such as what APIs are
-   * available, the resource, and method details for each API.
+   * Provides information about other Google APIs, such as what APIs are available, the resource, and method details for each API.
    *
    * @example
    * const {google} = require('googleapis');
@@ -84,7 +92,10 @@ export namespace discovery_v1 {
     apis: Resource$Apis;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.apis = new Resource$Apis(this.context);
     }
@@ -103,7 +114,7 @@ export namespace discovery_v1 {
       discoveryLink?: string;
       discoveryRestUrl?: string;
       documentationLink?: string;
-      icons?: {x16?: string; x32?: string;};
+      icons?: {x16?: string; x32?: string};
       id?: string;
       kind?: string;
       labels?: string[];
@@ -119,19 +130,17 @@ export namespace discovery_v1 {
   }
   export interface Schema$JsonSchema {
     /**
-     * A reference to another schema. The value of this property is the
-     * &quot;id&quot; of another schema.
+     * A reference to another schema. The value of this property is the &quot;id&quot; of another schema.
      */
     $ref?: string;
     /**
-     * If this is a schema for an object, this property is the schema for any
-     * additional properties with dynamic keys on this object.
+     * If this is a schema for an object, this property is the schema for any additional properties with dynamic keys on this object.
      */
     additionalProperties?: Schema$JsonSchema;
     /**
      * Additional information about this property.
      */
-    annotations?: {required?: string[];};
+    annotations?: {required?: string[]};
     /**
      * The default value of this property (if one exists).
      */
@@ -145,14 +154,11 @@ export namespace discovery_v1 {
      */
     enum?: string[];
     /**
-     * The descriptions for the enums. Each position maps to the corresponding
-     * value in the &quot;enum&quot; array.
+     * The descriptions for the enums. Each position maps to the corresponding value in the &quot;enum&quot; array.
      */
     enumDescriptions?: string[];
     /**
-     * An additional regular expression or key that helps constrain the value.
-     * For more details see:
-     * http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.23
+     * An additional regular expression or key that helps constrain the value. For more details see: http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.23
      */
     format?: string;
     /**
@@ -160,8 +166,7 @@ export namespace discovery_v1 {
      */
     id?: string;
     /**
-     * If this is a schema for an array, this property is the schema for each
-     * element in the array.
+     * If this is a schema for an array, this property is the schema for each element in the array.
      */
     items?: Schema$JsonSchema;
     /**
@@ -177,20 +182,15 @@ export namespace discovery_v1 {
      */
     minimum?: string;
     /**
-     * The regular expression this parameter must conform to. Uses Java 6 regex
-     * format:
-     * http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html
+     * The regular expression this parameter must conform to. Uses Java 6 regex format: http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html
      */
     pattern?: string;
     /**
-     * If this is a schema for an object, list the schema for each property of
-     * this object.
+     * If this is a schema for an object, list the schema for each property of this object.
      */
-    properties?: {[key: string]: Schema$JsonSchema;};
+    properties?: {[key: string]: Schema$JsonSchema};
     /**
-     * The value is read-only, generated by the service. The value cannot be
-     * modified by the client. If the value is included in a POST, PUT, or PATCH
-     * request, it is ignored by the service.
+     * The value is read-only, generated by the service. The value cannot be modified by the client. If the value is included in a POST, PUT, or PATCH request, it is ignored by the service.
      */
     readOnly?: boolean;
     /**
@@ -202,25 +202,22 @@ export namespace discovery_v1 {
      */
     required?: boolean;
     /**
-     * The value type for this schema. A list of values can be found here:
-     * http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.1
+     * The value type for this schema. A list of values can be found here: http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.1
      */
     type?: string;
     /**
-     * In a variant data type, the value of one property is used to determine
-     * how to interpret the entire entity. Its value must exist in a map of
-     * descriminant values to schema names.
+     * In a variant data type, the value of one property is used to determine how to interpret the entire entity. Its value must exist in a map of descriminant values to schema names.
      */
     variant?: {
       discriminant?: string;
-      map?: Array<{$ref?: string; type_value?: string;}>;
+      map?: Array<{$ref?: string; type_value?: string}>;
     };
   }
   export interface Schema$RestDescription {
     /**
      * Authentication information.
      */
-    auth?: {oauth2?: {scopes?: {[key: string]: {description?: string;};};};};
+    auth?: {oauth2?: {scopes?: {[key: string]: {description?: string}}}};
     /**
      * [DEPRECATED] The base path for REST requests.
      */
@@ -234,8 +231,7 @@ export namespace discovery_v1 {
      */
     batchPath?: string;
     /**
-     * Indicates how the API name should be capitalized and split into various
-     * parts. Useful for generating pretty class names.
+     * Indicates how the API name should be capitalized and split into various parts. Useful for generating pretty class names.
      */
     canonicalName?: string;
     /**
@@ -265,7 +261,7 @@ export namespace discovery_v1 {
     /**
      * Links to 16x16 and 32x32 icons representing the API.
      */
-    icons?: {x16?: string; x32?: string;};
+    icons?: {x16?: string; x32?: string};
     /**
      * The ID of this API.
      */
@@ -281,15 +277,13 @@ export namespace discovery_v1 {
     /**
      * API-level methods for this API.
      */
-    methods?: {[key: string]: Schema$RestMethod;};
+    methods?: {[key: string]: Schema$RestMethod};
     /**
      * The name of this API.
      */
     name?: string;
     /**
-     * The domain of the owner of this API. Together with the ownerName and a
-     * packagePath values, this can be used to generate a library for this API
-     * which would have a unique fully qualified name.
+     * The domain of the owner of this API. Together with the ownerName and a packagePath values, this can be used to generate a library for this API which would have a unique fully qualified name.
      */
     ownerDomain?: string;
     /**
@@ -303,7 +297,7 @@ export namespace discovery_v1 {
     /**
      * Common parameters that apply across all apis.
      */
-    parameters?: {[key: string]: Schema$JsonSchema;};
+    parameters?: {[key: string]: Schema$JsonSchema};
     /**
      * The protocol described by this document.
      */
@@ -311,7 +305,7 @@ export namespace discovery_v1 {
     /**
      * The resources in this API.
      */
-    resources?: {[key: string]: Schema$RestResource;};
+    resources?: {[key: string]: Schema$RestResource};
     /**
      * The version of this API.
      */
@@ -323,7 +317,7 @@ export namespace discovery_v1 {
     /**
      * The schemas for this API.
      */
-    schemas?: {[key: string]: Schema$JsonSchema;};
+    schemas?: {[key: string]: Schema$JsonSchema};
     /**
      * The base path for all REST requests.
      */
@@ -344,8 +338,7 @@ export namespace discovery_v1 {
      */
     description?: string;
     /**
-     * Whether this method requires an ETag to be specified. The ETag is sent as
-     * an HTTP If-Match or If-None-Match header.
+     * Whether this method requires an ETag to be specified. The ETag is sent as an HTTP If-Match or If-None-Match header.
      */
     etagRequired?: boolean;
     /**
@@ -353,8 +346,7 @@ export namespace discovery_v1 {
      */
     httpMethod?: string;
     /**
-     * A unique ID for this method. This property can be used to match methods
-     * between different versions of Discovery.
+     * A unique ID for this method. This property can be used to match methods between different versions of Discovery.
      */
     id?: string;
     /**
@@ -364,33 +356,30 @@ export namespace discovery_v1 {
       accept?: string[];
       maxSize?: string;
       protocols?: {
-        resumable?: {multipart?: boolean; path?: string;};
-        simple?: {multipart?: boolean; path?: string;};
+        resumable?: {multipart?: boolean; path?: string};
+        simple?: {multipart?: boolean; path?: string};
       };
     };
     /**
-     * Ordered list of required parameters, serves as a hint to clients on how
-     * to structure their method signatures. The array is ordered such that the
-     * &quot;most-significant&quot; parameter appears first.
+     * Ordered list of required parameters, serves as a hint to clients on how to structure their method signatures. The array is ordered such that the &quot;most-significant&quot; parameter appears first.
      */
     parameterOrder?: string[];
     /**
      * Details for all parameters in this method.
      */
-    parameters?: {[key: string]: Schema$JsonSchema;};
+    parameters?: {[key: string]: Schema$JsonSchema};
     /**
-     * The URI path of this REST method. Should be used in conjunction with the
-     * basePath property at the api-level.
+     * The URI path of this REST method. Should be used in conjunction with the basePath property at the api-level.
      */
     path?: string;
     /**
      * The schema for the request.
      */
-    request?: {$ref?: string; parameterName?: string;};
+    request?: {$ref?: string; parameterName?: string};
     /**
      * The schema for the response.
      */
-    response?: {$ref?: string;};
+    response?: {$ref?: string};
     /**
      * OAuth 2.0 scopes applicable to this method.
      */
@@ -408,9 +397,7 @@ export namespace discovery_v1 {
      */
     supportsSubscription?: boolean;
     /**
-     * Indicates that downloads from this method should use the download service
-     * URL (i.e. &quot;/download&quot;). Only applies if the method supports
-     * media download.
+     * Indicates that downloads from this method should use the download service URL (i.e. &quot;/download&quot;). Only applies if the method supports media download.
      */
     useMediaDownloadService?: boolean;
   }
@@ -418,20 +405,18 @@ export namespace discovery_v1 {
     /**
      * Methods on this resource.
      */
-    methods?: {[key: string]: Schema$RestMethod;};
+    methods?: {[key: string]: Schema$RestMethod};
     /**
      * Sub-resources on this resource.
      */
-    resources?: {[key: string]: Schema$RestResource;};
+    resources?: {[key: string]: Schema$RestResource};
   }
-
 
   export class Resource$Apis {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * discovery.apis.getRest
@@ -446,23 +431,29 @@ export namespace discovery_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getRest(params?: Params$Resource$Apis$Getrest, options?: MethodOptions):
-        GaxiosPromise<Schema$RestDescription>;
     getRest(
-        params: Params$Resource$Apis$Getrest,
-        options: MethodOptions|BodyResponseCallback<Schema$RestDescription>,
-        callback: BodyResponseCallback<Schema$RestDescription>): void;
+      params?: Params$Resource$Apis$Getrest,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RestDescription>;
     getRest(
-        params: Params$Resource$Apis$Getrest,
-        callback: BodyResponseCallback<Schema$RestDescription>): void;
+      params: Params$Resource$Apis$Getrest,
+      options: MethodOptions | BodyResponseCallback<Schema$RestDescription>,
+      callback: BodyResponseCallback<Schema$RestDescription>
+    ): void;
+    getRest(
+      params: Params$Resource$Apis$Getrest,
+      callback: BodyResponseCallback<Schema$RestDescription>
+    ): void;
     getRest(callback: BodyResponseCallback<Schema$RestDescription>): void;
     getRest(
-        paramsOrCallback?: Params$Resource$Apis$Getrest|
-        BodyResponseCallback<Schema$RestDescription>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RestDescription>,
-        callback?: BodyResponseCallback<Schema$RestDescription>):
-        void|GaxiosPromise<Schema$RestDescription> {
+      paramsOrCallback?:
+        | Params$Resource$Apis$Getrest
+        | BodyResponseCallback<Schema$RestDescription>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RestDescription>,
+      callback?: BodyResponseCallback<Schema$RestDescription>
+    ): void | GaxiosPromise<Schema$RestDescription> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apis$Getrest;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -480,16 +471,19 @@ export namespace discovery_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/discovery/v1/apis/{api}/{version}/rest')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/discovery/v1/apis/{api}/{version}/rest').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['api', 'version'],
         pathParams: ['api', 'version'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RestDescription>(parameters, callback);
@@ -497,7 +491,6 @@ export namespace discovery_v1 {
         return createAPIRequest<Schema$RestDescription>(parameters);
       }
     }
-
 
     /**
      * discovery.apis.list
@@ -512,23 +505,29 @@ export namespace discovery_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Apis$List, options?: MethodOptions):
-        GaxiosPromise<Schema$DirectoryList>;
     list(
-        params: Params$Resource$Apis$List,
-        options: MethodOptions|BodyResponseCallback<Schema$DirectoryList>,
-        callback: BodyResponseCallback<Schema$DirectoryList>): void;
+      params?: Params$Resource$Apis$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DirectoryList>;
     list(
-        params: Params$Resource$Apis$List,
-        callback: BodyResponseCallback<Schema$DirectoryList>): void;
+      params: Params$Resource$Apis$List,
+      options: MethodOptions | BodyResponseCallback<Schema$DirectoryList>,
+      callback: BodyResponseCallback<Schema$DirectoryList>
+    ): void;
+    list(
+      params: Params$Resource$Apis$List,
+      callback: BodyResponseCallback<Schema$DirectoryList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$DirectoryList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Apis$List|
-        BodyResponseCallback<Schema$DirectoryList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DirectoryList>,
-        callback?: BodyResponseCallback<Schema$DirectoryList>):
-        void|GaxiosPromise<Schema$DirectoryList> {
+      paramsOrCallback?:
+        | Params$Resource$Apis$List
+        | BodyResponseCallback<Schema$DirectoryList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DirectoryList>,
+      callback?: BodyResponseCallback<Schema$DirectoryList>
+    ): void | GaxiosPromise<Schema$DirectoryList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apis$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -546,16 +545,16 @@ export namespace discovery_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/discovery/v1/apis')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/discovery/v1/apis').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DirectoryList>(parameters, callback);
@@ -569,7 +568,7 @@ export namespace discovery_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the API.
@@ -584,7 +583,7 @@ export namespace discovery_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Only include APIs with the given name.

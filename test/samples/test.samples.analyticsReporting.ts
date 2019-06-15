@@ -18,7 +18,7 @@ nock.disableNetConnect();
 
 // tslint:disable: no-any
 const samples: any = {
-  batchGet: require('../../../samples/analyticsReporting/batchGet')
+  batchGet: require('../../../samples/analyticsReporting/batchGet'),
 };
 
 for (const p in samples) {
@@ -35,7 +35,9 @@ describe('analyticsReporting samples', () => {
   });
 
   it('should batchGet', async () => {
-    const scope = nock(baseUrl).post(`/v4/reports:batchGet`).reply(200, {});
+    const scope = nock(baseUrl)
+      .post(`/v4/reports:batchGet`)
+      .reply(200, {});
     const data = await samples.batchGet.runSample();
     assert(data);
     scope.done();

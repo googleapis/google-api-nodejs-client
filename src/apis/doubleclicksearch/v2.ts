@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace doubleclicksearch_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace doubleclicksearch_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -66,8 +75,7 @@ export namespace doubleclicksearch_v2 {
   /**
    * DoubleClick Search API
    *
-   * Reports and modifies your advertising data in DoubleClick Search (for
-   * example, campaigns, ad groups, keywords, and conversions).
+   * Reports and modifies your advertising data in DoubleClick Search (for example, campaigns, ad groups, keywords, and conversions).
    *
    * @example
    * const {google} = require('googleapis');
@@ -86,7 +94,10 @@ export namespace doubleclicksearch_v2 {
     savedColumns: Resource$Savedcolumns;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.conversion = new Resource$Conversion(this.context);
       this.reports = new Resource$Reports(this.context);
@@ -107,23 +118,19 @@ export namespace doubleclicksearch_v2 {
      */
     agencyId?: string;
     /**
-     * The time by which all conversions have been uploaded, in epoch millis
-     * UTC.
+     * The time by which all conversions have been uploaded, in epoch millis UTC.
      */
     availabilityTimestamp?: string;
     /**
-     * The numeric segmentation identifier (for example, DoubleClick Search
-     * Floodlight activity ID).
+     * The numeric segmentation identifier (for example, DoubleClick Search Floodlight activity ID).
      */
     segmentationId?: string;
     /**
-     * The friendly segmentation identifier (for example, DoubleClick Search
-     * Floodlight activity name).
+     * The friendly segmentation identifier (for example, DoubleClick Search Floodlight activity name).
      */
     segmentationName?: string;
     /**
-     * The segmentation type that this availability is for (its default value is
-     * FLOODLIGHT).
+     * The segmentation type that this availability is for (its default value is FLOODLIGHT).
      */
     segmentationType?: string;
   }
@@ -148,8 +155,7 @@ export namespace doubleclicksearch_v2 {
      */
     agencyId?: string;
     /**
-     * Available to advertisers only after contacting DoubleClick Search
-     * customer support.
+     * Available to advertisers only after contacting DoubleClick Search customer support.
      */
     attributionModel?: string;
     /**
@@ -157,9 +163,7 @@ export namespace doubleclicksearch_v2 {
      */
     campaignId?: string;
     /**
-     * Sales channel for the product. Acceptable values are:   -
-     * &quot;local&quot;: a physical store  - &quot;online&quot;: an online
-     * store
+     * Sales channel for the product. Acceptable values are:   - &quot;local&quot;: a physical store  - &quot;online&quot;: an online store
      */
     channel?: string;
     /**
@@ -167,12 +171,7 @@ export namespace doubleclicksearch_v2 {
      */
     clickId?: string;
     /**
-     * For offline conversions, advertisers provide this ID. Advertisers can
-     * specify any ID that is meaningful to them. Each conversion in a request
-     * must specify a unique ID, and the combination of ID and timestamp must be
-     * unique amongst all conversions within the advertiser. For online
-     * conversions, DS copies the dsConversionId or floodlightOrderId into this
-     * property depending on the advertiser&#39;s Floodlight instructions.
+     * For offline conversions, advertisers provide this ID. Advertisers can specify any ID that is meaningful to them. Each conversion in a request must specify a unique ID, and the combination of ID and timestamp must be unique amongst all conversions within the advertiser. For online conversions, DS copies the dsConversionId or floodlightOrderId into this property depending on the advertiser&#39;s Floodlight instructions.
      */
     conversionId?: string;
     /**
@@ -184,8 +183,7 @@ export namespace doubleclicksearch_v2 {
      */
     conversionTimestamp?: string;
     /**
-     * Available to advertisers only after contacting DoubleClick Search
-     * customer support.
+     * Available to advertisers only after contacting DoubleClick Search customer support.
      */
     countMillis?: string;
     /**
@@ -193,13 +191,11 @@ export namespace doubleclicksearch_v2 {
      */
     criterionId?: string;
     /**
-     * The currency code for the conversion&#39;s revenue. Should be in ISO 4217
-     * alphabetic (3-char) format.
+     * The currency code for the conversion&#39;s revenue. Should be in ISO 4217 alphabetic (3-char) format.
      */
     currencyCode?: string;
     /**
-     * Custom dimensions for the conversion, which can be used to filter data in
-     * a report.
+     * Custom dimensions for the conversion, which can be used to filter data in a report.
      */
     customDimension?: Schema$CustomDimension[];
     /**
@@ -223,13 +219,11 @@ export namespace doubleclicksearch_v2 {
      */
     floodlightOrderId?: string;
     /**
-     * ID that DS generates and uses to uniquely identify the inventory account
-     * that contains the product.
+     * ID that DS generates and uses to uniquely identify the inventory account that contains the product.
      */
     inventoryAccountId?: string;
     /**
-     * The country registered for the Merchant Center feed that contains the
-     * product. Use an ISO 3166 code to specify a country.
+     * The country registered for the Merchant Center feed that contains the product. Use an ISO 3166 code to specify a country.
      */
     productCountry?: string;
     /**
@@ -241,8 +235,7 @@ export namespace doubleclicksearch_v2 {
      */
     productId?: string;
     /**
-     * The language registered for the Merchant Center feed that contains the
-     * product. Use an ISO 639 code to specify a language.
+     * The language registered for the Merchant Center feed that contains the product. Use an ISO 639 code to specify a language.
      */
     productLanguage?: string;
     /**
@@ -250,20 +243,15 @@ export namespace doubleclicksearch_v2 {
      */
     quantityMillis?: string;
     /**
-     * The revenue amount of this TRANSACTION conversion, in micros (value
-     * multiplied by 1000000, no decimal). For example, to specify a revenue
-     * value of &quot;10&quot; enter &quot;10000000&quot; (10 million) in your
-     * request.
+     * The revenue amount of this TRANSACTION conversion, in micros (value multiplied by 1000000, no decimal). For example, to specify a revenue value of &quot;10&quot; enter &quot;10000000&quot; (10 million) in your request.
      */
     revenueMicros?: string;
     /**
-     * The numeric segmentation identifier (for example, DoubleClick Search
-     * Floodlight activity ID).
+     * The numeric segmentation identifier (for example, DoubleClick Search Floodlight activity ID).
      */
     segmentationId?: string;
     /**
-     * The friendly segmentation identifier (for example, DoubleClick Search
-     * Floodlight activity name).
+     * The friendly segmentation identifier (for example, DoubleClick Search Floodlight activity name).
      */
     segmentationName?: string;
     /**
@@ -271,21 +259,15 @@ export namespace doubleclicksearch_v2 {
      */
     segmentationType?: string;
     /**
-     * The state of the conversion, that is, either ACTIVE or REMOVED. Note:
-     * state DELETED is deprecated.
+     * The state of the conversion, that is, either ACTIVE or REMOVED. Note: state DELETED is deprecated.
      */
     state?: string;
     /**
-     * The ID of the local store for which the product was advertised.
-     * Applicable only when the channel is &quot;local&quot;.
+     * The ID of the local store for which the product was advertised. Applicable only when the channel is &quot;local&quot;.
      */
     storeId?: string;
     /**
-     * The type of the conversion, that is, either ACTION or TRANSACTION. An
-     * ACTION conversion is an action by the user that has no monetarily
-     * quantifiable value, while a TRANSACTION conversion is an action that does
-     * have a monetarily quantifiable value. Examples are email list signups
-     * (ACTION) versus ecommerce purchases (TRANSACTION).
+     * The type of the conversion, that is, either ACTION or TRANSACTION. An ACTION conversion is an action by the user that has no monetarily quantifiable value, while a TRANSACTION conversion is an action that does have a monetarily quantifiable value. Examples are email list signups (ACTION) versus ecommerce purchases (TRANSACTION).
      */
     type?: string;
   }
@@ -298,8 +280,7 @@ export namespace doubleclicksearch_v2 {
      */
     conversion?: Schema$Conversion[];
     /**
-     * Identifies this as a ConversionList resource. Value: the fixed string
-     * doubleclicksearch#conversionList.
+     * Identifies this as a ConversionList resource. Value: the fixed string doubleclicksearch#conversionList.
      */
     kind?: string;
   }
@@ -330,33 +311,27 @@ export namespace doubleclicksearch_v2 {
     value?: number;
   }
   /**
-   * A DoubleClick Search report. This object contains the report request, some
-   * report metadata such as currency code, and the generated report rows or
-   * report files.
+   * A DoubleClick Search report. This object contains the report request, some report metadata such as currency code, and the generated report rows or report files.
    */
   export interface Schema$Report {
     /**
-     * Asynchronous report only. Contains a list of generated report files once
-     * the report has succesfully completed.
+     * Asynchronous report only. Contains a list of generated report files once the report has succesfully completed.
      */
-    files?: Array<{byteCount?: string; url?: string;}>;
+    files?: Array<{byteCount?: string; url?: string}>;
     /**
      * Asynchronous report only. Id of the report.
      */
     id?: string;
     /**
-     * Asynchronous report only. True if and only if the report has completed
-     * successfully and the report files are ready to be downloaded.
+     * Asynchronous report only. True if and only if the report has completed successfully and the report files are ready to be downloaded.
      */
     isReportReady?: boolean;
     /**
-     * Identifies this as a Report resource. Value: the fixed string
-     * doubleclicksearch#report.
+     * Identifies this as a Report resource. Value: the fixed string doubleclicksearch#report.
      */
     kind?: string;
     /**
-     * The request that created the report. Optional fields not specified in the
-     * original request are filled with default values.
+     * The request that created the report. Optional fields not specified in the original request are filled with default values.
      */
     request?: Schema$ReportRequest;
     /**
@@ -368,15 +343,11 @@ export namespace doubleclicksearch_v2 {
      */
     rows?: Schema$ReportRow[];
     /**
-     * The currency code of all monetary values produced in the report,
-     * including values that are set by users (e.g., keyword bid settings) and
-     * metrics (e.g., cost and revenue). The currency code of a report is
-     * determined by the statisticsCurrency field of the report request.
+     * The currency code of all monetary values produced in the report, including values that are set by users (e.g., keyword bid settings) and metrics (e.g., cost and revenue). The currency code of a report is determined by the statisticsCurrency field of the report request.
      */
     statisticsCurrencyCode?: string;
     /**
-     * If all statistics of the report are sourced from the same time zone, this
-     * would be it. Otherwise the field is unset.
+     * If all statistics of the report are sourced from the same time zone, this would be it. Otherwise the field is unset.
      */
     statisticsTimeZone?: string;
   }
@@ -389,62 +360,39 @@ export namespace doubleclicksearch_v2 {
      */
     columnName?: string;
     /**
-     * Segments a report by a custom dimension. The report must be scoped to an
-     * advertiser or lower, and the custom dimension must already be set up in
-     * DoubleClick Search. The custom dimension name, which appears in
-     * DoubleClick Search, is case sensitive. If used in a conversion report,
-     * returns the value of the specified custom dimension for the given
-     * conversion, if set. This column does not segment the conversion report.
+     * Segments a report by a custom dimension. The report must be scoped to an advertiser or lower, and the custom dimension must already be set up in DoubleClick Search. The custom dimension name, which appears in DoubleClick Search, is case sensitive. If used in a conversion report, returns the value of the specified custom dimension for the given conversion, if set. This column does not segment the conversion report.
      */
     customDimensionName?: string;
     /**
-     * Name of a custom metric to include in the report. The report must be
-     * scoped to an advertiser or lower, and the custom metric must already be
-     * set up in DoubleClick Search. The custom metric name, which appears in
-     * DoubleClick Search, is case sensitive.
+     * Name of a custom metric to include in the report. The report must be scoped to an advertiser or lower, and the custom metric must already be set up in DoubleClick Search. The custom metric name, which appears in DoubleClick Search, is case sensitive.
      */
     customMetricName?: string;
     /**
-     * Inclusive day in YYYY-MM-DD format. When provided, this overrides the
-     * overall time range of the report for this column only. Must be provided
-     * together with startDate.
+     * Inclusive day in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with startDate.
      */
     endDate?: string;
     /**
-     * Synchronous report only. Set to true to group by this column. Defaults to
-     * false.
+     * Synchronous report only. Set to true to group by this column. Defaults to false.
      */
     groupByColumn?: boolean;
     /**
-     * Text used to identify this column in the report output; defaults to
-     * columnName or savedColumnName when not specified. This can be used to
-     * prevent collisions between DoubleClick Search columns and saved columns
-     * with the same name.
+     * Text used to identify this column in the report output; defaults to columnName or savedColumnName when not specified. This can be used to prevent collisions between DoubleClick Search columns and saved columns with the same name.
      */
     headerText?: string;
     /**
-     * The platform that is used to provide data for the custom dimension.
-     * Acceptable values are &quot;floodlight&quot;.
+     * The platform that is used to provide data for the custom dimension. Acceptable values are &quot;floodlight&quot;.
      */
     platformSource?: string;
     /**
-     * Returns metrics only for a specific type of product activity. Accepted
-     * values are:   - &quot;sold&quot;: returns metrics only for products that
-     * were sold  - &quot;advertised&quot;: returns metrics only for products
-     * that were advertised in a Shopping campaign, and that might or might not
-     * have been sold
+     * Returns metrics only for a specific type of product activity. Accepted values are:   - &quot;sold&quot;: returns metrics only for products that were sold  - &quot;advertised&quot;: returns metrics only for products that were advertised in a Shopping campaign, and that might or might not have been sold
      */
     productReportPerspective?: string;
     /**
-     * Name of a saved column to include in the report. The report must be
-     * scoped at advertiser or lower, and this saved column must already be
-     * created in the DoubleClick Search UI.
+     * Name of a saved column to include in the report. The report must be scoped at advertiser or lower, and this saved column must already be created in the DoubleClick Search UI.
      */
     savedColumnName?: string;
     /**
-     * Inclusive date in YYYY-MM-DD format. When provided, this overrides the
-     * overall time range of the report for this column only. Must be provided
-     * together with endDate.
+     * Inclusive date in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with endDate.
      */
     startDate?: string;
   }
@@ -453,53 +401,39 @@ export namespace doubleclicksearch_v2 {
    */
   export interface Schema$ReportRequest {
     /**
-     * The columns to include in the report. This includes both DoubleClick
-     * Search columns and saved columns. For DoubleClick Search columns, only
-     * the columnName parameter is required. For saved columns only the
-     * savedColumnName parameter is required. Both columnName and
-     * savedColumnName cannot be set in the same stanza. The maximum number of
-     * columns per request is 300.
+     * The columns to include in the report. This includes both DoubleClick Search columns and saved columns. For DoubleClick Search columns, only the columnName parameter is required. For saved columns only the savedColumnName parameter is required. Both columnName and savedColumnName cannot be set in the same stanza. The maximum number of columns per request is 300.
      */
     columns?: Schema$ReportApiColumnSpec[];
     /**
-     * Format that the report should be returned in. Currently csv or tsv is
-     * supported.
+     * Format that the report should be returned in. Currently csv or tsv is supported.
      */
     downloadFormat?: string;
     /**
-     * A list of filters to be applied to the report. The maximum number of
-     * filters per request is 300.
+     * A list of filters to be applied to the report. The maximum number of filters per request is 300.
      */
     filters?: Array<{
-      column?: Schema$ReportApiColumnSpec; operator?: string;
+      column?: Schema$ReportApiColumnSpec;
+      operator?: string;
       values?: any[];
     }>;
     /**
-     * Determines if removed entities should be included in the report. Defaults
-     * to false. Deprecated, please use includeRemovedEntities instead.
+     * Determines if removed entities should be included in the report. Defaults to false. Deprecated, please use includeRemovedEntities instead.
      */
     includeDeletedEntities?: boolean;
     /**
-     * Determines if removed entities should be included in the report. Defaults
-     * to false.
+     * Determines if removed entities should be included in the report. Defaults to false.
      */
     includeRemovedEntities?: boolean;
     /**
-     * Asynchronous report only. The maximum number of rows per report file. A
-     * large report is split into many files based on this field. Acceptable
-     * values are 1000000 to 100000000, inclusive.
+     * Asynchronous report only. The maximum number of rows per report file. A large report is split into many files based on this field. Acceptable values are 1000000 to 100000000, inclusive.
      */
     maxRowsPerFile?: number;
     /**
-     * Synchronous report only. A list of columns and directions defining
-     * sorting to be performed on the report rows. The maximum number of
-     * orderings per request is 300.
+     * Synchronous report only. A list of columns and directions defining sorting to be performed on the report rows. The maximum number of orderings per request is 300.
      */
-    orderBy?: Array<{column?: Schema$ReportApiColumnSpec; sortOrder?: string;}>;
+    orderBy?: Array<{column?: Schema$ReportApiColumnSpec; sortOrder?: string}>;
     /**
-     * The reportScope is a set of IDs that are used to determine which subset
-     * of entities will be returned in the report. The full lineage of IDs from
-     * the lowest scoped level desired up through agency is required.
+     * The reportScope is a set of IDs that are used to determine which subset of entities will be returned in the report. The full lineage of IDs from the lowest scoped level desired up through agency is required.
      */
     reportScope?: {
       adGroupId?: string;
@@ -511,34 +445,23 @@ export namespace doubleclicksearch_v2 {
       keywordId?: string;
     };
     /**
-     * Determines the type of rows that are returned in the report. For example,
-     * if you specify reportType: keyword, each row in the report will contain
-     * data about a keyword. See the Types of Reports reference for the columns
-     * that are available for each type.
+     * Determines the type of rows that are returned in the report. For example, if you specify reportType: keyword, each row in the report will contain data about a keyword. See the Types of Reports reference for the columns that are available for each type.
      */
     reportType?: string;
     /**
-     * Synchronous report only. The maximum number of rows to return; additional
-     * rows are dropped. Acceptable values are 0 to 10000, inclusive. Defaults
-     * to 10000.
+     * Synchronous report only. The maximum number of rows to return; additional rows are dropped. Acceptable values are 0 to 10000, inclusive. Defaults to 10000.
      */
     rowCount?: number;
     /**
-     * Synchronous report only. Zero-based index of the first row to return.
-     * Acceptable values are 0 to 50000, inclusive. Defaults to 0.
+     * Synchronous report only. Zero-based index of the first row to return. Acceptable values are 0 to 50000, inclusive. Defaults to 0.
      */
     startRow?: number;
     /**
-     * Specifies the currency in which monetary will be returned. Possible
-     * values are: usd, agency (valid if the report is scoped to agency or
-     * lower), advertiser (valid if the report is scoped to * advertiser or
-     * lower), or account (valid if the report is scoped to engine account or
-     * lower).
+     * Specifies the currency in which monetary will be returned. Possible values are: usd, agency (valid if the report is scoped to agency or lower), advertiser (valid if the report is scoped to * advertiser or lower), or account (valid if the report is scoped to engine account or lower).
      */
     statisticsCurrency?: string;
     /**
-     * If metrics are requested in a report, this argument will be used to
-     * restrict the metrics to a specific time range.
+     * If metrics are requested in a report, this argument will be used to restrict the metrics to a specific time range.
      */
     timeRange?: {
       changedAttributesSinceTimestamp?: string;
@@ -547,8 +470,7 @@ export namespace doubleclicksearch_v2 {
       startDate?: string;
     };
     /**
-     * If true, the report would only be created if all the requested stat data
-     * are sourced from a single timezone. Defaults to false.
+     * If true, the report would only be created if all the requested stat data are sourced from a single timezone. Defaults to false.
      */
     verifySingleTimeZone?: boolean;
   }
@@ -561,8 +483,7 @@ export namespace doubleclicksearch_v2 {
    */
   export interface Schema$SavedColumn {
     /**
-     * Identifies this as a SavedColumn resource. Value: the fixed string
-     * doubleclicksearch#savedColumn.
+     * Identifies this as a SavedColumn resource. Value: the fixed string doubleclicksearch#savedColumn.
      */
     kind?: string;
     /**
@@ -575,10 +496,7 @@ export namespace doubleclicksearch_v2 {
     type?: string;
   }
   /**
-   * A list of saved columns. Advertisers create saved columns to report on
-   * Floodlight activities, Google Analytics goals, or custom KPIs. To request
-   * reports with saved columns, you&#39;ll need the saved column names that are
-   * available from this list.
+   * A list of saved columns. Advertisers create saved columns to report on Floodlight activities, Google Analytics goals, or custom KPIs. To request reports with saved columns, you&#39;ll need the saved column names that are available from this list.
    */
   export interface Schema$SavedColumnList {
     /**
@@ -586,8 +504,7 @@ export namespace doubleclicksearch_v2 {
      */
     items?: Schema$SavedColumn[];
     /**
-     * Identifies this as a SavedColumnList resource. Value: the fixed string
-     * doubleclicksearch#savedColumnList.
+     * Identifies this as a SavedColumnList resource. Value: the fixed string doubleclicksearch#savedColumnList.
      */
     kind?: string;
   }
@@ -610,18 +527,15 @@ export namespace doubleclicksearch_v2 {
     availabilities?: Schema$Availability[];
   }
 
-
   export class Resource$Conversion {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * doubleclicksearch.conversion.get
-     * @desc Retrieves a list of conversions from a DoubleClick Search engine
-     * account.
+     * @desc Retrieves a list of conversions from a DoubleClick Search engine account.
      * @alias doubleclicksearch.conversion.get
      * @memberOf! ()
      *
@@ -641,20 +555,29 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Conversion$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ConversionList>;
-    get(params: Params$Resource$Conversion$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
-    get(params: Params$Resource$Conversion$Get,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
+    get(
+      params?: Params$Resource$Conversion$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConversionList>;
+    get(
+      params: Params$Resource$Conversion$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ConversionList>,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
+    get(
+      params: Params$Resource$Conversion$Get,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ConversionList>): void;
-    get(paramsOrCallback?: Params$Resource$Conversion$Get|
-        BodyResponseCallback<Schema$ConversionList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ConversionList>,
-        callback?: BodyResponseCallback<Schema$ConversionList>):
-        void|GaxiosPromise<Schema$ConversionList> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Conversion$Get
+        | BodyResponseCallback<Schema$ConversionList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>
+    ): void | GaxiosPromise<Schema$ConversionList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Conversion$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -672,21 +595,27 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [
-          'agencyId', 'advertiserId', 'engineAccountId', 'endDate', 'rowCount',
-          'startDate', 'startRow'
+          'agencyId',
+          'advertiserId',
+          'engineAccountId',
+          'endDate',
+          'rowCount',
+          'startDate',
+          'startRow',
         ],
         pathParams: ['advertiserId', 'agencyId', 'engineAccountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -694,7 +623,6 @@ export namespace doubleclicksearch_v2 {
         return createAPIRequest<Schema$ConversionList>(parameters);
       }
     }
-
 
     /**
      * doubleclicksearch.conversion.insert
@@ -708,25 +636,31 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Conversion$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$ConversionList>;
     insert(
-        params: Params$Resource$Conversion$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
+      params?: Params$Resource$Conversion$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConversionList>;
     insert(
-        params: Params$Resource$Conversion$Insert,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
+      params: Params$Resource$Conversion$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ConversionList>,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
+    insert(
+      params: Params$Resource$Conversion$Insert,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$ConversionList>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Conversion$Insert|
-        BodyResponseCallback<Schema$ConversionList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ConversionList>,
-        callback?: BodyResponseCallback<Schema$ConversionList>):
-        void|GaxiosPromise<Schema$ConversionList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Conversion$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Conversion$Insert
+        | BodyResponseCallback<Schema$ConversionList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>
+    ): void | GaxiosPromise<Schema$ConversionList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Conversion$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -743,16 +677,19 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclicksearch/v2/conversion')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/conversion').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -761,11 +698,9 @@ export namespace doubleclicksearch_v2 {
       }
     }
 
-
     /**
      * doubleclicksearch.conversion.patch
-     * @desc Updates a batch of conversions in DoubleClick Search. This method
-     * supports patch semantics.
+     * @desc Updates a batch of conversions in DoubleClick Search. This method supports patch semantics.
      * @alias doubleclicksearch.conversion.patch
      * @memberOf! ()
      *
@@ -782,23 +717,29 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Conversion$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$ConversionList>;
     patch(
-        params: Params$Resource$Conversion$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
+      params?: Params$Resource$Conversion$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConversionList>;
     patch(
-        params: Params$Resource$Conversion$Patch,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
+      params: Params$Resource$Conversion$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ConversionList>,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
+    patch(
+      params: Params$Resource$Conversion$Patch,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$ConversionList>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Conversion$Patch|
-        BodyResponseCallback<Schema$ConversionList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ConversionList>,
-        callback?: BodyResponseCallback<Schema$ConversionList>):
-        void|GaxiosPromise<Schema$ConversionList> {
+      paramsOrCallback?:
+        | Params$Resource$Conversion$Patch
+        | BodyResponseCallback<Schema$ConversionList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>
+    ): void | GaxiosPromise<Schema$ConversionList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Conversion$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -816,19 +757,27 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclicksearch/v2/conversion')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/conversion').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: [
-          'advertiserId', 'agencyId', 'endDate', 'engineAccountId', 'rowCount',
-          'startDate', 'startRow'
+          'advertiserId',
+          'agencyId',
+          'endDate',
+          'engineAccountId',
+          'rowCount',
+          'startDate',
+          'startRow',
         ],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -836,7 +785,6 @@ export namespace doubleclicksearch_v2 {
         return createAPIRequest<Schema$ConversionList>(parameters);
       }
     }
-
 
     /**
      * doubleclicksearch.conversion.update
@@ -850,25 +798,31 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Conversion$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$ConversionList>;
     update(
-        params: Params$Resource$Conversion$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
+      params?: Params$Resource$Conversion$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConversionList>;
     update(
-        params: Params$Resource$Conversion$Update,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
+      params: Params$Resource$Conversion$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ConversionList>,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
+    update(
+      params: Params$Resource$Conversion$Update,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ConversionList>): void;
     update(
-        paramsOrCallback?: Params$Resource$Conversion$Update|
-        BodyResponseCallback<Schema$ConversionList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ConversionList>,
-        callback?: BodyResponseCallback<Schema$ConversionList>):
-        void|GaxiosPromise<Schema$ConversionList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Conversion$Update;
+      paramsOrCallback?:
+        | Params$Resource$Conversion$Update
+        | BodyResponseCallback<Schema$ConversionList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>
+    ): void | GaxiosPromise<Schema$ConversionList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Conversion$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -885,16 +839,19 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclicksearch/v2/conversion')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/conversion').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -903,11 +860,9 @@ export namespace doubleclicksearch_v2 {
       }
     }
 
-
     /**
      * doubleclicksearch.conversion.updateAvailability
-     * @desc Updates the availabilities of a batch of floodlight activities in
-     * DoubleClick Search.
+     * @desc Updates the availabilities of a batch of floodlight activities in DoubleClick Search.
      * @alias doubleclicksearch.conversion.updateAvailability
      * @memberOf! ()
      *
@@ -918,31 +873,34 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     updateAvailability(
-        params?: Params$Resource$Conversion$Updateavailability,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$UpdateAvailabilityResponse>;
+      params?: Params$Resource$Conversion$Updateavailability,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UpdateAvailabilityResponse>;
     updateAvailability(
-        params: Params$Resource$Conversion$Updateavailability,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
-        callback: BodyResponseCallback<Schema$UpdateAvailabilityResponse>):
-        void;
+      params: Params$Resource$Conversion$Updateavailability,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
+      callback: BodyResponseCallback<Schema$UpdateAvailabilityResponse>
+    ): void;
     updateAvailability(
-        params: Params$Resource$Conversion$Updateavailability,
-        callback: BodyResponseCallback<Schema$UpdateAvailabilityResponse>):
-        void;
+      params: Params$Resource$Conversion$Updateavailability,
+      callback: BodyResponseCallback<Schema$UpdateAvailabilityResponse>
+    ): void;
     updateAvailability(
-        callback: BodyResponseCallback<Schema$UpdateAvailabilityResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$UpdateAvailabilityResponse>
+    ): void;
     updateAvailability(
-        paramsOrCallback?: Params$Resource$Conversion$Updateavailability|
-        BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
-        callback?: BodyResponseCallback<Schema$UpdateAvailabilityResponse>):
-        void|GaxiosPromise<Schema$UpdateAvailabilityResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Conversion$Updateavailability;
+      paramsOrCallback?:
+        | Params$Resource$Conversion$Updateavailability
+        | BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
+      callback?: BodyResponseCallback<Schema$UpdateAvailabilityResponse>
+    ): void | GaxiosPromise<Schema$UpdateAvailabilityResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Conversion$Updateavailability;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -959,21 +917,24 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/doubleclicksearch/v2/conversion/updateAvailability')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/doubleclicksearch/v2/conversion/updateAvailability'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UpdateAvailabilityResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$UpdateAvailabilityResponse>(parameters);
       }
@@ -984,7 +945,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Numeric ID of the ad group.
@@ -1011,8 +972,7 @@ export namespace doubleclicksearch_v2 {
      */
     criterionId?: string;
     /**
-     * Last date (inclusive) on which to retrieve conversions. Format is
-     * yyyymmdd.
+     * Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
      */
     endDate?: number;
     /**
@@ -1024,8 +984,7 @@ export namespace doubleclicksearch_v2 {
      */
     rowCount?: number;
     /**
-     * First date (inclusive) on which to retrieve conversions. Format is
-     * yyyymmdd.
+     * First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
      */
     startDate?: number;
     /**
@@ -1033,13 +992,12 @@ export namespace doubleclicksearch_v2 {
      */
     startRow?: number;
   }
-  export interface Params$Resource$Conversion$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Conversion$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1050,7 +1008,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Numeric ID of the advertiser.
@@ -1061,8 +1019,7 @@ export namespace doubleclicksearch_v2 {
      */
     agencyId?: string;
     /**
-     * Last date (inclusive) on which to retrieve conversions. Format is
-     * yyyymmdd.
+     * Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
      */
     endDate?: number;
     /**
@@ -1074,8 +1031,7 @@ export namespace doubleclicksearch_v2 {
      */
     rowCount?: number;
     /**
-     * First date (inclusive) on which to retrieve conversions. Format is
-     * yyyymmdd.
+     * First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
      */
     startDate?: number;
     /**
@@ -1088,26 +1044,24 @@ export namespace doubleclicksearch_v2 {
      */
     requestBody?: Schema$ConversionList;
   }
-  export interface Params$Resource$Conversion$Update extends
-      StandardParameters {
+  export interface Params$Resource$Conversion$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$ConversionList;
   }
-  export interface Params$Resource$Conversion$Updateavailability extends
-      StandardParameters {
+  export interface Params$Resource$Conversion$Updateavailability
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1115,13 +1069,11 @@ export namespace doubleclicksearch_v2 {
     requestBody?: Schema$UpdateAvailabilityRequest;
   }
 
-
   export class Resource$Reports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * doubleclicksearch.reports.generate
@@ -1136,22 +1088,26 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     generate(
-        params?: Params$Resource$Reports$Generate,
-        options?: MethodOptions): GaxiosPromise<Schema$Report>;
+      params?: Params$Resource$Reports$Generate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
     generate(
-        params: Params$Resource$Reports$Generate,
-        options: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params: Params$Resource$Reports$Generate,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     generate(
-        params: Params$Resource$Reports$Generate,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params: Params$Resource$Reports$Generate,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     generate(callback: BodyResponseCallback<Schema$Report>): void;
     generate(
-        paramsOrCallback?: Params$Resource$Reports$Generate|
-        BodyResponseCallback<Schema$Report>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>):
-        void|GaxiosPromise<Schema$Report> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$Generate
+        | BodyResponseCallback<Schema$Report>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>
+    ): void | GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1169,16 +1125,19 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclicksearch/v2/reports/generate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/reports/generate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1186,7 +1145,6 @@ export namespace doubleclicksearch_v2 {
         return createAPIRequest<Schema$Report>(parameters);
       }
     }
-
 
     /**
      * doubleclicksearch.reports.get
@@ -1200,19 +1158,27 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Reports$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Report>;
-    get(params: Params$Resource$Reports$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback: BodyResponseCallback<Schema$Report>): void;
-    get(params: Params$Resource$Reports$Get,
-        callback: BodyResponseCallback<Schema$Report>): void;
+    get(
+      params?: Params$Resource$Reports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
+    get(
+      params: Params$Resource$Reports$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
+    get(
+      params: Params$Resource$Reports$Get,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Report>): void;
-    get(paramsOrCallback?: Params$Resource$Reports$Get|
-        BodyResponseCallback<Schema$Report>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>):
-        void|GaxiosPromise<Schema$Report> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Reports$Get
+        | BodyResponseCallback<Schema$Report>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>
+    ): void | GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1230,16 +1196,19 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclicksearch/v2/reports/{reportId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/reports/{reportId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['reportId'],
         pathParams: ['reportId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1247,7 +1216,6 @@ export namespace doubleclicksearch_v2 {
         return createAPIRequest<Schema$Report>(parameters);
       }
     }
-
 
     /**
      * doubleclicksearch.reports.getFile
@@ -1262,21 +1230,27 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getFile(params?: Params$Resource$Reports$Getfile, options?: MethodOptions):
-        GaxiosPromise<void>;
     getFile(
-        params: Params$Resource$Reports$Getfile,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Reports$Getfile,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     getFile(
-        params: Params$Resource$Reports$Getfile,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Reports$Getfile,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    getFile(
+      params: Params$Resource$Reports$Getfile,
+      callback: BodyResponseCallback<void>
+    ): void;
     getFile(callback: BodyResponseCallback<void>): void;
     getFile(
-        paramsOrCallback?: Params$Resource$Reports$Getfile|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$Getfile
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Getfile;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1294,18 +1268,19 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['reportId', 'reportFragment'],
         pathParams: ['reportFragment', 'reportId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1313,7 +1288,6 @@ export namespace doubleclicksearch_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * doubleclicksearch.reports.request
@@ -1327,22 +1301,27 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    request(params?: Params$Resource$Reports$Request, options?: MethodOptions):
-        GaxiosPromise<Schema$Report>;
     request(
-        params: Params$Resource$Reports$Request,
-        options: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params?: Params$Resource$Reports$Request,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
     request(
-        params: Params$Resource$Reports$Request,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params: Params$Resource$Reports$Request,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
+    request(
+      params: Params$Resource$Reports$Request,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     request(callback: BodyResponseCallback<Schema$Report>): void;
     request(
-        paramsOrCallback?: Params$Resource$Reports$Request|
-        BodyResponseCallback<Schema$Report>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>):
-        void|GaxiosPromise<Schema$Report> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$Request
+        | BodyResponseCallback<Schema$Report>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>
+    ): void | GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Request;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1360,16 +1339,19 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclicksearch/v2/reports')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/reports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1383,8 +1365,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1395,7 +1376,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the report request being polled.
@@ -1406,7 +1387,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The index of the report fragment to download.
@@ -1421,8 +1402,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1430,13 +1410,11 @@ export namespace doubleclicksearch_v2 {
     requestBody?: Schema$ReportRequest;
   }
 
-
   export class Resource$Savedcolumns {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * doubleclicksearch.savedColumns.list
@@ -1451,25 +1429,31 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Savedcolumns$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SavedColumnList>;
     list(
-        params: Params$Resource$Savedcolumns$List,
-        options: MethodOptions|BodyResponseCallback<Schema$SavedColumnList>,
-        callback: BodyResponseCallback<Schema$SavedColumnList>): void;
+      params?: Params$Resource$Savedcolumns$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedColumnList>;
     list(
-        params: Params$Resource$Savedcolumns$List,
-        callback: BodyResponseCallback<Schema$SavedColumnList>): void;
+      params: Params$Resource$Savedcolumns$List,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedColumnList>,
+      callback: BodyResponseCallback<Schema$SavedColumnList>
+    ): void;
+    list(
+      params: Params$Resource$Savedcolumns$List,
+      callback: BodyResponseCallback<Schema$SavedColumnList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SavedColumnList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Savedcolumns$List|
-        BodyResponseCallback<Schema$SavedColumnList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SavedColumnList>,
-        callback?: BodyResponseCallback<Schema$SavedColumnList>):
-        void|GaxiosPromise<Schema$SavedColumnList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Savedcolumns$List;
+      paramsOrCallback?:
+        | Params$Resource$Savedcolumns$List
+        | BodyResponseCallback<Schema$SavedColumnList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SavedColumnList>,
+      callback?: BodyResponseCallback<Schema$SavedColumnList>
+    ): void | GaxiosPromise<Schema$SavedColumnList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Savedcolumns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1486,18 +1470,19 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['agencyId', 'advertiserId'],
         pathParams: ['advertiserId', 'agencyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SavedColumnList>(parameters, callback);
@@ -1507,12 +1492,12 @@ export namespace doubleclicksearch_v2 {
     }
   }
 
-  export interface Params$Resource$Savedcolumns$List extends
-      StandardParameters {
+  export interface Params$Resource$Savedcolumns$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * DS ID of the advertiser.

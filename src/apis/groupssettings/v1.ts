@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace groupssettings_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace groupssettings_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -83,7 +92,10 @@ export namespace groupssettings_v1 {
     groups: Resource$Groups;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.groups = new Resource$Groups(this.context);
     }
@@ -118,8 +130,7 @@ export namespace groupssettings_v1 {
      */
     customReplyTo?: string;
     /**
-     * If any of the settings that will be merged have custom roles which is
-     * anything other than owners, managers, or group scopes.
+     * If any of the settings that will be merged have custom roles which is anything other than owners, managers, or group scopes.
      */
     customRolesEnabledForSettingsToBeMerged?: string;
     /**
@@ -167,13 +178,11 @@ export namespace groupssettings_v1 {
      */
     membersCanPostAsTheGroup?: string;
     /**
-     * Default message display font. Possible values are: DEFAULT_FONT
-     * FIXED_WIDTH_FONT
+     * Default message display font. Possible values are: DEFAULT_FONT FIXED_WIDTH_FONT
      */
     messageDisplayFont?: string;
     /**
-     * Moderation level for messages. Possible values are: MODERATE_ALL_MESSAGES
-     * MODERATE_NON_MEMBERS MODERATE_NEW_MEMBERS MODERATE_NONE
+     * Moderation level for messages. Possible values are: MODERATE_ALL_MESSAGES MODERATE_NON_MEMBERS MODERATE_NEW_MEMBERS MODERATE_NONE
      */
     messageModerationLevel?: string;
     /**
@@ -185,9 +194,7 @@ export namespace groupssettings_v1 {
      */
     primaryLanguage?: string;
     /**
-     * Whome should the default reply to a message go to. Possible values are:
-     * REPLY_TO_CUSTOM REPLY_TO_SENDER REPLY_TO_LIST REPLY_TO_OWNER
-     * REPLY_TO_IGNORE REPLY_TO_MANAGERS
+     * Whome should the default reply to a message go to. Possible values are: REPLY_TO_CUSTOM REPLY_TO_SENDER REPLY_TO_LIST REPLY_TO_OWNER REPLY_TO_IGNORE REPLY_TO_MANAGERS
      */
     replyTo?: string;
     /**
@@ -199,205 +206,156 @@ export namespace groupssettings_v1 {
      */
     showInGroupDirectory?: string;
     /**
-     * Moderation level for messages detected as spam. Possible values are:
-     * ALLOW MODERATE SILENTLY_MODERATE REJECT
+     * Moderation level for messages detected as spam. Possible values are: ALLOW MODERATE SILENTLY_MODERATE REJECT
      */
     spamModerationLevel?: string;
     /**
-     * Permissions to add members. Possible values are: ALL_MANAGERS_CAN_ADD
-     * ALL_OWNERS_CAN_ADD ALL_MEMBERS_CAN_ADD NONE_CAN_ADD
+     * Permissions to add members. Possible values are: ALL_MANAGERS_CAN_ADD ALL_OWNERS_CAN_ADD ALL_MEMBERS_CAN_ADD NONE_CAN_ADD
      */
     whoCanAdd?: string;
     /**
-     * Permission to add references to a topic. Possible values are: NONE
-     * OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to add references to a topic. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanAddReferences?: string;
     /**
-     * Permission to approve members. Possible values are:
-     * ALL_OWNERS_CAN_APPROVE ALL_MANAGERS_CAN_APPROVE ALL_MEMBERS_CAN_APPROVE
-     * NONE_CAN_APPROVE
+     * Permission to approve members. Possible values are: ALL_OWNERS_CAN_APPROVE ALL_MANAGERS_CAN_APPROVE ALL_MEMBERS_CAN_APPROVE NONE_CAN_APPROVE
      */
     whoCanApproveMembers?: string;
     /**
-     * Permission to approve pending messages in the moderation queue. Possible
-     * values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to approve pending messages in the moderation queue. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanApproveMessages?: string;
     /**
-     * Permission to assign topics in a forum to another user. Possible values
-     * are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to assign topics in a forum to another user. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanAssignTopics?: string;
     /**
-     * Permission for content assistants. Possible values are: Possible values
-     * are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission for content assistants. Possible values are: Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanAssistContent?: string;
     /**
-     * Permission to ban users. Possible values are: NONE OWNERS_ONLY
-     * OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to ban users. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanBanUsers?: string;
     /**
-     * Permission to contact owner of the group via web UI. Possible values are:
-     * ANYONE_CAN_CONTACT ALL_IN_DOMAIN_CAN_CONTACT ALL_MEMBERS_CAN_CONTACT
-     * ALL_MANAGERS_CAN_CONTACT
+     * Permission to contact owner of the group via web UI. Possible values are: ANYONE_CAN_CONTACT ALL_IN_DOMAIN_CAN_CONTACT ALL_MEMBERS_CAN_CONTACT ALL_MANAGERS_CAN_CONTACT
      */
     whoCanContactOwner?: string;
     /**
-     * Permission to delete replies to topics. Possible values are: NONE
-     * OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to delete replies to topics. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanDeleteAnyPost?: string;
     /**
-     * Permission to delete topics. Possible values are: NONE OWNERS_ONLY
-     * OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to delete topics. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanDeleteTopics?: string;
     /**
-     * Permission for who can discover the group. Possible values are:
-     * ALL_MEMBERS_CAN_DISCOVER ALL_IN_DOMAIN_CAN_DISCOVER ANYONE_CAN_DISCOVER
+     * Permission for who can discover the group. Possible values are: ALL_MEMBERS_CAN_DISCOVER ALL_IN_DOMAIN_CAN_DISCOVER ANYONE_CAN_DISCOVER
      */
     whoCanDiscoverGroup?: string;
     /**
-     * Permission to enter free form tags for topics in a forum. Possible values
-     * are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to enter free form tags for topics in a forum. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanEnterFreeFormTags?: string;
     /**
-     * Permission to hide posts by reporting them as abuse. Possible values are:
-     * NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to hide posts by reporting them as abuse. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanHideAbuse?: string;
     /**
-     * Permissions to invite members. Possible values are:
-     * ALL_MEMBERS_CAN_INVITE ALL_MANAGERS_CAN_INVITE ALL_OWNERS_CAN_INVITE
-     * NONE_CAN_INVITE
+     * Permissions to invite members. Possible values are: ALL_MEMBERS_CAN_INVITE ALL_MANAGERS_CAN_INVITE ALL_OWNERS_CAN_INVITE NONE_CAN_INVITE
      */
     whoCanInvite?: string;
     /**
-     * Permissions to join the group. Possible values are: ANYONE_CAN_JOIN
-     * ALL_IN_DOMAIN_CAN_JOIN INVITED_CAN_JOIN CAN_REQUEST_TO_JOIN
+     * Permissions to join the group. Possible values are: ANYONE_CAN_JOIN ALL_IN_DOMAIN_CAN_JOIN INVITED_CAN_JOIN CAN_REQUEST_TO_JOIN
      */
     whoCanJoin?: string;
     /**
-     * Permission to leave the group. Possible values are:
-     * ALL_MANAGERS_CAN_LEAVE ALL_OWNERS_CAN_LEAVE ALL_MEMBERS_CAN_LEAVE
-     * NONE_CAN_LEAVE
+     * Permission to leave the group. Possible values are: ALL_MANAGERS_CAN_LEAVE ALL_OWNERS_CAN_LEAVE ALL_MEMBERS_CAN_LEAVE NONE_CAN_LEAVE
      */
     whoCanLeaveGroup?: string;
     /**
-     * Permission to lock topics. Possible values are: NONE OWNERS_ONLY
-     * OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to lock topics. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanLockTopics?: string;
     /**
-     * Permission to make topics appear at the top of the topic list. Possible
-     * values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS
-     * ALL_MEMBERS
+     * Permission to make topics appear at the top of the topic list. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanMakeTopicsSticky?: string;
     /**
-     * Permission to mark a topic as a duplicate of another topic. Possible
-     * values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS
-     * ALL_MEMBERS
+     * Permission to mark a topic as a duplicate of another topic. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanMarkDuplicate?: string;
     /**
-     * Permission to mark any other user&#39;s post as a favorite reply.
-     * Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS
-     * ALL_MEMBERS
+     * Permission to mark any other user&#39;s post as a favorite reply. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanMarkFavoriteReplyOnAnyTopic?: string;
     /**
-     * Permission to mark a post for a topic they started as a favorite reply.
-     * Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS
-     * ALL_MEMBERS
+     * Permission to mark a post for a topic they started as a favorite reply. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanMarkFavoriteReplyOnOwnTopic?: string;
     /**
-     * Permission to mark a topic as not needing a response. Possible values
-     * are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to mark a topic as not needing a response. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanMarkNoResponseNeeded?: string;
     /**
-     * Permission for content moderation. Possible values are: NONE OWNERS_ONLY
-     * OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission for content moderation. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanModerateContent?: string;
     /**
-     * Permission for membership moderation. Possible values are: NONE
-     * OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission for membership moderation. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanModerateMembers?: string;
     /**
-     * Permission to modify members (change member roles). Possible values are:
-     * NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to modify members (change member roles). Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanModifyMembers?: string;
     /**
-     * Permission to change tags and categories. Possible values are: NONE
-     * OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to change tags and categories. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanModifyTagsAndCategories?: string;
     /**
-     * Permission to move topics into the group or forum. Possible values are:
-     * NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to move topics into the group or forum. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanMoveTopicsIn?: string;
     /**
-     * Permission to move topics out of the group or forum. Possible values are:
-     * NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to move topics out of the group or forum. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanMoveTopicsOut?: string;
     /**
-     * Permission to post announcements, a special topic type. Possible values
-     * are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to post announcements, a special topic type. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanPostAnnouncements?: string;
     /**
-     * Permissions to post messages to the group. Possible values are:
-     * NONE_CAN_POST ALL_MANAGERS_CAN_POST ALL_MEMBERS_CAN_POST
-     * ALL_OWNERS_CAN_POST ALL_IN_DOMAIN_CAN_POST ANYONE_CAN_POST
+     * Permissions to post messages to the group. Possible values are: NONE_CAN_POST ALL_MANAGERS_CAN_POST ALL_MEMBERS_CAN_POST ALL_OWNERS_CAN_POST ALL_IN_DOMAIN_CAN_POST ANYONE_CAN_POST
      */
     whoCanPostMessage?: string;
     /**
-     * Permission to take topics in a forum. Possible values are: NONE
-     * OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to take topics in a forum. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanTakeTopics?: string;
     /**
-     * Permission to unassign any topic in a forum. Possible values are: NONE
-     * OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to unassign any topic in a forum. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanUnassignTopic?: string;
     /**
-     * Permission to unmark any post from a favorite reply. Possible values are:
-     * NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Permission to unmark any post from a favorite reply. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanUnmarkFavoriteReplyOnAnyTopic?: string;
     /**
-     * Permissions to view group. Possible values are: ANYONE_CAN_VIEW
-     * ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
-     * ALL_OWNERS_CAN_VIEW
+     * Permissions to view group. Possible values are: ANYONE_CAN_VIEW ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW ALL_OWNERS_CAN_VIEW
      */
     whoCanViewGroup?: string;
     /**
-     * Permissions to view membership. Possible values are:
-     * ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
-     * ALL_OWNERS_CAN_VIEW
+     * Permissions to view membership. Possible values are: ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW ALL_OWNERS_CAN_VIEW
      */
     whoCanViewMembership?: string;
   }
-
 
   export class Resource$Groups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * groupsSettings.groups.get
@@ -411,19 +369,27 @@ export namespace groupssettings_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Groups$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Groups>;
-    get(params: Params$Resource$Groups$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback: BodyResponseCallback<Schema$Groups>): void;
-    get(params: Params$Resource$Groups$Get,
-        callback: BodyResponseCallback<Schema$Groups>): void;
+    get(
+      params?: Params$Resource$Groups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Groups>;
+    get(
+      params: Params$Resource$Groups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Groups>,
+      callback: BodyResponseCallback<Schema$Groups>
+    ): void;
+    get(
+      params: Params$Resource$Groups$Get,
+      callback: BodyResponseCallback<Schema$Groups>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Groups>): void;
-    get(paramsOrCallback?: Params$Resource$Groups$Get|
-        BodyResponseCallback<Schema$Groups>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback?: BodyResponseCallback<Schema$Groups>):
-        void|GaxiosPromise<Schema$Groups> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Get
+        | BodyResponseCallback<Schema$Groups>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>
+    ): void | GaxiosPromise<Schema$Groups> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -441,16 +407,19 @@ export namespace groupssettings_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -458,7 +427,6 @@ export namespace groupssettings_v1 {
         return createAPIRequest<Schema$Groups>(parameters);
       }
     }
-
 
     /**
      * groupsSettings.groups.patch
@@ -473,22 +441,27 @@ export namespace groupssettings_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Groups$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Groups>;
     patch(
-        params: Params$Resource$Groups$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback: BodyResponseCallback<Schema$Groups>): void;
+      params?: Params$Resource$Groups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Groups>;
     patch(
-        params: Params$Resource$Groups$Patch,
-        callback: BodyResponseCallback<Schema$Groups>): void;
+      params: Params$Resource$Groups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Groups>,
+      callback: BodyResponseCallback<Schema$Groups>
+    ): void;
+    patch(
+      params: Params$Resource$Groups$Patch,
+      callback: BodyResponseCallback<Schema$Groups>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Groups>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Groups$Patch|
-        BodyResponseCallback<Schema$Groups>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback?: BodyResponseCallback<Schema$Groups>):
-        void|GaxiosPromise<Schema$Groups> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$Patch
+        | BodyResponseCallback<Schema$Groups>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>
+    ): void | GaxiosPromise<Schema$Groups> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -506,16 +479,19 @@ export namespace groupssettings_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -523,7 +499,6 @@ export namespace groupssettings_v1 {
         return createAPIRequest<Schema$Groups>(parameters);
       }
     }
-
 
     /**
      * groupsSettings.groups.update
@@ -538,22 +513,27 @@ export namespace groupssettings_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Groups$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Groups>;
     update(
-        params: Params$Resource$Groups$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback: BodyResponseCallback<Schema$Groups>): void;
+      params?: Params$Resource$Groups$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Groups>;
     update(
-        params: Params$Resource$Groups$Update,
-        callback: BodyResponseCallback<Schema$Groups>): void;
+      params: Params$Resource$Groups$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Groups>,
+      callback: BodyResponseCallback<Schema$Groups>
+    ): void;
+    update(
+      params: Params$Resource$Groups$Update,
+      callback: BodyResponseCallback<Schema$Groups>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Groups>): void;
     update(
-        paramsOrCallback?: Params$Resource$Groups$Update|
-        BodyResponseCallback<Schema$Groups>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback?: BodyResponseCallback<Schema$Groups>):
-        void|GaxiosPromise<Schema$Groups> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$Update
+        | BodyResponseCallback<Schema$Groups>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>
+    ): void | GaxiosPromise<Schema$Groups> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -571,16 +551,19 @@ export namespace groupssettings_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -594,7 +577,7 @@ export namespace groupssettings_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource ID
@@ -605,7 +588,7 @@ export namespace groupssettings_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource ID
@@ -621,7 +604,7 @@ export namespace groupssettings_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource ID

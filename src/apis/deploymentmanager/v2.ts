@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace deploymentmanager_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace deploymentmanager_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -66,8 +75,7 @@ export namespace deploymentmanager_v2 {
   /**
    * Google Cloud Deployment Manager API
    *
-   * Declares, configures, and deploys complex solutions on Google Cloud
-   * Platform.
+   * Declares, configures, and deploys complex solutions on Google Cloud Platform.
    *
    * @example
    * const {google} = require('googleapis');
@@ -88,7 +96,10 @@ export namespace deploymentmanager_v2 {
     types: Resource$Types;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.deployments = new Resource$Deployments(this.context);
       this.manifests = new Resource$Manifests(this.context);
@@ -99,26 +110,7 @@ export namespace deploymentmanager_v2 {
   }
 
   /**
-   * Specifies the audit configuration for a service. The configuration
-   * determines which permission types are logged, and what identities, if any,
-   * are exempted from logging. An AuditConfig must have one or more
-   * AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a
-   * specific service, the union of the two AuditConfigs is used for that
-   * service: the log_types specified in each AuditConfig are enabled, and the
-   * exempted_members in each AuditLogConfig are exempted.  Example Policy with
-   * multiple AuditConfigs:  { &quot;audit_configs&quot;: [ {
-   * &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;:
-   * [ { &quot;log_type&quot;: &quot;DATA_READ&quot;,
-   * &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, {
-   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;, }, { &quot;log_type&quot;:
-   * &quot;ADMIN_READ&quot;, } ] }, { &quot;service&quot;:
-   * &quot;fooservice.googleapis.com&quot; &quot;audit_log_configs&quot;: [ {
-   * &quot;log_type&quot;: &quot;DATA_READ&quot;, }, { &quot;log_type&quot;:
-   * &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [
-   * &quot;user:bar@gmail.com&quot; ] } ] } ] }  For fooservice, this policy
-   * enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts
-   * foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE
-   * logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:  { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot;, } ] }, { &quot;service&quot;: &quot;fooservice.googleapis.com&quot; &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:bar@gmail.com&quot; ] } ] } ] }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -127,25 +119,16 @@ export namespace deploymentmanager_v2 {
     auditLogConfigs?: Schema$AuditLogConfig[];
     exemptedMembers?: string[];
     /**
-     * Specifies a service that will be enabled for audit logging. For example,
-     * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
-     * special value that covers all services.
+     * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
     service?: string;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:  {
-   * &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;:
-   * &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [
-   * &quot;user:foo@gmail.com&quot; ] }, { &quot;log_type&quot;:
-   * &quot;DATA_WRITE&quot;, } ] }  This enables &#39;DATA_READ&#39; and
-   * &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ
-   * logging.
+   * Provides the configuration for logging a type of permissions. Example:  { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, } ] }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
-     * Specifies the identities that do not cause logging for this type of
-     * permission. Follows the same format of [Binding.members][].
+     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of [Binding.members][].
      */
     exemptedMembers?: string[];
     /**
@@ -167,31 +150,15 @@ export namespace deploymentmanager_v2 {
    */
   export interface Schema$Binding {
     /**
-     * Unimplemented. The condition that is associated with this binding. NOTE:
-     * an unsatisfied condition will not allow user access via current binding.
-     * Different bindings, including their conditions, are examined
-     * independently.
+     * Unimplemented. The condition that is associated with this binding. NOTE: an unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource.
-     * `members` can have the following values:  * `allUsers`: A special
-     * identifier that represents anyone who is on the internet; with or without
-     * a Google account.  * `allAuthenticatedUsers`: A special identifier that
-     * represents anyone who is authenticated with a Google account or a service
-     * account.  * `user:{emailid}`: An email address that represents a specific
-     * Google account. For example, `alice@gmail.com` .    *
-     * `serviceAccount:{emailid}`: An email address that represents a service
-     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
-     * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.    * `domain:{domain}`: A Google Apps
-     * domain name that represents all the users of that domain. For example,
-     * `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@gmail.com` .    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.    * `domain:{domain}`: A Google Apps domain name that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
-     * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`.
+     * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -212,8 +179,7 @@ export namespace deploymentmanager_v2 {
      */
     svc?: string;
     /**
-     * Trusted attributes supplied by any service that owns resources and uses
-     * the IAM system for access control.
+     * Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
      */
     sys?: string;
     /**
@@ -221,8 +187,7 @@ export namespace deploymentmanager_v2 {
      */
     value?: string;
     /**
-     * The objects of the condition. This is mutually exclusive with
-     * &#39;value&#39;.
+     * The objects of the condition. This is mutually exclusive with &#39;value&#39;.
      */
     values?: string[];
   }
@@ -238,14 +203,7 @@ export namespace deploymentmanager_v2 {
      */
     description?: string;
     /**
-     * Provides a fingerprint to use in requests to modify a deployment, such as
-     * update(), stop(), and cancelPreview() requests. A fingerprint is a
-     * randomly generated value that must be provided with update(), stop(), and
-     * cancelPreview() requests to perform optimistic locking. This ensures
-     * optimistic concurrency so that only one request happens at a time.  The
-     * fingerprint is initially generated by Deployment Manager and changes
-     * after every request to modify data. To get the latest fingerprint value,
-     * perform a get() request to a deployment.
+     * Provides a fingerprint to use in requests to modify a deployment, such as update(), stop(), and cancelPreview() requests. A fingerprint is a randomly generated value that must be provided with update(), stop(), and cancelPreview() requests to perform optimistic locking. This ensures optimistic concurrency so that only one request happens at a time.  The fingerprint is initially generated by Deployment Manager and changes after every request to modify data. To get the latest fingerprint value, perform a get() request to a deployment.
      */
     fingerprint?: string;
     id?: string;
@@ -254,32 +212,19 @@ export namespace deploymentmanager_v2 {
      */
     insertTime?: string;
     /**
-     * Map of labels; provided by the client when the resource is created or
-     * updated. Specifically: Label keys must be between 1 and 63 characters
-     * long and must conform to the following regular expression:
-     * [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63
-     * characters long and must conform to the regular expression
-     * ([a-z]([-a-z0-9]*[a-z0-9])?)?
+     * Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
     labels?: Schema$DeploymentLabelEntry[];
     /**
-     * Output only. URL of the manifest representing the last manifest that was
-     * successfully deployed.
+     * Output only. URL of the manifest representing the last manifest that was successfully deployed.
      */
     manifest?: string;
     /**
-     * Name of the resource; provided by the client when the resource is
-     * created. The name must be 1-63 characters long, and comply with RFC1035.
-     * Specifically, the name must be 1-63 characters long and match the regular
-     * expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character
-     * must be a lowercase letter, and all following characters must be a dash,
-     * lowercase letter, or digit, except the last character, which cannot be a
-     * dash.
+     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     name?: string;
     /**
-     * Output only. The Operation that most recently ran, or is currently
-     * running, on this deployment.
+     * Output only. The Operation that most recently ran, or is currently running, on this deployment.
      */
     operation?: Schema$Operation;
     /**
@@ -287,13 +232,11 @@ export namespace deploymentmanager_v2 {
      */
     selfLink?: string;
     /**
-     * [Input Only] The parameters that define your deployment, including the
-     * deployment configuration and relevant templates.
+     * [Input Only] The parameters that define your deployment, including the deployment configuration and relevant templates.
      */
     target?: Schema$TargetConfiguration;
     /**
-     * Output only. If Deployment Manager is currently updating or previewing an
-     * update to this deployment, the updated configuration appears here.
+     * Output only. If Deployment Manager is currently updating or previewing an update to this deployment, the updated configuration appears here.
      */
     update?: Schema$DeploymentUpdate;
     /**
@@ -307,21 +250,12 @@ export namespace deploymentmanager_v2 {
   }
   export interface Schema$DeploymentsCancelPreviewRequest {
     /**
-     * Specifies a fingerprint for cancelPreview() requests. A fingerprint is a
-     * randomly generated value that must be provided in cancelPreview()
-     * requests to perform optimistic locking. This ensures optimistic
-     * concurrency so that the deployment does not have conflicting requests
-     * (e.g. if someone attempts to make a new update request while another user
-     * attempts to cancel a preview, this would prevent one of the requests).
-     * The fingerprint is initially generated by Deployment Manager and changes
-     * after every request to modify a deployment. To get the latest fingerprint
-     * value, perform a get() request on the deployment.
+     * Specifies a fingerprint for cancelPreview() requests. A fingerprint is a randomly generated value that must be provided in cancelPreview() requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to cancel a preview, this would prevent one of the requests).  The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a get() request on the deployment.
      */
     fingerprint?: string;
   }
   /**
-   * A response containing a partial list of deployments and a page token used
-   * to build the next request if the request has been truncated.
+   * A response containing a partial list of deployments and a page token used to build the next request if the request has been truncated.
    */
   export interface Schema$DeploymentsListResponse {
     /**
@@ -335,36 +269,21 @@ export namespace deploymentmanager_v2 {
   }
   export interface Schema$DeploymentsStopRequest {
     /**
-     * Specifies a fingerprint for stop() requests. A fingerprint is a randomly
-     * generated value that must be provided in stop() requests to perform
-     * optimistic locking. This ensures optimistic concurrency so that the
-     * deployment does not have conflicting requests (e.g. if someone attempts
-     * to make a new update request while another user attempts to stop an
-     * ongoing update request, this would prevent a collision).  The fingerprint
-     * is initially generated by Deployment Manager and changes after every
-     * request to modify a deployment. To get the latest fingerprint value,
-     * perform a get() request on the deployment.
+     * Specifies a fingerprint for stop() requests. A fingerprint is a randomly generated value that must be provided in stop() requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to stop an ongoing update request, this would prevent a collision).  The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a get() request on the deployment.
      */
     fingerprint?: string;
   }
   export interface Schema$DeploymentUpdate {
     /**
-     * Output only. An optional user-provided description of the deployment
-     * after the current update has been applied.
+     * Output only. An optional user-provided description of the deployment after the current update has been applied.
      */
     description?: string;
     /**
-     * Output only. Map of labels; provided by the client when the resource is
-     * created or updated. Specifically: Label keys must be between 1 and 63
-     * characters long and must conform to the following regular expression:
-     * [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63
-     * characters long and must conform to the regular expression
-     * ([a-z]([-a-z0-9]*[a-z0-9])?)?
+     * Output only. Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
     labels?: Schema$DeploymentUpdateLabelEntry[];
     /**
-     * Output only. URL of the manifest representing the update configuration of
-     * this deployment.
+     * Output only. URL of the manifest representing the update configuration of this deployment.
      */
     manifest?: string;
   }
@@ -373,50 +292,37 @@ export namespace deploymentmanager_v2 {
     value?: string;
   }
   /**
-   * Represents an expression text. Example:  title: &quot;User account
-   * presence&quot; description: &quot;Determines whether the request has a user
-   * account&quot; expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents an expression text. Example:  title: &quot;User account presence&quot; description: &quot;Determines whether the request has a user account&quot; expression: &quot;size(request.user) &gt; 0&quot;
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which
-     * describes the expression, e.g. when hovered over it in a UI.
+     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string;
     /**
-     * Textual representation of an expression in Common Expression Language
-     * syntax.  The application context of the containing message determines
-     * which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
     expression?: string;
     /**
-     * An optional string indicating the location of the expression for error
-     * reporting, e.g. a file name and a position in the file.
+     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string;
     /**
-     * An optional title for the expression, i.e. a short string describing its
-     * purpose. This can be used e.g. in UIs which allow to enter the
-     * expression.
+     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string;
   }
   export interface Schema$GlobalSetPolicyRequest {
     /**
-     * Flatten Policy to create a backward compatible wire-format. Deprecated.
-     * Use &#39;policy&#39; to specify bindings.
+     * Flatten Policy to create a backward compatible wire-format. Deprecated. Use &#39;policy&#39; to specify bindings.
      */
     bindings?: Schema$Binding[];
     /**
-     * Flatten Policy to create a backward compatible wire-format. Deprecated.
-     * Use &#39;policy&#39; to specify the etag.
+     * Flatten Policy to create a backward compatible wire-format. Deprecated. Use &#39;policy&#39; to specify the etag.
      */
     etag?: string;
     /**
-     * REQUIRED: The complete policy to be applied to the &#39;resource&#39;.
-     * The size of the policy is limited to a few 10s of KB. An empty policy is
-     * in general a valid policy but certain services (like Projects) might
-     * reject them.
+     * REQUIRED: The complete policy to be applied to the &#39;resource&#39;. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
      */
     policy?: Schema$Policy;
   }
@@ -461,22 +367,7 @@ export namespace deploymentmanager_v2 {
     logName?: string;
   }
   /**
-   * Increment a streamz counter with the specified metric and field names.
-   * Metric names should start with a &#39;/&#39;, generally be lowercase-only,
-   * and end in &quot;_count&quot;. Field names should not contain an initial
-   * slash. The actual exported metric names will have &quot;/iam/policy&quot;
-   * prepended.  Field names correspond to IAM request parameters and field
-   * values are their respective values.  Supported field names: -
-   * &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is
-   * present, otherwise the value of IAMContext.authority_selector if present,
-   * and otherwise a representation of IAMContext.principal; or -
-   * &quot;iam_principal&quot;, a representation of IAMContext.principal even if
-   * a token or authority selector is present; or - &quot;&quot; (empty string),
-   * resulting in a counter with no fields.  Examples: counter { metric:
-   * &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt;
-   * increment counter /iam/policy/backend_debug_access_count
-   * {iam_principal=[value of IAMContext.principal]}  At this time we do not
-   * support multiple field names (though this may be supported in the future).
+   * Increment a streamz counter with the specified metric and field names.  Metric names should start with a &#39;/&#39;, generally be lowercase-only, and end in &quot;_count&quot;. Field names should not contain an initial slash. The actual exported metric names will have &quot;/iam/policy&quot; prepended.  Field names correspond to IAM request parameters and field values are their respective values.  Supported field names: - &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is present, otherwise the value of IAMContext.authority_selector if present, and otherwise a representation of IAMContext.principal; or - &quot;iam_principal&quot;, a representation of IAMContext.principal even if a token or authority selector is present; or - &quot;&quot; (empty string), resulting in a counter with no fields.  Examples: counter { metric: &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt; increment counter /iam/policy/backend_debug_access_count {iam_principal=[value of IAMContext.principal]}  At this time we do not support multiple field names (though this may be supported in the future).
    */
   export interface Schema$LogConfigCounterOptions {
     /**
@@ -493,12 +384,7 @@ export namespace deploymentmanager_v2 {
    */
   export interface Schema$LogConfigDataAccessOptions {
     /**
-     * Whether Gin logging should happen in a fail-closed manner at the caller.
-     * This is relevant only in the LocalIAM implementation, for now.  NOTE:
-     * Logging to Gin in a fail-closed manner is currently unsupported while
-     * work is being done to satisfy the requirements of go/345. Currently,
-     * setting LOG_FAIL_CLOSED mode will have no effect, but still exists
-     * because there is active work being done to support it (b/115874152).
+     * Whether Gin logging should happen in a fail-closed manner at the caller. This is relevant only in the LocalIAM implementation, for now.  NOTE: Logging to Gin in a fail-closed manner is currently unsupported while work is being done to satisfy the requirements of go/345. Currently, setting LOG_FAIL_CLOSED mode will have no effect, but still exists because there is active work being done to support it (b/115874152).
      */
     logMode?: string;
   }
@@ -508,8 +394,7 @@ export namespace deploymentmanager_v2 {
      */
     config?: Schema$ConfigFile;
     /**
-     * Output only. The fully-expanded configuration file, including any
-     * templates and references.
+     * Output only. The fully-expanded configuration file, including any templates and references.
      */
     expandedConfig?: string;
     id?: string;
@@ -535,8 +420,7 @@ export namespace deploymentmanager_v2 {
     selfLink?: string;
   }
   /**
-   * A response containing a partial list of manifests and a page token used to
-   * build the next request if the request has been truncated.
+   * A response containing a partial list of manifests and a page token used to build the next request if the request has been truncated.
    */
   export interface Schema$ManifestsListResponse {
     /**
@@ -549,16 +433,11 @@ export namespace deploymentmanager_v2 {
     nextPageToken?: string;
   }
   /**
-   * An Operation resource, used to manage asynchronous API requests. (==
-   * resource_for v1.globalOperations ==) (== resource_for beta.globalOperations
-   * ==) (== resource_for v1.regionOperations ==) (== resource_for
-   * beta.regionOperations ==) (== resource_for v1.zoneOperations ==) (==
-   * resource_for beta.zoneOperations ==)
+   * An Operation resource, used to manage asynchronous API requests. (== resource_for v1.globalOperations ==) (== resource_for beta.globalOperations ==) (== resource_for v1.regionOperations ==) (== resource_for beta.regionOperations ==) (== resource_for v1.zoneOperations ==) (== resource_for beta.zoneOperations ==)
    */
   export interface Schema$Operation {
     /**
-     * [Output Only] The value of `requestId` if you provided it in the request.
-     * Not present otherwise.
+     * [Output Only] The value of `requestId` if you provided it in the request. Not present otherwise.
      */
     clientOperationId?: string;
     /**
@@ -566,46 +445,37 @@ export namespace deploymentmanager_v2 {
      */
     creationTimestamp?: string;
     /**
-     * [Output Only] A textual description of the operation, which is set when
-     * the operation is created.
+     * [Output Only] A textual description of the operation, which is set when the operation is created.
      */
     description?: string;
     /**
-     * [Output Only] The time that this operation was completed. This value is
-     * in RFC3339 text format.
+     * [Output Only] The time that this operation was completed. This value is in RFC3339 text format.
      */
     endTime?: string;
     /**
-     * [Output Only] If errors are generated during processing of the operation,
-     * this field will be populated.
+     * [Output Only] If errors are generated during processing of the operation, this field will be populated.
      */
     error?: {
-      errors?: Array<{code?: string; location?: string; message?: string;}>;
+      errors?: Array<{code?: string; location?: string; message?: string}>;
     };
     /**
-     * [Output Only] If the operation fails, this field contains the HTTP error
-     * message that was returned, such as NOT FOUND.
+     * [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as NOT FOUND.
      */
     httpErrorMessage?: string;
     /**
-     * [Output Only] If the operation fails, this field contains the HTTP error
-     * status code that was returned. For example, a 404 means the resource was
-     * not found.
+     * [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a 404 means the resource was not found.
      */
     httpErrorStatusCode?: number;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
-     * defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      */
     id?: string;
     /**
-     * [Output Only] The time that this operation was requested. This value is
-     * in RFC3339 text format.
+     * [Output Only] The time that this operation was requested. This value is in RFC3339 text format.
      */
     insertTime?: string;
     /**
-     * [Output Only] Type of the resource. Always compute#operation for
-     * Operation resources.
+     * [Output Only] Type of the resource. Always compute#operation for Operation resources.
      */
     kind?: string;
     /**
@@ -613,23 +483,15 @@ export namespace deploymentmanager_v2 {
      */
     name?: string;
     /**
-     * [Output Only] The type of operation, such as insert, update, or delete,
-     * and so on.
+     * [Output Only] The type of operation, such as insert, update, or delete, and so on.
      */
     operationType?: string;
     /**
-     * [Output Only] An optional progress indicator that ranges from 0 to 100.
-     * There is no requirement that this be linear or support any granularity of
-     * operations. This should not be used to guess when the operation will be
-     * complete. This number should monotonically increase as the operation
-     * progresses.
+     * [Output Only] An optional progress indicator that ranges from 0 to 100. There is no requirement that this be linear or support any granularity of operations. This should not be used to guess when the operation will be complete. This number should monotonically increase as the operation progresses.
      */
     progress?: number;
     /**
-     * [Output Only] The URL of the region where the operation resides. Only
-     * available when performing regional operations. You must specify this
-     * field as part of the HTTP request URL. It is not settable as a field in
-     * the request body.
+     * [Output Only] The URL of the region where the operation resides. Only available when performing regional operations. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      */
     region?: string;
     /**
@@ -637,56 +499,44 @@ export namespace deploymentmanager_v2 {
      */
     selfLink?: string;
     /**
-     * [Output Only] The time that this operation was started by the server.
-     * This value is in RFC3339 text format.
+     * [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
      */
     startTime?: string;
     /**
-     * [Output Only] The status of the operation, which can be one of the
-     * following: PENDING, RUNNING, or DONE.
+     * [Output Only] The status of the operation, which can be one of the following: PENDING, RUNNING, or DONE.
      */
     status?: string;
     /**
-     * [Output Only] An optional textual description of the current status of
-     * the operation.
+     * [Output Only] An optional textual description of the current status of the operation.
      */
     statusMessage?: string;
     /**
-     * [Output Only] The unique target ID, which identifies a specific
-     * incarnation of the target resource.
+     * [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      */
     targetId?: string;
     /**
-     * [Output Only] The URL of the resource that the operation modifies. For
-     * operations related to creating a snapshot, this points to the persistent
-     * disk that the snapshot was created from.
+     * [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
      */
     targetLink?: string;
     /**
-     * [Output Only] User who requested the operation, for example:
-     * user@example.com.
+     * [Output Only] User who requested the operation, for example: user@example.com.
      */
     user?: string;
     /**
-     * [Output Only] If warning messages are generated during processing of the
-     * operation, this field will be populated.
+     * [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
      */
     warnings?: Array<{
       code?: string;
-      data?: Array<{key?: string; value?: string;}>;
+      data?: Array<{key?: string; value?: string}>;
       message?: string;
     }>;
     /**
-     * [Output Only] The URL of the zone where the operation resides. Only
-     * available when performing per-zone operations. You must specify this
-     * field as part of the HTTP request URL. It is not settable as a field in
-     * the request body.
+     * [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      */
     zone?: string;
   }
   /**
-   * A response containing a partial list of operations and a page token used to
-   * build the next request if the request has been truncated.
+   * A response containing a partial list of operations and a page token used to build the next request if the request has been truncated.
    */
   export interface Schema$OperationsListResponse {
     /**
@@ -699,23 +549,7 @@ export namespace deploymentmanager_v2 {
     operations?: Schema$Operation[];
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to
-   * specify access control policies for Cloud Platform resources.    A `Policy`
-   * consists of a list of `bindings`. A `binding` binds a list of `members` to
-   * a `role`, where the members can be user accounts, Google groups, Google
-   * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **JSON Example**  { &quot;bindings&quot;: [ {
-   * &quot;role&quot;: &quot;roles/owner&quot;, &quot;members&quot;: [
-   * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
-   * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
-   * &quot;role&quot;: &quot;roles/viewer&quot;, &quot;members&quot;:
-   * [&quot;user:sean@example.com&quot;] } ] }  **YAML Example**  bindings: -
-   * members: - user:mike@example.com - group:admins@example.com -
-   * domain:google.com - serviceAccount:my-other-app@appspot.gserviceaccount.com
-   * role: roles/owner - members: - user:sean@example.com role: roles/viewer For
-   * a description of IAM and its features, see the [IAM developer&#39;s
-   * guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.    A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**  { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/owner&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/viewer&quot;, &quot;members&quot;: [&quot;user:sean@example.com&quot;] } ] }  **YAML Example**  bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-other-app@appspot.gserviceaccount.com role: roles/owner - members: - user:sean@example.com role: roles/viewer    For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -723,31 +557,16 @@ export namespace deploymentmanager_v2 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members
-     * will result in an error.
+     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a policy from overwriting each other. It
-     * is strongly suggested that systems make use of the `etag` in the
-     * read-modify-write cycle to perform policy updates in order to avoid race
-     * conditions: An `etag` is returned in the response to `getIamPolicy`, and
-     * systems are expected to put that etag in the request to `setIamPolicy` to
-     * ensure that their change will be applied to the same version of the
-     * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
-     * existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
      */
     etag?: string;
     iamOwned?: boolean;
     /**
-     * If more than one rule is specified, the rules are applied in the
-     * following manner: - All matching LOG rules are always applied. - If any
-     * DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be
-     * applied if one or more matching rule requires logging. - Otherwise, if
-     * any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging
-     * will be applied if one or more matching rule requires logging. -
-     * Otherwise, if no rule applies, permission is denied.
+     * If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
      */
     rules?: Schema$Rule[];
     /**
@@ -761,8 +580,7 @@ export namespace deploymentmanager_v2 {
      */
     accessControl?: Schema$ResourceAccessControl;
     /**
-     * Output only. The evaluated properties of the resource with references
-     * expanded. Returned as serialized YAML.
+     * Output only. The evaluated properties of the resource with references expanded. Returned as serialized YAML.
      */
     finalProperties?: string;
     id?: string;
@@ -771,8 +589,7 @@ export namespace deploymentmanager_v2 {
      */
     insertTime?: string;
     /**
-     * Output only. URL of the manifest representing the current configuration
-     * of this resource.
+     * Output only. URL of the manifest representing the current configuration of this resource.
      */
     manifest?: string;
     /**
@@ -780,18 +597,15 @@ export namespace deploymentmanager_v2 {
      */
     name?: string;
     /**
-     * Output only. The current properties of the resource before any references
-     * have been filled in. Returned as serialized YAML.
+     * Output only. The current properties of the resource before any references have been filled in. Returned as serialized YAML.
      */
     properties?: string;
     /**
-     * Output only. The type of the resource, for example compute.v1.instance,
-     * or cloudfunctions.v1beta1.function.
+     * Output only. The type of the resource, for example compute.v1.instance, or cloudfunctions.v1beta1.function.
      */
     type?: string;
     /**
-     * Output only. If Deployment Manager is currently updating or previewing an
-     * update to this resource, the updated configuration appears here.
+     * Output only. If Deployment Manager is currently updating or previewing an update to this resource, the updated configuration appears here.
      */
     update?: Schema$ResourceUpdate;
     /**
@@ -803,12 +617,11 @@ export namespace deploymentmanager_v2 {
      */
     url?: string;
     /**
-     * Output only. If warning messages are generated during processing of this
-     * resource, this field will be populated.
+     * Output only. If warning messages are generated during processing of this resource, this field will be populated.
      */
     warnings?: Array<{
       code?: string;
-      data?: Array<{key?: string; value?: string;}>;
+      data?: Array<{key?: string; value?: string}>;
       message?: string;
     }>;
   }
@@ -822,8 +635,7 @@ export namespace deploymentmanager_v2 {
     gcpIamPolicy?: string;
   }
   /**
-   * A response containing a partial list of resources and a page token used to
-   * build the next request if the request has been truncated.
+   * A response containing a partial list of resources and a page token used to build the next request if the request has been truncated.
    */
   export interface Schema$ResourcesListResponse {
     /**
@@ -837,20 +649,17 @@ export namespace deploymentmanager_v2 {
   }
   export interface Schema$ResourceUpdate {
     /**
-     * The Access Control Policy to set on this resource after updating the
-     * resource itself.
+     * The Access Control Policy to set on this resource after updating the resource itself.
      */
     accessControl?: Schema$ResourceAccessControl;
     /**
-     * Output only. If errors are generated during update of the resource, this
-     * field will be populated.
+     * Output only. If errors are generated during update of the resource, this field will be populated.
      */
     error?: {
-      errors?: Array<{code?: string; location?: string; message?: string;}>;
+      errors?: Array<{code?: string; location?: string; message?: string}>;
     };
     /**
-     * Output only. The expanded properties of the resource with reference
-     * values expanded. Returned as serialized YAML.
+     * Output only. The expanded properties of the resource with reference values expanded. Returned as serialized YAML.
      */
     finalProperties?: string;
     /**
@@ -858,13 +667,11 @@ export namespace deploymentmanager_v2 {
      */
     intent?: string;
     /**
-     * Output only. URL of the manifest representing the update configuration of
-     * this resource.
+     * Output only. URL of the manifest representing the update configuration of this resource.
      */
     manifest?: string;
     /**
-     * Output only. The set of updated properties for this resource, before
-     * references are expanded. Returned as serialized YAML.
+     * Output only. The set of updated properties for this resource, before references are expanded. Returned as serialized YAML.
      */
     properties?: string;
     /**
@@ -872,12 +679,11 @@ export namespace deploymentmanager_v2 {
      */
     state?: string;
     /**
-     * Output only. If warning messages are generated during processing of this
-     * resource, this field will be populated.
+     * Output only. If warning messages are generated during processing of this resource, this field will be populated.
      */
     warnings?: Array<{
       code?: string;
-      data?: Array<{key?: string; value?: string;}>;
+      data?: Array<{key?: string; value?: string}>;
       message?: string;
     }>;
   }
@@ -890,8 +696,7 @@ export namespace deploymentmanager_v2 {
      */
     action?: string;
     /**
-     * Additional restrictions that must be met. All conditions must pass for
-     * the rule to match.
+     * Additional restrictions that must be met. All conditions must pass for the rule to match.
      */
     conditions?: Schema$Condition[];
     /**
@@ -899,25 +704,19 @@ export namespace deploymentmanager_v2 {
      */
     description?: string;
     /**
-     * If one or more &#39;in&#39; clauses are specified, the rule matches if
-     * the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
+     * If one or more &#39;in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
      */
     ins?: string[];
     /**
-     * The config returned to callers of tech.iam.IAM.CheckPolicy for any
-     * entries that match the LOG action.
+     * The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
      */
     logConfigs?: Schema$LogConfig[];
     /**
-     * If one or more &#39;not_in&#39; clauses are specified, the rule matches
-     * if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
+     * If one or more &#39;not_in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
      */
     notIns?: string[];
     /**
-     * A permission is a string of form &#39;..&#39; (e.g.,
-     * &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all
-     * permissions, and a verb part of &#39;*&#39; (e.g.,
-     * &#39;storage.buckets.*&#39;) matches all verbs.
+     * A permission is a string of form &#39;..&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
      */
     permissions?: string[];
   }
@@ -927,24 +726,19 @@ export namespace deploymentmanager_v2 {
      */
     config?: Schema$ConfigFile;
     /**
-     * Specifies any files to import for this configuration. This can be used to
-     * import templates or other files. For example, you might import a text
-     * file in order to use the file in a template.
+     * Specifies any files to import for this configuration. This can be used to import templates or other files. For example, you might import a text file in order to use the file in a template.
      */
     imports?: Schema$ImportFile[];
   }
   export interface Schema$TestPermissionsRequest {
     /**
-     * The set of permissions to check for the &#39;resource&#39;. Permissions
-     * with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not
-     * allowed.
+     * The set of permissions to check for the &#39;resource&#39;. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
      */
     permissions?: string[];
   }
   export interface Schema$TestPermissionsResponse {
     /**
-     * A subset of `TestPermissionsRequest.permissions` that the caller is
-     * allowed.
+     * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[];
   }
@@ -962,8 +756,7 @@ export namespace deploymentmanager_v2 {
      */
     name?: string;
     /**
-     * Output only. The Operation that most recently ran, or is currently
-     * running, on this type.
+     * Output only. The Operation that most recently ran, or is currently running, on this type.
      */
     operation?: Schema$Operation;
     /**
@@ -985,32 +778,27 @@ export namespace deploymentmanager_v2 {
     types?: Schema$Type[];
   }
 
-
   export class Resource$Deployments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * deploymentmanager.deployments.cancelPreview
-     * @desc Cancels and removes the preview currently associated with the
-     * deployment.
+     * @desc Cancels and removes the preview currently associated with the deployment.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1032,8 +820,10 @@ export namespace deploymentmanager_v2 {
      *     auth: authClient,
      *   };
      *
-     *   deploymentManager.deployments.cancelPreview(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   deploymentManager.deployments.cancelPreview(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1047,10 +837,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1067,25 +856,30 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     cancelPreview(
-        params?: Params$Resource$Deployments$Cancelpreview,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Deployments$Cancelpreview,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     cancelPreview(
-        params: Params$Resource$Deployments$Cancelpreview,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Cancelpreview,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     cancelPreview(
-        params: Params$Resource$Deployments$Cancelpreview,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Cancelpreview,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     cancelPreview(callback: BodyResponseCallback<Schema$Operation>): void;
     cancelPreview(
-        paramsOrCallback?: Params$Resource$Deployments$Cancelpreview|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Deployments$Cancelpreview;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Cancelpreview
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Cancelpreview;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1102,18 +896,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/cancelPreview')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/cancelPreview'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1121,7 +916,6 @@ export namespace deploymentmanager_v2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.deployments.delete
@@ -1132,14 +926,12 @@ export namespace deploymentmanager_v2 {
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1174,10 +966,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1194,25 +985,30 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Deployments$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Deployments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Deployments$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Deployments$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Deployments$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Deployments$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1229,18 +1025,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1248,7 +1045,6 @@ export namespace deploymentmanager_v2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.deployments.get
@@ -1259,14 +1055,12 @@ export namespace deploymentmanager_v2 {
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1301,10 +1095,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1319,20 +1112,29 @@ export namespace deploymentmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Deployments$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Deployment>;
-    get(params: Params$Resource$Deployments$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Deployment>,
-        callback: BodyResponseCallback<Schema$Deployment>): void;
-    get(params: Params$Resource$Deployments$Get,
-        callback: BodyResponseCallback<Schema$Deployment>): void;
+    get(
+      params?: Params$Resource$Deployments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Deployment>;
+    get(
+      params: Params$Resource$Deployments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Deployment>,
+      callback: BodyResponseCallback<Schema$Deployment>
+    ): void;
+    get(
+      params: Params$Resource$Deployments$Get,
+      callback: BodyResponseCallback<Schema$Deployment>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Deployment>): void;
-    get(paramsOrCallback?: Params$Resource$Deployments$Get|
-        BodyResponseCallback<Schema$Deployment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Deployment>,
-        callback?: BodyResponseCallback<Schema$Deployment>):
-        void|GaxiosPromise<Schema$Deployment> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Get
+        | BodyResponseCallback<Schema$Deployment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Deployment>,
+      callback?: BodyResponseCallback<Schema$Deployment>
+    ): void | GaxiosPromise<Schema$Deployment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1350,18 +1152,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1370,25 +1173,21 @@ export namespace deploymentmanager_v2 {
       }
     }
 
-
     /**
      * deploymentmanager.deployments.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no
-     * such policy or resource exists.
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1406,8 +1205,10 @@ export namespace deploymentmanager_v2 {
      *     auth: authClient,
      *   };
      *
-     *   deploymentManager.deployments.getIamPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   deploymentManager.deployments.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1421,10 +1222,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1440,24 +1240,28 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Deployments$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Deployments$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Deployments$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Deployments$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Deployments$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Deployments$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Deployments$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Deployments$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1474,18 +1278,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1494,25 +1299,21 @@ export namespace deploymentmanager_v2 {
       }
     }
 
-
     /**
      * deploymentmanager.deployments.insert
-     * @desc Creates a deployment and all of the resources described by the
-     * deployment manifest.
+     * @desc Creates a deployment and all of the resources described by the deployment manifest.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1548,10 +1349,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1569,25 +1369,30 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Deployments$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Deployments$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     insert(
-        params: Params$Resource$Deployments$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     insert(
-        params: Params$Resource$Deployments$Insert,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Operation>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Deployments$Insert|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Deployments$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1604,18 +1409,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1623,7 +1429,6 @@ export namespace deploymentmanager_v2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.deployments.list
@@ -1634,14 +1439,12 @@ export namespace deploymentmanager_v2 {
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1667,9 +1470,8 @@ export namespace deploymentmanager_v2 {
      *       return;
      *     }
      *     for (var i = 0; i < deploymentsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `deploymentsPage`: console.log(JSON.stringify(deploymentsPage[i], null,
-     * 2));
+     *       // TODO: Change code below to process each resource in `deploymentsPage`:
+     *       console.log(JSON.stringify(deploymentsPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -1687,10 +1489,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1708,24 +1509,31 @@ export namespace deploymentmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Deployments$List, options?: MethodOptions):
-        GaxiosPromise<Schema$DeploymentsListResponse>;
     list(
-        params: Params$Resource$Deployments$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DeploymentsListResponse>,
-        callback: BodyResponseCallback<Schema$DeploymentsListResponse>): void;
+      params?: Params$Resource$Deployments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeploymentsListResponse>;
     list(
-        params: Params$Resource$Deployments$List,
-        callback: BodyResponseCallback<Schema$DeploymentsListResponse>): void;
+      params: Params$Resource$Deployments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeploymentsListResponse>,
+      callback: BodyResponseCallback<Schema$DeploymentsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Deployments$List,
+      callback: BodyResponseCallback<Schema$DeploymentsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$DeploymentsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Deployments$List|
-        BodyResponseCallback<Schema$DeploymentsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DeploymentsListResponse>,
-        callback?: BodyResponseCallback<Schema$DeploymentsListResponse>):
-        void|GaxiosPromise<Schema$DeploymentsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Deployments$List
+        | BodyResponseCallback<Schema$DeploymentsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeploymentsListResponse>,
+      callback?: BodyResponseCallback<Schema$DeploymentsListResponse>
+    ): void | GaxiosPromise<Schema$DeploymentsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1743,18 +1551,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DeploymentsListResponse>(parameters, callback);
@@ -1763,25 +1572,21 @@ export namespace deploymentmanager_v2 {
       }
     }
 
-
     /**
      * deploymentmanager.deployments.patch
-     * @desc Updates a deployment and all of the resources described by the
-     * deployment manifest. This method supports patch semantics.
+     * @desc Updates a deployment and all of the resources described by the deployment manifest. This method supports patch semantics.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1797,8 +1602,7 @@ export namespace deploymentmanager_v2 {
      *     deployment: 'my-deployment',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these
-     * properties
+     *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
@@ -1822,10 +1626,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1844,25 +1647,31 @@ export namespace deploymentmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Deployments$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Deployments$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Deployments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Deployments$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Deployments$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Deployments$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Deployments$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1879,18 +1688,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1899,25 +1709,21 @@ export namespace deploymentmanager_v2 {
       }
     }
 
-
     /**
      * deploymentmanager.deployments.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1939,8 +1745,10 @@ export namespace deploymentmanager_v2 {
      *     auth: authClient,
      *   };
      *
-     *   deploymentManager.deployments.setIamPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   deploymentManager.deployments.setIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1954,10 +1762,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1974,24 +1781,28 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Deployments$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Deployments$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Deployments$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Deployments$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Deployments$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Deployments$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Deployments$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Deployments$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2008,18 +1819,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments/{resource}/setIamPolicy')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments/{resource}/setIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2028,25 +1840,21 @@ export namespace deploymentmanager_v2 {
       }
     }
 
-
     /**
      * deploymentmanager.deployments.stop
-     * @desc Stops an ongoing operation. This does not roll back any work that
-     * has already been completed, but prevents any new work from being started.
+     * @desc Stops an ongoing operation. This does not roll back any work that has already been completed, but prevents any new work from being started.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2085,10 +1893,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2104,23 +1911,29 @@ export namespace deploymentmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params?: Params$Resource$Deployments$Stop, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     stop(
-        params: Params$Resource$Deployments$Stop,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Deployments$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     stop(
-        params: Params$Resource$Deployments$Stop,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Stop,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    stop(
+      params: Params$Resource$Deployments$Stop,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     stop(callback: BodyResponseCallback<Schema$Operation>): void;
     stop(
-        paramsOrCallback?: Params$Resource$Deployments$Stop|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Stop
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2138,18 +1951,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/stop')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/stop'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2157,7 +1971,6 @@ export namespace deploymentmanager_v2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.deployments.testIamPermissions
@@ -2168,14 +1981,12 @@ export namespace deploymentmanager_v2 {
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2197,8 +2008,10 @@ export namespace deploymentmanager_v2 {
      *     auth: authClient,
      *   };
      *
-     *   deploymentManager.deployments.testIamPermissions(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   deploymentManager.deployments.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -2212,10 +2025,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2232,27 +2044,34 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Deployments$Testiampermissions,
-        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
+      params?: Params$Resource$Deployments$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Deployments$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+      params: Params$Resource$Deployments$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Deployments$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+      params: Params$Resource$Deployments$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?: Params$Resource$Deployments$Testiampermissions|
-        BodyResponseCallback<Schema$TestPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Deployments$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2269,18 +2088,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments/{resource}/testIamPermissions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -2289,25 +2109,21 @@ export namespace deploymentmanager_v2 {
       }
     }
 
-
     /**
      * deploymentmanager.deployments.update
-     * @desc Updates a deployment and all of the resources described by the
-     * deployment manifest.
+     * @desc Updates a deployment and all of the resources described by the deployment manifest.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2323,8 +2139,7 @@ export namespace deploymentmanager_v2 {
      *     deployment: 'my-deployment',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
+     *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
@@ -2348,10 +2163,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2371,25 +2185,30 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Deployments$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Deployments$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Deployments$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(
-        params: Params$Resource$Deployments$Update,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Operation>): void;
     update(
-        paramsOrCallback?: Params$Resource$Deployments$Update|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Deployments$Update;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2406,18 +2225,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2427,12 +2247,12 @@ export namespace deploymentmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Deployments$Cancelpreview extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Cancelpreview
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the deployment for this request.
@@ -2448,12 +2268,12 @@ export namespace deploymentmanager_v2 {
      */
     requestBody?: Schema$DeploymentsCancelPreviewRequest;
   }
-  export interface Params$Resource$Deployments$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Sets the policy to use for deleting resources.
@@ -2472,7 +2292,7 @@ export namespace deploymentmanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the deployment for this request.
@@ -2483,12 +2303,12 @@ export namespace deploymentmanager_v2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Deployments$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Project ID for this request.
@@ -2499,25 +2319,19 @@ export namespace deploymentmanager_v2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Deployments$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Sets the policy to use for creating new resources.
      */
     createPolicy?: string;
     /**
-     * If set to true, creates a deployment and creates "shell" resources but
-     * does not actually instantiate these resources. This allows you to preview
-     * what your deployment looks like. After previewing a deployment, you can
-     * deploy your resources by making a request with the update() method or you
-     * can use the cancelPreview() method to cancel the preview altogether. Note
-     * that the deployment will still exist after you cancel the preview and you
-     * must separately delete this deployment if you want to remove it.
+     * If set to true, creates a deployment and creates "shell" resources but does not actually instantiate these resources. This allows you to preview what your deployment looks like. After previewing a deployment, you can deploy your resources by making a request with the update() method or you can use the cancelPreview() method to cancel the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      */
     preview?: boolean;
     /**
@@ -2534,49 +2348,22 @@ export namespace deploymentmanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      */
     orderBy?: string;
     /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -2584,12 +2371,12 @@ export namespace deploymentmanager_v2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Deployments$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Sets the policy to use for creating new resources.
@@ -2604,16 +2391,7 @@ export namespace deploymentmanager_v2 {
      */
     deployment?: string;
     /**
-     * If set to true, updates the deployment and creates and updates the
-     * "shell" resources but does not actually alter or instantiate these
-     * resources. This allows you to preview what your deployment will look
-     * like. You can use this intent to preview how an update would affect your
-     * deployment. You must provide a target.config with a configuration if this
-     * is set to true. After previewing a deployment, you can deploy your
-     * resources by making a request with the update() or you can
-     * cancelPreview() to remove the preview altogether. Note that the
-     * deployment will still exist after you cancel the preview and you must
-     * separately delete this deployment if you want to remove it.
+     * If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      */
     preview?: boolean;
     /**
@@ -2626,12 +2404,12 @@ export namespace deploymentmanager_v2 {
      */
     requestBody?: Schema$Deployment;
   }
-  export interface Params$Resource$Deployments$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Project ID for this request.
@@ -2651,7 +2429,7 @@ export namespace deploymentmanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the deployment for this request.
@@ -2667,12 +2445,12 @@ export namespace deploymentmanager_v2 {
      */
     requestBody?: Schema$DeploymentsStopRequest;
   }
-  export interface Params$Resource$Deployments$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Project ID for this request.
@@ -2688,12 +2466,12 @@ export namespace deploymentmanager_v2 {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Deployments$Update extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Sets the policy to use for creating new resources.
@@ -2708,16 +2486,7 @@ export namespace deploymentmanager_v2 {
      */
     deployment?: string;
     /**
-     * If set to true, updates the deployment and creates and updates the
-     * "shell" resources but does not actually alter or instantiate these
-     * resources. This allows you to preview what your deployment will look
-     * like. You can use this intent to preview how an update would affect your
-     * deployment. You must provide a target.config with a configuration if this
-     * is set to true. After previewing a deployment, you can deploy your
-     * resources by making a request with the update() or you can
-     * cancelPreview() to remove the preview altogether. Note that the
-     * deployment will still exist after you cancel the preview and you must
-     * separately delete this deployment if you want to remove it.
+     * If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      */
     preview?: boolean;
     /**
@@ -2731,13 +2500,11 @@ export namespace deploymentmanager_v2 {
     requestBody?: Schema$Deployment;
   }
 
-
   export class Resource$Manifests {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * deploymentmanager.manifests.get
@@ -2748,14 +2515,12 @@ export namespace deploymentmanager_v2 {
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2793,10 +2558,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2812,19 +2576,27 @@ export namespace deploymentmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Manifests$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Manifest>;
-    get(params: Params$Resource$Manifests$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Manifest>,
-        callback: BodyResponseCallback<Schema$Manifest>): void;
-    get(params: Params$Resource$Manifests$Get,
-        callback: BodyResponseCallback<Schema$Manifest>): void;
+    get(
+      params?: Params$Resource$Manifests$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Manifest>;
+    get(
+      params: Params$Resource$Manifests$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Manifest>,
+      callback: BodyResponseCallback<Schema$Manifest>
+    ): void;
+    get(
+      params: Params$Resource$Manifests$Get,
+      callback: BodyResponseCallback<Schema$Manifest>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Manifest>): void;
-    get(paramsOrCallback?: Params$Resource$Manifests$Get|
-        BodyResponseCallback<Schema$Manifest>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Manifest>,
-        callback?: BodyResponseCallback<Schema$Manifest>):
-        void|GaxiosPromise<Schema$Manifest> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Manifests$Get
+        | BodyResponseCallback<Schema$Manifest>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Manifest>,
+      callback?: BodyResponseCallback<Schema$Manifest>
+    ): void | GaxiosPromise<Schema$Manifest> {
       let params = (paramsOrCallback || {}) as Params$Resource$Manifests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2842,18 +2614,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/manifests/{manifest}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/manifests/{manifest}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment', 'manifest'],
         pathParams: ['deployment', 'manifest', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Manifest>(parameters, callback);
@@ -2861,7 +2634,6 @@ export namespace deploymentmanager_v2 {
         return createAPIRequest<Schema$Manifest>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.manifests.list
@@ -2872,14 +2644,12 @@ export namespace deploymentmanager_v2 {
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2908,8 +2678,8 @@ export namespace deploymentmanager_v2 {
      *       return;
      *     }
      *     for (var i = 0; i < manifestsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `manifestsPage`: console.log(JSON.stringify(manifestsPage[i], null, 2));
+     *       // TODO: Change code below to process each resource in `manifestsPage`:
+     *       console.log(JSON.stringify(manifestsPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -2927,10 +2697,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2949,24 +2718,31 @@ export namespace deploymentmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Manifests$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ManifestsListResponse>;
     list(
-        params: Params$Resource$Manifests$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ManifestsListResponse>,
-        callback: BodyResponseCallback<Schema$ManifestsListResponse>): void;
+      params?: Params$Resource$Manifests$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManifestsListResponse>;
     list(
-        params: Params$Resource$Manifests$List,
-        callback: BodyResponseCallback<Schema$ManifestsListResponse>): void;
+      params: Params$Resource$Manifests$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManifestsListResponse>,
+      callback: BodyResponseCallback<Schema$ManifestsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Manifests$List,
+      callback: BodyResponseCallback<Schema$ManifestsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ManifestsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Manifests$List|
-        BodyResponseCallback<Schema$ManifestsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManifestsListResponse>,
-        callback?: BodyResponseCallback<Schema$ManifestsListResponse>):
-        void|GaxiosPromise<Schema$ManifestsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Manifests$List
+        | BodyResponseCallback<Schema$ManifestsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManifestsListResponse>,
+      callback?: BodyResponseCallback<Schema$ManifestsListResponse>
+    ): void | GaxiosPromise<Schema$ManifestsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Manifests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2984,18 +2760,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/manifests')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/manifests'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManifestsListResponse>(parameters, callback);
@@ -3009,7 +2786,7 @@ export namespace deploymentmanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the deployment for this request.
@@ -3028,53 +2805,26 @@ export namespace deploymentmanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the deployment for this request.
      */
     deployment?: string;
     /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      */
     orderBy?: string;
     /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -3083,13 +2833,11 @@ export namespace deploymentmanager_v2 {
     project?: string;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * deploymentmanager.operations.get
@@ -3100,14 +2848,12 @@ export namespace deploymentmanager_v2 {
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3142,10 +2888,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3160,20 +2905,29 @@ export namespace deploymentmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3191,18 +2945,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/operations/{operation}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/operations/{operation}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3210,7 +2965,6 @@ export namespace deploymentmanager_v2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.operations.list
@@ -3221,14 +2975,12 @@ export namespace deploymentmanager_v2 {
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3254,9 +3006,8 @@ export namespace deploymentmanager_v2 {
      *       return;
      *     }
      *     for (var i = 0; i < operationsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `operationsPage`: console.log(JSON.stringify(operationsPage[i], null,
-     * 2));
+     *       // TODO: Change code below to process each resource in `operationsPage`:
+     *       console.log(JSON.stringify(operationsPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -3274,10 +3025,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3295,24 +3045,31 @@ export namespace deploymentmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$OperationsListResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OperationsListResponse>,
-        callback: BodyResponseCallback<Schema$OperationsListResponse>): void;
+      params?: Params$Resource$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OperationsListResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        callback: BodyResponseCallback<Schema$OperationsListResponse>): void;
+      params: Params$Resource$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OperationsListResponse>,
+      callback: BodyResponseCallback<Schema$OperationsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      callback: BodyResponseCallback<Schema$OperationsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$OperationsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Operations$List|
-        BodyResponseCallback<Schema$OperationsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OperationsListResponse>,
-        callback?: BodyResponseCallback<Schema$OperationsListResponse>):
-        void|GaxiosPromise<Schema$OperationsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Operations$List
+        | BodyResponseCallback<Schema$OperationsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OperationsListResponse>,
+      callback?: BodyResponseCallback<Schema$OperationsListResponse>
+    ): void | GaxiosPromise<Schema$OperationsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3330,18 +3087,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/operations')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/operations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OperationsListResponse>(parameters, callback);
@@ -3355,7 +3113,7 @@ export namespace deploymentmanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation for this request.
@@ -3370,49 +3128,22 @@ export namespace deploymentmanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      */
     orderBy?: string;
     /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -3421,13 +3152,11 @@ export namespace deploymentmanager_v2 {
     project?: string;
   }
 
-
   export class Resource$Resources {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * deploymentmanager.resources.get
@@ -3438,14 +3167,12 @@ export namespace deploymentmanager_v2 {
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3483,10 +3210,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3502,19 +3228,27 @@ export namespace deploymentmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Resources$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Resource>;
-    get(params: Params$Resource$Resources$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Resource>,
-        callback: BodyResponseCallback<Schema$Resource>): void;
-    get(params: Params$Resource$Resources$Get,
-        callback: BodyResponseCallback<Schema$Resource>): void;
+    get(
+      params?: Params$Resource$Resources$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Resource>;
+    get(
+      params: Params$Resource$Resources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Resource>,
+      callback: BodyResponseCallback<Schema$Resource>
+    ): void;
+    get(
+      params: Params$Resource$Resources$Get,
+      callback: BodyResponseCallback<Schema$Resource>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Resource>): void;
-    get(paramsOrCallback?: Params$Resource$Resources$Get|
-        BodyResponseCallback<Schema$Resource>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Resource>,
-        callback?: BodyResponseCallback<Schema$Resource>):
-        void|GaxiosPromise<Schema$Resource> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Resources$Get
+        | BodyResponseCallback<Schema$Resource>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Resource>,
+      callback?: BodyResponseCallback<Schema$Resource>
+    ): void | GaxiosPromise<Schema$Resource> {
       let params = (paramsOrCallback || {}) as Params$Resource$Resources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3532,18 +3266,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/resources/{resource}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/resources/{resource}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment', 'resource'],
         pathParams: ['deployment', 'project', 'resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Resource>(parameters, callback);
@@ -3551,7 +3286,6 @@ export namespace deploymentmanager_v2 {
         return createAPIRequest<Schema$Resource>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.resources.list
@@ -3562,14 +3296,12 @@ export namespace deploymentmanager_v2 {
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3598,8 +3330,8 @@ export namespace deploymentmanager_v2 {
      *       return;
      *     }
      *     for (var i = 0; i < resourcesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `resourcesPage`: console.log(JSON.stringify(resourcesPage[i], null, 2));
+     *       // TODO: Change code below to process each resource in `resourcesPage`:
+     *       console.log(JSON.stringify(resourcesPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -3617,10 +3349,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3639,24 +3370,31 @@ export namespace deploymentmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Resources$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ResourcesListResponse>;
     list(
-        params: Params$Resource$Resources$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ResourcesListResponse>,
-        callback: BodyResponseCallback<Schema$ResourcesListResponse>): void;
+      params?: Params$Resource$Resources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResourcesListResponse>;
     list(
-        params: Params$Resource$Resources$List,
-        callback: BodyResponseCallback<Schema$ResourcesListResponse>): void;
+      params: Params$Resource$Resources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResourcesListResponse>,
+      callback: BodyResponseCallback<Schema$ResourcesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Resources$List,
+      callback: BodyResponseCallback<Schema$ResourcesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ResourcesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Resources$List|
-        BodyResponseCallback<Schema$ResourcesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ResourcesListResponse>,
-        callback?: BodyResponseCallback<Schema$ResourcesListResponse>):
-        void|GaxiosPromise<Schema$ResourcesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Resources$List
+        | BodyResponseCallback<Schema$ResourcesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResourcesListResponse>,
+      callback?: BodyResponseCallback<Schema$ResourcesListResponse>
+    ): void | GaxiosPromise<Schema$ResourcesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Resources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3674,18 +3412,19 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/resources')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/resources'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ResourcesListResponse>(parameters, callback);
@@ -3699,7 +3438,7 @@ export namespace deploymentmanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the deployment for this request.
@@ -3718,53 +3457,26 @@ export namespace deploymentmanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the deployment for this request.
      */
     deployment?: string;
     /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      */
     orderBy?: string;
     /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -3773,13 +3485,11 @@ export namespace deploymentmanager_v2 {
     project?: string;
   }
 
-
   export class Resource$Types {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * deploymentmanager.types.list
@@ -3790,14 +3500,12 @@ export namespace deploymentmanager_v2 {
      * // 1. If not already done, enable the Google Cloud Deployment Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/deploymentmanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3842,10 +3550,9 @@ export namespace deploymentmanager_v2 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3863,23 +3570,29 @@ export namespace deploymentmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Types$List, options?: MethodOptions):
-        GaxiosPromise<Schema$TypesListResponse>;
     list(
-        params: Params$Resource$Types$List,
-        options: MethodOptions|BodyResponseCallback<Schema$TypesListResponse>,
-        callback: BodyResponseCallback<Schema$TypesListResponse>): void;
+      params?: Params$Resource$Types$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TypesListResponse>;
     list(
-        params: Params$Resource$Types$List,
-        callback: BodyResponseCallback<Schema$TypesListResponse>): void;
+      params: Params$Resource$Types$List,
+      options: MethodOptions | BodyResponseCallback<Schema$TypesListResponse>,
+      callback: BodyResponseCallback<Schema$TypesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Types$List,
+      callback: BodyResponseCallback<Schema$TypesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$TypesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Types$List|
-        BodyResponseCallback<Schema$TypesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TypesListResponse>,
-        callback?: BodyResponseCallback<Schema$TypesListResponse>):
-        void|GaxiosPromise<Schema$TypesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Types$List
+        | BodyResponseCallback<Schema$TypesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TypesListResponse>,
+      callback?: BodyResponseCallback<Schema$TypesListResponse>
+    ): void | GaxiosPromise<Schema$TypesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Types$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3897,17 +3610,18 @@ export namespace deploymentmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/deploymentmanager/v2/projects/{project}/global/types')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/deploymentmanager/v2/projects/{project}/global/types'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TypesListResponse>(parameters, callback);
@@ -3921,49 +3635,22 @@ export namespace deploymentmanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      */
     orderBy?: string;
     /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**

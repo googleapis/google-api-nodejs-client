@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {dataflow_v1b3} from './v1b3';
 
 export const VERSIONS = {
-  'v1b3': dataflow_v1b3.Dataflow,
+  v1b3: dataflow_v1b3.Dataflow,
 };
 
 export function dataflow(version: 'v1b3'): dataflow_v1b3.Dataflow;
-export function dataflow(options: dataflow_v1b3.Options):
-    dataflow_v1b3.Dataflow;
+export function dataflow(
+  options: dataflow_v1b3.Options
+): dataflow_v1b3.Dataflow;
 export function dataflow<T = dataflow_v1b3.Dataflow>(
-    this: GoogleConfigurable, versionOrOptions: 'v1b3'|dataflow_v1b3.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1b3' | dataflow_v1b3.Options
+) {
   return getAPI<T>('dataflow', versionOrOptions, VERSIONS, this);
 }
 

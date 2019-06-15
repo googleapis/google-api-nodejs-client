@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace storage_v1beta2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace storage_v1beta2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -88,16 +97,22 @@ export namespace storage_v1beta2 {
     objects: Resource$Objects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
-      this.bucketAccessControls =
-          new Resource$Bucketaccesscontrols(this.context);
+      this.bucketAccessControls = new Resource$Bucketaccesscontrols(
+        this.context
+      );
       this.buckets = new Resource$Buckets(this.context);
       this.channels = new Resource$Channels(this.context);
-      this.defaultObjectAccessControls =
-          new Resource$Defaultobjectaccesscontrols(this.context);
-      this.objectAccessControls =
-          new Resource$Objectaccesscontrols(this.context);
+      this.defaultObjectAccessControls = new Resource$Defaultobjectaccesscontrols(
+        this.context
+      );
+      this.objectAccessControls = new Resource$Objectaccesscontrols(
+        this.context
+      );
       this.objects = new Resource$Objects(this.context);
     }
   }
@@ -136,12 +151,11 @@ export namespace storage_v1beta2 {
      */
     kind?: string;
     /**
-     * The bucket&#39;s lifecycle configuration. See object lifecycle management
-     * for more information.
+     * The bucket&#39;s lifecycle configuration. See object lifecycle management for more information.
      */
     lifecycle?: {
       rule?: Array<{
-        action?: {type?: string;};
+        action?: {type?: string};
         condition?: {
           age?: number;
           createdBefore?: string;
@@ -151,16 +165,13 @@ export namespace storage_v1beta2 {
       }>;
     };
     /**
-     * The location of the bucket. Object data for objects in the bucket resides
-     * in physical storage within this region. Typical values are US and EU.
-     * Defaults to US. See the developer&#39;s guide for the authoritative list.
+     * The location of the bucket. Object data for objects in the bucket resides in physical storage within this region. Typical values are US and EU. Defaults to US. See the developer&#39;s guide for the authoritative list.
      */
     location?: string;
     /**
-     * The bucket&#39;s logging configuration, which defines the destination
-     * bucket and optional name prefix for the current bucket&#39;s logs.
+     * The bucket&#39;s logging configuration, which defines the destination bucket and optional name prefix for the current bucket&#39;s logs.
      */
-    logging?: {logBucket?: string; logObjectPrefix?: string;};
+    logging?: {logBucket?: string; logObjectPrefix?: string};
     /**
      * The metadata generation of this bucket.
      */
@@ -170,19 +181,15 @@ export namespace storage_v1beta2 {
      */
     name?: string;
     /**
-     * The owner of the bucket. This is always the project team&#39;s owner
-     * group.
+     * The owner of the bucket. This is always the project team&#39;s owner group.
      */
-    owner?: {entity?: string; entityId?: string;};
+    owner?: {entity?: string; entityId?: string};
     /**
      * The URI of this bucket.
      */
     selfLink?: string;
     /**
-     * The bucket&#39;s storage class. This defines how objects in the bucket
-     * are stored and determines the SLA and the cost of storage. Typical values
-     * are STANDARD and DURABLE_REDUCED_AVAILABILITY. Defaults to STANDARD. See
-     * the developer&#39;s guide for the authoritative list.
+     * The bucket&#39;s storage class. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Typical values are STANDARD and DURABLE_REDUCED_AVAILABILITY. Defaults to STANDARD. See the developer&#39;s guide for the authoritative list.
      */
     storageClass?: string;
     /**
@@ -192,11 +199,11 @@ export namespace storage_v1beta2 {
     /**
      * The bucket&#39;s versioning configuration.
      */
-    versioning?: {enabled?: boolean;};
+    versioning?: {enabled?: boolean};
     /**
      * The bucket&#39;s website configuration.
      */
-    website?: {mainPageSuffix?: string; notFoundPage?: string;};
+    website?: {mainPageSuffix?: string; notFoundPage?: string};
   }
   /**
    * An access-control entry.
@@ -215,13 +222,7 @@ export namespace storage_v1beta2 {
      */
     email?: string;
     /**
-     * The entity holding the permission, in one of the following forms:  -
-     * user-userId  - user-email  - group-groupId  - group-email  -
-     * domain-domain  - allUsers  - allAuthenticatedUsers Examples:  - The user
-     * liz@example.com would be user-liz@example.com.  - The group
-     * example@googlegroups.com would be group-example@googlegroups.com.  - To
-     * refer to all members of the Google Apps for Business domain example.com,
-     * the entity would be domain-example.com.
+     * The entity holding the permission, in one of the following forms:  - user-userId  - user-email  - group-groupId  - group-email  - domain-domain  - allUsers  - allAuthenticatedUsers Examples:  - The user liz@example.com would be user-liz@example.com.  - The group example@googlegroups.com would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
      */
     entity?: string;
     /**
@@ -237,8 +238,7 @@ export namespace storage_v1beta2 {
      */
     id?: string;
     /**
-     * The kind of item this is. For bucket access control entries, this is
-     * always storage#bucketAccessControl.
+     * The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.
      */
     kind?: string;
     /**
@@ -259,8 +259,7 @@ export namespace storage_v1beta2 {
      */
     items?: Schema$BucketAccessControl[];
     /**
-     * The kind of item this is. For lists of bucket access control entries,
-     * this is always storage#bucketAccessControls.
+     * The kind of item this is. For lists of bucket access control entries, this is always storage#bucketAccessControls.
      */
     kind?: string;
   }
@@ -273,13 +272,11 @@ export namespace storage_v1beta2 {
      */
     items?: Schema$Bucket[];
     /**
-     * The kind of item this is. For lists of buckets, this is always
-     * storage#buckets.
+     * The kind of item this is. For lists of buckets, this is always storage#buckets.
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
   }
@@ -292,8 +289,7 @@ export namespace storage_v1beta2 {
      */
     address?: string;
     /**
-     * Date and time of notification channel expiration, expressed as a Unix
-     * timestamp, in milliseconds. Optional.
+     * Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
      */
     expiration?: string;
     /**
@@ -301,21 +297,19 @@ export namespace storage_v1beta2 {
      */
     id?: string;
     /**
-     * Identifies this as a notification channel used to watch for changes to a
-     * resource. Value: the fixed string &quot;api#channel&quot;.
+     * Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string &quot;api#channel&quot;.
      */
     kind?: string;
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: {[key: string]: string;};
+    params?: {[key: string]: string};
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
     payload?: boolean;
     /**
-     * An opaque ID that identifies the resource being watched on this channel.
-     * Stable across different API versions.
+     * An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
      */
     resourceId?: string;
     /**
@@ -323,8 +317,7 @@ export namespace storage_v1beta2 {
      */
     resourceUri?: string;
     /**
-     * An arbitrary string delivered to the target address with each
-     * notification delivered over this channel. Optional.
+     * An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
      */
     token?: string;
     /**
@@ -345,13 +338,12 @@ export namespace storage_v1beta2 {
      */
     kind?: string;
     /**
-     * The list of source objects that will be concatenated into a single
-     * object.
+     * The list of source objects that will be concatenated into a single object.
      */
     sourceObjects?: Array<{
       generation?: string;
       name?: string;
-      objectPreconditions?: {ifGenerationMatch?: string;};
+      objectPreconditions?: {ifGenerationMatch?: string};
     }>;
   }
   /**
@@ -371,8 +363,7 @@ export namespace storage_v1beta2 {
      */
     cacheControl?: string;
     /**
-     * Number of underlying components that make up this object. Components are
-     * accumulated by compose operations and are limited to a count of 32.
+     * Number of underlying components that make up this object. Components are accumulated by compose operations and are limited to a count of 32.
      */
     componentCount?: number;
     /**
@@ -392,8 +383,7 @@ export namespace storage_v1beta2 {
      */
     contentType?: string;
     /**
-     * CRC32c checksum, as described in RFC 4960, Appendix B; encoded using
-     * base64.
+     * CRC32c checksum, as described in RFC 4960, Appendix B; encoded using base64.
      */
     crc32c?: string;
     /**
@@ -423,11 +413,9 @@ export namespace storage_v1beta2 {
     /**
      * User-provided metadata, in key/value pairs.
      */
-    metadata?: {[key: string]: string;};
+    metadata?: {[key: string]: string};
     /**
-     * The generation of the metadata for this object at this generation. Used
-     * for metadata versioning. Has no meaning outside of the context of this
-     * generation.
+     * The generation of the metadata for this object at this generation. Used for metadata versioning. Has no meaning outside of the context of this generation.
      */
     metageneration?: string;
     /**
@@ -437,7 +425,7 @@ export namespace storage_v1beta2 {
     /**
      * The owner of the object. This will always be the uploader of the object.
      */
-    owner?: {entity?: string; entityId?: string;};
+    owner?: {entity?: string; entityId?: string};
     /**
      * The link to this object.
      */
@@ -451,8 +439,7 @@ export namespace storage_v1beta2 {
      */
     storageClass?: string;
     /**
-     * Deletion time of the object in RFC 3339 format. Will be returned if and
-     * only if this version of the object has been deleted.
+     * Deletion time of the object in RFC 3339 format. Will be returned if and only if this version of the object has been deleted.
      */
     timeDeleted?: string;
     /**
@@ -477,13 +464,7 @@ export namespace storage_v1beta2 {
      */
     email?: string;
     /**
-     * The entity holding the permission, in one of the following forms:  -
-     * user-userId  - user-email  - group-groupId  - group-email  -
-     * domain-domain  - allUsers  - allAuthenticatedUsers Examples:  - The user
-     * liz@example.com would be user-liz@example.com.  - The group
-     * example@googlegroups.com would be group-example@googlegroups.com.  - To
-     * refer to all members of the Google Apps for Business domain example.com,
-     * the entity would be domain-example.com.
+     * The entity holding the permission, in one of the following forms:  - user-userId  - user-email  - group-groupId  - group-email  - domain-domain  - allUsers  - allAuthenticatedUsers Examples:  - The user liz@example.com would be user-liz@example.com.  - The group example@googlegroups.com would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
      */
     entity?: string;
     /**
@@ -503,8 +484,7 @@ export namespace storage_v1beta2 {
      */
     id?: string;
     /**
-     * The kind of item this is. For object access control entries, this is
-     * always storage#objectAccessControl.
+     * The kind of item this is. For object access control entries, this is always storage#objectAccessControl.
      */
     kind?: string;
     /**
@@ -529,8 +509,7 @@ export namespace storage_v1beta2 {
      */
     items?: any[];
     /**
-     * The kind of item this is. For lists of object access control entries,
-     * this is always storage#objectAccessControls.
+     * The kind of item this is. For lists of object access control entries, this is always storage#objectAccessControls.
      */
     kind?: string;
   }
@@ -543,22 +522,18 @@ export namespace storage_v1beta2 {
      */
     items?: Schema$Object[];
     /**
-     * The kind of item this is. For lists of objects, this is always
-     * storage#objects.
+     * The kind of item this is. For lists of objects, this is always storage#objects.
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
-     * The list of prefixes of objects matching-but-not-listed up to and
-     * including the requested delimiter.
+     * The list of prefixes of objects matching-but-not-listed up to and including the requested delimiter.
      */
     prefixes?: string[];
   }
-
 
   export class Resource$Bucketaccesscontrols {
     context: APIRequestContext;
@@ -566,11 +541,9 @@ export namespace storage_v1beta2 {
       this.context = context;
     }
 
-
     /**
      * storage.bucketAccessControls.delete
-     * @desc Permanently deletes the ACL entry for the specified entity on the
-     * specified bucket.
+     * @desc Permanently deletes the ACL entry for the specified entity on the specified bucket.
      * @alias storage.bucketAccessControls.delete
      * @memberOf! ()
      *
@@ -582,23 +555,28 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Bucketaccesscontrols$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Bucketaccesscontrols$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Bucketaccesscontrols$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Bucketaccesscontrols$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Bucketaccesscontrols$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Bucketaccesscontrols$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Bucketaccesscontrols$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Bucketaccesscontrols$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Bucketaccesscontrols$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bucketaccesscontrols$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -615,16 +593,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -633,11 +614,9 @@ export namespace storage_v1beta2 {
       }
     }
 
-
     /**
      * storage.bucketAccessControls.get
-     * @desc Returns the ACL entry for the specified entity on the specified
-     * bucket.
+     * @desc Returns the ACL entry for the specified entity on the specified bucket.
      * @alias storage.bucketAccessControls.get
      * @memberOf! ()
      *
@@ -648,22 +627,31 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Bucketaccesscontrols$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$BucketAccessControl>;
-    get(params: Params$Resource$Bucketaccesscontrols$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
-        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
-    get(params: Params$Resource$Bucketaccesscontrols$Get,
-        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+    get(
+      params?: Params$Resource$Bucketaccesscontrols$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BucketAccessControl>;
+    get(
+      params: Params$Resource$Bucketaccesscontrols$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$BucketAccessControl>,
+      callback: BodyResponseCallback<Schema$BucketAccessControl>
+    ): void;
+    get(
+      params: Params$Resource$Bucketaccesscontrols$Get,
+      callback: BodyResponseCallback<Schema$BucketAccessControl>
+    ): void;
     get(callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
-    get(paramsOrCallback?: Params$Resource$Bucketaccesscontrols$Get|
-        BodyResponseCallback<Schema$BucketAccessControl>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BucketAccessControl>,
-        callback?: BodyResponseCallback<Schema$BucketAccessControl>):
-        void|GaxiosPromise<Schema$BucketAccessControl> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Bucketaccesscontrols$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Bucketaccesscontrols$Get
+        | BodyResponseCallback<Schema$BucketAccessControl>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BucketAccessControl>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControl>
+    ): void | GaxiosPromise<Schema$BucketAccessControl> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bucketaccesscontrols$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -680,16 +668,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
@@ -697,7 +688,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$BucketAccessControl>(parameters);
       }
     }
-
 
     /**
      * storage.bucketAccessControls.insert
@@ -713,25 +703,30 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Bucketaccesscontrols$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$BucketAccessControl>;
+      params?: Params$Resource$Bucketaccesscontrols$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BucketAccessControl>;
     insert(
-        params: Params$Resource$Bucketaccesscontrols$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
-        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+      params: Params$Resource$Bucketaccesscontrols$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$BucketAccessControl>,
+      callback: BodyResponseCallback<Schema$BucketAccessControl>
+    ): void;
     insert(
-        params: Params$Resource$Bucketaccesscontrols$Insert,
-        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+      params: Params$Resource$Bucketaccesscontrols$Insert,
+      callback: BodyResponseCallback<Schema$BucketAccessControl>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Bucketaccesscontrols$Insert|
-        BodyResponseCallback<Schema$BucketAccessControl>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BucketAccessControl>,
-        callback?: BodyResponseCallback<Schema$BucketAccessControl>):
-        void|GaxiosPromise<Schema$BucketAccessControl> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Bucketaccesscontrols$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Bucketaccesscontrols$Insert
+        | BodyResponseCallback<Schema$BucketAccessControl>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BucketAccessControl>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControl>
+    ): void | GaxiosPromise<Schema$BucketAccessControl> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bucketaccesscontrols$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -748,16 +743,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
@@ -765,7 +763,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$BucketAccessControl>(parameters);
       }
     }
-
 
     /**
      * storage.bucketAccessControls.list
@@ -780,26 +777,32 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Bucketaccesscontrols$List,
-        options?: MethodOptions): GaxiosPromise<Schema$BucketAccessControls>;
+      params?: Params$Resource$Bucketaccesscontrols$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BucketAccessControls>;
     list(
-        params: Params$Resource$Bucketaccesscontrols$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BucketAccessControls>,
-        callback: BodyResponseCallback<Schema$BucketAccessControls>): void;
+      params: Params$Resource$Bucketaccesscontrols$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BucketAccessControls>,
+      callback: BodyResponseCallback<Schema$BucketAccessControls>
+    ): void;
     list(
-        params: Params$Resource$Bucketaccesscontrols$List,
-        callback: BodyResponseCallback<Schema$BucketAccessControls>): void;
+      params: Params$Resource$Bucketaccesscontrols$List,
+      callback: BodyResponseCallback<Schema$BucketAccessControls>
+    ): void;
     list(callback: BodyResponseCallback<Schema$BucketAccessControls>): void;
     list(
-        paramsOrCallback?: Params$Resource$Bucketaccesscontrols$List|
-        BodyResponseCallback<Schema$BucketAccessControls>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BucketAccessControls>,
-        callback?: BodyResponseCallback<Schema$BucketAccessControls>):
-        void|GaxiosPromise<Schema$BucketAccessControls> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Bucketaccesscontrols$List;
+      paramsOrCallback?:
+        | Params$Resource$Bucketaccesscontrols$List
+        | BodyResponseCallback<Schema$BucketAccessControls>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BucketAccessControls>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControls>
+    ): void | GaxiosPromise<Schema$BucketAccessControls> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bucketaccesscontrols$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -816,16 +819,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControls>(parameters, callback);
@@ -834,11 +840,9 @@ export namespace storage_v1beta2 {
       }
     }
 
-
     /**
      * storage.bucketAccessControls.patch
-     * @desc Updates an ACL entry on the specified bucket. This method supports
-     * patch semantics.
+     * @desc Updates an ACL entry on the specified bucket. This method supports patch semantics.
      * @alias storage.bucketAccessControls.patch
      * @memberOf! ()
      *
@@ -851,25 +855,30 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Bucketaccesscontrols$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$BucketAccessControl>;
+      params?: Params$Resource$Bucketaccesscontrols$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BucketAccessControl>;
     patch(
-        params: Params$Resource$Bucketaccesscontrols$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
-        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+      params: Params$Resource$Bucketaccesscontrols$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$BucketAccessControl>,
+      callback: BodyResponseCallback<Schema$BucketAccessControl>
+    ): void;
     patch(
-        params: Params$Resource$Bucketaccesscontrols$Patch,
-        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+      params: Params$Resource$Bucketaccesscontrols$Patch,
+      callback: BodyResponseCallback<Schema$BucketAccessControl>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Bucketaccesscontrols$Patch|
-        BodyResponseCallback<Schema$BucketAccessControl>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BucketAccessControl>,
-        callback?: BodyResponseCallback<Schema$BucketAccessControl>):
-        void|GaxiosPromise<Schema$BucketAccessControl> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Bucketaccesscontrols$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Bucketaccesscontrols$Patch
+        | BodyResponseCallback<Schema$BucketAccessControl>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BucketAccessControl>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControl>
+    ): void | GaxiosPromise<Schema$BucketAccessControl> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bucketaccesscontrols$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -886,16 +895,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
@@ -903,7 +915,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$BucketAccessControl>(parameters);
       }
     }
-
 
     /**
      * storage.bucketAccessControls.update
@@ -920,25 +931,30 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Bucketaccesscontrols$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$BucketAccessControl>;
+      params?: Params$Resource$Bucketaccesscontrols$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BucketAccessControl>;
     update(
-        params: Params$Resource$Bucketaccesscontrols$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
-        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+      params: Params$Resource$Bucketaccesscontrols$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$BucketAccessControl>,
+      callback: BodyResponseCallback<Schema$BucketAccessControl>
+    ): void;
     update(
-        params: Params$Resource$Bucketaccesscontrols$Update,
-        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+      params: Params$Resource$Bucketaccesscontrols$Update,
+      callback: BodyResponseCallback<Schema$BucketAccessControl>
+    ): void;
     update(callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
     update(
-        paramsOrCallback?: Params$Resource$Bucketaccesscontrols$Update|
-        BodyResponseCallback<Schema$BucketAccessControl>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BucketAccessControl>,
-        callback?: BodyResponseCallback<Schema$BucketAccessControl>):
-        void|GaxiosPromise<Schema$BucketAccessControl> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Bucketaccesscontrols$Update;
+      paramsOrCallback?:
+        | Params$Resource$Bucketaccesscontrols$Update
+        | BodyResponseCallback<Schema$BucketAccessControl>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BucketAccessControl>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControl>
+    ): void | GaxiosPromise<Schema$BucketAccessControl> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bucketaccesscontrols$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -955,16 +971,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
@@ -974,46 +993,44 @@ export namespace storage_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Bucketaccesscontrols$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Bucketaccesscontrols$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
   }
-  export interface Params$Resource$Bucketaccesscontrols$Get extends
-      StandardParameters {
+  export interface Params$Resource$Bucketaccesscontrols$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
   }
-  export interface Params$Resource$Bucketaccesscontrols$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Bucketaccesscontrols$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
@@ -1025,32 +1042,31 @@ export namespace storage_v1beta2 {
      */
     requestBody?: Schema$BucketAccessControl;
   }
-  export interface Params$Resource$Bucketaccesscontrols$List extends
-      StandardParameters {
+  export interface Params$Resource$Bucketaccesscontrols$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
   }
-  export interface Params$Resource$Bucketaccesscontrols$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Bucketaccesscontrols$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
 
@@ -1059,20 +1075,19 @@ export namespace storage_v1beta2 {
      */
     requestBody?: Schema$BucketAccessControl;
   }
-  export interface Params$Resource$Bucketaccesscontrols$Update extends
-      StandardParameters {
+  export interface Params$Resource$Bucketaccesscontrols$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
 
@@ -1081,14 +1096,12 @@ export namespace storage_v1beta2 {
      */
     requestBody?: Schema$BucketAccessControl;
   }
-
 
   export class Resource$Buckets {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * storage.buckets.delete
@@ -1104,21 +1117,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Buckets$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Buckets$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Buckets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Buckets$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Buckets$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Buckets$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Buckets$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Buckets$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1136,16 +1155,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1153,7 +1175,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * storage.buckets.get
@@ -1170,19 +1191,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Buckets$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Bucket>;
-    get(params: Params$Resource$Buckets$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-        callback: BodyResponseCallback<Schema$Bucket>): void;
-    get(params: Params$Resource$Buckets$Get,
-        callback: BodyResponseCallback<Schema$Bucket>): void;
+    get(
+      params?: Params$Resource$Buckets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Bucket>;
+    get(
+      params: Params$Resource$Buckets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Bucket>,
+      callback: BodyResponseCallback<Schema$Bucket>
+    ): void;
+    get(
+      params: Params$Resource$Buckets$Get,
+      callback: BodyResponseCallback<Schema$Bucket>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Bucket>): void;
-    get(paramsOrCallback?: Params$Resource$Buckets$Get|
-        BodyResponseCallback<Schema$Bucket>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-        callback?: BodyResponseCallback<Schema$Bucket>):
-        void|GaxiosPromise<Schema$Bucket> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Buckets$Get
+        | BodyResponseCallback<Schema$Bucket>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Bucket>,
+      callback?: BodyResponseCallback<Schema$Bucket>
+    ): void | GaxiosPromise<Schema$Bucket> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1200,16 +1229,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Bucket>(parameters, callback);
@@ -1217,7 +1249,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$Bucket>(parameters);
       }
     }
-
 
     /**
      * storage.buckets.insert
@@ -1233,22 +1264,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Buckets$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Bucket>;
     insert(
-        params: Params$Resource$Buckets$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-        callback: BodyResponseCallback<Schema$Bucket>): void;
+      params?: Params$Resource$Buckets$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Bucket>;
     insert(
-        params: Params$Resource$Buckets$Insert,
-        callback: BodyResponseCallback<Schema$Bucket>): void;
+      params: Params$Resource$Buckets$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Bucket>,
+      callback: BodyResponseCallback<Schema$Bucket>
+    ): void;
+    insert(
+      params: Params$Resource$Buckets$Insert,
+      callback: BodyResponseCallback<Schema$Bucket>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Bucket>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Buckets$Insert|
-        BodyResponseCallback<Schema$Bucket>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-        callback?: BodyResponseCallback<Schema$Bucket>):
-        void|GaxiosPromise<Schema$Bucket> {
+      paramsOrCallback?:
+        | Params$Resource$Buckets$Insert
+        | BodyResponseCallback<Schema$Bucket>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Bucket>,
+      callback?: BodyResponseCallback<Schema$Bucket>
+    ): void | GaxiosPromise<Schema$Bucket> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1266,16 +1302,16 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Bucket>(parameters, callback);
@@ -1283,7 +1319,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$Bucket>(parameters);
       }
     }
-
 
     /**
      * storage.buckets.list
@@ -1300,22 +1335,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Buckets$List, options?: MethodOptions):
-        GaxiosPromise<Schema$Buckets>;
     list(
-        params: Params$Resource$Buckets$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Buckets>,
-        callback: BodyResponseCallback<Schema$Buckets>): void;
+      params?: Params$Resource$Buckets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Buckets>;
     list(
-        params: Params$Resource$Buckets$List,
-        callback: BodyResponseCallback<Schema$Buckets>): void;
+      params: Params$Resource$Buckets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Buckets>,
+      callback: BodyResponseCallback<Schema$Buckets>
+    ): void;
+    list(
+      params: Params$Resource$Buckets$List,
+      callback: BodyResponseCallback<Schema$Buckets>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Buckets>): void;
     list(
-        paramsOrCallback?: Params$Resource$Buckets$List|
-        BodyResponseCallback<Schema$Buckets>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Buckets>,
-        callback?: BodyResponseCallback<Schema$Buckets>):
-        void|GaxiosPromise<Schema$Buckets> {
+      paramsOrCallback?:
+        | Params$Resource$Buckets$List
+        | BodyResponseCallback<Schema$Buckets>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Buckets>,
+      callback?: BodyResponseCallback<Schema$Buckets>
+    ): void | GaxiosPromise<Schema$Buckets> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1333,16 +1373,16 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Buckets>(parameters, callback);
@@ -1350,7 +1390,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$Buckets>(parameters);
       }
     }
-
 
     /**
      * storage.buckets.patch
@@ -1368,22 +1407,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Buckets$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Bucket>;
     patch(
-        params: Params$Resource$Buckets$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-        callback: BodyResponseCallback<Schema$Bucket>): void;
+      params?: Params$Resource$Buckets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Bucket>;
     patch(
-        params: Params$Resource$Buckets$Patch,
-        callback: BodyResponseCallback<Schema$Bucket>): void;
+      params: Params$Resource$Buckets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Bucket>,
+      callback: BodyResponseCallback<Schema$Bucket>
+    ): void;
+    patch(
+      params: Params$Resource$Buckets$Patch,
+      callback: BodyResponseCallback<Schema$Bucket>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Bucket>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Buckets$Patch|
-        BodyResponseCallback<Schema$Bucket>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-        callback?: BodyResponseCallback<Schema$Bucket>):
-        void|GaxiosPromise<Schema$Bucket> {
+      paramsOrCallback?:
+        | Params$Resource$Buckets$Patch
+        | BodyResponseCallback<Schema$Bucket>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Bucket>,
+      callback?: BodyResponseCallback<Schema$Bucket>
+    ): void | GaxiosPromise<Schema$Bucket> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1401,16 +1445,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Bucket>(parameters, callback);
@@ -1418,7 +1465,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$Bucket>(parameters);
       }
     }
-
 
     /**
      * storage.buckets.update
@@ -1436,22 +1482,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Buckets$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Bucket>;
     update(
-        params: Params$Resource$Buckets$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-        callback: BodyResponseCallback<Schema$Bucket>): void;
+      params?: Params$Resource$Buckets$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Bucket>;
     update(
-        params: Params$Resource$Buckets$Update,
-        callback: BodyResponseCallback<Schema$Bucket>): void;
+      params: Params$Resource$Buckets$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Bucket>,
+      callback: BodyResponseCallback<Schema$Bucket>
+    ): void;
+    update(
+      params: Params$Resource$Buckets$Update,
+      callback: BodyResponseCallback<Schema$Bucket>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Bucket>): void;
     update(
-        paramsOrCallback?: Params$Resource$Buckets$Update|
-        BodyResponseCallback<Schema$Bucket>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-        callback?: BodyResponseCallback<Schema$Bucket>):
-        void|GaxiosPromise<Schema$Bucket> {
+      paramsOrCallback?:
+        | Params$Resource$Buckets$Update
+        | BodyResponseCallback<Schema$Bucket>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Bucket>,
+      callback?: BodyResponseCallback<Schema$Bucket>
+    ): void | GaxiosPromise<Schema$Bucket> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1469,16 +1520,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Bucket>(parameters, callback);
@@ -1492,20 +1546,18 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration matches the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration does not match the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
   }
@@ -1513,20 +1565,18 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration matches the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration does not match the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -1538,16 +1588,14 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A valid API project identifier.
      */
     project?: string;
     /**
-     * Set of properties to return. Defaults to noAcl, unless the bucket
-     * resource specifies acl or defaultObjectAcl properties, when it defaults
-     * to full.
+     * Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
      */
     projection?: string;
 
@@ -1560,15 +1608,14 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of buckets to return.
      */
     maxResults?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**
@@ -1584,20 +1631,18 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration matches the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration does not match the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -1614,20 +1659,18 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration matches the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration does not match the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -1641,13 +1684,11 @@ export namespace storage_v1beta2 {
     requestBody?: Schema$Bucket;
   }
 
-
   export class Resource$Channels {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * storage.channels.stop
@@ -1661,21 +1702,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params?: Params$Resource$Channels$Stop, options?: MethodOptions):
-        GaxiosPromise<void>;
     stop(
-        params: Params$Resource$Channels$Stop,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Channels$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     stop(
-        params: Params$Resource$Channels$Stop,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Channels$Stop,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    stop(
+      params: Params$Resource$Channels$Stop,
+      callback: BodyResponseCallback<void>
+    ): void;
     stop(callback: BodyResponseCallback<void>): void;
     stop(
-        paramsOrCallback?: Params$Resource$Channels$Stop|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Channels$Stop
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1693,16 +1740,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/channels/stop')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/channels/stop').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1716,8 +1766,7 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1725,18 +1774,15 @@ export namespace storage_v1beta2 {
     requestBody?: Schema$Channel;
   }
 
-
   export class Resource$Defaultobjectaccesscontrols {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * storage.defaultObjectAccessControls.delete
-     * @desc Permanently deletes the default object ACL entry for the specified
-     * entity on the specified bucket.
+     * @desc Permanently deletes the default object ACL entry for the specified entity on the specified bucket.
      * @alias storage.defaultObjectAccessControls.delete
      * @memberOf! ()
      *
@@ -1748,23 +1794,28 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Defaultobjectaccesscontrols$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Defaultobjectaccesscontrols$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Defaultobjectaccesscontrols$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Defaultobjectaccesscontrols$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Defaultobjectaccesscontrols$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Defaultobjectaccesscontrols$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Defaultobjectaccesscontrols$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Defaultobjectaccesscontrols$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Defaultobjectaccesscontrols$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Defaultobjectaccesscontrols$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1781,17 +1832,18 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1800,11 +1852,9 @@ export namespace storage_v1beta2 {
       }
     }
 
-
     /**
      * storage.defaultObjectAccessControls.get
-     * @desc Returns the default object ACL entry for the specified entity on
-     * the specified bucket.
+     * @desc Returns the default object ACL entry for the specified entity on the specified bucket.
      * @alias storage.defaultObjectAccessControls.get
      * @memberOf! ()
      *
@@ -1815,22 +1865,31 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Defaultobjectaccesscontrols$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
-    get(params: Params$Resource$Defaultobjectaccesscontrols$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
-    get(params: Params$Resource$Defaultobjectaccesscontrols$Get,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    get(
+      params?: Params$Resource$Defaultobjectaccesscontrols$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    get(
+      params: Params$Resource$Defaultobjectaccesscontrols$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
+    get(
+      params: Params$Resource$Defaultobjectaccesscontrols$Get,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
-    get(paramsOrCallback?: Params$Resource$Defaultobjectaccesscontrols$Get|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|GaxiosPromise<Schema$ObjectAccessControl> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Defaultobjectaccesscontrols$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Defaultobjectaccesscontrols$Get
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void | GaxiosPromise<Schema$ObjectAccessControl> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Defaultobjectaccesscontrols$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1847,17 +1906,18 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -1865,7 +1925,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$ObjectAccessControl>(parameters);
       }
     }
-
 
     /**
      * storage.defaultObjectAccessControls.insert
@@ -1881,25 +1940,30 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Defaultobjectaccesscontrols$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
+      params?: Params$Resource$Defaultobjectaccesscontrols$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ObjectAccessControl>;
     insert(
-        params: Params$Resource$Defaultobjectaccesscontrols$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+      params: Params$Resource$Defaultobjectaccesscontrols$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
     insert(
-        params: Params$Resource$Defaultobjectaccesscontrols$Insert,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+      params: Params$Resource$Defaultobjectaccesscontrols$Insert,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Defaultobjectaccesscontrols$Insert|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|GaxiosPromise<Schema$ObjectAccessControl> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Defaultobjectaccesscontrols$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Defaultobjectaccesscontrols$Insert
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void | GaxiosPromise<Schema$ObjectAccessControl> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Defaultobjectaccesscontrols$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1916,16 +1980,18 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -1933,7 +1999,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$ObjectAccessControl>(parameters);
       }
     }
-
 
     /**
      * storage.defaultObjectAccessControls.list
@@ -1950,26 +2015,32 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Defaultobjectaccesscontrols$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControls>;
+      params?: Params$Resource$Defaultobjectaccesscontrols$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ObjectAccessControls>;
     list(
-        params: Params$Resource$Defaultobjectaccesscontrols$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ObjectAccessControls>,
-        callback: BodyResponseCallback<Schema$ObjectAccessControls>): void;
+      params: Params$Resource$Defaultobjectaccesscontrols$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ObjectAccessControls>,
+      callback: BodyResponseCallback<Schema$ObjectAccessControls>
+    ): void;
     list(
-        params: Params$Resource$Defaultobjectaccesscontrols$List,
-        callback: BodyResponseCallback<Schema$ObjectAccessControls>): void;
+      params: Params$Resource$Defaultobjectaccesscontrols$List,
+      callback: BodyResponseCallback<Schema$ObjectAccessControls>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ObjectAccessControls>): void;
     list(
-        paramsOrCallback?: Params$Resource$Defaultobjectaccesscontrols$List|
-        BodyResponseCallback<Schema$ObjectAccessControls>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ObjectAccessControls>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControls>):
-        void|GaxiosPromise<Schema$ObjectAccessControls> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Defaultobjectaccesscontrols$List;
+      paramsOrCallback?:
+        | Params$Resource$Defaultobjectaccesscontrols$List
+        | BodyResponseCallback<Schema$ObjectAccessControls>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ObjectAccessControls>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControls>
+    ): void | GaxiosPromise<Schema$ObjectAccessControls> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Defaultobjectaccesscontrols$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1986,16 +2057,18 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControls>(parameters, callback);
@@ -2004,11 +2077,9 @@ export namespace storage_v1beta2 {
       }
     }
 
-
     /**
      * storage.defaultObjectAccessControls.patch
-     * @desc Updates a default object ACL entry on the specified bucket. This
-     * method supports patch semantics.
+     * @desc Updates a default object ACL entry on the specified bucket. This method supports patch semantics.
      * @alias storage.defaultObjectAccessControls.patch
      * @memberOf! ()
      *
@@ -2021,25 +2092,30 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Defaultobjectaccesscontrols$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
+      params?: Params$Resource$Defaultobjectaccesscontrols$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ObjectAccessControl>;
     patch(
-        params: Params$Resource$Defaultobjectaccesscontrols$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+      params: Params$Resource$Defaultobjectaccesscontrols$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
     patch(
-        params: Params$Resource$Defaultobjectaccesscontrols$Patch,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+      params: Params$Resource$Defaultobjectaccesscontrols$Patch,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Defaultobjectaccesscontrols$Patch|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|GaxiosPromise<Schema$ObjectAccessControl> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Defaultobjectaccesscontrols$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Defaultobjectaccesscontrols$Patch
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void | GaxiosPromise<Schema$ObjectAccessControl> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Defaultobjectaccesscontrols$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2056,17 +2132,18 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -2074,7 +2151,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$ObjectAccessControl>(parameters);
       }
     }
-
 
     /**
      * storage.defaultObjectAccessControls.update
@@ -2091,25 +2167,30 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Defaultobjectaccesscontrols$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
+      params?: Params$Resource$Defaultobjectaccesscontrols$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ObjectAccessControl>;
     update(
-        params: Params$Resource$Defaultobjectaccesscontrols$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+      params: Params$Resource$Defaultobjectaccesscontrols$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
     update(
-        params: Params$Resource$Defaultobjectaccesscontrols$Update,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+      params: Params$Resource$Defaultobjectaccesscontrols$Update,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
     update(
-        paramsOrCallback?: Params$Resource$Defaultobjectaccesscontrols$Update|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|GaxiosPromise<Schema$ObjectAccessControl> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Defaultobjectaccesscontrols$Update;
+      paramsOrCallback?:
+        | Params$Resource$Defaultobjectaccesscontrols$Update
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void | GaxiosPromise<Schema$ObjectAccessControl> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Defaultobjectaccesscontrols$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2126,17 +2207,18 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -2146,46 +2228,44 @@ export namespace storage_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Defaultobjectaccesscontrols$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$Get extends
-      StandardParameters {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
@@ -2197,42 +2277,39 @@ export namespace storage_v1beta2 {
      */
     requestBody?: Schema$ObjectAccessControl;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$List extends
-      StandardParameters {
+  export interface Params$Resource$Defaultobjectaccesscontrols$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * If present, only return default ACL listing if the bucket's current
-     * metageneration matches this value.
+     * If present, only return default ACL listing if the bucket's current metageneration matches this value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * If present, only return default ACL listing if the bucket's current
-     * metageneration does not match the given value.
+     * If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
 
@@ -2241,20 +2318,19 @@ export namespace storage_v1beta2 {
      */
     requestBody?: Schema$ObjectAccessControl;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$Update extends
-      StandardParameters {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
 
@@ -2263,7 +2339,6 @@ export namespace storage_v1beta2 {
      */
     requestBody?: Schema$ObjectAccessControl;
   }
-
 
   export class Resource$Objectaccesscontrols {
     context: APIRequestContext;
@@ -2271,11 +2346,9 @@ export namespace storage_v1beta2 {
       this.context = context;
     }
 
-
     /**
      * storage.objectAccessControls.delete
-     * @desc Permanently deletes the ACL entry for the specified entity on the
-     * specified object.
+     * @desc Permanently deletes the ACL entry for the specified entity on the specified object.
      * @alias storage.objectAccessControls.delete
      * @memberOf! ()
      *
@@ -2289,23 +2362,28 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Objectaccesscontrols$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Objectaccesscontrols$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Objectaccesscontrols$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Objectaccesscontrols$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Objectaccesscontrols$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Objectaccesscontrols$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Objectaccesscontrols$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Objectaccesscontrols$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Objectaccesscontrols$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Objectaccesscontrols$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2322,17 +2400,18 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2341,11 +2420,9 @@ export namespace storage_v1beta2 {
       }
     }
 
-
     /**
      * storage.objectAccessControls.get
-     * @desc Returns the ACL entry for the specified entity on the specified
-     * object.
+     * @desc Returns the ACL entry for the specified entity on the specified object.
      * @alias storage.objectAccessControls.get
      * @memberOf! ()
      *
@@ -2358,22 +2435,31 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Objectaccesscontrols$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
-    get(params: Params$Resource$Objectaccesscontrols$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
-    get(params: Params$Resource$Objectaccesscontrols$Get,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    get(
+      params?: Params$Resource$Objectaccesscontrols$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    get(
+      params: Params$Resource$Objectaccesscontrols$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
+    get(
+      params: Params$Resource$Objectaccesscontrols$Get,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
-    get(paramsOrCallback?: Params$Resource$Objectaccesscontrols$Get|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|GaxiosPromise<Schema$ObjectAccessControl> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Objectaccesscontrols$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Objectaccesscontrols$Get
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void | GaxiosPromise<Schema$ObjectAccessControl> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Objectaccesscontrols$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2390,17 +2476,18 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -2408,7 +2495,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$ObjectAccessControl>(parameters);
       }
     }
-
 
     /**
      * storage.objectAccessControls.insert
@@ -2426,25 +2512,30 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Objectaccesscontrols$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
+      params?: Params$Resource$Objectaccesscontrols$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ObjectAccessControl>;
     insert(
-        params: Params$Resource$Objectaccesscontrols$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+      params: Params$Resource$Objectaccesscontrols$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
     insert(
-        params: Params$Resource$Objectaccesscontrols$Insert,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+      params: Params$Resource$Objectaccesscontrols$Insert,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Objectaccesscontrols$Insert|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|GaxiosPromise<Schema$ObjectAccessControl> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Objectaccesscontrols$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Objectaccesscontrols$Insert
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void | GaxiosPromise<Schema$ObjectAccessControl> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Objectaccesscontrols$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2461,16 +2552,18 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -2478,7 +2571,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$ObjectAccessControl>(parameters);
       }
     }
-
 
     /**
      * storage.objectAccessControls.list
@@ -2495,26 +2587,32 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Objectaccesscontrols$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControls>;
+      params?: Params$Resource$Objectaccesscontrols$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ObjectAccessControls>;
     list(
-        params: Params$Resource$Objectaccesscontrols$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ObjectAccessControls>,
-        callback: BodyResponseCallback<Schema$ObjectAccessControls>): void;
+      params: Params$Resource$Objectaccesscontrols$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ObjectAccessControls>,
+      callback: BodyResponseCallback<Schema$ObjectAccessControls>
+    ): void;
     list(
-        params: Params$Resource$Objectaccesscontrols$List,
-        callback: BodyResponseCallback<Schema$ObjectAccessControls>): void;
+      params: Params$Resource$Objectaccesscontrols$List,
+      callback: BodyResponseCallback<Schema$ObjectAccessControls>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ObjectAccessControls>): void;
     list(
-        paramsOrCallback?: Params$Resource$Objectaccesscontrols$List|
-        BodyResponseCallback<Schema$ObjectAccessControls>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ObjectAccessControls>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControls>):
-        void|GaxiosPromise<Schema$ObjectAccessControls> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Objectaccesscontrols$List;
+      paramsOrCallback?:
+        | Params$Resource$Objectaccesscontrols$List
+        | BodyResponseCallback<Schema$ObjectAccessControls>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ObjectAccessControls>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControls>
+    ): void | GaxiosPromise<Schema$ObjectAccessControls> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Objectaccesscontrols$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2531,16 +2629,18 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControls>(parameters, callback);
@@ -2549,11 +2649,9 @@ export namespace storage_v1beta2 {
       }
     }
 
-
     /**
      * storage.objectAccessControls.patch
-     * @desc Updates an ACL entry on the specified object. This method supports
-     * patch semantics.
+     * @desc Updates an ACL entry on the specified object. This method supports patch semantics.
      * @alias storage.objectAccessControls.patch
      * @memberOf! ()
      *
@@ -2568,25 +2666,30 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Objectaccesscontrols$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
+      params?: Params$Resource$Objectaccesscontrols$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ObjectAccessControl>;
     patch(
-        params: Params$Resource$Objectaccesscontrols$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+      params: Params$Resource$Objectaccesscontrols$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
     patch(
-        params: Params$Resource$Objectaccesscontrols$Patch,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+      params: Params$Resource$Objectaccesscontrols$Patch,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Objectaccesscontrols$Patch|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|GaxiosPromise<Schema$ObjectAccessControl> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Objectaccesscontrols$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Objectaccesscontrols$Patch
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void | GaxiosPromise<Schema$ObjectAccessControl> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Objectaccesscontrols$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2603,17 +2706,18 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -2621,7 +2725,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$ObjectAccessControl>(parameters);
       }
     }
-
 
     /**
      * storage.objectAccessControls.update
@@ -2640,25 +2743,30 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Objectaccesscontrols$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
+      params?: Params$Resource$Objectaccesscontrols$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ObjectAccessControl>;
     update(
-        params: Params$Resource$Objectaccesscontrols$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+      params: Params$Resource$Objectaccesscontrols$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
     update(
-        params: Params$Resource$Objectaccesscontrols$Update,
-        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+      params: Params$Resource$Objectaccesscontrols$Update,
+      callback: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
     update(
-        paramsOrCallback?: Params$Resource$Objectaccesscontrols$Update|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|GaxiosPromise<Schema$ObjectAccessControl> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Objectaccesscontrols$Update;
+      paramsOrCallback?:
+        | Params$Resource$Objectaccesscontrols$Update
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>
+    ): void | GaxiosPromise<Schema$ObjectAccessControl> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Objectaccesscontrols$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2675,17 +2783,18 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -2695,25 +2804,23 @@ export namespace storage_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Objectaccesscontrols$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Objectaccesscontrols$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
@@ -2721,25 +2828,23 @@ export namespace storage_v1beta2 {
      */
     object?: string;
   }
-  export interface Params$Resource$Objectaccesscontrols$Get extends
-      StandardParameters {
+  export interface Params$Resource$Objectaccesscontrols$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
@@ -2747,20 +2852,19 @@ export namespace storage_v1beta2 {
      */
     object?: string;
   }
-  export interface Params$Resource$Objectaccesscontrols$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Objectaccesscontrols$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
@@ -2773,20 +2877,19 @@ export namespace storage_v1beta2 {
      */
     requestBody?: Schema$ObjectAccessControl;
   }
-  export interface Params$Resource$Objectaccesscontrols$List extends
-      StandardParameters {
+  export interface Params$Resource$Objectaccesscontrols$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
@@ -2794,25 +2897,23 @@ export namespace storage_v1beta2 {
      */
     object?: string;
   }
-  export interface Params$Resource$Objectaccesscontrols$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Objectaccesscontrols$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
@@ -2825,25 +2926,23 @@ export namespace storage_v1beta2 {
      */
     requestBody?: Schema$ObjectAccessControl;
   }
-  export interface Params$Resource$Objectaccesscontrols$Update extends
-      StandardParameters {
+  export interface Params$Resource$Objectaccesscontrols$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of a bucket.
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
@@ -2856,7 +2955,6 @@ export namespace storage_v1beta2 {
      */
     requestBody?: Schema$ObjectAccessControl;
   }
-
 
   export class Resource$Objects {
     context: APIRequestContext;
@@ -2864,11 +2962,9 @@ export namespace storage_v1beta2 {
       this.context = context;
     }
 
-
     /**
      * storage.objects.compose
-     * @desc Concatenates a list of existing objects into a new object in the
-     * same bucket.
+     * @desc Concatenates a list of existing objects into a new object in the same bucket.
      * @alias storage.objects.compose
      * @memberOf! ()
      *
@@ -2882,22 +2978,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    compose(params?: Params$Resource$Objects$Compose, options?: MethodOptions):
-        GaxiosPromise<Schema$Object>;
     compose(
-        params: Params$Resource$Objects$Compose,
-        options: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback: BodyResponseCallback<Schema$Object>): void;
+      params?: Params$Resource$Objects$Compose,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Object>;
     compose(
-        params: Params$Resource$Objects$Compose,
-        callback: BodyResponseCallback<Schema$Object>): void;
+      params: Params$Resource$Objects$Compose,
+      options: MethodOptions | BodyResponseCallback<Schema$Object>,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
+    compose(
+      params: Params$Resource$Objects$Compose,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
     compose(callback: BodyResponseCallback<Schema$Object>): void;
     compose(
-        paramsOrCallback?: Params$Resource$Objects$Compose|
-        BodyResponseCallback<Schema$Object>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback?: BodyResponseCallback<Schema$Object>):
-        void|GaxiosPromise<Schema$Object> {
+      paramsOrCallback?:
+        | Params$Resource$Objects$Compose
+        | BodyResponseCallback<Schema$Object>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>
+    ): void | GaxiosPromise<Schema$Object> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Compose;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2915,18 +3016,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/storage/v1beta2/b/{destinationBucket}/o/{destinationObject}/compose')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/storage/v1beta2/b/{destinationBucket}/o/{destinationObject}/compose'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['destinationBucket', 'destinationObject'],
         pathParams: ['destinationBucket', 'destinationObject'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -2935,11 +3037,9 @@ export namespace storage_v1beta2 {
       }
     }
 
-
     /**
      * storage.objects.copy
-     * @desc Copies an object to a destination in the same location. Optionally
-     * overrides metadata.
+     * @desc Copies an object to a destination in the same location. Optionally overrides metadata.
      * @alias storage.objects.copy
      * @memberOf! ()
      *
@@ -2963,22 +3063,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    copy(params?: Params$Resource$Objects$Copy, options?: MethodOptions):
-        GaxiosPromise<Schema$Object>;
     copy(
-        params: Params$Resource$Objects$Copy,
-        options: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback: BodyResponseCallback<Schema$Object>): void;
+      params?: Params$Resource$Objects$Copy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Object>;
     copy(
-        params: Params$Resource$Objects$Copy,
-        callback: BodyResponseCallback<Schema$Object>): void;
+      params: Params$Resource$Objects$Copy,
+      options: MethodOptions | BodyResponseCallback<Schema$Object>,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
+    copy(
+      params: Params$Resource$Objects$Copy,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
     copy(callback: BodyResponseCallback<Schema$Object>): void;
     copy(
-        paramsOrCallback?: Params$Resource$Objects$Copy|
-        BodyResponseCallback<Schema$Object>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback?: BodyResponseCallback<Schema$Object>):
-        void|GaxiosPromise<Schema$Object> {
+      paramsOrCallback?:
+        | Params$Resource$Objects$Copy
+        | BodyResponseCallback<Schema$Object>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>
+    ): void | GaxiosPromise<Schema$Object> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2996,24 +3101,29 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/storage/v1beta2/b/{sourceBucket}/o/{sourceObject}/copyTo/b/{destinationBucket}/o/{destinationObject}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/storage/v1beta2/b/{sourceBucket}/o/{sourceObject}/copyTo/b/{destinationBucket}/o/{destinationObject}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [
-          'sourceBucket', 'sourceObject', 'destinationBucket',
-          'destinationObject'
+          'sourceBucket',
+          'sourceObject',
+          'destinationBucket',
+          'destinationObject',
         ],
         pathParams: [
-          'destinationBucket', 'destinationObject', 'sourceBucket',
-          'sourceObject'
+          'destinationBucket',
+          'destinationObject',
+          'sourceBucket',
+          'sourceObject',
         ],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -3022,12 +3132,9 @@ export namespace storage_v1beta2 {
       }
     }
 
-
     /**
      * storage.objects.delete
-     * @desc Deletes data blobs and associated metadata. Deletions are permanent
-     * if versioning is not enabled for the bucket, or if the generation
-     * parameter is used.
+     * @desc Deletes data blobs and associated metadata. Deletions are permanent if versioning is not enabled for the bucket, or if the generation parameter is used.
      * @alias storage.objects.delete
      * @memberOf! ()
      *
@@ -3043,21 +3150,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Objects$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Objects$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Objects$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Objects$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Objects$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Objects$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Objects$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Objects$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3075,16 +3188,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3092,7 +3208,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * storage.objects.get
@@ -3113,19 +3228,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Objects$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Object>;
-    get(params: Params$Resource$Objects$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback: BodyResponseCallback<Schema$Object>): void;
-    get(params: Params$Resource$Objects$Get,
-        callback: BodyResponseCallback<Schema$Object>): void;
+    get(
+      params?: Params$Resource$Objects$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Object>;
+    get(
+      params: Params$Resource$Objects$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Object>,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
+    get(
+      params: Params$Resource$Objects$Get,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Object>): void;
-    get(paramsOrCallback?: Params$Resource$Objects$Get|
-        BodyResponseCallback<Schema$Object>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback?: BodyResponseCallback<Schema$Object>):
-        void|GaxiosPromise<Schema$Object> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Objects$Get
+        | BodyResponseCallback<Schema$Object>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>
+    ): void | GaxiosPromise<Schema$Object> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3143,16 +3266,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -3160,7 +3286,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$Object>(parameters);
       }
     }
-
 
     /**
      * storage.objects.insert
@@ -3184,22 +3309,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Objects$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Object>;
     insert(
-        params: Params$Resource$Objects$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback: BodyResponseCallback<Schema$Object>): void;
+      params?: Params$Resource$Objects$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Object>;
     insert(
-        params: Params$Resource$Objects$Insert,
-        callback: BodyResponseCallback<Schema$Object>): void;
+      params: Params$Resource$Objects$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Object>,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
+    insert(
+      params: Params$Resource$Objects$Insert,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Object>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Objects$Insert|
-        BodyResponseCallback<Schema$Object>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback?: BodyResponseCallback<Schema$Object>):
-        void|GaxiosPromise<Schema$Object> {
+      paramsOrCallback?:
+        | Params$Resource$Objects$Insert
+        | BodyResponseCallback<Schema$Object>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>
+    ): void | GaxiosPromise<Schema$Object> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3217,18 +3347,23 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/o')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/storage/v1beta2/b/{bucket}/o')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/storage/v1beta2/b/{bucket}/o').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -3236,7 +3371,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$Object>(parameters);
       }
     }
-
 
     /**
      * storage.objects.list
@@ -3256,22 +3390,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Objects$List, options?: MethodOptions):
-        GaxiosPromise<Schema$Objects>;
     list(
-        params: Params$Resource$Objects$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Objects>,
-        callback: BodyResponseCallback<Schema$Objects>): void;
+      params?: Params$Resource$Objects$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Objects>;
     list(
-        params: Params$Resource$Objects$List,
-        callback: BodyResponseCallback<Schema$Objects>): void;
+      params: Params$Resource$Objects$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Objects>,
+      callback: BodyResponseCallback<Schema$Objects>
+    ): void;
+    list(
+      params: Params$Resource$Objects$List,
+      callback: BodyResponseCallback<Schema$Objects>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Objects>): void;
     list(
-        paramsOrCallback?: Params$Resource$Objects$List|
-        BodyResponseCallback<Schema$Objects>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Objects>,
-        callback?: BodyResponseCallback<Schema$Objects>):
-        void|GaxiosPromise<Schema$Objects> {
+      paramsOrCallback?:
+        | Params$Resource$Objects$List
+        | BodyResponseCallback<Schema$Objects>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Objects>,
+      callback?: BodyResponseCallback<Schema$Objects>
+    ): void | GaxiosPromise<Schema$Objects> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3289,16 +3428,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/o')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Objects>(parameters, callback);
@@ -3307,11 +3449,9 @@ export namespace storage_v1beta2 {
       }
     }
 
-
     /**
      * storage.objects.patch
-     * @desc Updates a data blob's associated metadata. This method supports
-     * patch semantics.
+     * @desc Updates a data blob's associated metadata. This method supports patch semantics.
      * @alias storage.objects.patch
      * @memberOf! ()
      *
@@ -3329,22 +3469,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Objects$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Object>;
     patch(
-        params: Params$Resource$Objects$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback: BodyResponseCallback<Schema$Object>): void;
+      params?: Params$Resource$Objects$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Object>;
     patch(
-        params: Params$Resource$Objects$Patch,
-        callback: BodyResponseCallback<Schema$Object>): void;
+      params: Params$Resource$Objects$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Object>,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
+    patch(
+      params: Params$Resource$Objects$Patch,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Object>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Objects$Patch|
-        BodyResponseCallback<Schema$Object>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback?: BodyResponseCallback<Schema$Object>):
-        void|GaxiosPromise<Schema$Object> {
+      paramsOrCallback?:
+        | Params$Resource$Objects$Patch
+        | BodyResponseCallback<Schema$Object>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>
+    ): void | GaxiosPromise<Schema$Object> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3362,16 +3507,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -3379,7 +3527,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$Object>(parameters);
       }
     }
-
 
     /**
      * storage.objects.update
@@ -3401,22 +3548,27 @@ export namespace storage_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Objects$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Object>;
     update(
-        params: Params$Resource$Objects$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback: BodyResponseCallback<Schema$Object>): void;
+      params?: Params$Resource$Objects$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Object>;
     update(
-        params: Params$Resource$Objects$Update,
-        callback: BodyResponseCallback<Schema$Object>): void;
+      params: Params$Resource$Objects$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Object>,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
+    update(
+      params: Params$Resource$Objects$Update,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Object>): void;
     update(
-        paramsOrCallback?: Params$Resource$Objects$Update|
-        BodyResponseCallback<Schema$Object>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback?: BodyResponseCallback<Schema$Object>):
-        void|GaxiosPromise<Schema$Object> {
+      paramsOrCallback?:
+        | Params$Resource$Objects$Update
+        | BodyResponseCallback<Schema$Object>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>
+    ): void | GaxiosPromise<Schema$Object> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3434,16 +3586,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -3451,7 +3606,6 @@ export namespace storage_v1beta2 {
         return createAPIRequest<Schema$Object>(parameters);
       }
     }
-
 
     /**
      * storage.objects.watchAll
@@ -3473,22 +3627,26 @@ export namespace storage_v1beta2 {
      * @return {object} Request object
      */
     watchAll(
-        params?: Params$Resource$Objects$Watchall,
-        options?: MethodOptions): GaxiosPromise<Schema$Channel>;
+      params?: Params$Resource$Objects$Watchall,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
     watchAll(
-        params: Params$Resource$Objects$Watchall,
-        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params: Params$Resource$Objects$Watchall,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
     watchAll(
-        params: Params$Resource$Objects$Watchall,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params: Params$Resource$Objects$Watchall,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
     watchAll(callback: BodyResponseCallback<Schema$Channel>): void;
     watchAll(
-        paramsOrCallback?: Params$Resource$Objects$Watchall|
-        BodyResponseCallback<Schema$Channel>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>):
-        void|GaxiosPromise<Schema$Channel> {
+      paramsOrCallback?:
+        | Params$Resource$Objects$Watchall
+        | BodyResponseCallback<Schema$Channel>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>
+    ): void | GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Watchall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3506,16 +3664,19 @@ export namespace storage_v1beta2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/watch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/watch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -3529,11 +3690,10 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the bucket containing the source objects. The destination object
-     * is stored in this bucket.
+     * Name of the bucket containing the source objects. The destination object is stored in this bucket.
      */
     destinationBucket?: string;
     /**
@@ -3541,13 +3701,11 @@ export namespace storage_v1beta2 {
      */
     destinationObject?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value.
+     * Makes the operation conditional on whether the object's current generation matches the given value.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
 
@@ -3560,61 +3718,50 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the bucket in which to store the new object. Overrides the
-     * provided object metadata's bucket value, if any.
+     * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
      */
     destinationBucket?: string;
     /**
-     * Name of the new object. Required when the object metadata is not
-     * otherwise provided. Overrides the object metadata's name value, if any.
+     * Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
      */
     destinationObject?: string;
     /**
-     * Makes the operation conditional on whether the destination object's
-     * current generation matches the given value.
+     * Makes the operation conditional on whether the destination object's current generation matches the given value.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the destination object's
-     * current generation does not match the given value.
+     * Makes the operation conditional on whether the destination object's current generation does not match the given value.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the destination object's
-     * current metageneration matches the given value.
+     * Makes the operation conditional on whether the destination object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the destination object's
-     * current metageneration does not match the given value.
+     * Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's generation
-     * matches the given value.
+     * Makes the operation conditional on whether the source object's generation matches the given value.
      */
     ifSourceGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's generation
-     * does not match the given value.
+     * Makes the operation conditional on whether the source object's generation does not match the given value.
      */
     ifSourceGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the source object's current metageneration matches the given value.
      */
     ifSourceMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the source object's current metageneration does not match the given value.
      */
     ifSourceMetagenerationNotMatch?: string;
     /**
-     * Set of properties to return. Defaults to noAcl, unless the object
-     * resource specifies the acl property, when it defaults to full.
+     * Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      */
     projection?: string;
     /**
@@ -3622,8 +3769,7 @@ export namespace storage_v1beta2 {
      */
     sourceBucket?: string;
     /**
-     * If present, selects a specific revision of the source object (as opposed
-     * to the latest version, the default).
+     * If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      */
     sourceGeneration?: string;
     /**
@@ -3640,35 +3786,30 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the bucket in which the object resides.
      */
     bucket?: string;
     /**
-     * If present, permanently deletes a specific revision of this object (as
-     * opposed to the latest version, the default).
+     * If present, permanently deletes a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value.
+     * Makes the operation conditional on whether the object's current generation matches the given value.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation does not match the given value.
+     * Makes the operation conditional on whether the object's current generation does not match the given value.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -3680,35 +3821,30 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the bucket in which the object resides.
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Makes the operation conditional on whether the object's generation
-     * matches the given value.
+     * Makes the operation conditional on whether the object's generation matches the given value.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's generation does
-     * not match the given value.
+     * Makes the operation conditional on whether the object's generation does not match the given value.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -3724,41 +3860,34 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the bucket in which to store the new object. Overrides the
-     * provided object metadata's bucket value, if any.
+     * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
      */
     bucket?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value.
+     * Makes the operation conditional on whether the object's current generation matches the given value.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation does not match the given value.
+     * Makes the operation conditional on whether the object's current generation does not match the given value.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. Required when the object metadata is not otherwise
-     * provided. Overrides the object metadata's name value, if any.
+     * Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
      */
     name?: string;
     /**
-     * Set of properties to return. Defaults to noAcl, unless the object
-     * resource specifies the acl property, when it defaults to full.
+     * Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      */
     projection?: string;
 
@@ -3786,28 +3915,22 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the bucket in which to look for objects.
      */
     bucket?: string;
     /**
-     * Returns results in a directory-like mode. items will contain only objects
-     * whose names, aside from the prefix, do not contain delimiter. Objects
-     * whose names, aside from the prefix, contain delimiter will have their
-     * name, truncated after the delimiter, returned in prefixes. Duplicate
-     * prefixes are omitted.
+     * Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
      */
     delimiter?: string;
     /**
-     * Maximum number of items plus prefixes to return. As duplicate prefixes
-     * are omitted, fewer total results may be returned than requested.
+     * Maximum number of items plus prefixes to return. As duplicate prefixes are omitted, fewer total results may be returned than requested.
      */
     maxResults?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**
@@ -3827,35 +3950,30 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the bucket in which the object resides.
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value.
+     * Makes the operation conditional on whether the object's current generation matches the given value.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation does not match the given value.
+     * Makes the operation conditional on whether the object's current generation does not match the given value.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -3876,35 +3994,30 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the bucket in which the object resides.
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value.
+     * Makes the operation conditional on whether the object's current generation matches the given value.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation does not match the given value.
+     * Makes the operation conditional on whether the object's current generation does not match the given value.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -3925,28 +4038,22 @@ export namespace storage_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the bucket in which to look for objects.
      */
     bucket?: string;
     /**
-     * Returns results in a directory-like mode. items will contain only objects
-     * whose names, aside from the prefix, do not contain delimiter. Objects
-     * whose names, aside from the prefix, contain delimiter will have their
-     * name, truncated after the delimiter, returned in prefixes. Duplicate
-     * prefixes are omitted.
+     * Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
      */
     delimiter?: string;
     /**
-     * Maximum number of items plus prefixes to return. As duplicate prefixes
-     * are omitted, fewer total results may be returned than requested.
+     * Maximum number of items plus prefixes to return. As duplicate prefixes are omitted, fewer total results may be returned than requested.
      */
     maxResults?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**

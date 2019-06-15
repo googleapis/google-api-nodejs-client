@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +63,7 @@ export namespace websecurityscanner_v1beta {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,9 +75,7 @@ export namespace websecurityscanner_v1beta {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -100,7 +108,10 @@ export namespace websecurityscanner_v1beta {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
@@ -120,9 +131,7 @@ export namespace websecurityscanner_v1beta {
     googleAccount?: Schema$GoogleAccount;
   }
   /**
-   * A CrawledUrl resource represents a URL that was crawled during a ScanRun.
-   * Web Security Scanner Service crawls the web applications, following all
-   * links within the scope of sites, to find the URLs to test against.
+   * A CrawledUrl resource represents a URL that was crawled during a ScanRun. Web Security Scanner Service crawls the web applications, following all links within the scope of sites, to find the URLs to test against.
    */
   export interface Schema$CrawledUrl {
     /**
@@ -130,8 +139,7 @@ export namespace websecurityscanner_v1beta {
      */
     body?: string;
     /**
-     * Output only. The http method of the request that was used to visit the
-     * URL, in uppercase.
+     * Output only. The http method of the request that was used to visit the URL, in uppercase.
      */
     httpMethod?: string;
     /**
@@ -148,9 +156,7 @@ export namespace websecurityscanner_v1beta {
      */
     loginUrl?: string;
     /**
-     * Input only. Required. The password of the custom account. The credential
-     * is stored encrypted and not returned in any response nor included in
-     * audit logs.
+     * Input only. Required. The password of the custom account. The credential is stored encrypted and not returned in any response nor included in audit logs.
      */
     password?: string;
     /**
@@ -159,16 +165,11 @@ export namespace websecurityscanner_v1beta {
     username?: string;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * A Finding resource represents a vulnerability instance identified during a
-   * ScanRun.
+   * A Finding resource represents a vulnerability instance identified during a ScanRun.
    */
   export interface Schema$Finding {
     /**
@@ -180,41 +181,31 @@ export namespace websecurityscanner_v1beta {
      */
     description?: string;
     /**
-     * Output only. The URL where the browser lands when the vulnerability is
-     * detected.
+     * Output only. The URL where the browser lands when the vulnerability is detected.
      */
     finalUrl?: string;
     /**
-     * Output only. The type of the Finding. Detailed and up-to-date information
-     * on findings can be found here:
-     * https://cloud.google.com/security-scanner/docs/scan-result-details
+     * Output only. The type of the Finding. Detailed and up-to-date information on findings can be found here: https://cloud.google.com/security-scanner/docs/scan-result-details
      */
     findingType?: string;
     /**
-     * Output only. An addon containing information reported for a vulnerability
-     * with an HTML form, if any.
+     * Output only. An addon containing information reported for a vulnerability with an HTML form, if any.
      */
     form?: Schema$Form;
     /**
-     * Output only. If the vulnerability was originated from nested IFrame, the
-     * immediate parent IFrame is reported.
+     * Output only. If the vulnerability was originated from nested IFrame, the immediate parent IFrame is reported.
      */
     frameUrl?: string;
     /**
-     * Output only. The URL produced by the server-side fuzzer and used in the
-     * request that triggered the vulnerability.
+     * Output only. The URL produced by the server-side fuzzer and used in the request that triggered the vulnerability.
      */
     fuzzedUrl?: string;
     /**
-     * Output only. The http method of the request that triggered the
-     * vulnerability, in uppercase.
+     * Output only. The http method of the request that triggered the vulnerability, in uppercase.
      */
     httpMethod?: string;
     /**
-     * Output only. The resource name of the Finding. The name follows the
-     * format of
-     * &#39;projects/{projectId}/scanConfigs/{scanConfigId}/scanruns/{scanRunId}/findings/{findingId}&#39;.
-     * The finding IDs are generated by the system.
+     * Output only. The resource name of the Finding. The name follows the format of &#39;projects/{projectId}/scanConfigs/{scanConfigId}/scanruns/{scanRunId}/findings/{findingId}&#39;. The finding IDs are generated by the system.
      */
     name?: string;
     /**
@@ -222,29 +213,23 @@ export namespace websecurityscanner_v1beta {
      */
     outdatedLibrary?: Schema$OutdatedLibrary;
     /**
-     * Output only. The URL containing human-readable payload that user can
-     * leverage to reproduce the vulnerability.
+     * Output only. The URL containing human-readable payload that user can leverage to reproduce the vulnerability.
      */
     reproductionUrl?: string;
     /**
-     * Output only. The tracking ID uniquely identifies a vulnerability instance
-     * across multiple ScanRuns.
+     * Output only. The tracking ID uniquely identifies a vulnerability instance across multiple ScanRuns.
      */
     trackingId?: string;
     /**
-     * Output only. An addon containing detailed information regarding any
-     * resource causing the vulnerability such as JavaScript sources, image,
-     * audio files, etc.
+     * Output only. An addon containing detailed information regarding any resource causing the vulnerability such as JavaScript sources, image, audio files, etc.
      */
     violatingResource?: Schema$ViolatingResource;
     /**
-     * Output only. An addon containing information about vulnerable or missing
-     * HTTP headers.
+     * Output only. An addon containing information about vulnerable or missing HTTP headers.
      */
     vulnerableHeaders?: Schema$VulnerableHeaders;
     /**
-     * Output only. An addon containing information about request parameters
-     * which were found to be vulnerable.
+     * Output only. An addon containing information about request parameters which were found to be vulnerable.
      */
     vulnerableParameters?: Schema$VulnerableParameters;
     /**
@@ -253,8 +238,7 @@ export namespace websecurityscanner_v1beta {
     xss?: Schema$Xss;
   }
   /**
-   * A FindingTypeStats resource represents stats regarding a specific
-   * FindingType of Findings under a given ScanRun.
+   * A FindingTypeStats resource represents stats regarding a specific FindingType of Findings under a given ScanRun.
    */
   export interface Schema$FindingTypeStats {
     /**
@@ -284,9 +268,7 @@ export namespace websecurityscanner_v1beta {
    */
   export interface Schema$GoogleAccount {
     /**
-     * Input only. Required. The password of the Google account. The credential
-     * is stored encrypted and not returned in any response nor included in
-     * audit logs.
+     * Input only. Required. The password of the Google account. The credential is stored encrypted and not returned in any response nor included in audit logs.
      */
     password?: string;
     /**
@@ -316,8 +298,7 @@ export namespace websecurityscanner_v1beta {
      */
     crawledUrls?: Schema$CrawledUrl[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -330,8 +311,7 @@ export namespace websecurityscanner_v1beta {
      */
     findings?: Schema$Finding[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -349,8 +329,7 @@ export namespace websecurityscanner_v1beta {
    */
   export interface Schema$ListScanConfigsResponse {
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
     /**
@@ -363,8 +342,7 @@ export namespace websecurityscanner_v1beta {
    */
   export interface Schema$ListScanRunsResponse {
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
     /**
@@ -390,18 +368,15 @@ export namespace websecurityscanner_v1beta {
     version?: string;
   }
   /**
-   * A ScanConfig resource contains the configurations to launch a scan. next
-   * id: 12
+   * A ScanConfig resource contains the configurations to launch a scan. next id: 12
    */
   export interface Schema$ScanConfig {
     /**
-     * The authentication configuration. If specified, service will use the
-     * authentication configuration during scanning.
+     * The authentication configuration. If specified, service will use the authentication configuration during scanning.
      */
     authentication?: Schema$Authentication;
     /**
-     * The blacklist URL patterns as described in
-     * https://cloud.google.com/security-scanner/docs/excluded-urls
+     * The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
      */
     blacklistPatterns?: string[];
     /**
@@ -409,8 +384,7 @@ export namespace websecurityscanner_v1beta {
      */
     displayName?: string;
     /**
-     * Controls export of scan configurations and results to Cloud Security
-     * Command Center.
+     * Controls export of scan configurations and results to Cloud Security Command Center.
      */
     exportToSecurityCommandCenter?: string;
     /**
@@ -418,16 +392,11 @@ export namespace websecurityscanner_v1beta {
      */
     latestRun?: Schema$ScanRun;
     /**
-     * The maximum QPS during scanning. A valid value ranges from 5 to 20
-     * inclusively. If the field is unspecified or its value is set 0, server
-     * will default to 15. Other values outside of [5, 20] range will be
-     * rejected with INVALID_ARGUMENT error.
+     * The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively. If the field is unspecified or its value is set 0, server will default to 15. Other values outside of [5, 20] range will be rejected with INVALID_ARGUMENT error.
      */
     maxQps?: number;
     /**
-     * The resource name of the ScanConfig. The name follows the format of
-     * &#39;projects/{projectId}/scanConfigs/{scanConfigId}&#39;. The ScanConfig
-     * IDs are generated by the system.
+     * The resource name of the ScanConfig. The name follows the format of &#39;projects/{projectId}/scanConfigs/{scanConfigId}&#39;. The ScanConfig IDs are generated by the system.
      */
     name?: string;
     /**
@@ -439,8 +408,7 @@ export namespace websecurityscanner_v1beta {
      */
     startingUrls?: string[];
     /**
-     * Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be
-     * used as a default.
+     * Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
      */
     targetPlatforms?: string[];
     /**
@@ -449,10 +417,7 @@ export namespace websecurityscanner_v1beta {
     userAgent?: string;
   }
   /**
-   * Defines a custom error message used by CreateScanConfig and
-   * UpdateScanConfig APIs when scan configuration validation fails. It is also
-   * reported as part of a ScanRunErrorTrace message if scan validation fails
-   * due to a scan configuration error.
+   * Defines a custom error message used by CreateScanConfig and UpdateScanConfig APIs when scan configuration validation fails. It is also reported as part of a ScanRunErrorTrace message if scan validation fails due to a scan configuration error.
    */
   export interface Schema$ScanConfigError {
     /**
@@ -460,27 +425,20 @@ export namespace websecurityscanner_v1beta {
      */
     code?: string;
     /**
-     * Output only. Indicates the full name of the ScanConfig field that
-     * triggers this error, for example &quot;scan_config.max_qps&quot;. This
-     * field is provided for troubleshooting purposes only and its actual value
-     * can change in the future.
+     * Output only. Indicates the full name of the ScanConfig field that triggers this error, for example &quot;scan_config.max_qps&quot;. This field is provided for troubleshooting purposes only and its actual value can change in the future.
      */
     fieldName?: string;
   }
   /**
-   * A ScanRun is a output-only resource representing an actual run of the scan.
-   * Next id: 12
+   * A ScanRun is a output-only resource representing an actual run of the scan. Next id: 12
    */
   export interface Schema$ScanRun {
     /**
-     * Output only. The time at which the ScanRun reached termination state -
-     * that the ScanRun is either finished or stopped by user.
+     * Output only. The time at which the ScanRun reached termination state - that the ScanRun is either finished or stopped by user.
      */
     endTime?: string;
     /**
-     * Output only. If result_state is an ERROR, this field provides the primary
-     * reason for scan&#39;s termination and more details, if such are
-     * available.
+     * Output only. If result_state is an ERROR, this field provides the primary reason for scan&#39;s termination and more details, if such are available.
      */
     errorTrace?: Schema$ScanRunErrorTrace;
     /**
@@ -492,21 +450,15 @@ export namespace websecurityscanner_v1beta {
      */
     hasVulnerabilities?: boolean;
     /**
-     * Output only. The resource name of the ScanRun. The name follows the
-     * format of
-     * &#39;projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}&#39;.
-     * The ScanRun IDs are generated by the system.
+     * Output only. The resource name of the ScanRun. The name follows the format of &#39;projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}&#39;. The ScanRun IDs are generated by the system.
      */
     name?: string;
     /**
-     * Output only. The percentage of total completion ranging from 0 to 100. If
-     * the scan is in queue, the value is 0. If the scan is running, the value
-     * ranges from 0 to 100. If the scan is finished, the value is 100.
+     * Output only. The percentage of total completion ranging from 0 to 100. If the scan is in queue, the value is 0. If the scan is running, the value ranges from 0 to 100. If the scan is finished, the value is 100.
      */
     progressPercent?: number;
     /**
-     * Output only. The result state of the ScanRun. This field is only
-     * available after the execution state reaches &quot;FINISHED&quot;.
+     * Output only. The result state of the ScanRun. This field is only available after the execution state reaches &quot;FINISHED&quot;.
      */
     resultState?: string;
     /**
@@ -514,21 +466,15 @@ export namespace websecurityscanner_v1beta {
      */
     startTime?: string;
     /**
-     * Output only. The number of URLs crawled during this ScanRun. If the scan
-     * is in progress, the value represents the number of URLs crawled up to
-     * now.
+     * Output only. The number of URLs crawled during this ScanRun. If the scan is in progress, the value represents the number of URLs crawled up to now.
      */
     urlsCrawledCount?: string;
     /**
-     * Output only. The number of URLs tested during this ScanRun. If the scan
-     * is in progress, the value represents the number of URLs tested up to now.
-     * The number of URLs tested is usually larger than the number URLS crawled
-     * because typically a crawled URL is tested with multiple test payloads.
+     * Output only. The number of URLs tested during this ScanRun. If the scan is in progress, the value represents the number of URLs tested up to now. The number of URLs tested is usually larger than the number URLS crawled because typically a crawled URL is tested with multiple test payloads.
      */
     urlsTestedCount?: string;
     /**
-     * Output only. A list of warnings, if such are encountered during this scan
-     * run.
+     * Output only. A list of warnings, if such are encountered during this scan run.
      */
     warningTraces?: Schema$ScanRunWarningTrace[];
   }
@@ -541,23 +487,16 @@ export namespace websecurityscanner_v1beta {
      */
     code?: string;
     /**
-     * Output only. If the scan encounters TOO_MANY_HTTP_ERRORS, this field
-     * indicates the most common HTTP error code, if such is available. For
-     * example, if this code is 404, the scan has encountered too many NOT_FOUND
-     * responses.
+     * Output only. If the scan encounters TOO_MANY_HTTP_ERRORS, this field indicates the most common HTTP error code, if such is available. For example, if this code is 404, the scan has encountered too many NOT_FOUND responses.
      */
     mostCommonHttpErrorCode?: number;
     /**
-     * Output only. If the scan encounters SCAN_CONFIG_ISSUE error, this field
-     * has the error message encountered during scan configuration validation
-     * that is performed before each scan run.
+     * Output only. If the scan encounters SCAN_CONFIG_ISSUE error, this field has the error message encountered during scan configuration validation that is performed before each scan run.
      */
     scanConfigError?: Schema$ScanConfigError;
   }
   /**
-   * Output only. Defines a warning trace message for ScanRun. Warning traces
-   * provide customers with useful information that helps make the scanning
-   * process more effective.
+   * Output only. Defines a warning trace message for ScanRun. Warning traces provide customers with useful information that helps make the scanning process more effective.
    */
   export interface Schema$ScanRunWarningTrace {
     /**
@@ -574,10 +513,7 @@ export namespace websecurityscanner_v1beta {
      */
     intervalDurationDays?: number;
     /**
-     * A timestamp indicates when the next run will be scheduled. The value is
-     * refreshed by the server after each run. If unspecified, it will default
-     * to current server time, which means the scan will be scheduled to start
-     * immediately.
+     * A timestamp indicates when the next run will be scheduled. The value is refreshed by the server after each run. If unspecified, it will default to current server time, which means the scan will be scheduled to start immediately.
      */
     scheduleTime?: string;
   }
@@ -590,8 +526,7 @@ export namespace websecurityscanner_v1beta {
    */
   export interface Schema$StopScanRunRequest {}
   /**
-   * Information regarding any resource causing the vulnerability such as
-   * JavaScript sources, image, audio files, etc.
+   * Information regarding any resource causing the vulnerability such as JavaScript sources, image, audio files, etc.
    */
   export interface Schema$ViolatingResource {
     /**
@@ -639,7 +574,6 @@ export namespace websecurityscanner_v1beta {
     stackTraces?: string[];
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     scanConfigs: Resource$Projects$Scanconfigs;
@@ -649,7 +583,6 @@ export namespace websecurityscanner_v1beta {
     }
   }
 
-
   export class Resource$Projects$Scanconfigs {
     context: APIRequestContext;
     scanRuns: Resource$Projects$Scanconfigs$Scanruns;
@@ -657,7 +590,6 @@ export namespace websecurityscanner_v1beta {
       this.context = context;
       this.scanRuns = new Resource$Projects$Scanconfigs$Scanruns(this.context);
     }
-
 
     /**
      * websecurityscanner.projects.scanConfigs.create
@@ -673,25 +605,30 @@ export namespace websecurityscanner_v1beta {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Scanconfigs$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$ScanConfig>;
+      params?: Params$Resource$Projects$Scanconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ScanConfig>;
     create(
-        params: Params$Resource$Projects$Scanconfigs$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$ScanConfig>,
-        callback: BodyResponseCallback<Schema$ScanConfig>): void;
+      params: Params$Resource$Projects$Scanconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ScanConfig>,
+      callback: BodyResponseCallback<Schema$ScanConfig>
+    ): void;
     create(
-        params: Params$Resource$Projects$Scanconfigs$Create,
-        callback: BodyResponseCallback<Schema$ScanConfig>): void;
+      params: Params$Resource$Projects$Scanconfigs$Create,
+      callback: BodyResponseCallback<Schema$ScanConfig>
+    ): void;
     create(callback: BodyResponseCallback<Schema$ScanConfig>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Scanconfigs$Create|
-        BodyResponseCallback<Schema$ScanConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ScanConfig>,
-        callback?: BodyResponseCallback<Schema$ScanConfig>):
-        void|GaxiosPromise<Schema$ScanConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Scanconfigs$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$Create
+        | BodyResponseCallback<Schema$ScanConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ScanConfig>,
+      callback?: BodyResponseCallback<Schema$ScanConfig>
+    ): void | GaxiosPromise<Schema$ScanConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -706,19 +643,22 @@ export namespace websecurityscanner_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://websecurityscanner.googleapis.com/';
+        options.rootUrl || 'https://websecurityscanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+parent}/scanConfigs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+parent}/scanConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -726,7 +666,6 @@ export namespace websecurityscanner_v1beta {
         return createAPIRequest<Schema$ScanConfig>(parameters);
       }
     }
-
 
     /**
      * websecurityscanner.projects.scanConfigs.delete
@@ -741,24 +680,28 @@ export namespace websecurityscanner_v1beta {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Scanconfigs$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Scanconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Scanconfigs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Scanconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Scanconfigs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Scanconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Scanconfigs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Scanconfigs$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -773,18 +716,19 @@ export namespace websecurityscanner_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://websecurityscanner.googleapis.com/';
+        options.rootUrl || 'https://websecurityscanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -792,7 +736,6 @@ export namespace websecurityscanner_v1beta {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * websecurityscanner.projects.scanConfigs.get
@@ -806,22 +749,31 @@ export namespace websecurityscanner_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Scanconfigs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ScanConfig>;
-    get(params: Params$Resource$Projects$Scanconfigs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ScanConfig>,
-        callback: BodyResponseCallback<Schema$ScanConfig>): void;
-    get(params: Params$Resource$Projects$Scanconfigs$Get,
-        callback: BodyResponseCallback<Schema$ScanConfig>): void;
+    get(
+      params?: Params$Resource$Projects$Scanconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ScanConfig>;
+    get(
+      params: Params$Resource$Projects$Scanconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ScanConfig>,
+      callback: BodyResponseCallback<Schema$ScanConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Scanconfigs$Get,
+      callback: BodyResponseCallback<Schema$ScanConfig>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ScanConfig>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Scanconfigs$Get|
-        BodyResponseCallback<Schema$ScanConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ScanConfig>,
-        callback?: BodyResponseCallback<Schema$ScanConfig>):
-        void|GaxiosPromise<Schema$ScanConfig> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Scanconfigs$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$Get
+        | BodyResponseCallback<Schema$ScanConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ScanConfig>,
+      callback?: BodyResponseCallback<Schema$ScanConfig>
+    ): void | GaxiosPromise<Schema$ScanConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -836,18 +788,19 @@ export namespace websecurityscanner_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://websecurityscanner.googleapis.com/';
+        options.rootUrl || 'https://websecurityscanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -855,7 +808,6 @@ export namespace websecurityscanner_v1beta {
         return createAPIRequest<Schema$ScanConfig>(parameters);
       }
     }
-
 
     /**
      * websecurityscanner.projects.scanConfigs.list
@@ -872,26 +824,32 @@ export namespace websecurityscanner_v1beta {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Scanconfigs$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListScanConfigsResponse>;
+      params?: Params$Resource$Projects$Scanconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListScanConfigsResponse>;
     list(
-        params: Params$Resource$Projects$Scanconfigs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListScanConfigsResponse>,
-        callback: BodyResponseCallback<Schema$ListScanConfigsResponse>): void;
+      params: Params$Resource$Projects$Scanconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListScanConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListScanConfigsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Scanconfigs$List,
-        callback: BodyResponseCallback<Schema$ListScanConfigsResponse>): void;
+      params: Params$Resource$Projects$Scanconfigs$List,
+      callback: BodyResponseCallback<Schema$ListScanConfigsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListScanConfigsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Scanconfigs$List|
-        BodyResponseCallback<Schema$ListScanConfigsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListScanConfigsResponse>,
-        callback?: BodyResponseCallback<Schema$ListScanConfigsResponse>):
-        void|GaxiosPromise<Schema$ListScanConfigsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Scanconfigs$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$List
+        | BodyResponseCallback<Schema$ListScanConfigsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListScanConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListScanConfigsResponse>
+    ): void | GaxiosPromise<Schema$ListScanConfigsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -906,19 +864,22 @@ export namespace websecurityscanner_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://websecurityscanner.googleapis.com/';
+        options.rootUrl || 'https://websecurityscanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+parent}/scanConfigs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+parent}/scanConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListScanConfigsResponse>(parameters, callback);
@@ -927,11 +888,9 @@ export namespace websecurityscanner_v1beta {
       }
     }
 
-
     /**
      * websecurityscanner.projects.scanConfigs.patch
-     * @desc Updates a ScanConfig. This method support partial update of a
-     * ScanConfig.
+     * @desc Updates a ScanConfig. This method support partial update of a ScanConfig.
      * @alias websecurityscanner.projects.scanConfigs.patch
      * @memberOf! ()
      *
@@ -944,25 +903,30 @@ export namespace websecurityscanner_v1beta {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Scanconfigs$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$ScanConfig>;
+      params?: Params$Resource$Projects$Scanconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ScanConfig>;
     patch(
-        params: Params$Resource$Projects$Scanconfigs$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$ScanConfig>,
-        callback: BodyResponseCallback<Schema$ScanConfig>): void;
+      params: Params$Resource$Projects$Scanconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ScanConfig>,
+      callback: BodyResponseCallback<Schema$ScanConfig>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Scanconfigs$Patch,
-        callback: BodyResponseCallback<Schema$ScanConfig>): void;
+      params: Params$Resource$Projects$Scanconfigs$Patch,
+      callback: BodyResponseCallback<Schema$ScanConfig>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$ScanConfig>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Scanconfigs$Patch|
-        BodyResponseCallback<Schema$ScanConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ScanConfig>,
-        callback?: BodyResponseCallback<Schema$ScanConfig>):
-        void|GaxiosPromise<Schema$ScanConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Scanconfigs$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$Patch
+        | BodyResponseCallback<Schema$ScanConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ScanConfig>,
+      callback?: BodyResponseCallback<Schema$ScanConfig>
+    ): void | GaxiosPromise<Schema$ScanConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -977,18 +941,19 @@ export namespace websecurityscanner_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://websecurityscanner.googleapis.com/';
+        options.rootUrl || 'https://websecurityscanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -996,7 +961,6 @@ export namespace websecurityscanner_v1beta {
         return createAPIRequest<Schema$ScanConfig>(parameters);
       }
     }
-
 
     /**
      * websecurityscanner.projects.scanConfigs.start
@@ -1012,24 +976,28 @@ export namespace websecurityscanner_v1beta {
      * @return {object} Request object
      */
     start(
-        params?: Params$Resource$Projects$Scanconfigs$Start,
-        options?: MethodOptions): GaxiosPromise<Schema$ScanRun>;
+      params?: Params$Resource$Projects$Scanconfigs$Start,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ScanRun>;
     start(
-        params: Params$Resource$Projects$Scanconfigs$Start,
-        options: MethodOptions|BodyResponseCallback<Schema$ScanRun>,
-        callback: BodyResponseCallback<Schema$ScanRun>): void;
+      params: Params$Resource$Projects$Scanconfigs$Start,
+      options: MethodOptions | BodyResponseCallback<Schema$ScanRun>,
+      callback: BodyResponseCallback<Schema$ScanRun>
+    ): void;
     start(
-        params: Params$Resource$Projects$Scanconfigs$Start,
-        callback: BodyResponseCallback<Schema$ScanRun>): void;
+      params: Params$Resource$Projects$Scanconfigs$Start,
+      callback: BodyResponseCallback<Schema$ScanRun>
+    ): void;
     start(callback: BodyResponseCallback<Schema$ScanRun>): void;
     start(
-        paramsOrCallback?: Params$Resource$Projects$Scanconfigs$Start|
-        BodyResponseCallback<Schema$ScanRun>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$ScanRun>,
-        callback?: BodyResponseCallback<Schema$ScanRun>):
-        void|GaxiosPromise<Schema$ScanRun> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Scanconfigs$Start;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$Start
+        | BodyResponseCallback<Schema$ScanRun>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$ScanRun>,
+      callback?: BodyResponseCallback<Schema$ScanRun>
+    ): void | GaxiosPromise<Schema$ScanRun> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1044,19 +1012,22 @@ export namespace websecurityscanner_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://websecurityscanner.googleapis.com/';
+        options.rootUrl || 'https://websecurityscanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}:start')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}:start').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ScanRun>(parameters, callback);
@@ -1066,16 +1037,15 @@ export namespace websecurityscanner_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Scanconfigs$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The parent resource name where the scan is created, which
-     * should be a project resource name in the format 'projects/{projectId}'.
+     * Required. The parent resource name where the scan is created, which should be a project resource name in the format 'projects/{projectId}'.
      */
     parent?: string;
 
@@ -1084,74 +1054,63 @@ export namespace websecurityscanner_v1beta {
      */
     requestBody?: Schema$ScanConfig;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the ScanConfig to be deleted. The name
-     * follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
+     * Required. The resource name of the ScanConfig to be deleted. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the ScanConfig to be returned. The name
-     * follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
+     * Required. The resource name of the ScanConfig to be returned. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of ScanConfigs to return, can be limited by server. If
-     * not specified or not positive, the implementation will select a
-     * reasonable value.
+     * The maximum number of ScanConfigs to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results to be returned. This should be a
-     * `next_page_token` value returned from a previous List request. If
-     * unspecified, the first page of results is returned.
+     * A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, which should be a project resource
-     * name in the format 'projects/{projectId}'.
+     * Required. The parent resource name, which should be a project resource name in the format 'projects/{projectId}'.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the ScanConfig. The name follows the format of
-     * 'projects/{projectId}/scanConfigs/{scanConfigId}'. The ScanConfig IDs are
-     * generated by the system.
+     * The resource name of the ScanConfig. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'. The ScanConfig IDs are generated by the system.
      */
     name?: string;
     /**
-     * Required. The update mask applies to the resource. For the `FieldMask`
-     * definition, see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -1160,16 +1119,15 @@ export namespace websecurityscanner_v1beta {
      */
     requestBody?: Schema$ScanConfig;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Start extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$Start
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the ScanConfig to be used. The name
-     * follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
+     * Required. The resource name of the ScanConfig to be used. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      */
     name?: string;
 
@@ -1186,15 +1144,16 @@ export namespace websecurityscanner_v1beta {
     findingTypeStats: Resource$Projects$Scanconfigs$Scanruns$Findingtypestats;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.crawledUrls =
-          new Resource$Projects$Scanconfigs$Scanruns$Crawledurls(this.context);
-      this.findings =
-          new Resource$Projects$Scanconfigs$Scanruns$Findings(this.context);
-      this.findingTypeStats =
-          new Resource$Projects$Scanconfigs$Scanruns$Findingtypestats(
-              this.context);
+      this.crawledUrls = new Resource$Projects$Scanconfigs$Scanruns$Crawledurls(
+        this.context
+      );
+      this.findings = new Resource$Projects$Scanconfigs$Scanruns$Findings(
+        this.context
+      );
+      this.findingTypeStats = new Resource$Projects$Scanconfigs$Scanruns$Findingtypestats(
+        this.context
+      );
     }
-
 
     /**
      * websecurityscanner.projects.scanConfigs.scanRuns.get
@@ -1208,21 +1167,29 @@ export namespace websecurityscanner_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Scanconfigs$Scanruns$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ScanRun>;
-    get(params: Params$Resource$Projects$Scanconfigs$Scanruns$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ScanRun>,
-        callback: BodyResponseCallback<Schema$ScanRun>): void;
-    get(params: Params$Resource$Projects$Scanconfigs$Scanruns$Get,
-        callback: BodyResponseCallback<Schema$ScanRun>): void;
+    get(
+      params?: Params$Resource$Projects$Scanconfigs$Scanruns$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ScanRun>;
+    get(
+      params: Params$Resource$Projects$Scanconfigs$Scanruns$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ScanRun>,
+      callback: BodyResponseCallback<Schema$ScanRun>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Scanconfigs$Scanruns$Get,
+      callback: BodyResponseCallback<Schema$ScanRun>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ScanRun>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Scanconfigs$Scanruns$Get|
-        BodyResponseCallback<Schema$ScanRun>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$ScanRun>,
-        callback?: BodyResponseCallback<Schema$ScanRun>):
-        void|GaxiosPromise<Schema$ScanRun> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Scanconfigs$Scanruns$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$Scanruns$Get
+        | BodyResponseCallback<Schema$ScanRun>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$ScanRun>,
+      callback?: BodyResponseCallback<Schema$ScanRun>
+    ): void | GaxiosPromise<Schema$ScanRun> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$Scanruns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1237,18 +1204,19 @@ export namespace websecurityscanner_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://websecurityscanner.googleapis.com/';
+        options.rootUrl || 'https://websecurityscanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ScanRun>(parameters, callback);
@@ -1257,11 +1225,9 @@ export namespace websecurityscanner_v1beta {
       }
     }
 
-
     /**
      * websecurityscanner.projects.scanConfigs.scanRuns.list
-     * @desc Lists ScanRuns under a given ScanConfig, in descending order of
-     * ScanRun stop time.
+     * @desc Lists ScanRuns under a given ScanConfig, in descending order of ScanRun stop time.
      * @alias websecurityscanner.projects.scanConfigs.scanRuns.list
      * @memberOf! ()
      *
@@ -1274,26 +1240,32 @@ export namespace websecurityscanner_v1beta {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Scanconfigs$Scanruns$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListScanRunsResponse>;
+      params?: Params$Resource$Projects$Scanconfigs$Scanruns$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListScanRunsResponse>;
     list(
-        params: Params$Resource$Projects$Scanconfigs$Scanruns$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListScanRunsResponse>,
-        callback: BodyResponseCallback<Schema$ListScanRunsResponse>): void;
+      params: Params$Resource$Projects$Scanconfigs$Scanruns$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListScanRunsResponse>,
+      callback: BodyResponseCallback<Schema$ListScanRunsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Scanconfigs$Scanruns$List,
-        callback: BodyResponseCallback<Schema$ListScanRunsResponse>): void;
+      params: Params$Resource$Projects$Scanconfigs$Scanruns$List,
+      callback: BodyResponseCallback<Schema$ListScanRunsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListScanRunsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Scanconfigs$Scanruns$List|
-        BodyResponseCallback<Schema$ListScanRunsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListScanRunsResponse>,
-        callback?: BodyResponseCallback<Schema$ListScanRunsResponse>):
-        void|GaxiosPromise<Schema$ListScanRunsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Scanconfigs$Scanruns$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$Scanruns$List
+        | BodyResponseCallback<Schema$ListScanRunsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListScanRunsResponse>,
+      callback?: BodyResponseCallback<Schema$ListScanRunsResponse>
+    ): void | GaxiosPromise<Schema$ListScanRunsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$Scanruns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1308,19 +1280,22 @@ export namespace websecurityscanner_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://websecurityscanner.googleapis.com/';
+        options.rootUrl || 'https://websecurityscanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+parent}/scanRuns')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+parent}/scanRuns').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListScanRunsResponse>(parameters, callback);
@@ -1328,7 +1303,6 @@ export namespace websecurityscanner_v1beta {
         return createAPIRequest<Schema$ListScanRunsResponse>(parameters);
       }
     }
-
 
     /**
      * websecurityscanner.projects.scanConfigs.scanRuns.stop
@@ -1344,24 +1318,28 @@ export namespace websecurityscanner_v1beta {
      * @return {object} Request object
      */
     stop(
-        params?: Params$Resource$Projects$Scanconfigs$Scanruns$Stop,
-        options?: MethodOptions): GaxiosPromise<Schema$ScanRun>;
+      params?: Params$Resource$Projects$Scanconfigs$Scanruns$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ScanRun>;
     stop(
-        params: Params$Resource$Projects$Scanconfigs$Scanruns$Stop,
-        options: MethodOptions|BodyResponseCallback<Schema$ScanRun>,
-        callback: BodyResponseCallback<Schema$ScanRun>): void;
+      params: Params$Resource$Projects$Scanconfigs$Scanruns$Stop,
+      options: MethodOptions | BodyResponseCallback<Schema$ScanRun>,
+      callback: BodyResponseCallback<Schema$ScanRun>
+    ): void;
     stop(
-        params: Params$Resource$Projects$Scanconfigs$Scanruns$Stop,
-        callback: BodyResponseCallback<Schema$ScanRun>): void;
+      params: Params$Resource$Projects$Scanconfigs$Scanruns$Stop,
+      callback: BodyResponseCallback<Schema$ScanRun>
+    ): void;
     stop(callback: BodyResponseCallback<Schema$ScanRun>): void;
     stop(
-        paramsOrCallback?: Params$Resource$Projects$Scanconfigs$Scanruns$Stop|
-        BodyResponseCallback<Schema$ScanRun>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$ScanRun>,
-        callback?: BodyResponseCallback<Schema$ScanRun>):
-        void|GaxiosPromise<Schema$ScanRun> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Scanconfigs$Scanruns$Stop;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$Scanruns$Stop
+        | BodyResponseCallback<Schema$ScanRun>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$ScanRun>,
+      callback?: BodyResponseCallback<Schema$ScanRun>
+    ): void | GaxiosPromise<Schema$ScanRun> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$Scanruns$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1376,19 +1354,22 @@ export namespace websecurityscanner_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://websecurityscanner.googleapis.com/';
+        options.rootUrl || 'https://websecurityscanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}:stop')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}:stop').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ScanRun>(parameters, callback);
@@ -1398,56 +1379,47 @@ export namespace websecurityscanner_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the ScanRun to be returned. The name
-     * follows the format of
-     * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * Required. The resource name of the ScanRun to be returned. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of ScanRuns to return, can be limited by server. If
-     * not specified or not positive, the implementation will select a
-     * reasonable value.
+     * The maximum number of ScanRuns to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results to be returned. This should be a
-     * `next_page_token` value returned from a previous List request. If
-     * unspecified, the first page of results is returned.
+     * A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, which should be a scan resource name
-     * in the format 'projects/{projectId}/scanConfigs/{scanConfigId}'.
+     * Required. The parent resource name, which should be a scan resource name in the format 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Stop extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Stop
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the ScanRun to be stopped. The name
-     * follows the format of
-     * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * Required. The resource name of the ScanRun to be stopped. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      */
     name?: string;
 
@@ -1462,7 +1434,6 @@ export namespace websecurityscanner_v1beta {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * websecurityscanner.projects.scanConfigs.scanRuns.crawledUrls.list
@@ -1479,33 +1450,37 @@ export namespace websecurityscanner_v1beta {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListCrawledUrlsResponse>;
+      params?: Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCrawledUrlsResponse>;
     list(
-        params: Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListCrawledUrlsResponse>,
-        callback: BodyResponseCallback<Schema$ListCrawledUrlsResponse>): void;
+      params: Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCrawledUrlsResponse>,
+      callback: BodyResponseCallback<Schema$ListCrawledUrlsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List,
-        callback: BodyResponseCallback<Schema$ListCrawledUrlsResponse>): void;
+      params: Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List,
+      callback: BodyResponseCallback<Schema$ListCrawledUrlsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListCrawledUrlsResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List|
-        BodyResponseCallback<Schema$ListCrawledUrlsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListCrawledUrlsResponse>,
-        callback?: BodyResponseCallback<Schema$ListCrawledUrlsResponse>):
-        void|GaxiosPromise<Schema$ListCrawledUrlsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List
+        | BodyResponseCallback<Schema$ListCrawledUrlsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCrawledUrlsResponse>,
+      callback?: BodyResponseCallback<Schema$ListCrawledUrlsResponse>
+    ): void | GaxiosPromise<Schema$ListCrawledUrlsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List;
+        params = {} as Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List;
         options = {};
       }
 
@@ -1515,19 +1490,22 @@ export namespace websecurityscanner_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://websecurityscanner.googleapis.com/';
+        options.rootUrl || 'https://websecurityscanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+parent}/crawledUrls')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+parent}/crawledUrls').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListCrawledUrlsResponse>(parameters, callback);
@@ -1538,39 +1516,31 @@ export namespace websecurityscanner_v1beta {
   }
 
   export interface Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of CrawledUrls to return, can be limited by server. If
-     * not specified or not positive, the implementation will select a
-     * reasonable value.
+     * The maximum number of CrawledUrls to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results to be returned. This should be a
-     * `next_page_token` value returned from a previous List request. If
-     * unspecified, the first page of results is returned.
+     * A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, which should be a scan run resource
-     * name in the format
-     * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      */
     parent?: string;
   }
-
 
   export class Resource$Projects$Scanconfigs$Scanruns$Findings {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * websecurityscanner.projects.scanConfigs.scanRuns.findings.get
@@ -1584,28 +1554,34 @@ export namespace websecurityscanner_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Finding>;
-    get(params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Finding>,
-        callback: BodyResponseCallback<Schema$Finding>): void;
-    get(params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get,
-        callback: BodyResponseCallback<Schema$Finding>): void;
+    get(
+      params?: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Finding>;
+    get(
+      params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Finding>,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Finding>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get|
-        BodyResponseCallback<Schema$Finding>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Finding>,
-        callback?: BodyResponseCallback<Schema$Finding>):
-        void|GaxiosPromise<Schema$Finding> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get
+        | BodyResponseCallback<Schema$Finding>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Finding>,
+      callback?: BodyResponseCallback<Schema$Finding>
+    ): void | GaxiosPromise<Schema$Finding> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get;
+        params = {} as Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get;
         options = {};
       }
 
@@ -1615,18 +1591,19 @@ export namespace websecurityscanner_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://websecurityscanner.googleapis.com/';
+        options.rootUrl || 'https://websecurityscanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Finding>(parameters, callback);
@@ -1634,7 +1611,6 @@ export namespace websecurityscanner_v1beta {
         return createAPIRequest<Schema$Finding>(parameters);
       }
     }
-
 
     /**
      * websecurityscanner.projects.scanConfigs.scanRuns.findings.list
@@ -1652,33 +1628,37 @@ export namespace websecurityscanner_v1beta {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListFindingsResponse>;
+      params?: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFindingsResponse>;
     list(
-        params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListFindingsResponse>,
-        callback: BodyResponseCallback<Schema$ListFindingsResponse>): void;
+      params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFindingsResponse>,
+      callback: BodyResponseCallback<Schema$ListFindingsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List,
-        callback: BodyResponseCallback<Schema$ListFindingsResponse>): void;
+      params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List,
+      callback: BodyResponseCallback<Schema$ListFindingsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListFindingsResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List|
-        BodyResponseCallback<Schema$ListFindingsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListFindingsResponse>,
-        callback?: BodyResponseCallback<Schema$ListFindingsResponse>):
-        void|GaxiosPromise<Schema$ListFindingsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List
+        | BodyResponseCallback<Schema$ListFindingsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFindingsResponse>,
+      callback?: BodyResponseCallback<Schema$ListFindingsResponse>
+    ): void | GaxiosPromise<Schema$ListFindingsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List;
+        params = {} as Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List;
         options = {};
       }
 
@@ -1688,19 +1668,22 @@ export namespace websecurityscanner_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://websecurityscanner.googleapis.com/';
+        options.rootUrl || 'https://websecurityscanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+parent}/findings')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+parent}/findings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListFindingsResponse>(parameters, callback);
@@ -1711,52 +1694,41 @@ export namespace websecurityscanner_v1beta {
   }
 
   export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the Finding to be returned. The name
-     * follows the format of
-     * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}/findings/{findingId}'.
+     * Required. The resource name of the Finding to be returned. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}/findings/{findingId}'.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The filter expression. The expression must be in the format: <field>
-     * <operator> <value>. Supported field: 'finding_type'. Supported operator:
-     * '='.
+     * The filter expression. The expression must be in the format: <field> <operator> <value>. Supported field: 'finding_type'. Supported operator: '='.
      */
     filter?: string;
     /**
-     * The maximum number of Findings to return, can be limited by server. If
-     * not specified or not positive, the implementation will select a
-     * reasonable value.
+     * The maximum number of Findings to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results to be returned. This should be a
-     * `next_page_token` value returned from a previous List request. If
-     * unspecified, the first page of results is returned.
+     * A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, which should be a scan run resource
-     * name in the format
-     * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      */
     parent?: string;
   }
-
 
   export class Resource$Projects$Scanconfigs$Scanruns$Findingtypestats {
     context: APIRequestContext;
@@ -1764,12 +1736,10 @@ export namespace websecurityscanner_v1beta {
       this.context = context;
     }
 
-
     /**
      * websecurityscanner.projects.scanConfigs.scanRuns.findingTypeStats.list
      * @desc List all FindingTypeStats under a given ScanRun.
-     * @alias
-     * websecurityscanner.projects.scanConfigs.scanRuns.findingTypeStats.list
+     * @alias websecurityscanner.projects.scanConfigs.scanRuns.findingTypeStats.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -1779,40 +1749,39 @@ export namespace websecurityscanner_v1beta {
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListFindingTypeStatsResponse>;
+      params?: Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFindingTypeStatsResponse>;
     list(
-        params:
-            Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListFindingTypeStatsResponse>,
-        callback: BodyResponseCallback<Schema$ListFindingTypeStatsResponse>):
-        void;
+      params: Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFindingTypeStatsResponse>,
+      callback: BodyResponseCallback<Schema$ListFindingTypeStatsResponse>
+    ): void;
     list(
-        params:
-            Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List,
-        callback: BodyResponseCallback<Schema$ListFindingTypeStatsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListFindingTypeStatsResponse>):
-        void;
+      params: Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List,
+      callback: BodyResponseCallback<Schema$ListFindingTypeStatsResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List|
-        BodyResponseCallback<Schema$ListFindingTypeStatsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListFindingTypeStatsResponse>,
-        callback?: BodyResponseCallback<Schema$ListFindingTypeStatsResponse>):
-        void|GaxiosPromise<Schema$ListFindingTypeStatsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List;
+      callback: BodyResponseCallback<Schema$ListFindingTypeStatsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List
+        | BodyResponseCallback<Schema$ListFindingTypeStatsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFindingTypeStatsResponse>,
+      callback?: BodyResponseCallback<Schema$ListFindingTypeStatsResponse>
+    ): void | GaxiosPromise<Schema$ListFindingTypeStatsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List;
+        params = {} as Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List;
         options = {};
       }
 
@@ -1822,41 +1791,45 @@ export namespace websecurityscanner_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://websecurityscanner.googleapis.com/';
+        options.rootUrl || 'https://websecurityscanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+parent}/findingTypeStats')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+parent}/findingTypeStats').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListFindingTypeStatsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListFindingTypeStatsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The parent resource name, which should be a scan run resource
-     * name in the format
-     * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
+     * Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      */
     parent?: string;
   }

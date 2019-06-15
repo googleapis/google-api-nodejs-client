@@ -17,20 +17,27 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {cloudprivatecatalogproducer_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  'v1beta1': cloudprivatecatalogproducer_v1beta1.Cloudprivatecatalogproducer,
+  v1beta1: cloudprivatecatalogproducer_v1beta1.Cloudprivatecatalogproducer,
 };
 
-export function cloudprivatecatalogproducer(version: 'v1beta1'):
-    cloudprivatecatalogproducer_v1beta1.Cloudprivatecatalogproducer;
 export function cloudprivatecatalogproducer(
-    options: cloudprivatecatalogproducer_v1beta1.Options):
-    cloudprivatecatalogproducer_v1beta1.Cloudprivatecatalogproducer;
+  version: 'v1beta1'
+): cloudprivatecatalogproducer_v1beta1.Cloudprivatecatalogproducer;
+export function cloudprivatecatalogproducer(
+  options: cloudprivatecatalogproducer_v1beta1.Options
+): cloudprivatecatalogproducer_v1beta1.Cloudprivatecatalogproducer;
 export function cloudprivatecatalogproducer<
-    T = cloudprivatecatalogproducer_v1beta1.Cloudprivatecatalogproducer>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1beta1'|cloudprivatecatalogproducer_v1beta1.Options) {
+  T = cloudprivatecatalogproducer_v1beta1.Cloudprivatecatalogproducer
+>(
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1beta1' | cloudprivatecatalogproducer_v1beta1.Options
+) {
   return getAPI<T>(
-      'cloudprivatecatalogproducer', versionOrOptions, VERSIONS, this);
+    'cloudprivatecatalogproducer',
+    versionOrOptions,
+    VERSIONS,
+    this
+  );
 }
 
 const auth = new AuthPlus();

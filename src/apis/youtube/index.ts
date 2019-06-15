@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {youtube_v3} from './v3';
 
 export const VERSIONS = {
-  'v3': youtube_v3.Youtube,
+  v3: youtube_v3.Youtube,
 };
 
 export function youtube(version: 'v3'): youtube_v3.Youtube;
 export function youtube(options: youtube_v3.Options): youtube_v3.Youtube;
 export function youtube<T = youtube_v3.Youtube>(
-    this: GoogleConfigurable, versionOrOptions: 'v3'|youtube_v3.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v3' | youtube_v3.Options
+) {
   return getAPI<T>('youtube', versionOrOptions, VERSIONS, this);
 }
 

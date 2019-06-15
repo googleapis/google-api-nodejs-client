@@ -17,7 +17,7 @@
 import * as execa from 'execa';
 import * as fs from 'fs';
 import * as nunjucks from 'nunjucks';
-import Q = require('p-queue');
+import Q from 'p-queue';
 import * as path from 'path';
 import {promisify} from 'util';
 
@@ -43,8 +43,7 @@ if (!fs.existsSync(docsPath)) {
 async function main() {
   const children = await readdir(apiPath);
   const dirs = children.filter(x => {
-    return !x.endsWith('.ts') && !x.includes('dfareporting') &&
-        !x.includes('compute');
+    return !x.endsWith('.ts') && !x.includes('compute');
   });
   const contents = nunjucks.render(templatePath, {apis: dirs});
   await writeFile(indexPath, contents);
@@ -53,13 +52,19 @@ async function main() {
   let i = 0;
   const promises = dirs.map(dir => {
     return q
-        .add(
-            () => execa(
-                'npx', ['compodoc', `src/apis/${dir}`, '-d', `./docs/${dir}`]))
-        .then(() => {
-          i++;
-          console.log(`[${i}/${dirs.length}] ${dir}`);
-        });
+      .add(() =>
+        execa(process.execPath, [
+          '--max-old-space-size=8192',
+          './node_modules/.bin/compodoc',
+          `src/apis/${dir}`,
+          '-d',
+          `./docs/${dir}`,
+        ])
+      )
+      .then(() => {
+        i++;
+        console.log(`[${i}/${dirs.length}] ${dir}`);
+      });
   });
   await Promise.all(promises);
 }

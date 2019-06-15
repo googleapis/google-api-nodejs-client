@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {plusDomains_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': plusDomains_v1.Plusdomains,
+  v1: plusDomains_v1.Plusdomains,
 };
 
 export function plusDomains(version: 'v1'): plusDomains_v1.Plusdomains;
-export function plusDomains(options: plusDomains_v1.Options):
-    plusDomains_v1.Plusdomains;
+export function plusDomains(
+  options: plusDomains_v1.Options
+): plusDomains_v1.Plusdomains;
 export function plusDomains<T = plusDomains_v1.Plusdomains>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|plusDomains_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | plusDomains_v1.Options
+) {
   return getAPI<T>('plusDomains', versionOrOptions, VERSIONS, this);
 }
 

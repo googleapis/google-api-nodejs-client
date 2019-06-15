@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {calendar_v3} from './v3';
 
 export const VERSIONS = {
-  'v3': calendar_v3.Calendar,
+  v3: calendar_v3.Calendar,
 };
 
 export function calendar(version: 'v3'): calendar_v3.Calendar;
 export function calendar(options: calendar_v3.Options): calendar_v3.Calendar;
 export function calendar<T = calendar_v3.Calendar>(
-    this: GoogleConfigurable, versionOrOptions: 'v3'|calendar_v3.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v3' | calendar_v3.Options
+) {
   return getAPI<T>('calendar', versionOrOptions, VERSIONS, this);
 }
 

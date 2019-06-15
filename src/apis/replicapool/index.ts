@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {replicapool_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  'v1beta1': replicapool_v1beta1.Replicapool,
+  v1beta1: replicapool_v1beta1.Replicapool,
 };
 
-export function replicapool(version: 'v1beta1'):
-    replicapool_v1beta1.Replicapool;
-export function replicapool(options: replicapool_v1beta1.Options):
-    replicapool_v1beta1.Replicapool;
+export function replicapool(
+  version: 'v1beta1'
+): replicapool_v1beta1.Replicapool;
+export function replicapool(
+  options: replicapool_v1beta1.Options
+): replicapool_v1beta1.Replicapool;
 export function replicapool<T = replicapool_v1beta1.Replicapool>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1beta1'|replicapool_v1beta1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1beta1' | replicapool_v1beta1.Options
+) {
   return getAPI<T>('replicapool', versionOrOptions, VERSIONS, this);
 }
 

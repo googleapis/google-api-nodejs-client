@@ -18,21 +18,28 @@ import {cloudbuild_v1} from './v1';
 import {cloudbuild_v1alpha1} from './v1alpha1';
 
 export const VERSIONS = {
-  'v1': cloudbuild_v1.Cloudbuild,
-  'v1alpha1': cloudbuild_v1alpha1.Cloudbuild,
+  v1: cloudbuild_v1.Cloudbuild,
+  v1alpha1: cloudbuild_v1alpha1.Cloudbuild,
 };
 
 export function cloudbuild(version: 'v1'): cloudbuild_v1.Cloudbuild;
-export function cloudbuild(options: cloudbuild_v1.Options):
-    cloudbuild_v1.Cloudbuild;
+export function cloudbuild(
+  options: cloudbuild_v1.Options
+): cloudbuild_v1.Cloudbuild;
 export function cloudbuild(version: 'v1alpha1'): cloudbuild_v1alpha1.Cloudbuild;
-export function cloudbuild(options: cloudbuild_v1alpha1.Options):
-    cloudbuild_v1alpha1.Cloudbuild;
-export function
-cloudbuild<T = cloudbuild_v1.Cloudbuild | cloudbuild_v1alpha1.Cloudbuild>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|cloudbuild_v1.Options|'v1alpha1'|
-    cloudbuild_v1alpha1.Options) {
+export function cloudbuild(
+  options: cloudbuild_v1alpha1.Options
+): cloudbuild_v1alpha1.Cloudbuild;
+export function cloudbuild<
+  T = cloudbuild_v1.Cloudbuild | cloudbuild_v1alpha1.Cloudbuild
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | cloudbuild_v1.Options
+    | 'v1alpha1'
+    | cloudbuild_v1alpha1.Options
+) {
   return getAPI<T>('cloudbuild', versionOrOptions, VERSIONS, this);
 }
 

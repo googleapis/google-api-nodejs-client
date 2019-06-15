@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {bigquery_v2} from './v2';
 
 export const VERSIONS = {
-  'v2': bigquery_v2.Bigquery,
+  v2: bigquery_v2.Bigquery,
 };
 
 export function bigquery(version: 'v2'): bigquery_v2.Bigquery;
 export function bigquery(options: bigquery_v2.Options): bigquery_v2.Bigquery;
 export function bigquery<T = bigquery_v2.Bigquery>(
-    this: GoogleConfigurable, versionOrOptions: 'v2'|bigquery_v2.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v2' | bigquery_v2.Options
+) {
   return getAPI<T>('bigquery', versionOrOptions, VERSIONS, this);
 }
 

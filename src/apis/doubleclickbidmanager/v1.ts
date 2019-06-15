@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -86,7 +95,10 @@ export namespace doubleclickbidmanager_v1 {
     sdf: Resource$Sdf;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.lineitems = new Resource$Lineitems(this.context);
       this.queries = new Resource$Queries(this.context);
@@ -100,13 +112,11 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$DownloadLineItemsRequest {
     /**
-     * File specification (column names, types, order) in which the line items
-     * will be returned. Default to EWF.
+     * File specification (column names, types, order) in which the line items will be returned. Default to EWF.
      */
     fileSpec?: string;
     /**
-     * Ids of the specified filter type used to filter line items to fetch. If
-     * omitted, all the line items will be returned.
+     * Ids of the specified filter type used to filter line items to fetch. If omitted, all the line items will be returned.
      */
     filterIds?: string[];
     /**
@@ -123,35 +133,28 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$DownloadLineItemsResponse {
     /**
-     * Retrieved line items in CSV format. For more information about file
-     * formats, see  Entity Write File Format.
+     * Retrieved line items in CSV format. For more information about file formats, see  Entity Write File Format.
      */
     lineItems?: string;
   }
   /**
-   * Request to fetch stored inventory sources, campaigns, insertion orders,
-   * line items, TrueView ad groups and ads.
+   * Request to fetch stored inventory sources, campaigns, insertion orders, line items, TrueView ad groups and ads.
    */
   export interface Schema$DownloadRequest {
     /**
-     * File types that will be returned.  Acceptable values are:   -
-     * &quot;AD&quot;  - &quot;AD_GROUP&quot;  - &quot;CAMPAIGN&quot;  -
-     * &quot;INSERTION_ORDER&quot;  - &quot;LINE_ITEM&quot;  -
-     * &quot;INVENTORY_SOURCE&quot;
+     * File types that will be returned. If INVENTORY_SOURCE is requested, no other file types may be requested.  Acceptable values are:   - &quot;AD&quot;  - &quot;AD_GROUP&quot;  - &quot;CAMPAIGN&quot;  - &quot;INSERTION_ORDER&quot;  - &quot;INVENTORY_SOURCE&quot;  - &quot;LINE_ITEM&quot;
      */
     fileTypes?: string[];
     /**
-     * The IDs of the specified filter type. This is used to filter entities to
-     * fetch. At least one ID must be specified.
+     * The IDs of the specified filter type. This is used to filter entities to fetch. At least one ID must be specified.
      */
     filterIds?: string[];
     /**
-     * Filter type used to filter entities to fetch.
+     * Filter type used to filter entities to fetch. PARTNER_ID and INVENTORY_SOURCE_ID may only be used when downloading inventory sources.
      */
     filterType?: string;
     /**
-     * SDF Version (column names, types, order) in which the entities will be
-     * returned. Default to 3.1.
+     * SDF Version (column names, types, order) in which the entities will be returned. Default to 3.1.
      */
     version?: string;
   }
@@ -199,8 +202,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$ListQueriesResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;doubleclickbidmanager#listQueriesResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#listQueriesResponse&quot;.
      */
     kind?: string;
     /**
@@ -213,8 +215,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$ListReportsResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;doubleclickbidmanager#listReportsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#listReportsResponse&quot;.
      */
     kind?: string;
     /**
@@ -235,7 +236,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     groupBys?: string[];
     /**
-     * Whether to include data from Invite Media.
+     * Deprecated. This field is no longer in use.
      */
     includeInviteData?: boolean;
     /**
@@ -252,8 +253,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$Query {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;doubleclickbidmanager#query&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#query&quot;.
      */
     kind?: string;
     /**
@@ -269,15 +269,11 @@ export namespace doubleclickbidmanager_v1 {
      */
     queryId?: string;
     /**
-     * The ending time for the data that is shown in the report. Note,
-     * reportDataEndTimeMs is required if metadata.dataRange is CUSTOM_DATES and
-     * ignored otherwise.
+     * The ending time for the data that is shown in the report. Note, reportDataEndTimeMs is required if metadata.dataRange is CUSTOM_DATES and ignored otherwise.
      */
     reportDataEndTimeMs?: string;
     /**
-     * The starting time for the data that is shown in the report. Note,
-     * reportDataStartTimeMs is required if metadata.dataRange is CUSTOM_DATES
-     * and ignored otherwise.
+     * The starting time for the data that is shown in the report. Note, reportDataStartTimeMs is required if metadata.dataRange is CUSTOM_DATES and ignored otherwise.
      */
     reportDataStartTimeMs?: string;
     /**
@@ -285,8 +281,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     schedule?: Schema$QuerySchedule;
     /**
-     * Canonical timezone code for report data time. Defaults to
-     * America/New_York.
+     * Canonical timezone code for report data time. Defaults to America/New_York.
      */
     timezoneCode?: string;
   }
@@ -303,8 +298,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     format?: string;
     /**
-     * The path to the location in Google Cloud Storage where the latest report
-     * is stored.
+     * The path to the location in Google Cloud Storage where the latest report is stored.
      */
     googleCloudStoragePathForLatestReport?: string;
     /**
@@ -316,11 +310,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     latestReportRunTimeMs?: string;
     /**
-     * Locale of the generated reports. Valid values are cs CZECH de GERMAN en
-     * ENGLISH es SPANISH fr FRENCH it ITALIAN ja JAPANESE ko KOREAN pl POLISH
-     * pt-BR BRAZILIAN_PORTUGUESE ru RUSSIAN tr TURKISH uk UKRAINIAN zh-CN
-     * CHINA_CHINESE zh-TW TAIWAN_CHINESE  An locale string not in the list
-     * above will generate reports in English.
+     * Locale of the generated reports. Valid values are cs CZECH de GERMAN en ENGLISH es SPANISH fr FRENCH it ITALIAN ja JAPANESE ko KOREAN pl POLISH pt-BR BRAZILIAN_PORTUGUESE ru RUSSIAN tr TURKISH uk UKRAINIAN zh-CN CHINA_CHINESE zh-TW TAIWAN_CHINESE  An locale string not in the list above will generate reports in English.
      */
     locale?: string;
     /**
@@ -332,13 +322,11 @@ export namespace doubleclickbidmanager_v1 {
      */
     running?: boolean;
     /**
-     * Whether to send an email notification when a report is ready. Default to
-     * false.
+     * Whether to send an email notification when a report is ready. Default to false.
      */
     sendNotification?: boolean;
     /**
-     * List of email addresses which are sent email notifications when the
-     * report is finished. Separate from sendNotification.
+     * List of email addresses which are sent email notifications when the report is finished. Separate from sendNotification.
      */
     shareEmailAddress?: string[];
     /**
@@ -359,14 +347,11 @@ export namespace doubleclickbidmanager_v1 {
      */
     frequency?: string;
     /**
-     * Time of day at which a new report will be generated, represented as
-     * minutes past midnight. Range is 0 to 1439. Only applies to scheduled
-     * reports.
+     * Time of day at which a new report will be generated, represented as minutes past midnight. Range is 0 to 1439. Only applies to scheduled reports.
      */
     nextRunMinuteOfDay?: number;
     /**
-     * Canonical timezone code for report generation time. Defaults to
-     * America/New_York.
+     * Canonical timezone code for report generation time. Defaults to America/New_York.
      */
     nextRunTimezoneCode?: string;
   }
@@ -414,8 +399,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$ReportMetadata {
     /**
-     * The path to the location in Google Cloud Storage where the report is
-     * stored.
+     * The path to the location in Google Cloud Storage where the report is stored.
      */
     googleCloudStoragePath?: string;
     /**
@@ -490,20 +474,15 @@ export namespace doubleclickbidmanager_v1 {
      */
     dataRange?: string;
     /**
-     * The ending time for the data that is shown in the report. Note,
-     * reportDataEndTimeMs is required if dataRange is CUSTOM_DATES and ignored
-     * otherwise.
+     * The ending time for the data that is shown in the report. Note, reportDataEndTimeMs is required if dataRange is CUSTOM_DATES and ignored otherwise.
      */
     reportDataEndTimeMs?: string;
     /**
-     * The starting time for the data that is shown in the report. Note,
-     * reportDataStartTimeMs is required if dataRange is CUSTOM_DATES and
-     * ignored otherwise.
+     * The starting time for the data that is shown in the report. Note, reportDataStartTimeMs is required if dataRange is CUSTOM_DATES and ignored otherwise.
      */
     reportDataStartTimeMs?: string;
     /**
-     * Canonical timezone code for report data time. Defaults to
-     * America/New_York.
+     * Canonical timezone code for report data time. Defaults to America/New_York.
      */
     timezoneCode?: string;
   }
@@ -512,8 +491,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$UploadLineItemsRequest {
     /**
-     * Set to true to get upload status without actually persisting the line
-     * items.
+     * Set to true to get upload status without actually persisting the line items.
      */
     dryRun?: boolean;
     /**
@@ -521,8 +499,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     format?: string;
     /**
-     * Line items in CSV to upload. Refer to  Entity Write File Format for more
-     * information on file format.
+     * Line items in CSV to upload. Refer to  Entity Write File Format for more information on file format.
      */
     lineItems?: string;
   }
@@ -549,18 +526,15 @@ export namespace doubleclickbidmanager_v1 {
     rowStatus?: Schema$RowStatus[];
   }
 
-
   export class Resource$Lineitems {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * doubleclickbidmanager.lineitems.downloadlineitems
-     * @desc Retrieves line items in CSV format. TrueView line items are not
-     * supported.
+     * @desc Retrieves line items in CSV format. TrueView line items are not supported.
      * @alias doubleclickbidmanager.lineitems.downloadlineitems
      * @memberOf! ()
      *
@@ -571,28 +545,34 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     downloadlineitems(
-        params?: Params$Resource$Lineitems$Downloadlineitems,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$DownloadLineItemsResponse>;
+      params?: Params$Resource$Lineitems$Downloadlineitems,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DownloadLineItemsResponse>;
     downloadlineitems(
-        params: Params$Resource$Lineitems$Downloadlineitems,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DownloadLineItemsResponse>,
-        callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>): void;
+      params: Params$Resource$Lineitems$Downloadlineitems,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DownloadLineItemsResponse>,
+      callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>
+    ): void;
     downloadlineitems(
-        params: Params$Resource$Lineitems$Downloadlineitems,
-        callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>): void;
+      params: Params$Resource$Lineitems$Downloadlineitems,
+      callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>
+    ): void;
     downloadlineitems(
-        callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>): void;
+      callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>
+    ): void;
     downloadlineitems(
-        paramsOrCallback?: Params$Resource$Lineitems$Downloadlineitems|
-        BodyResponseCallback<Schema$DownloadLineItemsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DownloadLineItemsResponse>,
-        callback?: BodyResponseCallback<Schema$DownloadLineItemsResponse>):
-        void|GaxiosPromise<Schema$DownloadLineItemsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Lineitems$Downloadlineitems;
+      paramsOrCallback?:
+        | Params$Resource$Lineitems$Downloadlineitems
+        | BodyResponseCallback<Schema$DownloadLineItemsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DownloadLineItemsResponse>,
+      callback?: BodyResponseCallback<Schema$DownloadLineItemsResponse>
+    ): void | GaxiosPromise<Schema$DownloadLineItemsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Lineitems$Downloadlineitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -609,31 +589,32 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/doubleclickbidmanager/v1/lineitems/downloadlineitems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/doubleclickbidmanager/v1/lineitems/downloadlineitems'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DownloadLineItemsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$DownloadLineItemsResponse>(parameters);
       }
     }
 
-
     /**
      * doubleclickbidmanager.lineitems.uploadlineitems
-     * @desc Uploads line items in CSV format. TrueView line items are not
-     * supported.
+     * @desc Uploads line items in CSV format. TrueView line items are not supported.
      * @alias doubleclickbidmanager.lineitems.uploadlineitems
      * @memberOf! ()
      *
@@ -644,27 +625,34 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     uploadlineitems(
-        params?: Params$Resource$Lineitems$Uploadlineitems,
-        options?: MethodOptions): GaxiosPromise<Schema$UploadLineItemsResponse>;
+      params?: Params$Resource$Lineitems$Uploadlineitems,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadLineItemsResponse>;
     uploadlineitems(
-        params: Params$Resource$Lineitems$Uploadlineitems,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UploadLineItemsResponse>,
-        callback: BodyResponseCallback<Schema$UploadLineItemsResponse>): void;
+      params: Params$Resource$Lineitems$Uploadlineitems,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadLineItemsResponse>,
+      callback: BodyResponseCallback<Schema$UploadLineItemsResponse>
+    ): void;
     uploadlineitems(
-        params: Params$Resource$Lineitems$Uploadlineitems,
-        callback: BodyResponseCallback<Schema$UploadLineItemsResponse>): void;
+      params: Params$Resource$Lineitems$Uploadlineitems,
+      callback: BodyResponseCallback<Schema$UploadLineItemsResponse>
+    ): void;
     uploadlineitems(
-        callback: BodyResponseCallback<Schema$UploadLineItemsResponse>): void;
+      callback: BodyResponseCallback<Schema$UploadLineItemsResponse>
+    ): void;
     uploadlineitems(
-        paramsOrCallback?: Params$Resource$Lineitems$Uploadlineitems|
-        BodyResponseCallback<Schema$UploadLineItemsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UploadLineItemsResponse>,
-        callback?: BodyResponseCallback<Schema$UploadLineItemsResponse>):
-        void|GaxiosPromise<Schema$UploadLineItemsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Lineitems$Uploadlineitems;
+      paramsOrCallback?:
+        | Params$Resource$Lineitems$Uploadlineitems
+        | BodyResponseCallback<Schema$UploadLineItemsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadLineItemsResponse>,
+      callback?: BodyResponseCallback<Schema$UploadLineItemsResponse>
+    ): void | GaxiosPromise<Schema$UploadLineItemsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Lineitems$Uploadlineitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -681,17 +669,18 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/doubleclickbidmanager/v1/lineitems/uploadlineitems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/doubleclickbidmanager/v1/lineitems/uploadlineitems'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UploadLineItemsResponse>(parameters, callback);
@@ -701,26 +690,24 @@ export namespace doubleclickbidmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Lineitems$Downloadlineitems extends
-      StandardParameters {
+  export interface Params$Resource$Lineitems$Downloadlineitems
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$DownloadLineItemsRequest;
   }
-  export interface Params$Resource$Lineitems$Uploadlineitems extends
-      StandardParameters {
+  export interface Params$Resource$Lineitems$Uploadlineitems
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -728,13 +715,11 @@ export namespace doubleclickbidmanager_v1 {
     requestBody?: Schema$UploadLineItemsRequest;
   }
 
-
   export class Resource$Queries {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * doubleclickbidmanager.queries.createquery
@@ -749,24 +734,28 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     createquery(
-        params?: Params$Resource$Queries$Createquery,
-        options?: MethodOptions): GaxiosPromise<Schema$Query>;
+      params?: Params$Resource$Queries$Createquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Query>;
     createquery(
-        params: Params$Resource$Queries$Createquery,
-        options: MethodOptions|BodyResponseCallback<Schema$Query>,
-        callback: BodyResponseCallback<Schema$Query>): void;
+      params: Params$Resource$Queries$Createquery,
+      options: MethodOptions | BodyResponseCallback<Schema$Query>,
+      callback: BodyResponseCallback<Schema$Query>
+    ): void;
     createquery(
-        params: Params$Resource$Queries$Createquery,
-        callback: BodyResponseCallback<Schema$Query>): void;
+      params: Params$Resource$Queries$Createquery,
+      callback: BodyResponseCallback<Schema$Query>
+    ): void;
     createquery(callback: BodyResponseCallback<Schema$Query>): void;
     createquery(
-        paramsOrCallback?: Params$Resource$Queries$Createquery|
-        BodyResponseCallback<Schema$Query>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Query>,
-        callback?: BodyResponseCallback<Schema$Query>):
-        void|GaxiosPromise<Schema$Query> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Queries$Createquery;
+      paramsOrCallback?:
+        | Params$Resource$Queries$Createquery
+        | BodyResponseCallback<Schema$Query>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Query>,
+      callback?: BodyResponseCallback<Schema$Query>
+    ): void | GaxiosPromise<Schema$Query> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Queries$Createquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -783,16 +772,19 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclickbidmanager/v1/query')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclickbidmanager/v1/query').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Query>(parameters, callback);
@@ -800,7 +792,6 @@ export namespace doubleclickbidmanager_v1 {
         return createAPIRequest<Schema$Query>(parameters);
       }
     }
-
 
     /**
      * doubleclickbidmanager.queries.deletequery
@@ -815,23 +806,28 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     deletequery(
-        params?: Params$Resource$Queries$Deletequery,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Queries$Deletequery,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     deletequery(
-        params: Params$Resource$Queries$Deletequery,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Queries$Deletequery,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     deletequery(
-        params: Params$Resource$Queries$Deletequery,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Queries$Deletequery,
+      callback: BodyResponseCallback<void>
+    ): void;
     deletequery(callback: BodyResponseCallback<void>): void;
     deletequery(
-        paramsOrCallback?: Params$Resource$Queries$Deletequery|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Queries$Deletequery;
+      paramsOrCallback?:
+        | Params$Resource$Queries$Deletequery
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Queries$Deletequery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -848,16 +844,18 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/doubleclickbidmanager/v1/query/{queryId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -865,7 +863,6 @@ export namespace doubleclickbidmanager_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * doubleclickbidmanager.queries.getquery
@@ -880,22 +877,26 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     getquery(
-        params?: Params$Resource$Queries$Getquery,
-        options?: MethodOptions): GaxiosPromise<Schema$Query>;
+      params?: Params$Resource$Queries$Getquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Query>;
     getquery(
-        params: Params$Resource$Queries$Getquery,
-        options: MethodOptions|BodyResponseCallback<Schema$Query>,
-        callback: BodyResponseCallback<Schema$Query>): void;
+      params: Params$Resource$Queries$Getquery,
+      options: MethodOptions | BodyResponseCallback<Schema$Query>,
+      callback: BodyResponseCallback<Schema$Query>
+    ): void;
     getquery(
-        params: Params$Resource$Queries$Getquery,
-        callback: BodyResponseCallback<Schema$Query>): void;
+      params: Params$Resource$Queries$Getquery,
+      callback: BodyResponseCallback<Schema$Query>
+    ): void;
     getquery(callback: BodyResponseCallback<Schema$Query>): void;
     getquery(
-        paramsOrCallback?: Params$Resource$Queries$Getquery|
-        BodyResponseCallback<Schema$Query>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Query>,
-        callback?: BodyResponseCallback<Schema$Query>):
-        void|GaxiosPromise<Schema$Query> {
+      paramsOrCallback?:
+        | Params$Resource$Queries$Getquery
+        | BodyResponseCallback<Schema$Query>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Query>,
+      callback?: BodyResponseCallback<Schema$Query>
+    ): void | GaxiosPromise<Schema$Query> {
       let params = (paramsOrCallback || {}) as Params$Resource$Queries$Getquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -913,16 +914,18 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/doubleclickbidmanager/v1/query/{queryId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Query>(parameters, callback);
@@ -930,7 +933,6 @@ export namespace doubleclickbidmanager_v1 {
         return createAPIRequest<Schema$Query>(parameters);
       }
     }
-
 
     /**
      * doubleclickbidmanager.queries.listqueries
@@ -944,26 +946,32 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     listqueries(
-        params?: Params$Resource$Queries$Listqueries,
-        options?: MethodOptions): GaxiosPromise<Schema$ListQueriesResponse>;
+      params?: Params$Resource$Queries$Listqueries,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListQueriesResponse>;
     listqueries(
-        params: Params$Resource$Queries$Listqueries,
-        options: MethodOptions|BodyResponseCallback<Schema$ListQueriesResponse>,
-        callback: BodyResponseCallback<Schema$ListQueriesResponse>): void;
+      params: Params$Resource$Queries$Listqueries,
+      options: MethodOptions | BodyResponseCallback<Schema$ListQueriesResponse>,
+      callback: BodyResponseCallback<Schema$ListQueriesResponse>
+    ): void;
     listqueries(
-        params: Params$Resource$Queries$Listqueries,
-        callback: BodyResponseCallback<Schema$ListQueriesResponse>): void;
-    listqueries(callback: BodyResponseCallback<Schema$ListQueriesResponse>):
-        void;
+      params: Params$Resource$Queries$Listqueries,
+      callback: BodyResponseCallback<Schema$ListQueriesResponse>
+    ): void;
     listqueries(
-        paramsOrCallback?: Params$Resource$Queries$Listqueries|
-        BodyResponseCallback<Schema$ListQueriesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListQueriesResponse>,
-        callback?: BodyResponseCallback<Schema$ListQueriesResponse>):
-        void|GaxiosPromise<Schema$ListQueriesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Queries$Listqueries;
+      callback: BodyResponseCallback<Schema$ListQueriesResponse>
+    ): void;
+    listqueries(
+      paramsOrCallback?:
+        | Params$Resource$Queries$Listqueries
+        | BodyResponseCallback<Schema$ListQueriesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListQueriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListQueriesResponse>
+    ): void | GaxiosPromise<Schema$ListQueriesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Queries$Listqueries;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -980,16 +988,19 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclickbidmanager/v1/queries')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclickbidmanager/v1/queries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListQueriesResponse>(parameters, callback);
@@ -997,7 +1008,6 @@ export namespace doubleclickbidmanager_v1 {
         return createAPIRequest<Schema$ListQueriesResponse>(parameters);
       }
     }
-
 
     /**
      * doubleclickbidmanager.queries.runquery
@@ -1013,21 +1023,26 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     runquery(
-        params?: Params$Resource$Queries$Runquery,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Queries$Runquery,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     runquery(
-        params: Params$Resource$Queries$Runquery,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Queries$Runquery,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     runquery(
-        params: Params$Resource$Queries$Runquery,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Queries$Runquery,
+      callback: BodyResponseCallback<void>
+    ): void;
     runquery(callback: BodyResponseCallback<void>): void;
     runquery(
-        paramsOrCallback?: Params$Resource$Queries$Runquery|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Queries$Runquery
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Queries$Runquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1045,16 +1060,18 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/doubleclickbidmanager/v1/query/{queryId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1064,25 +1081,24 @@ export namespace doubleclickbidmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Queries$Createquery extends
-      StandardParameters {
+  export interface Params$Resource$Queries$Createquery
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$Query;
   }
-  export interface Params$Resource$Queries$Deletequery extends
-      StandardParameters {
+  export interface Params$Resource$Queries$Deletequery
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Query ID to delete.
@@ -1093,25 +1109,25 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Query ID to retrieve.
      */
     queryId?: string;
   }
-  export interface Params$Resource$Queries$Listqueries extends
-      StandardParameters {
+  export interface Params$Resource$Queries$Listqueries
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
   export interface Params$Resource$Queries$Runquery extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Query ID to run.
@@ -1124,13 +1140,11 @@ export namespace doubleclickbidmanager_v1 {
     requestBody?: Schema$RunQueryRequest;
   }
 
-
   export class Resource$Reports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * doubleclickbidmanager.reports.listreports
@@ -1145,26 +1159,32 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     listreports(
-        params?: Params$Resource$Reports$Listreports,
-        options?: MethodOptions): GaxiosPromise<Schema$ListReportsResponse>;
+      params?: Params$Resource$Reports$Listreports,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReportsResponse>;
     listreports(
-        params: Params$Resource$Reports$Listreports,
-        options: MethodOptions|BodyResponseCallback<Schema$ListReportsResponse>,
-        callback: BodyResponseCallback<Schema$ListReportsResponse>): void;
+      params: Params$Resource$Reports$Listreports,
+      options: MethodOptions | BodyResponseCallback<Schema$ListReportsResponse>,
+      callback: BodyResponseCallback<Schema$ListReportsResponse>
+    ): void;
     listreports(
-        params: Params$Resource$Reports$Listreports,
-        callback: BodyResponseCallback<Schema$ListReportsResponse>): void;
-    listreports(callback: BodyResponseCallback<Schema$ListReportsResponse>):
-        void;
+      params: Params$Resource$Reports$Listreports,
+      callback: BodyResponseCallback<Schema$ListReportsResponse>
+    ): void;
     listreports(
-        paramsOrCallback?: Params$Resource$Reports$Listreports|
-        BodyResponseCallback<Schema$ListReportsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListReportsResponse>,
-        callback?: BodyResponseCallback<Schema$ListReportsResponse>):
-        void|GaxiosPromise<Schema$ListReportsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Reports$Listreports;
+      callback: BodyResponseCallback<Schema$ListReportsResponse>
+    ): void;
+    listreports(
+      paramsOrCallback?:
+        | Params$Resource$Reports$Listreports
+        | BodyResponseCallback<Schema$ListReportsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReportsResponse>,
+      callback?: BodyResponseCallback<Schema$ListReportsResponse>
+    ): void | GaxiosPromise<Schema$ListReportsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reports$Listreports;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1181,17 +1201,18 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/doubleclickbidmanager/v1/queries/{queryId}/reports')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/doubleclickbidmanager/v1/queries/{queryId}/reports'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListReportsResponse>(parameters, callback);
@@ -1201,12 +1222,12 @@ export namespace doubleclickbidmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Reports$Listreports extends
-      StandardParameters {
+  export interface Params$Resource$Reports$Listreports
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Query ID with which the reports are associated.
@@ -1214,13 +1235,11 @@ export namespace doubleclickbidmanager_v1 {
     queryId?: string;
   }
 
-
   export class Resource$Sdf {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * doubleclickbidmanager.sdf.download
@@ -1234,23 +1253,29 @@ export namespace doubleclickbidmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    download(params?: Params$Resource$Sdf$Download, options?: MethodOptions):
-        GaxiosPromise<Schema$DownloadResponse>;
     download(
-        params: Params$Resource$Sdf$Download,
-        options: MethodOptions|BodyResponseCallback<Schema$DownloadResponse>,
-        callback: BodyResponseCallback<Schema$DownloadResponse>): void;
+      params?: Params$Resource$Sdf$Download,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DownloadResponse>;
     download(
-        params: Params$Resource$Sdf$Download,
-        callback: BodyResponseCallback<Schema$DownloadResponse>): void;
+      params: Params$Resource$Sdf$Download,
+      options: MethodOptions | BodyResponseCallback<Schema$DownloadResponse>,
+      callback: BodyResponseCallback<Schema$DownloadResponse>
+    ): void;
+    download(
+      params: Params$Resource$Sdf$Download,
+      callback: BodyResponseCallback<Schema$DownloadResponse>
+    ): void;
     download(callback: BodyResponseCallback<Schema$DownloadResponse>): void;
     download(
-        paramsOrCallback?: Params$Resource$Sdf$Download|
-        BodyResponseCallback<Schema$DownloadResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DownloadResponse>,
-        callback?: BodyResponseCallback<Schema$DownloadResponse>):
-        void|GaxiosPromise<Schema$DownloadResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Sdf$Download
+        | BodyResponseCallback<Schema$DownloadResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DownloadResponse>,
+      callback?: BodyResponseCallback<Schema$DownloadResponse>
+    ): void | GaxiosPromise<Schema$DownloadResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sdf$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1268,16 +1293,19 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclickbidmanager/v1/sdf/download')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclickbidmanager/v1/sdf/download').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DownloadResponse>(parameters, callback);
@@ -1291,8 +1319,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

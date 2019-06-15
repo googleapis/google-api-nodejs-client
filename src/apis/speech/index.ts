@@ -18,19 +18,24 @@ import {speech_v1} from './v1';
 import {speech_v1p1beta1} from './v1p1beta1';
 
 export const VERSIONS = {
-  'v1': speech_v1.Speech,
-  'v1p1beta1': speech_v1p1beta1.Speech,
+  v1: speech_v1.Speech,
+  v1p1beta1: speech_v1p1beta1.Speech,
 };
 
 export function speech(version: 'v1'): speech_v1.Speech;
 export function speech(options: speech_v1.Options): speech_v1.Speech;
 export function speech(version: 'v1p1beta1'): speech_v1p1beta1.Speech;
-export function speech(options: speech_v1p1beta1.Options):
-    speech_v1p1beta1.Speech;
+export function speech(
+  options: speech_v1p1beta1.Options
+): speech_v1p1beta1.Speech;
 export function speech<T = speech_v1.Speech | speech_v1p1beta1.Speech>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|speech_v1.Options|'v1p1beta1'|
-    speech_v1p1beta1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | speech_v1.Options
+    | 'v1p1beta1'
+    | speech_v1p1beta1.Options
+) {
   return getAPI<T>('speech', versionOrOptions, VERSIONS, this);
 }
 

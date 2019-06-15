@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {siteVerification_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': siteVerification_v1.Siteverification,
+  v1: siteVerification_v1.Siteverification,
 };
 
-export function siteVerification(version: 'v1'):
-    siteVerification_v1.Siteverification;
-export function siteVerification(options: siteVerification_v1.Options):
-    siteVerification_v1.Siteverification;
+export function siteVerification(
+  version: 'v1'
+): siteVerification_v1.Siteverification;
+export function siteVerification(
+  options: siteVerification_v1.Options
+): siteVerification_v1.Siteverification;
 export function siteVerification<T = siteVerification_v1.Siteverification>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|siteVerification_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | siteVerification_v1.Options
+) {
   return getAPI<T>('siteVerification', versionOrOptions, VERSIONS, this);
 }
 

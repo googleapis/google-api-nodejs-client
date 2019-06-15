@@ -18,19 +18,24 @@ import {dataproc_v1} from './v1';
 import {dataproc_v1beta2} from './v1beta2';
 
 export const VERSIONS = {
-  'v1': dataproc_v1.Dataproc,
-  'v1beta2': dataproc_v1beta2.Dataproc,
+  v1: dataproc_v1.Dataproc,
+  v1beta2: dataproc_v1beta2.Dataproc,
 };
 
 export function dataproc(version: 'v1'): dataproc_v1.Dataproc;
 export function dataproc(options: dataproc_v1.Options): dataproc_v1.Dataproc;
 export function dataproc(version: 'v1beta2'): dataproc_v1beta2.Dataproc;
-export function dataproc(options: dataproc_v1beta2.Options):
-    dataproc_v1beta2.Dataproc;
+export function dataproc(
+  options: dataproc_v1beta2.Options
+): dataproc_v1beta2.Dataproc;
 export function dataproc<T = dataproc_v1.Dataproc | dataproc_v1beta2.Dataproc>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|dataproc_v1.Options|'v1beta2'|
-    dataproc_v1beta2.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | dataproc_v1.Options
+    | 'v1beta2'
+    | dataproc_v1beta2.Options
+) {
   return getAPI<T>('dataproc', versionOrOptions, VERSIONS, this);
 }
 

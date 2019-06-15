@@ -19,32 +19,44 @@ import {remotebuildexecution_v1alpha} from './v1alpha';
 import {remotebuildexecution_v2} from './v2';
 
 export const VERSIONS = {
-  'v1': remotebuildexecution_v1.Remotebuildexecution,
-  'v1alpha': remotebuildexecution_v1alpha.Remotebuildexecution,
-  'v2': remotebuildexecution_v2.Remotebuildexecution,
+  v1: remotebuildexecution_v1.Remotebuildexecution,
+  v1alpha: remotebuildexecution_v1alpha.Remotebuildexecution,
+  v2: remotebuildexecution_v2.Remotebuildexecution,
 };
 
-export function remotebuildexecution(version: 'v1'):
-    remotebuildexecution_v1.Remotebuildexecution;
-export function remotebuildexecution(options: remotebuildexecution_v1.Options):
-    remotebuildexecution_v1.Remotebuildexecution;
-export function remotebuildexecution(version: 'v1alpha'):
-    remotebuildexecution_v1alpha.Remotebuildexecution;
 export function remotebuildexecution(
-    options: remotebuildexecution_v1alpha.Options):
-    remotebuildexecution_v1alpha.Remotebuildexecution;
-export function remotebuildexecution(version: 'v2'):
-    remotebuildexecution_v2.Remotebuildexecution;
-export function remotebuildexecution(options: remotebuildexecution_v2.Options):
-    remotebuildexecution_v2.Remotebuildexecution;
+  version: 'v1'
+): remotebuildexecution_v1.Remotebuildexecution;
+export function remotebuildexecution(
+  options: remotebuildexecution_v1.Options
+): remotebuildexecution_v1.Remotebuildexecution;
+export function remotebuildexecution(
+  version: 'v1alpha'
+): remotebuildexecution_v1alpha.Remotebuildexecution;
+export function remotebuildexecution(
+  options: remotebuildexecution_v1alpha.Options
+): remotebuildexecution_v1alpha.Remotebuildexecution;
+export function remotebuildexecution(
+  version: 'v2'
+): remotebuildexecution_v2.Remotebuildexecution;
+export function remotebuildexecution(
+  options: remotebuildexecution_v2.Options
+): remotebuildexecution_v2.Remotebuildexecution;
 export function remotebuildexecution<
-    T = remotebuildexecution_v1.Remotebuildexecution |
-        remotebuildexecution_v1alpha.Remotebuildexecution |
-        remotebuildexecution_v2.Remotebuildexecution>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|
-    remotebuildexecution_v1.Options|'v1alpha'|
-    remotebuildexecution_v1alpha.Options|'v2'|remotebuildexecution_v2.Options) {
+  T =
+    | remotebuildexecution_v1.Remotebuildexecution
+    | remotebuildexecution_v1alpha.Remotebuildexecution
+    | remotebuildexecution_v2.Remotebuildexecution
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | remotebuildexecution_v1.Options
+    | 'v1alpha'
+    | remotebuildexecution_v1alpha.Options
+    | 'v2'
+    | remotebuildexecution_v2.Options
+) {
   return getAPI<T>('remotebuildexecution', versionOrOptions, VERSIONS, this);
 }
 

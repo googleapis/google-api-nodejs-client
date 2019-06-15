@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +63,7 @@ export namespace iamcredentials_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,9 +75,7 @@ export namespace iamcredentials_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -83,8 +91,7 @@ export namespace iamcredentials_v1 {
   /**
    * IAM Service Account Credentials API
    *
-   * Creates short-lived, limited-privilege credentials for IAM service
-   * accounts.
+   * Creates short-lived, limited-privilege credentials for IAM service accounts.
    *
    * @example
    * const {google} = require('googleapis');
@@ -101,7 +108,10 @@ export namespace iamcredentials_v1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
@@ -109,28 +119,15 @@ export namespace iamcredentials_v1 {
 
   export interface Schema$GenerateAccessTokenRequest {
     /**
-     * The sequence of service accounts in a delegation chain. Each service
-     * account must be granted the `roles/iam.serviceAccountTokenCreator` role
-     * on its next service account in the chain. The last service account in the
-     * chain must be granted the `roles/iam.serviceAccountTokenCreator` role on
-     * the service account that is specified in the `name` field of the request.
-     * The delegates must have the following format:
-     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-`
-     * wildcard character is required; replacing it with a project ID is
-     * invalid.
+     * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request.  The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     delegates?: string[];
     /**
-     * The desired lifetime duration of the access token in seconds. Must be set
-     * to a value less than or equal to 3600 (1 hour). If a value is not
-     * specified, the token&#39;s lifetime will be set to a default value of one
-     * hour.
+     * The desired lifetime duration of the access token in seconds. Must be set to a value less than or equal to 3600 (1 hour). If a value is not specified, the token&#39;s lifetime will be set to a default value of one hour.
      */
     lifetime?: string;
     /**
-     * Code to identify the scopes to be included in the OAuth 2.0 access token.
-     * See https://developers.google.com/identity/protocols/googlescopes for
-     * more information. At least one value required.
+     * Code to identify the scopes to be included in the OAuth 2.0 access token. See https://developers.google.com/identity/protocols/googlescopes for more information. At least one value required.
      */
     scope?: string[];
   }
@@ -146,43 +143,11 @@ export namespace iamcredentials_v1 {
   }
   export interface Schema$GenerateIdentityBindingAccessTokenRequest {
     /**
-     * Required. Input token. Must be in JWT format according to RFC7523
-     * (https://tools.ietf.org/html/rfc7523) and must have &#39;kid&#39; field
-     * in the header. Supported signing algorithms: RS256 (RS512, ES256, ES512
-     * coming soon). Mandatory payload fields (along the lines of RFC 7523,
-     * section 3): - iss: issuer of the token. Must provide a discovery document
-     * at        $iss/.well-known/openid-configuration . The document needs to
-     * be        formatted according to section 4.2 of the OpenID Connect
-     * Discovery        1.0 specification. - iat: Issue time in seconds since
-     * epoch. Must be in the past. - exp: Expiration time in seconds since
-     * epoch. Must be less than 48 hours        after iat. We recommend to
-     * create tokens that last shorter than 6        hours to improve security
-     * unless business reasons mandate longer        expiration times. Shorter
-     * token lifetimes are generally more secure        since tokens that have
-     * been exfiltrated by attackers can be used for        a shorter time. you
-     * can configure the maximum lifetime of the        incoming token in the
-     * configuration of the mapper.        The resulting Google token will
-     * expire within an hour or at &quot;exp&quot;,        whichever is earlier.
-     * - sub: JWT subject, identity asserted in the JWT. - aud: Configured in
-     * the mapper policy. By default the service account        email.  Claims
-     * from the incoming token can be transferred into the output token accoding
-     * to the mapper configuration. The outgoing claim size is limited. Outgoing
-     * claims size must be less than 4kB serialized as JSON without whitespace.
-     * Example header: {   &quot;alg&quot;: &quot;RS256&quot;, &quot;kid&quot;:
-     * &quot;92a4265e14ab04d4d228a48d10d4ca31610936f8&quot; } Example payload: {
-     * &quot;iss&quot;: &quot;https://accounts.google.com&quot;,
-     * &quot;iat&quot;: 1517963104,   &quot;exp&quot;: 1517966704,
-     * &quot;aud&quot;:
-     * &quot;https://iamcredentials.googleapis.com/google.iam.credentials.v1.CloudGaia&quot;,
-     * &quot;sub&quot;: &quot;113475438248934895348&quot;,
-     * &quot;my_claims&quot;: {     &quot;additional_claim&quot;:
-     * &quot;value&quot;   } }
+     * Required. Input token. Must be in JWT format according to RFC7523 (https://tools.ietf.org/html/rfc7523) and must have &#39;kid&#39; field in the header. Supported signing algorithms: RS256 (RS512, ES256, ES512 coming soon). Mandatory payload fields (along the lines of RFC 7523, section 3): - iss: issuer of the token. Must provide a discovery document at        $iss/.well-known/openid-configuration . The document needs to be        formatted according to section 4.2 of the OpenID Connect Discovery        1.0 specification. - iat: Issue time in seconds since epoch. Must be in the past. - exp: Expiration time in seconds since epoch. Must be less than 48 hours        after iat. We recommend to create tokens that last shorter than 6        hours to improve security unless business reasons mandate longer        expiration times. Shorter token lifetimes are generally more secure        since tokens that have been exfiltrated by attackers can be used for        a shorter time. you can configure the maximum lifetime of the        incoming token in the configuration of the mapper.        The resulting Google token will expire within an hour or at &quot;exp&quot;,        whichever is earlier. - sub: JWT subject, identity asserted in the JWT. - aud: Configured in the mapper policy. By default the service account        email.  Claims from the incoming token can be transferred into the output token accoding to the mapper configuration. The outgoing claim size is limited. Outgoing claims size must be less than 4kB serialized as JSON without whitespace.  Example header: {   &quot;alg&quot;: &quot;RS256&quot;,   &quot;kid&quot;: &quot;92a4265e14ab04d4d228a48d10d4ca31610936f8&quot; } Example payload: {   &quot;iss&quot;: &quot;https://accounts.google.com&quot;,   &quot;iat&quot;: 1517963104,   &quot;exp&quot;: 1517966704,   &quot;aud&quot;:   &quot;https://iamcredentials.googleapis.com/google.iam.credentials.v1.CloudGaia&quot;,   &quot;sub&quot;: &quot;113475438248934895348&quot;,   &quot;my_claims&quot;: {     &quot;additional_claim&quot;: &quot;value&quot;   } }
      */
     jwt?: string;
     /**
-     * Code to identify the scopes to be included in the OAuth 2.0 access token.
-     * See https://developers.google.com/identity/protocols/googlescopes for
-     * more information. At least one value required.
+     * Code to identify the scopes to be included in the OAuth 2.0 access token. See https://developers.google.com/identity/protocols/googlescopes for more information. At least one value required.
      */
     scope?: string[];
   }
@@ -198,25 +163,15 @@ export namespace iamcredentials_v1 {
   }
   export interface Schema$GenerateIdTokenRequest {
     /**
-     * The audience for the token, such as the API or account that this token
-     * grants access to.
+     * The audience for the token, such as the API or account that this token grants access to.
      */
     audience?: string;
     /**
-     * The sequence of service accounts in a delegation chain. Each service
-     * account must be granted the `roles/iam.serviceAccountTokenCreator` role
-     * on its next service account in the chain. The last service account in the
-     * chain must be granted the `roles/iam.serviceAccountTokenCreator` role on
-     * the service account that is specified in the `name` field of the request.
-     * The delegates must have the following format:
-     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-`
-     * wildcard character is required; replacing it with a project ID is
-     * invalid.
+     * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request.  The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     delegates?: string[];
     /**
-     * Include the service account email in the token. If set to `true`, the
-     * token will contain `email` and `email_verified` claims.
+     * Include the service account email in the token. If set to `true`, the token will contain `email` and `email_verified` claims.
      */
     includeEmail?: boolean;
   }
@@ -228,15 +183,7 @@ export namespace iamcredentials_v1 {
   }
   export interface Schema$SignBlobRequest {
     /**
-     * The sequence of service accounts in a delegation chain. Each service
-     * account must be granted the `roles/iam.serviceAccountTokenCreator` role
-     * on its next service account in the chain. The last service account in the
-     * chain must be granted the `roles/iam.serviceAccountTokenCreator` role on
-     * the service account that is specified in the `name` field of the request.
-     * The delegates must have the following format:
-     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-`
-     * wildcard character is required; replacing it with a project ID is
-     * invalid.
+     * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request.  The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     delegates?: string[];
     /**
@@ -256,15 +203,7 @@ export namespace iamcredentials_v1 {
   }
   export interface Schema$SignJwtRequest {
     /**
-     * The sequence of service accounts in a delegation chain. Each service
-     * account must be granted the `roles/iam.serviceAccountTokenCreator` role
-     * on its next service account in the chain. The last service account in the
-     * chain must be granted the `roles/iam.serviceAccountTokenCreator` role on
-     * the service account that is specified in the `name` field of the request.
-     * The delegates must have the following format:
-     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-`
-     * wildcard character is required; replacing it with a project ID is
-     * invalid.
+     * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request.  The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     delegates?: string[];
     /**
@@ -283,24 +222,22 @@ export namespace iamcredentials_v1 {
     signedJwt?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     serviceAccounts: Resource$Projects$Serviceaccounts;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.serviceAccounts =
-          new Resource$Projects$Serviceaccounts(this.context);
+      this.serviceAccounts = new Resource$Projects$Serviceaccounts(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Projects$Serviceaccounts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * iamcredentials.projects.serviceAccounts.generateAccessToken
@@ -316,38 +253,39 @@ export namespace iamcredentials_v1 {
      * @return {object} Request object
      */
     generateAccessToken(
-        params?: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GenerateAccessTokenResponse>;
+      params?: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateAccessTokenResponse>;
     generateAccessToken(
-        params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GenerateAccessTokenResponse>,
-        callback: BodyResponseCallback<Schema$GenerateAccessTokenResponse>):
-        void;
+      params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>,
+      callback: BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+    ): void;
     generateAccessToken(
-        params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
-        callback: BodyResponseCallback<Schema$GenerateAccessTokenResponse>):
-        void;
+      params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
+      callback: BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+    ): void;
     generateAccessToken(
-        callback: BodyResponseCallback<Schema$GenerateAccessTokenResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+    ): void;
     generateAccessToken(
-        paramsOrCallback?:
-            Params$Resource$Projects$Serviceaccounts$Generateaccesstoken|
-        BodyResponseCallback<Schema$GenerateAccessTokenResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GenerateAccessTokenResponse>,
-        callback?: BodyResponseCallback<Schema$GenerateAccessTokenResponse>):
-        void|GaxiosPromise<Schema$GenerateAccessTokenResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Generateaccesstoken;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Generateaccesstoken
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>,
+      callback?: BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+    ): void | GaxiosPromise<Schema$GenerateAccessTokenResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Generateaccesstoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Serviceaccounts$Generateaccesstoken;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Generateaccesstoken;
         options = {};
       }
 
@@ -357,33 +295,36 @@ export namespace iamcredentials_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://iamcredentials.googleapis.com/';
+        options.rootUrl || 'https://iamcredentials.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:generateAccessToken')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:generateAccessToken').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GenerateAccessTokenResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GenerateAccessTokenResponse>(parameters);
       }
     }
 
-
     /**
      * iamcredentials.projects.serviceAccounts.generateIdentityBindingAccessToken
-     * @alias
-     * iamcredentials.projects.serviceAccounts.generateIdentityBindingAccessToken
+     * @alias iamcredentials.projects.serviceAccounts.generateIdentityBindingAccessToken
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -394,42 +335,53 @@ export namespace iamcredentials_v1 {
      * @return {object} Request object
      */
     generateIdentityBindingAccessToken(
-        params?:
-            Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GenerateIdentityBindingAccessTokenResponse>;
+      params?: Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateIdentityBindingAccessTokenResponse>;
     generateIdentityBindingAccessToken(
-        params:
-            Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GenerateIdentityBindingAccessTokenResponse>,
-        callback: BodyResponseCallback<
-            Schema$GenerateIdentityBindingAccessTokenResponse>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GenerateIdentityBindingAccessTokenResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GenerateIdentityBindingAccessTokenResponse
+      >
+    ): void;
     generateIdentityBindingAccessToken(
-        params:
-            Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken,
-        callback: BodyResponseCallback<
-            Schema$GenerateIdentityBindingAccessTokenResponse>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken,
+      callback: BodyResponseCallback<
+        Schema$GenerateIdentityBindingAccessTokenResponse
+      >
+    ): void;
     generateIdentityBindingAccessToken(
-        callback: BodyResponseCallback<
-            Schema$GenerateIdentityBindingAccessTokenResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$GenerateIdentityBindingAccessTokenResponse
+      >
+    ): void;
     generateIdentityBindingAccessToken(
-        paramsOrCallback?:
-            Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken|
-        BodyResponseCallback<Schema$GenerateIdentityBindingAccessTokenResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GenerateIdentityBindingAccessTokenResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GenerateIdentityBindingAccessTokenResponse>):
-        void|GaxiosPromise<Schema$GenerateIdentityBindingAccessTokenResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken
+        | BodyResponseCallback<
+            Schema$GenerateIdentityBindingAccessTokenResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GenerateIdentityBindingAccessTokenResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GenerateIdentityBindingAccessTokenResponse
+      >
+    ): void | GaxiosPromise<Schema$GenerateIdentityBindingAccessTokenResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken;
         options = {};
       }
 
@@ -439,29 +391,33 @@ export namespace iamcredentials_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://iamcredentials.googleapis.com/';
+        options.rootUrl || 'https://iamcredentials.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:generateIdentityBindingAccessToken')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/{+name}:generateIdentityBindingAccessToken'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GenerateIdentityBindingAccessTokenResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$GenerateIdentityBindingAccessTokenResponse>(parameters);
+          Schema$GenerateIdentityBindingAccessTokenResponse
+        >(parameters);
       }
     }
-
 
     /**
      * iamcredentials.projects.serviceAccounts.generateIdToken
@@ -477,28 +433,34 @@ export namespace iamcredentials_v1 {
      * @return {object} Request object
      */
     generateIdToken(
-        params?: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
-        options?: MethodOptions): GaxiosPromise<Schema$GenerateIdTokenResponse>;
+      params?: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateIdTokenResponse>;
     generateIdToken(
-        params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GenerateIdTokenResponse>,
-        callback: BodyResponseCallback<Schema$GenerateIdTokenResponse>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateIdTokenResponse>,
+      callback: BodyResponseCallback<Schema$GenerateIdTokenResponse>
+    ): void;
     generateIdToken(
-        params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
-        callback: BodyResponseCallback<Schema$GenerateIdTokenResponse>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
+      callback: BodyResponseCallback<Schema$GenerateIdTokenResponse>
+    ): void;
     generateIdToken(
-        callback: BodyResponseCallback<Schema$GenerateIdTokenResponse>): void;
+      callback: BodyResponseCallback<Schema$GenerateIdTokenResponse>
+    ): void;
     generateIdToken(
-        paramsOrCallback?:
-            Params$Resource$Projects$Serviceaccounts$Generateidtoken|
-        BodyResponseCallback<Schema$GenerateIdTokenResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GenerateIdTokenResponse>,
-        callback?: BodyResponseCallback<Schema$GenerateIdTokenResponse>):
-        void|GaxiosPromise<Schema$GenerateIdTokenResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Generateidtoken;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Generateidtoken
+        | BodyResponseCallback<Schema$GenerateIdTokenResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateIdTokenResponse>,
+      callback?: BodyResponseCallback<Schema$GenerateIdTokenResponse>
+    ): void | GaxiosPromise<Schema$GenerateIdTokenResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Generateidtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -513,19 +475,22 @@ export namespace iamcredentials_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://iamcredentials.googleapis.com/';
+        options.rootUrl || 'https://iamcredentials.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:generateIdToken')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:generateIdToken').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GenerateIdTokenResponse>(parameters, callback);
@@ -533,7 +498,6 @@ export namespace iamcredentials_v1 {
         return createAPIRequest<Schema$GenerateIdTokenResponse>(parameters);
       }
     }
-
 
     /**
      * iamcredentials.projects.serviceAccounts.signBlob
@@ -549,25 +513,30 @@ export namespace iamcredentials_v1 {
      * @return {object} Request object
      */
     signBlob(
-        params?: Params$Resource$Projects$Serviceaccounts$Signblob,
-        options?: MethodOptions): GaxiosPromise<Schema$SignBlobResponse>;
+      params?: Params$Resource$Projects$Serviceaccounts$Signblob,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SignBlobResponse>;
     signBlob(
-        params: Params$Resource$Projects$Serviceaccounts$Signblob,
-        options: MethodOptions|BodyResponseCallback<Schema$SignBlobResponse>,
-        callback: BodyResponseCallback<Schema$SignBlobResponse>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Signblob,
+      options: MethodOptions | BodyResponseCallback<Schema$SignBlobResponse>,
+      callback: BodyResponseCallback<Schema$SignBlobResponse>
+    ): void;
     signBlob(
-        params: Params$Resource$Projects$Serviceaccounts$Signblob,
-        callback: BodyResponseCallback<Schema$SignBlobResponse>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Signblob,
+      callback: BodyResponseCallback<Schema$SignBlobResponse>
+    ): void;
     signBlob(callback: BodyResponseCallback<Schema$SignBlobResponse>): void;
     signBlob(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Signblob|
-        BodyResponseCallback<Schema$SignBlobResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SignBlobResponse>,
-        callback?: BodyResponseCallback<Schema$SignBlobResponse>):
-        void|GaxiosPromise<Schema$SignBlobResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Signblob;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Signblob
+        | BodyResponseCallback<Schema$SignBlobResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SignBlobResponse>,
+      callback?: BodyResponseCallback<Schema$SignBlobResponse>
+    ): void | GaxiosPromise<Schema$SignBlobResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Signblob;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -582,19 +551,22 @@ export namespace iamcredentials_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://iamcredentials.googleapis.com/';
+        options.rootUrl || 'https://iamcredentials.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:signBlob')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:signBlob').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SignBlobResponse>(parameters, callback);
@@ -602,7 +574,6 @@ export namespace iamcredentials_v1 {
         return createAPIRequest<Schema$SignBlobResponse>(parameters);
       }
     }
-
 
     /**
      * iamcredentials.projects.serviceAccounts.signJwt
@@ -618,25 +589,30 @@ export namespace iamcredentials_v1 {
      * @return {object} Request object
      */
     signJwt(
-        params?: Params$Resource$Projects$Serviceaccounts$Signjwt,
-        options?: MethodOptions): GaxiosPromise<Schema$SignJwtResponse>;
+      params?: Params$Resource$Projects$Serviceaccounts$Signjwt,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SignJwtResponse>;
     signJwt(
-        params: Params$Resource$Projects$Serviceaccounts$Signjwt,
-        options: MethodOptions|BodyResponseCallback<Schema$SignJwtResponse>,
-        callback: BodyResponseCallback<Schema$SignJwtResponse>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Signjwt,
+      options: MethodOptions | BodyResponseCallback<Schema$SignJwtResponse>,
+      callback: BodyResponseCallback<Schema$SignJwtResponse>
+    ): void;
     signJwt(
-        params: Params$Resource$Projects$Serviceaccounts$Signjwt,
-        callback: BodyResponseCallback<Schema$SignJwtResponse>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Signjwt,
+      callback: BodyResponseCallback<Schema$SignJwtResponse>
+    ): void;
     signJwt(callback: BodyResponseCallback<Schema$SignJwtResponse>): void;
     signJwt(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Signjwt|
-        BodyResponseCallback<Schema$SignJwtResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SignJwtResponse>,
-        callback?: BodyResponseCallback<Schema$SignJwtResponse>):
-        void|GaxiosPromise<Schema$SignJwtResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Signjwt;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Signjwt
+        | BodyResponseCallback<Schema$SignJwtResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SignJwtResponse>,
+      callback?: BodyResponseCallback<Schema$SignJwtResponse>
+    ): void | GaxiosPromise<Schema$SignJwtResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Signjwt;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -651,19 +627,22 @@ export namespace iamcredentials_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://iamcredentials.googleapis.com/';
+        options.rootUrl || 'https://iamcredentials.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:signJwt')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:signJwt').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SignJwtResponse>(parameters, callback);
@@ -674,18 +653,14 @@ export namespace iamcredentials_v1 {
   }
 
   export interface Params$Resource$Projects$Serviceaccounts$Generateaccesstoken
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the service account for which the credentials are
-     * requested, in the following format:
-     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-`
-     * wildcard character is required; replacing it with a project ID is
-     * invalid.
+     * The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
 
@@ -695,18 +670,14 @@ export namespace iamcredentials_v1 {
     requestBody?: Schema$GenerateAccessTokenRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the service account for which the credentials are
-     * requested, in the following format:
-     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-`
-     * wildcard character is required; replacing it with a project ID is
-     * invalid.
+     * The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
 
@@ -716,18 +687,14 @@ export namespace iamcredentials_v1 {
     requestBody?: Schema$GenerateIdentityBindingAccessTokenRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Generateidtoken
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the service account for which the credentials are
-     * requested, in the following format:
-     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-`
-     * wildcard character is required; replacing it with a project ID is
-     * invalid.
+     * The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
 
@@ -736,19 +703,15 @@ export namespace iamcredentials_v1 {
      */
     requestBody?: Schema$GenerateIdTokenRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Signblob extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Signblob
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the service account for which the credentials are
-     * requested, in the following format:
-     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-`
-     * wildcard character is required; replacing it with a project ID is
-     * invalid.
+     * The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
 
@@ -757,19 +720,15 @@ export namespace iamcredentials_v1 {
      */
     requestBody?: Schema$SignBlobRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Signjwt extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Signjwt
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the service account for which the credentials are
-     * requested, in the following format:
-     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-`
-     * wildcard character is required; replacing it with a project ID is
-     * invalid.
+     * The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
 

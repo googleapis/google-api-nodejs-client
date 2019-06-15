@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +63,7 @@ export namespace people_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,9 +75,7 @@ export namespace people_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -101,7 +109,10 @@ export namespace people_v1 {
     people: Resource$People;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.contactGroups = new Resource$Contactgroups(this.context);
       this.people = new Resource$People(this.context);
@@ -109,8 +120,7 @@ export namespace people_v1 {
   }
 
   /**
-   * A person&#39;s physical address. May be a P.O. box or street address. All
-   * fields are optional.
+   * A person&#39;s physical address. May be a P.O. box or street address. All fields are optional.
    */
   export interface Schema$Address {
     /**
@@ -122,8 +132,7 @@ export namespace people_v1 {
      */
     country?: string;
     /**
-     * The [ISO 3166-1 alpha-2](http://www.iso.org/iso/country_codes.htm)
-     * country code of the address.
+     * The [ISO 3166-1 alpha-2](http://www.iso.org/iso/country_codes.htm) country code of the address.
      */
     countryCode?: string;
     /**
@@ -131,13 +140,11 @@ export namespace people_v1 {
      */
     extendedAddress?: string;
     /**
-     * The read-only type of the address translated and formatted in the
-     * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+     * The read-only type of the address translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
     formattedType?: string;
     /**
-     * The unstructured value of the address. If this is not set by the user it
-     * will be automatically constructed from structured values.
+     * The unstructured value of the address. If this is not set by the user it will be automatically constructed from structured values.
      */
     formattedValue?: string;
     /**
@@ -161,8 +168,7 @@ export namespace people_v1 {
      */
     streetAddress?: string;
     /**
-     * The type of the address. The type can be custom or one of these
-     * predefined values:  * `home` * `work` * `other`
+     * The type of the address. The type can be custom or one of these predefined values:  * `home` * `work` * `other`
      */
     type?: string;
   }
@@ -206,9 +212,7 @@ export namespace people_v1 {
     value?: string;
   }
   /**
-   * A person&#39;s birthday. At least one of the `date` and `text` fields are
-   * specified. The `date` and `text` fields typically represent the same date,
-   * but are not guaranteed to.
+   * A person&#39;s birthday. At least one of the `date` and `text` fields are specified. The `date` and `text` fields typically represent the same date, but are not guaranteed to.
    */
   export interface Schema$Birthday {
     /**
@@ -242,14 +246,11 @@ export namespace people_v1 {
    */
   export interface Schema$ContactGroup {
     /**
-     * The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the
-     * resource. Used for web cache validation.
+     * The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the resource. Used for web cache validation.
      */
     etag?: string;
     /**
-     * The read-only name translated and formatted in the viewer&#39;s account
-     * locale or the `Accept-Language` HTTP header locale for system groups
-     * names. Group names set by the owner are the same as name.
+     * The read-only name translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale for system groups names. Group names set by the owner are the same as name.
      */
     formattedName?: string;
     /**
@@ -257,15 +258,11 @@ export namespace people_v1 {
      */
     groupType?: string;
     /**
-     * The total number of contacts in the group irrespective of max members in
-     * specified in the request.
+     * The total number of contacts in the group irrespective of max members in specified in the request.
      */
     memberCount?: number;
     /**
-     * The list of contact person resource names that are members of the contact
-     * group. The field is not populated for LIST requests and can only be
-     * updated through the
-     * [ModifyContactGroupMembers](/people/api/rest/v1/contactgroups/members/modify).
+     * The list of contact person resource names that are members of the contact group. The field is not populated for LIST requests and can only be updated through the [ModifyContactGroupMembers](/people/api/rest/v1/contactgroups/members/modify).
      */
     memberResourceNames?: string[];
     /**
@@ -273,14 +270,11 @@ export namespace people_v1 {
      */
     metadata?: Schema$ContactGroupMetadata;
     /**
-     * The contact group name set by the group owner or a system provided name
-     * for system groups.
+     * The contact group name set by the group owner or a system provided name for system groups.
      */
     name?: string;
     /**
-     * The resource name for the contact group, assigned by the server. An ASCII
-     * string, in the form of
-     * `contactGroups/`&lt;var&gt;contact_group_id&lt;/var&gt;.
+     * The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/`&lt;var&gt;contact_group_id&lt;/var&gt;.
      */
     resourceName?: string;
   }
@@ -293,14 +287,7 @@ export namespace people_v1 {
      */
     contactGroupId?: string;
     /**
-     * The resource name for the contact group, assigned by the server. An ASCII
-     * string, in the form of
-     * `contactGroups/`&lt;var&gt;contact_group_id&lt;/var&gt;. Only
-     * contact_group_resource_name can be used for modifying memberships. Any
-     * contact group membership can be removed, but only user group or
-     * &quot;myContacts&quot; or &quot;starred&quot; system groups memberships
-     * can be added. A contact must always have at least one contact group
-     * membership.
+     * The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/`&lt;var&gt;contact_group_id&lt;/var&gt;. Only contact_group_resource_name can be used for modifying memberships. Any contact group membership can be removed, but only user group or &quot;myContacts&quot; or &quot;starred&quot; system groups memberships can be added. A contact must always have at least one contact group membership.
      */
     contactGroupResourceName?: string;
   }
@@ -309,9 +296,7 @@ export namespace people_v1 {
    */
   export interface Schema$ContactGroupMetadata {
     /**
-     * True if the contact group resource has been deleted. Populated only for
-     * [`ListContactGroups`](/people/api/rest/v1/contactgroups/list) requests
-     * that include a sync token.
+     * True if the contact group resource has been deleted. Populated only for [`ListContactGroups`](/people/api/rest/v1/contactgroups/list) requests that include a sync token.
      */
     deleted?: boolean;
     /**
@@ -337,14 +322,11 @@ export namespace people_v1 {
     status?: Schema$Status;
   }
   /**
-   * A person&#39;s read-only cover photo. A large image shown on the
-   * person&#39;s profile page that represents who they are or what they care
-   * about.
+   * A person&#39;s read-only cover photo. A large image shown on the person&#39;s profile page that represents who they are or what they care about.
    */
   export interface Schema$CoverPhoto {
     /**
-     * True if the cover photo is the default cover photo; false if the cover
-     * photo is a user-provided cover photo.
+     * True if the cover photo is the default cover photo; false if the cover photo is a user-provided cover photo.
      */
     default?: boolean;
     /**
@@ -366,29 +348,19 @@ export namespace people_v1 {
     contactGroup?: Schema$ContactGroup;
   }
   /**
-   * Represents a whole calendar date, for example a date of birth. The time of
-   * day and time zone are either specified elsewhere or are not significant.
-   * The date is relative to the [Proleptic Gregorian
-   * Calendar](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar). The
-   * day may be 0 to represent a year and month where the day is not
-   * significant. The year may be 0 to represent a month and day independent of
-   * year; for example, anniversary date.
+   * Represents a whole calendar date, for example a date of birth. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the [Proleptic Gregorian Calendar](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar). The day may be 0 to represent a year and month where the day is not significant. The year may be 0 to represent a month and day independent of year; for example, anniversary date.
    */
   export interface Schema$Date {
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-     * if specifying a year by itself or a year and month where the day is not
-     * significant.
+     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
      */
     day?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a
-     * month and day.
+     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
      */
     month?: number;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a
-     * year.
+     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
      */
     year?: number;
   }
@@ -410,8 +382,7 @@ export namespace people_v1 {
      */
     displayName?: string;
     /**
-     * The read-only type of the email address translated and formatted in the
-     * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+     * The read-only type of the email address translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
     formattedType?: string;
     /**
@@ -419,8 +390,7 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The type of the email address. The type can be custom or one of these
-     * predefined values:  * `home` * `work` * `other`
+     * The type of the email address. The type can be custom or one of these predefined values:  * `home` * `work` * `other`
      */
     type?: string;
     /**
@@ -429,11 +399,7 @@ export namespace people_v1 {
     value?: string;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -445,8 +411,7 @@ export namespace people_v1 {
      */
     date?: Schema$Date;
     /**
-     * The read-only type of the event translated and formatted in the
-     * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+     * The read-only type of the event translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
     formattedType?: string;
     /**
@@ -454,8 +419,7 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The type of the event. The type can be custom or one of these predefined
-     * values:  * `anniversary` * `other`
+     * The type of the event. The type can be custom or one of these predefined values:  * `anniversary` * `other`
      */
     type?: string;
   }
@@ -464,8 +428,7 @@ export namespace people_v1 {
    */
   export interface Schema$FieldMetadata {
     /**
-     * True if the field is the primary field; false if the field is a secondary
-     * field.
+     * True if the field is the primary field; false if the field is a secondary field.
      */
     primary?: boolean;
     /**
@@ -473,9 +436,7 @@ export namespace people_v1 {
      */
     source?: Schema$Source;
     /**
-     * True if the field is verified; false if the field is unverified. A
-     * verified field is typically a name, email address, phone number, or
-     * website that has been confirmed to be owned by the person.
+     * True if the field is verified; false if the field is unverified. A verified field is typically a name, email address, phone number, or website that has been confirmed to be owned by the person.
      */
     verified?: boolean;
   }
@@ -484,8 +445,7 @@ export namespace people_v1 {
    */
   export interface Schema$Gender {
     /**
-     * The read-only value of the gender translated and formatted in the
-     * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+     * The read-only value of the gender translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
     formattedValue?: string;
     /**
@@ -493,8 +453,7 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The gender for the person. The gender can be custom or one of these
-     * predefined values:  * `male` * `female` * `other` * `unknown`
+     * The gender for the person. The gender can be custom or one of these predefined values:  * `male` * `female` * `other` * `unknown`
      */
     value?: string;
   }
@@ -509,13 +468,11 @@ export namespace people_v1 {
    */
   export interface Schema$ImClient {
     /**
-     * The read-only protocol of the IM client formatted in the viewer&#39;s
-     * account locale or the `Accept-Language` HTTP header locale.
+     * The read-only protocol of the IM client formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
     formattedProtocol?: string;
     /**
-     * The read-only type of the IM client translated and formatted in the
-     * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+     * The read-only type of the IM client translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
     formattedType?: string;
     /**
@@ -523,14 +480,11 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The protocol of the IM client. The protocol can be custom or one of these
-     * predefined values:  * `aim` * `msn` * `yahoo` * `skype` * `qq` *
-     * `googleTalk` * `icq` * `jabber` * `netMeeting`
+     * The protocol of the IM client. The protocol can be custom or one of these predefined values:  * `aim` * `msn` * `yahoo` * `skype` * `qq` * `googleTalk` * `icq` * `jabber` * `netMeeting`
      */
     protocol?: string;
     /**
-     * The type of the IM client. The type can be custom or one of these
-     * predefined values:  * `home` * `work` * `other`
+     * The type of the IM client. The type can be custom or one of these predefined values:  * `home` * `work` * `other`
      */
     type?: string;
     /**
@@ -569,8 +523,7 @@ export namespace people_v1 {
      */
     totalItems?: number;
     /**
-     * **DEPRECATED** (Please use totalItems) The total number of people in the
-     * list without pagination.
+     * **DEPRECATED** (Please use totalItems) The total number of people in the list without pagination.
      */
     totalPeople?: number;
   }
@@ -579,8 +532,7 @@ export namespace people_v1 {
    */
   export interface Schema$ListContactGroupsResponse {
     /**
-     * The list of contact groups. Members of the contact groups are not
-     * populated.
+     * The list of contact groups. Members of the contact groups are not populated.
      */
     contactGroups?: Schema$ContactGroup[];
     /**
@@ -605,14 +557,12 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The well-formed [IETF BCP 47](https://tools.ietf.org/html/bcp47) language
-     * tag representing the locale.
+     * The well-formed [IETF BCP 47](https://tools.ietf.org/html/bcp47) language tag representing the locale.
      */
     value?: string;
   }
   /**
-   * A person&#39;s membership in a group. Only contact group memberships can be
-   * modified.
+   * A person&#39;s membership in a group. Only contact group memberships can be modified.
    */
   export interface Schema$Membership {
     /**
@@ -629,19 +579,15 @@ export namespace people_v1 {
     metadata?: Schema$FieldMetadata;
   }
   /**
-   * A request to modify an existing contact group&#39;s members. Contacts can
-   * be removed from any group but they can only be added to a user group or
-   * &quot;myContacts&quot; or &quot;starred&quot; system groups.
+   * A request to modify an existing contact group&#39;s members. Contacts can be removed from any group but they can only be added to a user group or &quot;myContacts&quot; or &quot;starred&quot; system groups.
    */
   export interface Schema$ModifyContactGroupMembersRequest {
     /**
-     * The resource names of the contact people to add in the form of in the
-     * form `people/`&lt;var&gt;person_id&lt;/var&gt;.
+     * The resource names of the contact people to add in the form of in the form `people/`&lt;var&gt;person_id&lt;/var&gt;.
      */
     resourceNamesToAdd?: string[];
     /**
-     * The resource names of the contact people to remove in the form of in the
-     * form of `people/`&lt;var&gt;person_id&lt;/var&gt;.
+     * The resource names of the contact people to remove in the form of in the form of `people/`&lt;var&gt;person_id&lt;/var&gt;.
      */
     resourceNamesToRemove?: string[];
   }
@@ -659,14 +605,11 @@ export namespace people_v1 {
    */
   export interface Schema$Name {
     /**
-     * The read-only display name formatted according to the locale specified by
-     * the viewer&#39;s account or the `Accept-Language` HTTP header.
+     * The read-only display name formatted according to the locale specified by the viewer&#39;s account or the `Accept-Language` HTTP header.
      */
     displayName?: string;
     /**
-     * The read-only display name with the last name first formatted according
-     * to the locale specified by the viewer&#39;s account or the
-     * `Accept-Language` HTTP header.
+     * The read-only display name with the last name first formatted according to the locale specified by the viewer&#39;s account or the `Accept-Language` HTTP header.
      */
     displayNameLastFirst?: string;
     /**
@@ -749,13 +692,11 @@ export namespace people_v1 {
     value?: string;
   }
   /**
-   * A person&#39;s past or current organization. Overlapping date ranges are
-   * permitted.
+   * A person&#39;s past or current organization. Overlapping date ranges are permitted.
    */
   export interface Schema$Organization {
     /**
-     * True if the organization is the person&#39;s current organization; false
-     * if the organization is a past organization.
+     * True if the organization is the person&#39;s current organization; false if the organization is a past organization.
      */
     current?: boolean;
     /**
@@ -763,8 +704,7 @@ export namespace people_v1 {
      */
     department?: string;
     /**
-     * The domain name associated with the organization; for example,
-     * `google.com`.
+     * The domain name associated with the organization; for example, `google.com`.
      */
     domain?: string;
     /**
@@ -772,8 +712,7 @@ export namespace people_v1 {
      */
     endDate?: Schema$Date;
     /**
-     * The read-only type of the organization translated and formatted in the
-     * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+     * The read-only type of the organization translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
     formattedType?: string;
     /**
@@ -801,8 +740,7 @@ export namespace people_v1 {
      */
     startDate?: Schema$Date;
     /**
-     * The symbol associated with the organization; for example, a stock ticker
-     * symbol, abbreviation, or acronym.
+     * The symbol associated with the organization; for example, a stock ticker symbol, abbreviation, or acronym.
      */
     symbol?: string;
     /**
@@ -810,17 +748,12 @@ export namespace people_v1 {
      */
     title?: string;
     /**
-     * The type of the organization. The type can be custom or  one of these
-     * predefined values:  * `work` * `school`
+     * The type of the organization. The type can be custom or  one of these predefined values:  * `work` * `school`
      */
     type?: string;
   }
   /**
-   * Information about a person merged from various data sources such as the
-   * authenticated user&#39;s contacts and profile data.  Most fields can have
-   * multiple items. The items in a field have no guaranteed order, but each
-   * non-empty field is guaranteed to have exactly one field with
-   * `metadata.primary` set to true.
+   * Information about a person merged from various data sources such as the authenticated user&#39;s contacts and profile data.  Most fields can have multiple items. The items in a field have no guaranteed order, but each non-empty field is guaranteed to have exactly one field with `metadata.primary` set to true.
    */
   export interface Schema$Person {
     /**
@@ -828,8 +761,7 @@ export namespace people_v1 {
      */
     addresses?: Schema$Address[];
     /**
-     * **DEPRECATED** (Please use `person.ageRanges` instead)**  The
-     * person&#39;s read-only age range.
+     * **DEPRECATED** (Please use `person.ageRanges` instead)**  The person&#39;s read-only age range.
      */
     ageRange?: string;
     /**
@@ -857,8 +789,7 @@ export namespace people_v1 {
      */
     emailAddresses?: Schema$EmailAddress[];
     /**
-     * The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the
-     * resource. Used for web cache validation.
+     * The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the resource. Used for web cache validation.
      */
     etag?: string;
     /**
@@ -930,9 +861,7 @@ export namespace people_v1 {
      */
     residences?: Schema$Residence[];
     /**
-     * The resource name for the person, assigned by the server. An ASCII string
-     * with a max length of 27 characters, in the form of
-     * `people/`&lt;var&gt;person_id&lt;/var&gt;.
+     * The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/`&lt;var&gt;person_id&lt;/var&gt;.
      */
     resourceName?: string;
     /**
@@ -961,9 +890,7 @@ export namespace people_v1 {
    */
   export interface Schema$PersonMetadata {
     /**
-     * True if the person resource has been deleted. Populated only for
-     * [`connections.list`](/people/api/rest/v1/people.connections/list)
-     * requests that include a sync token.
+     * True if the person resource has been deleted. Populated only for [`connections.list`](/people/api/rest/v1/people.connections/list) requests that include a sync token.
      */
     deleted?: boolean;
     /**
@@ -971,17 +898,11 @@ export namespace people_v1 {
      */
     linkedPeopleResourceNames?: string[];
     /**
-     * **DEPRECATED** (Please use
-     * `person.metadata.sources.profileMetadata.objectType` instead)  The type
-     * of the person object.
+     * **DEPRECATED** (Please use `person.metadata.sources.profileMetadata.objectType` instead)  The type of the person object.
      */
     objectType?: string;
     /**
-     * Any former resource names this person has had. Populated only for
-     * [`connections.list`](/people/api/rest/v1/people.connections/list)
-     * requests that include a sync token.  The resource name may change when
-     * adding or removing fields that link a contact and profile such as a
-     * verified email, verified phone number, or profile URL.
+     * Any former resource names this person has had. Populated only for [`connections.list`](/people/api/rest/v1/people.connections/list) requests that include a sync token.  The resource name may change when adding or removing fields that link a contact and profile such as a verified email, verified phone number, or profile URL.
      */
     previousResourceNames?: string[];
     /**
@@ -994,8 +915,7 @@ export namespace people_v1 {
    */
   export interface Schema$PersonResponse {
     /**
-     * **DEPRECATED** (Please use status instead)  [HTTP 1.1 status code]
-     * (http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+     * **DEPRECATED** (Please use status instead)  [HTTP 1.1 status code] (http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
      */
     httpStatusCode?: number;
     /**
@@ -1003,10 +923,7 @@ export namespace people_v1 {
      */
     person?: Schema$Person;
     /**
-     * The original requested resource name. May be different than the resource
-     * name on the returned person.  The resource name can change when adding or
-     * removing fields that link a contact and profile such as a verified email,
-     * verified phone number, or a profile URL.
+     * The original requested resource name. May be different than the resource name on the returned person.  The resource name can change when adding or removing fields that link a contact and profile such as a verified email, verified phone number, or a profile URL.
      */
     requestedResourceName?: string;
     /**
@@ -1019,14 +936,11 @@ export namespace people_v1 {
    */
   export interface Schema$PhoneNumber {
     /**
-     * The read-only canonicalized [ITU-T
-     * E.164](https://law.resource.org/pub/us/cfr/ibr/004/itu-t.E.164.1.2008.pdf)
-     * form of the phone number.
+     * The read-only canonicalized [ITU-T E.164](https://law.resource.org/pub/us/cfr/ibr/004/itu-t.E.164.1.2008.pdf) form of the phone number.
      */
     canonicalForm?: string;
     /**
-     * The read-only type of the phone number translated and formatted in the
-     * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+     * The read-only type of the phone number translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
     formattedType?: string;
     /**
@@ -1034,10 +948,7 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The type of the phone number. The type can be custom or one of these
-     * predefined values:  * `home` * `work` * `mobile` * `homeFax` * `workFax`
-     * * `otherFax` * `pager` * `workMobile` * `workPager` * `main` *
-     * `googleVoice` * `other`
+     * The type of the phone number. The type can be custom or one of these predefined values:  * `home` * `work` * `mobile` * `homeFax` * `workFax` * `otherFax` * `pager` * `workMobile` * `workPager` * `main` * `googleVoice` * `other`
      */
     type?: string;
     /**
@@ -1046,13 +957,11 @@ export namespace people_v1 {
     value?: string;
   }
   /**
-   * A person&#39;s read-only photo. A picture shown next to the person&#39;s
-   * name to help others recognize the person.
+   * A person&#39;s read-only photo. A picture shown next to the person&#39;s name to help others recognize the person.
    */
   export interface Schema$Photo {
     /**
-     * True if the photo is a default photo; false if the photo is a
-     * user-provided photo.
+     * True if the photo is a default photo; false if the photo is a user-provided photo.
      */
     default?: boolean;
     /**
@@ -1060,10 +969,7 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The URL of the photo. You can change the desired size by appending a
-     * query parameter `sz=`&lt;var&gt;size&lt;/var&gt; at the end of the url.
-     * Example:
-     * `https://lh3.googleusercontent.com/-T_wVWLlmg7w/AAAAAAAAAAI/AAAAAAAABa8/00gzXvDBYqw/s100/photo.jpg?sz=50`
+     * The URL of the photo. You can change the desired size by appending a query parameter `sz=`&lt;var&gt;size&lt;/var&gt; at the end of the url. Example: `https://lh3.googleusercontent.com/-T_wVWLlmg7w/AAAAAAAAAAI/AAAAAAAABa8/00gzXvDBYqw/s100/photo.jpg?sz=50`
      */
     url?: string;
   }
@@ -1085,9 +991,7 @@ export namespace people_v1 {
    */
   export interface Schema$Relation {
     /**
-     * The type of the relation translated and formatted in the viewer&#39;s
-     * account locale or the locale specified in the Accept-Language HTTP
-     * header.
+     * The type of the relation translated and formatted in the viewer&#39;s account locale or the locale specified in the Accept-Language HTTP header.
      */
     formattedType?: string;
     /**
@@ -1099,10 +1003,7 @@ export namespace people_v1 {
      */
     person?: string;
     /**
-     * The person&#39;s relation to the other person. The type can be custom or
-     * one of these predefined values:  * `spouse` * `child` * `mother` *
-     * `father` * `parent` * `brother` * `sister` * `friend` * `relative` *
-     * `domesticPartner` * `manager` * `assistant` * `referredBy` * `partner`
+     * The person&#39;s relation to the other person. The type can be custom or one of these predefined values:  * `spouse` * `child` * `mother` * `father` * `parent` * `brother` * `sister` * `friend` * `relative` * `domesticPartner` * `manager` * `assistant` * `referredBy` * `partner`
      */
     type?: string;
   }
@@ -1111,9 +1012,7 @@ export namespace people_v1 {
    */
   export interface Schema$RelationshipInterest {
     /**
-     * The value of the relationship interest translated and formatted in the
-     * viewer&#39;s account locale or the locale specified in the
-     * Accept-Language HTTP header.
+     * The value of the relationship interest translated and formatted in the viewer&#39;s account locale or the locale specified in the Accept-Language HTTP header.
      */
     formattedValue?: string;
     /**
@@ -1121,9 +1020,7 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The kind of relationship the person is looking for. The value can be
-     * custom or one of these predefined values:  * `friend` * `date` *
-     * `relationship` * `networking`
+     * The kind of relationship the person is looking for. The value can be custom or one of these predefined values:  * `friend` * `date` * `relationship` * `networking`
      */
     value?: string;
   }
@@ -1132,9 +1029,7 @@ export namespace people_v1 {
    */
   export interface Schema$RelationshipStatus {
     /**
-     * The read-only value of the relationship status translated and formatted
-     * in the viewer&#39;s account locale or the `Accept-Language` HTTP header
-     * locale.
+     * The read-only value of the relationship status translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
     formattedValue?: string;
     /**
@@ -1142,10 +1037,7 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The relationship status. The value can be custom or one of these
-     * predefined values:  * `single` * `inARelationship` * `engaged` *
-     * `married` * `itsComplicated` * `openRelationship` * `widowed` *
-     * `inDomesticPartnership` * `inCivilUnion`
+     * The relationship status. The value can be custom or one of these predefined values:  * `single` * `inARelationship` * `engaged` * `married` * `itsComplicated` * `openRelationship` * `widowed` * `inDomesticPartnership` * `inCivilUnion`
      */
     value?: string;
   }
@@ -1154,8 +1046,7 @@ export namespace people_v1 {
    */
   export interface Schema$Residence {
     /**
-     * True if the residence is the person&#39;s current residence; false if the
-     * residence is a past residence.
+     * True if the residence is the person&#39;s current residence; false if the residence is a past residence.
      */
     current?: boolean;
     /**
@@ -1168,13 +1059,11 @@ export namespace people_v1 {
     value?: string;
   }
   /**
-   * A person&#39;s SIP address. Session Initial Protocol addresses are used for
-   * VoIP communications to make voice or video calls over the internet.
+   * A person&#39;s SIP address. Session Initial Protocol addresses are used for VoIP communications to make voice or video calls over the internet.
    */
   export interface Schema$SipAddress {
     /**
-     * The read-only type of the SIP address translated and formatted in the
-     * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+     * The read-only type of the SIP address translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
     formattedType?: string;
     /**
@@ -1182,14 +1071,11 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The type of the SIP address. The type can be custom or or one of these
-     * predefined values:  * `home` * `work` * `mobile` * `other`
+     * The type of the SIP address. The type can be custom or or one of these predefined values:  * `home` * `work` * `mobile` * `other`
      */
     type?: string;
     /**
-     * The SIP address in the [RFC
-     * 3261 19.1](https://tools.ietf.org/html/rfc3261#section-19.1) SIP URI
-     * format.
+     * The SIP address in the [RFC 3261 19.1](https://tools.ietf.org/html/rfc3261#section-19.1) SIP URI format.
      */
     value?: string;
   }
@@ -1211,9 +1097,7 @@ export namespace people_v1 {
    */
   export interface Schema$Source {
     /**
-     * **Only populated in `person.metadata.sources`.**  The [HTTP entity
-     * tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the source. Used for web
-     * cache validation.
+     * **Only populated in `person.metadata.sources`.**  The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the source. Used for web cache validation.
      */
     etag?: string;
     /**
@@ -1221,8 +1105,7 @@ export namespace people_v1 {
      */
     id?: string;
     /**
-     * **Only populated in `person.metadata.sources`.**  Metadata about a source
-     * of type PROFILE.
+     * **Only populated in `person.metadata.sources`.**  Metadata about a source of type PROFILE.
      */
     profileMetadata?: Schema$ProfileMetadata;
     /**
@@ -1230,46 +1113,12 @@ export namespace people_v1 {
      */
     type?: string;
     /**
-     * **Only populated in `person.metadata.sources`.**  Last update timestamp
-     * of this source.
+     * **Only populated in `person.metadata.sources`.**  Last update timestamp of this source.
      */
     updateTime?: string;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for
-   * different programming environments, including REST APIs and RPC APIs. It is
-   * used by [gRPC](https://github.com/grpc). The error model is designed to be:
-   * - Simple to use and understand for most users - Flexible enough to meet
-   * unexpected needs  # Overview  The `Status` message contains three pieces of
-   * data: error code, error message, and error details. The error code should
-   * be an enum value of google.rpc.Code, but it may accept additional error
-   * codes if needed.  The error message should be a developer-facing English
-   * message that helps developers *understand* and *resolve* the error. If a
-   * localized user-facing error message is needed, put the localized message in
-   * the error details or localize it in the client. The optional error details
-   * may contain arbitrary information about the error. There is a predefined
-   * set of error detail types in the package `google.rpc` that can be used for
-   * common error conditions.  # Language mapping  The `Status` message is the
-   * logical representation of the error model, but it is not necessarily the
-   * actual wire format. When the `Status` message is exposed in different
-   * client libraries and different wire protocols, it can be mapped
-   * differently. For example, it will likely be mapped to some exceptions in
-   * Java, but more likely mapped to some error codes in C.  # Other uses  The
-   * error model and the `Status` message can be used in a variety of
-   * environments, either with or without APIs, to provide a consistent
-   * developer experience across different environments.  Example uses of this
-   * error model include:  - Partial errors. If a service needs to return
-   * partial errors to the client,     it may embed the `Status` in the normal
-   * response to indicate the partial     errors.  - Workflow errors. A typical
-   * workflow has multiple steps. Each step may     have a `Status` message for
-   * error reporting.  - Batch operations. If a client uses batch request and
-   * batch response, the     `Status` message should be used directly inside
-   * batch response, one for     each error sub-response.  - Asynchronous
-   * operations. If an API call embeds asynchronous operation     results in its
-   * response, the status of those operations should be     represented directly
-   * using the `Status` message.  - Logging. If some API errors are stored in
-   * logs, the message `Status` could     be used directly after any stripping
-   * needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
    */
   export interface Schema$Status {
     /**
@@ -1277,14 +1126,11 @@ export namespace people_v1 {
      */
     code?: number;
     /**
-     * A list of messages that carry the error details.  There is a common set
-     * of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
-     * A developer-facing error message, which should be in English. Any
-     * user-facing error message should be localized and sent in the
-     * google.rpc.Status.details field, or localized by the client.
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
   }
@@ -1302,8 +1148,7 @@ export namespace people_v1 {
     value?: string;
   }
   /**
-   * A request to update an existing user contact group. All updated fields will
-   * be replaced.
+   * A request to update an existing user contact group. All updated fields will be replaced.
    */
   export interface Schema$UpdateContactGroupRequest {
     /**
@@ -1316,8 +1161,7 @@ export namespace people_v1 {
    */
   export interface Schema$Url {
     /**
-     * The read-only type of the URL translated and formatted in the
-     * viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+     * The read-only type of the URL translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
     formattedType?: string;
     /**
@@ -1325,10 +1169,7 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The type of the URL. The type can be custom or one of these predefined
-     * values:  * `home` * `work` * `blog` * `profile` * `homePage` * `ftp` *
-     * `reservations` * `appInstallPage`: website for a Google+ application. *
-     * `other`
+     * The type of the URL. The type can be custom or one of these predefined values:  * `home` * `work` * `blog` * `profile` * `homePage` * `ftp` * `reservations` * `appInstallPage`: website for a Google+ application. * `other`
      */
     type?: string;
     /**
@@ -1354,7 +1195,6 @@ export namespace people_v1 {
     value?: string;
   }
 
-
   export class Resource$Contactgroups {
     context: APIRequestContext;
     members: Resource$Contactgroups$Members;
@@ -1363,11 +1203,9 @@ export namespace people_v1 {
       this.members = new Resource$Contactgroups$Members(this.context);
     }
 
-
     /**
      * people.contactGroups.batchGet
-     * @desc Get a list of contact groups owned by the authenticated user by
-     * specifying a list of contact group resource names.
+     * @desc Get a list of contact groups owned by the authenticated user by specifying a list of contact group resource names.
      * @alias people.contactGroups.batchGet
      * @memberOf! ()
      *
@@ -1379,31 +1217,34 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     batchGet(
-        params?: Params$Resource$Contactgroups$Batchget,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$BatchGetContactGroupsResponse>;
+      params?: Params$Resource$Contactgroups$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchGetContactGroupsResponse>;
     batchGet(
-        params: Params$Resource$Contactgroups$Batchget,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
-        callback: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
-        void;
+      params: Params$Resource$Contactgroups$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>
+    ): void;
     batchGet(
-        params: Params$Resource$Contactgroups$Batchget,
-        callback: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
-        void;
-    batchGet(callback:
-                 BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
-        void;
+      params: Params$Resource$Contactgroups$Batchget,
+      callback: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>
+    ): void;
     batchGet(
-        paramsOrCallback?: Params$Resource$Contactgroups$Batchget|
-        BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
-        callback?: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
-        void|GaxiosPromise<Schema$BatchGetContactGroupsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Batchget;
+      callback: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Contactgroups$Batchget
+        | BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>
+    ): void | GaxiosPromise<Schema$BatchGetContactGroupsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contactgroups$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1420,26 +1261,31 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/contactGroups:batchGet')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/contactGroups:batchGet').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetContactGroupsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BatchGetContactGroupsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * people.contactGroups.create
@@ -1454,25 +1300,30 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Contactgroups$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$ContactGroup>;
+      params?: Params$Resource$Contactgroups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContactGroup>;
     create(
-        params: Params$Resource$Contactgroups$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
-        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+      params: Params$Resource$Contactgroups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ContactGroup>,
+      callback: BodyResponseCallback<Schema$ContactGroup>
+    ): void;
     create(
-        params: Params$Resource$Contactgroups$Create,
-        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+      params: Params$Resource$Contactgroups$Create,
+      callback: BodyResponseCallback<Schema$ContactGroup>
+    ): void;
     create(callback: BodyResponseCallback<Schema$ContactGroup>): void;
     create(
-        paramsOrCallback?: Params$Resource$Contactgroups$Create|
-        BodyResponseCallback<Schema$ContactGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContactGroup>,
-        callback?: BodyResponseCallback<Schema$ContactGroup>):
-        void|GaxiosPromise<Schema$ContactGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Create;
+      paramsOrCallback?:
+        | Params$Resource$Contactgroups$Create
+        | BodyResponseCallback<Schema$ContactGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContactGroup>,
+      callback?: BodyResponseCallback<Schema$ContactGroup>
+    ): void | GaxiosPromise<Schema$ContactGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contactgroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1489,16 +1340,16 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/contactGroups').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/contactGroups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(parameters, callback);
@@ -1507,11 +1358,9 @@ export namespace people_v1 {
       }
     }
 
-
     /**
      * people.contactGroups.delete
-     * @desc Delete an existing contact group owned by the authenticated user by
-     * specifying a contact group resource name.
+     * @desc Delete an existing contact group owned by the authenticated user by specifying a contact group resource name.
      * @alias people.contactGroups.delete
      * @memberOf! ()
      *
@@ -1523,24 +1372,28 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Contactgroups$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Contactgroups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Contactgroups$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Contactgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Contactgroups$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Contactgroups$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Contactgroups$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Contactgroups$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contactgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1557,16 +1410,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1575,11 +1431,9 @@ export namespace people_v1 {
       }
     }
 
-
     /**
      * people.contactGroups.get
-     * @desc Get a specific contact group owned by the authenticated user by
-     * specifying a contact group resource name.
+     * @desc Get a specific contact group owned by the authenticated user by specifying a contact group resource name.
      * @alias people.contactGroups.get
      * @memberOf! ()
      *
@@ -1590,22 +1444,31 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Contactgroups$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ContactGroup>;
-    get(params: Params$Resource$Contactgroups$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
-        callback: BodyResponseCallback<Schema$ContactGroup>): void;
-    get(params: Params$Resource$Contactgroups$Get,
-        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+    get(
+      params?: Params$Resource$Contactgroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContactGroup>;
+    get(
+      params: Params$Resource$Contactgroups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ContactGroup>,
+      callback: BodyResponseCallback<Schema$ContactGroup>
+    ): void;
+    get(
+      params: Params$Resource$Contactgroups$Get,
+      callback: BodyResponseCallback<Schema$ContactGroup>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ContactGroup>): void;
-    get(paramsOrCallback?: Params$Resource$Contactgroups$Get|
-        BodyResponseCallback<Schema$ContactGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContactGroup>,
-        callback?: BodyResponseCallback<Schema$ContactGroup>):
-        void|GaxiosPromise<Schema$ContactGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Contactgroups$Get
+        | BodyResponseCallback<Schema$ContactGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContactGroup>,
+      callback?: BodyResponseCallback<Schema$ContactGroup>
+    ): void | GaxiosPromise<Schema$ContactGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contactgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1622,16 +1485,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(parameters, callback);
@@ -1640,11 +1506,9 @@ export namespace people_v1 {
       }
     }
 
-
     /**
      * people.contactGroups.list
-     * @desc List all contact groups owned by the authenticated user. Members of
-     * the contact groups are not populated.
+     * @desc List all contact groups owned by the authenticated user. Members of the contact groups are not populated.
      * @alias people.contactGroups.list
      * @memberOf! ()
      *
@@ -1656,27 +1520,35 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Contactgroups$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListContactGroupsResponse>;
     list(
-        params: Params$Resource$Contactgroups$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListContactGroupsResponse>,
-        callback: BodyResponseCallback<Schema$ListContactGroupsResponse>): void;
+      params?: Params$Resource$Contactgroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListContactGroupsResponse>;
     list(
-        params: Params$Resource$Contactgroups$List,
-        callback: BodyResponseCallback<Schema$ListContactGroupsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListContactGroupsResponse>):
-        void;
+      params: Params$Resource$Contactgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListContactGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListContactGroupsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Contactgroups$List|
-        BodyResponseCallback<Schema$ListContactGroupsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListContactGroupsResponse>,
-        callback?: BodyResponseCallback<Schema$ListContactGroupsResponse>):
-        void|GaxiosPromise<Schema$ListContactGroupsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contactgroups$List;
+      params: Params$Resource$Contactgroups$List,
+      callback: BodyResponseCallback<Schema$ListContactGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListContactGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Contactgroups$List
+        | BodyResponseCallback<Schema$ListContactGroupsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListContactGroupsResponse>,
+      callback?: BodyResponseCallback<Schema$ListContactGroupsResponse>
+    ): void | GaxiosPromise<Schema$ListContactGroupsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contactgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1693,30 +1565,30 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/contactGroups').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/contactGroups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListContactGroupsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListContactGroupsResponse>(parameters);
       }
     }
 
-
     /**
      * people.contactGroups.update
-     * @desc Update the name of an existing contact group owned by the
-     * authenticated user.
+     * @desc Update the name of an existing contact group owned by the authenticated user.
      * @alias people.contactGroups.update
      * @memberOf! ()
      *
@@ -1728,25 +1600,30 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Contactgroups$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ContactGroup>;
+      params?: Params$Resource$Contactgroups$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContactGroup>;
     update(
-        params: Params$Resource$Contactgroups$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
-        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+      params: Params$Resource$Contactgroups$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ContactGroup>,
+      callback: BodyResponseCallback<Schema$ContactGroup>
+    ): void;
     update(
-        params: Params$Resource$Contactgroups$Update,
-        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+      params: Params$Resource$Contactgroups$Update,
+      callback: BodyResponseCallback<Schema$ContactGroup>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ContactGroup>): void;
     update(
-        paramsOrCallback?: Params$Resource$Contactgroups$Update|
-        BodyResponseCallback<Schema$ContactGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContactGroup>,
-        callback?: BodyResponseCallback<Schema$ContactGroup>):
-        void|GaxiosPromise<Schema$ContactGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Update;
+      paramsOrCallback?:
+        | Params$Resource$Contactgroups$Update
+        | BodyResponseCallback<Schema$ContactGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContactGroup>,
+      callback?: BodyResponseCallback<Schema$ContactGroup>
+    ): void | GaxiosPromise<Schema$ContactGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contactgroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1763,16 +1640,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(parameters, callback);
@@ -1782,12 +1662,12 @@ export namespace people_v1 {
     }
   }
 
-  export interface Params$Resource$Contactgroups$Batchget extends
-      StandardParameters {
+  export interface Params$Resource$Contactgroups$Batchget
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Specifies the maximum number of members to return for each group.
@@ -1798,25 +1678,24 @@ export namespace people_v1 {
      */
     resourceNames?: string[];
   }
-  export interface Params$Resource$Contactgroups$Create extends
-      StandardParameters {
+  export interface Params$Resource$Contactgroups$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$CreateContactGroupRequest;
   }
-  export interface Params$Resource$Contactgroups$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Contactgroups$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Set to true to also delete the contacts in the specified group.
@@ -1827,12 +1706,12 @@ export namespace people_v1 {
      */
     resourceName?: string;
   }
-  export interface Params$Resource$Contactgroups$Get extends
-      StandardParameters {
+  export interface Params$Resource$Contactgroups$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Specifies the maximum number of members to return.
@@ -1843,39 +1722,35 @@ export namespace people_v1 {
      */
     resourceName?: string;
   }
-  export interface Params$Resource$Contactgroups$List extends
-      StandardParameters {
+  export interface Params$Resource$Contactgroups$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of resources to return.
      */
     pageSize?: number;
     /**
-     * The next_page_token value returned from a previous call to
-     * [ListContactGroups](/people/api/rest/v1/contactgroups/list). Requests the
-     * next page of resources.
+     * The next_page_token value returned from a previous call to [ListContactGroups](/people/api/rest/v1/contactgroups/list). Requests the next page of resources.
      */
     pageToken?: string;
     /**
-     * A sync token, returned by a previous call to `contactgroups.list`. Only
-     * resources changed since the sync token was created will be returned.
+     * A sync token, returned by a previous call to `contactgroups.list`. Only resources changed since the sync token was created will be returned.
      */
     syncToken?: string;
   }
-  export interface Params$Resource$Contactgroups$Update extends
-      StandardParameters {
+  export interface Params$Resource$Contactgroups$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name for the contact group, assigned by the server. An ASCII
-     * string, in the form of `contactGroups/`<var>contact_group_id</var>.
+     * The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/`<var>contact_group_id</var>.
      */
     resourceName?: string;
 
@@ -1891,13 +1766,9 @@ export namespace people_v1 {
       this.context = context;
     }
 
-
     /**
      * people.contactGroups.members.modify
-     * @desc Modify the members of a contact group owned by the authenticated
-     * user. <br> The only system contact groups that can have members added are
-     * `contactGroups/myContacts` and `contactGroups/starred`. Other system
-     * contact groups are deprecated and can only have contacts removed.
+     * @desc Modify the members of a contact group owned by the authenticated user. <br> The only system contact groups that can have members added are `contactGroups/myContacts` and `contactGroups/starred`. Other system contact groups are deprecated and can only have contacts removed.
      * @alias people.contactGroups.members.modify
      * @memberOf! ()
      *
@@ -1909,34 +1780,34 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     modify(
-        params?: Params$Resource$Contactgroups$Members$Modify,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ModifyContactGroupMembersResponse>;
+      params?: Params$Resource$Contactgroups$Members$Modify,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ModifyContactGroupMembersResponse>;
     modify(
-        params: Params$Resource$Contactgroups$Members$Modify,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
-        callback:
-            BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>):
-        void;
+      params: Params$Resource$Contactgroups$Members$Modify,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
+      callback: BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>
+    ): void;
     modify(
-        params: Params$Resource$Contactgroups$Members$Modify,
-        callback:
-            BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>):
-        void;
-    modify(callback:
-               BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>):
-        void;
+      params: Params$Resource$Contactgroups$Members$Modify,
+      callback: BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>
+    ): void;
     modify(
-        paramsOrCallback?: Params$Resource$Contactgroups$Members$Modify|
-        BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>):
-        void|GaxiosPromise<Schema$ModifyContactGroupMembersResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Contactgroups$Members$Modify;
+      callback: BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>
+    ): void;
+    modify(
+      paramsOrCallback?:
+        | Params$Resource$Contactgroups$Members$Modify
+        | BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
+      callback?: BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>
+    ): void | GaxiosPromise<Schema$ModifyContactGroupMembersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contactgroups$Members$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1953,33 +1824,39 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}/members:modify')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}/members:modify').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ModifyContactGroupMembersResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ModifyContactGroupMembersResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Contactgroups$Members$Modify extends
-      StandardParameters {
+  export interface Params$Resource$Contactgroups$Members$Modify
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the contact group to modify.
@@ -1992,8 +1869,6 @@ export namespace people_v1 {
     requestBody?: Schema$ModifyContactGroupMembersRequest;
   }
 
-
-
   export class Resource$People {
     context: APIRequestContext;
     connections: Resource$People$Connections;
@@ -2002,11 +1877,9 @@ export namespace people_v1 {
       this.connections = new Resource$People$Connections(this.context);
     }
 
-
     /**
      * people.people.createContact
-     * @desc Create a new contact and return the person resource for that
-     * contact.
+     * @desc Create a new contact and return the person resource for that contact.
      * @alias people.people.createContact
      * @memberOf! ()
      *
@@ -2018,24 +1891,28 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     createContact(
-        params?: Params$Resource$People$Createcontact,
-        options?: MethodOptions): GaxiosPromise<Schema$Person>;
+      params?: Params$Resource$People$Createcontact,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Person>;
     createContact(
-        params: Params$Resource$People$Createcontact,
-        options: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback: BodyResponseCallback<Schema$Person>): void;
+      params: Params$Resource$People$Createcontact,
+      options: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
     createContact(
-        params: Params$Resource$People$Createcontact,
-        callback: BodyResponseCallback<Schema$Person>): void;
+      params: Params$Resource$People$Createcontact,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
     createContact(callback: BodyResponseCallback<Schema$Person>): void;
     createContact(
-        paramsOrCallback?: Params$Resource$People$Createcontact|
-        BodyResponseCallback<Schema$Person>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback?: BodyResponseCallback<Schema$Person>):
-        void|GaxiosPromise<Schema$Person> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$People$Createcontact;
+      paramsOrCallback?:
+        | Params$Resource$People$Createcontact
+        | BodyResponseCallback<Schema$Person>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback?: BodyResponseCallback<Schema$Person>
+    ): void | GaxiosPromise<Schema$Person> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Createcontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2052,16 +1929,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/people:createContact')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/people:createContact').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -2069,7 +1949,6 @@ export namespace people_v1 {
         return createAPIRequest<Schema$Person>(parameters);
       }
     }
-
 
     /**
      * people.people.deleteContact
@@ -2084,24 +1963,28 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     deleteContact(
-        params?: Params$Resource$People$Deletecontact,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$People$Deletecontact,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     deleteContact(
-        params: Params$Resource$People$Deletecontact,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$People$Deletecontact,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     deleteContact(
-        params: Params$Resource$People$Deletecontact,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$People$Deletecontact,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     deleteContact(callback: BodyResponseCallback<Schema$Empty>): void;
     deleteContact(
-        paramsOrCallback?: Params$Resource$People$Deletecontact|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$People$Deletecontact;
+      paramsOrCallback?:
+        | Params$Resource$People$Deletecontact
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Deletecontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2118,16 +2001,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}:deleteContact')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}:deleteContact').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2136,12 +2022,9 @@ export namespace people_v1 {
       }
     }
 
-
     /**
      * people.people.get
-     * @desc Provides information about a person by specifying a resource name.
-     * Use `people/me` to indicate the authenticated user. <br> The request
-     * throws a 400 error if 'personFields' is not specified.
+     * @desc Provides information about a person by specifying a resource name. Use `people/me` to indicate the authenticated user. <br> The request throws a 400 error if 'personFields' is not specified.
      * @alias people.people.get
      * @memberOf! ()
      *
@@ -2153,19 +2036,27 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$People$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Person>;
-    get(params: Params$Resource$People$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback: BodyResponseCallback<Schema$Person>): void;
-    get(params: Params$Resource$People$Get,
-        callback: BodyResponseCallback<Schema$Person>): void;
+    get(
+      params?: Params$Resource$People$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Person>;
+    get(
+      params: Params$Resource$People$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
+    get(
+      params: Params$Resource$People$Get,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Person>): void;
-    get(paramsOrCallback?: Params$Resource$People$Get|
-        BodyResponseCallback<Schema$Person>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback?: BodyResponseCallback<Schema$Person>):
-        void|GaxiosPromise<Schema$Person> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$People$Get
+        | BodyResponseCallback<Schema$Person>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback?: BodyResponseCallback<Schema$Person>
+    ): void | GaxiosPromise<Schema$Person> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2183,16 +2074,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -2201,13 +2095,9 @@ export namespace people_v1 {
       }
     }
 
-
     /**
      * people.people.getBatchGet
-     * @desc Provides information about a list of specific people by specifying
-     * a list of requested resource names. Use `people/me` to indicate the
-     * authenticated user. <br> The request throws a 400 error if 'personFields'
-     * is not specified.
+     * @desc Provides information about a list of specific people by specifying a list of requested resource names. Use `people/me` to indicate the authenticated user. <br> The request throws a 400 error if 'personFields' is not specified.
      * @alias people.people.getBatchGet
      * @memberOf! ()
      *
@@ -2220,25 +2110,30 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     getBatchGet(
-        params?: Params$Resource$People$Getbatchget,
-        options?: MethodOptions): GaxiosPromise<Schema$GetPeopleResponse>;
+      params?: Params$Resource$People$Getbatchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetPeopleResponse>;
     getBatchGet(
-        params: Params$Resource$People$Getbatchget,
-        options: MethodOptions|BodyResponseCallback<Schema$GetPeopleResponse>,
-        callback: BodyResponseCallback<Schema$GetPeopleResponse>): void;
+      params: Params$Resource$People$Getbatchget,
+      options: MethodOptions | BodyResponseCallback<Schema$GetPeopleResponse>,
+      callback: BodyResponseCallback<Schema$GetPeopleResponse>
+    ): void;
     getBatchGet(
-        params: Params$Resource$People$Getbatchget,
-        callback: BodyResponseCallback<Schema$GetPeopleResponse>): void;
+      params: Params$Resource$People$Getbatchget,
+      callback: BodyResponseCallback<Schema$GetPeopleResponse>
+    ): void;
     getBatchGet(callback: BodyResponseCallback<Schema$GetPeopleResponse>): void;
     getBatchGet(
-        paramsOrCallback?: Params$Resource$People$Getbatchget|
-        BodyResponseCallback<Schema$GetPeopleResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetPeopleResponse>,
-        callback?: BodyResponseCallback<Schema$GetPeopleResponse>):
-        void|GaxiosPromise<Schema$GetPeopleResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$People$Getbatchget;
+      paramsOrCallback?:
+        | Params$Resource$People$Getbatchget
+        | BodyResponseCallback<Schema$GetPeopleResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetPeopleResponse>,
+      callback?: BodyResponseCallback<Schema$GetPeopleResponse>
+    ): void | GaxiosPromise<Schema$GetPeopleResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Getbatchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2255,16 +2150,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/people:batchGet')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/people:batchGet').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetPeopleResponse>(parameters, callback);
@@ -2273,18 +2171,9 @@ export namespace people_v1 {
       }
     }
 
-
     /**
      * people.people.updateContact
-     * @desc Update contact data for an existing contact person. Any non-contact
-     * data will not be modified.  The request throws a 400 error if
-     * `updatePersonFields` is not specified. <br> The request throws a 400
-     * error if `person.metadata.sources` is not specified for the contact to be
-     * updated. <br> The request throws a 412 error if
-     * `person.metadata.sources.etag` is different than the contact's etag,
-     * which indicates the contact has changed since its data was read. Clients
-     * should get the latest person and re-apply their updates to the latest
-     * person.
+     * @desc Update contact data for an existing contact person. Any non-contact data will not be modified.  The request throws a 400 error if `updatePersonFields` is not specified. <br> The request throws a 400 error if `person.metadata.sources` is not specified for the contact to be updated. <br> The request throws a 412 error if `person.metadata.sources.etag` is different than the contact's etag, which indicates the contact has changed since its data was read. Clients should get the latest person and re-apply their updates to the latest person.
      * @alias people.people.updateContact
      * @memberOf! ()
      *
@@ -2297,24 +2186,28 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     updateContact(
-        params?: Params$Resource$People$Updatecontact,
-        options?: MethodOptions): GaxiosPromise<Schema$Person>;
+      params?: Params$Resource$People$Updatecontact,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Person>;
     updateContact(
-        params: Params$Resource$People$Updatecontact,
-        options: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback: BodyResponseCallback<Schema$Person>): void;
+      params: Params$Resource$People$Updatecontact,
+      options: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
     updateContact(
-        params: Params$Resource$People$Updatecontact,
-        callback: BodyResponseCallback<Schema$Person>): void;
+      params: Params$Resource$People$Updatecontact,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
     updateContact(callback: BodyResponseCallback<Schema$Person>): void;
     updateContact(
-        paramsOrCallback?: Params$Resource$People$Updatecontact|
-        BodyResponseCallback<Schema$Person>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback?: BodyResponseCallback<Schema$Person>):
-        void|GaxiosPromise<Schema$Person> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$People$Updatecontact;
+      paramsOrCallback?:
+        | Params$Resource$People$Updatecontact
+        | BodyResponseCallback<Schema$Person>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback?: BodyResponseCallback<Schema$Person>
+    ): void | GaxiosPromise<Schema$Person> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Updatecontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2331,16 +2224,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}:updateContact')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}:updateContact').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -2350,12 +2246,12 @@ export namespace people_v1 {
     }
   }
 
-  export interface Params$Resource$People$Createcontact extends
-      StandardParameters {
+  export interface Params$Resource$People$Createcontact
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the owning person resource.
@@ -2367,12 +2263,12 @@ export namespace people_v1 {
      */
     requestBody?: Schema$Person;
   }
-  export interface Params$Resource$People$Deletecontact extends
-      StandardParameters {
+  export interface Params$Resource$People$Deletecontact
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the contact to delete.
@@ -2383,91 +2279,54 @@ export namespace people_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * **Required.** A field mask to restrict which fields on the person are
-     * returned. Multiple fields can be specified by separating them with
-     * commas. Valid values are:  * addresses * ageRanges * biographies *
-     * birthdays * braggingRights * coverPhotos * emailAddresses * events *
-     * genders * imClients * interests * locales * memberships * metadata *
-     * names * nicknames * occupations * organizations * phoneNumbers * photos *
-     * relations * relationshipInterests * relationshipStatuses * residences *
-     * sipAddresses * skills * taglines * urls * userDefined
+     * **Required.** A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * sipAddresses * skills * taglines * urls * userDefined
      */
     personFields?: string;
     /**
-     * **Required.** Comma-separated list of person fields to be included in the
-     * response. Each path should start with `person.`: for example,
-     * `person.names` or `person.photos`.
+     * **Required.** Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      */
     'requestMask.includeField'?: string;
     /**
-     * The resource name of the person to provide information about.  - To get
-     * information about the authenticated user, specify `people/me`. - To get
-     * information about a google account, specify
-     * `people/`<var>account_id</var>. - To get information about a contact,
-     * specify the resource name that   identifies the contact as returned by
-     * [`people.connections.list`](/people/api/rest/v1/people.connections/list).
+     * The resource name of the person to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify  `people/`<var>account_id</var>. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).
      */
     resourceName?: string;
   }
-  export interface Params$Resource$People$Getbatchget extends
-      StandardParameters {
+  export interface Params$Resource$People$Getbatchget
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * **Required.** A field mask to restrict which fields on each person are
-     * returned. Multiple fields can be specified by separating them with
-     * commas. Valid values are:  * addresses * ageRanges * biographies *
-     * birthdays * braggingRights * coverPhotos * emailAddresses * events *
-     * genders * imClients * interests * locales * memberships * metadata *
-     * names * nicknames * occupations * organizations * phoneNumbers * photos *
-     * relations * relationshipInterests * relationshipStatuses * residences *
-     * sipAddresses * skills * taglines * urls * userDefined
+     * **Required.** A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * sipAddresses * skills * taglines * urls * userDefined
      */
     personFields?: string;
     /**
-     * **Required.** Comma-separated list of person fields to be included in the
-     * response. Each path should start with `person.`: for example,
-     * `person.names` or `person.photos`.
+     * **Required.** Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      */
     'requestMask.includeField'?: string;
     /**
-     * The resource names of the people to provide information about.  - To get
-     * information about the authenticated user, specify `people/me`. - To get
-     * information about a google account, specify
-     * `people/`<var>account_id</var>. - To get information about a contact,
-     * specify the resource name that   identifies the contact as returned by
-     * [`people.connections.list`](/people/api/rest/v1/people.connections/list).
-     * You can include up to 50 resource names in one request.
+     * The resource names of the people to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify   `people/`<var>account_id</var>. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).  You can include up to 50 resource names in one request.
      */
     resourceNames?: string[];
   }
-  export interface Params$Resource$People$Updatecontact extends
-      StandardParameters {
+  export interface Params$Resource$People$Updatecontact
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name for the person, assigned by the server. An ASCII string
-     * with a max length of 27 characters, in the form of
-     * `people/`<var>person_id</var>.
+     * The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/`<var>person_id</var>.
      */
     resourceName?: string;
     /**
-     * **Required.** A field mask to restrict which fields on the person are
-     * updated. Multiple fields can be specified by separating them with commas.
-     * All updated fields will be replaced. Valid values are:  * addresses *
-     * biographies * birthdays * emailAddresses * events * genders * imClients *
-     * interests * locales * memberships * names * nicknames * occupations *
-     * organizations * phoneNumbers * relations * residences * sipAddresses *
-     * urls * userDefined
+     * **Required.** A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are:  * addresses * biographies * birthdays * emailAddresses * events * genders * imClients * interests * locales * memberships * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
      */
     updatePersonFields?: string;
 
@@ -2483,12 +2342,9 @@ export namespace people_v1 {
       this.context = context;
     }
 
-
     /**
      * people.people.connections.list
-     * @desc Provides a list of the authenticated user's contacts merged with
-     * any connected profiles. <br> The request throws a 400 error if
-     * 'personFields' is not specified.
+     * @desc Provides a list of the authenticated user's contacts merged with any connected profiles. <br> The request throws a 400 error if 'personFields' is not specified.
      * @alias people.people.connections.list
      * @memberOf! ()
      *
@@ -2506,26 +2362,32 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$People$Connections$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListConnectionsResponse>;
+      params?: Params$Resource$People$Connections$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConnectionsResponse>;
     list(
-        params: Params$Resource$People$Connections$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListConnectionsResponse>,
-        callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
+      params: Params$Resource$People$Connections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+      callback: BodyResponseCallback<Schema$ListConnectionsResponse>
+    ): void;
     list(
-        params: Params$Resource$People$Connections$List,
-        callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
+      params: Params$Resource$People$Connections$List,
+      callback: BodyResponseCallback<Schema$ListConnectionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$People$Connections$List|
-        BodyResponseCallback<Schema$ListConnectionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListConnectionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListConnectionsResponse>):
-        void|GaxiosPromise<Schema$ListConnectionsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$People$Connections$List;
+      paramsOrCallback?:
+        | Params$Resource$People$Connections$List
+        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListConnectionsResponse>
+    ): void | GaxiosPromise<Schema$ListConnectionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2542,16 +2404,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}/connections')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}/connections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListConnectionsResponse>(parameters, callback);
@@ -2561,16 +2426,15 @@ export namespace people_v1 {
     }
   }
 
-  export interface Params$Resource$People$Connections$List extends
-      StandardParameters {
+  export interface Params$Resource$People$Connections$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The number of connections to include in the response. Valid values are
-     * between 1 and 2000, inclusive. Defaults to 100.
+     * The number of connections to include in the response. Valid values are between 1 and 2000, inclusive. Defaults to 100.
      */
     pageSize?: number;
     /**
@@ -2578,27 +2442,15 @@ export namespace people_v1 {
      */
     pageToken?: string;
     /**
-     * **Required.** A field mask to restrict which fields on each person are
-     * returned. Multiple fields can be specified by separating them with
-     * commas. Valid values are:  * addresses * ageRanges * biographies *
-     * birthdays * braggingRights * coverPhotos * emailAddresses * events *
-     * genders * imClients * interests * locales * memberships * metadata *
-     * names * nicknames * occupations * organizations * phoneNumbers * photos *
-     * relations * relationshipInterests * relationshipStatuses * residences *
-     * sipAddresses * skills * taglines * urls * userDefined
+     * **Required.** A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * sipAddresses * skills * taglines * urls * userDefined
      */
     personFields?: string;
     /**
-     * **Required.** Comma-separated list of person fields to be included in the
-     * response. Each path should start with `person.`: for example,
-     * `person.names` or `person.photos`.
+     * **Required.** Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      */
     'requestMask.includeField'?: string;
     /**
-     * Whether the response should include a sync token, which can be used to
-     * get all changes since the last request. For subsequent sync requests use
-     * the `sync_token` param instead. Initial sync requests that specify
-     * `request_sync_token` have an additional rate limit.
+     * Whether the response should include a sync token, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
      */
     requestSyncToken?: boolean;
     /**
@@ -2606,14 +2458,11 @@ export namespace people_v1 {
      */
     resourceName?: string;
     /**
-     * The order in which the connections should be sorted. Defaults to
-     * `LAST_MODIFIED_ASCENDING`.
+     * The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
      */
     sortOrder?: string;
     /**
-     * A sync token returned by a previous call to `people.connections.list`.
-     * Only resources changed since the sync token was created will be returned.
-     * Sync requests that specify `sync_token` have an additional rate limit.
+     * A sync token returned by a previous call to `people.connections.list`. Only resources changed since the sync token was created will be returned. Sync requests that specify `sync_token` have an additional rate limit.
      */
     syncToken?: string;
   }

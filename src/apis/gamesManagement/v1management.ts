@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace gamesManagement_v1management {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace gamesManagement_v1management {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -90,7 +99,10 @@ export namespace gamesManagement_v1management {
     turnBasedMatches: Resource$Turnbasedmatches;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.achievements = new Resource$Achievements(this.context);
       this.applications = new Resource$Applications(this.context);
@@ -108,8 +120,7 @@ export namespace gamesManagement_v1management {
    */
   export interface Schema$AchievementResetAllResponse {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesManagement#achievementResetAllResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetAllResponse.
      */
     kind?: string;
     /**
@@ -126,8 +137,7 @@ export namespace gamesManagement_v1management {
      */
     achievement_ids?: string[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesManagement#achievementResetMultipleForAllRequest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetMultipleForAllRequest.
      */
     kind?: string;
   }
@@ -136,10 +146,7 @@ export namespace gamesManagement_v1management {
    */
   export interface Schema$AchievementResetResponse {
     /**
-     * The current state of the achievement. This is the same as the initial
-     * state of the achievement. Possible values are:   - &quot;HIDDEN&quot;-
-     * Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.
-     * - &quot;UNLOCKED&quot; - Achievement is unlocked.
+     * The current state of the achievement. This is the same as the initial state of the achievement. Possible values are:   - &quot;HIDDEN&quot;- Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
      */
     currentState?: string;
     /**
@@ -147,8 +154,7 @@ export namespace gamesManagement_v1management {
      */
     definitionId?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesManagement#achievementResetResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetResponse.
      */
     kind?: string;
     /**
@@ -165,30 +171,25 @@ export namespace gamesManagement_v1management {
      */
     event_ids?: string[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesManagement#eventsResetMultipleForAllRequest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#eventsResetMultipleForAllRequest.
      */
     kind?: string;
   }
   /**
-   * This is a JSON template for metadata about a player playing a game with the
-   * currently authenticated user.
+   * This is a JSON template for metadata about a player playing a game with the currently authenticated user.
    */
   export interface Schema$GamesPlayedResource {
     /**
-     * True if the player was auto-matched with the currently authenticated
-     * user.
+     * True if the player was auto-matched with the currently authenticated user.
      */
     autoMatched?: boolean;
     /**
-     * The last time the player played the game in milliseconds since the epoch
-     * in UTC.
+     * The last time the player played the game in milliseconds since the epoch in UTC.
      */
     timeMillis?: string;
   }
   /**
-   * This is a JSON template for 1P/3P metadata about the player&#39;s
-   * experience.
+   * This is a JSON template for 1P/3P metadata about the player&#39;s experience.
    */
   export interface Schema$GamesPlayerExperienceInfoResource {
     /**
@@ -200,13 +201,11 @@ export namespace gamesManagement_v1management {
      */
     currentLevel?: Schema$GamesPlayerLevelResource;
     /**
-     * The timestamp when the player was leveled up, in millis since Unix epoch
-     * UTC.
+     * The timestamp when the player was leveled up, in millis since Unix epoch UTC.
      */
     lastLevelUpTimestampMillis?: string;
     /**
-     * The next level of the player. If the current level is the maximum level,
-     * this should be same as the current level.
+     * The next level of the player. If the current level is the maximum level, this should be same as the current level.
      */
     nextLevel?: Schema$GamesPlayerLevelResource;
   }
@@ -236,8 +235,7 @@ export namespace gamesManagement_v1management {
      */
     hiddenTimeMillis?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesManagement#hiddenPlayer.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#hiddenPlayer.
      */
     kind?: string;
     /**
@@ -254,8 +252,7 @@ export namespace gamesManagement_v1management {
      */
     items?: Schema$HiddenPlayer[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesManagement#hiddenPlayerList.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#hiddenPlayerList.
      */
     kind?: string;
     /**
@@ -288,26 +285,19 @@ export namespace gamesManagement_v1management {
      */
     experienceInfo?: Schema$GamesPlayerExperienceInfoResource;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesManagement#player.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#player.
      */
     kind?: string;
     /**
-     * Details about the last time this player played a multiplayer game with
-     * the currently authenticated player. Populated for PLAYED_WITH player
-     * collection members.
+     * Details about the last time this player played a multiplayer game with the currently authenticated player. Populated for PLAYED_WITH player collection members.
      */
     lastPlayedWith?: Schema$GamesPlayedResource;
     /**
-     * An object representation of the individual components of the player&#39;s
-     * name. For some players, these fields may not be present.
+     * An object representation of the individual components of the player&#39;s name. For some players, these fields may not be present.
      */
-    name?: {familyName?: string; givenName?: string;};
+    name?: {familyName?: string; givenName?: string};
     /**
-     * The player ID that was used for this player the first time they signed
-     * into the game in question. This is only populated for calls to player.get
-     * for the requesting player, only if the player ID has subsequently
-     * changed, and only to clients that support remapping player IDs.
+     * The player ID that was used for this player the first time they signed into the game in question. This is only populated for calls to player.get for the requesting player, only if the player ID has subsequently changed, and only to clients that support remapping player IDs.
      */
     originalPlayerId?: string;
     /**
@@ -315,8 +305,7 @@ export namespace gamesManagement_v1management {
      */
     playerId?: string;
     /**
-     * The player&#39;s profile settings. Controls whether or not the
-     * player&#39;s profile is visible to other players.
+     * The player&#39;s profile settings. Controls whether or not the player&#39;s profile is visible to other players.
      */
     profileSettings?: Schema$ProfileSettings;
     /**
@@ -329,8 +318,7 @@ export namespace gamesManagement_v1management {
    */
   export interface Schema$PlayerScoreResetAllResponse {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesManagement#playerScoreResetResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#playerScoreResetResponse.
      */
     kind?: string;
     /**
@@ -347,15 +335,11 @@ export namespace gamesManagement_v1management {
      */
     definitionId?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesManagement#playerScoreResetResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#playerScoreResetResponse.
      */
     kind?: string;
     /**
-     * The time spans of the updated score. Possible values are:   -
-     * &quot;ALL_TIME&quot; - The score is an all-time score.  -
-     * &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; -
-     * The score is a daily score.
+     * The time spans of the updated score. Possible values are:   - &quot;ALL_TIME&quot; - The score is an all-time score.  - &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; - The score is a daily score.
      */
     resetScoreTimeSpans?: string[];
   }
@@ -364,13 +348,11 @@ export namespace gamesManagement_v1management {
    */
   export interface Schema$ProfileSettings {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesManagement#profileSettings.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#profileSettings.
      */
     kind?: string;
     /**
-     * The player&#39;s current profile visibility. This field is visible to
-     * both 1P and 3P APIs.
+     * The player&#39;s current profile visibility. This field is visible to both 1P and 3P APIs.
      */
     profileVisible?: boolean;
   }
@@ -379,8 +361,7 @@ export namespace gamesManagement_v1management {
    */
   export interface Schema$QuestsResetMultipleForAllRequest {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesManagement#questsResetMultipleForAllRequest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#questsResetMultipleForAllRequest.
      */
     kind?: string;
     /**
@@ -393,8 +374,7 @@ export namespace gamesManagement_v1management {
    */
   export interface Schema$ScoresResetMultipleForAllRequest {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string gamesManagement#scoresResetMultipleForAllRequest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#scoresResetMultipleForAllRequest.
      */
     kind?: string;
     /**
@@ -403,19 +383,15 @@ export namespace gamesManagement_v1management {
     leaderboard_ids?: string[];
   }
 
-
   export class Resource$Achievements {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * gamesManagement.achievements.reset
-     * @desc Resets the achievement with the given ID for the currently
-     * authenticated player. This method is only accessible to whitelisted
-     * tester accounts for your application.
+     * @desc Resets the achievement with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
      * @alias gamesManagement.achievements.reset
      * @memberOf! ()
      *
@@ -425,27 +401,35 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params?: Params$Resource$Achievements$Reset, options?: MethodOptions):
-        GaxiosPromise<Schema$AchievementResetResponse>;
     reset(
-        params: Params$Resource$Achievements$Reset,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AchievementResetResponse>,
-        callback: BodyResponseCallback<Schema$AchievementResetResponse>): void;
+      params?: Params$Resource$Achievements$Reset,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AchievementResetResponse>;
     reset(
-        params: Params$Resource$Achievements$Reset,
-        callback: BodyResponseCallback<Schema$AchievementResetResponse>): void;
-    reset(callback: BodyResponseCallback<Schema$AchievementResetResponse>):
-        void;
+      params: Params$Resource$Achievements$Reset,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementResetResponse>,
+      callback: BodyResponseCallback<Schema$AchievementResetResponse>
+    ): void;
     reset(
-        paramsOrCallback?: Params$Resource$Achievements$Reset|
-        BodyResponseCallback<Schema$AchievementResetResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AchievementResetResponse>,
-        callback?: BodyResponseCallback<Schema$AchievementResetResponse>):
-        void|GaxiosPromise<Schema$AchievementResetResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Achievements$Reset;
+      params: Params$Resource$Achievements$Reset,
+      callback: BodyResponseCallback<Schema$AchievementResetResponse>
+    ): void;
+    reset(
+      callback: BodyResponseCallback<Schema$AchievementResetResponse>
+    ): void;
+    reset(
+      paramsOrCallback?:
+        | Params$Resource$Achievements$Reset
+        | BodyResponseCallback<Schema$AchievementResetResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementResetResponse>,
+      callback?: BodyResponseCallback<Schema$AchievementResetResponse>
+    ): void | GaxiosPromise<Schema$AchievementResetResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Achievements$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -462,17 +446,18 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1management/achievements/{achievementId}/reset')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1management/achievements/{achievementId}/reset'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AchievementResetResponse>(parameters, callback);
@@ -481,12 +466,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.achievements.resetAll
-     * @desc Resets all achievements for the currently authenticated player for
-     * your application. This method is only accessible to whitelisted tester
-     * accounts for your application.
+     * @desc Resets all achievements for the currently authenticated player for your application. This method is only accessible to whitelisted tester accounts for your application.
      * @alias gamesManagement.achievements.resetAll
      * @memberOf! ()
      *
@@ -496,31 +478,34 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetAll(
-        params?: Params$Resource$Achievements$Resetall,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AchievementResetAllResponse>;
+      params?: Params$Resource$Achievements$Resetall,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AchievementResetAllResponse>;
     resetAll(
-        params: Params$Resource$Achievements$Resetall,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AchievementResetAllResponse>,
-        callback: BodyResponseCallback<Schema$AchievementResetAllResponse>):
-        void;
+      params: Params$Resource$Achievements$Resetall,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementResetAllResponse>,
+      callback: BodyResponseCallback<Schema$AchievementResetAllResponse>
+    ): void;
     resetAll(
-        params: Params$Resource$Achievements$Resetall,
-        callback: BodyResponseCallback<Schema$AchievementResetAllResponse>):
-        void;
-    resetAll(callback:
-                 BodyResponseCallback<Schema$AchievementResetAllResponse>):
-        void;
+      params: Params$Resource$Achievements$Resetall,
+      callback: BodyResponseCallback<Schema$AchievementResetAllResponse>
+    ): void;
     resetAll(
-        paramsOrCallback?: Params$Resource$Achievements$Resetall|
-        BodyResponseCallback<Schema$AchievementResetAllResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AchievementResetAllResponse>,
-        callback?: BodyResponseCallback<Schema$AchievementResetAllResponse>):
-        void|GaxiosPromise<Schema$AchievementResetAllResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Achievements$Resetall;
+      callback: BodyResponseCallback<Schema$AchievementResetAllResponse>
+    ): void;
+    resetAll(
+      paramsOrCallback?:
+        | Params$Resource$Achievements$Resetall
+        | BodyResponseCallback<Schema$AchievementResetAllResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementResetAllResponse>,
+      callback?: BodyResponseCallback<Schema$AchievementResetAllResponse>
+    ): void | GaxiosPromise<Schema$AchievementResetAllResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Achievements$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -537,30 +522,33 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1management/achievements/reset')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1management/achievements/reset').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AchievementResetAllResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AchievementResetAllResponse>(parameters);
       }
     }
 
-
     /**
      * gamesManagement.achievements.resetAllForAllPlayers
-     * @desc Resets all draft achievements for all players. This method is only
-     * available to user accounts for your developer console.
+     * @desc Resets all draft achievements for all players. This method is only available to user accounts for your developer console.
      * @alias gamesManagement.achievements.resetAllForAllPlayers
      * @memberOf! ()
      *
@@ -570,23 +558,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetAllForAllPlayers(
-        params?: Params$Resource$Achievements$Resetallforallplayers,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Achievements$Resetallforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetAllForAllPlayers(
-        params: Params$Resource$Achievements$Resetallforallplayers,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Achievements$Resetallforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetAllForAllPlayers(
-        params: Params$Resource$Achievements$Resetallforallplayers,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Achievements$Resetallforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetAllForAllPlayers(callback: BodyResponseCallback<void>): void;
     resetAllForAllPlayers(
-        paramsOrCallback?: Params$Resource$Achievements$Resetallforallplayers|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Achievements$Resetallforallplayers;
+      paramsOrCallback?:
+        | Params$Resource$Achievements$Resetallforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Achievements$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -603,17 +596,18 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1management/achievements/resetAllForAllPlayers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1management/achievements/resetAllForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -622,12 +616,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.achievements.resetForAllPlayers
-     * @desc Resets the achievement with the given ID for all players. This
-     * method is only available to user accounts for your developer console.
-     * Only draft achievements can be reset.
+     * @desc Resets the achievement with the given ID for all players. This method is only available to user accounts for your developer console. Only draft achievements can be reset.
      * @alias gamesManagement.achievements.resetForAllPlayers
      * @memberOf! ()
      *
@@ -638,23 +629,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetForAllPlayers(
-        params?: Params$Resource$Achievements$Resetforallplayers,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Achievements$Resetforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetForAllPlayers(
-        params: Params$Resource$Achievements$Resetforallplayers,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Achievements$Resetforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetForAllPlayers(
-        params: Params$Resource$Achievements$Resetforallplayers,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Achievements$Resetforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetForAllPlayers(callback: BodyResponseCallback<void>): void;
     resetForAllPlayers(
-        paramsOrCallback?: Params$Resource$Achievements$Resetforallplayers|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Achievements$Resetforallplayers;
+      paramsOrCallback?:
+        | Params$Resource$Achievements$Resetforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Achievements$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -671,18 +667,19 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1management/achievements/{achievementId}/resetForAllPlayers')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/games/v1management/achievements/{achievementId}/resetForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -691,12 +688,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.achievements.resetMultipleForAllPlayers
-     * @desc Resets achievements with the given IDs for all players. This method
-     * is only available to user accounts for your developer console. Only draft
-     * achievements may be reset.
+     * @desc Resets achievements with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft achievements may be reset.
      * @alias gamesManagement.achievements.resetMultipleForAllPlayers
      * @memberOf! ()
      *
@@ -707,24 +701,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetMultipleForAllPlayers(
-        params?: Params$Resource$Achievements$Resetmultipleforallplayers,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Achievements$Resetmultipleforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetMultipleForAllPlayers(
-        params: Params$Resource$Achievements$Resetmultipleforallplayers,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Achievements$Resetmultipleforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetMultipleForAllPlayers(
-        params: Params$Resource$Achievements$Resetmultipleforallplayers,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Achievements$Resetmultipleforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetMultipleForAllPlayers(callback: BodyResponseCallback<void>): void;
     resetMultipleForAllPlayers(
-        paramsOrCallback?:
-            Params$Resource$Achievements$Resetmultipleforallplayers|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Achievements$Resetmultipleforallplayers;
+      paramsOrCallback?:
+        | Params$Resource$Achievements$Resetmultipleforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Achievements$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -741,18 +739,19 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1management/achievements/resetMultipleForAllPlayers')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/games/v1management/achievements/resetMultipleForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -762,38 +761,38 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Achievements$Reset extends
-      StandardParameters {
+  export interface Params$Resource$Achievements$Reset
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
-  export interface Params$Resource$Achievements$Resetall extends
-      StandardParameters {
+  export interface Params$Resource$Achievements$Resetall
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Achievements$Resetallforallplayers extends
-      StandardParameters {
+  export interface Params$Resource$Achievements$Resetallforallplayers
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Achievements$Resetforallplayers extends
-      StandardParameters {
+  export interface Params$Resource$Achievements$Resetforallplayers
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the achievement used by this method.
@@ -801,12 +800,11 @@ export namespace gamesManagement_v1management {
     achievementId?: string;
   }
   export interface Params$Resource$Achievements$Resetmultipleforallplayers
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -814,18 +812,15 @@ export namespace gamesManagement_v1management {
     requestBody?: Schema$AchievementResetMultipleForAllRequest;
   }
 
-
   export class Resource$Applications {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * gamesManagement.applications.listHidden
-     * @desc Get the list of players hidden from the given application. This
-     * method is only available to user accounts for your developer console.
+     * @desc Get the list of players hidden from the given application. This method is only available to user accounts for your developer console.
      * @alias gamesManagement.applications.listHidden
      * @memberOf! ()
      *
@@ -838,25 +833,30 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     listHidden(
-        params?: Params$Resource$Applications$Listhidden,
-        options?: MethodOptions): GaxiosPromise<Schema$HiddenPlayerList>;
+      params?: Params$Resource$Applications$Listhidden,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HiddenPlayerList>;
     listHidden(
-        params: Params$Resource$Applications$Listhidden,
-        options: MethodOptions|BodyResponseCallback<Schema$HiddenPlayerList>,
-        callback: BodyResponseCallback<Schema$HiddenPlayerList>): void;
+      params: Params$Resource$Applications$Listhidden,
+      options: MethodOptions | BodyResponseCallback<Schema$HiddenPlayerList>,
+      callback: BodyResponseCallback<Schema$HiddenPlayerList>
+    ): void;
     listHidden(
-        params: Params$Resource$Applications$Listhidden,
-        callback: BodyResponseCallback<Schema$HiddenPlayerList>): void;
+      params: Params$Resource$Applications$Listhidden,
+      callback: BodyResponseCallback<Schema$HiddenPlayerList>
+    ): void;
     listHidden(callback: BodyResponseCallback<Schema$HiddenPlayerList>): void;
     listHidden(
-        paramsOrCallback?: Params$Resource$Applications$Listhidden|
-        BodyResponseCallback<Schema$HiddenPlayerList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$HiddenPlayerList>,
-        callback?: BodyResponseCallback<Schema$HiddenPlayerList>):
-        void|GaxiosPromise<Schema$HiddenPlayerList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Applications$Listhidden;
+      paramsOrCallback?:
+        | Params$Resource$Applications$Listhidden
+        | BodyResponseCallback<Schema$HiddenPlayerList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HiddenPlayerList>,
+      callback?: BodyResponseCallback<Schema$HiddenPlayerList>
+    ): void | GaxiosPromise<Schema$HiddenPlayerList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applications$Listhidden;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -873,18 +873,19 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1management/applications/{applicationId}/players/hidden')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/games/v1management/applications/{applicationId}/players/hidden'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HiddenPlayerList>(parameters, callback);
@@ -894,21 +895,19 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Applications$Listhidden extends
-      StandardParameters {
+  export interface Params$Resource$Applications$Listhidden
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The application ID from the Google Play developer console.
      */
     applicationId?: string;
     /**
-     * The maximum number of player resources to return in the response, used
-     * for paging. For any response, the actual number of player resources
-     * returned may be less than the specified maxResults.
+     * The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -917,20 +916,15 @@ export namespace gamesManagement_v1management {
     pageToken?: string;
   }
 
-
   export class Resource$Events {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * gamesManagement.events.reset
-     * @desc Resets all player progress on the event with the given ID for the
-     * currently authenticated player. This method is only accessible to
-     * whitelisted tester accounts for your application. All quests for this
-     * player that use the event will also be reset.
+     * @desc Resets all player progress on the event with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application. All quests for this player that use the event will also be reset.
      * @alias gamesManagement.events.reset
      * @memberOf! ()
      *
@@ -940,21 +934,27 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params?: Params$Resource$Events$Reset, options?: MethodOptions):
-        GaxiosPromise<void>;
     reset(
-        params: Params$Resource$Events$Reset,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Events$Reset,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     reset(
-        params: Params$Resource$Events$Reset,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Events$Reset,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    reset(
+      params: Params$Resource$Events$Reset,
+      callback: BodyResponseCallback<void>
+    ): void;
     reset(callback: BodyResponseCallback<void>): void;
     reset(
-        paramsOrCallback?: Params$Resource$Events$Reset|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Events$Reset
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -972,16 +972,18 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1management/events/{eventId}/reset')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1management/events/{eventId}/reset'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['eventId'],
         pathParams: ['eventId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -990,13 +992,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.events.resetAll
-     * @desc Resets all player progress on all events for the currently
-     * authenticated player. This method is only accessible to whitelisted
-     * tester accounts for your application. All quests for this player will
-     * also be reset.
+     * @desc Resets all player progress on all events for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application. All quests for this player will also be reset.
      * @alias gamesManagement.events.resetAll
      * @memberOf! ()
      *
@@ -1005,21 +1003,27 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll(params?: Params$Resource$Events$Resetall, options?: MethodOptions):
-        GaxiosPromise<void>;
     resetAll(
-        params: Params$Resource$Events$Resetall,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Events$Resetall,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetAll(
-        params: Params$Resource$Events$Resetall,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Events$Resetall,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    resetAll(
+      params: Params$Resource$Events$Resetall,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetAll(callback: BodyResponseCallback<void>): void;
     resetAll(
-        paramsOrCallback?: Params$Resource$Events$Resetall|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Events$Resetall
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1037,16 +1041,19 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1management/events/reset')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1management/events/reset').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1055,12 +1062,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.events.resetAllForAllPlayers
-     * @desc Resets all draft events for all players. This method is only
-     * available to user accounts for your developer console. All quests that
-     * use any of these events will also be reset.
+     * @desc Resets all draft events for all players. This method is only available to user accounts for your developer console. All quests that use any of these events will also be reset.
      * @alias gamesManagement.events.resetAllForAllPlayers
      * @memberOf! ()
      *
@@ -1070,23 +1074,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetAllForAllPlayers(
-        params?: Params$Resource$Events$Resetallforallplayers,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Events$Resetallforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetAllForAllPlayers(
-        params: Params$Resource$Events$Resetallforallplayers,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Events$Resetallforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetAllForAllPlayers(
-        params: Params$Resource$Events$Resetallforallplayers,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Events$Resetallforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetAllForAllPlayers(callback: BodyResponseCallback<void>): void;
     resetAllForAllPlayers(
-        paramsOrCallback?: Params$Resource$Events$Resetallforallplayers|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Events$Resetallforallplayers;
+      paramsOrCallback?:
+        | Params$Resource$Events$Resetallforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Events$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1103,17 +1112,18 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/games/v1management/events/resetAllForAllPlayers')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1management/events/resetAllForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1122,12 +1132,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.events.resetForAllPlayers
-     * @desc Resets the event with the given ID for all players. This method is
-     * only available to user accounts for your developer console. Only draft
-     * events can be reset. All quests that use the event will also be reset.
+     * @desc Resets the event with the given ID for all players. This method is only available to user accounts for your developer console. Only draft events can be reset. All quests that use the event will also be reset.
      * @alias gamesManagement.events.resetForAllPlayers
      * @memberOf! ()
      *
@@ -1138,23 +1145,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetForAllPlayers(
-        params?: Params$Resource$Events$Resetforallplayers,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Events$Resetforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetForAllPlayers(
-        params: Params$Resource$Events$Resetforallplayers,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Events$Resetforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetForAllPlayers(
-        params: Params$Resource$Events$Resetforallplayers,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Events$Resetforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetForAllPlayers(callback: BodyResponseCallback<void>): void;
     resetForAllPlayers(
-        paramsOrCallback?: Params$Resource$Events$Resetforallplayers|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Events$Resetforallplayers;
+      paramsOrCallback?:
+        | Params$Resource$Events$Resetforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Events$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1171,17 +1183,19 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1management/events/{eventId}/resetForAllPlayers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/games/v1management/events/{eventId}/resetForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['eventId'],
         pathParams: ['eventId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1190,13 +1204,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.events.resetMultipleForAllPlayers
-     * @desc Resets events with the given IDs for all players. This method is
-     * only available to user accounts for your developer console. Only draft
-     * events may be reset. All quests that use any of the events will also be
-     * reset.
+     * @desc Resets events with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft events may be reset. All quests that use any of the events will also be reset.
      * @alias gamesManagement.events.resetMultipleForAllPlayers
      * @memberOf! ()
      *
@@ -1207,23 +1217,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetMultipleForAllPlayers(
-        params?: Params$Resource$Events$Resetmultipleforallplayers,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Events$Resetmultipleforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetMultipleForAllPlayers(
-        params: Params$Resource$Events$Resetmultipleforallplayers,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Events$Resetmultipleforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetMultipleForAllPlayers(
-        params: Params$Resource$Events$Resetmultipleforallplayers,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Events$Resetmultipleforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetMultipleForAllPlayers(callback: BodyResponseCallback<void>): void;
     resetMultipleForAllPlayers(
-        paramsOrCallback?: Params$Resource$Events$Resetmultipleforallplayers|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Events$Resetmultipleforallplayers;
+      paramsOrCallback?:
+        | Params$Resource$Events$Resetmultipleforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Events$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1240,17 +1255,18 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1management/events/resetMultipleForAllPlayers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1management/events/resetMultipleForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1264,7 +1280,7 @@ export namespace gamesManagement_v1management {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the event.
@@ -1275,34 +1291,33 @@ export namespace gamesManagement_v1management {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Events$Resetallforallplayers extends
-      StandardParameters {
+  export interface Params$Resource$Events$Resetallforallplayers
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Events$Resetforallplayers extends
-      StandardParameters {
+  export interface Params$Resource$Events$Resetforallplayers
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the event.
      */
     eventId?: string;
   }
-  export interface Params$Resource$Events$Resetmultipleforallplayers extends
-      StandardParameters {
+  export interface Params$Resource$Events$Resetmultipleforallplayers
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1310,19 +1325,15 @@ export namespace gamesManagement_v1management {
     requestBody?: Schema$EventsResetMultipleForAllRequest;
   }
 
-
   export class Resource$Players {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * gamesManagement.players.hide
-     * @desc Hide the given player's leaderboard scores from the given
-     * application. This method is only available to user accounts for your
-     * developer console.
+     * @desc Hide the given player's leaderboard scores from the given application. This method is only available to user accounts for your developer console.
      * @alias gamesManagement.players.hide
      * @memberOf! ()
      *
@@ -1333,21 +1344,27 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    hide(params?: Params$Resource$Players$Hide, options?: MethodOptions):
-        GaxiosPromise<void>;
     hide(
-        params: Params$Resource$Players$Hide,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Players$Hide,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     hide(
-        params: Params$Resource$Players$Hide,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Players$Hide,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    hide(
+      params: Params$Resource$Players$Hide,
+      callback: BodyResponseCallback<void>
+    ): void;
     hide(callback: BodyResponseCallback<void>): void;
     hide(
-        paramsOrCallback?: Params$Resource$Players$Hide|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Players$Hide
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Hide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1365,18 +1382,19 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1management/applications/{applicationId}/players/hidden/{playerId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/games/v1management/applications/{applicationId}/players/hidden/{playerId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['applicationId', 'playerId'],
         pathParams: ['applicationId', 'playerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1385,12 +1403,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.players.unhide
-     * @desc Unhide the given player's leaderboard scores from the given
-     * application. This method is only available to user accounts for your
-     * developer console.
+     * @desc Unhide the given player's leaderboard scores from the given application. This method is only available to user accounts for your developer console.
      * @alias gamesManagement.players.unhide
      * @memberOf! ()
      *
@@ -1401,21 +1416,27 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    unhide(params?: Params$Resource$Players$Unhide, options?: MethodOptions):
-        GaxiosPromise<void>;
     unhide(
-        params: Params$Resource$Players$Unhide,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Players$Unhide,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     unhide(
-        params: Params$Resource$Players$Unhide,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Players$Unhide,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    unhide(
+      params: Params$Resource$Players$Unhide,
+      callback: BodyResponseCallback<void>
+    ): void;
     unhide(callback: BodyResponseCallback<void>): void;
     unhide(
-        paramsOrCallback?: Params$Resource$Players$Unhide|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Players$Unhide
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Unhide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1433,18 +1454,19 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1management/applications/{applicationId}/players/hidden/{playerId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/games/v1management/applications/{applicationId}/players/hidden/{playerId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['applicationId', 'playerId'],
         pathParams: ['applicationId', 'playerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1458,15 +1480,14 @@ export namespace gamesManagement_v1management {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The application ID from the Google Play developer console.
      */
     applicationId?: string;
     /**
-     * A player ID. A value of me may be used in place of the authenticated
-     * player's ID.
+     * A player ID. A value of me may be used in place of the authenticated player's ID.
      */
     playerId?: string;
   }
@@ -1474,19 +1495,17 @@ export namespace gamesManagement_v1management {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The application ID from the Google Play developer console.
      */
     applicationId?: string;
     /**
-     * A player ID. A value of me may be used in place of the authenticated
-     * player's ID.
+     * A player ID. A value of me may be used in place of the authenticated player's ID.
      */
     playerId?: string;
   }
-
 
   export class Resource$Quests {
     context: APIRequestContext;
@@ -1494,12 +1513,9 @@ export namespace gamesManagement_v1management {
       this.context = context;
     }
 
-
     /**
      * gamesManagement.quests.reset
-     * @desc Resets all player progress on the quest with the given ID for the
-     * currently authenticated player. This method is only accessible to
-     * whitelisted tester accounts for your application.
+     * @desc Resets all player progress on the quest with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
      * @alias gamesManagement.quests.reset
      * @memberOf! ()
      *
@@ -1509,21 +1525,27 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params?: Params$Resource$Quests$Reset, options?: MethodOptions):
-        GaxiosPromise<void>;
     reset(
-        params: Params$Resource$Quests$Reset,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Quests$Reset,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     reset(
-        params: Params$Resource$Quests$Reset,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Quests$Reset,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    reset(
+      params: Params$Resource$Quests$Reset,
+      callback: BodyResponseCallback<void>
+    ): void;
     reset(callback: BodyResponseCallback<void>): void;
     reset(
-        paramsOrCallback?: Params$Resource$Quests$Reset|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Quests$Reset
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Quests$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1541,16 +1563,18 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1management/quests/{questId}/reset')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1management/quests/{questId}/reset'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['questId'],
         pathParams: ['questId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1559,12 +1583,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.quests.resetAll
-     * @desc Resets all player progress on all quests for the currently
-     * authenticated player. This method is only accessible to whitelisted
-     * tester accounts for your application.
+     * @desc Resets all player progress on all quests for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
      * @alias gamesManagement.quests.resetAll
      * @memberOf! ()
      *
@@ -1573,21 +1594,27 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll(params?: Params$Resource$Quests$Resetall, options?: MethodOptions):
-        GaxiosPromise<void>;
     resetAll(
-        params: Params$Resource$Quests$Resetall,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Quests$Resetall,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetAll(
-        params: Params$Resource$Quests$Resetall,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Quests$Resetall,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    resetAll(
+      params: Params$Resource$Quests$Resetall,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetAll(callback: BodyResponseCallback<void>): void;
     resetAll(
-        paramsOrCallback?: Params$Resource$Quests$Resetall|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Quests$Resetall
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Quests$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1605,16 +1632,19 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1management/quests/reset')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1management/quests/reset').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1623,11 +1653,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.quests.resetAllForAllPlayers
-     * @desc Resets all draft quests for all players. This method is only
-     * available to user accounts for your developer console.
+     * @desc Resets all draft quests for all players. This method is only available to user accounts for your developer console.
      * @alias gamesManagement.quests.resetAllForAllPlayers
      * @memberOf! ()
      *
@@ -1637,23 +1665,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetAllForAllPlayers(
-        params?: Params$Resource$Quests$Resetallforallplayers,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Quests$Resetallforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetAllForAllPlayers(
-        params: Params$Resource$Quests$Resetallforallplayers,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Quests$Resetallforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetAllForAllPlayers(
-        params: Params$Resource$Quests$Resetallforallplayers,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Quests$Resetallforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetAllForAllPlayers(callback: BodyResponseCallback<void>): void;
     resetAllForAllPlayers(
-        paramsOrCallback?: Params$Resource$Quests$Resetallforallplayers|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Quests$Resetallforallplayers;
+      paramsOrCallback?:
+        | Params$Resource$Quests$Resetallforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Quests$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1670,17 +1703,18 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/games/v1management/quests/resetAllForAllPlayers')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1management/quests/resetAllForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1689,12 +1723,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.quests.resetForAllPlayers
-     * @desc Resets all player progress on the quest with the given ID for all
-     * players. This method is only available to user accounts for your
-     * developer console. Only draft quests can be reset.
+     * @desc Resets all player progress on the quest with the given ID for all players. This method is only available to user accounts for your developer console. Only draft quests can be reset.
      * @alias gamesManagement.quests.resetForAllPlayers
      * @memberOf! ()
      *
@@ -1705,23 +1736,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetForAllPlayers(
-        params?: Params$Resource$Quests$Resetforallplayers,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Quests$Resetforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetForAllPlayers(
-        params: Params$Resource$Quests$Resetforallplayers,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Quests$Resetforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetForAllPlayers(
-        params: Params$Resource$Quests$Resetforallplayers,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Quests$Resetforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetForAllPlayers(callback: BodyResponseCallback<void>): void;
     resetForAllPlayers(
-        paramsOrCallback?: Params$Resource$Quests$Resetforallplayers|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Quests$Resetforallplayers;
+      paramsOrCallback?:
+        | Params$Resource$Quests$Resetforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Quests$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1738,17 +1774,19 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1management/quests/{questId}/resetForAllPlayers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/games/v1management/quests/{questId}/resetForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['questId'],
         pathParams: ['questId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1757,12 +1795,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.quests.resetMultipleForAllPlayers
-     * @desc Resets quests with the given IDs for all players. This method is
-     * only available to user accounts for your developer console. Only draft
-     * quests may be reset.
+     * @desc Resets quests with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft quests may be reset.
      * @alias gamesManagement.quests.resetMultipleForAllPlayers
      * @memberOf! ()
      *
@@ -1773,23 +1808,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetMultipleForAllPlayers(
-        params?: Params$Resource$Quests$Resetmultipleforallplayers,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Quests$Resetmultipleforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetMultipleForAllPlayers(
-        params: Params$Resource$Quests$Resetmultipleforallplayers,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Quests$Resetmultipleforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetMultipleForAllPlayers(
-        params: Params$Resource$Quests$Resetmultipleforallplayers,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Quests$Resetmultipleforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetMultipleForAllPlayers(callback: BodyResponseCallback<void>): void;
     resetMultipleForAllPlayers(
-        paramsOrCallback?: Params$Resource$Quests$Resetmultipleforallplayers|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Quests$Resetmultipleforallplayers;
+      paramsOrCallback?:
+        | Params$Resource$Quests$Resetmultipleforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Quests$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1806,17 +1846,18 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1management/quests/resetMultipleForAllPlayers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1management/quests/resetMultipleForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1830,7 +1871,7 @@ export namespace gamesManagement_v1management {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the quest.
@@ -1841,34 +1882,33 @@ export namespace gamesManagement_v1management {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Quests$Resetallforallplayers extends
-      StandardParameters {
+  export interface Params$Resource$Quests$Resetallforallplayers
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Quests$Resetforallplayers extends
-      StandardParameters {
+  export interface Params$Resource$Quests$Resetforallplayers
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the quest.
      */
     questId?: string;
   }
-  export interface Params$Resource$Quests$Resetmultipleforallplayers extends
-      StandardParameters {
+  export interface Params$Resource$Quests$Resetmultipleforallplayers
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1876,19 +1916,15 @@ export namespace gamesManagement_v1management {
     requestBody?: Schema$QuestsResetMultipleForAllRequest;
   }
 
-
   export class Resource$Rooms {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * gamesManagement.rooms.reset
-     * @desc Reset all rooms for the currently authenticated player for your
-     * application. This method is only accessible to whitelisted tester
-     * accounts for your application.
+     * @desc Reset all rooms for the currently authenticated player for your application. This method is only accessible to whitelisted tester accounts for your application.
      * @alias gamesManagement.rooms.reset
      * @memberOf! ()
      *
@@ -1897,21 +1933,27 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params?: Params$Resource$Rooms$Reset, options?: MethodOptions):
-        GaxiosPromise<void>;
     reset(
-        params: Params$Resource$Rooms$Reset,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Rooms$Reset,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     reset(
-        params: Params$Resource$Rooms$Reset,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Rooms$Reset,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    reset(
+      params: Params$Resource$Rooms$Reset,
+      callback: BodyResponseCallback<void>
+    ): void;
     reset(callback: BodyResponseCallback<void>): void;
     reset(
-        paramsOrCallback?: Params$Resource$Rooms$Reset|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Rooms$Reset
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1929,16 +1971,19 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1management/rooms/reset')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1management/rooms/reset').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1947,12 +1992,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.rooms.resetForAllPlayers
-     * @desc Deletes rooms where the only room participants are from whitelisted
-     * tester accounts for your application. This method is only available to
-     * user accounts for your developer console.
+     * @desc Deletes rooms where the only room participants are from whitelisted tester accounts for your application. This method is only available to user accounts for your developer console.
      * @alias gamesManagement.rooms.resetForAllPlayers
      * @memberOf! ()
      *
@@ -1962,23 +2004,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetForAllPlayers(
-        params?: Params$Resource$Rooms$Resetforallplayers,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Rooms$Resetforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetForAllPlayers(
-        params: Params$Resource$Rooms$Resetforallplayers,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Rooms$Resetforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetForAllPlayers(
-        params: Params$Resource$Rooms$Resetforallplayers,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Rooms$Resetforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetForAllPlayers(callback: BodyResponseCallback<void>): void;
     resetForAllPlayers(
-        paramsOrCallback?: Params$Resource$Rooms$Resetforallplayers|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Rooms$Resetforallplayers;
+      paramsOrCallback?:
+        | Params$Resource$Rooms$Resetforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Rooms$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1995,16 +2042,18 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1management/rooms/resetForAllPlayers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1management/rooms/resetForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2018,16 +2067,15 @@ export namespace gamesManagement_v1management {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Rooms$Resetforallplayers extends
-      StandardParameters {
+  export interface Params$Resource$Rooms$Resetforallplayers
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-
 
   export class Resource$Scores {
     context: APIRequestContext;
@@ -2035,12 +2083,9 @@ export namespace gamesManagement_v1management {
       this.context = context;
     }
 
-
     /**
      * gamesManagement.scores.reset
-     * @desc Resets scores for the leaderboard with the given ID for the
-     * currently authenticated player. This method is only accessible to
-     * whitelisted tester accounts for your application.
+     * @desc Resets scores for the leaderboard with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
      * @alias gamesManagement.scores.reset
      * @memberOf! ()
      *
@@ -2050,25 +2095,33 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params?: Params$Resource$Scores$Reset, options?: MethodOptions):
-        GaxiosPromise<Schema$PlayerScoreResetResponse>;
     reset(
-        params: Params$Resource$Scores$Reset,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlayerScoreResetResponse>,
-        callback: BodyResponseCallback<Schema$PlayerScoreResetResponse>): void;
+      params?: Params$Resource$Scores$Reset,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlayerScoreResetResponse>;
     reset(
-        params: Params$Resource$Scores$Reset,
-        callback: BodyResponseCallback<Schema$PlayerScoreResetResponse>): void;
-    reset(callback: BodyResponseCallback<Schema$PlayerScoreResetResponse>):
-        void;
+      params: Params$Resource$Scores$Reset,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlayerScoreResetResponse>,
+      callback: BodyResponseCallback<Schema$PlayerScoreResetResponse>
+    ): void;
     reset(
-        paramsOrCallback?: Params$Resource$Scores$Reset|
-        BodyResponseCallback<Schema$PlayerScoreResetResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlayerScoreResetResponse>,
-        callback?: BodyResponseCallback<Schema$PlayerScoreResetResponse>):
-        void|GaxiosPromise<Schema$PlayerScoreResetResponse> {
+      params: Params$Resource$Scores$Reset,
+      callback: BodyResponseCallback<Schema$PlayerScoreResetResponse>
+    ): void;
+    reset(
+      callback: BodyResponseCallback<Schema$PlayerScoreResetResponse>
+    ): void;
+    reset(
+      paramsOrCallback?:
+        | Params$Resource$Scores$Reset
+        | BodyResponseCallback<Schema$PlayerScoreResetResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlayerScoreResetResponse>,
+      callback?: BodyResponseCallback<Schema$PlayerScoreResetResponse>
+    ): void | GaxiosPromise<Schema$PlayerScoreResetResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2086,18 +2139,19 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1management/leaderboards/{leaderboardId}/scores/reset')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/games/v1management/leaderboards/{leaderboardId}/scores/reset'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlayerScoreResetResponse>(parameters, callback);
@@ -2106,12 +2160,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.scores.resetAll
-     * @desc Resets all scores for all leaderboards for the currently
-     * authenticated players. This method is only accessible to whitelisted
-     * tester accounts for your application.
+     * @desc Resets all scores for all leaderboards for the currently authenticated players. This method is only accessible to whitelisted tester accounts for your application.
      * @alias gamesManagement.scores.resetAll
      * @memberOf! ()
      *
@@ -2120,28 +2171,33 @@ export namespace gamesManagement_v1management {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll(params?: Params$Resource$Scores$Resetall, options?: MethodOptions):
-        GaxiosPromise<Schema$PlayerScoreResetAllResponse>;
     resetAll(
-        params: Params$Resource$Scores$Resetall,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlayerScoreResetAllResponse>,
-        callback: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>):
-        void;
+      params?: Params$Resource$Scores$Resetall,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlayerScoreResetAllResponse>;
     resetAll(
-        params: Params$Resource$Scores$Resetall,
-        callback: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>):
-        void;
-    resetAll(callback:
-                 BodyResponseCallback<Schema$PlayerScoreResetAllResponse>):
-        void;
+      params: Params$Resource$Scores$Resetall,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlayerScoreResetAllResponse>,
+      callback: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>
+    ): void;
     resetAll(
-        paramsOrCallback?: Params$Resource$Scores$Resetall|
-        BodyResponseCallback<Schema$PlayerScoreResetAllResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlayerScoreResetAllResponse>,
-        callback?: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>):
-        void|GaxiosPromise<Schema$PlayerScoreResetAllResponse> {
+      params: Params$Resource$Scores$Resetall,
+      callback: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>
+    ): void;
+    resetAll(
+      callback: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>
+    ): void;
+    resetAll(
+      paramsOrCallback?:
+        | Params$Resource$Scores$Resetall
+        | BodyResponseCallback<Schema$PlayerScoreResetAllResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlayerScoreResetAllResponse>,
+      callback?: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>
+    ): void | GaxiosPromise<Schema$PlayerScoreResetAllResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2159,30 +2215,33 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1management/scores/reset')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1management/scores/reset').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlayerScoreResetAllResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$PlayerScoreResetAllResponse>(parameters);
       }
     }
 
-
     /**
      * gamesManagement.scores.resetAllForAllPlayers
-     * @desc Resets scores for all draft leaderboards for all players. This
-     * method is only available to user accounts for your developer console.
+     * @desc Resets scores for all draft leaderboards for all players. This method is only available to user accounts for your developer console.
      * @alias gamesManagement.scores.resetAllForAllPlayers
      * @memberOf! ()
      *
@@ -2192,23 +2251,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetAllForAllPlayers(
-        params?: Params$Resource$Scores$Resetallforallplayers,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Scores$Resetallforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetAllForAllPlayers(
-        params: Params$Resource$Scores$Resetallforallplayers,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Scores$Resetallforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetAllForAllPlayers(
-        params: Params$Resource$Scores$Resetallforallplayers,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Scores$Resetallforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetAllForAllPlayers(callback: BodyResponseCallback<void>): void;
     resetAllForAllPlayers(
-        paramsOrCallback?: Params$Resource$Scores$Resetallforallplayers|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Scores$Resetallforallplayers;
+      paramsOrCallback?:
+        | Params$Resource$Scores$Resetallforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Scores$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2225,17 +2289,18 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/games/v1management/scores/resetAllForAllPlayers')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1management/scores/resetAllForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2244,12 +2309,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.scores.resetForAllPlayers
-     * @desc Resets scores for the leaderboard with the given ID for all
-     * players. This method is only available to user accounts for your
-     * developer console. Only draft leaderboards can be reset.
+     * @desc Resets scores for the leaderboard with the given ID for all players. This method is only available to user accounts for your developer console. Only draft leaderboards can be reset.
      * @alias gamesManagement.scores.resetForAllPlayers
      * @memberOf! ()
      *
@@ -2260,23 +2322,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetForAllPlayers(
-        params?: Params$Resource$Scores$Resetforallplayers,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Scores$Resetforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetForAllPlayers(
-        params: Params$Resource$Scores$Resetforallplayers,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Scores$Resetforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetForAllPlayers(
-        params: Params$Resource$Scores$Resetforallplayers,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Scores$Resetforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetForAllPlayers(callback: BodyResponseCallback<void>): void;
     resetForAllPlayers(
-        paramsOrCallback?: Params$Resource$Scores$Resetforallplayers|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Scores$Resetforallplayers;
+      paramsOrCallback?:
+        | Params$Resource$Scores$Resetforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Scores$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2293,18 +2360,19 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1management/leaderboards/{leaderboardId}/scores/resetForAllPlayers')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/games/v1management/leaderboards/{leaderboardId}/scores/resetForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2313,12 +2381,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.scores.resetMultipleForAllPlayers
-     * @desc Resets scores for the leaderboards with the given IDs for all
-     * players. This method is only available to user accounts for your
-     * developer console. Only draft leaderboards may be reset.
+     * @desc Resets scores for the leaderboards with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft leaderboards may be reset.
      * @alias gamesManagement.scores.resetMultipleForAllPlayers
      * @memberOf! ()
      *
@@ -2329,23 +2394,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetMultipleForAllPlayers(
-        params?: Params$Resource$Scores$Resetmultipleforallplayers,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Scores$Resetmultipleforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetMultipleForAllPlayers(
-        params: Params$Resource$Scores$Resetmultipleforallplayers,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Scores$Resetmultipleforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetMultipleForAllPlayers(
-        params: Params$Resource$Scores$Resetmultipleforallplayers,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Scores$Resetmultipleforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetMultipleForAllPlayers(callback: BodyResponseCallback<void>): void;
     resetMultipleForAllPlayers(
-        paramsOrCallback?: Params$Resource$Scores$Resetmultipleforallplayers|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Scores$Resetmultipleforallplayers;
+      paramsOrCallback?:
+        | Params$Resource$Scores$Resetmultipleforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Scores$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2362,17 +2432,18 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1management/scores/resetMultipleForAllPlayers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1management/scores/resetMultipleForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2386,7 +2457,7 @@ export namespace gamesManagement_v1management {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the leaderboard.
@@ -2397,34 +2468,33 @@ export namespace gamesManagement_v1management {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Scores$Resetallforallplayers extends
-      StandardParameters {
+  export interface Params$Resource$Scores$Resetallforallplayers
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Scores$Resetforallplayers extends
-      StandardParameters {
+  export interface Params$Resource$Scores$Resetforallplayers
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the leaderboard.
      */
     leaderboardId?: string;
   }
-  export interface Params$Resource$Scores$Resetmultipleforallplayers extends
-      StandardParameters {
+  export interface Params$Resource$Scores$Resetmultipleforallplayers
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -2432,18 +2502,15 @@ export namespace gamesManagement_v1management {
     requestBody?: Schema$ScoresResetMultipleForAllRequest;
   }
 
-
   export class Resource$Turnbasedmatches {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * gamesManagement.turnBasedMatches.reset
-     * @desc Reset all turn-based match data for a user. This method is only
-     * accessible to whitelisted tester accounts for your application.
+     * @desc Reset all turn-based match data for a user. This method is only accessible to whitelisted tester accounts for your application.
      * @alias gamesManagement.turnBasedMatches.reset
      * @memberOf! ()
      *
@@ -2453,23 +2520,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     reset(
-        params?: Params$Resource$Turnbasedmatches$Reset,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Turnbasedmatches$Reset,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     reset(
-        params: Params$Resource$Turnbasedmatches$Reset,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Turnbasedmatches$Reset,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     reset(
-        params: Params$Resource$Turnbasedmatches$Reset,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Turnbasedmatches$Reset,
+      callback: BodyResponseCallback<void>
+    ): void;
     reset(callback: BodyResponseCallback<void>): void;
     reset(
-        paramsOrCallback?: Params$Resource$Turnbasedmatches$Reset|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Reset;
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Reset
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2486,16 +2558,18 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1management/turnbasedmatches/reset')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1management/turnbasedmatches/reset'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2504,12 +2578,9 @@ export namespace gamesManagement_v1management {
       }
     }
 
-
     /**
      * gamesManagement.turnBasedMatches.resetForAllPlayers
-     * @desc Deletes turn-based matches where the only match participants are
-     * from whitelisted tester accounts for your application. This method is
-     * only available to user accounts for your developer console.
+     * @desc Deletes turn-based matches where the only match participants are from whitelisted tester accounts for your application. This method is only available to user accounts for your developer console.
      * @alias gamesManagement.turnBasedMatches.resetForAllPlayers
      * @memberOf! ()
      *
@@ -2519,23 +2590,28 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetForAllPlayers(
-        params?: Params$Resource$Turnbasedmatches$Resetforallplayers,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Turnbasedmatches$Resetforallplayers,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resetForAllPlayers(
-        params: Params$Resource$Turnbasedmatches$Resetforallplayers,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Turnbasedmatches$Resetforallplayers,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetForAllPlayers(
-        params: Params$Resource$Turnbasedmatches$Resetforallplayers,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Turnbasedmatches$Resetforallplayers,
+      callback: BodyResponseCallback<void>
+    ): void;
     resetForAllPlayers(callback: BodyResponseCallback<void>): void;
     resetForAllPlayers(
-        paramsOrCallback?: Params$Resource$Turnbasedmatches$Resetforallplayers|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Turnbasedmatches$Resetforallplayers;
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Resetforallplayers
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2552,17 +2628,19 @@ export namespace gamesManagement_v1management {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1management/turnbasedmatches/resetForAllPlayers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/games/v1management/turnbasedmatches/resetForAllPlayers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2572,18 +2650,18 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Turnbasedmatches$Reset extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$Reset
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Turnbasedmatches$Resetforallplayers extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$Resetforallplayers
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
 }

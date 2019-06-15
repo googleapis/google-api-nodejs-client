@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace mirror_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace mirror_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -88,7 +97,10 @@ export namespace mirror_v1 {
     timeline: Resource$Timeline;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.accounts = new Resource$Accounts(this.context);
       this.contacts = new Resource$Contacts(this.context);
@@ -109,8 +121,7 @@ export namespace mirror_v1 {
     userData?: Schema$UserData[];
   }
   /**
-   * Represents media content, such as a photo, that can be attached to a
-   * timeline item.
+   * Represents media content, such as a photo, that can be attached to a timeline item.
    */
   export interface Schema$Attachment {
     /**
@@ -126,15 +137,12 @@ export namespace mirror_v1 {
      */
     id?: string;
     /**
-     * Indicates that the contentUrl is not available because the attachment
-     * content is still being processed. If the caller wishes to retrieve the
-     * content, it should try again later.
+     * Indicates that the contentUrl is not available because the attachment content is still being processed. If the caller wishes to retrieve the content, it should try again later.
      */
     isProcessingContent?: boolean;
   }
   /**
-   * A list of Attachments. This is the response from the server to GET requests
-   * on the attachments collection.
+   * A list of Attachments. This is the response from the server to GET requests on the attachments collection.
    */
   export interface Schema$AttachmentsListResponse {
     /**
@@ -155,11 +163,7 @@ export namespace mirror_v1 {
    */
   export interface Schema$Command {
     /**
-     * The type of operation this command corresponds to. Allowed values are: -
-     * TAKE_A_NOTE - Shares a timeline item with the transcription of user
-     * speech from the &quot;Take a note&quot; voice menu command.   -
-     * POST_AN_UPDATE - Shares a timeline item with the transcription of user
-     * speech from the &quot;Post an update&quot; voice menu command.
+     * The type of operation this command corresponds to. Allowed values are:   - TAKE_A_NOTE - Shares a timeline item with the transcription of user speech from the &quot;Take a note&quot; voice menu command.   - POST_AN_UPDATE - Shares a timeline item with the transcription of user speech from the &quot;Post an update&quot; voice menu command.
      */
     type?: string;
   }
@@ -168,17 +172,11 @@ export namespace mirror_v1 {
    */
   export interface Schema$Contact {
     /**
-     * A list of voice menu commands that a contact can handle. Glass shows up
-     * to three contacts for each voice menu command. If there are more than
-     * that, the three contacts with the highest priority are shown for that
-     * particular command.
+     * A list of voice menu commands that a contact can handle. Glass shows up to three contacts for each voice menu command. If there are more than that, the three contacts with the highest priority are shown for that particular command.
      */
     acceptCommands?: Schema$Command[];
     /**
-     * A list of MIME types that a contact supports. The contact will be shown
-     * to the user if any of its acceptTypes matches any of the types of the
-     * attachments on the item. If no acceptTypes are given, the contact will be
-     * shown for all items.
+     * A list of MIME types that a contact supports. The contact will be shown to the user if any of its acceptTypes matches any of the types of the attachments on the item. If no acceptTypes are given, the contact will be shown for all items.
      */
     acceptTypes?: string[];
     /**
@@ -186,14 +184,11 @@ export namespace mirror_v1 {
      */
     displayName?: string;
     /**
-     * An ID for this contact. This is generated by the application and is
-     * treated as an opaque token.
+     * An ID for this contact. This is generated by the application and is treated as an opaque token.
      */
     id?: string;
     /**
-     * Set of image URLs to display for a contact. Most contacts will have a
-     * single image, but a &quot;group&quot; contact may include up to 8 image
-     * URLs and they will be resized and cropped into a mosaic on the client.
+     * Set of image URLs to display for a contact. Most contacts will have a single image, but a &quot;group&quot; contact may include up to 8 image URLs and they will be resized and cropped into a mosaic on the client.
      */
     imageUrls?: string[];
     /**
@@ -201,44 +196,32 @@ export namespace mirror_v1 {
      */
     kind?: string;
     /**
-     * Primary phone number for the contact. This can be a fully-qualified
-     * number, with country calling code and area code, or a local number.
+     * Primary phone number for the contact. This can be a fully-qualified number, with country calling code and area code, or a local number.
      */
     phoneNumber?: string;
     /**
-     * Priority for the contact to determine ordering in a list of contacts.
-     * Contacts with higher priorities will be shown before ones with lower
-     * priorities.
+     * Priority for the contact to determine ordering in a list of contacts. Contacts with higher priorities will be shown before ones with lower priorities.
      */
     priority?: number;
     /**
-     * A list of sharing features that a contact can handle. Allowed values are:
-     * - ADD_CAPTION
+     * A list of sharing features that a contact can handle. Allowed values are:   - ADD_CAPTION
      */
     sharingFeatures?: string[];
     /**
-     * The ID of the application that created this contact. This is populated by
-     * the API
+     * The ID of the application that created this contact. This is populated by the API
      */
     source?: string;
     /**
-     * Name of this contact as it should be pronounced. If this contact&#39;s
-     * name must be spoken as part of a voice disambiguation menu, this name is
-     * used as the expected pronunciation. This is useful for contact names with
-     * unpronounceable characters or whose display spelling is otherwise not
-     * phonetic.
+     * Name of this contact as it should be pronounced. If this contact&#39;s name must be spoken as part of a voice disambiguation menu, this name is used as the expected pronunciation. This is useful for contact names with unpronounceable characters or whose display spelling is otherwise not phonetic.
      */
     speakableName?: string;
     /**
-     * The type for this contact. This is used for sorting in UIs. Allowed
-     * values are:   - INDIVIDUAL - Represents a single person. This is the
-     * default.  - GROUP - Represents more than a single person.
+     * The type for this contact. This is used for sorting in UIs. Allowed values are:   - INDIVIDUAL - Represents a single person. This is the default.  - GROUP - Represents more than a single person.
      */
     type?: string;
   }
   /**
-   * A list of Contacts representing contacts. This is the response from the
-   * server to GET requests on the contacts collection.
+   * A list of Contacts representing contacts. This is the response from the server to GET requests on the contacts collection.
    */
   export interface Schema$ContactsListResponse {
     /**
@@ -263,8 +246,7 @@ export namespace mirror_v1 {
      */
     address?: string;
     /**
-     * The name to be displayed. This may be a business name or a user-defined
-     * place, such as &quot;Home&quot;.
+     * The name to be displayed. This may be a business name or a user-defined place, such as &quot;Home&quot;.
      */
     displayName?: string;
     /**
@@ -284,14 +266,12 @@ export namespace mirror_v1 {
      */
     longitude?: number;
     /**
-     * The time at which this location was captured, formatted according to RFC
-     * 3339.
+     * The time at which this location was captured, formatted according to RFC 3339.
      */
     timestamp?: string;
   }
   /**
-   * A list of Locations. This is the response from the server to GET requests
-   * on the locations collection.
+   * A list of Locations. This is the response from the server to GET requests on the locations collection.
    */
   export interface Schema$LocationsListResponse {
     /**
@@ -308,67 +288,27 @@ export namespace mirror_v1 {
    */
   export interface Schema$MenuItem {
     /**
-     * Controls the behavior when the user picks the menu option. Allowed values
-     * are:   - CUSTOM - Custom action set by the service. When the user selects
-     * this menuItem, the API triggers a notification to your callbackUrl with
-     * the userActions.type set to CUSTOM and the userActions.payload set to the
-     * ID of this menu item. This is the default value.  - Built-in actions:   -
-     * REPLY - Initiate a reply to the timeline item using the voice recording
-     * UI. The creator attribute must be set in the timeline item for this menu
-     * to be available.  - REPLY_ALL - Same behavior as REPLY. The original
-     * timeline item&#39;s recipients will be added to the reply item.  - DELETE
-     * - Delete the timeline item.  - SHARE - Share the timeline item with the
-     * available contacts.  - READ_ALOUD - Read the timeline item&#39;s
-     * speakableText aloud; if this field is not set, read the text field; if
-     * none of those fields are set, this menu item is ignored.  -
-     * GET_MEDIA_INPUT - Allow users to provide media payloads to Glassware from
-     * a menu item (currently, only transcribed text from voice input is
-     * supported). Subscribe to notifications when users invoke this menu item
-     * to receive the timeline item ID. Retrieve the media from the timeline
-     * item in the payload property.  - VOICE_CALL - Initiate a phone call using
-     * the timeline item&#39;s creator.phoneNumber attribute as recipient.  -
-     * NAVIGATE - Navigate to the timeline item&#39;s location.  - TOGGLE_PINNED
-     * - Toggle the isPinned state of the timeline item.  - OPEN_URI - Open the
-     * payload of the menu item in the browser.  - PLAY_VIDEO - Open the payload
-     * of the menu item in the Glass video player.  - SEND_MESSAGE - Initiate
-     * sending a message to the timeline item&#39;s creator:   - If the
-     * creator.phoneNumber is set and Glass is connected to an Android phone,
-     * the message is an SMS.  - Otherwise, if the creator.email is set, the
-     * message is an email.
+     * Controls the behavior when the user picks the menu option. Allowed values are:   - CUSTOM - Custom action set by the service. When the user selects this menuItem, the API triggers a notification to your callbackUrl with the userActions.type set to CUSTOM and the userActions.payload set to the ID of this menu item. This is the default value.  - Built-in actions:   - REPLY - Initiate a reply to the timeline item using the voice recording UI. The creator attribute must be set in the timeline item for this menu to be available.  - REPLY_ALL - Same behavior as REPLY. The original timeline item&#39;s recipients will be added to the reply item.  - DELETE - Delete the timeline item.  - SHARE - Share the timeline item with the available contacts.  - READ_ALOUD - Read the timeline item&#39;s speakableText aloud; if this field is not set, read the text field; if none of those fields are set, this menu item is ignored.  - GET_MEDIA_INPUT - Allow users to provide media payloads to Glassware from a menu item (currently, only transcribed text from voice input is supported). Subscribe to notifications when users invoke this menu item to receive the timeline item ID. Retrieve the media from the timeline item in the payload property.  - VOICE_CALL - Initiate a phone call using the timeline item&#39;s creator.phoneNumber attribute as recipient.  - NAVIGATE - Navigate to the timeline item&#39;s location.  - TOGGLE_PINNED - Toggle the isPinned state of the timeline item.  - OPEN_URI - Open the payload of the menu item in the browser.  - PLAY_VIDEO - Open the payload of the menu item in the Glass video player.  - SEND_MESSAGE - Initiate sending a message to the timeline item&#39;s creator:   - If the creator.phoneNumber is set and Glass is connected to an Android phone, the message is an SMS.  - Otherwise, if the creator.email is set, the message is an email.
      */
     action?: string;
     /**
-     * The ContextualMenus.Command associated with this MenuItem (e.g.
-     * READ_ALOUD). The voice label for this command will be displayed in the
-     * voice menu and the touch label will be displayed in the touch menu. Note
-     * that the default menu value&#39;s display name will be overriden if you
-     * specify this property. Values that do not correspond to a
-     * ContextualMenus.Command name will be ignored.
+     * The ContextualMenus.Command associated with this MenuItem (e.g. READ_ALOUD). The voice label for this command will be displayed in the voice menu and the touch label will be displayed in the touch menu. Note that the default menu value&#39;s display name will be overriden if you specify this property. Values that do not correspond to a ContextualMenus.Command name will be ignored.
      */
     contextual_command?: string;
     /**
-     * The ID for this menu item. This is generated by the application and is
-     * treated as an opaque token.
+     * The ID for this menu item. This is generated by the application and is treated as an opaque token.
      */
     id?: string;
     /**
-     * A generic payload whose meaning changes depending on this MenuItem&#39;s
-     * action.   - When the action is OPEN_URI, the payload is the URL of the
-     * website to view.  - When the action is PLAY_VIDEO, the payload is the
-     * streaming URL of the video  - When the action is GET_MEDIA_INPUT, the
-     * payload is the text transcription of a user&#39;s speech input
+     * A generic payload whose meaning changes depending on this MenuItem&#39;s action.   - When the action is OPEN_URI, the payload is the URL of the website to view.  - When the action is PLAY_VIDEO, the payload is the streaming URL of the video  - When the action is GET_MEDIA_INPUT, the payload is the text transcription of a user&#39;s speech input
      */
     payload?: string;
     /**
-     * If set to true on a CUSTOM menu item, that item will be removed from the
-     * menu after it is selected.
+     * If set to true on a CUSTOM menu item, that item will be removed from the menu after it is selected.
      */
     removeWhenSelected?: boolean;
     /**
-     * For CUSTOM items, a list of values controlling the appearance of the menu
-     * item in each of its states. A value for the DEFAULT state must be
-     * provided. If the PENDING or CONFIRMED states are missing, they will not
-     * be shown.
+     * For CUSTOM items, a list of values controlling the appearance of the menu item in each of its states. A value for the DEFAULT state must be provided. If the PENDING or CONFIRMED states are missing, they will not be shown.
      */
     values?: Schema$MenuValue[];
   }
@@ -377,9 +317,7 @@ export namespace mirror_v1 {
    */
   export interface Schema$MenuValue {
     /**
-     * The name to display for the menu item. If you specify this property for a
-     * built-in menu item, the default contextual voice command for that menu
-     * item is not shown.
+     * The name to display for the menu item. If you specify this property for a built-in menu item, the default contextual voice command for that menu item is not shown.
      */
     displayName?: string;
     /**
@@ -387,11 +325,7 @@ export namespace mirror_v1 {
      */
     iconUrl?: string;
     /**
-     * The state that this value applies to. Allowed values are:   - DEFAULT -
-     * Default value shown when displayed in the menuItems list.  - PENDING -
-     * Value shown when the menuItem has been selected by the user but can still
-     * be cancelled.  - CONFIRMED - Value shown when the menuItem has been
-     * selected by the user and can no longer be cancelled.
+     * The state that this value applies to. Allowed values are:   - DEFAULT - Default value shown when displayed in the menuItems list.  - PENDING - Value shown when the menuItem has been selected by the user but can still be cancelled.  - CONFIRMED - Value shown when the menuItem has been selected by the user and can no longer be cancelled.
      */
     state?: string;
   }
@@ -416,13 +350,11 @@ export namespace mirror_v1 {
      */
     userActions?: Schema$UserAction[];
     /**
-     * The user token provided by the service when it subscribed for
-     * notifications.
+     * The user token provided by the service when it subscribed for notifications.
      */
     userToken?: string;
     /**
-     * The secret verify token provided by the service when it subscribed for
-     * notifications.
+     * The secret verify token provided by the service when it subscribed for notifications.
      */
     verifyToken?: string;
   }
@@ -435,9 +367,7 @@ export namespace mirror_v1 {
      */
     deliveryTime?: string;
     /**
-     * Describes how important the notification is. Allowed values are:   -
-     * DEFAULT - Notifications of default importance. A chime will be played to
-     * alert users.
+     * Describes how important the notification is. Allowed values are:   - DEFAULT - Notifications of default importance. A chime will be played to alert users.
      */
     level?: string;
   }
@@ -446,11 +376,7 @@ export namespace mirror_v1 {
    */
   export interface Schema$Setting {
     /**
-     * The setting&#39;s ID. The following IDs are valid:   - locale - The key
-     * to the user’s language/locale (BCP 47 identifier) that Glassware should
-     * use to render localized content.   - timezone - The key to the user’s
-     * current time zone region as defined in the tz database. Example:
-     * America/Los_Angeles.
+     * The setting&#39;s ID. The following IDs are valid:   - locale - The key to the user’s language/locale (BCP 47 identifier) that Glassware should use to render localized content.   - timezone - The key to the user’s current time zone region as defined in the tz database. Example: America/Los_Angeles.
      */
     id?: string;
     /**
@@ -467,14 +393,11 @@ export namespace mirror_v1 {
    */
   export interface Schema$Subscription {
     /**
-     * The URL where notifications should be delivered (must start with
-     * https://).
+     * The URL where notifications should be delivered (must start with https://).
      */
     callbackUrl?: string;
     /**
-     * The collection to subscribe to. Allowed values are:   - timeline -
-     * Changes in the timeline including insertion, deletion, and updates.  -
-     * locations - Location updates.  - settings - Settings updates.
+     * The collection to subscribe to. Allowed values are:   - timeline - Changes in the timeline including insertion, deletion, and updates.  - locations - Location updates.  - settings - Settings updates.
      */
     collection?: string;
     /**
@@ -486,37 +409,28 @@ export namespace mirror_v1 {
      */
     kind?: string;
     /**
-     * Container object for notifications. This is not populated in the
-     * Subscription resource.
+     * Container object for notifications. This is not populated in the Subscription resource.
      */
     notification?: Schema$Notification;
     /**
-     * A list of operations that should be subscribed to. An empty list
-     * indicates that all operations on the collection should be subscribed to.
-     * Allowed values are:   - UPDATE - The item has been updated.  - INSERT - A
-     * new item has been inserted.  - DELETE - The item has been deleted.  -
-     * MENU_ACTION - A custom menu item has been triggered by the user.
+     * A list of operations that should be subscribed to. An empty list indicates that all operations on the collection should be subscribed to. Allowed values are:   - UPDATE - The item has been updated.  - INSERT - A new item has been inserted.  - DELETE - The item has been deleted.  - MENU_ACTION - A custom menu item has been triggered by the user.
      */
     operation?: string[];
     /**
-     * The time at which this subscription was last modified, formatted
-     * according to RFC 3339.
+     * The time at which this subscription was last modified, formatted according to RFC 3339.
      */
     updated?: string;
     /**
-     * An opaque token sent to the subscriber in notifications so that it can
-     * determine the ID of the user.
+     * An opaque token sent to the subscriber in notifications so that it can determine the ID of the user.
      */
     userToken?: string;
     /**
-     * A secret token sent to the subscriber in notifications so that it can
-     * verify that the notification was generated by Google.
+     * A secret token sent to the subscriber in notifications so that it can verify that the notification was generated by Google.
      */
     verifyToken?: string;
   }
   /**
-   * A list of Subscriptions. This is the response from the server to GET
-   * requests on the subscription collection.
+   * A list of Subscriptions. This is the response from the server to GET requests on the subscription collection.
    */
   export interface Schema$SubscriptionsListResponse {
     /**
@@ -529,29 +443,19 @@ export namespace mirror_v1 {
     kind?: string;
   }
   /**
-   * Each item in the user&#39;s timeline is represented as a TimelineItem JSON
-   * structure, described below.
+   * Each item in the user&#39;s timeline is represented as a TimelineItem JSON structure, described below.
    */
   export interface Schema$TimelineItem {
     /**
-     * A list of media attachments associated with this item. As a convenience,
-     * you can refer to attachments in your HTML payloads with the attachment or
-     * cid scheme. For example:   - attachment: &lt;img
-     * src=&quot;attachment:attachment_index&quot;&gt; where attachment_index is
-     * the 0-based index of this array.  - cid: &lt;img
-     * src=&quot;cid:attachment_id&quot;&gt; where attachment_id is the ID of
-     * the attachment.
+     * A list of media attachments associated with this item. As a convenience, you can refer to attachments in your HTML payloads with the attachment or cid scheme. For example:   - attachment: &lt;img src=&quot;attachment:attachment_index&quot;&gt; where attachment_index is the 0-based index of this array.  - cid: &lt;img src=&quot;cid:attachment_id&quot;&gt; where attachment_id is the ID of the attachment.
      */
     attachments?: Schema$Attachment[];
     /**
-     * The bundle ID for this item. Services can specify a bundleId to group
-     * many items together. They appear under a single top-level item on the
-     * device.
+     * The bundle ID for this item. Services can specify a bundleId to group many items together. They appear under a single top-level item on the device.
      */
     bundleId?: string;
     /**
-     * A canonical URL pointing to the canonical/high quality version of the
-     * data represented by the timeline item.
+     * A canonical URL pointing to the canonical/high quality version of the data represented by the timeline item.
      */
     canonicalUrl?: string;
     /**
@@ -563,11 +467,7 @@ export namespace mirror_v1 {
      */
     creator?: Schema$Contact;
     /**
-     * The time that should be displayed when this item is viewed in the
-     * timeline, formatted according to RFC 3339. This user&#39;s timeline is
-     * sorted chronologically on display time, so this will also determine where
-     * the item is displayed in the timeline. If not set by the service, the
-     * display time defaults to the updated time.
+     * The time that should be displayed when this item is viewed in the timeline, formatted according to RFC 3339. This user&#39;s timeline is sorted chronologically on display time, so this will also determine where the item is displayed in the timeline. If not set by the service, the display time defaults to the updated time.
      */
     displayTime?: string;
     /**
@@ -575,19 +475,7 @@ export namespace mirror_v1 {
      */
     etag?: string;
     /**
-     * HTML content for this item. If both text and html are provided for an
-     * item, the html will be rendered in the timeline. Allowed HTML elements -
-     * You can use these elements in your timeline cards.   - Headers: h1, h2,
-     * h3, h4, h5, h6  - Images: img  - Lists: li, ol, ul  - HTML5 semantics:
-     * article, aside, details, figure, figcaption, footer, header, nav,
-     * section, summary, time  - Structural: blockquote, br, div, hr, p, span  -
-     * Style: b, big, center, em, i, u, s, small, strike, strong, style, sub,
-     * sup  - Tables: table, tbody, td, tfoot, th, thead, tr   Blocked HTML
-     * elements: These elements and their contents are removed from HTML
-     * payloads.   - Document headers: head, title  - Embeds: audio, embed,
-     * object, source, video  - Frames: frame, frameset  - Scripting: applet,
-     * script   Other elements: Any elements that aren&#39;t listed are removed,
-     * but their contents are preserved.
+     * HTML content for this item. If both text and html are provided for an item, the html will be rendered in the timeline. Allowed HTML elements - You can use these elements in your timeline cards.   - Headers: h1, h2, h3, h4, h5, h6  - Images: img  - Lists: li, ol, ul  - HTML5 semantics: article, aside, details, figure, figcaption, footer, header, nav, section, summary, time  - Structural: blockquote, br, div, hr, p, span  - Style: b, big, center, em, i, u, s, small, strike, strong, style, sub, sup  - Tables: table, tbody, td, tfoot, th, thead, tr   Blocked HTML elements: These elements and their contents are removed from HTML payloads.   - Document headers: head, title  - Embeds: audio, embed, object, source, video  - Frames: frame, frameset  - Scripting: applet, script   Other elements: Any elements that aren&#39;t listed are removed, but their contents are preserved.
      */
     html?: string;
     /**
@@ -595,32 +483,19 @@ export namespace mirror_v1 {
      */
     id?: string;
     /**
-     * If this item was generated as a reply to another item, this field will be
-     * set to the ID of the item being replied to. This can be used to attach a
-     * reply to the appropriate conversation or post.
+     * If this item was generated as a reply to another item, this field will be set to the ID of the item being replied to. This can be used to attach a reply to the appropriate conversation or post.
      */
     inReplyTo?: string;
     /**
-     * Whether this item is a bundle cover.  If an item is marked as a bundle
-     * cover, it will be the entry point to the bundle of items that have the
-     * same bundleId as that item. It will be shown only on the main timeline —
-     * not within the opened bundle.  On the main timeline, items that are shown
-     * are:   - Items that have isBundleCover set to true   - Items that do not
-     * have a bundleId  In a bundle sub-timeline, items that are shown are:   -
-     * Items that have the bundleId in question AND isBundleCover set to false
+     * Whether this item is a bundle cover.  If an item is marked as a bundle cover, it will be the entry point to the bundle of items that have the same bundleId as that item. It will be shown only on the main timeline — not within the opened bundle.  On the main timeline, items that are shown are:   - Items that have isBundleCover set to true   - Items that do not have a bundleId  In a bundle sub-timeline, items that are shown are:   - Items that have the bundleId in question AND isBundleCover set to false
      */
     isBundleCover?: boolean;
     /**
-     * When true, indicates this item is deleted, and only the ID property is
-     * set.
+     * When true, indicates this item is deleted, and only the ID property is set.
      */
     isDeleted?: boolean;
     /**
-     * When true, indicates this item is pinned, which means it&#39;s grouped
-     * alongside &quot;active&quot; items like navigation and hangouts, on the
-     * opposite side of the home screen from historical (non-pinned) timeline
-     * items. You can allow the user to toggle the value of this property with
-     * the TOGGLE_PINNED built-in menu item.
+     * When true, indicates this item is pinned, which means it&#39;s grouped alongside &quot;active&quot; items like navigation and hangouts, on the opposite side of the home screen from historical (non-pinned) timeline items. You can allow the user to toggle the value of this property with the TOGGLE_PINNED built-in menu item.
      */
     isPinned?: boolean;
     /**
@@ -632,19 +507,15 @@ export namespace mirror_v1 {
      */
     location?: Schema$Location;
     /**
-     * A list of menu items that will be presented to the user when this item is
-     * selected in the timeline.
+     * A list of menu items that will be presented to the user when this item is selected in the timeline.
      */
     menuItems?: Schema$MenuItem[];
     /**
-     * Controls how notifications for this item are presented on the device. If
-     * this is missing, no notification will be generated.
+     * Controls how notifications for this item are presented on the device. If this is missing, no notification will be generated.
      */
     notification?: Schema$NotificationConfig;
     /**
-     * For pinned items, this determines the order in which the item is
-     * displayed in the timeline, with a higher score appearing closer to the
-     * clock. Note: setting this field is currently not supported.
+     * For pinned items, this determines the order in which the item is displayed in the timeline, with a higher score appearing closer to the clock. Note: setting this field is currently not supported.
      */
     pinScore?: number;
     /**
@@ -656,30 +527,15 @@ export namespace mirror_v1 {
      */
     selfLink?: string;
     /**
-     * Opaque string you can use to map a timeline item to data in your own
-     * service.
+     * Opaque string you can use to map a timeline item to data in your own service.
      */
     sourceItemId?: string;
     /**
-     * The speakable version of the content of this item. Along with the
-     * READ_ALOUD menu item, use this field to provide text that would be
-     * clearer when read aloud, or to provide extended information to what is
-     * displayed visually on Glass.  Glassware should also specify the
-     * speakableType field, which will be spoken before this text in cases where
-     * the additional context is useful, for example when the user requests that
-     * the item be read aloud following a notification.
+     * The speakable version of the content of this item. Along with the READ_ALOUD menu item, use this field to provide text that would be clearer when read aloud, or to provide extended information to what is displayed visually on Glass.  Glassware should also specify the speakableType field, which will be spoken before this text in cases where the additional context is useful, for example when the user requests that the item be read aloud following a notification.
      */
     speakableText?: string;
     /**
-     * A speakable description of the type of this item. This will be announced
-     * to the user prior to reading the content of the item in cases where the
-     * additional context is useful, for example when the user requests that the
-     * item be read aloud following a notification.  This should be a short,
-     * simple noun phrase such as &quot;Email&quot;, &quot;Text message&quot;,
-     * or &quot;Daily Planet News Update&quot;.  Glassware are encouraged to
-     * populate this field for every timeline item, even if the item does not
-     * contain speakableText or text so that the user can learn the type of the
-     * item without looking at the screen.
+     * A speakable description of the type of this item. This will be announced to the user prior to reading the content of the item in cases where the additional context is useful, for example when the user requests that the item be read aloud following a notification.  This should be a short, simple noun phrase such as &quot;Email&quot;, &quot;Text message&quot;, or &quot;Daily Planet News Update&quot;.  Glassware are encouraged to populate this field for every timeline item, even if the item does not contain speakableText or text so that the user can learn the type of the item without looking at the screen.
      */
     speakableType?: string;
     /**
@@ -691,14 +547,12 @@ export namespace mirror_v1 {
      */
     title?: string;
     /**
-     * The time at which this item was last modified, formatted according to RFC
-     * 3339.
+     * The time at which this item was last modified, formatted according to RFC 3339.
      */
     updated?: string;
   }
   /**
-   * A list of timeline items. This is the response from the server to GET
-   * requests on the timeline collection.
+   * A list of timeline items. This is the response from the server to GET requests on the timeline collection.
    */
   export interface Schema$TimelineListResponse {
     /**
@@ -710,8 +564,7 @@ export namespace mirror_v1 {
      */
     kind?: string;
     /**
-     * The next page token. Provide this as the pageToken parameter in the
-     * request to retrieve the next page of results.
+     * The next page token. Provide this as the pageToken parameter in the request to retrieve the next page of results.
      */
     nextPageToken?: string;
   }
@@ -720,19 +573,11 @@ export namespace mirror_v1 {
    */
   export interface Schema$UserAction {
     /**
-     * An optional payload for the action.  For actions of type CUSTOM, this is
-     * the ID of the custom menu item that was selected.
+     * An optional payload for the action.  For actions of type CUSTOM, this is the ID of the custom menu item that was selected.
      */
     payload?: string;
     /**
-     * The type of action. The value of this can be:   - SHARE - the user shared
-     * an item.  - REPLY - the user replied to an item.  - REPLY_ALL - the user
-     * replied to all recipients of an item.  - CUSTOM - the user selected a
-     * custom menu item on the timeline item.  - DELETE - the user deleted the
-     * item.  - PIN - the user pinned the item.  - UNPIN - the user unpinned the
-     * item.  - LAUNCH - the user initiated a voice command.  In the future,
-     * additional types may be added. UserActions with unrecognized types should
-     * be ignored.
+     * The type of action. The value of this can be:   - SHARE - the user shared an item.  - REPLY - the user replied to an item.  - REPLY_ALL - the user replied to all recipients of an item.  - CUSTOM - the user selected a custom menu item on the timeline item.  - DELETE - the user deleted the item.  - PIN - the user pinned the item.  - UNPIN - the user unpinned the item.  - LAUNCH - the user initiated a voice command.  In the future, additional types may be added. UserActions with unrecognized types should be ignored.
      */
     type?: string;
   }
@@ -741,13 +586,11 @@ export namespace mirror_v1 {
     value?: string;
   }
 
-
   export class Resource$Accounts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * mirror.accounts.insert
@@ -764,22 +607,27 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Accounts$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Account>;
     insert(
-        params: Params$Resource$Accounts$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params?: Params$Resource$Accounts$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Account>;
     insert(
-        params: Params$Resource$Accounts$Insert,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params: Params$Resource$Accounts$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    insert(
+      params: Params$Resource$Accounts$Insert,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Account>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Accounts$Insert|
-        BodyResponseCallback<Schema$Account>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>):
-        void|GaxiosPromise<Schema$Account> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Insert
+        | BodyResponseCallback<Schema$Account>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>
+    ): void | GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -797,18 +645,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/mirror/v1/accounts/{userToken}/{accountType}/{accountName}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/mirror/v1/accounts/{userToken}/{accountType}/{accountName}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userToken', 'accountType', 'accountName'],
         pathParams: ['accountName', 'accountType', 'userToken'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -822,7 +671,7 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the account to be passed to the Android Account Manager.
@@ -843,13 +692,11 @@ export namespace mirror_v1 {
     requestBody?: Schema$Account;
   }
 
-
   export class Resource$Contacts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * mirror.contacts.delete
@@ -863,21 +710,27 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Contacts$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Contacts$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Contacts$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Contacts$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Contacts$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Contacts$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Contacts$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Contacts$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Contacts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -895,16 +748,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/contacts/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/contacts/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -912,7 +768,6 @@ export namespace mirror_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * mirror.contacts.get
@@ -926,19 +781,27 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Contacts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Contact>;
-    get(params: Params$Resource$Contacts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Contact>,
-        callback: BodyResponseCallback<Schema$Contact>): void;
-    get(params: Params$Resource$Contacts$Get,
-        callback: BodyResponseCallback<Schema$Contact>): void;
+    get(
+      params?: Params$Resource$Contacts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Contact>;
+    get(
+      params: Params$Resource$Contacts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Contact>,
+      callback: BodyResponseCallback<Schema$Contact>
+    ): void;
+    get(
+      params: Params$Resource$Contacts$Get,
+      callback: BodyResponseCallback<Schema$Contact>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Contact>): void;
-    get(paramsOrCallback?: Params$Resource$Contacts$Get|
-        BodyResponseCallback<Schema$Contact>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Contact>,
-        callback?: BodyResponseCallback<Schema$Contact>):
-        void|GaxiosPromise<Schema$Contact> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Contacts$Get
+        | BodyResponseCallback<Schema$Contact>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Contact>,
+      callback?: BodyResponseCallback<Schema$Contact>
+    ): void | GaxiosPromise<Schema$Contact> {
       let params = (paramsOrCallback || {}) as Params$Resource$Contacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -956,16 +819,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/contacts/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/contacts/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Contact>(parameters, callback);
@@ -973,7 +839,6 @@ export namespace mirror_v1 {
         return createAPIRequest<Schema$Contact>(parameters);
       }
     }
-
 
     /**
      * mirror.contacts.insert
@@ -987,22 +852,27 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Contacts$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Contact>;
     insert(
-        params: Params$Resource$Contacts$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Contact>,
-        callback: BodyResponseCallback<Schema$Contact>): void;
+      params?: Params$Resource$Contacts$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Contact>;
     insert(
-        params: Params$Resource$Contacts$Insert,
-        callback: BodyResponseCallback<Schema$Contact>): void;
+      params: Params$Resource$Contacts$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Contact>,
+      callback: BodyResponseCallback<Schema$Contact>
+    ): void;
+    insert(
+      params: Params$Resource$Contacts$Insert,
+      callback: BodyResponseCallback<Schema$Contact>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Contact>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Contacts$Insert|
-        BodyResponseCallback<Schema$Contact>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Contact>,
-        callback?: BodyResponseCallback<Schema$Contact>):
-        void|GaxiosPromise<Schema$Contact> {
+      paramsOrCallback?:
+        | Params$Resource$Contacts$Insert
+        | BodyResponseCallback<Schema$Contact>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Contact>,
+      callback?: BodyResponseCallback<Schema$Contact>
+    ): void | GaxiosPromise<Schema$Contact> {
       let params = (paramsOrCallback || {}) as Params$Resource$Contacts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1020,16 +890,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/contacts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/contacts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Contact>(parameters, callback);
@@ -1037,7 +910,6 @@ export namespace mirror_v1 {
         return createAPIRequest<Schema$Contact>(parameters);
       }
     }
-
 
     /**
      * mirror.contacts.list
@@ -1050,24 +922,31 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Contacts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ContactsListResponse>;
     list(
-        params: Params$Resource$Contacts$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ContactsListResponse>,
-        callback: BodyResponseCallback<Schema$ContactsListResponse>): void;
+      params?: Params$Resource$Contacts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContactsListResponse>;
     list(
-        params: Params$Resource$Contacts$List,
-        callback: BodyResponseCallback<Schema$ContactsListResponse>): void;
+      params: Params$Resource$Contacts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContactsListResponse>,
+      callback: BodyResponseCallback<Schema$ContactsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Contacts$List,
+      callback: BodyResponseCallback<Schema$ContactsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ContactsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Contacts$List|
-        BodyResponseCallback<Schema$ContactsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContactsListResponse>,
-        callback?: BodyResponseCallback<Schema$ContactsListResponse>):
-        void|GaxiosPromise<Schema$ContactsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Contacts$List
+        | BodyResponseCallback<Schema$ContactsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContactsListResponse>,
+      callback?: BodyResponseCallback<Schema$ContactsListResponse>
+    ): void | GaxiosPromise<Schema$ContactsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Contacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1085,16 +964,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/contacts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/contacts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContactsListResponse>(parameters, callback);
@@ -1102,7 +984,6 @@ export namespace mirror_v1 {
         return createAPIRequest<Schema$ContactsListResponse>(parameters);
       }
     }
-
 
     /**
      * mirror.contacts.patch
@@ -1117,22 +998,27 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Contacts$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Contact>;
     patch(
-        params: Params$Resource$Contacts$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Contact>,
-        callback: BodyResponseCallback<Schema$Contact>): void;
+      params?: Params$Resource$Contacts$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Contact>;
     patch(
-        params: Params$Resource$Contacts$Patch,
-        callback: BodyResponseCallback<Schema$Contact>): void;
+      params: Params$Resource$Contacts$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Contact>,
+      callback: BodyResponseCallback<Schema$Contact>
+    ): void;
+    patch(
+      params: Params$Resource$Contacts$Patch,
+      callback: BodyResponseCallback<Schema$Contact>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Contact>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Contacts$Patch|
-        BodyResponseCallback<Schema$Contact>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Contact>,
-        callback?: BodyResponseCallback<Schema$Contact>):
-        void|GaxiosPromise<Schema$Contact> {
+      paramsOrCallback?:
+        | Params$Resource$Contacts$Patch
+        | BodyResponseCallback<Schema$Contact>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Contact>,
+      callback?: BodyResponseCallback<Schema$Contact>
+    ): void | GaxiosPromise<Schema$Contact> {
       let params = (paramsOrCallback || {}) as Params$Resource$Contacts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1150,16 +1036,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/contacts/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/contacts/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Contact>(parameters, callback);
@@ -1167,7 +1056,6 @@ export namespace mirror_v1 {
         return createAPIRequest<Schema$Contact>(parameters);
       }
     }
-
 
     /**
      * mirror.contacts.update
@@ -1182,22 +1070,27 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Contacts$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Contact>;
     update(
-        params: Params$Resource$Contacts$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Contact>,
-        callback: BodyResponseCallback<Schema$Contact>): void;
+      params?: Params$Resource$Contacts$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Contact>;
     update(
-        params: Params$Resource$Contacts$Update,
-        callback: BodyResponseCallback<Schema$Contact>): void;
+      params: Params$Resource$Contacts$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Contact>,
+      callback: BodyResponseCallback<Schema$Contact>
+    ): void;
+    update(
+      params: Params$Resource$Contacts$Update,
+      callback: BodyResponseCallback<Schema$Contact>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Contact>): void;
     update(
-        paramsOrCallback?: Params$Resource$Contacts$Update|
-        BodyResponseCallback<Schema$Contact>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Contact>,
-        callback?: BodyResponseCallback<Schema$Contact>):
-        void|GaxiosPromise<Schema$Contact> {
+      paramsOrCallback?:
+        | Params$Resource$Contacts$Update
+        | BodyResponseCallback<Schema$Contact>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Contact>,
+      callback?: BodyResponseCallback<Schema$Contact>
+    ): void | GaxiosPromise<Schema$Contact> {
       let params = (paramsOrCallback || {}) as Params$Resource$Contacts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1215,16 +1108,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/contacts/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/contacts/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Contact>(parameters, callback);
@@ -1238,7 +1134,7 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the contact.
@@ -1249,7 +1145,7 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the contact.
@@ -1260,8 +1156,7 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1272,13 +1167,13 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
   export interface Params$Resource$Contacts$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the contact.
@@ -1294,7 +1189,7 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the contact.
@@ -1307,13 +1202,11 @@ export namespace mirror_v1 {
     requestBody?: Schema$Contact;
   }
 
-
   export class Resource$Locations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * mirror.locations.get
@@ -1327,19 +1220,27 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Locations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Location>;
-    get(params: Params$Resource$Locations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback: BodyResponseCallback<Schema$Location>): void;
-    get(params: Params$Resource$Locations$Get,
-        callback: BodyResponseCallback<Schema$Location>): void;
+    get(
+      params?: Params$Resource$Locations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Locations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Get,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Location>): void;
-    get(paramsOrCallback?: Params$Resource$Locations$Get|
-        BodyResponseCallback<Schema$Location>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback?: BodyResponseCallback<Schema$Location>):
-        void|GaxiosPromise<Schema$Location> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Get
+        | BodyResponseCallback<Schema$Location>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>
+    ): void | GaxiosPromise<Schema$Location> {
       let params = (paramsOrCallback || {}) as Params$Resource$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1357,16 +1258,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/locations/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/locations/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -1374,7 +1278,6 @@ export namespace mirror_v1 {
         return createAPIRequest<Schema$Location>(parameters);
       }
     }
-
 
     /**
      * mirror.locations.list
@@ -1387,24 +1290,31 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Locations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$LocationsListResponse>;
     list(
-        params: Params$Resource$Locations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LocationsListResponse>,
-        callback: BodyResponseCallback<Schema$LocationsListResponse>): void;
+      params?: Params$Resource$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LocationsListResponse>;
     list(
-        params: Params$Resource$Locations$List,
-        callback: BodyResponseCallback<Schema$LocationsListResponse>): void;
+      params: Params$Resource$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LocationsListResponse>,
+      callback: BodyResponseCallback<Schema$LocationsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Locations$List,
+      callback: BodyResponseCallback<Schema$LocationsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$LocationsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Locations$List|
-        BodyResponseCallback<Schema$LocationsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LocationsListResponse>,
-        callback?: BodyResponseCallback<Schema$LocationsListResponse>):
-        void|GaxiosPromise<Schema$LocationsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Locations$List
+        | BodyResponseCallback<Schema$LocationsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LocationsListResponse>,
+      callback?: BodyResponseCallback<Schema$LocationsListResponse>
+    ): void | GaxiosPromise<Schema$LocationsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1422,16 +1332,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/locations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LocationsListResponse>(parameters, callback);
@@ -1445,7 +1358,7 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the location or latest for the last known location.
@@ -1456,16 +1369,14 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-
 
   export class Resource$Settings {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * mirror.settings.get
@@ -1479,19 +1390,27 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Settings$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Setting>;
-    get(params: Params$Resource$Settings$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Setting>,
-        callback: BodyResponseCallback<Schema$Setting>): void;
-    get(params: Params$Resource$Settings$Get,
-        callback: BodyResponseCallback<Schema$Setting>): void;
+    get(
+      params?: Params$Resource$Settings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Setting>;
+    get(
+      params: Params$Resource$Settings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Setting>,
+      callback: BodyResponseCallback<Schema$Setting>
+    ): void;
+    get(
+      params: Params$Resource$Settings$Get,
+      callback: BodyResponseCallback<Schema$Setting>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Setting>): void;
-    get(paramsOrCallback?: Params$Resource$Settings$Get|
-        BodyResponseCallback<Schema$Setting>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Setting>,
-        callback?: BodyResponseCallback<Schema$Setting>):
-        void|GaxiosPromise<Schema$Setting> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Settings$Get
+        | BodyResponseCallback<Schema$Setting>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Setting>,
+      callback?: BodyResponseCallback<Schema$Setting>
+    ): void | GaxiosPromise<Schema$Setting> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1509,16 +1428,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/settings/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/settings/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Setting>(parameters, callback);
@@ -1532,25 +1454,19 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the setting. The following IDs are valid:  - locale - The key
-     * to the user’s language/locale (BCP 47 identifier) that Glassware should
-     * use to render localized content.  - timezone - The key to the user’s
-     * current time zone region as defined in the tz database. Example:
-     * America/Los_Angeles.
+     * The ID of the setting. The following IDs are valid:  - locale - The key to the user’s language/locale (BCP 47 identifier) that Glassware should use to render localized content.  - timezone - The key to the user’s current time zone region as defined in the tz database. Example: America/Los_Angeles.
      */
     id?: string;
   }
-
 
   export class Resource$Subscriptions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * mirror.subscriptions.delete
@@ -1565,23 +1481,28 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Subscriptions$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Subscriptions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Subscriptions$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Subscriptions$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Subscriptions$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Subscriptions$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Subscriptions$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1598,16 +1519,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/subscriptions/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/subscriptions/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1615,7 +1539,6 @@ export namespace mirror_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * mirror.subscriptions.insert
@@ -1630,25 +1553,30 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Subscriptions$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
+      params?: Params$Resource$Subscriptions$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
     insert(
-        params: Params$Resource$Subscriptions$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     insert(
-        params: Params$Resource$Subscriptions$Insert,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Insert,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Subscription>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Subscriptions$Insert|
-        BodyResponseCallback<Schema$Subscription>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>):
-        void|GaxiosPromise<Schema$Subscription> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Insert
+        | BodyResponseCallback<Schema$Subscription>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>
+    ): void | GaxiosPromise<Schema$Subscription> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1665,16 +1593,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/subscriptions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/subscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1683,11 +1614,9 @@ export namespace mirror_v1 {
       }
     }
 
-
     /**
      * mirror.subscriptions.list
-     * @desc Retrieves a list of subscriptions for the authenticated user and
-     * service.
+     * @desc Retrieves a list of subscriptions for the authenticated user and service.
      * @alias mirror.subscriptions.list
      * @memberOf! ()
      *
@@ -1696,27 +1625,35 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Subscriptions$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SubscriptionsListResponse>;
     list(
-        params: Params$Resource$Subscriptions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SubscriptionsListResponse>,
-        callback: BodyResponseCallback<Schema$SubscriptionsListResponse>): void;
+      params?: Params$Resource$Subscriptions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SubscriptionsListResponse>;
     list(
-        params: Params$Resource$Subscriptions$List,
-        callback: BodyResponseCallback<Schema$SubscriptionsListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$SubscriptionsListResponse>):
-        void;
+      params: Params$Resource$Subscriptions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubscriptionsListResponse>,
+      callback: BodyResponseCallback<Schema$SubscriptionsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Subscriptions$List|
-        BodyResponseCallback<Schema$SubscriptionsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SubscriptionsListResponse>,
-        callback?: BodyResponseCallback<Schema$SubscriptionsListResponse>):
-        void|GaxiosPromise<Schema$SubscriptionsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$List;
+      params: Params$Resource$Subscriptions$List,
+      callback: BodyResponseCallback<Schema$SubscriptionsListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$SubscriptionsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$List
+        | BodyResponseCallback<Schema$SubscriptionsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubscriptionsListResponse>,
+      callback?: BodyResponseCallback<Schema$SubscriptionsListResponse>
+    ): void | GaxiosPromise<Schema$SubscriptionsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1733,25 +1670,29 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/subscriptions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/subscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SubscriptionsListResponse>(parameters);
       }
     }
-
 
     /**
      * mirror.subscriptions.update
@@ -1767,25 +1708,30 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Subscriptions$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
+      params?: Params$Resource$Subscriptions$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
     update(
-        params: Params$Resource$Subscriptions$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     update(
-        params: Params$Resource$Subscriptions$Update,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Update,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Subscription>): void;
     update(
-        paramsOrCallback?: Params$Resource$Subscriptions$Update|
-        BodyResponseCallback<Schema$Subscription>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>):
-        void|GaxiosPromise<Schema$Subscription> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$Update;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Update
+        | BodyResponseCallback<Schema$Subscription>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>
+    ): void | GaxiosPromise<Schema$Subscription> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1802,16 +1748,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/subscriptions/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/subscriptions/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1821,44 +1770,43 @@ export namespace mirror_v1 {
     }
   }
 
-  export interface Params$Resource$Subscriptions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the subscription.
      */
     id?: string;
   }
-  export interface Params$Resource$Subscriptions$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Subscriptions$List extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Subscriptions$Update extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the subscription.
@@ -1870,7 +1818,6 @@ export namespace mirror_v1 {
      */
     requestBody?: Schema$Subscription;
   }
-
 
   export class Resource$Timeline {
     context: APIRequestContext;
@@ -1879,7 +1826,6 @@ export namespace mirror_v1 {
       this.context = context;
       this.attachments = new Resource$Timeline$Attachments(this.context);
     }
-
 
     /**
      * mirror.timeline.delete
@@ -1893,21 +1839,27 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Timeline$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Timeline$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Timeline$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Timeline$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Timeline$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Timeline$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Timeline$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Timeline$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Timeline$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1925,16 +1877,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/timeline/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/timeline/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1942,7 +1897,6 @@ export namespace mirror_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * mirror.timeline.get
@@ -1956,20 +1910,29 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Timeline$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TimelineItem>;
-    get(params: Params$Resource$Timeline$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
-        callback: BodyResponseCallback<Schema$TimelineItem>): void;
-    get(params: Params$Resource$Timeline$Get,
-        callback: BodyResponseCallback<Schema$TimelineItem>): void;
+    get(
+      params?: Params$Resource$Timeline$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TimelineItem>;
+    get(
+      params: Params$Resource$Timeline$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TimelineItem>,
+      callback: BodyResponseCallback<Schema$TimelineItem>
+    ): void;
+    get(
+      params: Params$Resource$Timeline$Get,
+      callback: BodyResponseCallback<Schema$TimelineItem>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TimelineItem>): void;
-    get(paramsOrCallback?: Params$Resource$Timeline$Get|
-        BodyResponseCallback<Schema$TimelineItem>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TimelineItem>,
-        callback?: BodyResponseCallback<Schema$TimelineItem>):
-        void|GaxiosPromise<Schema$TimelineItem> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Timeline$Get
+        | BodyResponseCallback<Schema$TimelineItem>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TimelineItem>,
+      callback?: BodyResponseCallback<Schema$TimelineItem>
+    ): void | GaxiosPromise<Schema$TimelineItem> {
       let params = (paramsOrCallback || {}) as Params$Resource$Timeline$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1987,16 +1950,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/timeline/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/timeline/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TimelineItem>(parameters, callback);
@@ -2004,7 +1970,6 @@ export namespace mirror_v1 {
         return createAPIRequest<Schema$TimelineItem>(parameters);
       }
     }
-
 
     /**
      * mirror.timeline.insert
@@ -2021,23 +1986,29 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Timeline$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$TimelineItem>;
     insert(
-        params: Params$Resource$Timeline$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
-        callback: BodyResponseCallback<Schema$TimelineItem>): void;
+      params?: Params$Resource$Timeline$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TimelineItem>;
     insert(
-        params: Params$Resource$Timeline$Insert,
-        callback: BodyResponseCallback<Schema$TimelineItem>): void;
+      params: Params$Resource$Timeline$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$TimelineItem>,
+      callback: BodyResponseCallback<Schema$TimelineItem>
+    ): void;
+    insert(
+      params: Params$Resource$Timeline$Insert,
+      callback: BodyResponseCallback<Schema$TimelineItem>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$TimelineItem>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Timeline$Insert|
-        BodyResponseCallback<Schema$TimelineItem>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TimelineItem>,
-        callback?: BodyResponseCallback<Schema$TimelineItem>):
-        void|GaxiosPromise<Schema$TimelineItem> {
+      paramsOrCallback?:
+        | Params$Resource$Timeline$Insert
+        | BodyResponseCallback<Schema$TimelineItem>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TimelineItem>,
+      callback?: BodyResponseCallback<Schema$TimelineItem>
+    ): void | GaxiosPromise<Schema$TimelineItem> {
       let params = (paramsOrCallback || {}) as Params$Resource$Timeline$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2055,18 +2026,23 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/timeline')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/timeline').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/mirror/v1/timeline')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/mirror/v1/timeline').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TimelineItem>(parameters, callback);
@@ -2074,7 +2050,6 @@ export namespace mirror_v1 {
         return createAPIRequest<Schema$TimelineItem>(parameters);
       }
     }
-
 
     /**
      * mirror.timeline.list
@@ -2094,24 +2069,31 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Timeline$List, options?: MethodOptions):
-        GaxiosPromise<Schema$TimelineListResponse>;
     list(
-        params: Params$Resource$Timeline$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TimelineListResponse>,
-        callback: BodyResponseCallback<Schema$TimelineListResponse>): void;
+      params?: Params$Resource$Timeline$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TimelineListResponse>;
     list(
-        params: Params$Resource$Timeline$List,
-        callback: BodyResponseCallback<Schema$TimelineListResponse>): void;
+      params: Params$Resource$Timeline$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TimelineListResponse>,
+      callback: BodyResponseCallback<Schema$TimelineListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Timeline$List,
+      callback: BodyResponseCallback<Schema$TimelineListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$TimelineListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Timeline$List|
-        BodyResponseCallback<Schema$TimelineListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TimelineListResponse>,
-        callback?: BodyResponseCallback<Schema$TimelineListResponse>):
-        void|GaxiosPromise<Schema$TimelineListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Timeline$List
+        | BodyResponseCallback<Schema$TimelineListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TimelineListResponse>,
+      callback?: BodyResponseCallback<Schema$TimelineListResponse>
+    ): void | GaxiosPromise<Schema$TimelineListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Timeline$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2129,16 +2111,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/timeline')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/timeline').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TimelineListResponse>(parameters, callback);
@@ -2147,11 +2132,9 @@ export namespace mirror_v1 {
       }
     }
 
-
     /**
      * mirror.timeline.patch
-     * @desc Updates a timeline item in place. This method supports patch
-     * semantics.
+     * @desc Updates a timeline item in place. This method supports patch semantics.
      * @alias mirror.timeline.patch
      * @memberOf! ()
      *
@@ -2162,23 +2145,29 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Timeline$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$TimelineItem>;
     patch(
-        params: Params$Resource$Timeline$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
-        callback: BodyResponseCallback<Schema$TimelineItem>): void;
+      params?: Params$Resource$Timeline$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TimelineItem>;
     patch(
-        params: Params$Resource$Timeline$Patch,
-        callback: BodyResponseCallback<Schema$TimelineItem>): void;
+      params: Params$Resource$Timeline$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$TimelineItem>,
+      callback: BodyResponseCallback<Schema$TimelineItem>
+    ): void;
+    patch(
+      params: Params$Resource$Timeline$Patch,
+      callback: BodyResponseCallback<Schema$TimelineItem>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$TimelineItem>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Timeline$Patch|
-        BodyResponseCallback<Schema$TimelineItem>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TimelineItem>,
-        callback?: BodyResponseCallback<Schema$TimelineItem>):
-        void|GaxiosPromise<Schema$TimelineItem> {
+      paramsOrCallback?:
+        | Params$Resource$Timeline$Patch
+        | BodyResponseCallback<Schema$TimelineItem>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TimelineItem>,
+      callback?: BodyResponseCallback<Schema$TimelineItem>
+    ): void | GaxiosPromise<Schema$TimelineItem> {
       let params = (paramsOrCallback || {}) as Params$Resource$Timeline$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2196,16 +2185,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/timeline/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/timeline/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TimelineItem>(parameters, callback);
@@ -2213,7 +2205,6 @@ export namespace mirror_v1 {
         return createAPIRequest<Schema$TimelineItem>(parameters);
       }
     }
-
 
     /**
      * mirror.timeline.update
@@ -2231,23 +2222,29 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Timeline$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$TimelineItem>;
     update(
-        params: Params$Resource$Timeline$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
-        callback: BodyResponseCallback<Schema$TimelineItem>): void;
+      params?: Params$Resource$Timeline$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TimelineItem>;
     update(
-        params: Params$Resource$Timeline$Update,
-        callback: BodyResponseCallback<Schema$TimelineItem>): void;
+      params: Params$Resource$Timeline$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$TimelineItem>,
+      callback: BodyResponseCallback<Schema$TimelineItem>
+    ): void;
+    update(
+      params: Params$Resource$Timeline$Update,
+      callback: BodyResponseCallback<Schema$TimelineItem>
+    ): void;
     update(callback: BodyResponseCallback<Schema$TimelineItem>): void;
     update(
-        paramsOrCallback?: Params$Resource$Timeline$Update|
-        BodyResponseCallback<Schema$TimelineItem>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TimelineItem>,
-        callback?: BodyResponseCallback<Schema$TimelineItem>):
-        void|GaxiosPromise<Schema$TimelineItem> {
+      paramsOrCallback?:
+        | Params$Resource$Timeline$Update
+        | BodyResponseCallback<Schema$TimelineItem>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TimelineItem>,
+      callback?: BodyResponseCallback<Schema$TimelineItem>
+    ): void | GaxiosPromise<Schema$TimelineItem> {
       let params = (paramsOrCallback || {}) as Params$Resource$Timeline$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2265,18 +2262,23 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/timeline/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/timeline/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/mirror/v1/timeline/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/mirror/v1/timeline/{id}').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TimelineItem>(parameters, callback);
@@ -2290,7 +2292,7 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the timeline item.
@@ -2301,7 +2303,7 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the timeline item.
@@ -2312,8 +2314,7 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -2339,7 +2340,7 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If provided, only items with the given bundleId will be returned.
@@ -2374,7 +2375,7 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the timeline item.
@@ -2390,7 +2391,7 @@ export namespace mirror_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the timeline item.
@@ -2424,7 +2425,6 @@ export namespace mirror_v1 {
       this.context = context;
     }
 
-
     /**
      * mirror.timeline.attachments.delete
      * @desc Deletes an attachment from a timeline item.
@@ -2439,23 +2439,28 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Timeline$Attachments$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Timeline$Attachments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Timeline$Attachments$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Timeline$Attachments$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Timeline$Attachments$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Timeline$Attachments$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Timeline$Attachments$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Timeline$Attachments$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Timeline$Attachments$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Timeline$Attachments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2472,17 +2477,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/mirror/v1/timeline/{itemId}/attachments/{attachmentId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/mirror/v1/timeline/{itemId}/attachments/{attachmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['itemId', 'attachmentId'],
         pathParams: ['attachmentId', 'itemId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2491,11 +2498,9 @@ export namespace mirror_v1 {
       }
     }
 
-
     /**
      * mirror.timeline.attachments.get
-     * @desc Retrieves an attachment on a timeline item by item ID and
-     * attachment ID.
+     * @desc Retrieves an attachment on a timeline item by item ID and attachment ID.
      * @alias mirror.timeline.attachments.get
      * @memberOf! ()
      *
@@ -2506,22 +2511,31 @@ export namespace mirror_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Timeline$Attachments$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Attachment>;
-    get(params: Params$Resource$Timeline$Attachments$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Attachment>,
-        callback: BodyResponseCallback<Schema$Attachment>): void;
-    get(params: Params$Resource$Timeline$Attachments$Get,
-        callback: BodyResponseCallback<Schema$Attachment>): void;
+    get(
+      params?: Params$Resource$Timeline$Attachments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Attachment>;
+    get(
+      params: Params$Resource$Timeline$Attachments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Attachment>,
+      callback: BodyResponseCallback<Schema$Attachment>
+    ): void;
+    get(
+      params: Params$Resource$Timeline$Attachments$Get,
+      callback: BodyResponseCallback<Schema$Attachment>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Attachment>): void;
-    get(paramsOrCallback?: Params$Resource$Timeline$Attachments$Get|
-        BodyResponseCallback<Schema$Attachment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Attachment>,
-        callback?: BodyResponseCallback<Schema$Attachment>):
-        void|GaxiosPromise<Schema$Attachment> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Timeline$Attachments$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Timeline$Attachments$Get
+        | BodyResponseCallback<Schema$Attachment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Attachment>,
+      callback?: BodyResponseCallback<Schema$Attachment>
+    ): void | GaxiosPromise<Schema$Attachment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Timeline$Attachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2538,17 +2552,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/mirror/v1/timeline/{itemId}/attachments/{attachmentId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/mirror/v1/timeline/{itemId}/attachments/{attachmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['itemId', 'attachmentId'],
         pathParams: ['attachmentId', 'itemId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Attachment>(parameters, callback);
@@ -2556,7 +2572,6 @@ export namespace mirror_v1 {
         return createAPIRequest<Schema$Attachment>(parameters);
       }
     }
-
 
     /**
      * mirror.timeline.attachments.insert
@@ -2574,25 +2589,30 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Timeline$Attachments$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Attachment>;
+      params?: Params$Resource$Timeline$Attachments$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Attachment>;
     insert(
-        params: Params$Resource$Timeline$Attachments$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Attachment>,
-        callback: BodyResponseCallback<Schema$Attachment>): void;
+      params: Params$Resource$Timeline$Attachments$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Attachment>,
+      callback: BodyResponseCallback<Schema$Attachment>
+    ): void;
     insert(
-        params: Params$Resource$Timeline$Attachments$Insert,
-        callback: BodyResponseCallback<Schema$Attachment>): void;
+      params: Params$Resource$Timeline$Attachments$Insert,
+      callback: BodyResponseCallback<Schema$Attachment>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Attachment>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Timeline$Attachments$Insert|
-        BodyResponseCallback<Schema$Attachment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Attachment>,
-        callback?: BodyResponseCallback<Schema$Attachment>):
-        void|GaxiosPromise<Schema$Attachment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Timeline$Attachments$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Timeline$Attachments$Insert
+        | BodyResponseCallback<Schema$Attachment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Attachment>,
+      callback?: BodyResponseCallback<Schema$Attachment>
+    ): void | GaxiosPromise<Schema$Attachment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Timeline$Attachments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2609,18 +2629,22 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/mirror/v1/timeline/{itemId}/attachments')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl + '/upload/mirror/v1/timeline/{itemId}/attachments'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['itemId'],
         pathParams: ['itemId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Attachment>(parameters, callback);
@@ -2628,7 +2652,6 @@ export namespace mirror_v1 {
         return createAPIRequest<Schema$Attachment>(parameters);
       }
     }
-
 
     /**
      * mirror.timeline.attachments.list
@@ -2643,26 +2666,32 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Timeline$Attachments$List,
-        options?: MethodOptions): GaxiosPromise<Schema$AttachmentsListResponse>;
+      params?: Params$Resource$Timeline$Attachments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AttachmentsListResponse>;
     list(
-        params: Params$Resource$Timeline$Attachments$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AttachmentsListResponse>,
-        callback: BodyResponseCallback<Schema$AttachmentsListResponse>): void;
+      params: Params$Resource$Timeline$Attachments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AttachmentsListResponse>,
+      callback: BodyResponseCallback<Schema$AttachmentsListResponse>
+    ): void;
     list(
-        params: Params$Resource$Timeline$Attachments$List,
-        callback: BodyResponseCallback<Schema$AttachmentsListResponse>): void;
+      params: Params$Resource$Timeline$Attachments$List,
+      callback: BodyResponseCallback<Schema$AttachmentsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$AttachmentsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Timeline$Attachments$List|
-        BodyResponseCallback<Schema$AttachmentsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AttachmentsListResponse>,
-        callback?: BodyResponseCallback<Schema$AttachmentsListResponse>):
-        void|GaxiosPromise<Schema$AttachmentsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Timeline$Attachments$List;
+      paramsOrCallback?:
+        | Params$Resource$Timeline$Attachments$List
+        | BodyResponseCallback<Schema$AttachmentsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AttachmentsListResponse>,
+      callback?: BodyResponseCallback<Schema$AttachmentsListResponse>
+    ): void | GaxiosPromise<Schema$AttachmentsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Timeline$Attachments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2679,16 +2708,19 @@ export namespace mirror_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['itemId'],
         pathParams: ['itemId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AttachmentsListResponse>(parameters, callback);
@@ -2698,12 +2730,12 @@ export namespace mirror_v1 {
     }
   }
 
-  export interface Params$Resource$Timeline$Attachments$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Timeline$Attachments$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the attachment.
@@ -2714,12 +2746,12 @@ export namespace mirror_v1 {
      */
     itemId?: string;
   }
-  export interface Params$Resource$Timeline$Attachments$Get extends
-      StandardParameters {
+  export interface Params$Resource$Timeline$Attachments$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the attachment.
@@ -2730,18 +2762,17 @@ export namespace mirror_v1 {
      */
     itemId?: string;
   }
-  export interface Params$Resource$Timeline$Attachments$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Timeline$Attachments$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the timeline item the attachment belongs to.
      */
     itemId?: string;
-
 
     /**
      * Media metadata
@@ -2758,12 +2789,12 @@ export namespace mirror_v1 {
       body?: any;
     };
   }
-  export interface Params$Resource$Timeline$Attachments$List extends
-      StandardParameters {
+  export interface Params$Resource$Timeline$Attachments$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the timeline item whose attachments should be listed.

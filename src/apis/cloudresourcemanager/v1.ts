@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +63,7 @@ export namespace cloudresourcemanager_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,9 +75,7 @@ export namespace cloudresourcemanager_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -83,8 +91,7 @@ export namespace cloudresourcemanager_v1 {
   /**
    * Cloud Resource Manager API
    *
-   * Creates, reads, and updates metadata for Google Cloud Platform resource
-   * containers.
+   * Creates, reads, and updates metadata for Google Cloud Platform resource containers.
    *
    * @example
    * const {google} = require('googleapis');
@@ -105,7 +112,10 @@ export namespace cloudresourcemanager_v1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.folders = new Resource$Folders(this.context);
       this.liens = new Resource$Liens(this.context);
@@ -125,27 +135,7 @@ export namespace cloudresourcemanager_v1 {
     resourceId?: Schema$ResourceId;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration
-   * determines which permission types are logged, and what identities, if any,
-   * are exempted from logging. An AuditConfig must have one or more
-   * AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a
-   * specific service, the union of the two AuditConfigs is used for that
-   * service: the log_types specified in each AuditConfig are enabled, and the
-   * exempted_members in each AuditLogConfig are exempted.  Example Policy with
-   * multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {
-   * &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;:
-   * [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,
-   * &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, {
-   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {
-   * &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ] },
-   * {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;
-   * &quot;audit_log_configs&quot;: [             { &quot;log_type&quot;:
-   * &quot;DATA_READ&quot;,             },             { &quot;log_type&quot;:
-   * &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [
-   * &quot;user:bar@gmail.com&quot;               ]             }           ] }
-   * ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and
-   * ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging,
-   * and bar@gmail.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:foo@gmail.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:bar@gmail.com&quot;               ]             }           ]         }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -153,25 +143,16 @@ export namespace cloudresourcemanager_v1 {
      */
     auditLogConfigs?: Schema$AuditLogConfig[];
     /**
-     * Specifies a service that will be enabled for audit logging. For example,
-     * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
-     * special value that covers all services.
+     * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
     service?: string;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example: {
-   * &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;:
-   * &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [
-   * &quot;user:foo@gmail.com&quot;           ]         },         {
-   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This
-   * enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while
-   * exempting foo@gmail.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:foo@gmail.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
-     * Specifies the identities that do not cause logging for this type of
-     * permission. Follows the same format of Binding.members.
+     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
     exemptedMembers?: string[];
     /**
@@ -184,71 +165,28 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied
-     * condition will not allow user access via current binding. Different
-     * bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource.
-     * `members` can have the following values:  * `allUsers`: A special
-     * identifier that represents anyone who is    on the internet; with or
-     * without a Google account.  * `allAuthenticatedUsers`: A special
-     * identifier that represents anyone    who is authenticated with a Google
-     * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com` .
-     * * `serviceAccount:{emailid}`: An email address that represents a service
-     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
-     * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
-     * (primary) that represents all the    users of that domain. For example,
-     * `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
-     * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`.
+     * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
   /**
-   * A `Constraint` that is either enforced or not.  For example a constraint
-   * `constraints/compute.disableSerialPortAccess`. If it is enforced on a VM
-   * instance, serial port connections will not be opened to that instance.
+   * A `Constraint` that is either enforced or not.  For example a constraint `constraints/compute.disableSerialPortAccess`. If it is enforced on a VM instance, serial port connections will not be opened to that instance.
    */
   export interface Schema$BooleanConstraint {}
   /**
-   * Used in `policy_type` to specify how `boolean_policy` will behave at this
-   * resource.
+   * Used in `policy_type` to specify how `boolean_policy` will behave at this resource.
    */
   export interface Schema$BooleanPolicy {
     /**
-     * If `true`, then the `Policy` is enforced. If `false`, then any
-     * configuration is acceptable.  Suppose you have a `Constraint`
-     * `constraints/compute.disableSerialPortAccess` with `constraint_default`
-     * set to `ALLOW`. A `Policy` for that `Constraint` exhibits the following
-     * behavior:   - If the `Policy` at this resource has enforced set to
-     * `false`, serial     port connection attempts will be allowed.   - If the
-     * `Policy` at this resource has enforced set to `true`, serial     port
-     * connection attempts will be refused.   - If the `Policy` at this resource
-     * is `RestoreDefault`, serial port     connection attempts will be allowed.
-     * - If no `Policy` is set at this resource or anywhere higher in the
-     * resource hierarchy, serial port connection attempts will be allowed.   -
-     * If no `Policy` is set at this resource, but one exists higher in the
-     * resource hierarchy, the behavior is as if the`Policy` were set at this
-     * resource.  The following examples demonstrate the different possible
-     * layerings:  Example 1 (nearest `Constraint` wins):   `organizations/foo`
-     * has a `Policy` with:     {enforced: false}   `projects/bar` has no
-     * `Policy` set. The constraint at `projects/bar` and `organizations/foo`
-     * will not be enforced.  Example 2 (enforcement gets replaced):
-     * `organizations/foo` has a `Policy` with:     {enforced: false}
-     * `projects/bar` has a `Policy` with:     {enforced: true} The constraint
-     * at `organizations/foo` is not enforced. The constraint at `projects/bar`
-     * is enforced.  Example 3 (RestoreDefault):   `organizations/foo` has a
-     * `Policy` with:     {enforced: true}   `projects/bar` has a `Policy` with:
-     * {RestoreDefault: {}} The constraint at `organizations/foo` is enforced.
-     * The constraint at `projects/bar` is not enforced, because
-     * `constraint_default` for the `Constraint` is `ALLOW`.
+     * If `true`, then the `Policy` is enforced. If `false`, then any configuration is acceptable.  Suppose you have a `Constraint` `constraints/compute.disableSerialPortAccess` with `constraint_default` set to `ALLOW`. A `Policy` for that `Constraint` exhibits the following behavior:   - If the `Policy` at this resource has enforced set to `false`, serial     port connection attempts will be allowed.   - If the `Policy` at this resource has enforced set to `true`, serial     port connection attempts will be refused.   - If the `Policy` at this resource is `RestoreDefault`, serial port     connection attempts will be allowed.   - If no `Policy` is set at this resource or anywhere higher in the     resource hierarchy, serial port connection attempts will be allowed.   - If no `Policy` is set at this resource, but one exists higher in the     resource hierarchy, the behavior is as if the`Policy` were set at     this resource.  The following examples demonstrate the different possible layerings:  Example 1 (nearest `Constraint` wins):   `organizations/foo` has a `Policy` with:     {enforced: false}   `projects/bar` has no `Policy` set. The constraint at `projects/bar` and `organizations/foo` will not be enforced.  Example 2 (enforcement gets replaced):   `organizations/foo` has a `Policy` with:     {enforced: false}   `projects/bar` has a `Policy` with:     {enforced: true} The constraint at `organizations/foo` is not enforced. The constraint at `projects/bar` is enforced.  Example 3 (RestoreDefault):   `organizations/foo` has a `Policy` with:     {enforced: true}   `projects/bar` has a `Policy` with:     {RestoreDefault: {}} The constraint at `organizations/foo` is enforced. The constraint at `projects/bar` is not enforced, because `constraint_default` for the `Constraint` is `ALLOW`.
      */
     enforced?: boolean;
   }
@@ -261,25 +199,12 @@ export namespace cloudresourcemanager_v1 {
      */
     constraint?: string;
     /**
-     * The current version, for concurrency control. Not sending an `etag` will
-     * cause the `Policy` to be cleared blindly.
+     * The current version, for concurrency control. Not sending an `etag` will cause the `Policy` to be cleared blindly.
      */
     etag?: string;
   }
   /**
-   * A `Constraint` describes a way in which a resource&#39;s configuration can
-   * be restricted. For example, it controls which cloud services can be
-   * activated across an organization, or whether a Compute Engine instance can
-   * have serial port connections established. `Constraints` can be configured
-   * by the organization&#39;s policy adminstrator to fit the needs of the
-   * organzation by setting Policies for `Constraints` at different locations in
-   * the organization&#39;s resource hierarchy. Policies are inherited down the
-   * resource hierarchy from higher levels, but can also be overridden. For
-   * details about the inheritance rules please read about Policies.
-   * `Constraints` have a default behavior determined by the
-   * `constraint_default` field, which is the enforcement behavior that is used
-   * in the absence of a `Policy` being defined or inherited for the resource in
-   * question.
+   * A `Constraint` describes a way in which a resource&#39;s configuration can be restricted. For example, it controls which cloud services can be activated across an organization, or whether a Compute Engine instance can have serial port connections established. `Constraints` can be configured by the organization&#39;s policy adminstrator to fit the needs of the organzation by setting Policies for `Constraints` at different locations in the organization&#39;s resource hierarchy. Policies are inherited down the resource hierarchy from higher levels, but can also be overridden. For details about the inheritance rules please read about Policies.  `Constraints` have a default behavior determined by the `constraint_default` field, which is the enforcement behavior that is used in the absence of a `Policy` being defined or inherited for the resource in question.
    */
   export interface Schema$Constraint {
     /**
@@ -287,13 +212,11 @@ export namespace cloudresourcemanager_v1 {
      */
     booleanConstraint?: Schema$BooleanConstraint;
     /**
-     * The evaluation behavior of this constraint in the absense of
-     * &#39;Policy&#39;.
+     * The evaluation behavior of this constraint in the absense of &#39;Policy&#39;.
      */
     constraintDefault?: string;
     /**
-     * Detailed description of what this `Constraint` controls as well as how
-     * and where it is enforced.  Mutable.
+     * Detailed description of what this `Constraint` controls as well as how and where it is enforced.  Mutable.
      */
     description?: string;
     /**
@@ -305,8 +228,7 @@ export namespace cloudresourcemanager_v1 {
      */
     listConstraint?: Schema$ListConstraint;
     /**
-     * Immutable value, required to globally be unique. For example,
-     * `constraints/serviceuser.services`
+     * Immutable value, required to globally be unique. For example, `constraints/serviceuser.services`
      */
     name?: string;
     /**
@@ -315,39 +237,27 @@ export namespace cloudresourcemanager_v1 {
     version?: number;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents an expression text. Example:      title: &quot;User account
-   * presence&quot;     description: &quot;Determines whether the request has a
-   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which
-     * describes the expression, e.g. when hovered over it in a UI.
+     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string;
     /**
-     * Textual representation of an expression in Common Expression Language
-     * syntax.  The application context of the containing message determines
-     * which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
     expression?: string;
     /**
-     * An optional string indicating the location of the expression for error
-     * reporting, e.g. a file name and a position in the file.
+     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string;
     /**
-     * An optional title for the expression, i.e. a short string describing its
-     * purpose. This can be used e.g. in UIs which allow to enter the
-     * expression.
+     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string;
   }
@@ -356,8 +266,7 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$FolderOperation {
     /**
-     * The resource name of the folder or organization we are either creating
-     * the folder under or moving the folder to.
+     * The resource name of the folder or organization we are either creating the folder under or moving the folder to.
      */
     destinationParent?: string;
     /**
@@ -369,8 +278,7 @@ export namespace cloudresourcemanager_v1 {
      */
     operationType?: string;
     /**
-     * The resource name of the folder&#39;s parent. Only applicable when the
-     * operation_type is MOVE.
+     * The resource name of the folder&#39;s parent. Only applicable when the operation_type is MOVE.
      */
     sourceParent?: string;
   }
@@ -392,9 +300,7 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$GetAncestryResponse {
     /**
-     * Ancestors are ordered from bottom to top of the resource hierarchy. The
-     * first ancestor is the project itself, followed by the project&#39;s
-     * parent, etc..
+     * Ancestors are ordered from bottom to top of the resource hierarchy. The first ancestor is the project itself, followed by the project&#39;s parent, etc..
      */
     ancestor?: Schema$Ancestor[];
   }
@@ -421,8 +327,7 @@ export namespace cloudresourcemanager_v1 {
     constraint?: string;
   }
   /**
-   * A Lien represents an encumbrance on the actions that can be performed on a
-   * resource.
+   * A Lien represents an encumbrance on the actions that can be performed on a resource.
    */
   export interface Schema$Lien {
     /**
@@ -430,59 +335,41 @@ export namespace cloudresourcemanager_v1 {
      */
     createTime?: string;
     /**
-     * A system-generated unique identifier for this Lien.  Example:
-     * `liens/1234abcd`
+     * A system-generated unique identifier for this Lien.  Example: `liens/1234abcd`
      */
     name?: string;
     /**
-     * A stable, user-visible/meaningful string identifying the origin of the
-     * Lien, intended to be inspected programmatically. Maximum length of 200
-     * characters.  Example: &#39;compute.googleapis.com&#39;
+     * A stable, user-visible/meaningful string identifying the origin of the Lien, intended to be inspected programmatically. Maximum length of 200 characters.  Example: &#39;compute.googleapis.com&#39;
      */
     origin?: string;
     /**
-     * A reference to the resource this Lien is attached to. The server will
-     * validate the parent against those for which Liens are supported. Example:
-     * `projects/1234`
+     * A reference to the resource this Lien is attached to. The server will validate the parent against those for which Liens are supported.  Example: `projects/1234`
      */
     parent?: string;
     /**
-     * Concise user-visible strings indicating why an action cannot be performed
-     * on a resource. Maximum length of 200 characters.  Example: &#39;Holds
-     * production API key&#39;
+     * Concise user-visible strings indicating why an action cannot be performed on a resource. Maximum length of 200 characters.  Example: &#39;Holds production API key&#39;
      */
     reason?: string;
     /**
-     * The types of operations which should be blocked as a result of this Lien.
-     * Each value should correspond to an IAM permission. The server will
-     * validate the permissions against those for which Liens are supported.  An
-     * empty list is meaningless and will be rejected.  Example:
-     * [&#39;resourcemanager.projects.delete&#39;]
+     * The types of operations which should be blocked as a result of this Lien. Each value should correspond to an IAM permission. The server will validate the permissions against those for which Liens are supported.  An empty list is meaningless and will be rejected.  Example: [&#39;resourcemanager.projects.delete&#39;]
      */
     restrictions?: string[];
   }
   /**
-   * The request sent to the [ListAvailableOrgPolicyConstraints]
-   * google.cloud.OrgPolicy.v1.ListAvailableOrgPolicyConstraints] method.
+   * The request sent to the [ListAvailableOrgPolicyConstraints] google.cloud.OrgPolicy.v1.ListAvailableOrgPolicyConstraints] method.
    */
   export interface Schema$ListAvailableOrgPolicyConstraintsRequest {
     /**
-     * Size of the pages to be returned. This is currently unsupported and will
-     * be ignored. The server may at any point start using this field to limit
-     * page size.
+     * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
      */
     pageSize?: number;
     /**
-     * Page token used to retrieve the next page. This is currently unsupported
-     * and will be ignored. The server may at any point start using this field.
+     * Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
      */
     pageToken?: string;
   }
   /**
-   * The response returned from the ListAvailableOrgPolicyConstraints method.
-   * Returns all `Constraints` that could be set at this level of the hierarchy
-   * (contrast with the response from `ListPolicies`, which returns all policies
-   * which are set).
+   * The response returned from the ListAvailableOrgPolicyConstraints method. Returns all `Constraints` that could be set at this level of the hierarchy (contrast with the response from `ListPolicies`, which returns all policies which are set).
    */
   export interface Schema$ListAvailableOrgPolicyConstraintsResponse {
     /**
@@ -495,20 +382,15 @@ export namespace cloudresourcemanager_v1 {
     nextPageToken?: string;
   }
   /**
-   * A `Constraint` that allows or disallows a list of string values, which are
-   * configured by an Organization&#39;s policy administrator with a `Policy`.
+   * A `Constraint` that allows or disallows a list of string values, which are configured by an Organization&#39;s policy administrator with a `Policy`.
    */
   export interface Schema$ListConstraint {
     /**
-     * Optional. The Google Cloud Console will try to default to a configuration
-     * that matches the value specified in this `Constraint`.
+     * Optional. The Google Cloud Console will try to default to a configuration that matches the value specified in this `Constraint`.
      */
     suggestedValue?: string;
     /**
-     * Indicates whether subtrees of Cloud Resource Manager resource hierarchy
-     * can be used in `Policy.allowed_values` and `Policy.denied_values`. For
-     * example, `&quot;under:folders/123&quot;` would match any resource under
-     * the &#39;folders/123&#39; folder.
+     * Indicates whether subtrees of Cloud Resource Manager resource hierarchy can be used in `Policy.allowed_values` and `Policy.denied_values`. For example, `&quot;under:folders/123&quot;` would match any resource under the &#39;folders/123&#39; folder.
      */
     supportsUnder?: boolean;
   }
@@ -521,8 +403,7 @@ export namespace cloudresourcemanager_v1 {
      */
     liens?: Schema$Lien[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -531,58 +412,33 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$ListOrgPoliciesRequest {
     /**
-     * Size of the pages to be returned. This is currently unsupported and will
-     * be ignored. The server may at any point start using this field to limit
-     * page size.
+     * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
      */
     pageSize?: number;
     /**
-     * Page token used to retrieve the next page. This is currently unsupported
-     * and will be ignored. The server may at any point start using this field.
+     * Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
      */
     pageToken?: string;
   }
   /**
-   * The response returned from the ListOrgPolicies method. It will be empty if
-   * no `Policies` are set on the resource.
+   * The response returned from the ListOrgPolicies method. It will be empty if no `Policies` are set on the resource.
    */
   export interface Schema$ListOrgPoliciesResponse {
     /**
-     * Page token used to retrieve the next page. This is currently not used,
-     * but the server may at any point start supplying a valid token.
+     * Page token used to retrieve the next page. This is currently not used, but the server may at any point start supplying a valid token.
      */
     nextPageToken?: string;
     /**
-     * The `Policies` that are set on the resource. It will be empty if no
-     * `Policies` are set.
+     * The `Policies` that are set on the resource. It will be empty if no `Policies` are set.
      */
     policies?: Schema$OrgPolicy[];
   }
   /**
-   * Used in `policy_type` to specify how `list_policy` behaves at this
-   * resource.  `ListPolicy` can define specific values and subtrees of Cloud
-   * Resource Manager resource hierarchy (`Organizations`, `Folders`,
-   * `Projects`) that are allowed or denied by setting the `allowed_values` and
-   * `denied_values` fields. This is achieved by using the `under:` and optional
-   * `is:` prefixes. The `under:` prefix is used to denote resource subtree
-   * values. The `is:` prefix is used to denote specific values, and is required
-   * only if the value contains a &quot;:&quot;. Values prefixed with
-   * &quot;is:&quot; are treated the same as values with no prefix. Ancestry
-   * subtrees must be in one of the following formats:     -
-   * “projects/&lt;project-id&gt;”, e.g. “projects/tokyo-rain-123”     -
-   * “folders/&lt;folder-id&gt;”, e.g. “folders/1234”     -
-   * “organizations/&lt;organization-id&gt;”, e.g. “organizations/1234” The
-   * `supports_under` field of the associated `Constraint`  defines whether
-   * ancestry prefixes can be used. You can set `allowed_values` and
-   * `denied_values` in the same `Policy` if `all_values` is
-   * `ALL_VALUES_UNSPECIFIED`. `ALLOW` or `DENY` are used to allow or deny all
-   * values. If `all_values` is set to either `ALLOW` or `DENY`,
-   * `allowed_values` and `denied_values` must be unset.
+   * Used in `policy_type` to specify how `list_policy` behaves at this resource.  `ListPolicy` can define specific values and subtrees of Cloud Resource Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that are allowed or denied by setting the `allowed_values` and `denied_values` fields. This is achieved by using the `under:` and optional `is:` prefixes. The `under:` prefix is used to denote resource subtree values. The `is:` prefix is used to denote specific values, and is required only if the value contains a &quot;:&quot;. Values prefixed with &quot;is:&quot; are treated the same as values with no prefix. Ancestry subtrees must be in one of the following formats:     - “projects/&lt;project-id&gt;”, e.g. “projects/tokyo-rain-123”     - “folders/&lt;folder-id&gt;”, e.g. “folders/1234”     - “organizations/&lt;organization-id&gt;”, e.g. “organizations/1234” The `supports_under` field of the associated `Constraint`  defines whether ancestry prefixes can be used. You can set `allowed_values` and `denied_values` in the same `Policy` if `all_values` is `ALL_VALUES_UNSPECIFIED`. `ALLOW` or `DENY` are used to allow or deny all values. If `all_values` is set to either `ALLOW` or `DENY`, `allowed_values` and `denied_values` must be unset.
    */
   export interface Schema$ListPolicy {
     /**
-     * List of values allowed  at this resource. Can only be set if `all_values`
-     * is set to `ALL_VALUES_UNSPECIFIED`.
+     * List of values allowed  at this resource. Can only be set if `all_values` is set to `ALL_VALUES_UNSPECIFIED`.
      */
     allowedValues?: string[];
     /**
@@ -590,117 +446,37 @@ export namespace cloudresourcemanager_v1 {
      */
     allValues?: string;
     /**
-     * List of values denied at this resource. Can only be set if `all_values`
-     * is set to `ALL_VALUES_UNSPECIFIED`.
+     * List of values denied at this resource. Can only be set if `all_values` is set to `ALL_VALUES_UNSPECIFIED`.
      */
     deniedValues?: string[];
     /**
-     * Determines the inheritance behavior for this `Policy`.  By default, a
-     * `ListPolicy` set at a resource supercedes any `Policy` set anywhere up
-     * the resource hierarchy. However, if `inherit_from_parent` is set to
-     * `true`, then the values from the effective `Policy` of the parent
-     * resource are inherited, meaning the values set in this `Policy` are added
-     * to the values inherited up the hierarchy.  Setting `Policy` hierarchies
-     * that inherit both allowed values and denied values isn&#39;t recommended
-     * in most circumstances to keep the configuration simple and
-     * understandable. However, it is possible to set a `Policy` with
-     * `allowed_values` set that inherits a `Policy` with `denied_values` set.
-     * In this case, the values that are allowed must be in `allowed_values` and
-     * not present in `denied_values`.  For example, suppose you have a
-     * `Constraint` `constraints/serviceuser.services`, which has a
-     * `constraint_type` of `list_constraint`, and with `constraint_default` set
-     * to `ALLOW`. Suppose that at the Organization level, a `Policy` is applied
-     * that restricts the allowed API activations to {`E1`, `E2`}. Then, if a
-     * `Policy` is applied to a project below the Organization that has
-     * `inherit_from_parent` set to `false` and field all_values set to DENY,
-     * then an attempt to activate any API will be denied.  The following
-     * examples demonstrate different possible layerings for `projects/bar`
-     * parented by `organizations/foo`:  Example 1 (no inherited values):
-     * `organizations/foo` has a `Policy` with values:     {allowed_values: “E1”
-     * allowed_values:”E2”}   `projects/bar` has `inherit_from_parent` `false`
-     * and values:     {allowed_values: &quot;E3&quot; allowed_values:
-     * &quot;E4&quot;} The accepted values at `organizations/foo` are `E1`,
-     * `E2`. The accepted values at `projects/bar` are `E3`, and `E4`.  Example
-     * 2 (inherited values):   `organizations/foo` has a `Policy` with values:
-     * {allowed_values: “E1” allowed_values:”E2”}   `projects/bar` has a
-     * `Policy` with values:     {value: “E3” value: ”E4” inherit_from_parent:
-     * true} The accepted values at `organizations/foo` are `E1`, `E2`. The
-     * accepted values at `projects/bar` are `E1`, `E2`, `E3`, and `E4`. Example
-     * 3 (inheriting both allowed and denied values):   `organizations/foo` has
-     * a `Policy` with values:     {allowed_values: &quot;E1&quot;
-     * allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:
-     * {denied_values: &quot;E1&quot;} The accepted values at
-     * `organizations/foo` are `E1`, `E2`. The value accepted at `projects/bar`
-     * is `E2`.  Example 4 (RestoreDefault):   `organizations/foo` has a
-     * `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}
-     * `projects/bar` has a `Policy` with values:     {RestoreDefault: {}} The
-     * accepted values at `organizations/foo` are `E1`, `E2`. The accepted
-     * values at `projects/bar` are either all or none depending on the value of
-     * `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 5 (no
-     * policy inherits parent policy):   `organizations/foo` has no `Policy`
-     * set.   `projects/bar` has no `Policy` set. The accepted values at both
-     * levels are either all or none depending on the value of
-     * `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 6
-     * (ListConstraint allowing all):   `organizations/foo` has a `Policy` with
-     * values:     {allowed_values: “E1” allowed_values: ”E2”}   `projects/bar`
-     * has a `Policy` with:     {all: ALLOW} The accepted values at
-     * `organizations/foo` are `E1`, E2`. Any value is accepted at
-     * `projects/bar`.  Example 7 (ListConstraint allowing none):
-     * `organizations/foo` has a `Policy` with values:     {allowed_values: “E1”
-     * allowed_values: ”E2”}   `projects/bar` has a `Policy` with:     {all:
-     * DENY} The accepted values at `organizations/foo` are `E1`, E2`. No value
-     * is accepted at `projects/bar`.  Example 10 (allowed and denied subtrees
-     * of Resource Manager hierarchy): Given the following resource hierarchy
-     * O1-&gt;{F1, F2}; F1-&gt;{P1}; F2-&gt;{P2, P3},   `organizations/foo` has
-     * a `Policy` with values:     {allowed_values:
-     * &quot;under:organizations/O1&quot;}   `projects/bar` has a `Policy` with:
-     * {allowed_values: &quot;under:projects/P3&quot;}     {denied_values:
-     * &quot;under:folders/F2&quot;} The accepted values at `organizations/foo`
-     * are `organizations/O1`,   `folders/F1`, `folders/F2`, `projects/P1`,
-     * `projects/P2`,   `projects/P3`. The accepted values at `projects/bar` are
-     * `organizations/O1`,   `folders/F1`, `projects/P1`.
+     * Determines the inheritance behavior for this `Policy`.  By default, a `ListPolicy` set at a resource supercedes any `Policy` set anywhere up the resource hierarchy. However, if `inherit_from_parent` is set to `true`, then the values from the effective `Policy` of the parent resource are inherited, meaning the values set in this `Policy` are added to the values inherited up the hierarchy.  Setting `Policy` hierarchies that inherit both allowed values and denied values isn&#39;t recommended in most circumstances to keep the configuration simple and understandable. However, it is possible to set a `Policy` with `allowed_values` set that inherits a `Policy` with `denied_values` set. In this case, the values that are allowed must be in `allowed_values` and not present in `denied_values`.  For example, suppose you have a `Constraint` `constraints/serviceuser.services`, which has a `constraint_type` of `list_constraint`, and with `constraint_default` set to `ALLOW`. Suppose that at the Organization level, a `Policy` is applied that restricts the allowed API activations to {`E1`, `E2`}. Then, if a `Policy` is applied to a project below the Organization that has `inherit_from_parent` set to `false` and field all_values set to DENY, then an attempt to activate any API will be denied.  The following examples demonstrate different possible layerings for `projects/bar` parented by `organizations/foo`:  Example 1 (no inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}   `projects/bar` has `inherit_from_parent` `false` and values:     {allowed_values: &quot;E3&quot; allowed_values: &quot;E4&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E3`, and `E4`.  Example 2 (inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}   `projects/bar` has a `Policy` with values:     {value: “E3” value: ”E4” inherit_from_parent: true} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E1`, `E2`, `E3`, and `E4`.  Example 3 (inheriting both allowed and denied values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {denied_values: &quot;E1&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The value accepted at `projects/bar` is `E2`.  Example 4 (RestoreDefault):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}   `projects/bar` has a `Policy` with values:     {RestoreDefault: {}} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 5 (no policy inherits parent policy):   `organizations/foo` has no `Policy` set.   `projects/bar` has no `Policy` set. The accepted values at both levels are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 6 (ListConstraint allowing all):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values: ”E2”}   `projects/bar` has a `Policy` with:     {all: ALLOW} The accepted values at `organizations/foo` are `E1`, E2`. Any value is accepted at `projects/bar`.  Example 7 (ListConstraint allowing none):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values: ”E2”}   `projects/bar` has a `Policy` with:     {all: DENY} The accepted values at `organizations/foo` are `E1`, E2`. No value is accepted at `projects/bar`.  Example 10 (allowed and denied subtrees of Resource Manager hierarchy): Given the following resource hierarchy   O1-&gt;{F1, F2}; F1-&gt;{P1}; F2-&gt;{P2, P3},   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;under:organizations/O1&quot;}   `projects/bar` has a `Policy` with:     {allowed_values: &quot;under:projects/P3&quot;}     {denied_values: &quot;under:folders/F2&quot;} The accepted values at `organizations/foo` are `organizations/O1`,   `folders/F1`, `folders/F2`, `projects/P1`, `projects/P2`,   `projects/P3`. The accepted values at `projects/bar` are `organizations/O1`,   `folders/F1`, `projects/P1`.
      */
     inheritFromParent?: boolean;
     /**
-     * Optional. The Google Cloud Console will try to default to a configuration
-     * that matches the value specified in this `Policy`. If `suggested_value`
-     * is not set, it will inherit the value specified higher in the hierarchy,
-     * unless `inherit_from_parent` is `false`.
+     * Optional. The Google Cloud Console will try to default to a configuration that matches the value specified in this `Policy`. If `suggested_value` is not set, it will inherit the value specified higher in the hierarchy, unless `inherit_from_parent` is `false`.
      */
     suggestedValue?: string;
   }
   /**
-   * A page of the response received from the ListProjects method.  A paginated
-   * response where more pages are available has `next_page_token` set. This
-   * token can be used in a subsequent request to retrieve the next request
-   * page.
+   * A page of the response received from the ListProjects method.  A paginated response where more pages are available has `next_page_token` set. This token can be used in a subsequent request to retrieve the next request page.
    */
   export interface Schema$ListProjectsResponse {
     /**
-     * Pagination token.  If the result set is too large to fit in a single
-     * response, this token is returned. It encodes the position of the current
-     * result cursor. Feeding this value into a new list request with the
-     * `page_token` parameter gives the next page of the results.  When
-     * `next_page_token` is not filled in, there is no next page and the list
-     * returned is the last page in the result set.  Pagination tokens have a
-     * limited lifetime.
+     * Pagination token.  If the result set is too large to fit in a single response, this token is returned. It encodes the position of the current result cursor. Feeding this value into a new list request with the `page_token` parameter gives the next page of the results.  When `next_page_token` is not filled in, there is no next page and the list returned is the last page in the result set.  Pagination tokens have a limited lifetime.
      */
     nextPageToken?: string;
     /**
-     * The list of Projects that matched the list filter. This list can be
-     * paginated.
+     * The list of Projects that matched the list filter. This list can be paginated.
      */
     projects?: Schema$Project[];
   }
   /**
-   * This resource represents a long-running operation that is the result of a
-   * network API call.
+   * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
     /**
-     * If the value is `false`, it means the operation is still in progress. If
-     * `true`, the operation is completed, and either `error` or `response` is
-     * available.
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
     done?: boolean;
     /**
@@ -708,70 +484,45 @@ export namespace cloudresourcemanager_v1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically
-     * contains progress information and common metadata such as create time.
-     * Some services might not provide such metadata.  Any method that returns a
-     * long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
-     * The server-assigned name, which is only unique within the same service
-     * that originally returns it. If you use the default HTTP mapping, the
-     * `name` should have the format of `operations/some/unique/name`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
      */
     name?: string;
     /**
-     * The normal response of the operation in case of success.  If the original
-     * method returns no data on success, such as `Delete`, the response is
-     * `google.protobuf.Empty`.  If the original method is standard
-     * `Get`/`Create`/`Update`, the response should be the resource.  For other
-     * methods, the response should have the type `XxxResponse`, where `Xxx` is
-     * the original method name.  For example, if the original method name is
-     * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
-   * The root node in the resource hierarchy to which a particular entity&#39;s
-   * (e.g., company) resources belong.
+   * The root node in the resource hierarchy to which a particular entity&#39;s (e.g., company) resources belong.
    */
   export interface Schema$Organization {
     /**
-     * Timestamp when the Organization was created. Assigned by the server.
-     * @OutputOnly
+     * Timestamp when the Organization was created. Assigned by the server. @OutputOnly
      */
     creationTime?: string;
     /**
-     * A human-readable string that refers to the Organization in the GCP
-     * Console UI. This string is set by the server and cannot be changed. The
-     * string will be set to the primary domain (for example,
-     * &quot;google.com&quot;) of the G Suite customer that owns the
-     * organization. @OutputOnly
+     * A human-readable string that refers to the Organization in the GCP Console UI. This string is set by the server and cannot be changed. The string will be set to the primary domain (for example, &quot;google.com&quot;) of the G Suite customer that owns the organization. @OutputOnly
      */
     displayName?: string;
     /**
-     * The organization&#39;s current lifecycle state. Assigned by the server.
-     * @OutputOnly
+     * The organization&#39;s current lifecycle state. Assigned by the server. @OutputOnly
      */
     lifecycleState?: string;
     /**
-     * Output Only. The resource name of the organization. This is the
-     * organization&#39;s relative path in the API. Its format is
-     * &quot;organizations/[organization_id]&quot;. For example,
-     * &quot;organizations/1234&quot;.
+     * Output Only. The resource name of the organization. This is the organization&#39;s relative path in the API. Its format is &quot;organizations/[organization_id]&quot;. For example, &quot;organizations/1234&quot;.
      */
     name?: string;
     /**
-     * The owner of this Organization. The owner should be specified on
-     * creation. Once set, it cannot be changed. This field is required.
+     * The owner of this Organization. The owner should be specified on creation. Once set, it cannot be changed. This field is required.
      */
     owner?: Schema$OrganizationOwner;
   }
   /**
-   * The entity that owns an Organization. The lifetime of the Organization and
-   * all of its descendants are bound to the `OrganizationOwner`. If the
-   * `OrganizationOwner` is deleted, the Organization and all its descendants
-   * will be deleted.
+   * The entity that owns an Organization. The lifetime of the Organization and all of its descendants are bound to the `OrganizationOwner`. If the `OrganizationOwner` is deleted, the Organization and all its descendants will be deleted.
    */
   export interface Schema$OrganizationOwner {
     /**
@@ -780,8 +531,7 @@ export namespace cloudresourcemanager_v1 {
     directoryCustomerId?: string;
   }
   /**
-   * Defines a Cloud Organization `Policy` which is used to specify
-   * `Constraints` for configurations of Cloud Platform resources.
+   * Defines a Cloud Organization `Policy` which is used to specify `Constraints` for configurations of Cloud Platform resources.
    */
   export interface Schema$OrgPolicy {
     /**
@@ -789,21 +539,11 @@ export namespace cloudresourcemanager_v1 {
      */
     booleanPolicy?: Schema$BooleanPolicy;
     /**
-     * The name of the `Constraint` the `Policy` is configuring, for example,
-     * `constraints/serviceuser.services`.  Immutable after creation.
+     * The name of the `Constraint` the `Policy` is configuring, for example, `constraints/serviceuser.services`.  Immutable after creation.
      */
     constraint?: string;
     /**
-     * An opaque tag indicating the current version of the `Policy`, used for
-     * concurrency control.  When the `Policy` is returned from either a
-     * `GetPolicy` or a `ListOrgPolicy` request, this `etag` indicates the
-     * version of the current `Policy` to use when executing a read-modify-write
-     * loop.  When the `Policy` is returned from a `GetEffectivePolicy` request,
-     * the `etag` will be unset.  When the `Policy` is used in a `SetOrgPolicy`
-     * method, use the `etag` value that was returned from a `GetOrgPolicy`
-     * request as part of a read-modify-write loop for concurrency control. Not
-     * setting the `etag`in a `SetOrgPolicy` request will result in an
-     * unconditional write of the `Policy`.
+     * An opaque tag indicating the current version of the `Policy`, used for concurrency control.  When the `Policy` is returned from either a `GetPolicy` or a `ListOrgPolicy` request, this `etag` indicates the version of the current `Policy` to use when executing a read-modify-write loop.  When the `Policy` is returned from a `GetEffectivePolicy` request, the `etag` will be unset.  When the `Policy` is used in a `SetOrgPolicy` method, use the `etag` value that was returned from a `GetOrgPolicy` request as part of a read-modify-write loop for concurrency control. Not setting the `etag`in a `SetOrgPolicy` request will result in an unconditional write of the `Policy`.
      */
     etag?: string;
     /**
@@ -811,15 +551,11 @@ export namespace cloudresourcemanager_v1 {
      */
     listPolicy?: Schema$ListPolicy;
     /**
-     * Restores the default behavior of the constraint; independent of
-     * `Constraint` type.
+     * Restores the default behavior of the constraint; independent of `Constraint` type.
      */
     restoreDefault?: Schema$RestoreDefault;
     /**
-     * The time stamp the `Policy` was previously updated. This is set by the
-     * server, not specified by the caller, and represents the last time a call
-     * to `SetOrgPolicy` was made for that `Policy`. Any value set by the client
-     * will be ignored.
+     * The time stamp the `Policy` was previously updated. This is set by the server, not specified by the caller, and represents the last time a call to `SetOrgPolicy` was made for that `Policy`. Any value set by the client will be ignored.
      */
     updateTime?: string;
     /**
@@ -828,24 +564,7 @@ export namespace cloudresourcemanager_v1 {
     version?: number;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to
-   * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `binding` binds a list of `members` to
-   * a `role`, where the members can be user accounts, Google groups, Google
-   * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
-   * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
-   * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
-   * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
-   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
-   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
-   * Example**      bindings:     - members:       - user:mike@example.com -
-   * group:admins@example.com       - domain:google.com       -
-   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
-   * roles/owner     - members:       - user:sean@example.com       role:
-   * roles/viewer   For a description of IAM and its features, see the [IAM
-   * developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -853,20 +572,11 @@ export namespace cloudresourcemanager_v1 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members
-     * will result in an error.
+     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a policy from overwriting each other. It
-     * is strongly suggested that systems make use of the `etag` in the
-     * read-modify-write cycle to perform policy updates in order to avoid race
-     * conditions: An `etag` is returned in the response to `getIamPolicy`, and
-     * systems are expected to put that etag in the request to `setIamPolicy` to
-     * ensure that their change will be applied to the same version of the
-     * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
-     * existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
      */
     etag?: string;
     /**
@@ -875,9 +585,7 @@ export namespace cloudresourcemanager_v1 {
     version?: number;
   }
   /**
-   * A Project is a high-level Google Cloud Platform entity.  It is a container
-   * for ACLs, APIs, App Engine Apps, VMs, and other Google Cloud Platform
-   * resources.
+   * A Project is a high-level Google Cloud Platform entity.  It is a container for ACLs, APIs, App Engine Apps, VMs, and other Google Cloud Platform resources.
    */
   export interface Schema$Project {
     /**
@@ -885,55 +593,32 @@ export namespace cloudresourcemanager_v1 {
      */
     createTime?: string;
     /**
-     * The labels associated with this Project.  Label keys must be between 1
-     * and 63 characters long and must conform to the following regular
-     * expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  Label values must be
-     * between 0 and 63 characters long and must conform to the regular
-     * expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?. A label value can be
-     * empty.  No more than 256 labels can be associated with a given resource.
-     * Clients should store labels in a representation such as JSON that does
-     * not depend on specific characters being disallowed.  Example:
-     * &lt;code&gt;&quot;environment&quot; : &quot;dev&quot;&lt;/code&gt;
-     * Read-write.
+     * The labels associated with this Project.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?. A label value can be empty.  No more than 256 labels can be associated with a given resource.  Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed.  Example: &lt;code&gt;&quot;environment&quot; : &quot;dev&quot;&lt;/code&gt; Read-write.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The Project lifecycle state.  Read-only.
      */
     lifecycleState?: string;
     /**
-     * The optional user-assigned display name of the Project. When present it
-     * must be between 4 to 30 characters. Allowed characters are: lowercase and
-     * uppercase letters, numbers, hyphen, single-quote, double-quote, space,
-     * and exclamation point.  Example: &lt;code&gt;My Project&lt;/code&gt;
-     * Read-write.
+     * The optional user-assigned display name of the Project. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point.  Example: &lt;code&gt;My Project&lt;/code&gt; Read-write.
      */
     name?: string;
     /**
-     * An optional reference to a parent Resource.  Supported parent types
-     * include &quot;organization&quot; and &quot;folder&quot;. Once set, the
-     * parent cannot be cleared. The `parent` can be set on creation or using
-     * the `UpdateProject` method; the end user must have the
-     * `resourcemanager.projects.create` permission on the parent.  Read-write.
+     * An optional reference to a parent Resource.  Supported parent types include &quot;organization&quot; and &quot;folder&quot;. Once set, the parent cannot be cleared. The `parent` can be set on creation or using the `UpdateProject` method; the end user must have the `resourcemanager.projects.create` permission on the parent.  Read-write.
      */
     parent?: Schema$ResourceId;
     /**
-     * The unique, user-assigned ID of the Project. It must be 6 to 30 lowercase
-     * letters, digits, or hyphens. It must start with a letter. Trailing
-     * hyphens are prohibited.  Example: &lt;code&gt;tokyo-rain-123&lt;/code&gt;
-     * Read-only after creation.
+     * The unique, user-assigned ID of the Project. It must be 6 to 30 lowercase letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited.  Example: &lt;code&gt;tokyo-rain-123&lt;/code&gt; Read-only after creation.
      */
     projectId?: string;
     /**
-     * The number uniquely identifying the project.  Example:
-     * &lt;code&gt;415104041262&lt;/code&gt; Read-only.
+     * The number uniquely identifying the project.  Example: &lt;code&gt;415104041262&lt;/code&gt; Read-only.
      */
     projectNumber?: string;
   }
   /**
-   * A status object which is used as the `metadata` field for the Operation
-   * returned by CreateProject. It provides insight for when significant phases
-   * of Project creation have completed.
+   * A status object which is used as the `metadata` field for the Operation returned by CreateProject. It provides insight for when significant phases of Project creation have completed.
    */
   export interface Schema$ProjectCreationStatus {
     /**
@@ -941,9 +626,7 @@ export namespace cloudresourcemanager_v1 {
      */
     createTime?: string;
     /**
-     * True if the project can be retrieved using GetProject. No other
-     * operations on the project are guaranteed to work until the project
-     * creation is complete.
+     * True if the project can be retrieved using GetProject. No other operations on the project are guaranteed to work until the project creation is complete.
      */
     gettable?: boolean;
     /**
@@ -952,34 +635,20 @@ export namespace cloudresourcemanager_v1 {
     ready?: boolean;
   }
   /**
-   * A container to reference an id for any resource type. A `resource` in
-   * Google Cloud Platform is a generic term for something you (a developer) may
-   * want to interact with through one of our API&#39;s. Some examples are an
-   * App Engine app, a Compute Engine instance, a Cloud SQL database, and so on.
+   * A container to reference an id for any resource type. A `resource` in Google Cloud Platform is a generic term for something you (a developer) may want to interact with through one of our API&#39;s. Some examples are an App Engine app, a Compute Engine instance, a Cloud SQL database, and so on.
    */
   export interface Schema$ResourceId {
     /**
-     * Required field for the type-specific id. This should correspond to the id
-     * used in the type-specific API&#39;s.
+     * Required field for the type-specific id. This should correspond to the id used in the type-specific API&#39;s.
      */
     id?: string;
     /**
-     * Required field representing the resource type this id is for. At present,
-     * the valid types are: &quot;organization&quot; and &quot;folder&quot;.
+     * Required field representing the resource type this id is for. At present, the valid types are: &quot;organization&quot; and &quot;folder&quot;.
      */
     type?: string;
   }
   /**
-   * Ignores policies set above this resource and restores the
-   * `constraint_default` enforcement behavior of the specific `Constraint` at
-   * this resource.  Suppose that `constraint_default` is set to `ALLOW` for the
-   * `Constraint` `constraints/serviceuser.services`. Suppose that organization
-   * foo.com sets a `Policy` at their Organization resource node that restricts
-   * the allowed service activations to deny all service activations. They could
-   * then set a `Policy` with the `policy_type` `restore_default` on several
-   * experimental projects, restoring the `constraint_default` enforcement of
-   * the `Constraint` for only those projects, allowing those projects to have
-   * all services activated.
+   * Ignores policies set above this resource and restores the `constraint_default` enforcement behavior of the specific `Constraint` at this resource.  Suppose that `constraint_default` is set to `ALLOW` for the `Constraint` `constraints/serviceuser.services`. Suppose that organization foo.com sets a `Policy` at their Organization resource node that restricts the allowed service activations to deny all service activations. They could then set a `Policy` with the `policy_type` `restore_default` on several experimental projects, restoring the `constraint_default` enforcement of the `Constraint` for only those projects, allowing those projects to have all services activated.
    */
   export interface Schema$RestoreDefault {}
   /**
@@ -987,25 +656,15 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$SearchOrganizationsRequest {
     /**
-     * An optional query string used to filter the Organizations to return in
-     * the response. Filter rules are case-insensitive.   Organizations may be
-     * filtered by `owner.directoryCustomerId` or by `domain`, where the domain
-     * is a G Suite domain, for example:  |Filter|Description|
-     * |------|-----------| |owner.directorycustomerid:123456789|Organizations
-     * with `owner.directory_customer_id` equal to `123456789`.|
-     * |domain:google.com|Organizations corresponding to the domain
-     * `google.com`.|  This field is optional.
+     * An optional query string used to filter the Organizations to return in the response. Filter rules are case-insensitive.   Organizations may be filtered by `owner.directoryCustomerId` or by `domain`, where the domain is a G Suite domain, for example:  | Filter                              | Description                      | |-------------------------------------|----------------------------------| | owner.directorycustomerid:123456789 | Organizations with `owner.directory_customer_id` equal to `123456789`.| | domain:google.com                   | Organizations corresponding to the domain `google.com`.|  This field is optional.
      */
     filter?: string;
     /**
-     * The maximum number of Organizations to return in the response. This field
-     * is optional.
+     * The maximum number of Organizations to return in the response. This field is optional.
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to `SearchOrganizations`
-     * that indicates from where listing should continue. This field is
-     * optional.
+     * A pagination token returned from a previous call to `SearchOrganizations` that indicates from where listing should continue. This field is optional.
      */
     pageToken?: string;
   }
@@ -1014,16 +673,11 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$SearchOrganizationsResponse {
     /**
-     * A pagination token to be used to retrieve the next page of results. If
-     * the result is too large to fit within the page size specified in the
-     * request, this field will be set with a token that can be used to fetch
-     * the next page of results. If this field is empty, it indicates that this
-     * response contains the last page of results.
+     * A pagination token to be used to retrieve the next page of results. If the result is too large to fit within the page size specified in the request, this field will be set with a token that can be used to fetch the next page of results. If this field is empty, it indicates that this response contains the last page of results.
      */
     nextPageToken?: string;
     /**
-     * The list of Organizations that matched the search query, possibly
-     * paginated.
+     * The list of Organizations that matched the search query, possibly paginated.
      */
     organizations?: Schema$Organization[];
   }
@@ -1032,17 +686,11 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size
-     * of the policy is limited to a few 10s of KB. An empty policy is a valid
-     * policy but certain Cloud Platform services (such as Projects) might
-     * reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify.
-     * Only the fields in the mask will be modified. If no mask is provided, the
-     * following default mask is used: paths: &quot;bindings, etag&quot; This
-     * field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
      */
     updateMask?: string;
   }
@@ -1056,40 +704,7 @@ export namespace cloudresourcemanager_v1 {
     policy?: Schema$OrgPolicy;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for
-   * different programming environments, including REST APIs and RPC APIs. It is
-   * used by [gRPC](https://github.com/grpc). The error model is designed to be:
-   * - Simple to use and understand for most users - Flexible enough to meet
-   * unexpected needs  # Overview  The `Status` message contains three pieces of
-   * data: error code, error message, and error details. The error code should
-   * be an enum value of google.rpc.Code, but it may accept additional error
-   * codes if needed.  The error message should be a developer-facing English
-   * message that helps developers *understand* and *resolve* the error. If a
-   * localized user-facing error message is needed, put the localized message in
-   * the error details or localize it in the client. The optional error details
-   * may contain arbitrary information about the error. There is a predefined
-   * set of error detail types in the package `google.rpc` that can be used for
-   * common error conditions.  # Language mapping  The `Status` message is the
-   * logical representation of the error model, but it is not necessarily the
-   * actual wire format. When the `Status` message is exposed in different
-   * client libraries and different wire protocols, it can be mapped
-   * differently. For example, it will likely be mapped to some exceptions in
-   * Java, but more likely mapped to some error codes in C.  # Other uses  The
-   * error model and the `Status` message can be used in a variety of
-   * environments, either with or without APIs, to provide a consistent
-   * developer experience across different environments.  Example uses of this
-   * error model include:  - Partial errors. If a service needs to return
-   * partial errors to the client,     it may embed the `Status` in the normal
-   * response to indicate the partial     errors.  - Workflow errors. A typical
-   * workflow has multiple steps. Each step may     have a `Status` message for
-   * error reporting.  - Batch operations. If a client uses batch request and
-   * batch response, the     `Status` message should be used directly inside
-   * batch response, one for     each error sub-response.  - Asynchronous
-   * operations. If an API call embeds asynchronous operation     results in its
-   * response, the status of those operations should be     represented directly
-   * using the `Status` message.  - Logging. If some API errors are stored in
-   * logs, the message `Status` could     be used directly after any stripping
-   * needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
    */
   export interface Schema$Status {
     /**
@@ -1097,14 +712,11 @@ export namespace cloudresourcemanager_v1 {
      */
     code?: number;
     /**
-     * A list of messages that carry the error details.  There is a common set
-     * of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
-     * A developer-facing error message, which should be in English. Any
-     * user-facing error message should be localized and sent in the
-     * google.rpc.Status.details field, or localized by the client.
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
   }
@@ -1113,10 +725,7 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with
-     * wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
-     * For more information see [IAM
-     * Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[];
   }
@@ -1125,8 +734,7 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$TestIamPermissionsResponse {
     /**
-     * A subset of `TestPermissionsRequest.permissions` that the caller is
-     * allowed.
+     * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[];
   }
@@ -1135,13 +743,11 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$UndeleteProjectRequest {}
 
-
   export class Resource$Folders {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudresourcemanager.folders.clearOrgPolicy
@@ -1152,14 +758,12 @@ export namespace cloudresourcemanager_v1 {
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1192,10 +796,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1211,24 +814,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     clearOrgPolicy(
-        params?: Params$Resource$Folders$Clearorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Folders$Clearorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     clearOrgPolicy(
-        params: Params$Resource$Folders$Clearorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Folders$Clearorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     clearOrgPolicy(
-        params: Params$Resource$Folders$Clearorgpolicy,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Folders$Clearorgpolicy,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     clearOrgPolicy(callback: BodyResponseCallback<Schema$Empty>): void;
     clearOrgPolicy(
-        paramsOrCallback?: Params$Resource$Folders$Clearorgpolicy|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Clearorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Clearorgpolicy
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Clearorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1243,19 +850,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:clearOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:clearOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1264,28 +874,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.folders.getEffectiveOrgPolicy
-     * @desc Gets the effective `Policy` on a resource. This is the result of
-     * merging `Policies` in the resource hierarchy. The returned `Policy` will
-     * not have an `etag`set because it is a computed `Policy` across multiple
-     * resources. Subtrees of Resource Manager resource hierarchy with 'under:'
-     * prefix will not be expanded.
+     * @desc Gets the effective `Policy` on a resource. This is the result of merging `Policies` in the resource hierarchy. The returned `Policy` will not have an `etag`set because it is a computed `Policy` across multiple resources. Subtrees of Resource Manager resource hierarchy with 'under:' prefix will not be expanded.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1294,9 +897,8 @@ export namespace cloudresourcemanager_v1 {
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of the resource to start computing the effective
-     * `Policy`. resource_: 'folders/my-folder',  // TODO: Update placeholder
-     * value.
+     *     // The name of the resource to start computing the effective `Policy`.
+     *     resource_: 'folders/my-folder',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -1305,8 +907,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.folders.getEffectiveOrgPolicy(request,
-     * function(err, response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.folders.getEffectiveOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1320,10 +924,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1339,26 +942,32 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getEffectiveOrgPolicy(
-        params?: Params$Resource$Folders$Geteffectiveorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Folders$Geteffectiveorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
-        params: Params$Resource$Folders$Geteffectiveorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Folders$Geteffectiveorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getEffectiveOrgPolicy(
-        params: Params$Resource$Folders$Geteffectiveorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
-    getEffectiveOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>):
-        void;
+      params: Params$Resource$Folders$Geteffectiveorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getEffectiveOrgPolicy(
-        paramsOrCallback?: Params$Resource$Folders$Geteffectiveorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Folders$Geteffectiveorgpolicy;
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
+    getEffectiveOrgPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Geteffectiveorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Geteffectiveorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1373,19 +982,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -1394,28 +1006,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.folders.getOrgPolicy
-     * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the
-     * resource, a `Policy` is returned with default values including
-     * `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can
-     * be used with `SetOrgPolicy()` to create or update a `Policy` during
-     * read-modify-write.
+     * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the resource, a `Policy` is returned with default values including `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can be used with `SetOrgPolicy()` to create or update a `Policy` during read-modify-write.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1434,8 +1039,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.folders.getOrgPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.folders.getOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1449,10 +1056,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1468,25 +1074,30 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getOrgPolicy(
-        params?: Params$Resource$Folders$Getorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Folders$Getorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     getOrgPolicy(
-        params: Params$Resource$Folders$Getorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Folders$Getorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getOrgPolicy(
-        params: Params$Resource$Folders$Getorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Folders$Getorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
     getOrgPolicy(
-        paramsOrCallback?: Params$Resource$Folders$Getorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Getorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Getorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Getorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1501,19 +1112,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -1522,25 +1136,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.folders.listAvailableOrgPolicyConstraints
-     * @desc Lists `Constraints` that could be applied on the specified
-     * resource.
+     * @desc Lists `Constraints` that could be applied on the specified resource.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1570,20 +1180,17 @@ export namespace cloudresourcemanager_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < constraintsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `constraintsPage`: console.log(JSON.stringify(constraintsPage[i], null,
-     * 2));
+     *       // TODO: Change code below to process each resource in `constraintsPage`:
+     *       console.log(JSON.stringify(constraintsPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
      *       request.resource.pageToken = response.nextPageToken;
-     *       cloudResourceManager.folders.listAvailableOrgPolicyConstraints(request,
-     * handlePage);
+     *       cloudResourceManager.folders.listAvailableOrgPolicyConstraints(request, handlePage);
      *     }
      *   };
      *
-     *   cloudResourceManager.folders.listAvailableOrgPolicyConstraints(request,
-     * handlePage);
+     *   cloudResourceManager.folders.listAvailableOrgPolicyConstraints(request, handlePage);
      * });
      *
      * function authorize(callback) {
@@ -1592,10 +1199,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1611,39 +1217,53 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     listAvailableOrgPolicyConstraints(
-        params?: Params$Resource$Folders$Listavailableorgpolicyconstraints,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
+      params?: Params$Resource$Folders$Listavailableorgpolicyconstraints,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
     listAvailableOrgPolicyConstraints(
-        params: Params$Resource$Folders$Listavailableorgpolicyconstraints,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      params: Params$Resource$Folders$Listavailableorgpolicyconstraints,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        params: Params$Resource$Folders$Listavailableorgpolicyconstraints,
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      params: Params$Resource$Folders$Listavailableorgpolicyconstraints,
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        paramsOrCallback?:
-            Params$Resource$Folders$Listavailableorgpolicyconstraints|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>):
-        void|GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Folders$Listavailableorgpolicyconstraints;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Listavailableorgpolicyconstraints
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void | GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Listavailableorgpolicyconstraints;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Folders$Listavailableorgpolicyconstraints;
+        params = {} as Params$Resource$Folders$Listavailableorgpolicyconstraints;
         options = {};
       }
 
@@ -1653,30 +1273,33 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/{+resource}:listAvailableOrgPolicyConstraints')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/{+resource}:listAvailableOrgPolicyConstraints'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>(parameters);
+          Schema$ListAvailableOrgPolicyConstraintsResponse
+        >(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.listOrgPolicies
@@ -1687,14 +1310,12 @@ export namespace cloudresourcemanager_v1 {
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1724,8 +1345,8 @@ export namespace cloudresourcemanager_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < policiesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `policiesPage`: console.log(JSON.stringify(policiesPage[i], null, 2));
+     *       // TODO: Change code below to process each resource in `policiesPage`:
+     *       console.log(JSON.stringify(policiesPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -1743,10 +1364,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1762,27 +1382,34 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     listOrgPolicies(
-        params?: Params$Resource$Folders$Listorgpolicies,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
+      params?: Params$Resource$Folders$Listorgpolicies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
     listOrgPolicies(
-        params: Params$Resource$Folders$Listorgpolicies,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      params: Params$Resource$Folders$Listorgpolicies,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        params: Params$Resource$Folders$Listorgpolicies,
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      params: Params$Resource$Folders$Listorgpolicies,
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        paramsOrCallback?: Params$Resource$Folders$Listorgpolicies|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>):
-        void|GaxiosPromise<Schema$ListOrgPoliciesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Listorgpolicies;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Listorgpolicies
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void | GaxiosPromise<Schema$ListOrgPoliciesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Listorgpolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1797,19 +1424,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:listOrgPolicies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:listOrgPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback);
@@ -1818,27 +1448,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.folders.setOrgPolicy
-     * @desc Updates the specified `Policy` on the resource. Creates a new
-     * `Policy` for that `Constraint` on the resource if one does not exist. Not
-     * supplying an `etag` on the request `Policy` results in an unconditional
-     * write of the `Policy`.
+     * @desc Updates the specified `Policy` on the resource. Creates a new `Policy` for that `Constraint` on the resource if one does not exist.  Not supplying an `etag` on the request `Policy` results in an unconditional write of the `Policy`.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1857,8 +1481,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.folders.setOrgPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.folders.setOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1872,10 +1498,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1891,25 +1516,30 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     setOrgPolicy(
-        params?: Params$Resource$Folders$Setorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Folders$Setorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     setOrgPolicy(
-        params: Params$Resource$Folders$Setorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Folders$Setorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     setOrgPolicy(
-        params: Params$Resource$Folders$Setorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Folders$Setorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     setOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
     setOrgPolicy(
-        paramsOrCallback?: Params$Resource$Folders$Setorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Setorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Setorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Setorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1924,19 +1554,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -1946,12 +1579,12 @@ export namespace cloudresourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Clearorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Clearorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource for the `Policy` to clear.
@@ -1963,12 +1596,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ClearOrgPolicyRequest;
   }
-  export interface Params$Resource$Folders$Geteffectiveorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Geteffectiveorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the resource to start computing the effective `Policy`.
@@ -1980,12 +1613,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetEffectiveOrgPolicyRequest;
   }
-  export interface Params$Resource$Folders$Getorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Getorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource the `Policy` is set on.
@@ -1998,11 +1631,11 @@ export namespace cloudresourcemanager_v1 {
     requestBody?: Schema$GetOrgPolicyRequest;
   }
   export interface Params$Resource$Folders$Listavailableorgpolicyconstraints
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource to list `Constraints` for.
@@ -2014,12 +1647,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListAvailableOrgPolicyConstraintsRequest;
   }
-  export interface Params$Resource$Folders$Listorgpolicies extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Listorgpolicies
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource to list Policies for.
@@ -2031,12 +1664,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListOrgPoliciesRequest;
   }
-  export interface Params$Resource$Folders$Setorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Setorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the resource to attach the `Policy`.
@@ -2049,35 +1682,27 @@ export namespace cloudresourcemanager_v1 {
     requestBody?: Schema$SetOrgPolicyRequest;
   }
 
-
   export class Resource$Liens {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * cloudresourcemanager.liens.create
-     * @desc Create a Lien which applies to the resource denoted by the `parent`
-     * field.  Callers of this method will require permission on the `parent`
-     * resource. For example, applying to `projects/1234` requires permission
-     * `resourcemanager.projects.updateLiens`.  NOTE: Some resources may limit
-     * the number of Liens which may be applied.
+     * @desc Create a Lien which applies to the resource denoted by the `parent` field.  Callers of this method will require permission on the `parent` resource. For example, applying to `projects/1234` requires permission `resourcemanager.projects.updateLiens`.  NOTE: Some resources may limit the number of Liens which may be applied.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2110,10 +1735,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2127,22 +1751,27 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Liens$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Lien>;
     create(
-        params: Params$Resource$Liens$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Lien>,
-        callback: BodyResponseCallback<Schema$Lien>): void;
+      params?: Params$Resource$Liens$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Lien>;
     create(
-        params: Params$Resource$Liens$Create,
-        callback: BodyResponseCallback<Schema$Lien>): void;
+      params: Params$Resource$Liens$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Lien>,
+      callback: BodyResponseCallback<Schema$Lien>
+    ): void;
+    create(
+      params: Params$Resource$Liens$Create,
+      callback: BodyResponseCallback<Schema$Lien>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Lien>): void;
     create(
-        paramsOrCallback?: Params$Resource$Liens$Create|
-        BodyResponseCallback<Schema$Lien>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Lien>,
-        callback?: BodyResponseCallback<Schema$Lien>):
-        void|GaxiosPromise<Schema$Lien> {
+      paramsOrCallback?:
+        | Params$Resource$Liens$Create
+        | BodyResponseCallback<Schema$Lien>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Lien>,
+      callback?: BodyResponseCallback<Schema$Lien>
+    ): void | GaxiosPromise<Schema$Lien> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liens$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2158,18 +1787,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/liens').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/liens').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Lien>(parameters, callback);
@@ -2178,27 +1808,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.liens.delete
-     * @desc Delete a Lien by `name`.  Callers of this method will require
-     * permission on the `parent` resource. For example, a Lien with a `parent`
-     * of `projects/1234` requires permission
-     * `resourcemanager.projects.updateLiens`.
+     * @desc Delete a Lien by `name`.  Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.updateLiens`.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2227,10 +1851,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2244,22 +1867,27 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Liens$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Liens$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Liens$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Liens$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Liens$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Liens$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Liens$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Liens$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liens$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2275,18 +1903,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2295,13 +1924,9 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.liens.get
-     * @desc Retrieve a Lien by `name`.  Callers of this method will require
-     * permission on the `parent` resource. For example, a Lien with a `parent`
-     * of `projects/1234` requires permission requires permission
-     * `resourcemanager.projects.get` or `resourcemanager.projects.updateLiens`.
+     * @desc Retrieve a Lien by `name`.  Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission requires permission `resourcemanager.projects.get` or `resourcemanager.projects.updateLiens`.
      * @alias cloudresourcemanager.liens.get
      * @memberOf! ()
      *
@@ -2311,19 +1936,27 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Liens$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Lien>;
-    get(params: Params$Resource$Liens$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Lien>,
-        callback: BodyResponseCallback<Schema$Lien>): void;
-    get(params: Params$Resource$Liens$Get,
-        callback: BodyResponseCallback<Schema$Lien>): void;
+    get(
+      params?: Params$Resource$Liens$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Lien>;
+    get(
+      params: Params$Resource$Liens$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Lien>,
+      callback: BodyResponseCallback<Schema$Lien>
+    ): void;
+    get(
+      params: Params$Resource$Liens$Get,
+      callback: BodyResponseCallback<Schema$Lien>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Lien>): void;
-    get(paramsOrCallback?: Params$Resource$Liens$Get|
-        BodyResponseCallback<Schema$Lien>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Lien>,
-        callback?: BodyResponseCallback<Schema$Lien>):
-        void|GaxiosPromise<Schema$Lien> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Liens$Get
+        | BodyResponseCallback<Schema$Lien>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Lien>,
+      callback?: BodyResponseCallback<Schema$Lien>
+    ): void | GaxiosPromise<Schema$Lien> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liens$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2339,18 +1972,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Lien>(parameters, callback);
@@ -2359,27 +1993,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.liens.list
-     * @desc List all Liens applied to the `parent` resource.  Callers of this
-     * method will require permission on the `parent` resource. For example, a
-     * Lien with a `parent` of `projects/1234` requires permission
-     * `resourcemanager.projects.get`.
+     * @desc List all Liens applied to the `parent` resource.  Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2421,10 +2049,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2440,23 +2067,29 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Liens$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListLiensResponse>;
     list(
-        params: Params$Resource$Liens$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListLiensResponse>,
-        callback: BodyResponseCallback<Schema$ListLiensResponse>): void;
+      params?: Params$Resource$Liens$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLiensResponse>;
     list(
-        params: Params$Resource$Liens$List,
-        callback: BodyResponseCallback<Schema$ListLiensResponse>): void;
+      params: Params$Resource$Liens$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListLiensResponse>,
+      callback: BodyResponseCallback<Schema$ListLiensResponse>
+    ): void;
+    list(
+      params: Params$Resource$Liens$List,
+      callback: BodyResponseCallback<Schema$ListLiensResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLiensResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Liens$List|
-        BodyResponseCallback<Schema$ListLiensResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLiensResponse>,
-        callback?: BodyResponseCallback<Schema$ListLiensResponse>):
-        void|GaxiosPromise<Schema$ListLiensResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Liens$List
+        | BodyResponseCallback<Schema$ListLiensResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLiensResponse>,
+      callback?: BodyResponseCallback<Schema$ListLiensResponse>
+    ): void | GaxiosPromise<Schema$ListLiensResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liens$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2472,18 +2105,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/liens').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/liens').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLiensResponse>(parameters, callback);
@@ -2497,8 +2131,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -2509,7 +2142,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name/identifier of the Lien to delete.
@@ -2520,7 +2153,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name/identifier of the Lien.
@@ -2531,25 +2164,21 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of items to return. This is a suggestion for the
-     * server.
+     * The maximum number of items to return. This is a suggestion for the server.
      */
     pageSize?: number;
     /**
-     * The `next_page_token` value returned from a previous List request, if
-     * any.
+     * The `next_page_token` value returned from a previous List request, if any.
      */
     pageToken?: string;
     /**
-     * The name of the resource to list all attached Liens. For example,
-     * `projects/1234`.
+     * The name of the resource to list all attached Liens. For example, `projects/1234`.
      */
     parent?: string;
   }
-
 
   export class Resource$Operations {
     context: APIRequestContext;
@@ -2557,26 +2186,21 @@ export namespace cloudresourcemanager_v1 {
       this.context = context;
     }
 
-
     /**
      * cloudresourcemanager.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use
-     * this method to poll the operation result at intervals as recommended by
-     * the API service.
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2608,10 +2232,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2625,20 +2248,29 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2654,18 +2286,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2679,7 +2312,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -2687,13 +2320,11 @@ export namespace cloudresourcemanager_v1 {
     name?: string;
   }
 
-
   export class Resource$Organizations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudresourcemanager.organizations.clearOrgPolicy
@@ -2704,14 +2335,12 @@ export namespace cloudresourcemanager_v1 {
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2721,8 +2350,7 @@ export namespace cloudresourcemanager_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the resource for the `Policy` to clear.
-     *     resource_: 'organizations/my-organization',  // TODO: Update
-     * placeholder value.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -2731,8 +2359,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.organizations.clearOrgPolicy(request,
-     * function(err) { if (err) { console.error(err); return;
+     *   cloudResourceManager.organizations.clearOrgPolicy(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *   });
      * });
@@ -2743,10 +2373,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2762,24 +2391,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     clearOrgPolicy(
-        params?: Params$Resource$Organizations$Clearorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Organizations$Clearorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     clearOrgPolicy(
-        params: Params$Resource$Organizations$Clearorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Organizations$Clearorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     clearOrgPolicy(
-        params: Params$Resource$Organizations$Clearorgpolicy,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Organizations$Clearorgpolicy,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     clearOrgPolicy(callback: BodyResponseCallback<Schema$Empty>): void;
     clearOrgPolicy(
-        paramsOrCallback?: Params$Resource$Organizations$Clearorgpolicy|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Clearorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Clearorgpolicy
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Clearorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2794,19 +2427,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:clearOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:clearOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2815,25 +2451,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.organizations.get
-     * @desc Fetches an Organization resource identified by the specified
-     * resource name.
+     * @desc Fetches an Organization resource identified by the specified resource name.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2842,15 +2474,16 @@ export namespace cloudresourcemanager_v1 {
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The resource name of the Organization to fetch, e.g.
-     * "organizations/1234". name: 'organizations/my-organization',  // TODO:
-     * Update placeholder value.
+     *     // The resource name of the Organization to fetch, e.g. "organizations/1234".
+     *     name: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.organizations.get(request, function(err, response)
-     * { if (err) { console.error(err); return;
+     *   cloudResourceManager.organizations.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -2864,10 +2497,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2881,22 +2513,31 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Organizations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Organization>;
-    get(params: Params$Resource$Organizations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Organization>,
-        callback: BodyResponseCallback<Schema$Organization>): void;
-    get(params: Params$Resource$Organizations$Get,
-        callback: BodyResponseCallback<Schema$Organization>): void;
+    get(
+      params?: Params$Resource$Organizations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Organization>;
+    get(
+      params: Params$Resource$Organizations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Organization>,
+      callback: BodyResponseCallback<Schema$Organization>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Get,
+      callback: BodyResponseCallback<Schema$Organization>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Organization>): void;
-    get(paramsOrCallback?: Params$Resource$Organizations$Get|
-        BodyResponseCallback<Schema$Organization>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Organization>,
-        callback?: BodyResponseCallback<Schema$Organization>):
-        void|GaxiosPromise<Schema$Organization> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Get
+        | BodyResponseCallback<Schema$Organization>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Organization>,
+      callback?: BodyResponseCallback<Schema$Organization>
+    ): void | GaxiosPromise<Schema$Organization> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2911,18 +2552,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Organization>(parameters, callback);
@@ -2931,28 +2573,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.organizations.getEffectiveOrgPolicy
-     * @desc Gets the effective `Policy` on a resource. This is the result of
-     * merging `Policies` in the resource hierarchy. The returned `Policy` will
-     * not have an `etag`set because it is a computed `Policy` across multiple
-     * resources. Subtrees of Resource Manager resource hierarchy with 'under:'
-     * prefix will not be expanded.
+     * @desc Gets the effective `Policy` on a resource. This is the result of merging `Policies` in the resource hierarchy. The returned `Policy` will not have an `etag`set because it is a computed `Policy` across multiple resources. Subtrees of Resource Manager resource hierarchy with 'under:' prefix will not be expanded.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2961,9 +2596,8 @@ export namespace cloudresourcemanager_v1 {
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of the resource to start computing the effective
-     * `Policy`. resource_: 'organizations/my-organization',  // TODO: Update
-     * placeholder value.
+     *     // The name of the resource to start computing the effective `Policy`.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -2972,8 +2606,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.organizations.getEffectiveOrgPolicy(request,
-     * function(err, response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.organizations.getEffectiveOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -2987,10 +2623,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3006,26 +2641,32 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getEffectiveOrgPolicy(
-        params?: Params$Resource$Organizations$Geteffectiveorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Organizations$Geteffectiveorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
-        params: Params$Resource$Organizations$Geteffectiveorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Organizations$Geteffectiveorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getEffectiveOrgPolicy(
-        params: Params$Resource$Organizations$Geteffectiveorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
-    getEffectiveOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>):
-        void;
+      params: Params$Resource$Organizations$Geteffectiveorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getEffectiveOrgPolicy(
-        paramsOrCallback?: Params$Resource$Organizations$Geteffectiveorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Geteffectiveorgpolicy;
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
+    getEffectiveOrgPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Geteffectiveorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Geteffectiveorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3040,19 +2681,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -3061,29 +2705,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.organizations.getIamPolicy
-     * @desc Gets the access control policy for an Organization resource. May be
-     * empty if no such policy or resource exists. The `resource` field should
-     * be the organization's resource name, e.g. "organizations/123".
-     * Authorization requires the Google IAM permission
-     * `resourcemanager.organizations.getIamPolicy` on the specified
-     * organization
+     * @desc Gets the access control policy for an Organization resource. May be empty if no such policy or resource exists. The `resource` field should be the organization's resource name, e.g. "organizations/123".  Authorization requires the Google IAM permission `resourcemanager.organizations.getIamPolicy` on the specified organization
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3093,9 +2729,8 @@ export namespace cloudresourcemanager_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'organizations/my-organization',  // TODO: Update
-     * placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -3104,8 +2739,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.organizations.getIamPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.organizations.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -3119,10 +2756,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3138,24 +2774,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Organizations$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Organizations$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Organizations$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Organizations$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Organizations$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Organizations$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Organizations$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3170,19 +2810,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3191,28 +2834,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.organizations.getOrgPolicy
-     * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the
-     * resource, a `Policy` is returned with default values including
-     * `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can
-     * be used with `SetOrgPolicy()` to create or update a `Policy` during
-     * read-modify-write.
+     * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the resource, a `Policy` is returned with default values including `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can be used with `SetOrgPolicy()` to create or update a `Policy` during read-modify-write.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3222,8 +2858,7 @@ export namespace cloudresourcemanager_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the resource the `Policy` is set on.
-     *     resource_: 'organizations/my-organization',  // TODO: Update
-     * placeholder value.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -3232,8 +2867,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.organizations.getOrgPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.organizations.getOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -3247,10 +2884,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3266,25 +2902,30 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getOrgPolicy(
-        params?: Params$Resource$Organizations$Getorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Organizations$Getorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     getOrgPolicy(
-        params: Params$Resource$Organizations$Getorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Organizations$Getorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getOrgPolicy(
-        params: Params$Resource$Organizations$Getorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Organizations$Getorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
     getOrgPolicy(
-        paramsOrCallback?: Params$Resource$Organizations$Getorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Getorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Getorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Getorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3299,19 +2940,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -3320,25 +2964,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.organizations.listAvailableOrgPolicyConstraints
-     * @desc Lists `Constraints` that could be applied on the specified
-     * resource.
+     * @desc Lists `Constraints` that could be applied on the specified resource.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3348,8 +2988,7 @@ export namespace cloudresourcemanager_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the resource to list `Constraints` for.
-     *     resource_: 'organizations/my-organization',  // TODO: Update
-     * placeholder value.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -3369,20 +3008,17 @@ export namespace cloudresourcemanager_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < constraintsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `constraintsPage`: console.log(JSON.stringify(constraintsPage[i], null,
-     * 2));
+     *       // TODO: Change code below to process each resource in `constraintsPage`:
+     *       console.log(JSON.stringify(constraintsPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
      *       request.resource.pageToken = response.nextPageToken;
-     *       cloudResourceManager.organizations.listAvailableOrgPolicyConstraints(request,
-     * handlePage);
+     *       cloudResourceManager.organizations.listAvailableOrgPolicyConstraints(request, handlePage);
      *     }
      *   };
      *
-     *   cloudResourceManager.organizations.listAvailableOrgPolicyConstraints(request,
-     * handlePage);
+     *   cloudResourceManager.organizations.listAvailableOrgPolicyConstraints(request, handlePage);
      * });
      *
      * function authorize(callback) {
@@ -3391,16 +3027,14 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
      * }
-     * @alias
-     * cloudresourcemanager.organizations.listAvailableOrgPolicyConstraints
+     * @alias cloudresourcemanager.organizations.listAvailableOrgPolicyConstraints
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -3411,40 +3045,53 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     listAvailableOrgPolicyConstraints(
-        params?:
-            Params$Resource$Organizations$Listavailableorgpolicyconstraints,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
+      params?: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
     listAvailableOrgPolicyConstraints(
-        params: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      params: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        params: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      params: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        paramsOrCallback?:
-            Params$Resource$Organizations$Listavailableorgpolicyconstraints|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>):
-        void|GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Listavailableorgpolicyconstraints;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Listavailableorgpolicyconstraints
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void | GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Listavailableorgpolicyconstraints;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Organizations$Listavailableorgpolicyconstraints;
+        params = {} as Params$Resource$Organizations$Listavailableorgpolicyconstraints;
         options = {};
       }
 
@@ -3454,30 +3101,33 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/{+resource}:listAvailableOrgPolicyConstraints')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/{+resource}:listAvailableOrgPolicyConstraints'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>(parameters);
+          Schema$ListAvailableOrgPolicyConstraintsResponse
+        >(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.organizations.listOrgPolicies
@@ -3488,14 +3138,12 @@ export namespace cloudresourcemanager_v1 {
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3505,8 +3153,7 @@ export namespace cloudresourcemanager_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the resource to list Policies for.
-     *     resource_: 'organizations/my-organization',  // TODO: Update
-     * placeholder value.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -3526,19 +3173,17 @@ export namespace cloudresourcemanager_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < policiesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `policiesPage`: console.log(JSON.stringify(policiesPage[i], null, 2));
+     *       // TODO: Change code below to process each resource in `policiesPage`:
+     *       console.log(JSON.stringify(policiesPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
      *       request.resource.pageToken = response.nextPageToken;
-     *       cloudResourceManager.organizations.listOrgPolicies(request,
-     * handlePage);
+     *       cloudResourceManager.organizations.listOrgPolicies(request, handlePage);
      *     }
      *   };
      *
-     *   cloudResourceManager.organizations.listOrgPolicies(request,
-     * handlePage);
+     *   cloudResourceManager.organizations.listOrgPolicies(request, handlePage);
      * });
      *
      * function authorize(callback) {
@@ -3547,10 +3192,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3566,27 +3210,34 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     listOrgPolicies(
-        params?: Params$Resource$Organizations$Listorgpolicies,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
+      params?: Params$Resource$Organizations$Listorgpolicies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
     listOrgPolicies(
-        params: Params$Resource$Organizations$Listorgpolicies,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      params: Params$Resource$Organizations$Listorgpolicies,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        params: Params$Resource$Organizations$Listorgpolicies,
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      params: Params$Resource$Organizations$Listorgpolicies,
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        paramsOrCallback?: Params$Resource$Organizations$Listorgpolicies|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>):
-        void|GaxiosPromise<Schema$ListOrgPoliciesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Listorgpolicies;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Listorgpolicies
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void | GaxiosPromise<Schema$ListOrgPoliciesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Listorgpolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3601,19 +3252,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:listOrgPolicies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:listOrgPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback);
@@ -3622,28 +3276,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.organizations.search
-     * @desc Searches Organization resources that are visible to the user and
-     * satisfy the specified filter. This method returns Organizations in an
-     * unspecified order. New Organizations do not necessarily appear at the end
-     * of the results.  Search will only return organizations on which the user
-     * has the permission `resourcemanager.organizations.get`
+     * @desc Searches Organization resources that are visible to the user and satisfy the specified filter. This method returns Organizations in an unspecified order. New Organizations do not necessarily appear at the end of the results.  Search will only return organizations on which the user has the permission `resourcemanager.organizations.get`
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3670,9 +3317,8 @@ export namespace cloudresourcemanager_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < organizationsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `organizationsPage`: console.log(JSON.stringify(organizationsPage[i],
-     * null, 2));
+     *       // TODO: Change code below to process each resource in `organizationsPage`:
+     *       console.log(JSON.stringify(organizationsPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -3690,10 +3336,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3708,29 +3353,34 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     search(
-        params?: Params$Resource$Organizations$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$SearchOrganizationsResponse>;
+      params?: Params$Resource$Organizations$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchOrganizationsResponse>;
     search(
-        params: Params$Resource$Organizations$Search,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SearchOrganizationsResponse>,
-        callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
-        void;
+      params: Params$Resource$Organizations$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchOrganizationsResponse>,
+      callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>
+    ): void;
     search(
-        params: Params$Resource$Organizations$Search,
-        callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
-        void;
-    search(callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
-        void;
+      params: Params$Resource$Organizations$Search,
+      callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>
+    ): void;
     search(
-        paramsOrCallback?: Params$Resource$Organizations$Search|
-        BodyResponseCallback<Schema$SearchOrganizationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchOrganizationsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
-        void|GaxiosPromise<Schema$SearchOrganizationsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Search;
+      callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Search
+        | BodyResponseCallback<Schema$SearchOrganizationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchOrganizationsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchOrganizationsResponse>
+    ): void | GaxiosPromise<Schema$SearchOrganizationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3745,51 +3395,48 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/organizations:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/organizations:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchOrganizationsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SearchOrganizationsResponse>(parameters);
       }
     }
 
-
     /**
      * cloudresourcemanager.organizations.setIamPolicy
-     * @desc Sets the access control policy on an Organization resource.
-     * Replaces any existing policy. The `resource` field should be the
-     * organization's resource name, e.g. "organizations/123".  Authorization
-     * requires the Google IAM permission
-     * `resourcemanager.organizations.setIamPolicy` on the specified
-     * organization
+     * @desc Sets the access control policy on an Organization resource. Replaces any existing policy. The `resource` field should be the organization's resource name, e.g. "organizations/123".  Authorization requires the Google IAM permission `resourcemanager.organizations.setIamPolicy` on the specified organization
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3799,9 +3446,8 @@ export namespace cloudresourcemanager_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'organizations/my-organization',  // TODO: Update
-     * placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -3810,8 +3456,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.organizations.setIamPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.organizations.setIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -3825,10 +3473,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3844,24 +3491,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Organizations$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Organizations$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Organizations$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Organizations$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Organizations$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Organizations$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Organizations$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3876,19 +3527,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3897,27 +3551,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.organizations.setOrgPolicy
-     * @desc Updates the specified `Policy` on the resource. Creates a new
-     * `Policy` for that `Constraint` on the resource if one does not exist. Not
-     * supplying an `etag` on the request `Policy` results in an unconditional
-     * write of the `Policy`.
+     * @desc Updates the specified `Policy` on the resource. Creates a new `Policy` for that `Constraint` on the resource if one does not exist.  Not supplying an `etag` on the request `Policy` results in an unconditional write of the `Policy`.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3927,8 +3575,7 @@ export namespace cloudresourcemanager_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // Resource name of the resource to attach the `Policy`.
-     *     resource_: 'organizations/my-organization',  // TODO: Update
-     * placeholder value.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -3937,8 +3584,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.organizations.setOrgPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.organizations.setOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -3952,10 +3601,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -3971,25 +3619,30 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     setOrgPolicy(
-        params?: Params$Resource$Organizations$Setorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Organizations$Setorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     setOrgPolicy(
-        params: Params$Resource$Organizations$Setorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Organizations$Setorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     setOrgPolicy(
-        params: Params$Resource$Organizations$Setorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Organizations$Setorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     setOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
     setOrgPolicy(
-        paramsOrCallback?: Params$Resource$Organizations$Setorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Setorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Setorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Setorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4004,19 +3657,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -4025,27 +3681,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.organizations.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified
-     * Organization. The `resource` field should be the organization's resource
-     * name, e.g. "organizations/123".  There are no permissions required for
-     * making this API call.
+     * @desc Returns permissions that a caller has on the specified Organization. The `resource` field should be the organization's resource name, e.g. "organizations/123".  There are no permissions required for making this API call.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4054,11 +3704,9 @@ export namespace cloudresourcemanager_v1 {
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // REQUIRED: The resource for which the policy detail is being
-     * requested.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'organizations/my-organization',  // TODO: Update
-     * placeholder value.
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -4067,8 +3715,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.organizations.testIamPermissions(request,
-     * function(err, response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.organizations.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -4082,10 +3732,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4101,31 +3750,34 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Organizations$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Organizations$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Organizations$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Organizations$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Organizations$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Organizations$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?: Params$Resource$Organizations$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4140,35 +3792,40 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Organizations$Clearorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Clearorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource for the `Policy` to clear.
@@ -4180,26 +3837,24 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ClearOrgPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the Organization to fetch. This is the
-     * organization's relative path in the API, formatted as
-     * "organizations/[organizationId]". For example, "organizations/1234".
+     * The resource name of the Organization to fetch. This is the organization's relative path in the API, formatted as "organizations/[organizationId]". For example, "organizations/1234".
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Geteffectiveorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Geteffectiveorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the resource to start computing the effective `Policy`.
@@ -4211,16 +3866,15 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetEffectiveOrgPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4229,12 +3883,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Getorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Getorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource the `Policy` is set on.
@@ -4247,11 +3901,11 @@ export namespace cloudresourcemanager_v1 {
     requestBody?: Schema$GetOrgPolicyRequest;
   }
   export interface Params$Resource$Organizations$Listavailableorgpolicyconstraints
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource to list `Constraints` for.
@@ -4263,12 +3917,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListAvailableOrgPolicyConstraintsRequest;
   }
-  export interface Params$Resource$Organizations$Listorgpolicies extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Listorgpolicies
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource to list Policies for.
@@ -4280,29 +3934,27 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListOrgPoliciesRequest;
   }
-  export interface Params$Resource$Organizations$Search extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Search
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$SearchOrganizationsRequest;
   }
-  export interface Params$Resource$Organizations$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4311,12 +3963,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Setorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Setorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the resource to attach the `Policy`.
@@ -4328,16 +3980,15 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$SetOrgPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4347,13 +3998,11 @@ export namespace cloudresourcemanager_v1 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudresourcemanager.projects.clearOrgPolicy
@@ -4364,14 +4013,12 @@ export namespace cloudresourcemanager_v1 {
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4404,10 +4051,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4423,24 +4069,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     clearOrgPolicy(
-        params?: Params$Resource$Projects$Clearorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Clearorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     clearOrgPolicy(
-        params: Params$Resource$Projects$Clearorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Clearorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     clearOrgPolicy(
-        params: Params$Resource$Projects$Clearorgpolicy,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Clearorgpolicy,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     clearOrgPolicy(callback: BodyResponseCallback<Schema$Empty>): void;
     clearOrgPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Clearorgpolicy|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Clearorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Clearorgpolicy
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Clearorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4455,19 +4105,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:clearOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:clearOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4476,37 +4129,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.projects.create
-     * @desc Request that a new Project be created. The result is an Operation
-     * which can be used to track the creation process. It is automatically
-     * deleted after a few hours, so there is no need to call DeleteOperation.
-     * Our SLO permits Project creation to take up to 30 seconds at the 90th
-     * percentile. As of 2016-08-29, we are observing 6 seconds 50th percentile
-     * latency. 95th percentile latency is around 11 seconds. We recommend
-     * polling at the 5th second with an exponential backoff.  Authorization
-     * requires the Google IAM permission `resourcemanager.projects.create` on
-     * the specified parent for the new project. The parent is identified by a
-     * specified ResourceId, which must include both an ID and a type, such as
-     * organization.  This method does not associate the new project with a
-     * billing account. You can set or update the billing account associated
-     * with a project using the [`projects.updateBillingInfo`]
-     * (/billing/reference/rest/v1/projects/updateBillingInfo) method.
+     * @desc Request that a new Project be created. The result is an Operation which can be used to track the creation process. It is automatically deleted after a few hours, so there is no need to call DeleteOperation.  Our SLO permits Project creation to take up to 30 seconds at the 90th percentile. As of 2016-08-29, we are observing 6 seconds 50th percentile latency. 95th percentile latency is around 11 seconds. We recommend polling at the 5th second with an exponential backoff.  Authorization requires the Google IAM permission `resourcemanager.projects.create` on the specified parent for the new project. The parent is identified by a specified ResourceId, which must include both an ID and a type, such as organization.  This method does not associate the new project with a billing account. You can set or update the billing account associated with a project using the [`projects.updateBillingInfo`] (/billing/reference/rest/v1/projects/updateBillingInfo) method.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4539,10 +4176,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4556,23 +4192,29 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Projects$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Projects$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Projects$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4588,18 +4230,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4608,34 +4251,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.projects.delete
-     * @desc Marks the Project identified by the specified `project_id` (for
-     * example, `my-project-123`) for deletion. This method will only affect the
-     * Project if it has a lifecycle state of ACTIVE.  This method changes the
-     * Project's lifecycle state from ACTIVE to DELETE_REQUESTED. The deletion
-     * starts at an unspecified time, at which point the Project is no longer
-     * accessible.  Until the deletion completes, you can check the lifecycle
-     * state checked by retrieving the Project with GetProject, and the Project
-     * remains visible to ListProjects. However, you cannot update the project.
-     * After the deletion completes, the Project is not retrievable by the
-     * GetProject and ListProjects methods.  The caller must have modify
-     * permissions for this Project.
+     * @desc Marks the Project identified by the specified `project_id` (for example, `my-project-123`) for deletion. This method will only affect the Project if it has a lifecycle state of ACTIVE.  This method changes the Project's lifecycle state from ACTIVE to DELETE_REQUESTED. The deletion starts at an unspecified time, at which point the Project is no longer accessible.  Until the deletion completes, you can check the lifecycle state checked by retrieving the Project with GetProject, and the Project remains visible to ListProjects. However, you cannot update the project.  After the deletion completes, the Project is not retrievable by the  GetProject and ListProjects methods.  The caller must have modify permissions for this Project.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4665,10 +4295,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4682,22 +4311,27 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Projects$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Projects$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Projects$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4713,19 +4347,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4734,26 +4371,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.projects.get
-     * @desc Retrieves the Project identified by the specified `project_id` (for
-     * example, `my-project-123`).  The caller must have read permissions for
-     * this Project.
+     * @desc Retrieves the Project identified by the specified `project_id` (for example, `my-project-123`).  The caller must have read permissions for this Project.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4786,10 +4418,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4803,19 +4434,27 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Project>;
-    get(params: Params$Resource$Projects$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback: BodyResponseCallback<Schema$Project>): void;
-    get(params: Params$Resource$Projects$Get,
-        callback: BodyResponseCallback<Schema$Project>): void;
+    get(
+      params?: Params$Resource$Projects$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Project>;
+    get(
+      params: Params$Resource$Projects$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Get,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Project>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Get|
-        BodyResponseCallback<Schema$Project>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback?: BodyResponseCallback<Schema$Project>):
-        void|GaxiosPromise<Schema$Project> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Get
+        | BodyResponseCallback<Schema$Project>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback?: BodyResponseCallback<Schema$Project>
+    ): void | GaxiosPromise<Schema$Project> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4831,19 +4470,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -4852,26 +4494,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.projects.getAncestry
-     * @desc Gets a list of ancestors in the resource hierarchy for the Project
-     * identified by the specified `project_id` (for example, `my-project-123`).
-     * The caller must have read permissions for this Project.
+     * @desc Gets a list of ancestors in the resource hierarchy for the Project identified by the specified `project_id` (for example, `my-project-123`).  The caller must have read permissions for this Project.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -4891,8 +4528,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.projects.getAncestry(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.projects.getAncestry(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -4906,10 +4545,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -4925,26 +4563,32 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getAncestry(
-        params?: Params$Resource$Projects$Getancestry,
-        options?: MethodOptions): GaxiosPromise<Schema$GetAncestryResponse>;
+      params?: Params$Resource$Projects$Getancestry,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetAncestryResponse>;
     getAncestry(
-        params: Params$Resource$Projects$Getancestry,
-        options: MethodOptions|BodyResponseCallback<Schema$GetAncestryResponse>,
-        callback: BodyResponseCallback<Schema$GetAncestryResponse>): void;
+      params: Params$Resource$Projects$Getancestry,
+      options: MethodOptions | BodyResponseCallback<Schema$GetAncestryResponse>,
+      callback: BodyResponseCallback<Schema$GetAncestryResponse>
+    ): void;
     getAncestry(
-        params: Params$Resource$Projects$Getancestry,
-        callback: BodyResponseCallback<Schema$GetAncestryResponse>): void;
-    getAncestry(callback: BodyResponseCallback<Schema$GetAncestryResponse>):
-        void;
+      params: Params$Resource$Projects$Getancestry,
+      callback: BodyResponseCallback<Schema$GetAncestryResponse>
+    ): void;
     getAncestry(
-        paramsOrCallback?: Params$Resource$Projects$Getancestry|
-        BodyResponseCallback<Schema$GetAncestryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetAncestryResponse>,
-        callback?: BodyResponseCallback<Schema$GetAncestryResponse>):
-        void|GaxiosPromise<Schema$GetAncestryResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Getancestry;
+      callback: BodyResponseCallback<Schema$GetAncestryResponse>
+    ): void;
+    getAncestry(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getancestry
+        | BodyResponseCallback<Schema$GetAncestryResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetAncestryResponse>,
+      callback?: BodyResponseCallback<Schema$GetAncestryResponse>
+    ): void | GaxiosPromise<Schema$GetAncestryResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getancestry;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4959,19 +4603,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}:getAncestry')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}:getAncestry').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetAncestryResponse>(parameters, callback);
@@ -4980,28 +4627,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.projects.getEffectiveOrgPolicy
-     * @desc Gets the effective `Policy` on a resource. This is the result of
-     * merging `Policies` in the resource hierarchy. The returned `Policy` will
-     * not have an `etag`set because it is a computed `Policy` across multiple
-     * resources. Subtrees of Resource Manager resource hierarchy with 'under:'
-     * prefix will not be expanded.
+     * @desc Gets the effective `Policy` on a resource. This is the result of merging `Policies` in the resource hierarchy. The returned `Policy` will not have an `etag`set because it is a computed `Policy` across multiple resources. Subtrees of Resource Manager resource hierarchy with 'under:' prefix will not be expanded.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5010,9 +4650,8 @@ export namespace cloudresourcemanager_v1 {
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of the resource to start computing the effective
-     * `Policy`. resource_: 'projects/my-project',  // TODO: Update placeholder
-     * value.
+     *     // The name of the resource to start computing the effective `Policy`.
+     *     resource_: 'projects/my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -5021,8 +4660,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.projects.getEffectiveOrgPolicy(request,
-     * function(err, response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.projects.getEffectiveOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -5036,10 +4677,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -5055,26 +4695,32 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getEffectiveOrgPolicy(
-        params?: Params$Resource$Projects$Geteffectiveorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Projects$Geteffectiveorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
-        params: Params$Resource$Projects$Geteffectiveorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Projects$Geteffectiveorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getEffectiveOrgPolicy(
-        params: Params$Resource$Projects$Geteffectiveorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
-    getEffectiveOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>):
-        void;
+      params: Params$Resource$Projects$Geteffectiveorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getEffectiveOrgPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Geteffectiveorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Geteffectiveorgpolicy;
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
+    getEffectiveOrgPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Geteffectiveorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Geteffectiveorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5089,19 +4735,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -5110,29 +4759,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.projects.getIamPolicy
-     * @desc Returns the IAM access control policy for the specified Project.
-     * Permission is denied if the policy or the resource does not exist.
-     * Authorization requires the Google IAM permission
-     * `resourcemanager.projects.getIamPolicy` on the project.  For additional
-     * information about resource structure and identification, see [Resource
-     * Names](/apis/design/resource_names).
+     * @desc Returns the IAM access control policy for the specified Project. Permission is denied if the policy or the resource does not exist.  Authorization requires the Google IAM permission `resourcemanager.projects.getIamPolicy` on the project.  For additional information about resource structure and identification, see [Resource Names](/apis/design/resource_names).
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5142,8 +4783,8 @@ export namespace cloudresourcemanager_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'my-resource',  // TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -5152,8 +4793,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.projects.getIamPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.projects.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -5167,10 +4810,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -5186,24 +4828,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5218,19 +4864,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5239,28 +4888,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.projects.getOrgPolicy
-     * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the
-     * resource, a `Policy` is returned with default values including
-     * `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can
-     * be used with `SetOrgPolicy()` to create or update a `Policy` during
-     * read-modify-write.
+     * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the resource, a `Policy` is returned with default values including `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can be used with `SetOrgPolicy()` to create or update a `Policy` during read-modify-write.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5279,8 +4921,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.projects.getOrgPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.projects.getOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -5294,10 +4938,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -5313,25 +4956,30 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getOrgPolicy(
-        params?: Params$Resource$Projects$Getorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Projects$Getorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     getOrgPolicy(
-        params: Params$Resource$Projects$Getorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Projects$Getorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getOrgPolicy(
-        params: Params$Resource$Projects$Getorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Projects$Getorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
     getOrgPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Getorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Getorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5346,19 +4994,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -5367,29 +5018,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.projects.list
-     * @desc Lists Projects that are visible to the user and satisfy the
-     * specified filter. This method returns Projects in an unspecified order.
-     * This method is eventually consistent with project mutations; this means
-     * that a newly created project may not appear in the results or recent
-     * updates to an existing project may not be reflected in the results. To
-     * retrieve the latest state of a project, use the GetProject method.
+     * @desc Lists Projects that the caller has the `resourcemanager.projects.get` permission on and satisfy the specified filter.  This method returns Projects in an unspecified order. This method is eventually consistent with project mutations; this means that a newly created project may not appear in the results or recent updates to an existing project may not be reflected in the results. To retrieve the latest state of a project, use the GetProject method.  NOTE: If the request filter contains a `parent.type` and `parent.id` and the caller has the `resourcemanager.projects.list` permission on the parent, the results will be drawn from an alternate index which provides more consistent results. In future versions of this API, this List method will be split into List and Search to properly capture the behavorial difference.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5412,8 +5055,8 @@ export namespace cloudresourcemanager_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < projectsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `projectsPage`: console.log(JSON.stringify(projectsPage[i], null, 2));
+     *       // TODO: Change code below to process each resource in `projectsPage`:
+     *       console.log(JSON.stringify(projectsPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -5431,10 +5074,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -5443,31 +5085,38 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter An expression for filtering the results of the request.  Filter rules are case insensitive. The fields eligible for filtering are:  + `name` + `id` + <code>labels.<em>key</em></code> where *key* is the name of a label  Some examples of using labels as filters:  |Filter|Description| |------|-----------| |name:how*|The project's name starts with "how".| |name:Howl|The project's name is `Howl` or `howl`.| |name:HOWL|Equivalent to above.| |NAME:howl|Equivalent to above.| |labels.color:*|The project has the label `color`.| |labels.color:red|The project's label `color` has the value `red`.| |labels.color:red&nbsp;labels.size:big|The project's label `color` has the value `red` and its label `size` has the value `big`.  If you specify a filter that has both `parent.type` and `parent.id`, then the `resourcemanager.projects.list` permission is checked on the parent. If the user has this permission, all projects under the parent will be returned after remaining filters have been applied. If the user lacks this permission, then all projects for which the user has the `resourcemanager.projects.get` permission will be returned after remaining filters have been applied. If no filter is specified, the call will return projects for which the user has `resourcemanager.projects.get` permissions.  Optional.
+     * @param {string=} params.filter An expression for filtering the results of the request.  Filter rules are case insensitive. The fields eligible for filtering are:  + `name` + `id` + `labels.<key>` (where *key* is the name of a label) + `parent.type` + `parent.id`  Some examples of using labels as filters:  | Filter           | Description                                         | |------------------|-----------------------------------------------------| | name:how*        | The project's name starts with "how".               | | name:Howl        | The project's name is `Howl` or `howl`.             | | name:HOWL        | Equivalent to above.                                | | NAME:howl        | Equivalent to above.                                | | labels.color:*   | The project has the label `color`.                  | | labels.color:red | The project's label `color` has the value `red`.    | | labels.color:red&nbsp;labels.size:big |The project's label `color` has   the value `red` and its label `size` has the value `big`.              |  If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission.  NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results.  Optional.
      * @param {integer=} params.pageSize The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.  Optional.
      * @param {string=} params.pageToken A pagination token returned from a previous call to ListProjects that indicates from where listing should continue.  Optional.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Projects$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListProjectsResponse>;
     list(
-        params: Params$Resource$Projects$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListProjectsResponse>,
-        callback: BodyResponseCallback<Schema$ListProjectsResponse>): void;
+      params?: Params$Resource$Projects$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListProjectsResponse>;
     list(
-        params: Params$Resource$Projects$List,
-        callback: BodyResponseCallback<Schema$ListProjectsResponse>): void;
+      params: Params$Resource$Projects$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProjectsResponse>,
+      callback: BodyResponseCallback<Schema$ListProjectsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$List,
+      callback: BodyResponseCallback<Schema$ListProjectsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListProjectsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$List|
-        BodyResponseCallback<Schema$ListProjectsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListProjectsResponse>,
-        callback?: BodyResponseCallback<Schema$ListProjectsResponse>):
-        void|GaxiosPromise<Schema$ListProjectsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Projects$List
+        | BodyResponseCallback<Schema$ListProjectsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProjectsResponse>,
+      callback?: BodyResponseCallback<Schema$ListProjectsResponse>
+    ): void | GaxiosPromise<Schema$ListProjectsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5483,18 +5132,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListProjectsResponse>(parameters, callback);
@@ -5503,25 +5153,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.projects.listAvailableOrgPolicyConstraints
-     * @desc Lists `Constraints` that could be applied on the specified
-     * resource.
+     * @desc Lists `Constraints` that could be applied on the specified resource.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5551,20 +5197,17 @@ export namespace cloudresourcemanager_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < constraintsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `constraintsPage`: console.log(JSON.stringify(constraintsPage[i], null,
-     * 2));
+     *       // TODO: Change code below to process each resource in `constraintsPage`:
+     *       console.log(JSON.stringify(constraintsPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
      *       request.resource.pageToken = response.nextPageToken;
-     *       cloudResourceManager.projects.listAvailableOrgPolicyConstraints(request,
-     * handlePage);
+     *       cloudResourceManager.projects.listAvailableOrgPolicyConstraints(request, handlePage);
      *     }
      *   };
      *
-     *   cloudResourceManager.projects.listAvailableOrgPolicyConstraints(request,
-     * handlePage);
+     *   cloudResourceManager.projects.listAvailableOrgPolicyConstraints(request, handlePage);
      * });
      *
      * function authorize(callback) {
@@ -5573,10 +5216,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -5592,39 +5234,53 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     listAvailableOrgPolicyConstraints(
-        params?: Params$Resource$Projects$Listavailableorgpolicyconstraints,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
+      params?: Params$Resource$Projects$Listavailableorgpolicyconstraints,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
     listAvailableOrgPolicyConstraints(
-        params: Params$Resource$Projects$Listavailableorgpolicyconstraints,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      params: Params$Resource$Projects$Listavailableorgpolicyconstraints,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        params: Params$Resource$Projects$Listavailableorgpolicyconstraints,
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      params: Params$Resource$Projects$Listavailableorgpolicyconstraints,
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        paramsOrCallback?:
-            Params$Resource$Projects$Listavailableorgpolicyconstraints|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>):
-        void|GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Listavailableorgpolicyconstraints;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Listavailableorgpolicyconstraints
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void | GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Listavailableorgpolicyconstraints;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Listavailableorgpolicyconstraints;
+        params = {} as Params$Resource$Projects$Listavailableorgpolicyconstraints;
         options = {};
       }
 
@@ -5634,30 +5290,33 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/{+resource}:listAvailableOrgPolicyConstraints')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/{+resource}:listAvailableOrgPolicyConstraints'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>(parameters);
+          Schema$ListAvailableOrgPolicyConstraintsResponse
+        >(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.listOrgPolicies
@@ -5668,14 +5327,12 @@ export namespace cloudresourcemanager_v1 {
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5705,8 +5362,8 @@ export namespace cloudresourcemanager_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < policiesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `policiesPage`: console.log(JSON.stringify(policiesPage[i], null, 2));
+     *       // TODO: Change code below to process each resource in `policiesPage`:
+     *       console.log(JSON.stringify(policiesPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -5724,10 +5381,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -5743,27 +5399,34 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     listOrgPolicies(
-        params?: Params$Resource$Projects$Listorgpolicies,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
+      params?: Params$Resource$Projects$Listorgpolicies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
     listOrgPolicies(
-        params: Params$Resource$Projects$Listorgpolicies,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      params: Params$Resource$Projects$Listorgpolicies,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        params: Params$Resource$Projects$Listorgpolicies,
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      params: Params$Resource$Projects$Listorgpolicies,
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        paramsOrCallback?: Params$Resource$Projects$Listorgpolicies|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>):
-        void|GaxiosPromise<Schema$ListOrgPoliciesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Listorgpolicies;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Listorgpolicies
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void | GaxiosPromise<Schema$ListOrgPoliciesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Listorgpolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5778,19 +5441,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:listOrgPolicies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:listOrgPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback);
@@ -5799,52 +5465,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.projects.setIamPolicy
-     * @desc Sets the IAM access control policy for the specified Project.
-     * Overwrites any existing policy.  The following constraints apply when
-     * using `setIamPolicy()`:  + Project does not support `allUsers` and
-     * `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`.  + The
-     * owner role can be granted only to `user` and `serviceAccount`.  + Service
-     * accounts can be made owners of a project directly without any
-     * restrictions. However, to be added as an owner, a user must be invited
-     * via Cloud Platform console and must accept the invitation.  + A user
-     * cannot be granted the owner role using `setIamPolicy()`. The user must be
-     * granted the owner role using the Cloud Platform Console and must
-     * explicitly accept the invitation.  + You can only grant ownership of a
-     * project to a member by using the GCP Console. Inviting a member will
-     * deliver an invitation email that they must accept. An invitation email is
-     * not generated if you are granting a role other than owner, or if both the
-     * member you are inviting and the project are part of your organization.  +
-     * Membership changes that leave the project without any owners that have
-     * accepted the Terms of Service (ToS) will be rejected.  + If the project
-     * is not part of an organization, there must be at least one owner who has
-     * accepted the Terms of Service (ToS) agreement in the policy. Calling
-     * `setIamPolicy()` to remove the last ToS-accepted owner from the policy
-     * will fail. This restriction also applies to legacy projects that no
-     * longer have owners who have accepted the ToS. Edits to IAM policies will
-     * be rejected until the lack of a ToS-accepting owner is rectified.  + This
-     * method will replace the existing policy, and cannot be used to append
-     * additional IAM settings.  Note: Removing service accounts from policies
-     * or changing their roles can render services completely inoperable. It is
-     * important to understand how the service account is being used before
-     * removing or updating its roles.  Authorization requires the Google IAM
-     * permission `resourcemanager.projects.setIamPolicy` on the project
+     * @desc Sets the IAM access control policy for the specified Project. Overwrites any existing policy.  The following constraints apply when using `setIamPolicy()`:  + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`.  + The owner role can be granted only to `user` and `serviceAccount`.  + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation.  + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation.  + You can only grant ownership of a project to a member by using the GCP Console. Inviting a member will deliver an invitation email that they must accept. An invitation email is not generated if you are granting a role other than owner, or if both the member you are inviting and the project are part of your organization.  + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected.  + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified.  + This method will replace the existing policy, and cannot be used to append additional IAM settings.  Note: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles.  Authorization requires the Google IAM permission `resourcemanager.projects.setIamPolicy` on the project
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5854,8 +5489,8 @@ export namespace cloudresourcemanager_v1 {
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'my-resource',  // TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -5864,8 +5499,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.projects.setIamPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.projects.setIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -5879,10 +5516,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -5898,24 +5534,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5930,19 +5570,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5951,27 +5594,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.projects.setOrgPolicy
-     * @desc Updates the specified `Policy` on the resource. Creates a new
-     * `Policy` for that `Constraint` on the resource if one does not exist. Not
-     * supplying an `etag` on the request `Policy` results in an unconditional
-     * write of the `Policy`.
+     * @desc Updates the specified `Policy` on the resource. Creates a new `Policy` for that `Constraint` on the resource if one does not exist.  Not supplying an `etag` on the request `Policy` results in an unconditional write of the `Policy`.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -5990,8 +5627,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.projects.setOrgPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.projects.setOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -6005,10 +5644,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -6024,25 +5662,30 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     setOrgPolicy(
-        params?: Params$Resource$Projects$Setorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Projects$Setorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     setOrgPolicy(
-        params: Params$Resource$Projects$Setorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Projects$Setorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     setOrgPolicy(
-        params: Params$Resource$Projects$Setorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Projects$Setorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     setOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
     setOrgPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Setorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Setorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Setorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Setorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6057,19 +5700,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -6078,25 +5724,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.projects.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified Project.
-     * There are no permissions required for making this API call.
+     * @desc Returns permissions that a caller has on the specified Project.  There are no permissions required for making this API call.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -6105,10 +5747,9 @@ export namespace cloudresourcemanager_v1 {
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // REQUIRED: The resource for which the policy detail is being
-     * requested.
-     *     // See the operation documentation for the appropriate value for this
-     * field. resource_: 'my-resource',  // TODO: Update placeholder value.
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -6117,8 +5758,10 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.projects.testIamPermissions(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.projects.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -6132,10 +5775,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -6151,31 +5793,34 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?: Params$Resource$Projects$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6190,50 +5835,47 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/projects/{resource}:testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
 
-
     /**
      * cloudresourcemanager.projects.undelete
-     * @desc Restores the Project identified by the specified `project_id` (for
-     * example, `my-project-123`). You can only use this method for a Project
-     * that has a lifecycle state of DELETE_REQUESTED. After deletion starts,
-     * the Project cannot be restored.  The caller must have modify permissions
-     * for this Project.
+     * @desc Restores the Project identified by the specified `project_id` (for example, `my-project-123`). You can only use this method for a Project that has a lifecycle state of DELETE_REQUESTED. After deletion starts, the Project cannot be restored.  The caller must have modify permissions for this Project.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -6267,10 +5909,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -6286,24 +5927,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     undelete(
-        params?: Params$Resource$Projects$Undelete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     undelete(
-        params: Params$Resource$Projects$Undelete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     undelete(
-        params: Params$Resource$Projects$Undelete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Undelete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     undelete(callback: BodyResponseCallback<Schema$Empty>): void;
     undelete(
-        paramsOrCallback?: Params$Resource$Projects$Undelete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Undelete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Undelete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6318,19 +5963,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}:undelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6339,26 +5987,21 @@ export namespace cloudresourcemanager_v1 {
       }
     }
 
-
     /**
      * cloudresourcemanager.projects.update
-     * @desc Updates the attributes of the Project identified by the specified
-     * `project_id` (for example, `my-project-123`).  The caller must have
-     * modify permissions for this Project.
+     * @desc Updates the attributes of the Project identified by the specified `project_id` (for example, `my-project-123`).  The caller must have modify permissions for this Project.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Resource Manager API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -6372,8 +6015,7 @@ export namespace cloudresourcemanager_v1 {
      *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
+     *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
@@ -6397,10 +6039,9 @@ export namespace cloudresourcemanager_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -6415,22 +6056,27 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Projects$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Project>;
     update(
-        params: Params$Resource$Projects$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback: BodyResponseCallback<Schema$Project>): void;
+      params?: Params$Resource$Projects$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Project>;
     update(
-        params: Params$Resource$Projects$Update,
-        callback: BodyResponseCallback<Schema$Project>): void;
+      params: Params$Resource$Projects$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
+    update(
+      params: Params$Resource$Projects$Update,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Project>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Update|
-        BodyResponseCallback<Schema$Project>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback?: BodyResponseCallback<Schema$Project>):
-        void|GaxiosPromise<Schema$Project> {
+      paramsOrCallback?:
+        | Params$Resource$Projects$Update
+        | BodyResponseCallback<Schema$Project>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback?: BodyResponseCallback<Schema$Project>
+    ): void | GaxiosPromise<Schema$Project> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6446,19 +6092,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -6468,12 +6117,12 @@ export namespace cloudresourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Clearorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Clearorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource for the `Policy` to clear.
@@ -6489,8 +6138,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -6501,7 +6149,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Project ID (for example, `foo-bar-123`).  Required.
@@ -6512,19 +6160,19 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Project ID (for example, `my-project-123`).  Required.
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Getancestry extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Getancestry
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Project ID (for example, `my-project-123`).  Required.
@@ -6536,12 +6184,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetAncestryRequest;
   }
-  export interface Params$Resource$Projects$Geteffectiveorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Geteffectiveorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the resource to start computing the effective `Policy`.
@@ -6553,16 +6201,15 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetEffectiveOrgPolicyRequest;
   }
-  export interface Params$Resource$Projects$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -6571,12 +6218,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Getorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Getorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource the `Policy` is set on.
@@ -6592,48 +6239,27 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * An expression for filtering the results of the request.  Filter rules are
-     * case insensitive. The fields eligible for filtering are:  + `name` + `id`
-     * + <code>labels.<em>key</em></code> where *key* is the name of a label
-     * Some examples of using labels as filters:  |Filter|Description|
-     * |------|-----------| |name:how*|The project's name starts with "how".|
-     * |name:Howl|The project's name is `Howl` or `howl`.| |name:HOWL|Equivalent
-     * to above.| |NAME:howl|Equivalent to above.| |labels.color:*|The project
-     * has the label `color`.| |labels.color:red|The project's label `color` has
-     * the value `red`.| |labels.color:red&nbsp;labels.size:big|The project's
-     * label `color` has the value `red` and its label `size` has the value
-     * `big`.  If you specify a filter that has both `parent.type` and
-     * `parent.id`, then the `resourcemanager.projects.list` permission is
-     * checked on the parent. If the user has this permission, all projects
-     * under the parent will be returned after remaining filters have been
-     * applied. If the user lacks this permission, then all projects for which
-     * the user has the `resourcemanager.projects.get` permission will be
-     * returned after remaining filters have been applied. If no filter is
-     * specified, the call will return projects for which the user has
-     * `resourcemanager.projects.get` permissions.  Optional.
+     * An expression for filtering the results of the request.  Filter rules are case insensitive. The fields eligible for filtering are:  + `name` + `id` + `labels.<key>` (where *key* is the name of a label) + `parent.type` + `parent.id`  Some examples of using labels as filters:  | Filter           | Description                                         | |------------------|-----------------------------------------------------| | name:how*        | The project's name starts with "how".               | | name:Howl        | The project's name is `Howl` or `howl`.             | | name:HOWL        | Equivalent to above.                                | | NAME:howl        | Equivalent to above.                                | | labels.color:*   | The project has the label `color`.                  | | labels.color:red | The project's label `color` has the value `red`.    | | labels.color:red&nbsp;labels.size:big |The project's label `color` has   the value `red` and its label `size` has the value `big`.              |  If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission.  NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results.  Optional.
      */
     filter?: string;
     /**
-     * The maximum number of Projects to return in the response. The server can
-     * return fewer Projects than requested. If unspecified, server picks an
-     * appropriate default.  Optional.
+     * The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.  Optional.
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to ListProjects that
-     * indicates from where listing should continue.  Optional.
+     * A pagination token returned from a previous call to ListProjects that indicates from where listing should continue.  Optional.
      */
     pageToken?: string;
   }
   export interface Params$Resource$Projects$Listavailableorgpolicyconstraints
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource to list `Constraints` for.
@@ -6645,12 +6271,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListAvailableOrgPolicyConstraintsRequest;
   }
-  export interface Params$Resource$Projects$Listorgpolicies extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Listorgpolicies
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource to list Policies for.
@@ -6662,16 +6288,15 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListOrgPoliciesRequest;
   }
-  export interface Params$Resource$Projects$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -6680,12 +6305,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Setorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Setorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the resource to attach the `Policy`.
@@ -6697,16 +6322,15 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$SetOrgPolicyRequest;
   }
-  export interface Params$Resource$Projects$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -6715,12 +6339,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Undelete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Undelete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID (for example, `foo-bar-123`).  Required.
@@ -6736,7 +6360,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID (for example, `my-project-123`).  Required.

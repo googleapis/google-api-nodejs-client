@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace youtube_v3 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace youtube_v3 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -66,8 +75,7 @@ export namespace youtube_v3 {
   /**
    * YouTube Data API
    *
-   * Supports core YouTube features, such as uploading videos, creating and
-   * managing playlists, searching for content, and much more.
+   * Supports core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and much more.
    *
    * @example
    * const {google} = require('googleapis');
@@ -109,7 +117,10 @@ export namespace youtube_v3 {
     watermarks: Resource$Watermarks;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.activities = new Resource$Activities(this.context);
       this.captions = new Resource$Captions(this.context);
@@ -133,8 +144,9 @@ export namespace youtube_v3 {
       this.subscriptions = new Resource$Subscriptions(this.context);
       this.superChatEvents = new Resource$Superchatevents(this.context);
       this.thumbnails = new Resource$Thumbnails(this.context);
-      this.videoAbuseReportReasons =
-          new Resource$Videoabusereportreasons(this.context);
+      this.videoAbuseReportReasons = new Resource$Videoabusereportreasons(
+        this.context
+      );
       this.videoCategories = new Resource$Videocategories(this.context);
       this.videos = new Resource$Videos(this.context);
       this.watermarks = new Resource$Watermarks(this.context);
@@ -146,31 +158,20 @@ export namespace youtube_v3 {
    */
   export interface Schema$AccessPolicy {
     /**
-     * The value of allowed indicates whether the access to the policy is
-     * allowed or denied by default.
+     * The value of allowed indicates whether the access to the policy is allowed or denied by default.
      */
     allowed?: boolean;
     /**
-     * A list of region codes that identify countries where the default policy
-     * do not apply.
+     * A list of region codes that identify countries where the default policy do not apply.
      */
     exception?: string[];
   }
   /**
-   * An activity resource contains information about an action that a particular
-   * channel, or user, has taken on YouTube.The actions reported in activity
-   * feeds include rating a video, sharing a video, marking a video as a
-   * favorite, commenting on a video, uploading a video, and so forth. Each
-   * activity resource identifies the type of action, the channel associated
-   * with the action, and the resource(s) associated with the action, such as
-   * the video that was rated or uploaded.
+   * An activity resource contains information about an action that a particular channel, or user, has taken on YouTube.The actions reported in activity feeds include rating a video, sharing a video, marking a video as a favorite, commenting on a video, uploading a video, and so forth. Each activity resource identifies the type of action, the channel associated with the action, and the resource(s) associated with the action, such as the video that was rated or uploaded.
    */
   export interface Schema$Activity {
     /**
-     * The contentDetails object contains information about the content
-     * associated with the activity. For example, if the snippet.type value is
-     * videoRated, then the contentDetails object&#39;s content identifies the
-     * rated video.
+     * The contentDetails object contains information about the content associated with the activity. For example, if the snippet.type value is videoRated, then the contentDetails object&#39;s content identifies the rated video.
      */
     contentDetails?: Schema$ActivityContentDetails;
     /**
@@ -182,80 +183,60 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#activity&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#activity&quot;.
      */
     kind?: string;
     /**
-     * The snippet object contains basic details about the activity, including
-     * the activity&#39;s type and group ID.
+     * The snippet object contains basic details about the activity, including the activity&#39;s type and group ID.
      */
     snippet?: Schema$ActivitySnippet;
   }
   /**
-   * Details about the content of an activity: the video that was shared, the
-   * channel that was subscribed to, etc.
+   * Details about the content of an activity: the video that was shared, the channel that was subscribed to, etc.
    */
   export interface Schema$ActivityContentDetails {
     /**
-     * The bulletin object contains details about a channel bulletin post. This
-     * object is only present if the snippet.type is bulletin.
+     * The bulletin object contains details about a channel bulletin post. This object is only present if the snippet.type is bulletin.
      */
     bulletin?: Schema$ActivityContentDetailsBulletin;
     /**
-     * The channelItem object contains details about a resource which was added
-     * to a channel. This property is only present if the snippet.type is
-     * channelItem.
+     * The channelItem object contains details about a resource which was added to a channel. This property is only present if the snippet.type is channelItem.
      */
     channelItem?: Schema$ActivityContentDetailsChannelItem;
     /**
-     * The comment object contains information about a resource that received a
-     * comment. This property is only present if the snippet.type is comment.
+     * The comment object contains information about a resource that received a comment. This property is only present if the snippet.type is comment.
      */
     comment?: Schema$ActivityContentDetailsComment;
     /**
-     * The favorite object contains information about a video that was marked as
-     * a favorite video. This property is only present if the snippet.type is
-     * favorite.
+     * The favorite object contains information about a video that was marked as a favorite video. This property is only present if the snippet.type is favorite.
      */
     favorite?: Schema$ActivityContentDetailsFavorite;
     /**
-     * The like object contains information about a resource that received a
-     * positive (like) rating. This property is only present if the snippet.type
-     * is like.
+     * The like object contains information about a resource that received a positive (like) rating. This property is only present if the snippet.type is like.
      */
     like?: Schema$ActivityContentDetailsLike;
     /**
-     * The playlistItem object contains information about a new playlist item.
-     * This property is only present if the snippet.type is playlistItem.
+     * The playlistItem object contains information about a new playlist item. This property is only present if the snippet.type is playlistItem.
      */
     playlistItem?: Schema$ActivityContentDetailsPlaylistItem;
     /**
-     * The promotedItem object contains details about a resource which is being
-     * promoted. This property is only present if the snippet.type is
-     * promotedItem.
+     * The promotedItem object contains details about a resource which is being promoted. This property is only present if the snippet.type is promotedItem.
      */
     promotedItem?: Schema$ActivityContentDetailsPromotedItem;
     /**
-     * The recommendation object contains information about a recommended
-     * resource. This property is only present if the snippet.type is
-     * recommendation.
+     * The recommendation object contains information about a recommended resource. This property is only present if the snippet.type is recommendation.
      */
     recommendation?: Schema$ActivityContentDetailsRecommendation;
     /**
-     * The social object contains details about a social network post. This
-     * property is only present if the snippet.type is social.
+     * The social object contains details about a social network post. This property is only present if the snippet.type is social.
      */
     social?: Schema$ActivityContentDetailsSocial;
     /**
-     * The subscription object contains information about a channel that a user
-     * subscribed to. This property is only present if the snippet.type is
-     * subscription.
+     * The subscription object contains information about a channel that a user subscribed to. This property is only present if the snippet.type is subscription.
      */
     subscription?: Schema$ActivityContentDetailsSubscription;
     /**
-     * The upload object contains information about the uploaded video. This
-     * property is only present if the snippet.type is upload.
+     * The upload object contains information about the uploaded video. This property is only present if the snippet.type is upload.
      */
     upload?: Schema$ActivityContentDetailsUpload;
   }
@@ -264,8 +245,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsBulletin {
     /**
-     * The resourceId object contains information that identifies the resource
-     * associated with a bulletin post.
+     * The resourceId object contains information that identifies the resource associated with a bulletin post.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -274,8 +254,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsChannelItem {
     /**
-     * The resourceId object contains information that identifies the resource
-     * that was added to the channel.
+     * The resourceId object contains information that identifies the resource that was added to the channel.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -284,8 +263,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsComment {
     /**
-     * The resourceId object contains information that identifies the resource
-     * associated with the comment.
+     * The resourceId object contains information that identifies the resource associated with the comment.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -294,8 +272,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsFavorite {
     /**
-     * The resourceId object contains information that identifies the resource
-     * that was marked as a favorite.
+     * The resourceId object contains information that identifies the resource that was marked as a favorite.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -304,8 +281,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsLike {
     /**
-     * The resourceId object contains information that identifies the rated
-     * resource.
+     * The resourceId object contains information that identifies the rated resource.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -322,8 +298,7 @@ export namespace youtube_v3 {
      */
     playlistItemId?: string;
     /**
-     * The resourceId object contains information about the resource that was
-     * added to the playlist.
+     * The resourceId object contains information about the resource that was added to the playlist.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -336,23 +311,19 @@ export namespace youtube_v3 {
      */
     adTag?: string;
     /**
-     * The URL the client should ping to indicate that the user clicked through
-     * on this promoted item.
+     * The URL the client should ping to indicate that the user clicked through on this promoted item.
      */
     clickTrackingUrl?: string;
     /**
-     * The URL the client should ping to indicate that the user was shown this
-     * promoted item.
+     * The URL the client should ping to indicate that the user was shown this promoted item.
      */
     creativeViewUrl?: string;
     /**
-     * The type of call-to-action, a message to the user indicating action that
-     * can be taken.
+     * The type of call-to-action, a message to the user indicating action that can be taken.
      */
     ctaType?: string;
     /**
-     * The custom call-to-action button text. If specified, it will override the
-     * default button text for the cta_type.
+     * The custom call-to-action button text. If specified, it will override the default button text for the cta_type.
      */
     customCtaButtonText?: string;
     /**
@@ -360,19 +331,15 @@ export namespace youtube_v3 {
      */
     descriptionText?: string;
     /**
-     * The URL the client should direct the user to, if the user chooses to
-     * visit the advertiser&#39;s website.
+     * The URL the client should direct the user to, if the user chooses to visit the advertiser&#39;s website.
      */
     destinationUrl?: string;
     /**
-     * The list of forecasting URLs. The client should ping all of these URLs
-     * when a promoted item is not available, to indicate that a promoted item
-     * could have been shown.
+     * The list of forecasting URLs. The client should ping all of these URLs when a promoted item is not available, to indicate that a promoted item could have been shown.
      */
     forecastingUrl?: string[];
     /**
-     * The list of impression URLs. The client should ping all of these URLs to
-     * indicate that the user was shown this promoted item.
+     * The list of impression URLs. The client should ping all of these URLs to indicate that the user was shown this promoted item.
      */
     impressionUrl?: string[];
     /**
@@ -389,13 +356,11 @@ export namespace youtube_v3 {
      */
     reason?: string;
     /**
-     * The resourceId object contains information that identifies the
-     * recommended resource.
+     * The resourceId object contains information that identifies the recommended resource.
      */
     resourceId?: Schema$ResourceId;
     /**
-     * The seedResourceId object contains information about the resource that
-     * caused the recommendation.
+     * The seedResourceId object contains information about the resource that caused the recommendation.
      */
     seedResourceId?: Schema$ResourceId;
   }
@@ -416,8 +381,7 @@ export namespace youtube_v3 {
      */
     referenceUrl?: string;
     /**
-     * The resourceId object encapsulates information that identifies the
-     * resource associated with a social network post.
+     * The resourceId object encapsulates information that identifies the resource associated with a social network post.
      */
     resourceId?: Schema$ResourceId;
     /**
@@ -430,8 +394,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ActivityContentDetailsSubscription {
     /**
-     * The resourceId object contains information that identifies the resource
-     * that the user subscribed to.
+     * The resourceId object contains information that identifies the resource that the user subscribed to.
      */
     resourceId?: Schema$ResourceId;
   }
@@ -458,19 +421,16 @@ export namespace youtube_v3 {
      */
     items?: Schema$Activity[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#activityListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#activityListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string;
     tokenPagination?: Schema$TokenPagination;
@@ -480,13 +440,11 @@ export namespace youtube_v3 {
     visitorId?: string;
   }
   /**
-   * Basic details about an activity, including title, description, thumbnails,
-   * activity type and group.
+   * Basic details about an activity, including title, description, thumbnails, activity type and group.
    */
   export interface Schema$ActivitySnippet {
     /**
-     * The ID that YouTube uses to uniquely identify the channel associated with
-     * the activity.
+     * The ID that YouTube uses to uniquely identify the channel associated with the activity.
      */
     channelId?: string;
     /**
@@ -498,24 +456,15 @@ export namespace youtube_v3 {
      */
     description?: string;
     /**
-     * The group ID associated with the activity. A group ID identifies user
-     * events that are associated with the same user and resource. For example,
-     * if a user rates a video and marks the same video as a favorite, the
-     * entries for those events would have the same group ID in the user&#39;s
-     * activity feed. In your user interface, you can avoid repetition by
-     * grouping events with the same groupId value.
+     * The group ID associated with the activity. A group ID identifies user events that are associated with the same user and resource. For example, if a user rates a video and marks the same video as a favorite, the entries for those events would have the same group ID in the user&#39;s activity feed. In your user interface, you can avoid repetition by grouping events with the same groupId value.
      */
     groupId?: string;
     /**
-     * The date and time that the video was uploaded. The value is specified in
-     * ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the video was uploaded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string;
     /**
-     * A map of thumbnail images associated with the resource that is primarily
-     * associated with the activity. For each object in the map, the key is the
-     * name of the thumbnail image, and the value is an object that contains
-     * other information about the thumbnail.
+     * A map of thumbnail images associated with the resource that is primarily associated with the activity. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
      */
     thumbnails?: Schema$ThumbnailDetails;
     /**
@@ -528,8 +477,7 @@ export namespace youtube_v3 {
     type?: string;
   }
   /**
-   * A caption resource represents a YouTube caption track. A caption track is
-   * associated with exactly one YouTube video.
+   * A caption resource represents a YouTube caption track. A caption track is associated with exactly one YouTube video.
    */
   export interface Schema$Caption {
     /**
@@ -541,8 +489,7 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#caption&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#caption&quot;.
      */
     kind?: string;
     /**
@@ -564,8 +511,7 @@ export namespace youtube_v3 {
      */
     items?: Schema$Caption[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#captionListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#captionListResponse&quot;.
      */
     kind?: string;
     /**
@@ -582,54 +528,39 @@ export namespace youtube_v3 {
      */
     audioTrackType?: string;
     /**
-     * The reason that YouTube failed to process the caption track. This
-     * property is only present if the state property&#39;s value is failed.
+     * The reason that YouTube failed to process the caption track. This property is only present if the state property&#39;s value is failed.
      */
     failureReason?: string;
     /**
-     * Indicates whether YouTube synchronized the caption track to the audio
-     * track in the video. The value will be true if a sync was explicitly
-     * requested when the caption track was uploaded. For example, when calling
-     * the captions.insert or captions.update methods, you can set the sync
-     * parameter to true to instruct YouTube to sync the uploaded track to the
-     * video. If the value is false, YouTube uses the time codes in the uploaded
-     * caption track to determine when to display captions.
+     * Indicates whether YouTube synchronized the caption track to the audio track in the video. The value will be true if a sync was explicitly requested when the caption track was uploaded. For example, when calling the captions.insert or captions.update methods, you can set the sync parameter to true to instruct YouTube to sync the uploaded track to the video. If the value is false, YouTube uses the time codes in the uploaded caption track to determine when to display captions.
      */
     isAutoSynced?: boolean;
     /**
-     * Indicates whether the track contains closed captions for the deaf and
-     * hard of hearing. The default value is false.
+     * Indicates whether the track contains closed captions for the deaf and hard of hearing. The default value is false.
      */
     isCC?: boolean;
     /**
-     * Indicates whether the caption track is a draft. If the value is true,
-     * then the track is not publicly visible. The default value is false.
+     * Indicates whether the caption track is a draft. If the value is true, then the track is not publicly visible. The default value is false.
      */
     isDraft?: boolean;
     /**
-     * Indicates whether caption track is formatted for &quot;easy reader,&quot;
-     * meaning it is at a third-grade level for language learners. The default
-     * value is false.
+     * Indicates whether caption track is formatted for &quot;easy reader,&quot; meaning it is at a third-grade level for language learners. The default value is false.
      */
     isEasyReader?: boolean;
     /**
-     * Indicates whether the caption track uses large text for the
-     * vision-impaired. The default value is false.
+     * Indicates whether the caption track uses large text for the vision-impaired. The default value is false.
      */
     isLarge?: boolean;
     /**
-     * The language of the caption track. The property value is a BCP-47
-     * language tag.
+     * The language of the caption track. The property value is a BCP-47 language tag.
      */
     language?: string;
     /**
-     * The date and time when the caption track was last updated. The value is
-     * specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when the caption track was last updated. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     lastUpdated?: string;
     /**
-     * The name of the caption track. The name is intended to be visible to the
-     * user as an option during playback.
+     * The name of the caption track. The name is intended to be visible to the user as an option during playback.
      */
     name?: string;
     /**
@@ -641,8 +572,7 @@ export namespace youtube_v3 {
      */
     trackKind?: string;
     /**
-     * The ID that YouTube uses to uniquely identify the video associated with
-     * the caption track.
+     * The ID that YouTube uses to uniquely identify the video associated with the caption track.
      */
     videoId?: string;
   }
@@ -659,8 +589,7 @@ export namespace youtube_v3 {
      */
     frameRate?: string;
     /**
-     * The ingestionInfo object contains information that YouTube provides that
-     * you need to transmit your RTMP or HTTP stream to YouTube.
+     * The ingestionInfo object contains information that YouTube provides that you need to transmit your RTMP or HTTP stream to YouTube.
      */
     ingestionInfo?: Schema$IngestionInfo;
     /**
@@ -677,28 +606,23 @@ export namespace youtube_v3 {
    */
   export interface Schema$Channel {
     /**
-     * The auditionDetails object encapsulates channel data that is relevant for
-     * YouTube Partners during the audition process.
+     * The auditionDetails object encapsulates channel data that is relevant for YouTube Partners during the audition process.
      */
     auditDetails?: Schema$ChannelAuditDetails;
     /**
-     * The brandingSettings object encapsulates information about the branding
-     * of the channel.
+     * The brandingSettings object encapsulates information about the branding of the channel.
      */
     brandingSettings?: Schema$ChannelBrandingSettings;
     /**
-     * The contentDetails object encapsulates information about the
-     * channel&#39;s content.
+     * The contentDetails object encapsulates information about the channel&#39;s content.
      */
     contentDetails?: Schema$ChannelContentDetails;
     /**
-     * The contentOwnerDetails object encapsulates channel data that is relevant
-     * for YouTube Partners linked with the channel.
+     * The contentOwnerDetails object encapsulates channel data that is relevant for YouTube Partners linked with the channel.
      */
     contentOwnerDetails?: Schema$ChannelContentOwnerDetails;
     /**
-     * The conversionPings object encapsulates information about conversion
-     * pings that need to be respected by the channel.
+     * The conversionPings object encapsulates information about conversion pings that need to be respected by the channel.
      */
     conversionPings?: Schema$ChannelConversionPings;
     /**
@@ -710,22 +634,19 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * The invideoPromotion object encapsulates information about promotion
-     * campaign associated with the channel.
+     * The invideoPromotion object encapsulates information about promotion campaign associated with the channel.
      */
     invideoPromotion?: Schema$InvideoPromotion;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#channel&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#channel&quot;.
      */
     kind?: string;
     /**
      * Localizations for different languages
      */
-    localizations?: {[key: string]: Schema$ChannelLocalization;};
+    localizations?: {[key: string]: Schema$ChannelLocalization};
     /**
-     * The snippet object contains basic details about the channel, such as its
-     * title, description, and thumbnail images.
+     * The snippet object contains basic details about the channel, such as its title, description, and thumbnail images.
      */
     snippet?: Schema$ChannelSnippet;
     /**
@@ -733,19 +654,16 @@ export namespace youtube_v3 {
      */
     statistics?: Schema$ChannelStatistics;
     /**
-     * The status object encapsulates information about the privacy status of
-     * the channel.
+     * The status object encapsulates information about the privacy status of the channel.
      */
     status?: Schema$ChannelStatus;
     /**
-     * The topicDetails object encapsulates information about Freebase topics
-     * associated with the channel.
+     * The topicDetails object encapsulates information about Freebase topics associated with the channel.
      */
     topicDetails?: Schema$ChannelTopicDetails;
   }
   /**
-   * The auditDetails object encapsulates channel data that is relevant for
-   * YouTube Partners during the audit process.
+   * The auditDetails object encapsulates channel data that is relevant for YouTube Partners during the audit process.
    */
   export interface Schema$ChannelAuditDetails {
     /**
@@ -770,8 +688,7 @@ export namespace youtube_v3 {
      */
     etag?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#channelBannerResource&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#channelBannerResource&quot;.
      */
     kind?: string;
     /**
@@ -813,8 +730,7 @@ export namespace youtube_v3 {
     };
   }
   /**
-   * The contentOwnerDetails object encapsulates channel data that is relevant
-   * for YouTube Partners linked with the channel.
+   * The contentOwnerDetails object encapsulates channel data that is relevant for YouTube Partners linked with the channel.
    */
   export interface Schema$ChannelContentOwnerDetails {
     /**
@@ -822,15 +738,12 @@ export namespace youtube_v3 {
      */
     contentOwner?: string;
     /**
-     * The date and time of when the channel was linked to the content owner.
-     * The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time of when the channel was linked to the content owner. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     timeLinked?: string;
   }
   /**
-   * Pings that the app shall fire (authenticated by biscotti cookie). Each ping
-   * has a context, in which the app must fire the ping, and a url identifying
-   * the ping.
+   * Pings that the app shall fire (authenticated by biscotti cookie). Each ping has a context, in which the app must fire the ping, and a url identifying the ping.
    */
   export interface Schema$ChannelConversionPing {
     /**
@@ -838,26 +751,16 @@ export namespace youtube_v3 {
      */
     context?: string;
     /**
-     * The url (without the schema) that the player shall send the ping to.
-     * It&#39;s at caller&#39;s descretion to decide which schema to use (http
-     * vs https) Example of a returned url:
-     * //googleads.g.doubleclick.net/pagead/
-     * viewthroughconversion/962985656/?data=path%3DtHe_path%3Btype%3D
-     * cview%3Butuid%3DGISQtTNGYqaYl4sKxoVvKA&amp;labe=default The caller must
-     * append biscotti authentication (ms param in case of mobile, for example)
-     * to this ping.
+     * The url (without the schema) that the player shall send the ping to. It&#39;s at caller&#39;s descretion to decide which schema to use (http vs https) Example of a returned url: //googleads.g.doubleclick.net/pagead/ viewthroughconversion/962985656/?data=path%3DtHe_path%3Btype%3D cview%3Butuid%3DGISQtTNGYqaYl4sKxoVvKA&amp;labe=default The caller must append biscotti authentication (ms param in case of mobile, for example) to this ping.
      */
     conversionUrl?: string;
   }
   /**
-   * The conversionPings object encapsulates information about conversion pings
-   * that need to be respected by the channel.
+   * The conversionPings object encapsulates information about conversion pings that need to be respected by the channel.
    */
   export interface Schema$ChannelConversionPings {
     /**
-     * Pings that the app shall fire (authenticated by biscotti cookie). Each
-     * ping has a context, in which the app must fire the ping, and a url
-     * identifying the ping.
+     * Pings that the app shall fire (authenticated by biscotti cookie). Each ping has a context, in which the app must fire the ping, and a url identifying the ping.
      */
     pings?: Schema$ChannelConversionPing[];
   }
@@ -875,19 +778,16 @@ export namespace youtube_v3 {
      */
     items?: Schema$Channel[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#channelListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#channelListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string;
     tokenPagination?: Schema$TokenPagination;
@@ -929,8 +829,7 @@ export namespace youtube_v3 {
   }
   export interface Schema$ChannelSection {
     /**
-     * The contentDetails object contains details about the channel section
-     * content, such as a list of playlists or channels featured in the section.
+     * The contentDetails object contains details about the channel section content, such as a list of playlists or channels featured in the section.
      */
     contentDetails?: Schema$ChannelSectionContentDetails;
     /**
@@ -942,22 +841,19 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#channelSection&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#channelSection&quot;.
      */
     kind?: string;
     /**
      * Localizations for different languages
      */
-    localizations?: {[key: string]: Schema$ChannelSectionLocalization;};
+    localizations?: {[key: string]: Schema$ChannelSectionLocalization};
     /**
-     * The snippet object contains basic details about the channel section, such
-     * as its type, style and title.
+     * The snippet object contains basic details about the channel section, such as its type, style and title.
      */
     snippet?: Schema$ChannelSectionSnippet;
     /**
-     * The targeting object contains basic targeting settings about the channel
-     * section.
+     * The targeting object contains basic targeting settings about the channel section.
      */
     targeting?: Schema$ChannelSectionTargeting;
   }
@@ -970,8 +866,7 @@ export namespace youtube_v3 {
      */
     channels?: string[];
     /**
-     * The playlist ids for type single_playlist and multiple_playlists. For
-     * singlePlaylist, only one playlistId is allowed.
+     * The playlist ids for type single_playlist and multiple_playlists. For singlePlaylist, only one playlistId is allowed.
      */
     playlists?: string[];
   }
@@ -989,8 +884,7 @@ export namespace youtube_v3 {
      */
     items?: Schema$ChannelSection[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#channelSectionListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#channelSectionListResponse&quot;.
      */
     kind?: string;
     /**
@@ -1012,8 +906,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ChannelSectionSnippet {
     /**
-     * The ID that YouTube uses to uniquely identify the channel that published
-     * the channel section.
+     * The ID that YouTube uses to uniquely identify the channel that published the channel section.
      */
     channelId?: string;
     /**
@@ -1033,8 +926,7 @@ export namespace youtube_v3 {
      */
     style?: string;
     /**
-     * The channel section&#39;s title for multiple_playlists and
-     * multiple_channels.
+     * The channel section&#39;s title for multiple_playlists and multiple_channels.
      */
     title?: string;
     /**
@@ -1089,8 +981,7 @@ export namespace youtube_v3 {
      */
     keywords?: string;
     /**
-     * Whether user-submitted comments left on the channel page need to be
-     * approved by the channel owner to be publicly visible.
+     * Whether user-submitted comments left on the channel page need to be approved by the channel owner to be publicly visible.
      */
     moderateComments?: boolean;
     /**
@@ -1110,8 +1001,7 @@ export namespace youtube_v3 {
      */
     title?: string;
     /**
-     * The ID for a Google Analytics account to track and measure traffic to the
-     * channels.
+     * The ID for a Google Analytics account to track and measure traffic to the channels.
      */
     trackingAnalyticsAccountId?: string;
     /**
@@ -1144,22 +1034,11 @@ export namespace youtube_v3 {
      */
     localized?: Schema$ChannelLocalization;
     /**
-     * The date and time that the channel was created. The value is specified in
-     * ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the channel was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string;
     /**
-     * A map of thumbnail images associated with the channel. For each object in
-     * the map, the key is the name of the thumbnail image, and the value is an
-     * object that contains other information about the thumbnail.  When
-     * displaying thumbnails in your application, make sure that your code uses
-     * the image URLs exactly as they are returned in API responses. For
-     * example, your application should not use the http domain instead of the
-     * https domain in a URL returned in an API response.  Beginning in July
-     * 2018, channel thumbnail URLs will only be available in the https domain,
-     * which is how the URLs appear in API responses. After that time, you might
-     * see broken images in your application if it tries to load YouTube images
-     * from the http domain.
+     * A map of thumbnail images associated with the channel. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.  When displaying thumbnails in your application, make sure that your code uses the image URLs exactly as they are returned in API responses. For example, your application should not use the http domain instead of the https domain in a URL returned in an API response.  Beginning in July 2018, channel thumbnail URLs will only be available in the https domain, which is how the URLs appear in API responses. After that time, you might see broken images in your application if it tries to load YouTube images from the http domain.
      */
     thumbnails?: Schema$ThumbnailDetails;
     /**
@@ -1168,8 +1047,7 @@ export namespace youtube_v3 {
     title?: string;
   }
   /**
-   * Statistics about a channel: number of subscribers, number of videos in the
-   * channel, etc.
+   * Statistics about a channel: number of subscribers, number of videos in the channel, etc.
    */
   export interface Schema$ChannelStatistics {
     /**
@@ -1198,8 +1076,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$ChannelStatus {
     /**
-     * If true, then the user is linked to either a YouTube username or G+
-     * account. Otherwise, the user doesn&#39;t have a public YouTube identity.
+     * If true, then the user is linked to either a YouTube username or G+ account. Otherwise, the user doesn&#39;t have a public YouTube identity.
      */
     isLinked?: boolean;
     /**
@@ -1220,8 +1097,7 @@ export namespace youtube_v3 {
      */
     topicCategories?: string[];
     /**
-     * A list of Freebase topic IDs associated with the channel. You can
-     * retrieve information about each topic using the Freebase Topic API.
+     * A list of Freebase topic IDs associated with the channel. You can retrieve information about each topic using the Freebase Topic API.
      */
     topicIds?: string[];
   }
@@ -1238,8 +1114,7 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#comment&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#comment&quot;.
      */
     kind?: string;
     /**
@@ -1261,13 +1136,11 @@ export namespace youtube_v3 {
      */
     items?: Schema$Comment[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#commentListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#commentListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
@@ -1302,9 +1175,7 @@ export namespace youtube_v3 {
      */
     canRate?: boolean;
     /**
-     * The id of the corresponding YouTube channel. In case of a channel comment
-     * this is the channel the comment refers to. In case of a video comment
-     * it&#39;s the video&#39;s channel.
+     * The id of the corresponding YouTube channel. In case of a channel comment this is the channel the comment refers to. In case of a video comment it&#39;s the video&#39;s channel.
      */
     channelId?: string;
     /**
@@ -1312,8 +1183,7 @@ export namespace youtube_v3 {
      */
     likeCount?: number;
     /**
-     * The comment&#39;s moderation status. Will not be set if the comments were
-     * requested through the id filter.
+     * The comment&#39;s moderation status. Will not be set if the comments were requested through the id filter.
      */
     moderationStatus?: string;
     /**
@@ -1321,27 +1191,19 @@ export namespace youtube_v3 {
      */
     parentId?: string;
     /**
-     * The date and time when the comment was orignally published. The value is
-     * specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when the comment was orignally published. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string;
     /**
-     * The comment&#39;s text. The format is either plain text or HTML dependent
-     * on what has been requested. Even the plain text representation may differ
-     * from the text originally posted in that it may replace video links with
-     * video titles etc.
+     * The comment&#39;s text. The format is either plain text or HTML dependent on what has been requested. Even the plain text representation may differ from the text originally posted in that it may replace video links with video titles etc.
      */
     textDisplay?: string;
     /**
-     * The comment&#39;s original raw text as initially posted or last updated.
-     * The original text will only be returned if it is accessible to the
-     * viewer, which is only guaranteed if the viewer is the comment&#39;s
-     * author.
+     * The comment&#39;s original raw text as initially posted or last updated. The original text will only be returned if it is accessible to the viewer, which is only guaranteed if the viewer is the comment&#39;s author.
      */
     textOriginal?: string;
     /**
-     * The date and time when was last updated . The value is specified in ISO
-     * 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when was last updated . The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     updatedAt?: string;
     /**
@@ -1349,16 +1211,12 @@ export namespace youtube_v3 {
      */
     videoId?: string;
     /**
-     * The rating the viewer has given to this comment. For the time being this
-     * will never return RATE_TYPE_DISLIKE and instead return RATE_TYPE_NONE.
-     * This may change in the future.
+     * The rating the viewer has given to this comment. For the time being this will never return RATE_TYPE_DISLIKE and instead return RATE_TYPE_NONE. This may change in the future.
      */
     viewerRating?: string;
   }
   /**
-   * A comment thread represents information that applies to a top level comment
-   * and all its replies. It can also include the top level comment itself and
-   * some of the replies.
+   * A comment thread represents information that applies to a top level comment and all its replies. It can also include the top level comment itself and some of the replies.
    */
   export interface Schema$CommentThread {
     /**
@@ -1370,18 +1228,15 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#commentThread&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#commentThread&quot;.
      */
     kind?: string;
     /**
-     * The replies object contains a limited number of replies (if any) to the
-     * top level comment found in the snippet.
+     * The replies object contains a limited number of replies (if any) to the top level comment found in the snippet.
      */
     replies?: Schema$CommentThreadReplies;
     /**
-     * The snippet object contains basic details about the comment thread and
-     * also the top level comment.
+     * The snippet object contains basic details about the comment thread and also the top level comment.
      */
     snippet?: Schema$CommentThreadSnippet;
   }
@@ -1399,13 +1254,11 @@ export namespace youtube_v3 {
      */
     items?: Schema$CommentThread[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#commentThreadListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#commentThreadListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
@@ -1420,9 +1273,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$CommentThreadReplies {
     /**
-     * A limited number of replies. Unless the number of replies returned equals
-     * total_reply_count in the snippet the returned replies are only a subset
-     * of the total number of replies.
+     * A limited number of replies. Unless the number of replies returned equals total_reply_count in the snippet the returned replies are only a subset of the total number of replies.
      */
     comments?: Schema$Comment[];
   }
@@ -1431,19 +1282,15 @@ export namespace youtube_v3 {
    */
   export interface Schema$CommentThreadSnippet {
     /**
-     * Whether the current viewer of the thread can reply to it. This is viewer
-     * specific - other viewers may see a different value for this field.
+     * Whether the current viewer of the thread can reply to it. This is viewer specific - other viewers may see a different value for this field.
      */
     canReply?: boolean;
     /**
-     * The YouTube channel the comments in the thread refer to or the channel
-     * with the video the comments refer to. If video_id isn&#39;t set the
-     * comments refer to the channel itself.
+     * The YouTube channel the comments in the thread refer to or the channel with the video the comments refer to. If video_id isn&#39;t set the comments refer to the channel itself.
      */
     channelId?: string;
     /**
-     * Whether the thread (and therefore all its comments) is visible to all
-     * YouTube users.
+     * Whether the thread (and therefore all its comments) is visible to all YouTube users.
      */
     isPublic?: boolean;
     /**
@@ -1455,30 +1302,24 @@ export namespace youtube_v3 {
      */
     totalReplyCount?: number;
     /**
-     * The ID of the video the comments refer to, if any. No video_id implies a
-     * channel discussion comment.
+     * The ID of the video the comments refer to, if any. No video_id implies a channel discussion comment.
      */
     videoId?: string;
   }
   /**
-   * Ratings schemes. The country-specific ratings are mostly for movies and
-   * shows. NEXT_ID: 71
+   * Ratings schemes. The country-specific ratings are mostly for movies and shows. NEXT_ID: 71
    */
   export interface Schema$ContentRating {
     /**
-     * The video&#39;s Australian Classification Board (ACB) or Australian
-     * Communications and Media Authority (ACMA) rating. ACMA ratings are used
-     * to classify children&#39;s television programming.
+     * The video&#39;s Australian Classification Board (ACB) or Australian Communications and Media Authority (ACMA) rating. ACMA ratings are used to classify children&#39;s television programming.
      */
     acbRating?: string;
     /**
-     * The video&#39;s rating from Italy&#39;s Autorità per le Garanzie nelle
-     * Comunicazioni (AGCOM).
+     * The video&#39;s rating from Italy&#39;s Autorità per le Garanzie nelle Comunicazioni (AGCOM).
      */
     agcomRating?: string;
     /**
-     * The video&#39;s Anatel (Asociación Nacional de Televisión) rating for
-     * Chilean television.
+     * The video&#39;s Anatel (Asociación Nacional de Televisión) rating for Chilean television.
      */
     anatelRating?: string;
     /**
@@ -1486,33 +1327,23 @@ export namespace youtube_v3 {
      */
     bbfcRating?: string;
     /**
-     * The video&#39;s rating from Thailand&#39;s Board of Film and Video
-     * Censors.
+     * The video&#39;s rating from Thailand&#39;s Board of Film and Video Censors.
      */
     bfvcRating?: string;
     /**
-     * The video&#39;s rating from the Austrian Board of Media Classification
-     * (Bundesministerium für Unterricht, Kunst und Kultur).
+     * The video&#39;s rating from the Austrian Board of Media Classification (Bundesministerium für Unterricht, Kunst und Kultur).
      */
     bmukkRating?: string;
     /**
-     * The video&#39;s rating from the Canadian Radio-Television and
-     * Telecommunications Commission (CRTC) for Canadian French-language
-     * broadcasts. For more information, see the Canadian Broadcast Standards
-     * Council website.
+     * The video&#39;s rating from the Canadian Radio-Television and Telecommunications Commission (CRTC) for Canadian French-language broadcasts. For more information, see the Canadian Broadcast Standards Council website.
      */
     catvfrRating?: string;
     /**
-     * Rating system for Canadian TV - Canadian TV Classification System The
-     * video&#39;s rating from the Canadian Radio-Television and
-     * Telecommunications Commission (CRTC) for Canadian English-language
-     * broadcasts. For more information, see the Canadian Broadcast Standards
-     * Council website.
+     * Rating system for Canadian TV - Canadian TV Classification System The video&#39;s rating from the Canadian Radio-Television and Telecommunications Commission (CRTC) for Canadian English-language broadcasts. For more information, see the Canadian Broadcast Standards Council website.
      */
     catvRating?: string;
     /**
-     * The video&#39;s Central Board of Film Certification (CBFC - India)
-     * rating.
+     * The video&#39;s Central Board of Film Certification (CBFC - India) rating.
      */
     cbfcRating?: string;
     /**
@@ -1520,8 +1351,7 @@ export namespace youtube_v3 {
      */
     cccRating?: string;
     /**
-     * The video&#39;s rating from Portugal&#39;s Comissão de Classificação de
-     * Espect´culos.
+     * The video&#39;s rating from Portugal&#39;s Comissão de Classificação de Espect´culos.
      */
     cceRating?: string;
     /**
@@ -1533,13 +1363,11 @@ export namespace youtube_v3 {
      */
     chvrsRating?: string;
     /**
-     * The video&#39;s rating from the Commission de Contrôle des Films
-     * (Belgium).
+     * The video&#39;s rating from the Commission de Contrôle des Films (Belgium).
      */
     cicfRating?: string;
     /**
-     * The video&#39;s rating from Romania&#39;s CONSILIUL NATIONAL AL
-     * AUDIOVIZUALULUI (CNA).
+     * The video&#39;s rating from Romania&#39;s CONSILIUL NATIONAL AL AUDIOVIZUALULUI (CNA).
      */
     cnaRating?: string;
     /**
@@ -1547,13 +1375,11 @@ export namespace youtube_v3 {
      */
     cncRating?: string;
     /**
-     * The video&#39;s rating from France&#39;s Conseil supérieur de
-     * l?audiovisuel, which rates broadcast content.
+     * The video&#39;s rating from France&#39;s Conseil supérieur de l?audiovisuel, which rates broadcast content.
      */
     csaRating?: string;
     /**
-     * The video&#39;s rating from Luxembourg&#39;s Commission de surveillance
-     * de la classification des films (CSCF).
+     * The video&#39;s rating from Luxembourg&#39;s Commission de surveillance de la classification des films (CSCF).
      */
     cscfRating?: string;
     /**
@@ -1561,8 +1387,7 @@ export namespace youtube_v3 {
      */
     czfilmRating?: string;
     /**
-     * The video&#39;s Departamento de Justiça, Classificação, Qualificação e
-     * Títulos (DJCQT - Brazil) rating.
+     * The video&#39;s Departamento de Justiça, Classificação, Qualificação e Títulos (DJCQT - Brazil) rating.
      */
     djctqRating?: string;
     /**
@@ -1570,8 +1395,7 @@ export namespace youtube_v3 {
      */
     djctqRatingReasons?: string[];
     /**
-     * Rating system in Turkey - Evaluation and Classification Board of the
-     * Ministry of Culture and Tourism
+     * Rating system in Turkey - Evaluation and Classification Board of the Ministry of Culture and Tourism
      */
     ecbmctRating?: string;
     /**
@@ -1591,28 +1415,23 @@ export namespace youtube_v3 {
      */
     fcbmRating?: string;
     /**
-     * The video&#39;s rating from Hong Kong&#39;s Office for Film, Newspaper
-     * and Article Administration.
+     * The video&#39;s rating from Hong Kong&#39;s Office for Film, Newspaper and Article Administration.
      */
     fcoRating?: string;
     /**
-     * This property has been deprecated. Use the
-     * contentDetails.contentRating.cncRating instead.
+     * This property has been deprecated. Use the contentDetails.contentRating.cncRating instead.
      */
     fmocRating?: string;
     /**
-     * The video&#39;s rating from South Africa&#39;s Film and Publication
-     * Board.
+     * The video&#39;s rating from South Africa&#39;s Film and Publication Board.
      */
     fpbRating?: string;
     /**
-     * Reasons that explain why the video received its FPB (South Africa)
-     * rating.
+     * Reasons that explain why the video received its FPB (South Africa) rating.
      */
     fpbRatingReasons?: string[];
     /**
-     * The video&#39;s Freiwillige Selbstkontrolle der Filmwirtschaft (FSK -
-     * Germany) rating.
+     * The video&#39;s Freiwillige Selbstkontrolle der Filmwirtschaft (FSK - Germany) rating.
      */
     fskRating?: string;
     /**
@@ -1620,13 +1439,11 @@ export namespace youtube_v3 {
      */
     grfilmRating?: string;
     /**
-     * The video&#39;s Instituto de la Cinematografía y de las Artes
-     * Audiovisuales (ICAA - Spain) rating.
+     * The video&#39;s Instituto de la Cinematografía y de las Artes Audiovisuales (ICAA - Spain) rating.
      */
     icaaRating?: string;
     /**
-     * The video&#39;s Irish Film Classification Office (IFCO - Ireland) rating.
-     * See the IFCO website for more information.
+     * The video&#39;s Irish Film Classification Office (IFCO - Ireland) rating. See the IFCO website for more information.
      */
     ifcoRating?: string;
     /**
@@ -1634,8 +1451,7 @@ export namespace youtube_v3 {
      */
     ilfilmRating?: string;
     /**
-     * The video&#39;s INCAA (Instituto Nacional de Cine y Artes Audiovisuales -
-     * Argentina) rating.
+     * The video&#39;s INCAA (Instituto Nacional de Cine y Artes Audiovisuales - Argentina) rating.
      */
     incaaRating?: string;
     /**
@@ -1647,8 +1463,7 @@ export namespace youtube_v3 {
      */
     kijkwijzerRating?: string;
     /**
-     * The video&#39;s Korea Media Rating Board (영상물등급위원회) rating. The
-     * KMRB rates videos in South Korea.
+     * The video&#39;s Korea Media Rating Board (영상물등급위원회) rating. The KMRB rates videos in South Korea.
      */
     kmrbRating?: string;
     /**
@@ -1660,8 +1475,7 @@ export namespace youtube_v3 {
      */
     mccaaRating?: string;
     /**
-     * The video&#39;s rating from the Danish Film Institute&#39;s (Det Danske
-     * Filminstitut) Media Council for Children and Young People.
+     * The video&#39;s rating from the Danish Film Institute&#39;s (Det Danske Filminstitut) Media Council for Children and Young People.
      */
     mccypRating?: string;
     /**
@@ -1669,8 +1483,7 @@ export namespace youtube_v3 {
      */
     mcstRating?: string;
     /**
-     * The video&#39;s rating from Singapore&#39;s Media Development Authority
-     * (MDA) and, specifically, it&#39;s Board of Film Censors (BFC).
+     * The video&#39;s rating from Singapore&#39;s Media Development Authority (MDA) and, specifically, it&#39;s Board of Film Censors (BFC).
      */
     mdaRating?: string;
     /**
@@ -1678,8 +1491,7 @@ export namespace youtube_v3 {
      */
     medietilsynetRating?: string;
     /**
-     * The video&#39;s rating from Finland&#39;s Kansallinen Audiovisuaalinen
-     * Instituutti (National Audiovisual Institute).
+     * The video&#39;s rating from Finland&#39;s Kansallinen Audiovisuaalinen Instituutti (National Audiovisual Institute).
      */
     mekuRating?: string;
     /**
@@ -1687,8 +1499,7 @@ export namespace youtube_v3 {
      */
     menaMpaaRating?: string;
     /**
-     * The video&#39;s rating from the Ministero dei Beni e delle Attività
-     * Culturali e del Turismo (Italy).
+     * The video&#39;s rating from the Ministero dei Beni e delle Attività Culturali e del Turismo (Italy).
      */
     mibacRating?: string;
     /**
@@ -1704,13 +1515,11 @@ export namespace youtube_v3 {
      */
     mpaaRating?: string;
     /**
-     * The rating system for trailer, DVD, and Ad in the US. See
-     * http://movielabs.com/md/ratings/v2.3/html/US_MPAAT_Ratings.html.
+     * The rating system for trailer, DVD, and Ad in the US. See http://movielabs.com/md/ratings/v2.3/html/US_MPAAT_Ratings.html.
      */
     mpaatRating?: string;
     /**
-     * The video&#39;s rating from the Movie and Television Review and
-     * Classification Board (Philippines).
+     * The video&#39;s rating from the Movie and Television Review and Classification Board (Philippines).
      */
     mtrcbRating?: string;
     /**
@@ -1718,8 +1527,7 @@ export namespace youtube_v3 {
      */
     nbcplRating?: string;
     /**
-     * The video&#39;s rating from the Maldives National Bureau of
-     * Classification.
+     * The video&#39;s rating from the Maldives National Bureau of Classification.
      */
     nbcRating?: string;
     /**
@@ -1727,18 +1535,15 @@ export namespace youtube_v3 {
      */
     nfrcRating?: string;
     /**
-     * The video&#39;s rating from Nigeria&#39;s National Film and Video Censors
-     * Board.
+     * The video&#39;s rating from Nigeria&#39;s National Film and Video Censors Board.
      */
     nfvcbRating?: string;
     /**
-     * The video&#39;s rating from the Nacionãlais Kino centrs (National Film
-     * Centre of Latvia).
+     * The video&#39;s rating from the Nacionãlais Kino centrs (National Film Centre of Latvia).
      */
     nkclvRating?: string;
     /**
-     * The video&#39;s Office of Film and Literature Classification (OFLC - New
-     * Zealand) rating.
+     * The video&#39;s Office of Film and Literature Classification (OFLC - New Zealand) rating.
      */
     oflcRating?: string;
     /**
@@ -1746,8 +1551,7 @@ export namespace youtube_v3 {
      */
     pefilmRating?: string;
     /**
-     * The video&#39;s rating from the Hungarian Nemzeti Filmiroda, the Rating
-     * Committee of the National Office of Film.
+     * The video&#39;s rating from the Hungarian Nemzeti Filmiroda, the Rating Committee of the National Office of Film.
      */
     rcnofRating?: string;
     /**
@@ -1755,8 +1559,7 @@ export namespace youtube_v3 {
      */
     resorteviolenciaRating?: string;
     /**
-     * The video&#39;s General Directorate of Radio, Television and
-     * Cinematography (Mexico) rating.
+     * The video&#39;s General Directorate of Radio, Television and Cinematography (Mexico) rating.
      */
     rtcRating?: string;
     /**
@@ -1764,8 +1567,7 @@ export namespace youtube_v3 {
      */
     rteRating?: string;
     /**
-     * The video&#39;s National Film Registry of the Russian Federation (MKRF -
-     * Russia) rating.
+     * The video&#39;s National Film Registry of the Russian Federation (MKRF - Russia) rating.
      */
     russiaRating?: string;
     /**
@@ -1777,8 +1579,7 @@ export namespace youtube_v3 {
      */
     smaisRating?: string;
     /**
-     * The video&#39;s rating from Statens medieråd (Sweden&#39;s National Media
-     * Council).
+     * The video&#39;s rating from Statens medieråd (Sweden&#39;s National Media Council).
      */
     smsaRating?: string;
     /**
@@ -1808,11 +1609,7 @@ export namespace youtube_v3 {
     longitude?: number;
   }
   /**
-   * A guideCategory resource identifies a category that YouTube algorithmically
-   * assigns based on a channel&#39;s content or other indicators, such as the
-   * channel&#39;s popularity. The list is similar to video categories, with the
-   * difference being that a video&#39;s uploader can assign a video category
-   * but only YouTube can assign a channel category.
+   * A guideCategory resource identifies a category that YouTube algorithmically assigns based on a channel&#39;s content or other indicators, such as the channel&#39;s popularity. The list is similar to video categories, with the difference being that a video&#39;s uploader can assign a video category but only YouTube can assign a channel category.
    */
   export interface Schema$GuideCategory {
     /**
@@ -1824,13 +1621,11 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#guideCategory&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#guideCategory&quot;.
      */
     kind?: string;
     /**
-     * The snippet object contains basic details about the category, such as its
-     * title.
+     * The snippet object contains basic details about the category, such as its title.
      */
     snippet?: Schema$GuideCategorySnippet;
   }
@@ -1844,25 +1639,20 @@ export namespace youtube_v3 {
      */
     eventId?: string;
     /**
-     * A list of categories that can be associated with YouTube channels. In
-     * this map, the category ID is the map key, and its value is the
-     * corresponding guideCategory resource.
+     * A list of categories that can be associated with YouTube channels. In this map, the category ID is the map key, and its value is the corresponding guideCategory resource.
      */
     items?: Schema$GuideCategory[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#guideCategoryListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#guideCategoryListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string;
     tokenPagination?: Schema$TokenPagination;
@@ -1882,8 +1672,7 @@ export namespace youtube_v3 {
     title?: string;
   }
   /**
-   * An i18nLanguage resource identifies a UI language currently supported by
-   * YouTube.
+   * An i18nLanguage resource identifies a UI language currently supported by YouTube.
    */
   export interface Schema$I18nLanguage {
     /**
@@ -1895,13 +1684,11 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#i18nLanguage&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#i18nLanguage&quot;.
      */
     kind?: string;
     /**
-     * The snippet object contains basic details about the i18n language, such
-     * as language code and human-readable name.
+     * The snippet object contains basic details about the i18n language, such as language code and human-readable name.
      */
     snippet?: Schema$I18nLanguageSnippet;
   }
@@ -1915,13 +1702,11 @@ export namespace youtube_v3 {
      */
     eventId?: string;
     /**
-     * A list of supported i18n languages. In this map, the i18n language ID is
-     * the map key, and its value is the corresponding i18nLanguage resource.
+     * A list of supported i18n languages. In this map, the i18n language ID is the map key, and its value is the corresponding i18nLanguage resource.
      */
     items?: Schema$I18nLanguage[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#i18nLanguageListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#i18nLanguageListResponse&quot;.
      */
     kind?: string;
     /**
@@ -1930,8 +1715,7 @@ export namespace youtube_v3 {
     visitorId?: string;
   }
   /**
-   * Basic details about an i18n language, such as language code and
-   * human-readable name.
+   * Basic details about an i18n language, such as language code and human-readable name.
    */
   export interface Schema$I18nLanguageSnippet {
     /**
@@ -1956,13 +1740,11 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#i18nRegion&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#i18nRegion&quot;.
      */
     kind?: string;
     /**
-     * The snippet object contains basic details about the i18n region, such as
-     * region code and human-readable name.
+     * The snippet object contains basic details about the i18n region, such as region code and human-readable name.
      */
     snippet?: Schema$I18nRegionSnippet;
   }
@@ -1976,14 +1758,11 @@ export namespace youtube_v3 {
      */
     eventId?: string;
     /**
-     * A list of regions where YouTube is available. In this map, the i18n
-     * region ID is the map key, and its value is the corresponding i18nRegion
-     * resource.
+     * A list of regions where YouTube is available. In this map, the i18n region ID is the map key, and its value is the corresponding i18nRegion resource.
      */
     items?: Schema$I18nRegion[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#i18nRegionListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#i18nRegionListResponse&quot;.
      */
     kind?: string;
     /**
@@ -1992,8 +1771,7 @@ export namespace youtube_v3 {
     visitorId?: string;
   }
   /**
-   * Basic details about an i18n region, such as region code and human-readable
-   * name.
+   * Basic details about an i18n region, such as region code and human-readable name.
    */
   export interface Schema$I18nRegionSnippet {
     /**
@@ -2010,13 +1788,11 @@ export namespace youtube_v3 {
    */
   export interface Schema$ImageSettings {
     /**
-     * The URL for the background image shown on the video watch page. The image
-     * should be 1200px by 615px, with a maximum file size of 128k.
+     * The URL for the background image shown on the video watch page. The image should be 1200px by 615px, with a maximum file size of 128k.
      */
     backgroundImageUrl?: Schema$LocalizedProperty;
     /**
-     * This is used only in update requests; if it&#39;s set, we use this URL to
-     * generate all of the above banner URLs.
+     * This is used only in update requests; if it&#39;s set, we use this URL to generate all of the above banner URLs.
      */
     bannerExternalUrl?: string;
     /**
@@ -2080,8 +1856,7 @@ export namespace youtube_v3 {
      */
     largeBrandedBannerImageImapScript?: Schema$LocalizedProperty;
     /**
-     * The URL for the 854px by 70px image that appears below the video player
-     * in the expanded video view of the video watch page.
+     * The URL for the 854px by 70px image that appears below the video player in the expanded video view of the video watch page.
      */
     largeBrandedBannerImageUrl?: Schema$LocalizedProperty;
     /**
@@ -2089,19 +1864,15 @@ export namespace youtube_v3 {
      */
     smallBrandedBannerImageImapScript?: Schema$LocalizedProperty;
     /**
-     * The URL for the 640px by 70px banner image that appears below the video
-     * player in the default view of the video watch page.
+     * The URL for the 640px by 70px banner image that appears below the video player in the default view of the video watch page.
      */
     smallBrandedBannerImageUrl?: Schema$LocalizedProperty;
     /**
-     * The URL for a 1px by 1px tracking pixel that can be used to collect
-     * statistics for views of the channel or video pages.
+     * The URL for a 1px by 1px tracking pixel that can be used to collect statistics for views of the channel or video pages.
      */
     trackingImageUrl?: string;
     /**
-     * The URL for the image that appears above the top-left corner of the video
-     * player. This is a 25-pixel-high image with a flexible width that cannot
-     * exceed 170 pixels.
+     * The URL for the image that appears above the top-left corner of the video player. This is a 25-pixel-high image with a flexible width that cannot exceed 170 pixels.
      */
     watchIconImageUrl?: string;
   }
@@ -2110,17 +1881,11 @@ export namespace youtube_v3 {
    */
   export interface Schema$IngestionInfo {
     /**
-     * The backup ingestion URL that you should use to stream video to YouTube.
-     * You have the option of simultaneously streaming the content that you are
-     * sending to the ingestionAddress to this URL.
+     * The backup ingestion URL that you should use to stream video to YouTube. You have the option of simultaneously streaming the content that you are sending to the ingestionAddress to this URL.
      */
     backupIngestionAddress?: string;
     /**
-     * The primary ingestion URL that you should use to stream video to YouTube.
-     * You must stream video to this URL.  Depending on which application or
-     * tool you use to encode your video stream, you may need to enter the
-     * stream URL and stream name separately or you may need to concatenate them
-     * in the following format:  STREAM_URL/STREAM_NAME
+     * The primary ingestion URL that you should use to stream video to YouTube. You must stream video to this URL.  Depending on which application or tool you use to encode your video stream, you may need to enter the stream URL and stream name separately or you may need to concatenate them in the following format:  STREAM_URL/STREAM_NAME
      */
     ingestionAddress?: string;
     /**
@@ -2136,8 +1901,7 @@ export namespace youtube_v3 {
     timing?: Schema$InvideoTiming;
   }
   /**
-   * Describes the spatial position of a visual widget inside a video. It is a
-   * union of various position types, out of which only will be set one.
+   * Describes the spatial position of a visual widget inside a video. It is a union of various position types, out of which only will be set one.
    */
   export interface Schema$InvideoPosition {
     /**
@@ -2150,13 +1914,11 @@ export namespace youtube_v3 {
     type?: string;
   }
   /**
-   * Describes an invideo promotion campaign consisting of multiple promoted
-   * items. A campaign belongs to a single channel_id.
+   * Describes an invideo promotion campaign consisting of multiple promoted items. A campaign belongs to a single channel_id.
    */
   export interface Schema$InvideoPromotion {
     /**
-     * The default temporal position within the video where the promoted item
-     * will be displayed. Can be overriden by more specific timing in the item.
+     * The default temporal position within the video where the promoted item will be displayed. Can be overriden by more specific timing in the item.
      */
     defaultTiming?: Schema$InvideoTiming;
     /**
@@ -2164,16 +1926,11 @@ export namespace youtube_v3 {
      */
     items?: Schema$PromotedItem[];
     /**
-     * The spatial position within the video where the promoted item will be
-     * displayed.
+     * The spatial position within the video where the promoted item will be displayed.
      */
     position?: Schema$InvideoPosition;
     /**
-     * Indicates whether the channel&#39;s promotional campaign uses &quot;smart
-     * timing.&quot; This feature attempts to show promotions at a point in the
-     * video when they are more likely to be clicked and less likely to disrupt
-     * the viewing experience. This feature also picks up a single promotion to
-     * show on each video.
+     * Indicates whether the channel&#39;s promotional campaign uses &quot;smart timing.&quot; This feature attempts to show promotions at a point in the video when they are more likely to be clicked and less likely to disrupt the viewing experience. This feature also picks up a single promotion to show on each video.
      */
     useSmartTiming?: boolean;
   }
@@ -2182,22 +1939,15 @@ export namespace youtube_v3 {
    */
   export interface Schema$InvideoTiming {
     /**
-     * Defines the duration in milliseconds for which the promotion should be
-     * displayed. If missing, the client should use the default.
+     * Defines the duration in milliseconds for which the promotion should be displayed. If missing, the client should use the default.
      */
     durationMs?: string;
     /**
-     * Defines the time at which the promotion will appear. Depending on the
-     * value of type the value of the offsetMs field will represent a time
-     * offset from the start or from the end of the video, expressed in
-     * milliseconds.
+     * Defines the time at which the promotion will appear. Depending on the value of type the value of the offsetMs field will represent a time offset from the start or from the end of the video, expressed in milliseconds.
      */
     offsetMs?: string;
     /**
-     * Describes a timing type. If the value is offsetFromStart, then the
-     * offsetMs field represents an offset from the start of the video. If the
-     * value is offsetFromEnd, then the offsetMs field represents an offset from
-     * the end of the video.
+     * Describes a timing type. If the value is offsetFromStart, then the offsetMs field represents an offset from the start of the video. If the value is offsetFromEnd, then the offsetMs field represents an offset from the end of the video.
      */
     type?: string;
   }
@@ -2205,15 +1955,11 @@ export namespace youtube_v3 {
     value?: string;
   }
   /**
-   * A liveBroadcast resource represents an event that will be streamed, via
-   * live video, on YouTube.
+   * A liveBroadcast resource represents an event that will be streamed, via live video, on YouTube.
    */
   export interface Schema$LiveBroadcast {
     /**
-     * The contentDetails object contains information about the event&#39;s
-     * video content, such as whether the content can be shown in an embedded
-     * video player or if it will be archived and therefore available for
-     * viewing after the event has concluded.
+     * The contentDetails object contains information about the event&#39;s video content, such as whether the content can be shown in an embedded video player or if it will be archived and therefore available for viewing after the event has concluded.
      */
     contentDetails?: Schema$LiveBroadcastContentDetails;
     /**
@@ -2225,20 +1971,15 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#liveBroadcast&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveBroadcast&quot;.
      */
     kind?: string;
     /**
-     * The snippet object contains basic details about the event, including its
-     * title, description, start time, and end time.
+     * The snippet object contains basic details about the event, including its title, description, start time, and end time.
      */
     snippet?: Schema$LiveBroadcastSnippet;
     /**
-     * The statistics object contains info about the event&#39;s current stats.
-     * These include concurrent viewers and total chat count. Statistics can
-     * change (in either direction) during the lifetime of an event. Statistics
-     * are only returned while the event is live.
+     * The statistics object contains info about the event&#39;s current stats. These include concurrent viewers and total chat count. Statistics can change (in either direction) during the lifetime of an event. Statistics are only returned while the event is live.
      */
     statistics?: Schema$LiveBroadcastStatistics;
     /**
@@ -2255,8 +1996,7 @@ export namespace youtube_v3 {
      */
     boundStreamId?: string;
     /**
-     * The date and time that the live stream referenced by boundStreamId was
-     * last updated.
+     * The date and time that the live stream referenced by boundStreamId was last updated.
      */
     boundStreamLastUpdateTimeMs?: string;
     closedCaptionsType?: string;
@@ -2265,33 +2005,19 @@ export namespace youtube_v3 {
      */
     enableAutoStart?: boolean;
     /**
-     * This setting indicates whether HTTP POST closed captioning is enabled for
-     * this broadcast. The ingestion URL of the closed captions is returned
-     * through the liveStreams API. This is mutually exclusive with using the
-     * closed_captions_type property, and is equivalent to setting
-     * closed_captions_type to CLOSED_CAPTIONS_HTTP_POST.
+     * This setting indicates whether HTTP POST closed captioning is enabled for this broadcast. The ingestion URL of the closed captions is returned through the liveStreams API. This is mutually exclusive with using the closed_captions_type property, and is equivalent to setting closed_captions_type to CLOSED_CAPTIONS_HTTP_POST.
      */
     enableClosedCaptions?: boolean;
     /**
-     * This setting indicates whether YouTube should enable content encryption
-     * for the broadcast.
+     * This setting indicates whether YouTube should enable content encryption for the broadcast.
      */
     enableContentEncryption?: boolean;
     /**
-     * This setting determines whether viewers can access DVR controls while
-     * watching the video. DVR controls enable the viewer to control the video
-     * playback experience by pausing, rewinding, or fast forwarding content.
-     * The default value for this property is true.    Important: You must set
-     * the value to true and also set the enableArchive property&#39;s value to
-     * true if you want to make playback available immediately after the
-     * broadcast ends.
+     * This setting determines whether viewers can access DVR controls while watching the video. DVR controls enable the viewer to control the video playback experience by pausing, rewinding, or fast forwarding content. The default value for this property is true.    Important: You must set the value to true and also set the enableArchive property&#39;s value to true if you want to make playback available immediately after the broadcast ends.
      */
     enableDvr?: boolean;
     /**
-     * This setting indicates whether the broadcast video can be played in an
-     * embedded player. If you choose to archive the video (using the
-     * enableArchive property), this setting will also apply to the archived
-     * video.
+     * This setting indicates whether the broadcast video can be played in an embedded player. If you choose to archive the video (using the enableArchive property), this setting will also apply to the archived video.
      */
     enableEmbed?: boolean;
     /**
@@ -2299,17 +2025,12 @@ export namespace youtube_v3 {
      */
     enableLowLatency?: boolean;
     /**
-     * If both this and enable_low_latency are set, they must match.
-     * LATENCY_NORMAL should match enable_low_latency=false LATENCY_LOW should
-     * match enable_low_latency=true LATENCY_ULTRA_LOW should have
-     * enable_low_latency omitted.
+     * If both this and enable_low_latency are set, they must match. LATENCY_NORMAL should match enable_low_latency=false LATENCY_LOW should match enable_low_latency=true LATENCY_ULTRA_LOW should have enable_low_latency omitted.
      */
     latencyPreference?: string;
     mesh?: string;
     /**
-     * The monitorStream object contains information about the monitor stream,
-     * which the broadcaster can use to review the event content before the
-     * broadcast stream is shown publicly.
+     * The monitorStream object contains information about the monitor stream, which the broadcaster can use to review the event content before the broadcast stream is shown publicly.
      */
     monitorStream?: Schema$MonitorStreamInfo;
     /**
@@ -2317,22 +2038,11 @@ export namespace youtube_v3 {
      */
     projection?: string;
     /**
-     * Automatically start recording after the event goes live. The default
-     * value for this property is true.    Important: You must also set the
-     * enableDvr property&#39;s value to true if you want the playback to be
-     * available immediately after the broadcast ends. If you set this
-     * property&#39;s value to true but do not also set the enableDvr property
-     * to true, there may be a delay of around one day before the archived video
-     * will be available for playback.
+     * Automatically start recording after the event goes live. The default value for this property is true.    Important: You must also set the enableDvr property&#39;s value to true if you want the playback to be available immediately after the broadcast ends. If you set this property&#39;s value to true but do not also set the enableDvr property to true, there may be a delay of around one day before the archived video will be available for playback.
      */
     recordFromStart?: boolean;
     /**
-     * This setting indicates whether the broadcast should automatically begin
-     * with an in-stream slate when you update the broadcast&#39;s status to
-     * live. After updating the status, you then need to send a
-     * liveCuepoints.insert request that sets the cuepoint&#39;s eventState to
-     * end to remove the in-stream slate and make your broadcast stream visible
-     * to viewers.
+     * This setting indicates whether the broadcast should automatically begin with an in-stream slate when you update the broadcast&#39;s status to live. After updating the status, you then need to send a liveCuepoints.insert request that sets the cuepoint&#39;s eventState to end to remove the in-stream slate and make your broadcast stream visible to viewers.
      */
     startWithSlate?: boolean;
     stereoLayout?: string;
@@ -2351,19 +2061,16 @@ export namespace youtube_v3 {
      */
     items?: Schema$LiveBroadcast[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#liveBroadcastListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveBroadcastListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string;
     tokenPagination?: Schema$TokenPagination;
@@ -2374,26 +2081,19 @@ export namespace youtube_v3 {
   }
   export interface Schema$LiveBroadcastSnippet {
     /**
-     * The date and time that the broadcast actually ended. This information is
-     * only available once the broadcast&#39;s state is complete. The value is
-     * specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the broadcast actually ended. This information is only available once the broadcast&#39;s state is complete. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     actualEndTime?: string;
     /**
-     * The date and time that the broadcast actually started. This information
-     * is only available once the broadcast&#39;s state is live. The value is
-     * specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the broadcast actually started. This information is only available once the broadcast&#39;s state is live. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     actualStartTime?: string;
     /**
-     * The ID that YouTube uses to uniquely identify the channel that is
-     * publishing the broadcast.
+     * The ID that YouTube uses to uniquely identify the channel that is publishing the broadcast.
      */
     channelId?: string;
     /**
-     * The broadcast&#39;s description. As with the title, you can set this
-     * field by modifying the broadcast resource or by setting the description
-     * field of the corresponding video resource.
+     * The broadcast&#39;s description. As with the title, you can set this field by modifying the broadcast resource or by setting the description field of the corresponding video resource.
      */
     description?: string;
     isDefaultBroadcast?: boolean;
@@ -2402,65 +2102,42 @@ export namespace youtube_v3 {
      */
     liveChatId?: string;
     /**
-     * The date and time that the broadcast was added to YouTube&#39;s live
-     * broadcast schedule. The value is specified in ISO 8601
-     * (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the broadcast was added to YouTube&#39;s live broadcast schedule. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string;
     /**
-     * The date and time that the broadcast is scheduled to end. The value is
-     * specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the broadcast is scheduled to end. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     scheduledEndTime?: string;
     /**
-     * The date and time that the broadcast is scheduled to start. The value is
-     * specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the broadcast is scheduled to start. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     scheduledStartTime?: string;
     /**
-     * A map of thumbnail images associated with the broadcast. For each nested
-     * object in this object, the key is the name of the thumbnail image, and
-     * the value is an object that contains other information about the
-     * thumbnail.
+     * A map of thumbnail images associated with the broadcast. For each nested object in this object, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
      */
     thumbnails?: Schema$ThumbnailDetails;
     /**
-     * The broadcast&#39;s title. Note that the broadcast represents exactly one
-     * YouTube video. You can set this field by modifying the broadcast resource
-     * or by setting the title field of the corresponding video resource.
+     * The broadcast&#39;s title. Note that the broadcast represents exactly one YouTube video. You can set this field by modifying the broadcast resource or by setting the title field of the corresponding video resource.
      */
     title?: string;
   }
   /**
-   * Statistics about the live broadcast. These represent a snapshot of the
-   * values at the time of the request. Statistics are only returned for live
-   * broadcasts.
+   * Statistics about the live broadcast. These represent a snapshot of the values at the time of the request. Statistics are only returned for live broadcasts.
    */
   export interface Schema$LiveBroadcastStatistics {
     /**
-     * The number of viewers currently watching the broadcast. The property and
-     * its value will be present if the broadcast has current viewers and the
-     * broadcast owner has not hidden the viewcount for the video. Note that
-     * YouTube stops tracking the number of concurrent viewers for a broadcast
-     * when the broadcast ends. So, this property would not identify the number
-     * of viewers watching an archived video of a live broadcast that already
-     * ended.
+     * The number of viewers currently watching the broadcast. The property and its value will be present if the broadcast has current viewers and the broadcast owner has not hidden the viewcount for the video. Note that YouTube stops tracking the number of concurrent viewers for a broadcast when the broadcast ends. So, this property would not identify the number of viewers watching an archived video of a live broadcast that already ended.
      */
     concurrentViewers?: string;
     /**
-     * The total number of live chat messages currently on the broadcast. The
-     * property and its value will be present if the broadcast is public, has
-     * the live chat feature enabled, and has at least one message. Note that
-     * this field will not be filled after the broadcast ends. So this property
-     * would not identify the number of chat messages for an archived video of a
-     * completed live broadcast.
+     * The total number of live chat messages currently on the broadcast. The property and its value will be present if the broadcast is public, has the live chat feature enabled, and has at least one message. Note that this field will not be filled after the broadcast ends. So this property would not identify the number of chat messages for an archived video of a completed live broadcast.
      */
     totalChatCount?: string;
   }
   export interface Schema$LiveBroadcastStatus {
     /**
-     * The broadcast&#39;s status. The status can be updated using the API&#39;s
-     * liveBroadcasts.transition method.
+     * The broadcast&#39;s status. The status can be updated using the API&#39;s liveBroadcasts.transition method.
      */
     lifeCycleStatus?: string;
     /**
@@ -2468,11 +2145,7 @@ export namespace youtube_v3 {
      */
     liveBroadcastPriority?: string;
     /**
-     * The broadcast&#39;s privacy status. Note that the broadcast represents
-     * exactly one YouTube video, so the privacy settings are identical to those
-     * supported for videos. In addition, you can set this field by modifying
-     * the broadcast resource or by setting the privacyStatus field of the
-     * corresponding video resource.
+     * The broadcast&#39;s privacy status. Note that the broadcast represents exactly one YouTube video, so the privacy settings are identical to those supported for videos. In addition, you can set this field by modifying the broadcast resource or by setting the privacyStatus field of the corresponding video resource.
      */
     privacyStatus?: string;
     /**
@@ -2493,8 +2166,7 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#liveChatBan&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveChatBan&quot;.
      */
     kind?: string;
     /**
@@ -2536,13 +2208,11 @@ export namespace youtube_v3 {
     userComment?: string;
   }
   /**
-   * A liveChatMessage resource represents a chat message in a YouTube Live
-   * Chat.
+   * A liveChatMessage resource represents a chat message in a YouTube Live Chat.
    */
   export interface Schema$LiveChatMessage {
     /**
-     * The authorDetails object contains basic details about the user that
-     * posted this message.
+     * The authorDetails object contains basic details about the user that posted this message.
      */
     authorDetails?: Schema$LiveChatMessageAuthorDetails;
     /**
@@ -2554,8 +2224,7 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#liveChatMessage&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveChatMessage&quot;.
      */
     kind?: string;
     /**
@@ -2614,18 +2283,15 @@ export namespace youtube_v3 {
      */
     items?: Schema$LiveChatMessage[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#liveChatMessageListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveChatMessageListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     /**
-     * The date and time when the underlying stream went offline. The value is
-     * specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when the underlying stream went offline. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     offlineAt?: string;
     pageInfo?: Schema$PageInfo;
@@ -2644,29 +2310,19 @@ export namespace youtube_v3 {
   }
   export interface Schema$LiveChatMessageSnippet {
     /**
-     * The ID of the user that authored this message, this field is not always
-     * filled. textMessageEvent - the user that wrote the message
-     * fanFundingEvent - the user that funded the broadcast newSponsorEvent -
-     * the user that just became a sponsor messageDeletedEvent - the moderator
-     * that took the action messageRetractedEvent - the author that retracted
-     * their message userBannedEvent - the moderator that took the action
-     * superChatEvent - the user that made the purchase
+     * The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase
      */
     authorChannelId?: string;
     /**
-     * Contains a string that can be displayed to the user. If this field is not
-     * present the message is silent, at the moment only messages of type
-     * TOMBSTONE and CHAT_ENDED_EVENT are silent.
+     * Contains a string that can be displayed to the user. If this field is not present the message is silent, at the moment only messages of type TOMBSTONE and CHAT_ENDED_EVENT are silent.
      */
     displayMessage?: string;
     /**
-     * Details about the funding event, this is only set if the type is
-     * &#39;fanFundingEvent&#39;.
+     * Details about the funding event, this is only set if the type is &#39;fanFundingEvent&#39;.
      */
     fanFundingEventDetails?: Schema$LiveChatFanFundingEventDetails;
     /**
-     * Whether the message has display content that should be displayed to
-     * users.
+     * Whether the message has display content that should be displayed to users.
      */
     hasDisplayContent?: boolean;
     liveChatId?: string;
@@ -2677,36 +2333,29 @@ export namespace youtube_v3 {
     pollOpenedDetails?: Schema$LiveChatPollOpenedDetails;
     pollVotedDetails?: Schema$LiveChatPollVotedDetails;
     /**
-     * The date and time when the message was orignally published. The value is
-     * specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when the message was orignally published. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string;
     /**
-     * Details about the Super Chat event, this is only set if the type is
-     * &#39;superChatEvent&#39;.
+     * Details about the Super Chat event, this is only set if the type is &#39;superChatEvent&#39;.
      */
     superChatDetails?: Schema$LiveChatSuperChatDetails;
     /**
-     * Details about the Super Sticker event, this is only set if the type is
-     * &#39;superStickerEvent&#39;.
+     * Details about the Super Sticker event, this is only set if the type is &#39;superStickerEvent&#39;.
      */
     superStickerDetails?: Schema$LiveChatSuperStickerDetails;
     /**
-     * Details about the text message, this is only set if the type is
-     * &#39;textMessageEvent&#39;.
+     * Details about the text message, this is only set if the type is &#39;textMessageEvent&#39;.
      */
     textMessageDetails?: Schema$LiveChatTextMessageDetails;
     /**
-     * The type of message, this will always be present, it determines the
-     * contents of the message as well as which fields will be present.
+     * The type of message, this will always be present, it determines the contents of the message as well as which fields will be present.
      */
     type?: string;
     userBannedDetails?: Schema$LiveChatUserBannedMessageDetails;
   }
   /**
-   * A liveChatModerator resource represents a moderator for a YouTube live
-   * chat. A chat moderator has the ability to ban/unban users from a chat,
-   * remove message, etc.
+   * A liveChatModerator resource represents a moderator for a YouTube live chat. A chat moderator has the ability to ban/unban users from a chat, remove message, etc.
    */
   export interface Schema$LiveChatModerator {
     /**
@@ -2718,8 +2367,7 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#liveChatModerator&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveChatModerator&quot;.
      */
     kind?: string;
     /**
@@ -2741,19 +2389,16 @@ export namespace youtube_v3 {
      */
     items?: Schema$LiveChatModerator[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#liveChatModeratorListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveChatModeratorListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string;
     tokenPagination?: Schema$TokenPagination;
@@ -2819,8 +2464,7 @@ export namespace youtube_v3 {
      */
     currency?: string;
     /**
-     * The tier in which the amount belongs. Lower amounts belong to lower
-     * tiers. The lowest tier is 1.
+     * The tier in which the amount belongs. Lower amounts belong to lower tiers. The lowest tier is 1.
      */
     tier?: number;
     /**
@@ -2846,8 +2490,7 @@ export namespace youtube_v3 {
      */
     superStickerMetadata?: Schema$SuperStickerMetadata;
     /**
-     * The tier in which the amount belongs. Lower amounts belong to lower
-     * tiers. The lowest tier is 1.
+     * The tier in which the amount belongs. Lower amounts belong to lower tiers. The lowest tier is 1.
      */
     tier?: number;
   }
@@ -2859,8 +2502,7 @@ export namespace youtube_v3 {
   }
   export interface Schema$LiveChatUserBannedMessageDetails {
     /**
-     * The duration of the ban. This property is only present if the banType is
-     * temporary.
+     * The duration of the ban. This property is only present if the banType is temporary.
      */
     banDurationSeconds?: string;
     /**
@@ -2877,14 +2519,11 @@ export namespace youtube_v3 {
    */
   export interface Schema$LiveStream {
     /**
-     * The cdn object defines the live stream&#39;s content delivery network
-     * (CDN) settings. These settings provide details about the manner in which
-     * you stream your content to YouTube.
+     * The cdn object defines the live stream&#39;s content delivery network (CDN) settings. These settings provide details about the manner in which you stream your content to YouTube.
      */
     cdn?: Schema$CdnSettings;
     /**
-     * The content_details object contains information about the stream,
-     * including the closed captions ingestion URL.
+     * The content_details object contains information about the stream, including the closed captions ingestion URL.
      */
     contentDetails?: Schema$LiveStreamContentDetails;
     /**
@@ -2896,13 +2535,11 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#liveStream&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveStream&quot;.
      */
     kind?: string;
     /**
-     * The snippet object contains basic details about the stream, including its
-     * channel, title, and description.
+     * The snippet object contains basic details about the stream, including its channel, title, and description.
      */
     snippet?: Schema$LiveStreamSnippet;
     /**
@@ -2937,18 +2574,7 @@ export namespace youtube_v3 {
      */
     closedCaptionsIngestionUrl?: string;
     /**
-     * Indicates whether the stream is reusable, which means that it can be
-     * bound to multiple broadcasts. It is common for broadcasters to reuse the
-     * same stream for many different broadcasts if those broadcasts occur at
-     * different times.  If you set this value to false, then the stream will
-     * not be reusable, which means that it can only be bound to one broadcast.
-     * Non-reusable streams differ from reusable streams in the following ways:
-     * - A non-reusable stream can only be bound to one broadcast.  - A
-     * non-reusable stream might be deleted by an automated process after the
-     * broadcast ends.  - The  liveStreams.list method does not list
-     * non-reusable streams if you call the method and set the mine parameter to
-     * true. The only way to use that method to retrieve the resource for a
-     * non-reusable stream is to use the id parameter to identify the stream.
+     * Indicates whether the stream is reusable, which means that it can be bound to multiple broadcasts. It is common for broadcasters to reuse the same stream for many different broadcasts if those broadcasts occur at different times.  If you set this value to false, then the stream will not be reusable, which means that it can only be bound to one broadcast. Non-reusable streams differ from reusable streams in the following ways:   - A non-reusable stream can only be bound to one broadcast.  - A non-reusable stream might be deleted by an automated process after the broadcast ends.  - The  liveStreams.list method does not list non-reusable streams if you call the method and set the mine parameter to true. The only way to use that method to retrieve the resource for a non-reusable stream is to use the id parameter to identify the stream.
      */
     isReusable?: boolean;
   }
@@ -2980,19 +2606,16 @@ export namespace youtube_v3 {
      */
     items?: Schema$LiveStream[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#liveStreamListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveStreamListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string;
     tokenPagination?: Schema$TokenPagination;
@@ -3003,24 +2626,20 @@ export namespace youtube_v3 {
   }
   export interface Schema$LiveStreamSnippet {
     /**
-     * The ID that YouTube uses to uniquely identify the channel that is
-     * transmitting the stream.
+     * The ID that YouTube uses to uniquely identify the channel that is transmitting the stream.
      */
     channelId?: string;
     /**
-     * The stream&#39;s description. The value cannot be longer than 10000
-     * characters.
+     * The stream&#39;s description. The value cannot be longer than 10000 characters.
      */
     description?: string;
     isDefaultStream?: boolean;
     /**
-     * The date and time that the stream was created. The value is specified in
-     * ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the stream was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string;
     /**
-     * The stream&#39;s title. The value must be between 1 and 128 characters
-     * long.
+     * The stream&#39;s title. The value must be between 1 and 128 characters long.
      */
     title?: string;
   }
@@ -3051,8 +2670,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$MonitorStreamInfo {
     /**
-     * If you have set the enableMonitorStream property to true, then this
-     * property determines the length of the live broadcast delay.
+     * If you have set the enableMonitorStream property to true, then this property determines the length of the live broadcast delay.
      */
     broadcastStreamDelayMs?: number;
     /**
@@ -3060,14 +2678,7 @@ export namespace youtube_v3 {
      */
     embedHtml?: string;
     /**
-     * This value determines whether the monitor stream is enabled for the
-     * broadcast. If the monitor stream is enabled, then YouTube will broadcast
-     * the event content on a special stream intended only for the
-     * broadcaster&#39;s consumption. The broadcaster can use the stream to
-     * review the event content and also to identify the optimal times to insert
-     * cuepoints.  You need to set this value to true if you intend to have a
-     * broadcast delay for your event.  Note: This property cannot be updated
-     * once the broadcast is in the testing or live state.
+     * This value determines whether the monitor stream is enabled for the broadcast. If the monitor stream is enabled, then YouTube will broadcast the event content on a special stream intended only for the broadcaster&#39;s consumption. The broadcaster can use the stream to review the event content and also to identify the optimal times to insert cuepoints.  You need to set this value to true if you intend to have a broadcast delay for your event.  Note: This property cannot be updated once the broadcast is in the testing or live state.
      */
     enableMonitorStream?: boolean;
   }
@@ -3088,8 +2699,7 @@ export namespace youtube_v3 {
     value?: string;
   }
   /**
-   * Paging details for lists of resources, including total number of items
-   * available and number of resources returned in a single page.
+   * Paging details for lists of resources, including total number of items available and number of resources returned in a single page.
    */
   export interface Schema$PageInfo {
     /**
@@ -3102,21 +2712,7 @@ export namespace youtube_v3 {
     totalResults?: number;
   }
   /**
-   * A playlist resource represents a YouTube playlist. A playlist is a
-   * collection of videos that can be viewed sequentially and shared with other
-   * users. A playlist can contain up to 200 videos, and YouTube does not limit
-   * the number of playlists that each user creates. By default, playlists are
-   * publicly visible to other users, but playlists can be public or private.
-   * YouTube also uses playlists to identify special collections of videos for a
-   * channel, such as:   - uploaded videos  - favorite videos  - positively
-   * rated (liked) videos  - watch history  - watch later  To be more specific,
-   * these lists are associated with a channel, which is a collection of a
-   * person, group, or company&#39;s videos, playlists, and other YouTube
-   * information. You can retrieve the playlist IDs for each of these lists from
-   * the  channel resource for a given channel.  You can then use the
-   * playlistItems.list method to retrieve any of those lists. You can also add
-   * or remove items from those lists by calling the   playlistItems.insert and
-   * playlistItems.delete methods.
+   * A playlist resource represents a YouTube playlist. A playlist is a collection of videos that can be viewed sequentially and shared with other users. A playlist can contain up to 200 videos, and YouTube does not limit the number of playlists that each user creates. By default, playlists are publicly visible to other users, but playlists can be public or private.  YouTube also uses playlists to identify special collections of videos for a channel, such as:   - uploaded videos  - favorite videos  - positively rated (liked) videos  - watch history  - watch later  To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company&#39;s videos, playlists, and other YouTube information. You can retrieve the playlist IDs for each of these lists from the  channel resource for a given channel.  You can then use the   playlistItems.list method to retrieve any of those lists. You can also add or remove items from those lists by calling the   playlistItems.insert and   playlistItems.delete methods.
    */
   export interface Schema$Playlist {
     /**
@@ -3132,22 +2728,19 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#playlist&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#playlist&quot;.
      */
     kind?: string;
     /**
      * Localizations for different languages
      */
-    localizations?: {[key: string]: Schema$PlaylistLocalization;};
+    localizations?: {[key: string]: Schema$PlaylistLocalization};
     /**
-     * The player object contains information that you would use to play the
-     * playlist in an embedded player.
+     * The player object contains information that you would use to play the playlist in an embedded player.
      */
     player?: Schema$PlaylistPlayer;
     /**
-     * The snippet object contains basic details about the playlist, such as its
-     * title and description.
+     * The snippet object contains basic details about the playlist, such as its title and description.
      */
     snippet?: Schema$PlaylistSnippet;
     /**
@@ -3162,27 +2755,11 @@ export namespace youtube_v3 {
     itemCount?: number;
   }
   /**
-   * A playlistItem resource identifies another resource, such as a video, that
-   * is included in a playlist. In addition, the playlistItem  resource contains
-   * details about the included resource that pertain specifically to how that
-   * resource is used in that playlist.  YouTube uses playlists to identify
-   * special collections of videos for a channel, such as:   - uploaded videos
-   * - favorite videos  - positively rated (liked) videos  - watch history  -
-   * watch later  To be more specific, these lists are associated with a
-   * channel, which is a collection of a person, group, or company&#39;s videos,
-   * playlists, and other YouTube information.  You can retrieve the playlist
-   * IDs for each of these lists from the  channel resource  for a given
-   * channel. You can then use the   playlistItems.list method to retrieve any
-   * of those lists. You can also add or remove items from those lists by
-   * calling the   playlistItems.insert and   playlistItems.delete methods. For
-   * example, if a user gives a positive rating to a video, you would insert
-   * that video into the liked videos playlist for that user&#39;s channel.
+   * A playlistItem resource identifies another resource, such as a video, that is included in a playlist. In addition, the playlistItem  resource contains details about the included resource that pertain specifically to how that resource is used in that playlist.  YouTube uses playlists to identify special collections of videos for a channel, such as:   - uploaded videos  - favorite videos  - positively rated (liked) videos  - watch history  - watch later  To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company&#39;s videos, playlists, and other YouTube information.  You can retrieve the playlist IDs for each of these lists from the  channel resource  for a given channel. You can then use the   playlistItems.list method to retrieve any of those lists. You can also add or remove items from those lists by calling the   playlistItems.insert and   playlistItems.delete methods. For example, if a user gives a positive rating to a video, you would insert that video into the liked videos playlist for that user&#39;s channel.
    */
   export interface Schema$PlaylistItem {
     /**
-     * The contentDetails object is included in the resource if the included
-     * item is a YouTube video. The object contains additional information about
-     * the video.
+     * The contentDetails object is included in the resource if the included item is a YouTube video. The object contains additional information about the video.
      */
     contentDetails?: Schema$PlaylistItemContentDetails;
     /**
@@ -3194,28 +2771,21 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#playlistItem&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#playlistItem&quot;.
      */
     kind?: string;
     /**
-     * The snippet object contains basic details about the playlist item, such
-     * as its title and position in the playlist.
+     * The snippet object contains basic details about the playlist item, such as its title and position in the playlist.
      */
     snippet?: Schema$PlaylistItemSnippet;
     /**
-     * The status object contains information about the playlist item&#39;s
-     * privacy status.
+     * The status object contains information about the playlist item&#39;s privacy status.
      */
     status?: Schema$PlaylistItemStatus;
   }
   export interface Schema$PlaylistItemContentDetails {
     /**
-     * The time, measured in seconds from the start of the video, when the video
-     * should stop playing. (The playlist owner can specify the times when the
-     * video should start and stop playing when the video is played in the
-     * context of the playlist.) By default, assume that the video.endTime is
-     * the end of the video.
+     * The time, measured in seconds from the start of the video, when the video should stop playing. (The playlist owner can specify the times when the video should start and stop playing when the video is played in the context of the playlist.) By default, assume that the video.endTime is the end of the video.
      */
     endAt?: string;
     /**
@@ -3223,21 +2793,15 @@ export namespace youtube_v3 {
      */
     note?: string;
     /**
-     * The time, measured in seconds from the start of the video, when the video
-     * should start playing. (The playlist owner can specify the times when the
-     * video should start and stop playing when the video is played in the
-     * context of the playlist.) The default value is 0.
+     * The time, measured in seconds from the start of the video, when the video should start playing. (The playlist owner can specify the times when the video should start and stop playing when the video is played in the context of the playlist.) The default value is 0.
      */
     startAt?: string;
     /**
-     * The ID that YouTube uses to uniquely identify a video. To retrieve the
-     * video resource, set the id query parameter to this value in your API
-     * request.
+     * The ID that YouTube uses to uniquely identify a video. To retrieve the video resource, set the id query parameter to this value in your API request.
      */
     videoId?: string;
     /**
-     * The date and time that the video was published to YouTube. The value is
-     * specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the video was published to YouTube. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     videoPublishedAt?: string;
   }
@@ -3255,19 +2819,16 @@ export namespace youtube_v3 {
      */
     items?: Schema$PlaylistItem[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#playlistItemListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#playlistItemListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string;
     tokenPagination?: Schema$TokenPagination;
@@ -3277,13 +2838,11 @@ export namespace youtube_v3 {
     visitorId?: string;
   }
   /**
-   * Basic details about a playlist, including title, description and
-   * thumbnails.
+   * Basic details about a playlist, including title, description and thumbnails.
    */
   export interface Schema$PlaylistItemSnippet {
     /**
-     * The ID that YouTube uses to uniquely identify the user that added the
-     * item to the playlist.
+     * The ID that YouTube uses to uniquely identify the user that added the item to the playlist.
      */
     channelId?: string;
     /**
@@ -3295,30 +2854,23 @@ export namespace youtube_v3 {
      */
     description?: string;
     /**
-     * The ID that YouTube uses to uniquely identify the playlist that the
-     * playlist item is in.
+     * The ID that YouTube uses to uniquely identify the playlist that the playlist item is in.
      */
     playlistId?: string;
     /**
-     * The order in which the item appears in the playlist. The value uses a
-     * zero-based index, so the first item has a position of 0, the second item
-     * has a position of 1, and so forth.
+     * The order in which the item appears in the playlist. The value uses a zero-based index, so the first item has a position of 0, the second item has a position of 1, and so forth.
      */
     position?: number;
     /**
-     * The date and time that the item was added to the playlist. The value is
-     * specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the item was added to the playlist. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string;
     /**
-     * The id object contains information that can be used to uniquely identify
-     * the resource that is included in the playlist as the playlist item.
+     * The id object contains information that can be used to uniquely identify the resource that is included in the playlist as the playlist item.
      */
     resourceId?: Schema$ResourceId;
     /**
-     * A map of thumbnail images associated with the playlist item. For each
-     * object in the map, the key is the name of the thumbnail image, and the
-     * value is an object that contains other information about the thumbnail.
+     * A map of thumbnail images associated with the playlist item. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
      */
     thumbnails?: Schema$ThumbnailDetails;
     /**
@@ -3349,19 +2901,16 @@ export namespace youtube_v3 {
      */
     items?: Schema$Playlist[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#playlistListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#playlistListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string;
     tokenPagination?: Schema$TokenPagination;
@@ -3390,13 +2939,11 @@ export namespace youtube_v3 {
     embedHtml?: string;
   }
   /**
-   * Basic details about a playlist, including title, description and
-   * thumbnails.
+   * Basic details about a playlist, including title, description and thumbnails.
    */
   export interface Schema$PlaylistSnippet {
     /**
-     * The ID that YouTube uses to uniquely identify the channel that published
-     * the playlist.
+     * The ID that YouTube uses to uniquely identify the channel that published the playlist.
      */
     channelId?: string;
     /**
@@ -3416,8 +2963,7 @@ export namespace youtube_v3 {
      */
     localized?: Schema$PlaylistLocalization;
     /**
-     * The date and time that the playlist was created. The value is specified
-     * in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the playlist was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string;
     /**
@@ -3425,9 +2971,7 @@ export namespace youtube_v3 {
      */
     tags?: string[];
     /**
-     * A map of thumbnail images associated with the playlist. For each object
-     * in the map, the key is the name of the thumbnail image, and the value is
-     * an object that contains other information about the thumbnail.
+     * A map of thumbnail images associated with the playlist. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
      */
     thumbnails?: Schema$ThumbnailDetails;
     /**
@@ -3446,8 +2990,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$PromotedItem {
     /**
-     * A custom message to display for this promotion. This field is currently
-     * ignored unless the promoted item is a website.
+     * A custom message to display for this promotion. This field is currently ignored unless the promoted item is a website.
      */
     customMessage?: string;
     /**
@@ -3455,26 +2998,20 @@ export namespace youtube_v3 {
      */
     id?: Schema$PromotedItemId;
     /**
-     * If true, the content owner&#39;s name will be used when displaying the
-     * promotion. This field can only be set when the update is made on behalf
-     * of the content owner.
+     * If true, the content owner&#39;s name will be used when displaying the promotion. This field can only be set when the update is made on behalf of the content owner.
      */
     promotedByContentOwner?: boolean;
     /**
-     * The temporal position within the video where the promoted item will be
-     * displayed. If present, it overrides the default timing.
+     * The temporal position within the video where the promoted item will be displayed. If present, it overrides the default timing.
      */
     timing?: Schema$InvideoTiming;
   }
   /**
-   * Describes a single promoted item id. It is a union of various possible
-   * types.
+   * Describes a single promoted item id. It is a union of various possible types.
    */
   export interface Schema$PromotedItemId {
     /**
-     * If type is recentUpload, this field identifies the channel from which to
-     * take the recent upload. If missing, the channel is assumed to be the same
-     * channel for which the invideoPromotion is set.
+     * If type is recentUpload, this field identifies the channel from which to take the recent upload. If missing, the channel is assumed to be the same channel for which the invideoPromotion is set.
      */
     recentlyUploadedBy?: string;
     /**
@@ -3482,15 +3019,11 @@ export namespace youtube_v3 {
      */
     type?: string;
     /**
-     * If the promoted item represents a video, this field represents the unique
-     * YouTube ID identifying it. This field will be present only if type has
-     * the value video.
+     * If the promoted item represents a video, this field represents the unique YouTube ID identifying it. This field will be present only if type has the value video.
      */
     videoId?: string;
     /**
-     * If the promoted item represents a website, this field represents the url
-     * pointing to the website. This field will be present only if type has the
-     * value website.
+     * If the promoted item represents a website, this field represents the url pointing to the website. This field will be present only if type has the value website.
      */
     websiteUrl?: string;
   }
@@ -3508,14 +3041,11 @@ export namespace youtube_v3 {
     value?: string;
   }
   /**
-   * A resource id is a generic reference that points to another YouTube
-   * resource.
+   * A resource id is a generic reference that points to another YouTube resource.
    */
   export interface Schema$ResourceId {
     /**
-     * The ID that YouTube uses to uniquely identify the referred resource, if
-     * that resource is a channel. This property is only present if the
-     * resourceId.kind value is youtube#channel.
+     * The ID that YouTube uses to uniquely identify the referred resource, if that resource is a channel. This property is only present if the resourceId.kind value is youtube#channel.
      */
     channelId?: string;
     /**
@@ -3523,15 +3053,11 @@ export namespace youtube_v3 {
      */
     kind?: string;
     /**
-     * The ID that YouTube uses to uniquely identify the referred resource, if
-     * that resource is a playlist. This property is only present if the
-     * resourceId.kind value is youtube#playlist.
+     * The ID that YouTube uses to uniquely identify the referred resource, if that resource is a playlist. This property is only present if the resourceId.kind value is youtube#playlist.
      */
     playlistId?: string;
     /**
-     * The ID that YouTube uses to uniquely identify the referred resource, if
-     * that resource is a video. This property is only present if the
-     * resourceId.kind value is youtube#video.
+     * The ID that YouTube uses to uniquely identify the referred resource, if that resource is a video. This property is only present if the resourceId.kind value is youtube#video.
      */
     videoId?: string;
   }
@@ -3549,19 +3075,16 @@ export namespace youtube_v3 {
      */
     items?: Schema$SearchResult[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#searchListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#searchListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string;
     regionCode?: string;
@@ -3572,10 +3095,7 @@ export namespace youtube_v3 {
     visitorId?: string;
   }
   /**
-   * A search result contains information about a YouTube video, channel, or
-   * playlist that matches the search parameters specified in an API request.
-   * While a search result points to a uniquely identifiable resource, like a
-   * video, it does not have its own persistent data.
+   * A search result contains information about a YouTube video, channel, or playlist that matches the search parameters specified in an API request. While a search result points to a uniquely identifiable resource, like a video, it does not have its own persistent data.
    */
   export interface Schema$SearchResult {
     /**
@@ -3583,36 +3103,28 @@ export namespace youtube_v3 {
      */
     etag?: string;
     /**
-     * The id object contains information that can be used to uniquely identify
-     * the resource that matches the search request.
+     * The id object contains information that can be used to uniquely identify the resource that matches the search request.
      */
     id?: Schema$ResourceId;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#searchResult&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#searchResult&quot;.
      */
     kind?: string;
     /**
-     * The snippet object contains basic details about a search result, such as
-     * its title or description. For example, if the search result is a video,
-     * then the title will be the video&#39;s title and the description will be
-     * the video&#39;s description.
+     * The snippet object contains basic details about a search result, such as its title or description. For example, if the search result is a video, then the title will be the video&#39;s title and the description will be the video&#39;s description.
      */
     snippet?: Schema$SearchResultSnippet;
   }
   /**
-   * Basic details about a search result, including title, description and
-   * thumbnails of the item referenced by the search result.
+   * Basic details about a search result, including title, description and thumbnails of the item referenced by the search result.
    */
   export interface Schema$SearchResultSnippet {
     /**
-     * The value that YouTube uses to uniquely identify the channel that
-     * published the resource that the search result identifies.
+     * The value that YouTube uses to uniquely identify the channel that published the resource that the search result identifies.
      */
     channelId?: string;
     /**
-     * The title of the channel that published the resource that the search
-     * result identifies.
+     * The title of the channel that published the resource that the search result identifies.
      */
     channelTitle?: string;
     /**
@@ -3620,21 +3132,15 @@ export namespace youtube_v3 {
      */
     description?: string;
     /**
-     * It indicates if the resource (video or channel) has upcoming/active live
-     * broadcast content. Or it&#39;s &quot;none&quot; if there is not any
-     * upcoming/active live broadcasts.
+     * It indicates if the resource (video or channel) has upcoming/active live broadcast content. Or it&#39;s &quot;none&quot; if there is not any upcoming/active live broadcasts.
      */
     liveBroadcastContent?: string;
     /**
-     * The creation date and time of the resource that the search result
-     * identifies. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ)
-     * format.
+     * The creation date and time of the resource that the search result identifies. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string;
     /**
-     * A map of thumbnail images associated with the search result. For each
-     * object in the map, the key is the name of the thumbnail image, and the
-     * value is an object that contains other information about the thumbnail.
+     * A map of thumbnail images associated with the search result. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
      */
     thumbnails?: Schema$ThumbnailDetails;
     /**
@@ -3643,9 +3149,7 @@ export namespace youtube_v3 {
     title?: string;
   }
   /**
-   * A sponsor resource represents a sponsor for a YouTube channel. A sponsor
-   * provides recurring monetary support to a creator and receives special
-   * benefits.
+   * A sponsor resource represents a sponsor for a YouTube channel. A sponsor provides recurring monetary support to a creator and receives special benefits.
    */
   export interface Schema$Sponsor {
     /**
@@ -3653,8 +3157,7 @@ export namespace youtube_v3 {
      */
     etag?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#sponsor&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#sponsor&quot;.
      */
     kind?: string;
     /**
@@ -3676,13 +3179,11 @@ export namespace youtube_v3 {
      */
     items?: Schema$Sponsor[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#sponsorListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#sponsorListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
@@ -3706,21 +3207,16 @@ export namespace youtube_v3 {
      */
     sponsorDetails?: Schema$ChannelProfileDetails;
     /**
-     * The date and time when the user became a sponsor. The value is specified
-     * in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when the user became a sponsor. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     sponsorSince?: string;
   }
   /**
-   * A subscription resource contains information about a YouTube user
-   * subscription. A subscription notifies a user when new videos are added to a
-   * channel or when another user takes one of several actions on YouTube, such
-   * as uploading a video, rating a video, or commenting on a video.
+   * A subscription resource contains information about a YouTube user subscription. A subscription notifies a user when new videos are added to a channel or when another user takes one of several actions on YouTube, such as uploading a video, rating a video, or commenting on a video.
    */
   export interface Schema$Subscription {
     /**
-     * The contentDetails object contains basic statistics about the
-     * subscription.
+     * The contentDetails object contains basic statistics about the subscription.
      */
     contentDetails?: Schema$SubscriptionContentDetails;
     /**
@@ -3732,13 +3228,11 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#subscription&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#subscription&quot;.
      */
     kind?: string;
     /**
-     * The snippet object contains basic details about the subscription,
-     * including its title and the channel that the user subscribed to.
+     * The snippet object contains basic details about the subscription, including its title and the channel that the user subscribed to.
      */
     snippet?: Schema$SubscriptionSnippet;
     /**
@@ -3755,8 +3249,7 @@ export namespace youtube_v3 {
      */
     activityType?: string;
     /**
-     * The number of new items in the subscription since its content was last
-     * read.
+     * The number of new items in the subscription since its content was last read.
      */
     newItemCount?: number;
     /**
@@ -3778,19 +3271,16 @@ export namespace youtube_v3 {
      */
     items?: Schema$Subscription[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#subscriptionListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#subscriptionListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string;
     tokenPagination?: Schema$TokenPagination;
@@ -3800,13 +3290,11 @@ export namespace youtube_v3 {
     visitorId?: string;
   }
   /**
-   * Basic details about a subscription, including title, description and
-   * thumbnails of the subscribed item.
+   * Basic details about a subscription, including title, description and thumbnails of the subscribed item.
    */
   export interface Schema$SubscriptionSnippet {
     /**
-     * The ID that YouTube uses to uniquely identify the subscriber&#39;s
-     * channel.
+     * The ID that YouTube uses to uniquely identify the subscriber&#39;s channel.
      */
     channelId?: string;
     /**
@@ -3818,19 +3306,15 @@ export namespace youtube_v3 {
      */
     description?: string;
     /**
-     * The date and time that the subscription was created. The value is
-     * specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the subscription was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string;
     /**
-     * The id object contains information about the channel that the user
-     * subscribed to.
+     * The id object contains information about the channel that the user subscribed to.
      */
     resourceId?: Schema$ResourceId;
     /**
-     * A map of thumbnail images associated with the video. For each object in
-     * the map, the key is the name of the thumbnail image, and the value is an
-     * object that contains other information about the thumbnail.
+     * A map of thumbnail images associated with the video. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
      */
     thumbnails?: Schema$ThumbnailDetails;
     /**
@@ -3839,8 +3323,7 @@ export namespace youtube_v3 {
     title?: string;
   }
   /**
-   * Basic details about a subscription&#39;s subscriber including title,
-   * description, channel ID and thumbnails.
+   * Basic details about a subscription&#39;s subscriber including title, description, channel ID and thumbnails.
    */
   export interface Schema$SubscriptionSubscriberSnippet {
     /**
@@ -3861,8 +3344,7 @@ export namespace youtube_v3 {
     title?: string;
   }
   /**
-   * A superChatEvent resource represents a Super Chat purchase on a YouTube
-   * channel.
+   * A superChatEvent resource represents a Super Chat purchase on a YouTube channel.
    */
   export interface Schema$SuperChatEvent {
     /**
@@ -3874,8 +3356,7 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#superChatEvent&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#superChatEvent&quot;.
      */
     kind?: string;
     /**
@@ -3897,13 +3378,11 @@ export namespace youtube_v3 {
      */
     items?: Schema$SuperChatEvent[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#superChatEventListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#superChatEventListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
@@ -3915,8 +3394,7 @@ export namespace youtube_v3 {
   }
   export interface Schema$SuperChatEventSnippet {
     /**
-     * The purchase amount, in micros of the purchase currency. e.g., 1 is
-     * represented as 1000000.
+     * The purchase amount, in micros of the purchase currency. e.g., 1 is represented as 1000000.
      */
     amountMicros?: string;
     /**
@@ -3928,8 +3406,7 @@ export namespace youtube_v3 {
      */
     commentText?: string;
     /**
-     * The date and time when the event occurred. The value is specified in ISO
-     * 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when the event occurred. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     createdAt?: string;
     /**
@@ -3937,8 +3414,7 @@ export namespace youtube_v3 {
      */
     currency?: string;
     /**
-     * A rendered string that displays the purchase amount and currency (e.g.,
-     * &quot;$1.00&quot;). The string is rendered for the given language.
+     * A rendered string that displays the purchase amount and currency (e.g., &quot;$1.00&quot;). The string is rendered for the given language.
      */
     displayString?: string;
     /**
@@ -3950,18 +3426,15 @@ export namespace youtube_v3 {
      */
     isSuperStickerEvent?: boolean;
     /**
-     * The tier for the paid message, which is based on the amount of money
-     * spent to purchase the message.
+     * The tier for the paid message, which is based on the amount of money spent to purchase the message.
      */
     messageType?: number;
     /**
-     * If this event is a Super Chat for Good purchase, this field will contain
-     * information about the charity the purchase is donated to.
+     * If this event is a Super Chat for Good purchase, this field will contain information about the charity the purchase is donated to.
      */
     nonprofit?: Schema$Nonprofit;
     /**
-     * If this event is a Super Sticker event, this field will contain metadata
-     * about the Super Sticker.
+     * If this event is a Super Sticker event, this field will contain metadata about the Super Sticker.
      */
     superStickerMetadata?: Schema$SuperStickerMetadata;
     /**
@@ -3971,8 +3444,7 @@ export namespace youtube_v3 {
   }
   export interface Schema$SuperStickerMetadata {
     /**
-     * Internationalized alt text that describes the sticker image and any
-     * animation associated with it.
+     * Internationalized alt text that describes the sticker image and any animation associated with it.
      */
     altText?: string;
     /**
@@ -3980,9 +3452,7 @@ export namespace youtube_v3 {
      */
     altTextLanguage?: string;
     /**
-     * Unique identifier of the Super Sticker. This is a shorter form of the
-     * alt_text that includes pack name and a recognizable characteristic of the
-     * sticker.
+     * Unique identifier of the Super Sticker. This is a shorter form of the alt_text that includes pack name and a recognizable characteristic of the sticker.
      */
     stickerId?: string;
   }
@@ -4042,8 +3512,7 @@ export namespace youtube_v3 {
      */
     items?: Schema$ThumbnailDetails[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#thumbnailSetResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#thumbnailSetResponse&quot;.
      */
     kind?: string;
     /**
@@ -4060,13 +3529,11 @@ export namespace youtube_v3 {
    */
   export interface Schema$Video {
     /**
-     * Age restriction details related to a video. This data can only be
-     * retrieved by the video owner.
+     * Age restriction details related to a video. This data can only be retrieved by the video owner.
      */
     ageGating?: Schema$VideoAgeGating;
     /**
-     * The contentDetails object contains information about the video content,
-     * including the length of the video and its aspect ratio.
+     * The contentDetails object contains information about the video content, including the length of the video and its aspect ratio.
      */
     contentDetails?: Schema$VideoContentDetails;
     /**
@@ -4074,10 +3541,7 @@ export namespace youtube_v3 {
      */
     etag?: string;
     /**
-     * The fileDetails object encapsulates information about the video file that
-     * was uploaded to YouTube, including the file&#39;s resolution, duration,
-     * audio and video codecs, stream bitrates, and more. This data can only be
-     * retrieved by the video owner.
+     * The fileDetails object encapsulates information about the video file that was uploaded to YouTube, including the file&#39;s resolution, duration, audio and video codecs, stream bitrates, and more. This data can only be retrieved by the video owner.
      */
     fileDetails?: Schema$VideoFileDetails;
     /**
@@ -4085,55 +3549,39 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#video&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#video&quot;.
      */
     kind?: string;
     /**
-     * The liveStreamingDetails object contains metadata about a live video
-     * broadcast. The object will only be present in a video resource if the
-     * video is an upcoming, live, or completed live broadcast.
+     * The liveStreamingDetails object contains metadata about a live video broadcast. The object will only be present in a video resource if the video is an upcoming, live, or completed live broadcast.
      */
     liveStreamingDetails?: Schema$VideoLiveStreamingDetails;
     /**
      * List with all localizations.
      */
-    localizations?: {[key: string]: Schema$VideoLocalization;};
+    localizations?: {[key: string]: Schema$VideoLocalization};
     /**
-     * The monetizationDetails object encapsulates information about the
-     * monetization status of the video.
+     * The monetizationDetails object encapsulates information about the monetization status of the video.
      */
     monetizationDetails?: Schema$VideoMonetizationDetails;
     /**
-     * The player object contains information that you would use to play the
-     * video in an embedded player.
+     * The player object contains information that you would use to play the video in an embedded player.
      */
     player?: Schema$VideoPlayer;
     /**
-     * The processingDetails object encapsulates information about YouTube&#39;s
-     * progress in processing the uploaded video file. The properties in the
-     * object identify the current processing status and an estimate of the time
-     * remaining until YouTube finishes processing the video. This part also
-     * indicates whether different types of data or content, such as file
-     * details or thumbnail images, are available for the video.  The
-     * processingProgress object is designed to be polled so that the video
-     * uploaded can track the progress that YouTube has made in processing the
-     * uploaded video file. This data can only be retrieved by the video owner.
+     * The processingDetails object encapsulates information about YouTube&#39;s progress in processing the uploaded video file. The properties in the object identify the current processing status and an estimate of the time remaining until YouTube finishes processing the video. This part also indicates whether different types of data or content, such as file details or thumbnail images, are available for the video.  The processingProgress object is designed to be polled so that the video uploaded can track the progress that YouTube has made in processing the uploaded video file. This data can only be retrieved by the video owner.
      */
     processingDetails?: Schema$VideoProcessingDetails;
     /**
-     * The projectDetails object contains information about the project specific
-     * video metadata.
+     * The projectDetails object contains information about the project specific video metadata.
      */
     projectDetails?: Schema$VideoProjectDetails;
     /**
-     * The recordingDetails object encapsulates information about the location,
-     * date and address where the video was recorded.
+     * The recordingDetails object encapsulates information about the location, date and address where the video was recorded.
      */
     recordingDetails?: Schema$VideoRecordingDetails;
     /**
-     * The snippet object contains basic details about the video, such as its
-     * title, description, and category.
+     * The snippet object contains basic details about the video, such as its title, description, and category.
      */
     snippet?: Schema$VideoSnippet;
     /**
@@ -4141,19 +3589,15 @@ export namespace youtube_v3 {
      */
     statistics?: Schema$VideoStatistics;
     /**
-     * The status object contains information about the video&#39;s uploading,
-     * processing, and privacy statuses.
+     * The status object contains information about the video&#39;s uploading, processing, and privacy statuses.
      */
     status?: Schema$VideoStatus;
     /**
-     * The suggestions object encapsulates suggestions that identify
-     * opportunities to improve the video quality or the metadata for the
-     * uploaded video. This data can only be retrieved by the video owner.
+     * The suggestions object encapsulates suggestions that identify opportunities to improve the video quality or the metadata for the uploaded video. This data can only be retrieved by the video owner.
      */
     suggestions?: Schema$VideoSuggestions;
     /**
-     * The topicDetails object encapsulates information about Freebase topics
-     * associated with the video.
+     * The topicDetails object encapsulates information about Freebase topics associated with the video.
      */
     topicDetails?: Schema$VideoTopicDetails;
   }
@@ -4167,14 +3611,11 @@ export namespace youtube_v3 {
      */
     language?: string;
     /**
-     * The high-level, or primary, reason that the content is abusive. The value
-     * is an abuse report reason ID.
+     * The high-level, or primary, reason that the content is abusive. The value is an abuse report reason ID.
      */
     reasonId?: string;
     /**
-     * The specific, or secondary, reason that this content is abusive (if
-     * available). The value is an abuse report reason ID that is a valid
-     * secondary reason for the primary reason.
+     * The specific, or secondary, reason that this content is abusive (if available). The value is an abuse report reason ID that is a valid secondary reason for the primary reason.
      */
     secondaryReasonId?: string;
     /**
@@ -4183,9 +3624,7 @@ export namespace youtube_v3 {
     videoId?: string;
   }
   /**
-   * A videoAbuseReportReason resource identifies a reason that a video could be
-   * reported as abusive. Video abuse report reasons are used with
-   * video.ReportAbuse.
+   * A videoAbuseReportReason resource identifies a reason that a video could be reported as abusive. Video abuse report reasons are used with video.ReportAbuse.
    */
   export interface Schema$VideoAbuseReportReason {
     /**
@@ -4197,8 +3636,7 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#videoAbuseReportReason&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoAbuseReportReason&quot;.
      */
     kind?: string;
     /**
@@ -4220,8 +3658,7 @@ export namespace youtube_v3 {
      */
     items?: Schema$VideoAbuseReportReason[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#videoAbuseReportReasonListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoAbuseReportReasonListResponse&quot;.
      */
     kind?: string;
     /**
@@ -4238,8 +3675,7 @@ export namespace youtube_v3 {
      */
     label?: string;
     /**
-     * The secondary reasons associated with this reason, if any are available.
-     * (There might be 0 or more.)
+     * The secondary reasons associated with this reason, if any are available. (There might be 0 or more.)
      */
     secondaryReasons?: Schema$VideoAbuseReportSecondaryReason[];
   }
@@ -4255,16 +3691,11 @@ export namespace youtube_v3 {
   }
   export interface Schema$VideoAgeGating {
     /**
-     * Indicates whether or not the video has alcoholic beverage content. Only
-     * users of legal purchasing age in a particular country, as identified by
-     * ICAP, can view the content.
+     * Indicates whether or not the video has alcoholic beverage content. Only users of legal purchasing age in a particular country, as identified by ICAP, can view the content.
      */
     alcoholContent?: boolean;
     /**
-     * Age-restricted trailers. For redband trailers and adult-rated
-     * video-games. Only users aged 18+ can view the content. The the field is
-     * true the content is restricted to viewers aged 18+. Otherwise The field
-     * won&#39;t be present.
+     * Age-restricted trailers. For redband trailers and adult-rated video-games. Only users aged 18+ can view the content. The the field is true the content is restricted to viewers aged 18+. Otherwise The field won&#39;t be present.
      */
     restricted?: boolean;
     /**
@@ -4273,8 +3704,7 @@ export namespace youtube_v3 {
     videoGameRating?: string;
   }
   /**
-   * A videoCategory resource identifies a category that has been or could be
-   * associated with uploaded videos.
+   * A videoCategory resource identifies a category that has been or could be associated with uploaded videos.
    */
   export interface Schema$VideoCategory {
     /**
@@ -4286,13 +3716,11 @@ export namespace youtube_v3 {
      */
     id?: string;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#videoCategory&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoCategory&quot;.
      */
     kind?: string;
     /**
-     * The snippet object contains basic details about the video category,
-     * including its title.
+     * The snippet object contains basic details about the video category, including its title.
      */
     snippet?: Schema$VideoCategorySnippet;
   }
@@ -4306,25 +3734,20 @@ export namespace youtube_v3 {
      */
     eventId?: string;
     /**
-     * A list of video categories that can be associated with YouTube videos. In
-     * this map, the video category ID is the map key, and its value is the
-     * corresponding videoCategory resource.
+     * A list of video categories that can be associated with YouTube videos. In this map, the video category ID is the map key, and its value is the corresponding videoCategory resource.
      */
     items?: Schema$VideoCategory[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#videoCategoryListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoCategoryListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string;
     tokenPagination?: Schema$TokenPagination;
@@ -4356,43 +3779,31 @@ export namespace youtube_v3 {
      */
     caption?: string;
     /**
-     * Specifies the ratings that the video received under various rating
-     * schemes.
+     * Specifies the ratings that the video received under various rating schemes.
      */
     contentRating?: Schema$ContentRating;
     /**
-     * The countryRestriction object contains information about the countries
-     * where a video is (or is not) viewable.
+     * The countryRestriction object contains information about the countries where a video is (or is not) viewable.
      */
     countryRestriction?: Schema$AccessPolicy;
     /**
-     * The value of definition indicates whether the video is available in high
-     * definition or only in standard definition.
+     * The value of definition indicates whether the video is available in high definition or only in standard definition.
      */
     definition?: string;
     /**
-     * The value of dimension indicates whether the video is available in 3D or
-     * in 2D.
+     * The value of dimension indicates whether the video is available in 3D or in 2D.
      */
     dimension?: string;
     /**
-     * The length of the video. The tag value is an ISO 8601 duration in the
-     * format PT#M#S, in which the letters PT indicate that the value specifies
-     * a period of time, and the letters M and S refer to length in minutes and
-     * seconds, respectively. The # characters preceding the M and S letters are
-     * both integers that specify the number of minutes (or seconds) of the
-     * video. For example, a value of PT15M51S indicates that the video is 15
-     * minutes and 51 seconds long.
+     * The length of the video. The tag value is an ISO 8601 duration in the format PT#M#S, in which the letters PT indicate that the value specifies a period of time, and the letters M and S refer to length in minutes and seconds, respectively. The # characters preceding the M and S letters are both integers that specify the number of minutes (or seconds) of the video. For example, a value of PT15M51S indicates that the video is 15 minutes and 51 seconds long.
      */
     duration?: string;
     /**
-     * Indicates whether the video uploader has provided a custom thumbnail
-     * image for the video. This property is only visible to the video uploader.
+     * Indicates whether the video uploader has provided a custom thumbnail image for the video. This property is only visible to the video uploader.
      */
     hasCustomThumbnail?: boolean;
     /**
-     * The value of is_license_content indicates whether the video is licensed
-     * content.
+     * The value of is_license_content indicates whether the video is licensed content.
      */
     licensedContent?: boolean;
     /**
@@ -4400,10 +3811,7 @@ export namespace youtube_v3 {
      */
     projection?: string;
     /**
-     * The regionRestriction object contains information about the countries
-     * where a video is (or is not) viewable. The object will contain either the
-     * contentDetails.regionRestriction.allowed property or the
-     * contentDetails.regionRestriction.blocked property.
+     * The regionRestriction object contains information about the countries where a video is (or is not) viewable. The object will contain either the contentDetails.regionRestriction.allowed property or the contentDetails.regionRestriction.blocked property.
      */
     regionRestriction?: Schema$VideoContentDetailsRegionRestriction;
   }
@@ -4412,36 +3820,24 @@ export namespace youtube_v3 {
    */
   export interface Schema$VideoContentDetailsRegionRestriction {
     /**
-     * A list of region codes that identify countries where the video is
-     * viewable. If this property is present and a country is not listed in its
-     * value, then the video is blocked from appearing in that country. If this
-     * property is present and contains an empty list, the video is blocked in
-     * all countries.
+     * A list of region codes that identify countries where the video is viewable. If this property is present and a country is not listed in its value, then the video is blocked from appearing in that country. If this property is present and contains an empty list, the video is blocked in all countries.
      */
     allowed?: string[];
     /**
-     * A list of region codes that identify countries where the video is
-     * blocked. If this property is present and a country is not listed in its
-     * value, then the video is viewable in that country. If this property is
-     * present and contains an empty list, the video is viewable in all
-     * countries.
+     * A list of region codes that identify countries where the video is blocked. If this property is present and a country is not listed in its value, then the video is viewable in that country. If this property is present and contains an empty list, the video is viewable in all countries.
      */
     blocked?: string[];
   }
   /**
-   * Describes original video file properties, including technical details about
-   * audio and video streams, but also metadata information like content length,
-   * digitization time, or geotagging information.
+   * Describes original video file properties, including technical details about audio and video streams, but also metadata information like content length, digitization time, or geotagging information.
    */
   export interface Schema$VideoFileDetails {
     /**
-     * A list of audio streams contained in the uploaded video file. Each item
-     * in the list contains detailed metadata about an audio stream.
+     * A list of audio streams contained in the uploaded video file. Each item in the list contains detailed metadata about an audio stream.
      */
     audioStreams?: Schema$VideoFileDetailsAudioStream[];
     /**
-     * The uploaded video file&#39;s combined (video and audio) bitrate in bits
-     * per second.
+     * The uploaded video file&#39;s combined (video and audio) bitrate in bits per second.
      */
     bitrateBps?: string;
     /**
@@ -4449,10 +3845,7 @@ export namespace youtube_v3 {
      */
     container?: string;
     /**
-     * The date and time when the uploaded video file was created. The value is
-     * specified in ISO 8601 format. Currently, the following ISO 8601 formats
-     * are supported:   - Date only: YYYY-MM-DD  - Naive time:
-     * YYYY-MM-DDTHH:MM:SS  - Time with timezone: YYYY-MM-DDTHH:MM:SS+HH:MM
+     * The date and time when the uploaded video file was created. The value is specified in ISO 8601 format. Currently, the following ISO 8601 formats are supported:   - Date only: YYYY-MM-DD  - Naive time: YYYY-MM-DDTHH:MM:SS  - Time with timezone: YYYY-MM-DDTHH:MM:SS+HH:MM
      */
     creationTime?: string;
     /**
@@ -4460,25 +3853,19 @@ export namespace youtube_v3 {
      */
     durationMs?: string;
     /**
-     * The uploaded file&#39;s name. This field is present whether a video file
-     * or another type of file was uploaded.
+     * The uploaded file&#39;s name. This field is present whether a video file or another type of file was uploaded.
      */
     fileName?: string;
     /**
-     * The uploaded file&#39;s size in bytes. This field is present whether a
-     * video file or another type of file was uploaded.
+     * The uploaded file&#39;s size in bytes. This field is present whether a video file or another type of file was uploaded.
      */
     fileSize?: string;
     /**
-     * The uploaded file&#39;s type as detected by YouTube&#39;s video
-     * processing engine. Currently, YouTube only processes video files, but
-     * this field is present whether a video file or another type of file was
-     * uploaded.
+     * The uploaded file&#39;s type as detected by YouTube&#39;s video processing engine. Currently, YouTube only processes video files, but this field is present whether a video file or another type of file was uploaded.
      */
     fileType?: string;
     /**
-     * A list of video streams contained in the uploaded video file. Each item
-     * in the list contains detailed metadata about a video stream.
+     * A list of video streams contained in the uploaded video file. Each item in the list contains detailed metadata about a video stream.
      */
     videoStreams?: Schema$VideoFileDetailsVideoStream[];
   }
@@ -4499,8 +3886,7 @@ export namespace youtube_v3 {
      */
     codec?: string;
     /**
-     * A value that uniquely identifies a video vendor. Typically, the value is
-     * a four-letter vendor code.
+     * A value that uniquely identifies a video vendor. Typically, the value is a four-letter vendor code.
      */
     vendor?: string;
   }
@@ -4509,8 +3895,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$VideoFileDetailsVideoStream {
     /**
-     * The video content&#39;s display aspect ratio, which specifies the aspect
-     * ratio in which the video should be displayed.
+     * The video content&#39;s display aspect ratio, which specifies the aspect ratio in which the video should be displayed.
      */
     aspectRatio?: number;
     /**
@@ -4530,18 +3915,15 @@ export namespace youtube_v3 {
      */
     heightPixels?: number;
     /**
-     * The amount that YouTube needs to rotate the original source content to
-     * properly display the video.
+     * The amount that YouTube needs to rotate the original source content to properly display the video.
      */
     rotation?: string;
     /**
-     * A value that uniquely identifies a video vendor. Typically, the value is
-     * a four-letter vendor code.
+     * A value that uniquely identifies a video vendor. Typically, the value is a four-letter vendor code.
      */
     vendor?: string;
     /**
-     * The encoded video content&#39;s width in pixels. You can calculate the
-     * video&#39;s encoding aspect ratio as width_pixels / height_pixels.
+     * The encoded video content&#39;s width in pixels. You can calculate the video&#39;s encoding aspect ratio as width_pixels / height_pixels.
      */
     widthPixels?: number;
   }
@@ -4559,8 +3941,7 @@ export namespace youtube_v3 {
      */
     items?: Schema$VideoRating[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#videoGetRatingResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoGetRatingResponse&quot;.
      */
     kind?: string;
     /**
@@ -4582,19 +3963,16 @@ export namespace youtube_v3 {
      */
     items?: Schema$Video[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#videoListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoListResponse&quot;.
      */
     kind?: string;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
      */
     nextPageToken?: string;
     pageInfo?: Schema$PageInfo;
     /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the previous page in the result set.
+     * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
      */
     prevPageToken?: string;
     tokenPagination?: Schema$TokenPagination;
@@ -4608,46 +3986,27 @@ export namespace youtube_v3 {
    */
   export interface Schema$VideoLiveStreamingDetails {
     /**
-     * The ID of the currently active live chat attached to this video. This
-     * field is filled only if the video is a currently live broadcast that has
-     * live chat. Once the broadcast transitions to complete this field will be
-     * removed and the live chat closed down. For persistent broadcasts that
-     * live chat id will no longer be tied to this video but rather to the new
-     * video being displayed at the persistent page.
+     * The ID of the currently active live chat attached to this video. This field is filled only if the video is a currently live broadcast that has live chat. Once the broadcast transitions to complete this field will be removed and the live chat closed down. For persistent broadcasts that live chat id will no longer be tied to this video but rather to the new video being displayed at the persistent page.
      */
     activeLiveChatId?: string;
     /**
-     * The time that the broadcast actually ended. The value is specified in ISO
-     * 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. This value will not be available
-     * until the broadcast is over.
+     * The time that the broadcast actually ended. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. This value will not be available until the broadcast is over.
      */
     actualEndTime?: string;
     /**
-     * The time that the broadcast actually started. The value is specified in
-     * ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. This value will not be
-     * available until the broadcast begins.
+     * The time that the broadcast actually started. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. This value will not be available until the broadcast begins.
      */
     actualStartTime?: string;
     /**
-     * The number of viewers currently watching the broadcast. The property and
-     * its value will be present if the broadcast has current viewers and the
-     * broadcast owner has not hidden the viewcount for the video. Note that
-     * YouTube stops tracking the number of concurrent viewers for a broadcast
-     * when the broadcast ends. So, this property would not identify the number
-     * of viewers watching an archived video of a live broadcast that already
-     * ended.
+     * The number of viewers currently watching the broadcast. The property and its value will be present if the broadcast has current viewers and the broadcast owner has not hidden the viewcount for the video. Note that YouTube stops tracking the number of concurrent viewers for a broadcast when the broadcast ends. So, this property would not identify the number of viewers watching an archived video of a live broadcast that already ended.
      */
     concurrentViewers?: string;
     /**
-     * The time that the broadcast is scheduled to end. The value is specified
-     * in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. If the value is empty or the
-     * property is not present, then the broadcast is scheduled to continue
-     * indefinitely.
+     * The time that the broadcast is scheduled to end. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. If the value is empty or the property is not present, then the broadcast is scheduled to continue indefinitely.
      */
     scheduledEndTime?: string;
     /**
-     * The time that the broadcast is scheduled to begin. The value is specified
-     * in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The time that the broadcast is scheduled to begin. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     scheduledStartTime?: string;
   }
@@ -4688,57 +4047,39 @@ export namespace youtube_v3 {
     embedWidth?: string;
   }
   /**
-   * Describes processing status and progress and availability of some other
-   * Video resource parts.
+   * Describes processing status and progress and availability of some other Video resource parts.
    */
   export interface Schema$VideoProcessingDetails {
     /**
-     * This value indicates whether video editing suggestions, which might
-     * improve video quality or the playback experience, are available for the
-     * video. You can retrieve these suggestions by requesting the suggestions
-     * part in your videos.list() request.
+     * This value indicates whether video editing suggestions, which might improve video quality or the playback experience, are available for the video. You can retrieve these suggestions by requesting the suggestions part in your videos.list() request.
      */
     editorSuggestionsAvailability?: string;
     /**
-     * This value indicates whether file details are available for the uploaded
-     * video. You can retrieve a video&#39;s file details by requesting the
-     * fileDetails part in your videos.list() request.
+     * This value indicates whether file details are available for the uploaded video. You can retrieve a video&#39;s file details by requesting the fileDetails part in your videos.list() request.
      */
     fileDetailsAvailability?: string;
     /**
-     * The reason that YouTube failed to process the video. This property will
-     * only have a value if the processingStatus property&#39;s value is failed.
+     * The reason that YouTube failed to process the video. This property will only have a value if the processingStatus property&#39;s value is failed.
      */
     processingFailureReason?: string;
     /**
-     * This value indicates whether the video processing engine has generated
-     * suggestions that might improve YouTube&#39;s ability to process the the
-     * video, warnings that explain video processing problems, or errors that
-     * cause video processing problems. You can retrieve these suggestions by
-     * requesting the suggestions part in your videos.list() request.
+     * This value indicates whether the video processing engine has generated suggestions that might improve YouTube&#39;s ability to process the the video, warnings that explain video processing problems, or errors that cause video processing problems. You can retrieve these suggestions by requesting the suggestions part in your videos.list() request.
      */
     processingIssuesAvailability?: string;
     /**
-     * The processingProgress object contains information about the progress
-     * YouTube has made in processing the video. The values are really only
-     * relevant if the video&#39;s processing status is processing.
+     * The processingProgress object contains information about the progress YouTube has made in processing the video. The values are really only relevant if the video&#39;s processing status is processing.
      */
     processingProgress?: Schema$VideoProcessingDetailsProcessingProgress;
     /**
-     * The video&#39;s processing status. This value indicates whether YouTube
-     * was able to process the video or if the video is still being processed.
+     * The video&#39;s processing status. This value indicates whether YouTube was able to process the video or if the video is still being processed.
      */
     processingStatus?: string;
     /**
-     * This value indicates whether keyword (tag) suggestions are available for
-     * the video. Tags can be added to a video&#39;s metadata to make it easier
-     * for other users to find the video. You can retrieve these suggestions by
-     * requesting the suggestions part in your videos.list() request.
+     * This value indicates whether keyword (tag) suggestions are available for the video. Tags can be added to a video&#39;s metadata to make it easier for other users to find the video. You can retrieve these suggestions by requesting the suggestions part in your videos.list() request.
      */
     tagSuggestionsAvailability?: string;
     /**
-     * This value indicates whether thumbnail images have been generated for the
-     * video.
+     * This value indicates whether thumbnail images have been generated for the video.
      */
     thumbnailsAvailability?: string;
   }
@@ -4747,24 +4088,15 @@ export namespace youtube_v3 {
    */
   export interface Schema$VideoProcessingDetailsProcessingProgress {
     /**
-     * The number of parts of the video that YouTube has already processed. You
-     * can estimate the percentage of the video that YouTube has already
-     * processed by calculating: 100 * parts_processed / parts_total  Note that
-     * since the estimated number of parts could increase without a
-     * corresponding increase in the number of parts that have already been
-     * processed, it is possible that the calculated progress could periodically
-     * decrease while YouTube processes a video.
+     * The number of parts of the video that YouTube has already processed. You can estimate the percentage of the video that YouTube has already processed by calculating: 100 * parts_processed / parts_total  Note that since the estimated number of parts could increase without a corresponding increase in the number of parts that have already been processed, it is possible that the calculated progress could periodically decrease while YouTube processes a video.
      */
     partsProcessed?: string;
     /**
-     * An estimate of the total number of parts that need to be processed for
-     * the video. The number may be updated with more precise estimates while
-     * YouTube processes the video.
+     * An estimate of the total number of parts that need to be processed for the video. The number may be updated with more precise estimates while YouTube processes the video.
      */
     partsTotal?: string;
     /**
-     * An estimate of the amount of time, in millseconds, that YouTube needs to
-     * finish processing the video.
+     * An estimate of the amount of time, in millseconds, that YouTube needs to finish processing the video.
      */
     timeLeftMs?: string;
   }
@@ -4794,14 +4126,12 @@ export namespace youtube_v3 {
      */
     locationDescription?: string;
     /**
-     * The date and time when the video was recorded. The value is specified in
-     * ISO 8601 (YYYY-MM-DDThh:mm:ss.sssZ) format.
+     * The date and time when the video was recorded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sssZ) format.
      */
     recordingDate?: string;
   }
   /**
-   * Basic details about a video, including title, description, uploader,
-   * thumbnails and category.
+   * Basic details about a video, including title, description, uploader, thumbnails and category.
    */
   export interface Schema$VideoSnippet {
     /**
@@ -4809,8 +4139,7 @@ export namespace youtube_v3 {
      */
     categoryId?: string;
     /**
-     * The ID that YouTube uses to uniquely identify the channel that the video
-     * was uploaded to.
+     * The ID that YouTube uses to uniquely identify the channel that the video was uploaded to.
      */
     channelId?: string;
     /**
@@ -4818,8 +4147,7 @@ export namespace youtube_v3 {
      */
     channelTitle?: string;
     /**
-     * The default_audio_language property specifies the language spoken in the
-     * video&#39;s default audio track.
+     * The default_audio_language property specifies the language spoken in the video&#39;s default audio track.
      */
     defaultAudioLanguage?: string;
     /**
@@ -4831,29 +4159,23 @@ export namespace youtube_v3 {
      */
     description?: string;
     /**
-     * Indicates if the video is an upcoming/active live broadcast. Or it&#39;s
-     * &quot;none&quot; if the video is not an upcoming/active live broadcast.
+     * Indicates if the video is an upcoming/active live broadcast. Or it&#39;s &quot;none&quot; if the video is not an upcoming/active live broadcast.
      */
     liveBroadcastContent?: string;
     /**
-     * Localized snippet selected with the hl parameter. If no such localization
-     * exists, this field is populated with the default snippet. (Read-only)
+     * Localized snippet selected with the hl parameter. If no such localization exists, this field is populated with the default snippet. (Read-only)
      */
     localized?: Schema$VideoLocalization;
     /**
-     * The date and time that the video was uploaded. The value is specified in
-     * ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the video was uploaded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAt?: string;
     /**
-     * A list of keyword tags associated with the video. Tags may contain
-     * spaces.
+     * A list of keyword tags associated with the video. Tags may contain spaces.
      */
     tags?: string[];
     /**
-     * A map of thumbnail images associated with the video. For each object in
-     * the map, the key is the name of the thumbnail image, and the value is an
-     * object that contains other information about the thumbnail.
+     * A map of thumbnail images associated with the video. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
      */
     thumbnails?: Schema$ThumbnailDetails;
     /**
@@ -4862,8 +4184,7 @@ export namespace youtube_v3 {
     title?: string;
   }
   /**
-   * Statistics about the video, such as the number of times the video was
-   * viewed or liked.
+   * Statistics about the video, such as the number of times the video was viewed or liked.
    */
   export interface Schema$VideoStatistics {
     /**
@@ -4871,18 +4192,15 @@ export namespace youtube_v3 {
      */
     commentCount?: string;
     /**
-     * The number of users who have indicated that they disliked the video by
-     * giving it a negative rating.
+     * The number of users who have indicated that they disliked the video by giving it a negative rating.
      */
     dislikeCount?: string;
     /**
-     * The number of users who currently have the video marked as a favorite
-     * video.
+     * The number of users who currently have the video marked as a favorite video.
      */
     favoriteCount?: string;
     /**
-     * The number of users who have indicated that they liked the video by
-     * giving it a positive rating.
+     * The number of users who have indicated that they liked the video by giving it a positive rating.
      */
     likeCount?: string;
     /**
@@ -4899,8 +4217,7 @@ export namespace youtube_v3 {
      */
     embeddable?: boolean;
     /**
-     * This value explains why a video failed to upload. This property is only
-     * present if the uploadStatus property indicates that the upload failed.
+     * This value explains why a video failed to upload. This property is only present if the uploadStatus property indicates that the upload failed.
      */
     failureReason?: string;
     /**
@@ -4912,21 +4229,15 @@ export namespace youtube_v3 {
      */
     privacyStatus?: string;
     /**
-     * This value indicates if the extended video statistics on the watch page
-     * can be viewed by everyone. Note that the view count, likes, etc will
-     * still be visible if this is disabled.
+     * This value indicates if the extended video statistics on the watch page can be viewed by everyone. Note that the view count, likes, etc will still be visible if this is disabled.
      */
     publicStatsViewable?: boolean;
     /**
-     * The date and time when the video is scheduled to publish. It can be set
-     * only if the privacy status of the video is private. The value is
-     * specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when the video is scheduled to publish. It can be set only if the privacy status of the video is private. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishAt?: string;
     /**
-     * This value explains why YouTube rejected an uploaded video. This property
-     * is only present if the uploadStatus property indicates that the upload
-     * was rejected.
+     * This value explains why YouTube rejected an uploaded video. This property is only present if the uploadStatus property indicates that the upload was rejected.
      */
     rejectionReason?: string;
     /**
@@ -4935,40 +4246,27 @@ export namespace youtube_v3 {
     uploadStatus?: string;
   }
   /**
-   * Specifies suggestions on how to improve video content, including encoding
-   * hints, tag suggestions, and editor suggestions.
+   * Specifies suggestions on how to improve video content, including encoding hints, tag suggestions, and editor suggestions.
    */
   export interface Schema$VideoSuggestions {
     /**
-     * A list of video editing operations that might improve the video quality
-     * or playback experience of the uploaded video.
+     * A list of video editing operations that might improve the video quality or playback experience of the uploaded video.
      */
     editorSuggestions?: string[];
     /**
-     * A list of errors that will prevent YouTube from successfully processing
-     * the uploaded video video. These errors indicate that, regardless of the
-     * video&#39;s current processing status, eventually, that status will
-     * almost certainly be failed.
+     * A list of errors that will prevent YouTube from successfully processing the uploaded video video. These errors indicate that, regardless of the video&#39;s current processing status, eventually, that status will almost certainly be failed.
      */
     processingErrors?: string[];
     /**
-     * A list of suggestions that may improve YouTube&#39;s ability to process
-     * the video.
+     * A list of suggestions that may improve YouTube&#39;s ability to process the video.
      */
     processingHints?: string[];
     /**
-     * A list of reasons why YouTube may have difficulty transcoding the
-     * uploaded video or that might result in an erroneous transcoding. These
-     * warnings are generated before YouTube actually processes the uploaded
-     * video file. In addition, they identify issues that are unlikely to cause
-     * the video processing to fail but that might cause problems such as sync
-     * issues, video artifacts, or a missing audio track.
+     * A list of reasons why YouTube may have difficulty transcoding the uploaded video or that might result in an erroneous transcoding. These warnings are generated before YouTube actually processes the uploaded video file. In addition, they identify issues that are unlikely to cause the video processing to fail but that might cause problems such as sync issues, video artifacts, or a missing audio track.
      */
     processingWarnings?: string[];
     /**
-     * A list of keyword tags that could be added to the video&#39;s metadata to
-     * increase the likelihood that users will locate your video when searching
-     * or browsing on YouTube.
+     * A list of keyword tags that could be added to the video&#39;s metadata to increase the likelihood that users will locate your video when searching or browsing on YouTube.
      */
     tagSuggestions?: Schema$VideoSuggestionsTagSuggestion[];
   }
@@ -4977,11 +4275,7 @@ export namespace youtube_v3 {
    */
   export interface Schema$VideoSuggestionsTagSuggestion {
     /**
-     * A set of video categories for which the tag is relevant. You can use this
-     * information to display appropriate tag suggestions based on the video
-     * category that the video uploader associates with the video. By default,
-     * tag suggestions are relevant for all categories if there are no restricts
-     * defined for the keyword.
+     * A set of video categories for which the tag is relevant. You can use this information to display appropriate tag suggestions based on the video category that the video uploader associates with the video. By default, tag suggestions are relevant for all categories if there are no restricts defined for the keyword.
      */
     categoryRestricts?: string[];
     /**
@@ -4994,21 +4288,15 @@ export namespace youtube_v3 {
    */
   export interface Schema$VideoTopicDetails {
     /**
-     * Similar to topic_id, except that these topics are merely relevant to the
-     * video. These are topics that may be mentioned in, or appear in the video.
-     * You can retrieve information about each topic using Freebase Topic API.
+     * Similar to topic_id, except that these topics are merely relevant to the video. These are topics that may be mentioned in, or appear in the video. You can retrieve information about each topic using Freebase Topic API.
      */
     relevantTopicIds?: string[];
     /**
-     * A list of Wikipedia URLs that provide a high-level description of the
-     * video&#39;s content.
+     * A list of Wikipedia URLs that provide a high-level description of the video&#39;s content.
      */
     topicCategories?: string[];
     /**
-     * A list of Freebase topic IDs that are centrally associated with the
-     * video. These are topics that are centrally featured in the video, and it
-     * can be said that the video is mainly about each of these. You can
-     * retrieve information about each topic using the Freebase Topic API.
+     * A list of Freebase topic IDs that are centrally associated with the video. These are topics that are centrally featured in the video, and it can be said that the video is mainly about each of these. You can retrieve information about each topic using the Freebase Topic API.
      */
     topicIds?: string[];
   }
@@ -5021,8 +4309,7 @@ export namespace youtube_v3 {
      */
     backgroundColor?: string;
     /**
-     * An ID that uniquely identifies a playlist that displays next to the video
-     * player.
+     * An ID that uniquely identifies a playlist that displays next to the video player.
      */
     featuredPlaylistId?: string;
     /**
@@ -5031,23 +4318,15 @@ export namespace youtube_v3 {
     textColor?: string;
   }
 
-
   export class Resource$Activities {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * youtube.activities.insert
-     * @desc Posts a bulletin for a specific channel. (The user submitting the
-     * request must be authorized to act on the channel's behalf.)  Note: Even
-     * though an activity resource can contain information about actions like a
-     * user rating a video or marking a video as a favorite, you need to use
-     * other API methods to generate those activity resources. For example, you
-     * would use the API's videos.rate() method to rate a video and the
-     * playlistItems.insert() method to mark a video as a favorite.
+     * @desc Posts a bulletin for a specific channel. (The user submitting the request must be authorized to act on the channel's behalf.)  Note: Even though an activity resource can contain information about actions like a user rating a video or marking a video as a favorite, you need to use other API methods to generate those activity resources. For example, you would use the API's videos.rate() method to rate a video and the playlistItems.insert() method to mark a video as a favorite.
      * @alias youtube.activities.insert
      * @memberOf! ()
      *
@@ -5058,24 +4337,29 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Activities$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Activity>;
     insert(
-        params: Params$Resource$Activities$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Activity>,
-        callback: BodyResponseCallback<Schema$Activity>): void;
+      params?: Params$Resource$Activities$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Activity>;
     insert(
-        params: Params$Resource$Activities$Insert,
-        callback: BodyResponseCallback<Schema$Activity>): void;
+      params: Params$Resource$Activities$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Activity>,
+      callback: BodyResponseCallback<Schema$Activity>
+    ): void;
+    insert(
+      params: Params$Resource$Activities$Insert,
+      callback: BodyResponseCallback<Schema$Activity>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Activity>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Activities$Insert|
-        BodyResponseCallback<Schema$Activity>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Activity>,
-        callback?: BodyResponseCallback<Schema$Activity>):
-        void|GaxiosPromise<Schema$Activity> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Activities$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Activities$Insert
+        | BodyResponseCallback<Schema$Activity>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Activity>,
+      callback?: BodyResponseCallback<Schema$Activity>
+    ): void | GaxiosPromise<Schema$Activity> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Activities$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5092,16 +4376,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/activities')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/activities').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Activity>(parameters, callback);
@@ -5110,14 +4397,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.activities.list
-     * @desc Returns a list of channel activity events that match the request
-     * criteria. For example, you can retrieve events associated with a
-     * particular channel, events associated with the user's subscriptions and
-     * Google+ friends, or the YouTube home page feed, which is customized for
-     * each user.
+     * @desc Returns a list of channel activity events that match the request criteria. For example, you can retrieve events associated with a particular channel, events associated with the user's subscriptions and Google+ friends, or the YouTube home page feed, which is customized for each user.
      * @alias youtube.activities.list
      * @memberOf! ()
      *
@@ -5135,24 +4417,31 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Activities$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ActivityListResponse>;
     list(
-        params: Params$Resource$Activities$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ActivityListResponse>,
-        callback: BodyResponseCallback<Schema$ActivityListResponse>): void;
+      params?: Params$Resource$Activities$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ActivityListResponse>;
     list(
-        params: Params$Resource$Activities$List,
-        callback: BodyResponseCallback<Schema$ActivityListResponse>): void;
+      params: Params$Resource$Activities$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ActivityListResponse>,
+      callback: BodyResponseCallback<Schema$ActivityListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Activities$List,
+      callback: BodyResponseCallback<Schema$ActivityListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ActivityListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Activities$List|
-        BodyResponseCallback<Schema$ActivityListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ActivityListResponse>,
-        callback?: BodyResponseCallback<Schema$ActivityListResponse>):
-        void|GaxiosPromise<Schema$ActivityListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Activities$List
+        | BodyResponseCallback<Schema$ActivityListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ActivityListResponse>,
+      callback?: BodyResponseCallback<Schema$ActivityListResponse>
+    ): void | GaxiosPromise<Schema$ActivityListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5170,16 +4459,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/activities')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/activities').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ActivityListResponse>(parameters, callback);
@@ -5189,17 +4481,15 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Activities$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Activities$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      */
     part?: string;
 
@@ -5212,78 +4502,51 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The channelId parameter specifies a unique YouTube channel ID. The API
-     * will then return a list of that channel's activities.
+     * The channelId parameter specifies a unique YouTube channel ID. The API will then return a list of that channel's activities.
      */
     channelId?: string;
     /**
-     * Set this parameter's value to true to retrieve the activity feed that
-     * displays on the YouTube home page for the currently authenticated user.
+     * Set this parameter's value to true to retrieve the activity feed that displays on the YouTube home page for the currently authenticated user.
      */
     home?: boolean;
     /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * Set this parameter's value to true to retrieve a feed of the
-     * authenticated user's activities.
+     * Set this parameter's value to true to retrieve a feed of the authenticated user's activities.
      */
     mine?: boolean;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken and
-     * prevPageToken properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more
-     * activity resource properties that the API response will include.  If the
-     * parameter identifies a property that contains child properties, the child
-     * properties will be included in the response. For example, in an activity
-     * resource, the snippet property contains other properties that identify
-     * the type of activity, a display title for the activity, and so forth. If
-     * you set part=snippet, the API response will also contain all of those
-     * nested properties.
+     * The part parameter specifies a comma-separated list of one or more activity resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in an activity resource, the snippet property contains other properties that identify the type of activity, a display title for the activity, and so forth. If you set part=snippet, the API response will also contain all of those nested properties.
      */
     part?: string;
     /**
-     * The publishedAfter parameter specifies the earliest date and time that an
-     * activity could have occurred for that activity to be included in the API
-     * response. If the parameter value specifies a day, but not a time, then
-     * any activities that occurred that day will be included in the result set.
-     * The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The publishedAfter parameter specifies the earliest date and time that an activity could have occurred for that activity to be included in the API response. If the parameter value specifies a day, but not a time, then any activities that occurred that day will be included in the result set. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedAfter?: string;
     /**
-     * The publishedBefore parameter specifies the date and time before which an
-     * activity must have occurred for that activity to be included in the API
-     * response. If the parameter value specifies a day, but not a time, then
-     * any activities that occurred that day will be excluded from the result
-     * set. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The publishedBefore parameter specifies the date and time before which an activity must have occurred for that activity to be included in the API response. If the parameter value specifies a day, but not a time, then any activities that occurred that day will be excluded from the result set. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     publishedBefore?: string;
     /**
-     * The regionCode parameter instructs the API to return results for the
-     * specified country. The parameter value is an ISO 3166-1 alpha-2 country
-     * code. YouTube uses this value when the authorized user's previous
-     * activity on YouTube does not provide enough information to generate the
-     * activity feed.
+     * The regionCode parameter instructs the API to return results for the specified country. The parameter value is an ISO 3166-1 alpha-2 country code. YouTube uses this value when the authorized user's previous activity on YouTube does not provide enough information to generate the activity feed.
      */
     regionCode?: string;
   }
-
 
   export class Resource$Captions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.captions.delete
@@ -5299,21 +4562,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Captions$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Captions$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Captions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Captions$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Captions$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Captions$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Captions$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Captions$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5331,16 +4600,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/captions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/captions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5349,13 +4621,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.captions.download
-     * @desc Downloads a caption track. The caption track is returned in its
-     * original format unless the request specifies a value for the tfmt
-     * parameter and in its original language unless the request specifies a
-     * value for the tlang parameter.
+     * @desc Downloads a caption track. The caption track is returned in its original format unless the request specifies a value for the tfmt parameter and in its original language unless the request specifies a value for the tlang parameter.
      * @alias youtube.captions.download
      * @memberOf! ()
      *
@@ -5370,23 +4638,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     download(
-        params?: Params$Resource$Captions$Download,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Captions$Download,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     download(
-        params: Params$Resource$Captions$Download,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Captions$Download,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     download(
-        params: Params$Resource$Captions$Download,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Captions$Download,
+      callback: BodyResponseCallback<void>
+    ): void;
     download(callback: BodyResponseCallback<void>): void;
     download(
-        paramsOrCallback?: Params$Resource$Captions$Download|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Captions$Download;
+      paramsOrCallback?:
+        | Params$Resource$Captions$Download
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Captions$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5403,16 +4676,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/captions/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/captions/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5420,7 +4696,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.captions.insert
@@ -5441,22 +4716,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Captions$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Caption>;
     insert(
-        params: Params$Resource$Captions$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Caption>,
-        callback: BodyResponseCallback<Schema$Caption>): void;
+      params?: Params$Resource$Captions$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Caption>;
     insert(
-        params: Params$Resource$Captions$Insert,
-        callback: BodyResponseCallback<Schema$Caption>): void;
+      params: Params$Resource$Captions$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Caption>,
+      callback: BodyResponseCallback<Schema$Caption>
+    ): void;
+    insert(
+      params: Params$Resource$Captions$Insert,
+      callback: BodyResponseCallback<Schema$Caption>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Caption>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Captions$Insert|
-        BodyResponseCallback<Schema$Caption>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Caption>,
-        callback?: BodyResponseCallback<Schema$Caption>):
-        void|GaxiosPromise<Schema$Caption> {
+      paramsOrCallback?:
+        | Params$Resource$Captions$Insert
+        | BodyResponseCallback<Schema$Caption>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Caption>,
+      callback?: BodyResponseCallback<Schema$Caption>
+    ): void | GaxiosPromise<Schema$Caption> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5474,18 +4754,23 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/captions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/captions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/youtube/v3/captions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/youtube/v3/captions').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Caption>(parameters, callback);
@@ -5494,13 +4779,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.captions.list
-     * @desc Returns a list of caption tracks that are associated with a
-     * specified video. Note that the API response does not contain the actual
-     * captions and that the captions.download method provides the ability to
-     * retrieve a caption track.
+     * @desc Returns a list of caption tracks that are associated with a specified video. Note that the API response does not contain the actual captions and that the captions.download method provides the ability to retrieve a caption track.
      * @alias youtube.captions.list
      * @memberOf! ()
      *
@@ -5514,23 +4795,29 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Captions$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CaptionListResponse>;
     list(
-        params: Params$Resource$Captions$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CaptionListResponse>,
-        callback: BodyResponseCallback<Schema$CaptionListResponse>): void;
+      params?: Params$Resource$Captions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CaptionListResponse>;
     list(
-        params: Params$Resource$Captions$List,
-        callback: BodyResponseCallback<Schema$CaptionListResponse>): void;
+      params: Params$Resource$Captions$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CaptionListResponse>,
+      callback: BodyResponseCallback<Schema$CaptionListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Captions$List,
+      callback: BodyResponseCallback<Schema$CaptionListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CaptionListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Captions$List|
-        BodyResponseCallback<Schema$CaptionListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CaptionListResponse>,
-        callback?: BodyResponseCallback<Schema$CaptionListResponse>):
-        void|GaxiosPromise<Schema$CaptionListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Captions$List
+        | BodyResponseCallback<Schema$CaptionListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CaptionListResponse>,
+      callback?: BodyResponseCallback<Schema$CaptionListResponse>
+    ): void | GaxiosPromise<Schema$CaptionListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5548,16 +4835,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/captions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/captions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part', 'videoId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CaptionListResponse>(parameters, callback);
@@ -5566,12 +4856,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.captions.update
-     * @desc Updates a caption track. When updating a caption track, you can
-     * change the track's draft status, upload a new caption file for the track,
-     * or both.
+     * @desc Updates a caption track. When updating a caption track, you can change the track's draft status, upload a new caption file for the track, or both.
      * @alias youtube.captions.update
      * @memberOf! ()
      *
@@ -5588,22 +4875,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Captions$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Caption>;
     update(
-        params: Params$Resource$Captions$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Caption>,
-        callback: BodyResponseCallback<Schema$Caption>): void;
+      params?: Params$Resource$Captions$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Caption>;
     update(
-        params: Params$Resource$Captions$Update,
-        callback: BodyResponseCallback<Schema$Caption>): void;
+      params: Params$Resource$Captions$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Caption>,
+      callback: BodyResponseCallback<Schema$Caption>
+    ): void;
+    update(
+      params: Params$Resource$Captions$Update,
+      callback: BodyResponseCallback<Schema$Caption>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Caption>): void;
     update(
-        paramsOrCallback?: Params$Resource$Captions$Update|
-        BodyResponseCallback<Schema$Caption>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Caption>,
-        callback?: BodyResponseCallback<Schema$Caption>):
-        void|GaxiosPromise<Schema$Caption> {
+      paramsOrCallback?:
+        | Params$Resource$Captions$Update
+        | BodyResponseCallback<Schema$Caption>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Caption>,
+      callback?: BodyResponseCallback<Schema$Caption>
+    ): void | GaxiosPromise<Schema$Caption> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5621,18 +4913,23 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/captions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/captions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/youtube/v3/captions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/youtube/v3/captions').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Caption>(parameters, callback);
@@ -5646,76 +4943,46 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter identifies the caption track that is being deleted. The
-     * value is a caption track ID as identified by the id property in a caption
-     * resource.
+     * The id parameter identifies the caption track that is being deleted. The value is a caption track ID as identified by the id property in a caption resource.
      */
     id?: string;
     /**
-     * ID of the Google+ Page for the channel that the request is be on behalf
-     * of
+     * ID of the Google+ Page for the channel that the request is be on behalf of
      */
     onBehalfOf?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The actual CMS account that the user authenticates with must be
-     * linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Captions$Download extends
-      StandardParameters {
+  export interface Params$Resource$Captions$Download
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter identifies the caption track that is being retrieved.
-     * The value is a caption track ID as identified by the id property in a
-     * caption resource.
+     * The id parameter identifies the caption track that is being retrieved. The value is a caption track ID as identified by the id property in a caption resource.
      */
     id?: string;
     /**
-     * ID of the Google+ Page for the channel that the request is be on behalf
-     * of
+     * ID of the Google+ Page for the channel that the request is be on behalf of
      */
     onBehalfOf?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The actual CMS account that the user authenticates with must be
-     * linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The tfmt parameter specifies that the caption track should be returned in
-     * a specific format. If the parameter is not included in the request, the
-     * track is returned in its original format.
+     * The tfmt parameter specifies that the caption track should be returned in a specific format. If the parameter is not included in the request, the track is returned in its original format.
      */
     tfmt?: string;
     /**
-     * The tlang parameter specifies that the API response should return a
-     * translation of the specified caption track. The parameter value is an ISO
-     * 639-1 two-letter language code that identifies the desired caption
-     * language. The translation is generated by using machine translation, such
-     * as Google Translate.
+     * The tlang parameter specifies that the API response should return a translation of the specified caption track. The parameter value is an ISO 639-1 two-letter language code that identifies the desired caption language. The translation is generated by using machine translation, such as Google Translate.
      */
     tlang?: string;
   }
@@ -5723,39 +4990,22 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the Google+ Page for the channel that the request is be on behalf
-     * of
+     * ID of the Google+ Page for the channel that the request is be on behalf of
      */
     onBehalfOf?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The actual CMS account that the user authenticates with must be
-     * linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The part parameter specifies the caption resource parts that the API
-     * response will include. Set the parameter value to snippet.
+     * The part parameter specifies the caption resource parts that the API response will include. Set the parameter value to snippet.
      */
     part?: string;
     /**
-     * The sync parameter indicates whether YouTube should automatically
-     * synchronize the caption file with the audio track of the video. If you
-     * set the value to true, YouTube will disregard any time codes that are in
-     * the uploaded caption file and generate new time codes for the captions.
-     * You should set the sync parameter to true if you are uploading a
-     * transcript, which has no time codes, or if you suspect the time codes in
-     * your file are incorrect and want YouTube to try to fix them.
+     * The sync parameter indicates whether YouTube should automatically synchronize the caption file with the audio track of the video. If you set the value to true, YouTube will disregard any time codes that are in the uploaded caption file and generate new time codes for the captions.  You should set the sync parameter to true if you are uploading a transcript, which has no time codes, or if you suspect the time codes in your file are incorrect and want YouTube to try to fix them.
      */
     sync?: boolean;
 
@@ -5783,12 +5033,10 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies a comma-separated list of IDs that identify
-     * the caption resources that should be retrieved. Each ID must identify a
-     * caption track associated with the specified video.
+     * The id parameter specifies a comma-separated list of IDs that identify the caption resources that should be retrieved. Each ID must identify a caption track associated with the specified video.
      */
     id?: string;
     /**
@@ -5796,27 +5044,15 @@ export namespace youtube_v3 {
      */
     onBehalfOf?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The actual CMS account that the user authenticates with must be
-     * linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more
-     * caption resource parts that the API response will include. The part names
-     * that you can include in the parameter value are id and snippet.
+     * The part parameter specifies a comma-separated list of one or more caption resource parts that the API response will include. The part names that you can include in the parameter value are id and snippet.
      */
     part?: string;
     /**
-     * The videoId parameter specifies the YouTube video ID of the video for
-     * which the API should return caption tracks.
+     * The videoId parameter specifies the YouTube video ID of the video for which the API should return caption tracks.
      */
     videoId?: string;
   }
@@ -5824,40 +5060,22 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the Google+ Page for the channel that the request is be on behalf
-     * of
+     * ID of the Google+ Page for the channel that the request is be on behalf of
      */
     onBehalfOf?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The actual CMS account that the user authenticates with must be
-     * linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include. Set the property value to
-     * snippet if you are updating the track's draft status. Otherwise, set the
-     * property value to id.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the property value to snippet if you are updating the track's draft status. Otherwise, set the property value to id.
      */
     part?: string;
     /**
-     * Note: The API server only processes the parameter value if the request
-     * contains an updated caption file.  The sync parameter indicates whether
-     * YouTube should automatically synchronize the caption file with the audio
-     * track of the video. If you set the value to true, YouTube will
-     * automatically synchronize the caption track with the audio track.
+     * Note: The API server only processes the parameter value if the request contains an updated caption file.  The sync parameter indicates whether YouTube should automatically synchronize the caption file with the audio track of the video. If you set the value to true, YouTube will automatically synchronize the caption track with the audio track.
      */
     sync?: boolean;
 
@@ -5882,25 +5100,15 @@ export namespace youtube_v3 {
     };
   }
 
-
   export class Resource$Channelbanners {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * youtube.channelBanners.insert
-     * @desc Uploads a channel banner image to YouTube. This method represents
-     * the first two steps in a three-step process to update the banner image
-     * for a channel:  - Call the channelBanners.insert method to upload the
-     * binary image data to YouTube. The image must have a 16:9 aspect ratio and
-     * be at least 2120x1192 pixels. - Extract the url property's value from the
-     * response that the API returns for step 1. - Call the channels.update
-     * method to update the channel's branding settings. Set the
-     * brandingSettings.image.bannerExternalUrl property's value to the URL
-     * obtained in step 2.
+     * @desc Uploads a channel banner image to YouTube. This method represents the first two steps in a three-step process to update the banner image for a channel:  - Call the channelBanners.insert method to upload the binary image data to YouTube. The image must have a 16:9 aspect ratio and be at least 2120x1192 pixels. - Extract the url property's value from the response that the API returns for step 1. - Call the channels.update method to update the channel's branding settings. Set the brandingSettings.image.bannerExternalUrl property's value to the URL obtained in step 2.
      * @alias youtube.channelBanners.insert
      * @memberOf! ()
      *
@@ -5916,26 +5124,32 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Channelbanners$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$ChannelBannerResource>;
+      params?: Params$Resource$Channelbanners$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChannelBannerResource>;
     insert(
-        params: Params$Resource$Channelbanners$Insert,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ChannelBannerResource>,
-        callback: BodyResponseCallback<Schema$ChannelBannerResource>): void;
+      params: Params$Resource$Channelbanners$Insert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChannelBannerResource>,
+      callback: BodyResponseCallback<Schema$ChannelBannerResource>
+    ): void;
     insert(
-        params: Params$Resource$Channelbanners$Insert,
-        callback: BodyResponseCallback<Schema$ChannelBannerResource>): void;
+      params: Params$Resource$Channelbanners$Insert,
+      callback: BodyResponseCallback<Schema$ChannelBannerResource>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$ChannelBannerResource>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Channelbanners$Insert|
-        BodyResponseCallback<Schema$ChannelBannerResource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChannelBannerResource>,
-        callback?: BodyResponseCallback<Schema$ChannelBannerResource>):
-        void|GaxiosPromise<Schema$ChannelBannerResource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Channelbanners$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Channelbanners$Insert
+        | BodyResponseCallback<Schema$ChannelBannerResource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChannelBannerResource>,
+      callback?: BodyResponseCallback<Schema$ChannelBannerResource>
+    ): void | GaxiosPromise<Schema$ChannelBannerResource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Channelbanners$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5952,18 +5166,22 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/channelBanners/insert')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/channelBanners/insert').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/youtube/v3/channelBanners/insert')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl + '/upload/youtube/v3/channelBanners/insert'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChannelBannerResource>(parameters, callback);
@@ -5973,35 +5191,19 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Channelbanners$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Channelbanners$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The channelId parameter identifies the YouTube channel to which the
-     * banner is uploaded. The channelId parameter was introduced as a required
-     * parameter in May 2017. As this was a backward-incompatible change,
-     * channelBanners.insert requests that do not specify this parameter will
-     * not return an error until six months have passed from the time that the
-     * parameter was introduced. Please see the API Terms of Service for the
-     * official policy regarding backward incompatible changes and the API
-     * revision history for the exact date that the parameter was introduced.
+     * The channelId parameter identifies the YouTube channel to which the banner is uploaded. The channelId parameter was introduced as a required parameter in May 2017. As this was a backward-incompatible change, channelBanners.insert requests that do not specify this parameter will not return an error until six months have passed from the time that the parameter was introduced. Please see the API Terms of Service for the official policy regarding backward incompatible changes and the API revision history for the exact date that the parameter was introduced.
      */
     channelId?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
 
@@ -6026,18 +5228,15 @@ export namespace youtube_v3 {
     };
   }
 
-
   export class Resource$Channels {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * youtube.channels.list
-     * @desc Returns a collection of zero or more channel resources that match
-     * the request criteria.
+     * @desc Returns a collection of zero or more channel resources that match the request criteria.
      * @alias youtube.channels.list
      * @memberOf! ()
      *
@@ -6057,23 +5256,29 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Channels$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ChannelListResponse>;
     list(
-        params: Params$Resource$Channels$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ChannelListResponse>,
-        callback: BodyResponseCallback<Schema$ChannelListResponse>): void;
+      params?: Params$Resource$Channels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChannelListResponse>;
     list(
-        params: Params$Resource$Channels$List,
-        callback: BodyResponseCallback<Schema$ChannelListResponse>): void;
+      params: Params$Resource$Channels$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ChannelListResponse>,
+      callback: BodyResponseCallback<Schema$ChannelListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Channels$List,
+      callback: BodyResponseCallback<Schema$ChannelListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ChannelListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Channels$List|
-        BodyResponseCallback<Schema$ChannelListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChannelListResponse>,
-        callback?: BodyResponseCallback<Schema$ChannelListResponse>):
-        void|GaxiosPromise<Schema$ChannelListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Channels$List
+        | BodyResponseCallback<Schema$ChannelListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChannelListResponse>,
+      callback?: BodyResponseCallback<Schema$ChannelListResponse>
+    ): void | GaxiosPromise<Schema$ChannelListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6091,16 +5296,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/channels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/channels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChannelListResponse>(parameters, callback);
@@ -6109,12 +5317,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.channels.update
-     * @desc Updates a channel's metadata. Note that this method currently only
-     * supports updates to the channel resource's brandingSettings and
-     * invideoPromotion objects and their child properties.
+     * @desc Updates a channel's metadata. Note that this method currently only supports updates to the channel resource's brandingSettings and invideoPromotion objects and their child properties.
      * @alias youtube.channels.update
      * @memberOf! ()
      *
@@ -6126,22 +5331,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Channels$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Channel>;
     update(
-        params: Params$Resource$Channels$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params?: Params$Resource$Channels$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
     update(
-        params: Params$Resource$Channels$Update,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params: Params$Resource$Channels$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    update(
+      params: Params$Resource$Channels$Update,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Channel>): void;
     update(
-        paramsOrCallback?: Params$Resource$Channels$Update|
-        BodyResponseCallback<Schema$Channel>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>):
-        void|GaxiosPromise<Schema$Channel> {
+      paramsOrCallback?:
+        | Params$Resource$Channels$Update
+        | BodyResponseCallback<Schema$Channel>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>
+    ): void | GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6159,16 +5369,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/channels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/channels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -6182,80 +5395,50 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The categoryId parameter specifies a YouTube guide category, thereby
-     * requesting YouTube channels associated with that category.
+     * The categoryId parameter specifies a YouTube guide category, thereby requesting YouTube channels associated with that category.
      */
     categoryId?: string;
     /**
-     * The forUsername parameter specifies a YouTube username, thereby
-     * requesting the channel associated with that username.
+     * The forUsername parameter specifies a YouTube username, thereby requesting the channel associated with that username.
      */
     forUsername?: string;
     /**
-     * The hl parameter should be used for filter out the properties that are
-     * not in the given language. Used for the brandingSettings part.
+     * The hl parameter should be used for filter out the properties that are not in the given language. Used for the brandingSettings part.
      */
     hl?: string;
     /**
-     * The id parameter specifies a comma-separated list of the YouTube channel
-     * ID(s) for the resource(s) that are being retrieved. In a channel
-     * resource, the id property specifies the channel's YouTube channel ID.
+     * The id parameter specifies a comma-separated list of the YouTube channel ID(s) for the resource(s) that are being retrieved. In a channel resource, the id property specifies the channel's YouTube channel ID.
      */
     id?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  Set this parameter's value to true to instruct the API to only
-     * return channels managed by the content owner that the
-     * onBehalfOfContentOwner parameter specifies. The user must be
-     * authenticated as a CMS account linked to the specified content owner and
-     * onBehalfOfContentOwner must be provided.
+     * Note: This parameter is intended exclusively for YouTube content partners.  Set this parameter's value to true to instruct the API to only return channels managed by the content owner that the onBehalfOfContentOwner parameter specifies. The user must be authenticated as a CMS account linked to the specified content owner and onBehalfOfContentOwner must be provided.
      */
     managedByMe?: boolean;
     /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * Set this parameter's value to true to instruct the API to only return
-     * channels owned by the authenticated user.
+     * Set this parameter's value to true to instruct the API to only return channels owned by the authenticated user.
      */
     mine?: boolean;
     /**
-     * Use the subscriptions.list method and its mySubscribers parameter to
-     * retrieve a list of subscribers to the authenticated user's channel.
+     * Use the subscriptions.list method and its mySubscribers parameter to retrieve a list of subscribers to the authenticated user's channel.
      */
     mySubscribers?: boolean;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken and
-     * prevPageToken properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more
-     * channel resource properties that the API response will include.  If the
-     * parameter identifies a property that contains child properties, the child
-     * properties will be included in the response. For example, in a channel
-     * resource, the contentDetails property contains other properties, such as
-     * the uploads properties. As such, if you set part=contentDetails, the API
-     * response will also contain all of those nested properties.
+     * The part parameter specifies a comma-separated list of one or more channel resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channel resource, the contentDetails property contains other properties, such as the uploads properties. As such, if you set part=contentDetails, the API response will also contain all of those nested properties.
      */
     part?: string;
   }
@@ -6263,28 +5446,14 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The onBehalfOfContentOwner parameter indicates that the authenticated
-     * user is acting on behalf of the content owner specified in the parameter
-     * value. This parameter is intended for YouTube content partners that own
-     * and manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The actual CMS account that the user authenticates with needs to
-     * be linked to the specified YouTube content owner.
+     * The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.  The API currently only
-     * allows the parameter value to be set to either brandingSettings or
-     * invideoPromotion. (You cannot update both of those parts with a single
-     * request.)  Note that this method overrides the existing values for all of
-     * the mutable properties that are contained in any parts that the parameter
-     * value specifies.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The API currently only allows the parameter value to be set to either brandingSettings or invideoPromotion. (You cannot update both of those parts with a single request.)  Note that this method overrides the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies.
      */
     part?: string;
 
@@ -6294,13 +5463,11 @@ export namespace youtube_v3 {
     requestBody?: Schema$Channel;
   }
 
-
   export class Resource$Channelsections {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.channelSections.delete
@@ -6316,23 +5483,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Channelsections$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Channelsections$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Channelsections$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Channelsections$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Channelsections$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Channelsections$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Channelsections$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Channelsections$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Channelsections$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Channelsections$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6349,16 +5521,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/channelSections')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/channelSections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6366,7 +5541,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.channelSections.insert
@@ -6384,25 +5558,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Channelsections$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$ChannelSection>;
+      params?: Params$Resource$Channelsections$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChannelSection>;
     insert(
-        params: Params$Resource$Channelsections$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$ChannelSection>,
-        callback: BodyResponseCallback<Schema$ChannelSection>): void;
+      params: Params$Resource$Channelsections$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ChannelSection>,
+      callback: BodyResponseCallback<Schema$ChannelSection>
+    ): void;
     insert(
-        params: Params$Resource$Channelsections$Insert,
-        callback: BodyResponseCallback<Schema$ChannelSection>): void;
+      params: Params$Resource$Channelsections$Insert,
+      callback: BodyResponseCallback<Schema$ChannelSection>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$ChannelSection>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Channelsections$Insert|
-        BodyResponseCallback<Schema$ChannelSection>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChannelSection>,
-        callback?: BodyResponseCallback<Schema$ChannelSection>):
-        void|GaxiosPromise<Schema$ChannelSection> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Channelsections$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Channelsections$Insert
+        | BodyResponseCallback<Schema$ChannelSection>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChannelSection>,
+      callback?: BodyResponseCallback<Schema$ChannelSection>
+    ): void | GaxiosPromise<Schema$ChannelSection> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Channelsections$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6419,16 +5598,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/channelSections')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/channelSections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChannelSection>(parameters, callback);
@@ -6437,11 +5619,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.channelSections.list
-     * @desc Returns channelSection resources that match the API request
-     * criteria.
+     * @desc Returns channelSection resources that match the API request criteria.
      * @alias youtube.channelSections.list
      * @memberOf! ()
      *
@@ -6457,29 +5637,34 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Channelsections$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ChannelSectionListResponse>;
+      params?: Params$Resource$Channelsections$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChannelSectionListResponse>;
     list(
-        params: Params$Resource$Channelsections$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ChannelSectionListResponse>,
-        callback: BodyResponseCallback<Schema$ChannelSectionListResponse>):
-        void;
+      params: Params$Resource$Channelsections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChannelSectionListResponse>,
+      callback: BodyResponseCallback<Schema$ChannelSectionListResponse>
+    ): void;
     list(
-        params: Params$Resource$Channelsections$List,
-        callback: BodyResponseCallback<Schema$ChannelSectionListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ChannelSectionListResponse>):
-        void;
+      params: Params$Resource$Channelsections$List,
+      callback: BodyResponseCallback<Schema$ChannelSectionListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Channelsections$List|
-        BodyResponseCallback<Schema$ChannelSectionListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChannelSectionListResponse>,
-        callback?: BodyResponseCallback<Schema$ChannelSectionListResponse>):
-        void|GaxiosPromise<Schema$ChannelSectionListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Channelsections$List;
+      callback: BodyResponseCallback<Schema$ChannelSectionListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Channelsections$List
+        | BodyResponseCallback<Schema$ChannelSectionListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChannelSectionListResponse>,
+      callback?: BodyResponseCallback<Schema$ChannelSectionListResponse>
+    ): void | GaxiosPromise<Schema$ChannelSectionListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Channelsections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6496,25 +5681,29 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/channelSections')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/channelSections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChannelSectionListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ChannelSectionListResponse>(parameters);
       }
     }
-
 
     /**
      * youtube.channelSections.update
@@ -6531,25 +5720,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Channelsections$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ChannelSection>;
+      params?: Params$Resource$Channelsections$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChannelSection>;
     update(
-        params: Params$Resource$Channelsections$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ChannelSection>,
-        callback: BodyResponseCallback<Schema$ChannelSection>): void;
+      params: Params$Resource$Channelsections$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ChannelSection>,
+      callback: BodyResponseCallback<Schema$ChannelSection>
+    ): void;
     update(
-        params: Params$Resource$Channelsections$Update,
-        callback: BodyResponseCallback<Schema$ChannelSection>): void;
+      params: Params$Resource$Channelsections$Update,
+      callback: BodyResponseCallback<Schema$ChannelSection>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ChannelSection>): void;
     update(
-        paramsOrCallback?: Params$Resource$Channelsections$Update|
-        BodyResponseCallback<Schema$ChannelSection>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChannelSection>,
-        callback?: BodyResponseCallback<Schema$ChannelSection>):
-        void|GaxiosPromise<Schema$ChannelSection> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Channelsections$Update;
+      paramsOrCallback?:
+        | Params$Resource$Channelsections$Update
+        | BodyResponseCallback<Schema$ChannelSection>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChannelSection>,
+      callback?: BodyResponseCallback<Schema$ChannelSection>
+    ): void | GaxiosPromise<Schema$ChannelSection> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Channelsections$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6566,16 +5760,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/channelSections')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/channelSections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChannelSection>(parameters, callback);
@@ -6585,77 +5782,39 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Channelsections$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Channelsections$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies the YouTube channelSection ID for the resource
-     * that is being deleted. In a channelSection resource, the id property
-     * specifies the YouTube channelSection ID.
+     * The id parameter specifies the YouTube channelSection ID for the resource that is being deleted. In a channelSection resource, the id property specifies the YouTube channelSection ID.
      */
     id?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Channelsections$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Channelsections$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.  The part names that you
-     * can include in the parameter value are snippet and contentDetails.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and contentDetails.
      */
     part?: string;
 
@@ -6664,91 +5823,51 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$ChannelSection;
   }
-  export interface Params$Resource$Channelsections$List extends
-      StandardParameters {
+  export interface Params$Resource$Channelsections$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The channelId parameter specifies a YouTube channel ID. The API will only
-     * return that channel's channelSections.
+     * The channelId parameter specifies a YouTube channel ID. The API will only return that channel's channelSections.
      */
     channelId?: string;
     /**
-     * The hl parameter indicates that the snippet.localized property values in
-     * the returned channelSection resources should be in the specified language
-     * if localized values for that language are available. For example, if the
-     * API request specifies hl=de, the snippet.localized properties in the API
-     * response will contain German titles if German titles are available.
-     * Channel owners can provide localized channel section titles using either
-     * the channelSections.insert or channelSections.update method.
+     * The hl parameter indicates that the snippet.localized property values in the returned channelSection resources should be in the specified language if localized values for that language are available. For example, if the API request specifies hl=de, the snippet.localized properties in the API response will contain German titles if German titles are available. Channel owners can provide localized channel section titles using either the channelSections.insert or channelSections.update method.
      */
     hl?: string;
     /**
-     * The id parameter specifies a comma-separated list of the YouTube
-     * channelSection ID(s) for the resource(s) that are being retrieved. In a
-     * channelSection resource, the id property specifies the YouTube
-     * channelSection ID.
+     * The id parameter specifies a comma-separated list of the YouTube channelSection ID(s) for the resource(s) that are being retrieved. In a channelSection resource, the id property specifies the YouTube channelSection ID.
      */
     id?: string;
     /**
-     * Set this parameter's value to true to retrieve a feed of the
-     * authenticated user's channelSections.
+     * Set this parameter's value to true to retrieve a feed of the authenticated user's channelSections.
      */
     mine?: boolean;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more
-     * channelSection resource properties that the API response will include.
-     * The part names that you can include in the parameter value are id,
-     * snippet, and contentDetails.  If the parameter identifies a property that
-     * contains child properties, the child properties will be included in the
-     * response. For example, in a channelSection resource, the snippet property
-     * contains other properties, such as a display title for the
-     * channelSection. If you set part=snippet, the API response will also
-     * contain all of those nested properties.
+     * The part parameter specifies a comma-separated list of one or more channelSection resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, and contentDetails.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channelSection resource, the snippet property contains other properties, such as a display title for the channelSection. If you set part=snippet, the API response will also contain all of those nested properties.
      */
     part?: string;
   }
-  export interface Params$Resource$Channelsections$Update extends
-      StandardParameters {
+  export interface Params$Resource$Channelsections$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.  The part names that you
-     * can include in the parameter value are snippet and contentDetails.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part names that you can include in the parameter value are snippet and contentDetails.
      */
     part?: string;
 
@@ -6757,14 +5876,12 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$ChannelSection;
   }
-
 
   export class Resource$Comments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.comments.delete
@@ -6778,21 +5895,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Comments$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Comments$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Comments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Comments$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Comments$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Comments$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Comments$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6810,16 +5933,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/comments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/comments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6828,11 +5954,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.comments.insert
-     * @desc Creates a reply to an existing comment. Note: To create a top-level
-     * comment, use the commentThreads.insert method.
+     * @desc Creates a reply to an existing comment. Note: To create a top-level comment, use the commentThreads.insert method.
      * @alias youtube.comments.insert
      * @memberOf! ()
      *
@@ -6843,22 +5967,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Comments$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Comment>;
     insert(
-        params: Params$Resource$Comments$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+      params?: Params$Resource$Comments$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Comment>;
     insert(
-        params: Params$Resource$Comments$Insert,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+      params: Params$Resource$Comments$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
+    insert(
+      params: Params$Resource$Comments$Insert,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Comment>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Comments$Insert|
-        BodyResponseCallback<Schema$Comment>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>):
-        void|GaxiosPromise<Schema$Comment> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$Insert
+        | BodyResponseCallback<Schema$Comment>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>
+    ): void | GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6876,16 +6005,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/comments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/comments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -6893,7 +6025,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$Comment>(parameters);
       }
     }
-
 
     /**
      * youtube.comments.list
@@ -6912,23 +6043,29 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Comments$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CommentListResponse>;
     list(
-        params: Params$Resource$Comments$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentListResponse>,
-        callback: BodyResponseCallback<Schema$CommentListResponse>): void;
+      params?: Params$Resource$Comments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentListResponse>;
     list(
-        params: Params$Resource$Comments$List,
-        callback: BodyResponseCallback<Schema$CommentListResponse>): void;
+      params: Params$Resource$Comments$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentListResponse>,
+      callback: BodyResponseCallback<Schema$CommentListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Comments$List,
+      callback: BodyResponseCallback<Schema$CommentListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CommentListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Comments$List|
-        BodyResponseCallback<Schema$CommentListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentListResponse>,
-        callback?: BodyResponseCallback<Schema$CommentListResponse>):
-        void|GaxiosPromise<Schema$CommentListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$List
+        | BodyResponseCallback<Schema$CommentListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentListResponse>,
+      callback?: BodyResponseCallback<Schema$CommentListResponse>
+    ): void | GaxiosPromise<Schema$CommentListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6946,16 +6083,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/comments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/comments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentListResponse>(parameters, callback);
@@ -6964,11 +6104,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.comments.markAsSpam
-     * @desc Expresses the caller's opinion that one or more comments should be
-     * flagged as spam.
+     * @desc Expresses the caller's opinion that one or more comments should be flagged as spam.
      * @alias youtube.comments.markAsSpam
      * @memberOf! ()
      *
@@ -6979,23 +6117,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     markAsSpam(
-        params?: Params$Resource$Comments$Markasspam,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Comments$Markasspam,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     markAsSpam(
-        params: Params$Resource$Comments$Markasspam,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Comments$Markasspam,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     markAsSpam(
-        params: Params$Resource$Comments$Markasspam,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Comments$Markasspam,
+      callback: BodyResponseCallback<void>
+    ): void;
     markAsSpam(callback: BodyResponseCallback<void>): void;
     markAsSpam(
-        paramsOrCallback?: Params$Resource$Comments$Markasspam|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Comments$Markasspam;
+      paramsOrCallback?:
+        | Params$Resource$Comments$Markasspam
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Comments$Markasspam;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7012,16 +6155,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/comments/markAsSpam')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/comments/markAsSpam').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7030,12 +6176,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.comments.setModerationStatus
-     * @desc Sets the moderation status of one or more comments. The API request
-     * must be authorized by the owner of the channel or video associated with
-     * the comments.
+     * @desc Sets the moderation status of one or more comments. The API request must be authorized by the owner of the channel or video associated with the comments.
      * @alias youtube.comments.setModerationStatus
      * @memberOf! ()
      *
@@ -7048,23 +6191,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     setModerationStatus(
-        params?: Params$Resource$Comments$Setmoderationstatus,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Comments$Setmoderationstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     setModerationStatus(
-        params: Params$Resource$Comments$Setmoderationstatus,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Comments$Setmoderationstatus,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     setModerationStatus(
-        params: Params$Resource$Comments$Setmoderationstatus,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Comments$Setmoderationstatus,
+      callback: BodyResponseCallback<void>
+    ): void;
     setModerationStatus(callback: BodyResponseCallback<void>): void;
     setModerationStatus(
-        paramsOrCallback?: Params$Resource$Comments$Setmoderationstatus|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Comments$Setmoderationstatus;
+      paramsOrCallback?:
+        | Params$Resource$Comments$Setmoderationstatus
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Comments$Setmoderationstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7081,16 +6229,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/comments/setModerationStatus')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/comments/setModerationStatus').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['id', 'moderationStatus'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7098,7 +6249,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.comments.update
@@ -7113,22 +6263,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Comments$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Comment>;
     update(
-        params: Params$Resource$Comments$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+      params?: Params$Resource$Comments$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Comment>;
     update(
-        params: Params$Resource$Comments$Update,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+      params: Params$Resource$Comments$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
+    update(
+      params: Params$Resource$Comments$Update,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Comment>): void;
     update(
-        paramsOrCallback?: Params$Resource$Comments$Update|
-        BodyResponseCallback<Schema$Comment>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>):
-        void|GaxiosPromise<Schema$Comment> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$Update
+        | BodyResponseCallback<Schema$Comment>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>
+    ): void | GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7146,16 +6301,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/comments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/comments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -7169,11 +6327,10 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies the comment ID for the resource that is being
-     * deleted.
+     * The id parameter specifies the comment ID for the resource that is being deleted.
      */
     id?: string;
   }
@@ -7181,12 +6338,10 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The part parameter identifies the properties that the API response will
-     * include. Set the parameter value to snippet. The snippet part has a quota
-     * cost of 2 units.
+     * The part parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
      */
     part?: string;
 
@@ -7199,75 +6354,58 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies a comma-separated list of comment IDs for the
-     * resources that are being retrieved. In a comment resource, the id
-     * property specifies the comment's ID.
+     * The id parameter specifies a comma-separated list of comment IDs for the resources that are being retrieved. In a comment resource, the id property specifies the comment's ID.
      */
     id?: string;
     /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.  Note: This parameter is not
-     * supported for use in conjunction with the id parameter.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.  Note: This parameter is not supported for use in conjunction with the id parameter.
      */
     maxResults?: number;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken property
-     * identifies the next page of the result that can be retrieved.  Note: This
-     * parameter is not supported for use in conjunction with the id parameter.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identifies the next page of the result that can be retrieved.  Note: This parameter is not supported for use in conjunction with the id parameter.
      */
     pageToken?: string;
     /**
-     * The parentId parameter specifies the ID of the comment for which replies
-     * should be retrieved.  Note: YouTube currently supports replies only for
-     * top-level comments. However, replies to replies may be supported in the
-     * future.
+     * The parentId parameter specifies the ID of the comment for which replies should be retrieved.  Note: YouTube currently supports replies only for top-level comments. However, replies to replies may be supported in the future.
      */
     parentId?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more
-     * comment resource properties that the API response will include.
+     * The part parameter specifies a comma-separated list of one or more comment resource properties that the API response will include.
      */
     part?: string;
     /**
-     * This parameter indicates whether the API should return comments formatted
-     * as HTML or as plain text.
+     * This parameter indicates whether the API should return comments formatted as HTML or as plain text.
      */
     textFormat?: string;
   }
-  export interface Params$Resource$Comments$Markasspam extends
-      StandardParameters {
+  export interface Params$Resource$Comments$Markasspam
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies a comma-separated list of IDs of comments that
-     * the caller believes should be classified as spam.
+     * The id parameter specifies a comma-separated list of IDs of comments that the caller believes should be classified as spam.
      */
     id?: string;
   }
-  export interface Params$Resource$Comments$Setmoderationstatus extends
-      StandardParameters {
+  export interface Params$Resource$Comments$Setmoderationstatus
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The banAuthor parameter lets you indicate that you want to automatically
-     * reject any additional comments written by the comment's author. Set the
-     * parameter value to true to ban the author.  Note: This parameter is only
-     * valid if the moderationStatus parameter is also set to rejected.
+     * The banAuthor parameter lets you indicate that you want to automatically reject any additional comments written by the comment's author. Set the parameter value to true to ban the author.  Note: This parameter is only valid if the moderationStatus parameter is also set to rejected.
      */
     banAuthor?: boolean;
     /**
-     * The id parameter specifies a comma-separated list of IDs that identify
-     * the comments for which you are updating the moderation status.
+     * The id parameter specifies a comma-separated list of IDs that identify the comments for which you are updating the moderation status.
      */
     id?: string;
     /**
@@ -7279,13 +6417,10 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The part parameter identifies the properties that the API response will
-     * include. You must at least include the snippet part in the parameter
-     * value since that part contains all of the properties that the API request
-     * can update.
+     * The part parameter identifies the properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
      */
     part?: string;
 
@@ -7295,18 +6430,15 @@ export namespace youtube_v3 {
     requestBody?: Schema$Comment;
   }
 
-
   export class Resource$Commentthreads {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * youtube.commentThreads.insert
-     * @desc Creates a new top-level comment. To add a reply to an existing
-     * comment, use the comments.insert method instead.
+     * @desc Creates a new top-level comment. To add a reply to an existing comment, use the comments.insert method instead.
      * @alias youtube.commentThreads.insert
      * @memberOf! ()
      *
@@ -7318,25 +6450,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Commentthreads$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$CommentThread>;
+      params?: Params$Resource$Commentthreads$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentThread>;
     insert(
-        params: Params$Resource$Commentthreads$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentThread>,
-        callback: BodyResponseCallback<Schema$CommentThread>): void;
+      params: Params$Resource$Commentthreads$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentThread>,
+      callback: BodyResponseCallback<Schema$CommentThread>
+    ): void;
     insert(
-        params: Params$Resource$Commentthreads$Insert,
-        callback: BodyResponseCallback<Schema$CommentThread>): void;
+      params: Params$Resource$Commentthreads$Insert,
+      callback: BodyResponseCallback<Schema$CommentThread>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$CommentThread>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Commentthreads$Insert|
-        BodyResponseCallback<Schema$CommentThread>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentThread>,
-        callback?: BodyResponseCallback<Schema$CommentThread>):
-        void|GaxiosPromise<Schema$CommentThread> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Commentthreads$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Commentthreads$Insert
+        | BodyResponseCallback<Schema$CommentThread>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentThread>,
+      callback?: BodyResponseCallback<Schema$CommentThread>
+    ): void | GaxiosPromise<Schema$CommentThread> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Commentthreads$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7353,16 +6490,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/commentThreads')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/commentThreads').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentThread>(parameters, callback);
@@ -7371,11 +6511,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.commentThreads.list
-     * @desc Returns a list of comment threads that match the API request
-     * parameters.
+     * @desc Returns a list of comment threads that match the API request parameters.
      * @alias youtube.commentThreads.list
      * @memberOf! ()
      *
@@ -7395,27 +6533,35 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Commentthreads$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CommentThreadListResponse>;
     list(
-        params: Params$Resource$Commentthreads$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CommentThreadListResponse>,
-        callback: BodyResponseCallback<Schema$CommentThreadListResponse>): void;
+      params?: Params$Resource$Commentthreads$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentThreadListResponse>;
     list(
-        params: Params$Resource$Commentthreads$List,
-        callback: BodyResponseCallback<Schema$CommentThreadListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$CommentThreadListResponse>):
-        void;
+      params: Params$Resource$Commentthreads$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentThreadListResponse>,
+      callback: BodyResponseCallback<Schema$CommentThreadListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Commentthreads$List|
-        BodyResponseCallback<Schema$CommentThreadListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentThreadListResponse>,
-        callback?: BodyResponseCallback<Schema$CommentThreadListResponse>):
-        void|GaxiosPromise<Schema$CommentThreadListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Commentthreads$List;
+      params: Params$Resource$Commentthreads$List,
+      callback: BodyResponseCallback<Schema$CommentThreadListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$CommentThreadListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Commentthreads$List
+        | BodyResponseCallback<Schema$CommentThreadListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentThreadListResponse>,
+      callback?: BodyResponseCallback<Schema$CommentThreadListResponse>
+    ): void | GaxiosPromise<Schema$CommentThreadListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Commentthreads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7432,25 +6578,29 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/commentThreads')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/commentThreads').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentThreadListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$CommentThreadListResponse>(parameters);
       }
     }
-
 
     /**
      * youtube.commentThreads.update
@@ -7466,25 +6616,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Commentthreads$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$CommentThread>;
+      params?: Params$Resource$Commentthreads$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentThread>;
     update(
-        params: Params$Resource$Commentthreads$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentThread>,
-        callback: BodyResponseCallback<Schema$CommentThread>): void;
+      params: Params$Resource$Commentthreads$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentThread>,
+      callback: BodyResponseCallback<Schema$CommentThread>
+    ): void;
     update(
-        params: Params$Resource$Commentthreads$Update,
-        callback: BodyResponseCallback<Schema$CommentThread>): void;
+      params: Params$Resource$Commentthreads$Update,
+      callback: BodyResponseCallback<Schema$CommentThread>
+    ): void;
     update(callback: BodyResponseCallback<Schema$CommentThread>): void;
     update(
-        paramsOrCallback?: Params$Resource$Commentthreads$Update|
-        BodyResponseCallback<Schema$CommentThread>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentThread>,
-        callback?: BodyResponseCallback<Schema$CommentThread>):
-        void|GaxiosPromise<Schema$CommentThread> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Commentthreads$Update;
+      paramsOrCallback?:
+        | Params$Resource$Commentthreads$Update
+        | BodyResponseCallback<Schema$CommentThread>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentThread>,
+      callback?: BodyResponseCallback<Schema$CommentThread>
+    ): void | GaxiosPromise<Schema$CommentThread> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Commentthreads$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7501,16 +6656,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/commentThreads')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/commentThreads').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentThread>(parameters, callback);
@@ -7520,17 +6678,15 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Commentthreads$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Commentthreads$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The part parameter identifies the properties that the API response will
-     * include. Set the parameter value to snippet. The snippet part has a quota
-     * cost of 2 units.
+     * The part parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
      */
     part?: string;
 
@@ -7539,92 +6695,67 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$CommentThread;
   }
-  export interface Params$Resource$Commentthreads$List extends
-      StandardParameters {
+  export interface Params$Resource$Commentthreads$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The allThreadsRelatedToChannelId parameter instructs the API to return
-     * all comment threads associated with the specified channel. The response
-     * can include comments about the channel or about the channel's videos.
+     * The allThreadsRelatedToChannelId parameter instructs the API to return all comment threads associated with the specified channel. The response can include comments about the channel or about the channel's videos.
      */
     allThreadsRelatedToChannelId?: string;
     /**
-     * The channelId parameter instructs the API to return comment threads
-     * containing comments about the specified channel. (The response will not
-     * include comments left on videos that the channel uploaded.)
+     * The channelId parameter instructs the API to return comment threads containing comments about the specified channel. (The response will not include comments left on videos that the channel uploaded.)
      */
     channelId?: string;
     /**
-     * The id parameter specifies a comma-separated list of comment thread IDs
-     * for the resources that should be retrieved.
+     * The id parameter specifies a comma-separated list of comment thread IDs for the resources that should be retrieved.
      */
     id?: string;
     /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.  Note: This parameter is not
-     * supported for use in conjunction with the id parameter.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.  Note: This parameter is not supported for use in conjunction with the id parameter.
      */
     maxResults?: number;
     /**
-     * Set this parameter to limit the returned comment threads to a particular
-     * moderation state.  Note: This parameter is not supported for use in
-     * conjunction with the id parameter.
+     * Set this parameter to limit the returned comment threads to a particular moderation state.  Note: This parameter is not supported for use in conjunction with the id parameter.
      */
     moderationStatus?: string;
     /**
-     * The order parameter specifies the order in which the API response should
-     * list comment threads. Valid values are:  - time - Comment threads are
-     * ordered by time. This is the default behavior. - relevance - Comment
-     * threads are ordered by relevance.Note: This parameter is not supported
-     * for use in conjunction with the id parameter.
+     * The order parameter specifies the order in which the API response should list comment threads. Valid values are:  - time - Comment threads are ordered by time. This is the default behavior. - relevance - Comment threads are ordered by relevance.Note: This parameter is not supported for use in conjunction with the id parameter.
      */
     order?: string;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken property
-     * identifies the next page of the result that can be retrieved.  Note: This
-     * parameter is not supported for use in conjunction with the id parameter.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identifies the next page of the result that can be retrieved.  Note: This parameter is not supported for use in conjunction with the id parameter.
      */
     pageToken?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more
-     * commentThread resource properties that the API response will include.
+     * The part parameter specifies a comma-separated list of one or more commentThread resource properties that the API response will include.
      */
     part?: string;
     /**
-     * The searchTerms parameter instructs the API to limit the API response to
-     * only contain comments that contain the specified search terms.  Note:
-     * This parameter is not supported for use in conjunction with the id
-     * parameter.
+     * The searchTerms parameter instructs the API to limit the API response to only contain comments that contain the specified search terms.  Note: This parameter is not supported for use in conjunction with the id parameter.
      */
     searchTerms?: string;
     /**
-     * Set this parameter's value to html or plainText to instruct the API to
-     * return the comments left by users in html formatted or in plain text.
+     * Set this parameter's value to html or plainText to instruct the API to return the comments left by users in html formatted or in plain text.
      */
     textFormat?: string;
     /**
-     * The videoId parameter instructs the API to return comment threads
-     * associated with the specified video ID.
+     * The videoId parameter instructs the API to return comment threads associated with the specified video ID.
      */
     videoId?: string;
   }
-  export interface Params$Resource$Commentthreads$Update extends
-      StandardParameters {
+  export interface Params$Resource$Commentthreads$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The part parameter specifies a comma-separated list of commentThread
-     * resource properties that the API response will include. You must at least
-     * include the snippet part in the parameter value since that part contains
-     * all of the properties that the API request can update.
+     * The part parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
      */
     part?: string;
 
@@ -7633,7 +6764,6 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$CommentThread;
   }
-
 
   export class Resource$Guidecategories {
     context: APIRequestContext;
@@ -7641,11 +6771,9 @@ export namespace youtube_v3 {
       this.context = context;
     }
 
-
     /**
      * youtube.guideCategories.list
-     * @desc Returns a list of categories that can be associated with YouTube
-     * channels.
+     * @desc Returns a list of categories that can be associated with YouTube channels.
      * @alias youtube.guideCategories.list
      * @memberOf! ()
      *
@@ -7659,27 +6787,34 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Guidecategories$List, options?: MethodOptions):
-        GaxiosPromise<Schema$GuideCategoryListResponse>;
+      params?: Params$Resource$Guidecategories$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GuideCategoryListResponse>;
     list(
-        params: Params$Resource$Guidecategories$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GuideCategoryListResponse>,
-        callback: BodyResponseCallback<Schema$GuideCategoryListResponse>): void;
+      params: Params$Resource$Guidecategories$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GuideCategoryListResponse>,
+      callback: BodyResponseCallback<Schema$GuideCategoryListResponse>
+    ): void;
     list(
-        params: Params$Resource$Guidecategories$List,
-        callback: BodyResponseCallback<Schema$GuideCategoryListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$GuideCategoryListResponse>):
-        void;
+      params: Params$Resource$Guidecategories$List,
+      callback: BodyResponseCallback<Schema$GuideCategoryListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Guidecategories$List|
-        BodyResponseCallback<Schema$GuideCategoryListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GuideCategoryListResponse>,
-        callback?: BodyResponseCallback<Schema$GuideCategoryListResponse>):
-        void|GaxiosPromise<Schema$GuideCategoryListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Guidecategories$List;
+      callback: BodyResponseCallback<Schema$GuideCategoryListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Guidecategories$List
+        | BodyResponseCallback<Schema$GuideCategoryListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GuideCategoryListResponse>,
+      callback?: BodyResponseCallback<Schema$GuideCategoryListResponse>
+    ): void | GaxiosPromise<Schema$GuideCategoryListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Guidecategories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7696,58 +6831,55 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/guideCategories')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/guideCategories').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GuideCategoryListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GuideCategoryListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Guidecategories$List extends
-      StandardParameters {
+  export interface Params$Resource$Guidecategories$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The hl parameter specifies the language that will be used for text values
-     * in the API response.
+     * The hl parameter specifies the language that will be used for text values in the API response.
      */
     hl?: string;
     /**
-     * The id parameter specifies a comma-separated list of the YouTube channel
-     * category ID(s) for the resource(s) that are being retrieved. In a
-     * guideCategory resource, the id property specifies the YouTube channel
-     * category ID.
+     * The id parameter specifies a comma-separated list of the YouTube channel category ID(s) for the resource(s) that are being retrieved. In a guideCategory resource, the id property specifies the YouTube channel category ID.
      */
     id?: string;
     /**
-     * The part parameter specifies the guideCategory resource properties that
-     * the API response will include. Set the parameter value to snippet.
+     * The part parameter specifies the guideCategory resource properties that the API response will include. Set the parameter value to snippet.
      */
     part?: string;
     /**
-     * The regionCode parameter instructs the API to return the list of guide
-     * categories available in the specified country. The parameter value is an
-     * ISO 3166-1 alpha-2 country code.
+     * The regionCode parameter instructs the API to return the list of guide categories available in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      */
     regionCode?: string;
   }
-
 
   export class Resource$I18nlanguages {
     context: APIRequestContext;
@@ -7755,11 +6887,9 @@ export namespace youtube_v3 {
       this.context = context;
     }
 
-
     /**
      * youtube.i18nLanguages.list
-     * @desc Returns a list of application languages that the YouTube website
-     * supports.
+     * @desc Returns a list of application languages that the YouTube website supports.
      * @alias youtube.i18nLanguages.list
      * @memberOf! ()
      *
@@ -7770,26 +6900,33 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$I18nlanguages$List, options?: MethodOptions):
-        GaxiosPromise<Schema$I18nLanguageListResponse>;
     list(
-        params: Params$Resource$I18nlanguages$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$I18nLanguageListResponse>,
-        callback: BodyResponseCallback<Schema$I18nLanguageListResponse>): void;
+      params?: Params$Resource$I18nlanguages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$I18nLanguageListResponse>;
     list(
-        params: Params$Resource$I18nlanguages$List,
-        callback: BodyResponseCallback<Schema$I18nLanguageListResponse>): void;
+      params: Params$Resource$I18nlanguages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$I18nLanguageListResponse>,
+      callback: BodyResponseCallback<Schema$I18nLanguageListResponse>
+    ): void;
+    list(
+      params: Params$Resource$I18nlanguages$List,
+      callback: BodyResponseCallback<Schema$I18nLanguageListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$I18nLanguageListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$I18nlanguages$List|
-        BodyResponseCallback<Schema$I18nLanguageListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$I18nLanguageListResponse>,
-        callback?: BodyResponseCallback<Schema$I18nLanguageListResponse>):
-        void|GaxiosPromise<Schema$I18nLanguageListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$I18nlanguages$List;
+      paramsOrCallback?:
+        | Params$Resource$I18nlanguages$List
+        | BodyResponseCallback<Schema$I18nLanguageListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$I18nLanguageListResponse>,
+      callback?: BodyResponseCallback<Schema$I18nLanguageListResponse>
+    ): void | GaxiosPromise<Schema$I18nLanguageListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$I18nlanguages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7806,16 +6943,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/i18nLanguages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/i18nLanguages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$I18nLanguageListResponse>(parameters, callback);
@@ -7825,25 +6965,22 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$I18nlanguages$List extends
-      StandardParameters {
+  export interface Params$Resource$I18nlanguages$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The hl parameter specifies the language that should be used for text
-     * values in the API response.
+     * The hl parameter specifies the language that should be used for text values in the API response.
      */
     hl?: string;
     /**
-     * The part parameter specifies the i18nLanguage resource properties that
-     * the API response will include. Set the parameter value to snippet.
+     * The part parameter specifies the i18nLanguage resource properties that the API response will include. Set the parameter value to snippet.
      */
     part?: string;
   }
-
 
   export class Resource$I18nregions {
     context: APIRequestContext;
@@ -7851,11 +6988,9 @@ export namespace youtube_v3 {
       this.context = context;
     }
 
-
     /**
      * youtube.i18nRegions.list
-     * @desc Returns a list of content regions that the YouTube website
-     * supports.
+     * @desc Returns a list of content regions that the YouTube website supports.
      * @alias youtube.i18nRegions.list
      * @memberOf! ()
      *
@@ -7866,24 +7001,31 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$I18nregions$List, options?: MethodOptions):
-        GaxiosPromise<Schema$I18nRegionListResponse>;
     list(
-        params: Params$Resource$I18nregions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$I18nRegionListResponse>,
-        callback: BodyResponseCallback<Schema$I18nRegionListResponse>): void;
+      params?: Params$Resource$I18nregions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$I18nRegionListResponse>;
     list(
-        params: Params$Resource$I18nregions$List,
-        callback: BodyResponseCallback<Schema$I18nRegionListResponse>): void;
+      params: Params$Resource$I18nregions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$I18nRegionListResponse>,
+      callback: BodyResponseCallback<Schema$I18nRegionListResponse>
+    ): void;
+    list(
+      params: Params$Resource$I18nregions$List,
+      callback: BodyResponseCallback<Schema$I18nRegionListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$I18nRegionListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$I18nregions$List|
-        BodyResponseCallback<Schema$I18nRegionListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$I18nRegionListResponse>,
-        callback?: BodyResponseCallback<Schema$I18nRegionListResponse>):
-        void|GaxiosPromise<Schema$I18nRegionListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$I18nregions$List
+        | BodyResponseCallback<Schema$I18nRegionListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$I18nRegionListResponse>,
+      callback?: BodyResponseCallback<Schema$I18nRegionListResponse>
+    ): void | GaxiosPromise<Schema$I18nRegionListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$I18nregions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7901,16 +7043,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/i18nRegions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/i18nRegions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$I18nRegionListResponse>(parameters, callback);
@@ -7924,20 +7069,17 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The hl parameter specifies the language that should be used for text
-     * values in the API response.
+     * The hl parameter specifies the language that should be used for text values in the API response.
      */
     hl?: string;
     /**
-     * The part parameter specifies the i18nRegion resource properties that the
-     * API response will include. Set the parameter value to snippet.
+     * The part parameter specifies the i18nRegion resource properties that the API response will include. Set the parameter value to snippet.
      */
     part?: string;
   }
-
 
   export class Resource$Livebroadcasts {
     context: APIRequestContext;
@@ -7945,13 +7087,9 @@ export namespace youtube_v3 {
       this.context = context;
     }
 
-
     /**
      * youtube.liveBroadcasts.bind
-     * @desc Binds a YouTube broadcast to a stream or removes an existing
-     * binding between a broadcast and a stream. A broadcast can only be bound
-     * to one video stream, though a video stream may be bound to more than one
-     * broadcast.
+     * @desc Binds a YouTube broadcast to a stream or removes an existing binding between a broadcast and a stream. A broadcast can only be bound to one video stream, though a video stream may be bound to more than one broadcast.
      * @alias youtube.liveBroadcasts.bind
      * @memberOf! ()
      *
@@ -7965,25 +7103,31 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    bind(params?: Params$Resource$Livebroadcasts$Bind, options?: MethodOptions):
-        GaxiosPromise<Schema$LiveBroadcast>;
     bind(
-        params: Params$Resource$Livebroadcasts$Bind,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params?: Params$Resource$Livebroadcasts$Bind,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveBroadcast>;
     bind(
-        params: Params$Resource$Livebroadcasts$Bind,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Bind,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
+    bind(
+      params: Params$Resource$Livebroadcasts$Bind,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     bind(callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
     bind(
-        paramsOrCallback?: Params$Resource$Livebroadcasts$Bind|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|GaxiosPromise<Schema$LiveBroadcast> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Bind;
+      paramsOrCallback?:
+        | Params$Resource$Livebroadcasts$Bind
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void | GaxiosPromise<Schema$LiveBroadcast> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livebroadcasts$Bind;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8000,16 +7144,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveBroadcasts/bind')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts/bind').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['id', 'part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8018,11 +7165,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.liveBroadcasts.control
-     * @desc Controls the settings for a slate that can be displayed in the
-     * broadcast stream.
+     * @desc Controls the settings for a slate that can be displayed in the broadcast stream.
      * @alias youtube.liveBroadcasts.control
      * @memberOf! ()
      *
@@ -8039,25 +7184,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     control(
-        params?: Params$Resource$Livebroadcasts$Control,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveBroadcast>;
+      params?: Params$Resource$Livebroadcasts$Control,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveBroadcast>;
     control(
-        params: Params$Resource$Livebroadcasts$Control,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Control,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     control(
-        params: Params$Resource$Livebroadcasts$Control,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Control,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     control(callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
     control(
-        paramsOrCallback?: Params$Resource$Livebroadcasts$Control|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|GaxiosPromise<Schema$LiveBroadcast> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Control;
+      paramsOrCallback?:
+        | Params$Resource$Livebroadcasts$Control
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void | GaxiosPromise<Schema$LiveBroadcast> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livebroadcasts$Control;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8074,16 +7224,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveBroadcasts/control')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts/control').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['id', 'part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8091,7 +7244,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$LiveBroadcast>(parameters);
       }
     }
-
 
     /**
      * youtube.liveBroadcasts.delete
@@ -8108,23 +7260,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Livebroadcasts$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Livebroadcasts$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Livebroadcasts$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livebroadcasts$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Livebroadcasts$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livebroadcasts$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Livebroadcasts$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Livebroadcasts$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livebroadcasts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8141,16 +7298,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveBroadcasts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8158,7 +7318,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.liveBroadcasts.insert
@@ -8176,25 +7335,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Livebroadcasts$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveBroadcast>;
+      params?: Params$Resource$Livebroadcasts$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveBroadcast>;
     insert(
-        params: Params$Resource$Livebroadcasts$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     insert(
-        params: Params$Resource$Livebroadcasts$Insert,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Insert,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Livebroadcasts$Insert|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|GaxiosPromise<Schema$LiveBroadcast> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Livebroadcasts$Insert
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void | GaxiosPromise<Schema$LiveBroadcast> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livebroadcasts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8211,16 +7375,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveBroadcasts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8229,11 +7396,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.liveBroadcasts.list
-     * @desc Returns a list of YouTube broadcasts that match the API request
-     * parameters.
+     * @desc Returns a list of YouTube broadcasts that match the API request parameters.
      * @alias youtube.liveBroadcasts.list
      * @memberOf! ()
      *
@@ -8251,27 +7416,35 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Livebroadcasts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$LiveBroadcastListResponse>;
     list(
-        params: Params$Resource$Livebroadcasts$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LiveBroadcastListResponse>,
-        callback: BodyResponseCallback<Schema$LiveBroadcastListResponse>): void;
+      params?: Params$Resource$Livebroadcasts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveBroadcastListResponse>;
     list(
-        params: Params$Resource$Livebroadcasts$List,
-        callback: BodyResponseCallback<Schema$LiveBroadcastListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$LiveBroadcastListResponse>):
-        void;
+      params: Params$Resource$Livebroadcasts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveBroadcastListResponse>,
+      callback: BodyResponseCallback<Schema$LiveBroadcastListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Livebroadcasts$List|
-        BodyResponseCallback<Schema$LiveBroadcastListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveBroadcastListResponse>,
-        callback?: BodyResponseCallback<Schema$LiveBroadcastListResponse>):
-        void|GaxiosPromise<Schema$LiveBroadcastListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$List;
+      params: Params$Resource$Livebroadcasts$List,
+      callback: BodyResponseCallback<Schema$LiveBroadcastListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$LiveBroadcastListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Livebroadcasts$List
+        | BodyResponseCallback<Schema$LiveBroadcastListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveBroadcastListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcastListResponse>
+    ): void | GaxiosPromise<Schema$LiveBroadcastListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livebroadcasts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8288,34 +7461,33 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveBroadcasts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcastListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$LiveBroadcastListResponse>(parameters);
       }
     }
 
-
     /**
      * youtube.liveBroadcasts.transition
-     * @desc Changes the status of a YouTube live broadcast and initiates any
-     * processes associated with the new status. For example, when you
-     * transition a broadcast's status to testing, YouTube starts to transmit
-     * video to that broadcast's monitor stream. Before calling this method, you
-     * should confirm that the value of the status.streamStatus property for the
-     * stream bound to your broadcast is active.
+     * @desc Changes the status of a YouTube live broadcast and initiates any processes associated with the new status. For example, when you transition a broadcast's status to testing, YouTube starts to transmit video to that broadcast's monitor stream. Before calling this method, you should confirm that the value of the status.streamStatus property for the stream bound to your broadcast is active.
      * @alias youtube.liveBroadcasts.transition
      * @memberOf! ()
      *
@@ -8330,25 +7502,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     transition(
-        params?: Params$Resource$Livebroadcasts$Transition,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveBroadcast>;
+      params?: Params$Resource$Livebroadcasts$Transition,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveBroadcast>;
     transition(
-        params: Params$Resource$Livebroadcasts$Transition,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Transition,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     transition(
-        params: Params$Resource$Livebroadcasts$Transition,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Transition,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     transition(callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
     transition(
-        paramsOrCallback?: Params$Resource$Livebroadcasts$Transition|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|GaxiosPromise<Schema$LiveBroadcast> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Transition;
+      paramsOrCallback?:
+        | Params$Resource$Livebroadcasts$Transition
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void | GaxiosPromise<Schema$LiveBroadcast> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livebroadcasts$Transition;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8365,16 +7542,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveBroadcasts/transition')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts/transition').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['broadcastStatus', 'id', 'part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8383,11 +7563,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.liveBroadcasts.update
-     * @desc Updates a broadcast. For example, you could modify the broadcast
-     * settings defined in the liveBroadcast resource's contentDetails object.
+     * @desc Updates a broadcast. For example, you could modify the broadcast settings defined in the liveBroadcast resource's contentDetails object.
      * @alias youtube.liveBroadcasts.update
      * @memberOf! ()
      *
@@ -8401,25 +7579,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Livebroadcasts$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveBroadcast>;
+      params?: Params$Resource$Livebroadcasts$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveBroadcast>;
     update(
-        params: Params$Resource$Livebroadcasts$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     update(
-        params: Params$Resource$Livebroadcasts$Update,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Update,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     update(callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
     update(
-        paramsOrCallback?: Params$Resource$Livebroadcasts$Update|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|GaxiosPromise<Schema$LiveBroadcast> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Update;
+      paramsOrCallback?:
+        | Params$Resource$Livebroadcasts$Update
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void | GaxiosPromise<Schema$LiveBroadcast> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livebroadcasts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8436,16 +7619,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveBroadcasts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8455,230 +7641,107 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livebroadcasts$Bind extends
-      StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Bind
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies the unique ID of the broadcast that is being
-     * bound to a video stream.
+     * The id parameter specifies the unique ID of the broadcast that is being bound to a video stream.
      */
     id?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more
-     * liveBroadcast resource properties that the API response will include. The
-     * part names that you can include in the parameter value are id, snippet,
-     * contentDetails, and status.
+     * The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      */
     part?: string;
     /**
-     * The streamId parameter specifies the unique ID of the video stream that
-     * is being bound to a broadcast. If this parameter is omitted, the API will
-     * remove any existing binding between the broadcast and a video stream.
+     * The streamId parameter specifies the unique ID of the video stream that is being bound to a broadcast. If this parameter is omitted, the API will remove any existing binding between the broadcast and a video stream.
      */
     streamId?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Control extends
-      StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Control
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The displaySlate parameter specifies whether the slate is being enabled
-     * or disabled.
+     * The displaySlate parameter specifies whether the slate is being enabled or disabled.
      */
     displaySlate?: boolean;
     /**
-     * The id parameter specifies the YouTube live broadcast ID that uniquely
-     * identifies the broadcast in which the slate is being updated.
+     * The id parameter specifies the YouTube live broadcast ID that uniquely identifies the broadcast in which the slate is being updated.
      */
     id?: string;
     /**
-     * The offsetTimeMs parameter specifies a positive time offset when the
-     * specified slate change will occur. The value is measured in milliseconds
-     * from the beginning of the broadcast's monitor stream, which is the time
-     * that the testing phase for the broadcast began. Even though it is
-     * specified in milliseconds, the value is actually an approximation, and
-     * YouTube completes the requested action as closely as possible to that
-     * time.  If you do not specify a value for this parameter, then YouTube
-     * performs the action as soon as possible. See the Getting started guide
-     * for more details.  Important: You should only specify a value for this
-     * parameter if your broadcast stream is delayed.
+     * The offsetTimeMs parameter specifies a positive time offset when the specified slate change will occur. The value is measured in milliseconds from the beginning of the broadcast's monitor stream, which is the time that the testing phase for the broadcast began. Even though it is specified in milliseconds, the value is actually an approximation, and YouTube completes the requested action as closely as possible to that time.  If you do not specify a value for this parameter, then YouTube performs the action as soon as possible. See the Getting started guide for more details.  Important: You should only specify a value for this parameter if your broadcast stream is delayed.
      */
     offsetTimeMs?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more
-     * liveBroadcast resource properties that the API response will include. The
-     * part names that you can include in the parameter value are id, snippet,
-     * contentDetails, and status.
+     * The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      */
     part?: string;
     /**
-     * The walltime parameter specifies the wall clock time at which the
-     * specified slate change will occur. The value is specified in ISO 8601
-     * (YYYY-MM-DDThh:mm:ss.sssZ) format.
+     * The walltime parameter specifies the wall clock time at which the specified slate change will occur. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sssZ) format.
      */
     walltime?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies the YouTube live broadcast ID for the resource
-     * that is being deleted.
+     * The id parameter specifies the YouTube live broadcast ID for the resource that is being deleted.
      */
     id?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.  The part properties that
-     * you can include in the parameter value are id, snippet, contentDetails,
-     * and status.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.
      */
     part?: string;
 
@@ -8687,199 +7750,95 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveBroadcast;
   }
-  export interface Params$Resource$Livebroadcasts$List extends
-      StandardParameters {
+  export interface Params$Resource$Livebroadcasts$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The broadcastStatus parameter filters the API response to only include
-     * broadcasts with the specified status.
+     * The broadcastStatus parameter filters the API response to only include broadcasts with the specified status.
      */
     broadcastStatus?: string;
     /**
-     * The broadcastType parameter filters the API response to only include
-     * broadcasts with the specified type. This is only compatible with the mine
-     * filter for now.
+     * The broadcastType parameter filters the API response to only include broadcasts with the specified type. This is only compatible with the mine filter for now.
      */
     broadcastType?: string;
     /**
-     * The id parameter specifies a comma-separated list of YouTube broadcast
-     * IDs that identify the broadcasts being retrieved. In a liveBroadcast
-     * resource, the id property specifies the broadcast's ID.
+     * The id parameter specifies a comma-separated list of YouTube broadcast IDs that identify the broadcasts being retrieved. In a liveBroadcast resource, the id property specifies the broadcast's ID.
      */
     id?: string;
     /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * The mine parameter can be used to instruct the API to only return
-     * broadcasts owned by the authenticated user. Set the parameter value to
-     * true to only retrieve your own broadcasts.
+     * The mine parameter can be used to instruct the API to only return broadcasts owned by the authenticated user. Set the parameter value to true to only retrieve your own broadcasts.
      */
     mine?: boolean;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken and
-     * prevPageToken properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more
-     * liveBroadcast resource properties that the API response will include. The
-     * part names that you can include in the parameter value are id, snippet,
-     * contentDetails, and status.
+     * The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      */
     part?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Transition extends
-      StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Transition
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The broadcastStatus parameter identifies the state to which the broadcast
-     * is changing. Note that to transition a broadcast to either the testing or
-     * live state, the status.streamStatus must be active for the stream that
-     * the broadcast is bound to.
+     * The broadcastStatus parameter identifies the state to which the broadcast is changing. Note that to transition a broadcast to either the testing or live state, the status.streamStatus must be active for the stream that the broadcast is bound to.
      */
     broadcastStatus?: string;
     /**
-     * The id parameter specifies the unique ID of the broadcast that is
-     * transitioning to another status.
+     * The id parameter specifies the unique ID of the broadcast that is transitioning to another status.
      */
     id?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more
-     * liveBroadcast resource properties that the API response will include. The
-     * part names that you can include in the parameter value are id, snippet,
-     * contentDetails, and status.
+     * The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      */
     part?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Update extends
-      StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.  The part properties that
-     * you can include in the parameter value are id, snippet, contentDetails,
-     * and status.  Note that this method will override the existing values for
-     * all of the mutable properties that are contained in any parts that the
-     * parameter value specifies. For example, a broadcast's privacy status is
-     * defined in the status part. As such, if your request is updating a
-     * private or unlisted broadcast, and the request's part parameter value
-     * includes the status part, the broadcast's privacy setting will be updated
-     * to whatever value the request body specifies. If the request body does
-     * not specify a value, the existing privacy setting will be removed and the
-     * broadcast will revert to the default privacy setting.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a broadcast's privacy status is defined in the status part. As such, if your request is updating a private or unlisted broadcast, and the request's part parameter value includes the status part, the broadcast's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the broadcast will revert to the default privacy setting.
      */
     part?: string;
 
@@ -8888,14 +7847,12 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveBroadcast;
   }
-
 
   export class Resource$Livechatbans {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.liveChatBans.delete
@@ -8910,23 +7867,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Livechatbans$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Livechatbans$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Livechatbans$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livechatbans$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Livechatbans$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livechatbans$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Livechatbans$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatbans$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Livechatbans$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatbans$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8943,16 +7905,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/bans')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/bans').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8960,7 +7925,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.liveChatBans.insert
@@ -8976,25 +7940,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Livechatbans$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveChatBan>;
+      params?: Params$Resource$Livechatbans$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveChatBan>;
     insert(
-        params: Params$Resource$Livechatbans$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveChatBan>,
-        callback: BodyResponseCallback<Schema$LiveChatBan>): void;
+      params: Params$Resource$Livechatbans$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveChatBan>,
+      callback: BodyResponseCallback<Schema$LiveChatBan>
+    ): void;
     insert(
-        params: Params$Resource$Livechatbans$Insert,
-        callback: BodyResponseCallback<Schema$LiveChatBan>): void;
+      params: Params$Resource$Livechatbans$Insert,
+      callback: BodyResponseCallback<Schema$LiveChatBan>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$LiveChatBan>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Livechatbans$Insert|
-        BodyResponseCallback<Schema$LiveChatBan>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveChatBan>,
-        callback?: BodyResponseCallback<Schema$LiveChatBan>):
-        void|GaxiosPromise<Schema$LiveChatBan> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatbans$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Livechatbans$Insert
+        | BodyResponseCallback<Schema$LiveChatBan>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatBan>,
+      callback?: BodyResponseCallback<Schema$LiveChatBan>
+    ): void | GaxiosPromise<Schema$LiveChatBan> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatbans$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9011,16 +7980,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/bans')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/bans').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatBan>(parameters, callback);
@@ -9030,31 +8002,27 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livechatbans$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Livechatbans$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter identifies the chat ban to remove. The value uniquely
-     * identifies both the ban and the chat.
+     * The id parameter identifies the chat ban to remove. The value uniquely identifies both the ban and the chat.
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatbans$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Livechatbans$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response returns. Set the parameter value to
-     * snippet.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
      */
     part?: string;
 
@@ -9064,13 +8032,11 @@ export namespace youtube_v3 {
     requestBody?: Schema$LiveChatBan;
   }
 
-
   export class Resource$Livechatmessages {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.liveChatMessages.delete
@@ -9085,23 +8051,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Livechatmessages$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Livechatmessages$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Livechatmessages$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livechatmessages$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Livechatmessages$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livechatmessages$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Livechatmessages$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatmessages$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Livechatmessages$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatmessages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9118,16 +8089,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/messages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/messages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9135,7 +8109,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.liveChatMessages.insert
@@ -9151,25 +8124,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Livechatmessages$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveChatMessage>;
+      params?: Params$Resource$Livechatmessages$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveChatMessage>;
     insert(
-        params: Params$Resource$Livechatmessages$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveChatMessage>,
-        callback: BodyResponseCallback<Schema$LiveChatMessage>): void;
+      params: Params$Resource$Livechatmessages$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveChatMessage>,
+      callback: BodyResponseCallback<Schema$LiveChatMessage>
+    ): void;
     insert(
-        params: Params$Resource$Livechatmessages$Insert,
-        callback: BodyResponseCallback<Schema$LiveChatMessage>): void;
+      params: Params$Resource$Livechatmessages$Insert,
+      callback: BodyResponseCallback<Schema$LiveChatMessage>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$LiveChatMessage>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Livechatmessages$Insert|
-        BodyResponseCallback<Schema$LiveChatMessage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveChatMessage>,
-        callback?: BodyResponseCallback<Schema$LiveChatMessage>):
-        void|GaxiosPromise<Schema$LiveChatMessage> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatmessages$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Livechatmessages$Insert
+        | BodyResponseCallback<Schema$LiveChatMessage>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatMessage>,
+      callback?: BodyResponseCallback<Schema$LiveChatMessage>
+    ): void | GaxiosPromise<Schema$LiveChatMessage> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatmessages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9186,16 +8164,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/messages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/messages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatMessage>(parameters, callback);
@@ -9203,7 +8184,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$LiveChatMessage>(parameters);
       }
     }
-
 
     /**
      * youtube.liveChatMessages.list
@@ -9223,30 +8203,34 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Livechatmessages$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$LiveChatMessageListResponse>;
+      params?: Params$Resource$Livechatmessages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveChatMessageListResponse>;
     list(
-        params: Params$Resource$Livechatmessages$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LiveChatMessageListResponse>,
-        callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>):
-        void;
+      params: Params$Resource$Livechatmessages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatMessageListResponse>,
+      callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>
+    ): void;
     list(
-        params: Params$Resource$Livechatmessages$List,
-        callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>):
-        void;
+      params: Params$Resource$Livechatmessages$List,
+      callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Livechatmessages$List|
-        BodyResponseCallback<Schema$LiveChatMessageListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveChatMessageListResponse>,
-        callback?: BodyResponseCallback<Schema$LiveChatMessageListResponse>):
-        void|GaxiosPromise<Schema$LiveChatMessageListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatmessages$List;
+      callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Livechatmessages$List
+        | BodyResponseCallback<Schema$LiveChatMessageListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatMessageListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveChatMessageListResponse>
+    ): void | GaxiosPromise<Schema$LiveChatMessageListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatmessages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9263,50 +8247,52 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/messages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/messages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['liveChatId', 'part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatMessageListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$LiveChatMessageListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Livechatmessages$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Livechatmessages$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies the YouTube chat message ID of the resource
-     * that is being deleted.
+     * The id parameter specifies the YouTube chat message ID of the resource that is being deleted.
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatmessages$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Livechatmessages$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The part parameter serves two purposes. It identifies the properties that
-     * the write operation will set as well as the properties that the API
-     * response will include. Set the parameter value to snippet.
+     * The part parameter serves two purposes. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the parameter value to snippet.
      */
     part?: string;
 
@@ -9315,59 +8301,44 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveChatMessage;
   }
-  export interface Params$Resource$Livechatmessages$List extends
-      StandardParameters {
+  export interface Params$Resource$Livechatmessages$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The hl parameter instructs the API to retrieve localized resource
-     * metadata for a specific application language that the YouTube website
-     * supports. The parameter value must be a language code included in the
-     * list returned by the i18nLanguages.list method.  If localized resource
-     * details are available in that language, the resource's snippet.localized
-     * object will contain the localized values. However, if localized details
-     * are not available, the snippet.localized object will contain resource
-     * details in the resource's default language.
+     * The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
      */
     hl?: string;
     /**
-     * The liveChatId parameter specifies the ID of the chat whose messages will
-     * be returned.
+     * The liveChatId parameter specifies the ID of the chat whose messages will be returned.
      */
     liveChatId?: string;
     /**
-     * The maxResults parameter specifies the maximum number of messages that
-     * should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of messages that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken property
-     * identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The part parameter specifies the liveChatComment resource parts that the
-     * API response will include. Supported values are id and snippet.
+     * The part parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id and snippet.
      */
     part?: string;
     /**
-     * The profileImageSize parameter specifies the size of the user profile
-     * pictures that should be returned in the result set. Default: 88.
+     * The profileImageSize parameter specifies the size of the user profile pictures that should be returned in the result set. Default: 88.
      */
     profileImageSize?: number;
   }
-
 
   export class Resource$Livechatmoderators {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.liveChatModerators.delete
@@ -9382,23 +8353,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Livechatmoderators$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Livechatmoderators$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Livechatmoderators$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livechatmoderators$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Livechatmoderators$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livechatmoderators$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Livechatmoderators$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatmoderators$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Livechatmoderators$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatmoderators$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9415,16 +8391,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/moderators')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/moderators').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9432,7 +8411,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.liveChatModerators.insert
@@ -9448,25 +8426,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Livechatmoderators$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveChatModerator>;
+      params?: Params$Resource$Livechatmoderators$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveChatModerator>;
     insert(
-        params: Params$Resource$Livechatmoderators$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveChatModerator>,
-        callback: BodyResponseCallback<Schema$LiveChatModerator>): void;
+      params: Params$Resource$Livechatmoderators$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveChatModerator>,
+      callback: BodyResponseCallback<Schema$LiveChatModerator>
+    ): void;
     insert(
-        params: Params$Resource$Livechatmoderators$Insert,
-        callback: BodyResponseCallback<Schema$LiveChatModerator>): void;
+      params: Params$Resource$Livechatmoderators$Insert,
+      callback: BodyResponseCallback<Schema$LiveChatModerator>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$LiveChatModerator>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Livechatmoderators$Insert|
-        BodyResponseCallback<Schema$LiveChatModerator>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveChatModerator>,
-        callback?: BodyResponseCallback<Schema$LiveChatModerator>):
-        void|GaxiosPromise<Schema$LiveChatModerator> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatmoderators$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Livechatmoderators$Insert
+        | BodyResponseCallback<Schema$LiveChatModerator>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatModerator>,
+      callback?: BodyResponseCallback<Schema$LiveChatModerator>
+    ): void | GaxiosPromise<Schema$LiveChatModerator> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatmoderators$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9483,16 +8466,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/moderators')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/moderators').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatModerator>(parameters, callback);
@@ -9500,7 +8486,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$LiveChatModerator>(parameters);
       }
     }
-
 
     /**
      * youtube.liveChatModerators.list
@@ -9518,30 +8503,34 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Livechatmoderators$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$LiveChatModeratorListResponse>;
+      params?: Params$Resource$Livechatmoderators$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveChatModeratorListResponse>;
     list(
-        params: Params$Resource$Livechatmoderators$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
-        callback: BodyResponseCallback<Schema$LiveChatModeratorListResponse>):
-        void;
+      params: Params$Resource$Livechatmoderators$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
+      callback: BodyResponseCallback<Schema$LiveChatModeratorListResponse>
+    ): void;
     list(
-        params: Params$Resource$Livechatmoderators$List,
-        callback: BodyResponseCallback<Schema$LiveChatModeratorListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$LiveChatModeratorListResponse>):
-        void;
+      params: Params$Resource$Livechatmoderators$List,
+      callback: BodyResponseCallback<Schema$LiveChatModeratorListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Livechatmoderators$List|
-        BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
-        callback?: BodyResponseCallback<Schema$LiveChatModeratorListResponse>):
-        void|GaxiosPromise<Schema$LiveChatModeratorListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatmoderators$List;
+      callback: BodyResponseCallback<Schema$LiveChatModeratorListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Livechatmoderators$List
+        | BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveChatModeratorListResponse>
+    ): void | GaxiosPromise<Schema$LiveChatModeratorListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatmoderators$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9558,52 +8547,54 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/moderators')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/moderators').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['liveChatId', 'part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatModeratorListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$LiveChatModeratorListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Livechatmoderators$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Livechatmoderators$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter identifies the chat moderator to remove. The value
-     * uniquely identifies both the moderator and the chat.
+     * The id parameter identifies the chat moderator to remove. The value uniquely identifies both the moderator and the chat.
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatmoderators$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Livechatmoderators$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response returns. Set the parameter value to
-     * snippet.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
      */
     part?: string;
 
@@ -9612,43 +8603,36 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveChatModerator;
   }
-  export interface Params$Resource$Livechatmoderators$List extends
-      StandardParameters {
+  export interface Params$Resource$Livechatmoderators$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The liveChatId parameter specifies the YouTube live chat for which the
-     * API should return moderators.
+     * The liveChatId parameter specifies the YouTube live chat for which the API should return moderators.
      */
     liveChatId?: string;
     /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken and
-     * prevPageToken properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The part parameter specifies the liveChatModerator resource parts that
-     * the API response will include. Supported values are id and snippet.
+     * The part parameter specifies the liveChatModerator resource parts that the API response will include. Supported values are id and snippet.
      */
     part?: string;
   }
-
 
   export class Resource$Livestreams {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.liveStreams.delete
@@ -9665,23 +8649,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Livestreams$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Livestreams$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Livestreams$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livestreams$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Livestreams$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livestreams$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Livestreams$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livestreams$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Livestreams$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livestreams$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9698,16 +8687,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveStreams')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveStreams').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9716,11 +8708,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.liveStreams.insert
-     * @desc Creates a video stream. The stream enables you to send your video
-     * to YouTube, which can then broadcast the video to your audience.
+     * @desc Creates a video stream. The stream enables you to send your video to YouTube, which can then broadcast the video to your audience.
      * @alias youtube.liveStreams.insert
      * @memberOf! ()
      *
@@ -9734,25 +8724,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Livestreams$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveStream>;
+      params?: Params$Resource$Livestreams$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveStream>;
     insert(
-        params: Params$Resource$Livestreams$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveStream>,
-        callback: BodyResponseCallback<Schema$LiveStream>): void;
+      params: Params$Resource$Livestreams$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveStream>,
+      callback: BodyResponseCallback<Schema$LiveStream>
+    ): void;
     insert(
-        params: Params$Resource$Livestreams$Insert,
-        callback: BodyResponseCallback<Schema$LiveStream>): void;
+      params: Params$Resource$Livestreams$Insert,
+      callback: BodyResponseCallback<Schema$LiveStream>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$LiveStream>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Livestreams$Insert|
-        BodyResponseCallback<Schema$LiveStream>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveStream>,
-        callback?: BodyResponseCallback<Schema$LiveStream>):
-        void|GaxiosPromise<Schema$LiveStream> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livestreams$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Livestreams$Insert
+        | BodyResponseCallback<Schema$LiveStream>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveStream>,
+      callback?: BodyResponseCallback<Schema$LiveStream>
+    ): void | GaxiosPromise<Schema$LiveStream> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livestreams$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9769,16 +8764,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveStreams')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveStreams').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveStream>(parameters, callback);
@@ -9787,11 +8785,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.liveStreams.list
-     * @desc Returns a list of video streams that match the API request
-     * parameters.
+     * @desc Returns a list of video streams that match the API request parameters.
      * @alias youtube.liveStreams.list
      * @memberOf! ()
      *
@@ -9807,24 +8803,31 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Livestreams$List, options?: MethodOptions):
-        GaxiosPromise<Schema$LiveStreamListResponse>;
     list(
-        params: Params$Resource$Livestreams$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LiveStreamListResponse>,
-        callback: BodyResponseCallback<Schema$LiveStreamListResponse>): void;
+      params?: Params$Resource$Livestreams$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveStreamListResponse>;
     list(
-        params: Params$Resource$Livestreams$List,
-        callback: BodyResponseCallback<Schema$LiveStreamListResponse>): void;
+      params: Params$Resource$Livestreams$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveStreamListResponse>,
+      callback: BodyResponseCallback<Schema$LiveStreamListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Livestreams$List,
+      callback: BodyResponseCallback<Schema$LiveStreamListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$LiveStreamListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Livestreams$List|
-        BodyResponseCallback<Schema$LiveStreamListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveStreamListResponse>,
-        callback?: BodyResponseCallback<Schema$LiveStreamListResponse>):
-        void|GaxiosPromise<Schema$LiveStreamListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Livestreams$List
+        | BodyResponseCallback<Schema$LiveStreamListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveStreamListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveStreamListResponse>
+    ): void | GaxiosPromise<Schema$LiveStreamListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Livestreams$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9842,16 +8845,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveStreams')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveStreams').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveStreamListResponse>(parameters, callback);
@@ -9860,12 +8866,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.liveStreams.update
-     * @desc Updates a video stream. If the properties that you want to change
-     * cannot be updated, then you need to create a new stream with the proper
-     * settings.
+     * @desc Updates a video stream. If the properties that you want to change cannot be updated, then you need to create a new stream with the proper settings.
      * @alias youtube.liveStreams.update
      * @memberOf! ()
      *
@@ -9879,25 +8882,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Livestreams$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveStream>;
+      params?: Params$Resource$Livestreams$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveStream>;
     update(
-        params: Params$Resource$Livestreams$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveStream>,
-        callback: BodyResponseCallback<Schema$LiveStream>): void;
+      params: Params$Resource$Livestreams$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveStream>,
+      callback: BodyResponseCallback<Schema$LiveStream>
+    ): void;
     update(
-        params: Params$Resource$Livestreams$Update,
-        callback: BodyResponseCallback<Schema$LiveStream>): void;
+      params: Params$Resource$Livestreams$Update,
+      callback: BodyResponseCallback<Schema$LiveStream>
+    ): void;
     update(callback: BodyResponseCallback<Schema$LiveStream>): void;
     update(
-        paramsOrCallback?: Params$Resource$Livestreams$Update|
-        BodyResponseCallback<Schema$LiveStream>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveStream>,
-        callback?: BodyResponseCallback<Schema$LiveStream>):
-        void|GaxiosPromise<Schema$LiveStream> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livestreams$Update;
+      paramsOrCallback?:
+        | Params$Resource$Livestreams$Update
+        | BodyResponseCallback<Schema$LiveStream>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveStream>,
+      callback?: BodyResponseCallback<Schema$LiveStream>
+    ): void | GaxiosPromise<Schema$LiveStream> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livestreams$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9914,16 +8922,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveStreams')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveStreams').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveStream>(parameters, callback);
@@ -9933,95 +8944,43 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livestreams$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Livestreams$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies the YouTube live stream ID for the resource
-     * that is being deleted.
+     * The id parameter specifies the YouTube live stream ID for the resource that is being deleted.
      */
     id?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
   }
-  export interface Params$Resource$Livestreams$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Livestreams$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.  The part properties that
-     * you can include in the parameter value are id, snippet, cdn, and status.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, cdn, and status.
      */
     part?: string;
 
@@ -10034,119 +8993,54 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies a comma-separated list of YouTube stream IDs
-     * that identify the streams being retrieved. In a liveStream resource, the
-     * id property specifies the stream's ID.
+     * The id parameter specifies a comma-separated list of YouTube stream IDs that identify the streams being retrieved. In a liveStream resource, the id property specifies the stream's ID.
      */
     id?: string;
     /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * The mine parameter can be used to instruct the API to only return streams
-     * owned by the authenticated user. Set the parameter value to true to only
-     * retrieve your own streams.
+     * The mine parameter can be used to instruct the API to only return streams owned by the authenticated user. Set the parameter value to true to only retrieve your own streams.
      */
     mine?: boolean;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken and
-     * prevPageToken properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more
-     * liveStream resource properties that the API response will include. The
-     * part names that you can include in the parameter value are id, snippet,
-     * cdn, and status.
+     * The part parameter specifies a comma-separated list of one or more liveStream resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, cdn, and status.
      */
     part?: string;
   }
-  export interface Params$Resource$Livestreams$Update extends
-      StandardParameters {
+  export interface Params$Resource$Livestreams$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.  The part properties that
-     * you can include in the parameter value are id, snippet, cdn, and status.
-     * Note that this method will override the existing values for all of the
-     * mutable properties that are contained in any parts that the parameter
-     * value specifies. If the request body does not specify a value for a
-     * mutable property, the existing value for that property will be removed.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  The part properties that you can include in the parameter value are id, snippet, cdn, and status.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. If the request body does not specify a value for a mutable property, the existing value for that property will be removed.
      */
     part?: string;
 
@@ -10156,13 +9050,11 @@ export namespace youtube_v3 {
     requestBody?: Schema$LiveStream;
   }
 
-
   export class Resource$Playlistitems {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.playlistItems.delete
@@ -10178,23 +9070,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Playlistitems$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Playlistitems$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Playlistitems$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Playlistitems$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Playlistitems$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Playlistitems$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Playlistitems$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Playlistitems$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Playlistitems$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Playlistitems$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10211,16 +9108,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlistItems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlistItems').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10228,7 +9128,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.playlistItems.insert
@@ -10245,25 +9144,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Playlistitems$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$PlaylistItem>;
+      params?: Params$Resource$Playlistitems$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlaylistItem>;
     insert(
-        params: Params$Resource$Playlistitems$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$PlaylistItem>,
-        callback: BodyResponseCallback<Schema$PlaylistItem>): void;
+      params: Params$Resource$Playlistitems$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$PlaylistItem>,
+      callback: BodyResponseCallback<Schema$PlaylistItem>
+    ): void;
     insert(
-        params: Params$Resource$Playlistitems$Insert,
-        callback: BodyResponseCallback<Schema$PlaylistItem>): void;
+      params: Params$Resource$Playlistitems$Insert,
+      callback: BodyResponseCallback<Schema$PlaylistItem>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$PlaylistItem>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Playlistitems$Insert|
-        BodyResponseCallback<Schema$PlaylistItem>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlaylistItem>,
-        callback?: BodyResponseCallback<Schema$PlaylistItem>):
-        void|GaxiosPromise<Schema$PlaylistItem> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Playlistitems$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Playlistitems$Insert
+        | BodyResponseCallback<Schema$PlaylistItem>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlaylistItem>,
+      callback?: BodyResponseCallback<Schema$PlaylistItem>
+    ): void | GaxiosPromise<Schema$PlaylistItem> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Playlistitems$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10280,16 +9184,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlistItems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlistItems').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistItem>(parameters, callback);
@@ -10298,12 +9205,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.playlistItems.list
-     * @desc Returns a collection of playlist items that match the API request
-     * parameters. You can retrieve all of the playlist items in a specified
-     * playlist or retrieve one or more playlist items by their unique IDs.
+     * @desc Returns a collection of playlist items that match the API request parameters. You can retrieve all of the playlist items in a specified playlist or retrieve one or more playlist items by their unique IDs.
      * @alias youtube.playlistItems.list
      * @memberOf! ()
      *
@@ -10319,26 +9223,33 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Playlistitems$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PlaylistItemListResponse>;
     list(
-        params: Params$Resource$Playlistitems$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlaylistItemListResponse>,
-        callback: BodyResponseCallback<Schema$PlaylistItemListResponse>): void;
+      params?: Params$Resource$Playlistitems$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlaylistItemListResponse>;
     list(
-        params: Params$Resource$Playlistitems$List,
-        callback: BodyResponseCallback<Schema$PlaylistItemListResponse>): void;
+      params: Params$Resource$Playlistitems$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlaylistItemListResponse>,
+      callback: BodyResponseCallback<Schema$PlaylistItemListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Playlistitems$List,
+      callback: BodyResponseCallback<Schema$PlaylistItemListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PlaylistItemListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Playlistitems$List|
-        BodyResponseCallback<Schema$PlaylistItemListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlaylistItemListResponse>,
-        callback?: BodyResponseCallback<Schema$PlaylistItemListResponse>):
-        void|GaxiosPromise<Schema$PlaylistItemListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Playlistitems$List;
+      paramsOrCallback?:
+        | Params$Resource$Playlistitems$List
+        | BodyResponseCallback<Schema$PlaylistItemListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlaylistItemListResponse>,
+      callback?: BodyResponseCallback<Schema$PlaylistItemListResponse>
+    ): void | GaxiosPromise<Schema$PlaylistItemListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Playlistitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10355,16 +9266,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlistItems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlistItems').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistItemListResponse>(parameters, callback);
@@ -10373,11 +9287,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.playlistItems.update
-     * @desc Modifies a playlist item. For example, you could update the item's
-     * position in the playlist.
+     * @desc Modifies a playlist item. For example, you could update the item's position in the playlist.
      * @alias youtube.playlistItems.update
      * @memberOf! ()
      *
@@ -10390,25 +9302,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Playlistitems$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$PlaylistItem>;
+      params?: Params$Resource$Playlistitems$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlaylistItem>;
     update(
-        params: Params$Resource$Playlistitems$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$PlaylistItem>,
-        callback: BodyResponseCallback<Schema$PlaylistItem>): void;
+      params: Params$Resource$Playlistitems$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$PlaylistItem>,
+      callback: BodyResponseCallback<Schema$PlaylistItem>
+    ): void;
     update(
-        params: Params$Resource$Playlistitems$Update,
-        callback: BodyResponseCallback<Schema$PlaylistItem>): void;
+      params: Params$Resource$Playlistitems$Update,
+      callback: BodyResponseCallback<Schema$PlaylistItem>
+    ): void;
     update(callback: BodyResponseCallback<Schema$PlaylistItem>): void;
     update(
-        paramsOrCallback?: Params$Resource$Playlistitems$Update|
-        BodyResponseCallback<Schema$PlaylistItem>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlaylistItem>,
-        callback?: BodyResponseCallback<Schema$PlaylistItem>):
-        void|GaxiosPromise<Schema$PlaylistItem> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Playlistitems$Update;
+      paramsOrCallback?:
+        | Params$Resource$Playlistitems$Update
+        | BodyResponseCallback<Schema$PlaylistItem>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlaylistItem>,
+      callback?: BodyResponseCallback<Schema$PlaylistItem>
+    ): void | GaxiosPromise<Schema$PlaylistItem> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Playlistitems$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10425,16 +9342,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlistItems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlistItems').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistItem>(parameters, callback);
@@ -10444,57 +9364,35 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Playlistitems$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Playlistitems$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies the YouTube playlist item ID for the playlist
-     * item that is being deleted. In a playlistItem resource, the id property
-     * specifies the playlist item's ID.
+     * The id parameter specifies the YouTube playlist item ID for the playlist item that is being deleted. In a playlistItem resource, the id property specifies the playlist item's ID.
      */
     id?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Playlistitems$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Playlistitems$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      */
     part?: string;
 
@@ -10503,100 +9401,55 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$PlaylistItem;
   }
-  export interface Params$Resource$Playlistitems$List extends
-      StandardParameters {
+  export interface Params$Resource$Playlistitems$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies a comma-separated list of one or more unique
-     * playlist item IDs.
+     * The id parameter specifies a comma-separated list of one or more unique playlist item IDs.
      */
     id?: string;
     /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken and
-     * prevPageToken properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more
-     * playlistItem resource properties that the API response will include.  If
-     * the parameter identifies a property that contains child properties, the
-     * child properties will be included in the response. For example, in a
-     * playlistItem resource, the snippet property contains numerous fields,
-     * including the title, description, position, and resourceId properties. As
-     * such, if you set part=snippet, the API response will contain all of those
-     * properties.
+     * The part parameter specifies a comma-separated list of one or more playlistItem resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlistItem resource, the snippet property contains numerous fields, including the title, description, position, and resourceId properties. As such, if you set part=snippet, the API response will contain all of those properties.
      */
     part?: string;
     /**
-     * The playlistId parameter specifies the unique ID of the playlist for
-     * which you want to retrieve playlist items. Note that even though this is
-     * an optional parameter, every request to retrieve playlist items must
-     * specify a value for either the id parameter or the playlistId parameter.
+     * The playlistId parameter specifies the unique ID of the playlist for which you want to retrieve playlist items. Note that even though this is an optional parameter, every request to retrieve playlist items must specify a value for either the id parameter or the playlistId parameter.
      */
     playlistId?: string;
     /**
-     * The videoId parameter specifies that the request should return only the
-     * playlist items that contain the specified video.
+     * The videoId parameter specifies that the request should return only the playlist items that contain the specified video.
      */
     videoId?: string;
   }
-  export interface Params$Resource$Playlistitems$Update extends
-      StandardParameters {
+  export interface Params$Resource$Playlistitems$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.  Note that this method
-     * will override the existing values for all of the mutable properties that
-     * are contained in any parts that the parameter value specifies. For
-     * example, a playlist item can specify a start time and end time, which
-     * identify the times portion of the video that should play when users watch
-     * the video in the playlist. If your request is updating a playlist item
-     * that sets these values, and the request's part parameter value includes
-     * the contentDetails part, the playlist item's start and end times will be
-     * updated to whatever value the request body specifies. If the request body
-     * does not specify values, the existing start and end times will be removed
-     * and replaced with the default settings.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a playlist item can specify a start time and end time, which identify the times portion of the video that should play when users watch the video in the playlist. If your request is updating a playlist item that sets these values, and the request's part parameter value includes the contentDetails part, the playlist item's start and end times will be updated to whatever value the request body specifies. If the request body does not specify values, the existing start and end times will be removed and replaced with the default settings.
      */
     part?: string;
 
@@ -10605,14 +9458,12 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$PlaylistItem;
   }
-
 
   export class Resource$Playlists {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.playlists.delete
@@ -10627,21 +9478,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Playlists$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Playlists$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Playlists$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Playlists$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Playlists$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Playlists$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Playlists$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Playlists$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10659,16 +9516,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlists')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlists').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10676,7 +9536,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.playlists.insert
@@ -10693,22 +9552,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Playlists$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Playlist>;
     insert(
-        params: Params$Resource$Playlists$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Playlist>,
-        callback: BodyResponseCallback<Schema$Playlist>): void;
+      params?: Params$Resource$Playlists$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Playlist>;
     insert(
-        params: Params$Resource$Playlists$Insert,
-        callback: BodyResponseCallback<Schema$Playlist>): void;
+      params: Params$Resource$Playlists$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Playlist>,
+      callback: BodyResponseCallback<Schema$Playlist>
+    ): void;
+    insert(
+      params: Params$Resource$Playlists$Insert,
+      callback: BodyResponseCallback<Schema$Playlist>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Playlist>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Playlists$Insert|
-        BodyResponseCallback<Schema$Playlist>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Playlist>,
-        callback?: BodyResponseCallback<Schema$Playlist>):
-        void|GaxiosPromise<Schema$Playlist> {
+      paramsOrCallback?:
+        | Params$Resource$Playlists$Insert
+        | BodyResponseCallback<Schema$Playlist>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Playlist>,
+      callback?: BodyResponseCallback<Schema$Playlist>
+    ): void | GaxiosPromise<Schema$Playlist> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10726,16 +9590,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlists')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlists').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Playlist>(parameters, callback);
@@ -10744,13 +9611,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.playlists.list
-     * @desc Returns a collection of playlists that match the API request
-     * parameters. For example, you can retrieve all playlists that the
-     * authenticated user owns, or you can retrieve one or more playlists by
-     * their unique IDs.
+     * @desc Returns a collection of playlists that match the API request parameters. For example, you can retrieve all playlists that the authenticated user owns, or you can retrieve one or more playlists by their unique IDs.
      * @alias youtube.playlists.list
      * @memberOf! ()
      *
@@ -10768,24 +9631,31 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Playlists$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PlaylistListResponse>;
     list(
-        params: Params$Resource$Playlists$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlaylistListResponse>,
-        callback: BodyResponseCallback<Schema$PlaylistListResponse>): void;
+      params?: Params$Resource$Playlists$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlaylistListResponse>;
     list(
-        params: Params$Resource$Playlists$List,
-        callback: BodyResponseCallback<Schema$PlaylistListResponse>): void;
+      params: Params$Resource$Playlists$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlaylistListResponse>,
+      callback: BodyResponseCallback<Schema$PlaylistListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Playlists$List,
+      callback: BodyResponseCallback<Schema$PlaylistListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PlaylistListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Playlists$List|
-        BodyResponseCallback<Schema$PlaylistListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlaylistListResponse>,
-        callback?: BodyResponseCallback<Schema$PlaylistListResponse>):
-        void|GaxiosPromise<Schema$PlaylistListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Playlists$List
+        | BodyResponseCallback<Schema$PlaylistListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlaylistListResponse>,
+      callback?: BodyResponseCallback<Schema$PlaylistListResponse>
+    ): void | GaxiosPromise<Schema$PlaylistListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10803,16 +9673,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlists')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlists').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistListResponse>(parameters, callback);
@@ -10821,11 +9694,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.playlists.update
-     * @desc Modifies a playlist. For example, you could change a playlist's
-     * title, description, or privacy status.
+     * @desc Modifies a playlist. For example, you could change a playlist's title, description, or privacy status.
      * @alias youtube.playlists.update
      * @memberOf! ()
      *
@@ -10837,22 +9708,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Playlists$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Playlist>;
     update(
-        params: Params$Resource$Playlists$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Playlist>,
-        callback: BodyResponseCallback<Schema$Playlist>): void;
+      params?: Params$Resource$Playlists$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Playlist>;
     update(
-        params: Params$Resource$Playlists$Update,
-        callback: BodyResponseCallback<Schema$Playlist>): void;
+      params: Params$Resource$Playlists$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Playlist>,
+      callback: BodyResponseCallback<Schema$Playlist>
+    ): void;
+    update(
+      params: Params$Resource$Playlists$Update,
+      callback: BodyResponseCallback<Schema$Playlist>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Playlist>): void;
     update(
-        paramsOrCallback?: Params$Resource$Playlists$Update|
-        BodyResponseCallback<Schema$Playlist>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Playlist>,
-        callback?: BodyResponseCallback<Schema$Playlist>):
-        void|GaxiosPromise<Schema$Playlist> {
+      paramsOrCallback?:
+        | Params$Resource$Playlists$Update
+        | BodyResponseCallback<Schema$Playlist>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Playlist>,
+      callback?: BodyResponseCallback<Schema$Playlist>
+    ): void | GaxiosPromise<Schema$Playlist> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10870,16 +9746,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlists')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlists').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Playlist>(parameters, callback);
@@ -10893,25 +9772,14 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies the YouTube playlist ID for the playlist that
-     * is being deleted. In a playlist resource, the id property specifies the
-     * playlist's ID.
+     * The id parameter specifies the YouTube playlist ID for the playlist that is being deleted. In a playlist resource, the id property specifies the playlist's ID.
      */
     id?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
@@ -10919,44 +9787,18 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      */
     part?: string;
 
@@ -10969,80 +9811,42 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * This value indicates that the API should only return the specified
-     * channel's playlists.
+     * This value indicates that the API should only return the specified channel's playlists.
      */
     channelId?: string;
     /**
-     * The hl parameter should be used for filter out the properties that are
-     * not in the given language. Used for the snippet part.
+     * The hl parameter should be used for filter out the properties that are not in the given language. Used for the snippet part.
      */
     hl?: string;
     /**
-     * The id parameter specifies a comma-separated list of the YouTube playlist
-     * ID(s) for the resource(s) that are being retrieved. In a playlist
-     * resource, the id property specifies the playlist's YouTube playlist ID.
+     * The id parameter specifies a comma-separated list of the YouTube playlist ID(s) for the resource(s) that are being retrieved. In a playlist resource, the id property specifies the playlist's YouTube playlist ID.
      */
     id?: string;
     /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * Set this parameter's value to true to instruct the API to only return
-     * playlists owned by the authenticated user.
+     * Set this parameter's value to true to instruct the API to only return playlists owned by the authenticated user.
      */
     mine?: boolean;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken and
-     * prevPageToken properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more
-     * playlist resource properties that the API response will include.  If the
-     * parameter identifies a property that contains child properties, the child
-     * properties will be included in the response. For example, in a playlist
-     * resource, the snippet property contains properties like author, title,
-     * description, tags, and timeCreated. As such, if you set part=snippet, the
-     * API response will contain all of those properties.
+     * The part parameter specifies a comma-separated list of one or more playlist resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlist resource, the snippet property contains properties like author, title, description, tags, and timeCreated. As such, if you set part=snippet, the API response will contain all of those properties.
      */
     part?: string;
   }
@@ -11050,31 +9854,14 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.  Note that this method
-     * will override the existing values for mutable properties that are
-     * contained in any parts that the request body specifies. For example, a
-     * playlist's description is contained in the snippet part, which must be
-     * included in the request body. If the request does not specify a value for
-     * the snippet.description property, the playlist's existing description
-     * will be deleted.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for mutable properties that are contained in any parts that the request body specifies. For example, a playlist's description is contained in the snippet part, which must be included in the request body. If the request does not specify a value for the snippet.description property, the playlist's existing description will be deleted.
      */
     part?: string;
 
@@ -11084,20 +9871,15 @@ export namespace youtube_v3 {
     requestBody?: Schema$Playlist;
   }
 
-
   export class Resource$Search {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * youtube.search.list
-     * @desc Returns a collection of search results that match the query
-     * parameters specified in the API request. By default, a search result set
-     * identifies matching video, channel, and playlist resources, but you can
-     * also configure queries to only retrieve a specific type of resource.
+     * @desc Returns a collection of search results that match the query parameters specified in the API request. By default, a search result set identifies matching video, channel, and playlist resources, but you can also configure queries to only retrieve a specific type of resource.
      * @alias youtube.search.list
      * @memberOf! ()
      *
@@ -11137,23 +9919,29 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Search$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SearchListResponse>;
     list(
-        params: Params$Resource$Search$List,
-        options: MethodOptions|BodyResponseCallback<Schema$SearchListResponse>,
-        callback: BodyResponseCallback<Schema$SearchListResponse>): void;
+      params?: Params$Resource$Search$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchListResponse>;
     list(
-        params: Params$Resource$Search$List,
-        callback: BodyResponseCallback<Schema$SearchListResponse>): void;
+      params: Params$Resource$Search$List,
+      options: MethodOptions | BodyResponseCallback<Schema$SearchListResponse>,
+      callback: BodyResponseCallback<Schema$SearchListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Search$List,
+      callback: BodyResponseCallback<Schema$SearchListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SearchListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Search$List|
-        BodyResponseCallback<Schema$SearchListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchListResponse>,
-        callback?: BodyResponseCallback<Schema$SearchListResponse>):
-        void|GaxiosPromise<Schema$SearchListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Search$List
+        | BodyResponseCallback<Schema$SearchListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchListResponse>,
+      callback?: BodyResponseCallback<Schema$SearchListResponse>
+    ): void | GaxiosPromise<Schema$SearchListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Search$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11171,16 +9959,16 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/search').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchListResponse>(parameters, callback);
@@ -11194,237 +9982,139 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The channelId parameter indicates that the API response should only
-     * contain resources created by the channel
+     * The channelId parameter indicates that the API response should only contain resources created by the channel
      */
     channelId?: string;
     /**
-     * The channelType parameter lets you restrict a search to a particular type
-     * of channel.
+     * The channelType parameter lets you restrict a search to a particular type of channel.
      */
     channelType?: string;
     /**
-     * The eventType parameter restricts a search to broadcast events. If you
-     * specify a value for this parameter, you must also set the type
-     * parameter's value to video.
+     * The eventType parameter restricts a search to broadcast events. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     eventType?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The forContentOwner parameter restricts the search to only
-     * retrieve resources owned by the content owner specified by the
-     * onBehalfOfContentOwner parameter. The user must be authenticated using a
-     * CMS account linked to the specified content owner and
-     * onBehalfOfContentOwner must be provided.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The forContentOwner parameter restricts the search to only retrieve resources owned by the content owner specified by the onBehalfOfContentOwner parameter. The user must be authenticated using a CMS account linked to the specified content owner and onBehalfOfContentOwner must be provided.
      */
     forContentOwner?: boolean;
     /**
-     * The forDeveloper parameter restricts the search to only retrieve videos
-     * uploaded via the developer's application or website. The API server uses
-     * the request's authorization credentials to identify the developer.
-     * Therefore, a developer can restrict results to videos uploaded through
-     * the developer's own app or website but not to videos uploaded through
-     * other apps or sites.
+     * The forDeveloper parameter restricts the search to only retrieve videos uploaded via the developer's application or website. The API server uses the request's authorization credentials to identify the developer. Therefore, a developer can restrict results to videos uploaded through the developer's own app or website but not to videos uploaded through other apps or sites.
      */
     forDeveloper?: boolean;
     /**
-     * The forMine parameter restricts the search to only retrieve videos owned
-     * by the authenticated user. If you set this parameter to true, then the
-     * type parameter's value must also be set to video.
+     * The forMine parameter restricts the search to only retrieve videos owned by the authenticated user. If you set this parameter to true, then the type parameter's value must also be set to video.
      */
     forMine?: boolean;
     /**
-     * The location parameter, in conjunction with the locationRadius parameter,
-     * defines a circular geographic area and also restricts a search to videos
-     * that specify, in their metadata, a geographic location that falls within
-     * that area. The parameter value is a string that specifies
-     * latitude/longitude coordinates e.g. (37.42307,-122.08427).   - The
-     * location parameter value identifies the point at the center of the area.
-     * - The locationRadius parameter specifies the maximum distance that the
-     * location associated with a video can be from that point for the video to
-     * still be included in the search results.The API returns an error if your
-     * request specifies a value for the location parameter but does not also
-     * specify a value for the locationRadius parameter.
+     * The location parameter, in conjunction with the locationRadius parameter, defines a circular geographic area and also restricts a search to videos that specify, in their metadata, a geographic location that falls within that area. The parameter value is a string that specifies latitude/longitude coordinates e.g. (37.42307,-122.08427).   - The location parameter value identifies the point at the center of the area. - The locationRadius parameter specifies the maximum distance that the location associated with a video can be from that point for the video to still be included in the search results.The API returns an error if your request specifies a value for the location parameter but does not also specify a value for the locationRadius parameter.
      */
     location?: string;
     /**
-     * The locationRadius parameter, in conjunction with the location parameter,
-     * defines a circular geographic area.  The parameter value must be a
-     * floating point number followed by a measurement unit. Valid measurement
-     * units are m, km, ft, and mi. For example, valid parameter values include
-     * 1500m, 5km, 10000ft, and 0.75mi. The API does not support locationRadius
-     * parameter values larger than 1000 kilometers.  Note: See the definition
-     * of the location parameter for more information.
+     * The locationRadius parameter, in conjunction with the location parameter, defines a circular geographic area.  The parameter value must be a floating point number followed by a measurement unit. Valid measurement units are m, km, ft, and mi. For example, valid parameter values include 1500m, 5km, 10000ft, and 0.75mi. The API does not support locationRadius parameter values larger than 1000 kilometers.  Note: See the definition of the location parameter for more information.
      */
     locationRadius?: string;
     /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The order parameter specifies the method that will be used to order
-     * resources in the API response.
+     * The order parameter specifies the method that will be used to order resources in the API response.
      */
     order?: string;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken and
-     * prevPageToken properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more search
-     * resource properties that the API response will include. Set the parameter
-     * value to snippet.
+     * The part parameter specifies a comma-separated list of one or more search resource properties that the API response will include. Set the parameter value to snippet.
      */
     part?: string;
     /**
-     * The publishedAfter parameter indicates that the API response should only
-     * contain resources created after the specified time. The value is an RFC
-     * 3339 formatted date-time value (1970-01-01T00:00:00Z).
+     * The publishedAfter parameter indicates that the API response should only contain resources created after the specified time. The value is an RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
      */
     publishedAfter?: string;
     /**
-     * The publishedBefore parameter indicates that the API response should only
-     * contain resources created before the specified time. The value is an RFC
-     * 3339 formatted date-time value (1970-01-01T00:00:00Z).
+     * The publishedBefore parameter indicates that the API response should only contain resources created before the specified time. The value is an RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
      */
     publishedBefore?: string;
     /**
-     * The q parameter specifies the query term to search for.  Your request can
-     * also use the Boolean NOT (-) and OR (|) operators to exclude videos or to
-     * find videos that are associated with one of several search terms. For
-     * example, to search for videos matching either "boating" or "sailing", set
-     * the q parameter value to boating|sailing. Similarly, to search for videos
-     * matching either "boating" or "sailing" but not "fishing", set the q
-     * parameter value to boating|sailing -fishing. Note that the pipe character
-     * must be URL-escaped when it is sent in your API request. The URL-escaped
-     * value for the pipe character is %7C.
+     * The q parameter specifies the query term to search for.  Your request can also use the Boolean NOT (-) and OR (|) operators to exclude videos or to find videos that are associated with one of several search terms. For example, to search for videos matching either "boating" or "sailing", set the q parameter value to boating|sailing. Similarly, to search for videos matching either "boating" or "sailing" but not "fishing", set the q parameter value to boating|sailing -fishing. Note that the pipe character must be URL-escaped when it is sent in your API request. The URL-escaped value for the pipe character is %7C.
      */
     q?: string;
     /**
-     * The regionCode parameter instructs the API to return search results for
-     * the specified country. The parameter value is an ISO 3166-1 alpha-2
-     * country code.
+     * The regionCode parameter instructs the API to return search results for the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      */
     regionCode?: string;
     /**
-     * The relatedToVideoId parameter retrieves a list of videos that are
-     * related to the video that the parameter value identifies. The parameter
-     * value must be set to a YouTube video ID and, if you are using this
-     * parameter, the type parameter must be set to video.
+     * The relatedToVideoId parameter retrieves a list of videos that are related to the video that the parameter value identifies. The parameter value must be set to a YouTube video ID and, if you are using this parameter, the type parameter must be set to video.
      */
     relatedToVideoId?: string;
     /**
-     * The relevanceLanguage parameter instructs the API to return search
-     * results that are most relevant to the specified language. The parameter
-     * value is typically an ISO 639-1 two-letter language code. However, you
-     * should use the values zh-Hans for simplified Chinese and zh-Hant for
-     * traditional Chinese. Please note that results in other languages will
-     * still be returned if they are highly relevant to the search query term.
+     * The relevanceLanguage parameter instructs the API to return search results that are most relevant to the specified language. The parameter value is typically an ISO 639-1 two-letter language code. However, you should use the values zh-Hans for simplified Chinese and zh-Hant for traditional Chinese. Please note that results in other languages will still be returned if they are highly relevant to the search query term.
      */
     relevanceLanguage?: string;
     /**
-     * The safeSearch parameter indicates whether the search results should
-     * include restricted content as well as standard content.
+     * The safeSearch parameter indicates whether the search results should include restricted content as well as standard content.
      */
     safeSearch?: string;
     /**
-     * The topicId parameter indicates that the API response should only contain
-     * resources associated with the specified topic. The value identifies a
-     * Freebase topic ID.
+     * The topicId parameter indicates that the API response should only contain resources associated with the specified topic. The value identifies a Freebase topic ID.
      */
     topicId?: string;
     /**
-     * The type parameter restricts a search query to only retrieve a particular
-     * type of resource. The value is a comma-separated list of resource types.
+     * The type parameter restricts a search query to only retrieve a particular type of resource. The value is a comma-separated list of resource types.
      */
     type?: string;
     /**
-     * The videoCaption parameter indicates whether the API should filter video
-     * search results based on whether they have captions. If you specify a
-     * value for this parameter, you must also set the type parameter's value to
-     * video.
+     * The videoCaption parameter indicates whether the API should filter video search results based on whether they have captions. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoCaption?: string;
     /**
-     * The videoCategoryId parameter filters video search results based on their
-     * category. If you specify a value for this parameter, you must also set
-     * the type parameter's value to video.
+     * The videoCategoryId parameter filters video search results based on their category. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoCategoryId?: string;
     /**
-     * The videoDefinition parameter lets you restrict a search to only include
-     * either high definition (HD) or standard definition (SD) videos. HD videos
-     * are available for playback in at least 720p, though higher resolutions,
-     * like 1080p, might also be available. If you specify a value for this
-     * parameter, you must also set the type parameter's value to video.
+     * The videoDefinition parameter lets you restrict a search to only include either high definition (HD) or standard definition (SD) videos. HD videos are available for playback in at least 720p, though higher resolutions, like 1080p, might also be available. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoDefinition?: string;
     /**
-     * The videoDimension parameter lets you restrict a search to only retrieve
-     * 2D or 3D videos. If you specify a value for this parameter, you must also
-     * set the type parameter's value to video.
+     * The videoDimension parameter lets you restrict a search to only retrieve 2D or 3D videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoDimension?: string;
     /**
-     * The videoDuration parameter filters video search results based on their
-     * duration. If you specify a value for this parameter, you must also set
-     * the type parameter's value to video.
+     * The videoDuration parameter filters video search results based on their duration. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoDuration?: string;
     /**
-     * The videoEmbeddable parameter lets you to restrict a search to only
-     * videos that can be embedded into a webpage. If you specify a value for
-     * this parameter, you must also set the type parameter's value to video.
+     * The videoEmbeddable parameter lets you to restrict a search to only videos that can be embedded into a webpage. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoEmbeddable?: string;
     /**
-     * The videoLicense parameter filters search results to only include videos
-     * with a particular license. YouTube lets video uploaders choose to attach
-     * either the Creative Commons license or the standard YouTube license to
-     * each of their videos. If you specify a value for this parameter, you must
-     * also set the type parameter's value to video.
+     * The videoLicense parameter filters search results to only include videos with a particular license. YouTube lets video uploaders choose to attach either the Creative Commons license or the standard YouTube license to each of their videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoLicense?: string;
     /**
-     * The videoSyndicated parameter lets you to restrict a search to only
-     * videos that can be played outside youtube.com. If you specify a value for
-     * this parameter, you must also set the type parameter's value to video.
+     * The videoSyndicated parameter lets you to restrict a search to only videos that can be played outside youtube.com. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoSyndicated?: string;
     /**
-     * The videoType parameter lets you restrict a search to a particular type
-     * of videos. If you specify a value for this parameter, you must also set
-     * the type parameter's value to video.
+     * The videoType parameter lets you restrict a search to a particular type of videos. If you specify a value for this parameter, you must also set the type parameter's value to video.
      */
     videoType?: string;
   }
-
 
   export class Resource$Sponsors {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.sponsors.list
@@ -11441,23 +10131,29 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Sponsors$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SponsorListResponse>;
     list(
-        params: Params$Resource$Sponsors$List,
-        options: MethodOptions|BodyResponseCallback<Schema$SponsorListResponse>,
-        callback: BodyResponseCallback<Schema$SponsorListResponse>): void;
+      params?: Params$Resource$Sponsors$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SponsorListResponse>;
     list(
-        params: Params$Resource$Sponsors$List,
-        callback: BodyResponseCallback<Schema$SponsorListResponse>): void;
+      params: Params$Resource$Sponsors$List,
+      options: MethodOptions | BodyResponseCallback<Schema$SponsorListResponse>,
+      callback: BodyResponseCallback<Schema$SponsorListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Sponsors$List,
+      callback: BodyResponseCallback<Schema$SponsorListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SponsorListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Sponsors$List|
-        BodyResponseCallback<Schema$SponsorListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SponsorListResponse>,
-        callback?: BodyResponseCallback<Schema$SponsorListResponse>):
-        void|GaxiosPromise<Schema$SponsorListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Sponsors$List
+        | BodyResponseCallback<Schema$SponsorListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SponsorListResponse>,
+      callback?: BodyResponseCallback<Schema$SponsorListResponse>
+    ): void | GaxiosPromise<Schema$SponsorListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sponsors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11475,16 +10171,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/sponsors')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/sponsors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SponsorListResponse>(parameters, callback);
@@ -11498,37 +10197,31 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The filter parameter specifies which channel sponsors to return.
      */
     filter?: string;
     /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken and
-     * prevPageToken properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The part parameter specifies the sponsor resource parts that the API
-     * response will include. Supported values are id and snippet.
+     * The part parameter specifies the sponsor resource parts that the API response will include. Supported values are id and snippet.
      */
     part?: string;
   }
-
 
   export class Resource$Subscriptions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.subscriptions.delete
@@ -11543,23 +10236,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Subscriptions$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Subscriptions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Subscriptions$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Subscriptions$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Subscriptions$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Subscriptions$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Subscriptions$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11576,16 +10274,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/subscriptions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/subscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -11593,7 +10294,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.subscriptions.insert
@@ -11609,25 +10309,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Subscriptions$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
+      params?: Params$Resource$Subscriptions$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
     insert(
-        params: Params$Resource$Subscriptions$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     insert(
-        params: Params$Resource$Subscriptions$Insert,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Insert,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Subscription>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Subscriptions$Insert|
-        BodyResponseCallback<Schema$Subscription>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>):
-        void|GaxiosPromise<Schema$Subscription> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Insert
+        | BodyResponseCallback<Schema$Subscription>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>
+    ): void | GaxiosPromise<Schema$Subscription> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11644,16 +10349,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/subscriptions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/subscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -11661,7 +10369,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
     }
-
 
     /**
      * youtube.subscriptions.list
@@ -11686,26 +10393,33 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Subscriptions$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SubscriptionListResponse>;
     list(
-        params: Params$Resource$Subscriptions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SubscriptionListResponse>,
-        callback: BodyResponseCallback<Schema$SubscriptionListResponse>): void;
+      params?: Params$Resource$Subscriptions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SubscriptionListResponse>;
     list(
-        params: Params$Resource$Subscriptions$List,
-        callback: BodyResponseCallback<Schema$SubscriptionListResponse>): void;
+      params: Params$Resource$Subscriptions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubscriptionListResponse>,
+      callback: BodyResponseCallback<Schema$SubscriptionListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Subscriptions$List,
+      callback: BodyResponseCallback<Schema$SubscriptionListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SubscriptionListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Subscriptions$List|
-        BodyResponseCallback<Schema$SubscriptionListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SubscriptionListResponse>,
-        callback?: BodyResponseCallback<Schema$SubscriptionListResponse>):
-        void|GaxiosPromise<Schema$SubscriptionListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$List;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$List
+        | BodyResponseCallback<Schema$SubscriptionListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubscriptionListResponse>,
+      callback?: BodyResponseCallback<Schema$SubscriptionListResponse>
+    ): void | GaxiosPromise<Schema$SubscriptionListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11722,16 +10436,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/subscriptions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/subscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionListResponse>(parameters, callback);
@@ -11741,31 +10458,27 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Subscriptions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies the YouTube subscription ID for the resource
-     * that is being deleted. In a subscription resource, the id property
-     * specifies the YouTube subscription ID.
+     * The id parameter specifies the YouTube subscription ID for the resource that is being deleted. In a subscription resource, the id property specifies the YouTube subscription ID.
      */
     id?: string;
   }
-  export interface Params$Resource$Subscriptions$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      */
     part?: string;
 
@@ -11774,113 +10487,68 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Subscriptions$List extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The channelId parameter specifies a YouTube channel ID. The API will only
-     * return that channel's subscriptions.
+     * The channelId parameter specifies a YouTube channel ID. The API will only return that channel's subscriptions.
      */
     channelId?: string;
     /**
-     * The forChannelId parameter specifies a comma-separated list of channel
-     * IDs. The API response will then only contain subscriptions matching those
-     * channels.
+     * The forChannelId parameter specifies a comma-separated list of channel IDs. The API response will then only contain subscriptions matching those channels.
      */
     forChannelId?: string;
     /**
-     * The id parameter specifies a comma-separated list of the YouTube
-     * subscription ID(s) for the resource(s) that are being retrieved. In a
-     * subscription resource, the id property specifies the YouTube subscription
-     * ID.
+     * The id parameter specifies a comma-separated list of the YouTube subscription ID(s) for the resource(s) that are being retrieved. In a subscription resource, the id property specifies the YouTube subscription ID.
      */
     id?: string;
     /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * Set this parameter's value to true to retrieve a feed of the
-     * authenticated user's subscriptions.
+     * Set this parameter's value to true to retrieve a feed of the authenticated user's subscriptions.
      */
     mine?: boolean;
     /**
-     * Set this parameter's value to true to retrieve a feed of the subscribers
-     * of the authenticated user in reverse chronological order (newest first).
+     * Set this parameter's value to true to retrieve a feed of the subscribers of the authenticated user in reverse chronological order (newest first).
      */
     myRecentSubscribers?: boolean;
     /**
-     * Set this parameter's value to true to retrieve a feed of the subscribers
-     * of the authenticated user in no particular order.
+     * Set this parameter's value to true to retrieve a feed of the subscribers of the authenticated user in no particular order.
      */
     mySubscribers?: boolean;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The order parameter specifies the method that will be used to sort
-     * resources in the API response.
+     * The order parameter specifies the method that will be used to sort resources in the API response.
      */
     order?: string;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken and
-     * prevPageToken properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more
-     * subscription resource properties that the API response will include.  If
-     * the parameter identifies a property that contains child properties, the
-     * child properties will be included in the response. For example, in a
-     * subscription resource, the snippet property contains other properties,
-     * such as a display title for the subscription. If you set part=snippet,
-     * the API response will also contain all of those nested properties.
+     * The part parameter specifies a comma-separated list of one or more subscription resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a subscription resource, the snippet property contains other properties, such as a display title for the subscription. If you set part=snippet, the API response will also contain all of those nested properties.
      */
     part?: string;
   }
-
 
   export class Resource$Superchatevents {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.superChatEvents.list
@@ -11898,29 +10566,34 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Superchatevents$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SuperChatEventListResponse>;
+      params?: Params$Resource$Superchatevents$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SuperChatEventListResponse>;
     list(
-        params: Params$Resource$Superchatevents$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SuperChatEventListResponse>,
-        callback: BodyResponseCallback<Schema$SuperChatEventListResponse>):
-        void;
+      params: Params$Resource$Superchatevents$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SuperChatEventListResponse>,
+      callback: BodyResponseCallback<Schema$SuperChatEventListResponse>
+    ): void;
     list(
-        params: Params$Resource$Superchatevents$List,
-        callback: BodyResponseCallback<Schema$SuperChatEventListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$SuperChatEventListResponse>):
-        void;
+      params: Params$Resource$Superchatevents$List,
+      callback: BodyResponseCallback<Schema$SuperChatEventListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Superchatevents$List|
-        BodyResponseCallback<Schema$SuperChatEventListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SuperChatEventListResponse>,
-        callback?: BodyResponseCallback<Schema$SuperChatEventListResponse>):
-        void|GaxiosPromise<Schema$SuperChatEventListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Superchatevents$List;
+      callback: BodyResponseCallback<Schema$SuperChatEventListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Superchatevents$List
+        | BodyResponseCallback<Schema$SuperChatEventListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SuperChatEventListResponse>,
+      callback?: BodyResponseCallback<Schema$SuperChatEventListResponse>
+    ): void | GaxiosPromise<Schema$SuperChatEventListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Superchatevents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11937,62 +10610,55 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/superChatEvents')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/superChatEvents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SuperChatEventListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SuperChatEventListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Superchatevents$List extends
-      StandardParameters {
+  export interface Params$Resource$Superchatevents$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The hl parameter instructs the API to retrieve localized resource
-     * metadata for a specific application language that the YouTube website
-     * supports. The parameter value must be a language code included in the
-     * list returned by the i18nLanguages.list method.  If localized resource
-     * details are available in that language, the resource's snippet.localized
-     * object will contain the localized values. However, if localized details
-     * are not available, the snippet.localized object will contain resource
-     * details in the resource's default language.
+     * The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
      */
     hl?: string;
     /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      */
     maxResults?: number;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken and
-     * prevPageToken properties identify other pages that could be retrieved.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      */
     pageToken?: string;
     /**
-     * The part parameter specifies the superChatEvent resource parts that the
-     * API response will include. Supported values are id and snippet.
+     * The part parameter specifies the superChatEvent resource parts that the API response will include. Supported values are id and snippet.
      */
     part?: string;
   }
-
 
   export class Resource$Thumbnails {
     context: APIRequestContext;
@@ -12000,11 +10666,9 @@ export namespace youtube_v3 {
       this.context = context;
     }
 
-
     /**
      * youtube.thumbnails.set
-     * @desc Uploads a custom video thumbnail to YouTube and sets it for a
-     * video.
+     * @desc Uploads a custom video thumbnail to YouTube and sets it for a video.
      * @alias youtube.thumbnails.set
      * @memberOf! ()
      *
@@ -12018,21 +10682,31 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    set(params?: Params$Resource$Thumbnails$Set,
-        options?: MethodOptions): GaxiosPromise<Schema$ThumbnailSetResponse>;
-    set(params: Params$Resource$Thumbnails$Set,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ThumbnailSetResponse>,
-        callback: BodyResponseCallback<Schema$ThumbnailSetResponse>): void;
-    set(params: Params$Resource$Thumbnails$Set,
-        callback: BodyResponseCallback<Schema$ThumbnailSetResponse>): void;
+    set(
+      params?: Params$Resource$Thumbnails$Set,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ThumbnailSetResponse>;
+    set(
+      params: Params$Resource$Thumbnails$Set,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ThumbnailSetResponse>,
+      callback: BodyResponseCallback<Schema$ThumbnailSetResponse>
+    ): void;
+    set(
+      params: Params$Resource$Thumbnails$Set,
+      callback: BodyResponseCallback<Schema$ThumbnailSetResponse>
+    ): void;
     set(callback: BodyResponseCallback<Schema$ThumbnailSetResponse>): void;
-    set(paramsOrCallback?: Params$Resource$Thumbnails$Set|
-        BodyResponseCallback<Schema$ThumbnailSetResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ThumbnailSetResponse>,
-        callback?: BodyResponseCallback<Schema$ThumbnailSetResponse>):
-        void|GaxiosPromise<Schema$ThumbnailSetResponse> {
+    set(
+      paramsOrCallback?:
+        | Params$Resource$Thumbnails$Set
+        | BodyResponseCallback<Schema$ThumbnailSetResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ThumbnailSetResponse>,
+      callback?: BodyResponseCallback<Schema$ThumbnailSetResponse>
+    ): void | GaxiosPromise<Schema$ThumbnailSetResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Thumbnails$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12050,18 +10724,23 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/thumbnails/set')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/thumbnails/set').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/youtube/v3/thumbnails/set')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/youtube/v3/thumbnails/set').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['videoId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ThumbnailSetResponse>(parameters, callback);
@@ -12075,27 +10754,16 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The actual CMS account that the user authenticates with must be
-     * linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The videoId parameter specifies a YouTube video ID for which the custom
-     * video thumbnail is being provided.
+     * The videoId parameter specifies a YouTube video ID for which the custom video thumbnail is being provided.
      */
     videoId?: string;
-
 
     /**
      * Media metadata
@@ -12113,18 +10781,15 @@ export namespace youtube_v3 {
     };
   }
 
-
   export class Resource$Videoabusereportreasons {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * youtube.videoAbuseReportReasons.list
-     * @desc Returns a list of abuse reasons that can be used for reporting
-     * abusive videos.
+     * @desc Returns a list of abuse reasons that can be used for reporting abusive videos.
      * @alias youtube.videoAbuseReportReasons.list
      * @memberOf! ()
      *
@@ -12136,34 +10801,34 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Videoabusereportreasons$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$VideoAbuseReportReasonListResponse>;
+      params?: Params$Resource$Videoabusereportreasons$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VideoAbuseReportReasonListResponse>;
     list(
-        params: Params$Resource$Videoabusereportreasons$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
-        callback:
-            BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>):
-        void;
+      params: Params$Resource$Videoabusereportreasons$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
+      callback: BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>
+    ): void;
     list(
-        params: Params$Resource$Videoabusereportreasons$List,
-        callback:
-            BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>):
-        void;
+      params: Params$Resource$Videoabusereportreasons$List,
+      callback: BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Videoabusereportreasons$List|
-        BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>):
-        void|GaxiosPromise<Schema$VideoAbuseReportReasonListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Videoabusereportreasons$List;
+      callback: BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Videoabusereportreasons$List
+        | BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
+      callback?: BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>
+    ): void | GaxiosPromise<Schema$VideoAbuseReportReasonListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Videoabusereportreasons$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12180,46 +10845,49 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videoAbuseReportReasons')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videoAbuseReportReasons').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VideoAbuseReportReasonListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$VideoAbuseReportReasonListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Videoabusereportreasons$List extends
-      StandardParameters {
+  export interface Params$Resource$Videoabusereportreasons$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The hl parameter specifies the language that should be used for text
-     * values in the API response.
+     * The hl parameter specifies the language that should be used for text values in the API response.
      */
     hl?: string;
     /**
-     * The part parameter specifies the videoCategory resource parts that the
-     * API response will include. Supported values are id and snippet.
+     * The part parameter specifies the videoCategory resource parts that the API response will include. Supported values are id and snippet.
      */
     part?: string;
   }
-
 
   export class Resource$Videocategories {
     context: APIRequestContext;
@@ -12227,11 +10895,9 @@ export namespace youtube_v3 {
       this.context = context;
     }
 
-
     /**
      * youtube.videoCategories.list
-     * @desc Returns a list of categories that can be associated with YouTube
-     * videos.
+     * @desc Returns a list of categories that can be associated with YouTube videos.
      * @alias youtube.videoCategories.list
      * @memberOf! ()
      *
@@ -12245,27 +10911,34 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Videocategories$List, options?: MethodOptions):
-        GaxiosPromise<Schema$VideoCategoryListResponse>;
+      params?: Params$Resource$Videocategories$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VideoCategoryListResponse>;
     list(
-        params: Params$Resource$Videocategories$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$VideoCategoryListResponse>,
-        callback: BodyResponseCallback<Schema$VideoCategoryListResponse>): void;
+      params: Params$Resource$Videocategories$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoCategoryListResponse>,
+      callback: BodyResponseCallback<Schema$VideoCategoryListResponse>
+    ): void;
     list(
-        params: Params$Resource$Videocategories$List,
-        callback: BodyResponseCallback<Schema$VideoCategoryListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$VideoCategoryListResponse>):
-        void;
+      params: Params$Resource$Videocategories$List,
+      callback: BodyResponseCallback<Schema$VideoCategoryListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Videocategories$List|
-        BodyResponseCallback<Schema$VideoCategoryListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VideoCategoryListResponse>,
-        callback?: BodyResponseCallback<Schema$VideoCategoryListResponse>):
-        void|GaxiosPromise<Schema$VideoCategoryListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Videocategories$List;
+      callback: BodyResponseCallback<Schema$VideoCategoryListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Videocategories$List
+        | BodyResponseCallback<Schema$VideoCategoryListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoCategoryListResponse>,
+      callback?: BodyResponseCallback<Schema$VideoCategoryListResponse>
+    ): void | GaxiosPromise<Schema$VideoCategoryListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Videocategories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12282,63 +10955,61 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videoCategories')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videoCategories').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VideoCategoryListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$VideoCategoryListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Videocategories$List extends
-      StandardParameters {
+  export interface Params$Resource$Videocategories$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The hl parameter specifies the language that should be used for text
-     * values in the API response.
+     * The hl parameter specifies the language that should be used for text values in the API response.
      */
     hl?: string;
     /**
-     * The id parameter specifies a comma-separated list of video category IDs
-     * for the resources that you are retrieving.
+     * The id parameter specifies a comma-separated list of video category IDs for the resources that you are retrieving.
      */
     id?: string;
     /**
-     * The part parameter specifies the videoCategory resource properties that
-     * the API response will include. Set the parameter value to snippet.
+     * The part parameter specifies the videoCategory resource properties that the API response will include. Set the parameter value to snippet.
      */
     part?: string;
     /**
-     * The regionCode parameter instructs the API to return the list of video
-     * categories available in the specified country. The parameter value is an
-     * ISO 3166-1 alpha-2 country code.
+     * The regionCode parameter instructs the API to return the list of video categories available in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
      */
     regionCode?: string;
   }
-
 
   export class Resource$Videos {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.videos.delete
@@ -12353,21 +11024,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Videos$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Videos$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Videos$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Videos$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Videos$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Videos$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Videos$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Videos$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12385,16 +11062,16 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videos')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12403,11 +11080,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.videos.getRating
-     * @desc Retrieves the ratings that the authorized user gave to a list of
-     * specified videos.
+     * @desc Retrieves the ratings that the authorized user gave to a list of specified videos.
      * @alias youtube.videos.getRating
      * @memberOf! ()
      *
@@ -12419,25 +11094,32 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     getRating(
-        params?: Params$Resource$Videos$Getrating,
-        options?: MethodOptions): GaxiosPromise<Schema$VideoGetRatingResponse>;
+      params?: Params$Resource$Videos$Getrating,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VideoGetRatingResponse>;
     getRating(
-        params: Params$Resource$Videos$Getrating,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$VideoGetRatingResponse>,
-        callback: BodyResponseCallback<Schema$VideoGetRatingResponse>): void;
+      params: Params$Resource$Videos$Getrating,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoGetRatingResponse>,
+      callback: BodyResponseCallback<Schema$VideoGetRatingResponse>
+    ): void;
     getRating(
-        params: Params$Resource$Videos$Getrating,
-        callback: BodyResponseCallback<Schema$VideoGetRatingResponse>): void;
-    getRating(callback: BodyResponseCallback<Schema$VideoGetRatingResponse>):
-        void;
+      params: Params$Resource$Videos$Getrating,
+      callback: BodyResponseCallback<Schema$VideoGetRatingResponse>
+    ): void;
     getRating(
-        paramsOrCallback?: Params$Resource$Videos$Getrating|
-        BodyResponseCallback<Schema$VideoGetRatingResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VideoGetRatingResponse>,
-        callback?: BodyResponseCallback<Schema$VideoGetRatingResponse>):
-        void|GaxiosPromise<Schema$VideoGetRatingResponse> {
+      callback: BodyResponseCallback<Schema$VideoGetRatingResponse>
+    ): void;
+    getRating(
+      paramsOrCallback?:
+        | Params$Resource$Videos$Getrating
+        | BodyResponseCallback<Schema$VideoGetRatingResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoGetRatingResponse>,
+      callback?: BodyResponseCallback<Schema$VideoGetRatingResponse>
+    ): void | GaxiosPromise<Schema$VideoGetRatingResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Getrating;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12455,16 +11137,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videos/getRating')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videos/getRating').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VideoGetRatingResponse>(parameters, callback);
@@ -12473,11 +11158,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.videos.insert
-     * @desc Uploads a video to YouTube and optionally sets the video's
-     * metadata.
+     * @desc Uploads a video to YouTube and optionally sets the video's metadata.
      * @alias youtube.videos.insert
      * @memberOf! ()
      *
@@ -12496,22 +11179,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Videos$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Video>;
     insert(
-        params: Params$Resource$Videos$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Video>,
-        callback: BodyResponseCallback<Schema$Video>): void;
+      params?: Params$Resource$Videos$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Video>;
     insert(
-        params: Params$Resource$Videos$Insert,
-        callback: BodyResponseCallback<Schema$Video>): void;
+      params: Params$Resource$Videos$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Video>,
+      callback: BodyResponseCallback<Schema$Video>
+    ): void;
+    insert(
+      params: Params$Resource$Videos$Insert,
+      callback: BodyResponseCallback<Schema$Video>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Video>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Videos$Insert|
-        BodyResponseCallback<Schema$Video>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Video>,
-        callback?: BodyResponseCallback<Schema$Video>):
-        void|GaxiosPromise<Schema$Video> {
+      paramsOrCallback?:
+        | Params$Resource$Videos$Insert
+        | BodyResponseCallback<Schema$Video>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Video>,
+      callback?: BodyResponseCallback<Schema$Video>
+    ): void | GaxiosPromise<Schema$Video> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12529,18 +11217,20 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videos')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/youtube/v3/videos')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/youtube/v3/videos').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Video>(parameters, callback);
@@ -12548,7 +11238,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$Video>(parameters);
       }
     }
-
 
     /**
      * youtube.videos.list
@@ -12574,23 +11263,29 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Videos$List, options?: MethodOptions):
-        GaxiosPromise<Schema$VideoListResponse>;
     list(
-        params: Params$Resource$Videos$List,
-        options: MethodOptions|BodyResponseCallback<Schema$VideoListResponse>,
-        callback: BodyResponseCallback<Schema$VideoListResponse>): void;
+      params?: Params$Resource$Videos$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VideoListResponse>;
     list(
-        params: Params$Resource$Videos$List,
-        callback: BodyResponseCallback<Schema$VideoListResponse>): void;
+      params: Params$Resource$Videos$List,
+      options: MethodOptions | BodyResponseCallback<Schema$VideoListResponse>,
+      callback: BodyResponseCallback<Schema$VideoListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Videos$List,
+      callback: BodyResponseCallback<Schema$VideoListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$VideoListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Videos$List|
-        BodyResponseCallback<Schema$VideoListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VideoListResponse>,
-        callback?: BodyResponseCallback<Schema$VideoListResponse>):
-        void|GaxiosPromise<Schema$VideoListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Videos$List
+        | BodyResponseCallback<Schema$VideoListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoListResponse>,
+      callback?: BodyResponseCallback<Schema$VideoListResponse>
+    ): void | GaxiosPromise<Schema$VideoListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12608,16 +11303,16 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videos')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VideoListResponse>(parameters, callback);
@@ -12626,11 +11321,9 @@ export namespace youtube_v3 {
       }
     }
 
-
     /**
      * youtube.videos.rate
-     * @desc Add a like or dislike rating to a video or remove a rating from a
-     * video.
+     * @desc Add a like or dislike rating to a video or remove a rating from a video.
      * @alias youtube.videos.rate
      * @memberOf! ()
      *
@@ -12641,21 +11334,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rate(params?: Params$Resource$Videos$Rate, options?: MethodOptions):
-        GaxiosPromise<void>;
     rate(
-        params: Params$Resource$Videos$Rate,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Videos$Rate,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     rate(
-        params: Params$Resource$Videos$Rate,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Videos$Rate,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    rate(
+      params: Params$Resource$Videos$Rate,
+      callback: BodyResponseCallback<void>
+    ): void;
     rate(callback: BodyResponseCallback<void>): void;
     rate(
-        paramsOrCallback?: Params$Resource$Videos$Rate|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Videos$Rate
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Rate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12673,16 +11372,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videos/rate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videos/rate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['id', 'rating'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12690,7 +11392,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.videos.reportAbuse
@@ -12706,23 +11407,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     reportAbuse(
-        params?: Params$Resource$Videos$Reportabuse,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Videos$Reportabuse,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     reportAbuse(
-        params: Params$Resource$Videos$Reportabuse,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Videos$Reportabuse,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     reportAbuse(
-        params: Params$Resource$Videos$Reportabuse,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Videos$Reportabuse,
+      callback: BodyResponseCallback<void>
+    ): void;
     reportAbuse(callback: BodyResponseCallback<void>): void;
     reportAbuse(
-        paramsOrCallback?: Params$Resource$Videos$Reportabuse|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Videos$Reportabuse;
+      paramsOrCallback?:
+        | Params$Resource$Videos$Reportabuse
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Videos$Reportabuse;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12739,16 +11445,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videos/reportAbuse')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videos/reportAbuse').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12756,7 +11465,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.videos.update
@@ -12772,22 +11480,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Videos$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Video>;
     update(
-        params: Params$Resource$Videos$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Video>,
-        callback: BodyResponseCallback<Schema$Video>): void;
+      params?: Params$Resource$Videos$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Video>;
     update(
-        params: Params$Resource$Videos$Update,
-        callback: BodyResponseCallback<Schema$Video>): void;
+      params: Params$Resource$Videos$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Video>,
+      callback: BodyResponseCallback<Schema$Video>
+    ): void;
+    update(
+      params: Params$Resource$Videos$Update,
+      callback: BodyResponseCallback<Schema$Video>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Video>): void;
     update(
-        paramsOrCallback?: Params$Resource$Videos$Update|
-        BodyResponseCallback<Schema$Video>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Video>,
-        callback?: BodyResponseCallback<Schema$Video>):
-        void|GaxiosPromise<Schema$Video> {
+      paramsOrCallback?:
+        | Params$Resource$Videos$Update
+        | BodyResponseCallback<Schema$Video>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Video>,
+      callback?: BodyResponseCallback<Schema$Video>
+    ): void | GaxiosPromise<Schema$Video> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12805,16 +11518,16 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videos')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Video>(parameters, callback);
@@ -12828,25 +11541,14 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies the YouTube video ID for the resource that is
-     * being deleted. In a video resource, the id property specifies the video's
-     * ID.
+     * The id parameter specifies the YouTube video ID for the resource that is being deleted. In a video resource, the id property specifies the video's ID.
      */
     id?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The actual CMS account that the user authenticates with must be
-     * linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
@@ -12854,25 +11556,14 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies a comma-separated list of the YouTube video
-     * ID(s) for the resource(s) for which you are retrieving rating data. In a
-     * video resource, the id property specifies the video's ID.
+     * The id parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) for which you are retrieving rating data. In a video resource, the id property specifies the video's ID.
      */
     id?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }
@@ -12880,68 +11571,30 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The autoLevels parameter indicates whether YouTube should automatically
-     * enhance the video's lighting and color.
+     * The autoLevels parameter indicates whether YouTube should automatically enhance the video's lighting and color.
      */
     autoLevels?: boolean;
     /**
-     * The notifySubscribers parameter indicates whether YouTube should send a
-     * notification about the new video to users who subscribe to the video's
-     * channel. A parameter value of True indicates that subscribers will be
-     * notified of newly uploaded videos. However, a channel owner who is
-     * uploading many videos might prefer to set the value to False to avoid
-     * sending a notification about each new video to the channel's subscribers.
+     * The notifySubscribers parameter indicates whether YouTube should send a notification about the new video to users who subscribe to the video's channel. A parameter value of True indicates that subscribers will be notified of newly uploaded videos. However, a channel owner who is uploading many videos might prefer to set the value to False to avoid sending a notification about each new video to the channel's subscribers.
      */
     notifySubscribers?: boolean;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * This parameter can only be used in a properly authorized request. Note:
-     * This parameter is intended exclusively for YouTube content partners.  The
-     * onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID
-     * of the channel to which a video is being added. This parameter is
-     * required when a request specifies a value for the onBehalfOfContentOwner
-     * parameter, and it can only be used in conjunction with that parameter. In
-     * addition, the request must be authorized using a CMS account that is
-     * linked to the content owner that the onBehalfOfContentOwner parameter
-     * specifies. Finally, the channel that the onBehalfOfContentOwnerChannel
-     * parameter value specifies must be linked to the content owner that the
-     * onBehalfOfContentOwner parameter specifies.  This parameter is intended
-     * for YouTube content partners that own and manage many different YouTube
-     * channels. It allows content owners to authenticate once and perform
-     * actions on behalf of the channel specified in the parameter value,
-     * without having to provide authentication credentials for each separate
-     * channel.
+     * This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.  This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
      */
     onBehalfOfContentOwnerChannel?: string;
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.  Note that not all parts
-     * contain properties that can be set when inserting or updating a video.
-     * For example, the statistics object encapsulates statistics that YouTube
-     * calculates for a video and does not contain values that you can set or
-     * modify. If the parameter value specifies a part that does not contain
-     * mutable values, that part will still be included in the API response.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that not all parts contain properties that can be set when inserting or updating a video. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
      */
     part?: string;
     /**
-     * The stabilize parameter indicates whether YouTube should adjust the video
-     * to remove shaky camera motions.
+     * The stabilize parameter indicates whether YouTube should adjust the video to remove shaky camera motions.
      */
     stabilize?: boolean;
 
@@ -12969,27 +11622,18 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The chart parameter identifies the chart that you want to retrieve.
      */
     chart?: string;
     /**
-     * The hl parameter instructs the API to retrieve localized resource
-     * metadata for a specific application language that the YouTube website
-     * supports. The parameter value must be a language code included in the
-     * list returned by the i18nLanguages.list method.  If localized resource
-     * details are available in that language, the resource's snippet.localized
-     * object will contain the localized values. However, if localized details
-     * are not available, the snippet.localized object will contain resource
-     * details in the resource's default language.
+     * The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
      */
     hl?: string;
     /**
-     * The id parameter specifies a comma-separated list of the YouTube video
-     * ID(s) for the resource(s) that are being retrieved. In a video resource,
-     * the id property specifies the video's ID.
+     * The id parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) that are being retrieved. In a video resource, the id property specifies the video's ID.
      */
     id?: string;
     /**
@@ -12997,73 +11641,39 @@ export namespace youtube_v3 {
      */
     locale?: string;
     /**
-     * The maxHeight parameter specifies a maximum height of the embedded
-     * player. If maxWidth is provided, maxHeight may not be reached in order to
-     * not violate the width request.
+     * The maxHeight parameter specifies a maximum height of the embedded player. If maxWidth is provided, maxHeight may not be reached in order to not violate the width request.
      */
     maxHeight?: number;
     /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.  Note: This parameter is supported
-     * for use in conjunction with the myRating and chart parameters, but it is
-     * not supported for use in conjunction with the id parameter.
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.  Note: This parameter is supported for use in conjunction with the myRating and chart parameters, but it is not supported for use in conjunction with the id parameter.
      */
     maxResults?: number;
     /**
-     * The maxWidth parameter specifies a maximum width of the embedded player.
-     * If maxHeight is provided, maxWidth may not be reached in order to not
-     * violate the height request.
+     * The maxWidth parameter specifies a maximum width of the embedded player. If maxHeight is provided, maxWidth may not be reached in order to not violate the height request.
      */
     maxWidth?: number;
     /**
-     * Set this parameter's value to like or dislike to instruct the API to only
-     * return videos liked or disliked by the authenticated user.
+     * Set this parameter's value to like or dislike to instruct the API to only return videos liked or disliked by the authenticated user.
      */
     myRating?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken and
-     * prevPageToken properties identify other pages that could be retrieved.
-     * Note: This parameter is supported for use in conjunction with the
-     * myRating and chart parameters, but it is not supported for use in
-     * conjunction with the id parameter.
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.  Note: This parameter is supported for use in conjunction with the myRating and chart parameters, but it is not supported for use in conjunction with the id parameter.
      */
     pageToken?: string;
     /**
-     * The part parameter specifies a comma-separated list of one or more video
-     * resource properties that the API response will include.  If the parameter
-     * identifies a property that contains child properties, the child
-     * properties will be included in the response. For example, in a video
-     * resource, the snippet property contains the channelId, title,
-     * description, tags, and categoryId properties. As such, if you set
-     * part=snippet, the API response will contain all of those properties.
+     * The part parameter specifies a comma-separated list of one or more video resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a video resource, the snippet property contains the channelId, title, description, tags, and categoryId properties. As such, if you set part=snippet, the API response will contain all of those properties.
      */
     part?: string;
     /**
-     * The regionCode parameter instructs the API to select a video chart
-     * available in the specified region. This parameter can only be used in
-     * conjunction with the chart parameter. The parameter value is an ISO
-     * 3166-1 alpha-2 country code.
+     * The regionCode parameter instructs the API to select a video chart available in the specified region. This parameter can only be used in conjunction with the chart parameter. The parameter value is an ISO 3166-1 alpha-2 country code.
      */
     regionCode?: string;
     /**
-     * The videoCategoryId parameter identifies the video category for which the
-     * chart should be retrieved. This parameter can only be used in conjunction
-     * with the chart parameter. By default, charts are not restricted to a
-     * particular category.
+     * The videoCategoryId parameter identifies the video category for which the chart should be retrieved. This parameter can only be used in conjunction with the chart parameter. By default, charts are not restricted to a particular category.
      */
     videoCategoryId?: string;
   }
@@ -13071,11 +11681,10 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id parameter specifies the YouTube video ID of the video that is
-     * being rated or having its rating removed.
+     * The id parameter specifies the YouTube video ID of the video that is being rated or having its rating removed.
      */
     id?: string;
     /**
@@ -13083,24 +11692,15 @@ export namespace youtube_v3 {
      */
     rating?: string;
   }
-  export interface Params$Resource$Videos$Reportabuse extends
-      StandardParameters {
+  export interface Params$Resource$Videos$Reportabuse
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
 
@@ -13113,39 +11713,14 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The actual CMS account that the user authenticates with must be
-     * linked to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
     /**
-     * The part parameter serves two purposes in this operation. It identifies
-     * the properties that the write operation will set as well as the
-     * properties that the API response will include.  Note that this method
-     * will override the existing values for all of the mutable properties that
-     * are contained in any parts that the parameter value specifies. For
-     * example, a video's privacy setting is contained in the status part. As
-     * such, if your request is updating a private video, and the request's part
-     * parameter value includes the status part, the video's privacy setting
-     * will be updated to whatever value the request body specifies. If the
-     * request body does not specify a value, the existing privacy setting will
-     * be removed and the video will revert to the default privacy setting.  In
-     * addition, not all parts contain properties that can be set when inserting
-     * or updating a video. For example, the statistics object encapsulates
-     * statistics that YouTube calculates for a video and does not contain
-     * values that you can set or modify. If the parameter value specifies a
-     * part that does not contain mutable values, that part will still be
-     * included in the API response.
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a video's privacy setting is contained in the status part. As such, if your request is updating a private video, and the request's part parameter value includes the status part, the video's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the video will revert to the default privacy setting.  In addition, not all parts contain properties that can be set when inserting or updating a video. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
      */
     part?: string;
 
@@ -13155,13 +11730,11 @@ export namespace youtube_v3 {
     requestBody?: Schema$Video;
   }
 
-
   export class Resource$Watermarks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.watermarks.set
@@ -13180,18 +11753,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    set(params?: Params$Resource$Watermarks$Set,
-        options?: MethodOptions): GaxiosPromise<void>;
-    set(params: Params$Resource$Watermarks$Set,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
-    set(params: Params$Resource$Watermarks$Set,
-        callback: BodyResponseCallback<void>): void;
+    set(
+      params?: Params$Resource$Watermarks$Set,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    set(
+      params: Params$Resource$Watermarks$Set,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    set(
+      params: Params$Resource$Watermarks$Set,
+      callback: BodyResponseCallback<void>
+    ): void;
     set(callback: BodyResponseCallback<void>): void;
-    set(paramsOrCallback?: Params$Resource$Watermarks$Set|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+    set(
+      paramsOrCallback?:
+        | Params$Resource$Watermarks$Set
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Watermarks$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13209,18 +11791,23 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/watermarks/set')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/watermarks/set').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/youtube/v3/watermarks/set')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/youtube/v3/watermarks/set').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['channelId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -13228,7 +11815,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.watermarks.unset
@@ -13243,21 +11829,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    unset(params?: Params$Resource$Watermarks$Unset, options?: MethodOptions):
-        GaxiosPromise<void>;
     unset(
-        params: Params$Resource$Watermarks$Unset,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Watermarks$Unset,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     unset(
-        params: Params$Resource$Watermarks$Unset,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Watermarks$Unset,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    unset(
+      params: Params$Resource$Watermarks$Unset,
+      callback: BodyResponseCallback<void>
+    ): void;
     unset(callback: BodyResponseCallback<void>): void;
     unset(
-        paramsOrCallback?: Params$Resource$Watermarks$Unset|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Watermarks$Unset
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Watermarks$Unset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13275,16 +11867,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/watermarks/unset')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/watermarks/unset').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['channelId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -13298,24 +11893,14 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The channelId parameter specifies the YouTube channel ID for which the
-     * watermark is being provided.
+     * The channelId parameter specifies the YouTube channel ID for which the watermark is being provided.
      */
     channelId?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
 
@@ -13343,24 +11928,14 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The channelId parameter specifies the YouTube channel ID for which the
-     * watermark is being unset.
+     * The channelId parameter specifies the YouTube channel ID for which the watermark is being unset.
      */
     channelId?: string;
     /**
-     * Note: This parameter is intended exclusively for YouTube content
-     * partners.  The onBehalfOfContentOwner parameter indicates that the
-     * request's authorization credentials identify a YouTube CMS user who is
-     * acting on behalf of the content owner specified in the parameter value.
-     * This parameter is intended for YouTube content partners that own and
-     * manage many different YouTube channels. It allows content owners to
-     * authenticate once and get access to all their video and channel data,
-     * without having to provide authentication credentials for each individual
-     * channel. The CMS account that the user authenticates with must be linked
-     * to the specified YouTube content owner.
+     * Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
   }

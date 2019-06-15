@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {slides_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': slides_v1.Slides,
+  v1: slides_v1.Slides,
 };
 
 export function slides(version: 'v1'): slides_v1.Slides;
 export function slides(options: slides_v1.Options): slides_v1.Slides;
 export function slides<T = slides_v1.Slides>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|slides_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | slides_v1.Options
+) {
   return getAPI<T>('slides', versionOrOptions, VERSIONS, this);
 }
 

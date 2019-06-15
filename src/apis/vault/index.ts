@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {vault_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': vault_v1.Vault,
+  v1: vault_v1.Vault,
 };
 
 export function vault(version: 'v1'): vault_v1.Vault;
 export function vault(options: vault_v1.Options): vault_v1.Vault;
 export function vault<T = vault_v1.Vault>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|vault_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | vault_v1.Options
+) {
   return getAPI<T>('vault', versionOrOptions, VERSIONS, this);
 }
 

@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +63,7 @@ export namespace kgsearch_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,9 +75,7 @@ export namespace kgsearch_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -100,20 +108,21 @@ export namespace kgsearch_v1 {
     entities: Resource$Entities;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.entities = new Resource$Entities(this.context);
     }
   }
 
   /**
-   * Response message includes the context and a list of matching results which
-   * contain the detail of associated entities.
+   * Response message includes the context and a list of matching results which contain the detail of associated entities.
    */
   export interface Schema$SearchResponse {
     /**
-     * The local context applicable for the response. See more details at
-     * http://www.w3.org/TR/json-ld/#context-definitions.
+     * The local context applicable for the response. See more details at http://www.w3.org/TR/json-ld/#context-definitions.
      */
     '@context'?: any;
     /**
@@ -126,19 +135,15 @@ export namespace kgsearch_v1 {
     itemListElement?: any[];
   }
 
-
   export class Resource$Entities {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * kgsearch.entities.search
-     * @desc Searches Knowledge Graph for entities that match the constraints. A
-     * list of matched entities will be returned in response, which will be in
-     * JSON-LD format and compatible with http://schema.org
+     * @desc Searches Knowledge Graph for entities that match the constraints. A list of matched entities will be returned in response, which will be in JSON-LD format and compatible with http://schema.org
      * @alias kgsearch.entities.search
      * @memberOf! ()
      *
@@ -154,23 +159,29 @@ export namespace kgsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: Params$Resource$Entities$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$SearchResponse>;
     search(
-        params: Params$Resource$Entities$Search,
-        options: MethodOptions|BodyResponseCallback<Schema$SearchResponse>,
-        callback: BodyResponseCallback<Schema$SearchResponse>): void;
+      params?: Params$Resource$Entities$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchResponse>;
     search(
-        params: Params$Resource$Entities$Search,
-        callback: BodyResponseCallback<Schema$SearchResponse>): void;
+      params: Params$Resource$Entities$Search,
+      options: MethodOptions | BodyResponseCallback<Schema$SearchResponse>,
+      callback: BodyResponseCallback<Schema$SearchResponse>
+    ): void;
+    search(
+      params: Params$Resource$Entities$Search,
+      callback: BodyResponseCallback<Schema$SearchResponse>
+    ): void;
     search(callback: BodyResponseCallback<Schema$SearchResponse>): void;
     search(
-        paramsOrCallback?: Params$Resource$Entities$Search|
-        BodyResponseCallback<Schema$SearchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchResponse>,
-        callback?: BodyResponseCallback<Schema$SearchResponse>):
-        void|GaxiosPromise<Schema$SearchResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Entities$Search
+        | BodyResponseCallback<Schema$SearchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchResponse>,
+      callback?: BodyResponseCallback<Schema$SearchResponse>
+    ): void | GaxiosPromise<Schema$SearchResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entities$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -188,16 +199,19 @@ export namespace kgsearch_v1 {
       const rootUrl = options.rootUrl || 'https://kgsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/entities:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/entities:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchResponse>(parameters, callback);
@@ -211,12 +225,10 @@ export namespace kgsearch_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The list of entity id to be used for search instead of query string. To
-     * specify multiple ids in the HTTP request, repeat the parameter in the URL
-     * as in ...?ids=A&ids=B
+     * The list of entity id to be used for search instead of query string. To specify multiple ids in the HTTP request, repeat the parameter in the URL as in ...?ids=A&ids=B
      */
     ids?: string[];
     /**
@@ -224,8 +236,7 @@ export namespace kgsearch_v1 {
      */
     indent?: boolean;
     /**
-     * The list of language codes (defined in ISO 693) to run the query with,
-     * e.g. 'en'.
+     * The list of language codes (defined in ISO 693) to run the query with, e.g. 'en'.
      */
     languages?: string[];
     /**
@@ -241,9 +252,7 @@ export namespace kgsearch_v1 {
      */
     query?: string;
     /**
-     * Restricts returned entities with these types, e.g. Person (as defined in
-     * http://schema.org/Person). If multiple types are specified, returned
-     * entities will contain one or more of these types.
+     * Restricts returned entities with these types, e.g. Person (as defined in http://schema.org/Person). If multiple types are specified, returned entities will contain one or more of these types.
      */
     types?: string[];
   }

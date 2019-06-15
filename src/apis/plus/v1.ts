@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace plus_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace plus_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -85,7 +94,10 @@ export namespace plus_v1 {
     people: Resource$People;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.activities = new Resource$Activities(this.context);
       this.comments = new Resource$Comments(this.context);
@@ -103,8 +115,7 @@ export namespace plus_v1 {
      */
     items?: Schema$PlusAclentryResource[];
     /**
-     * Identifies this resource as a collection of access controls. Value:
-     * &quot;plus#acl&quot;.
+     * Identifies this resource as a collection of access controls. Value: &quot;plus#acl&quot;.
      */
     kind?: string;
   }
@@ -117,26 +128,24 @@ export namespace plus_v1 {
      * The person who performed this activity.
      */
     actor?: {
-      clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string;};};
+      clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string}};
       displayName?: string;
       id?: string;
-      image?: {url?: string;};
-      name?: {familyName?: string; givenName?: string;};
+      image?: {url?: string};
+      name?: {familyName?: string; givenName?: string};
       url?: string;
-      verification?: {adHocVerified?: string;};
+      verification?: {adHocVerified?: string};
     };
     /**
      * Street address where this activity occurred.
      */
     address?: string;
     /**
-     * Additional content added by the person who shared this activity,
-     * applicable only when resharing an activity.
+     * Additional content added by the person who shared this activity, applicable only when resharing an activity.
      */
     annotation?: string;
     /**
-     * If this activity is a crosspost from another system, this property
-     * specifies the ID of the original activity.
+     * If this activity is a crosspost from another system, this property specifies the ID of the original activity.
      */
     crosspostSource?: string;
     /**
@@ -144,8 +153,7 @@ export namespace plus_v1 {
      */
     etag?: string;
     /**
-     * Latitude and longitude where this activity occurred. Format is latitude
-     * followed by longitude, space separated.
+     * Latitude and longitude where this activity occurred. Format is latitude followed by longitude, space separated.
      */
     geocode?: string;
     /**
@@ -153,8 +161,7 @@ export namespace plus_v1 {
      */
     id?: string;
     /**
-     * Identifies this resource as an activity. Value:
-     * &quot;plus#activity&quot;.
+     * Identifies this resource as an activity. Value: &quot;plus#activity&quot;.
      */
     kind?: string;
     /**
@@ -166,26 +173,34 @@ export namespace plus_v1 {
      */
     object?: {
       actor?: {
-        clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string;};};
+        clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string}};
         displayName?: string;
         id?: string;
-        image?: {url?: string;};
+        image?: {url?: string};
         url?: string;
-        verification?: {adHocVerified?: string;};
+        verification?: {adHocVerified?: string};
       };
       attachments?: Array<{
         content?: string;
         displayName?: string;
-        embed?: {type?: string; url?: string;};
-        fullImage?:
-            {height?: number; type?: string; url?: string; width?: number;};
+        embed?: {type?: string; url?: string};
+        fullImage?: {
+          height?: number;
+          type?: string;
+          url?: string;
+          width?: number;
+        };
         id?: string;
-        image?: {height?: number; type?: string; url?: string; width?: number;};
+        image?: {height?: number; type?: string; url?: string; width?: number};
         objectType?: string;
         thumbnails?: Array<{
           description?: string;
-          image?:
-              {height?: number; type?: string; url?: string; width?: number;};
+          image?: {
+            height?: number;
+            type?: string;
+            url?: string;
+            width?: number;
+          };
           url?: string;
         }>;
         url?: string;
@@ -194,9 +209,9 @@ export namespace plus_v1 {
       id?: string;
       objectType?: string;
       originalContent?: string;
-      plusoners?: {selfLink?: string; totalItems?: number;};
-      replies?: {selfLink?: string; totalItems?: number;};
-      resharers?: {selfLink?: string; totalItems?: number;};
+      plusoners?: {selfLink?: string; totalItems?: number};
+      replies?: {selfLink?: string; totalItems?: number};
+      resharers?: {selfLink?: string; totalItems?: number};
       url?: string;
     };
     /**
@@ -210,15 +225,13 @@ export namespace plus_v1 {
     /**
      * The service provider that initially published this activity.
      */
-    provider?: {title?: string;};
+    provider?: {title?: string};
     /**
-     * The time at which this activity was initially published. Formatted as an
-     * RFC 3339 timestamp.
+     * The time at which this activity was initially published. Formatted as an RFC 3339 timestamp.
      */
     published?: string;
     /**
-     * Radius, in meters, of the region where this activity occurred, centered
-     * at the latitude and longitude identified in geocode.
+     * Radius, in meters, of the region where this activity occurred, centered at the latitude and longitude identified in geocode.
      */
     radius?: string;
     /**
@@ -226,8 +239,7 @@ export namespace plus_v1 {
      */
     title?: string;
     /**
-     * The time at which this activity was last updated. Formatted as an RFC
-     * 3339 timestamp.
+     * The time at which this activity was last updated. Formatted as an RFC 3339 timestamp.
      */
     updated?: string;
     /**
@@ -235,10 +247,7 @@ export namespace plus_v1 {
      */
     url?: string;
     /**
-     * This activity&#39;s verb, which indicates the action that was performed.
-     * Possible values include, but are not limited to, the following values: -
-     * &quot;post&quot; - Publish content to the stream.  - &quot;share&quot; -
-     * Reshare an activity.
+     * This activity&#39;s verb, which indicates the action that was performed. Possible values include, but are not limited to, the following values:   - &quot;post&quot; - Publish content to the stream.  - &quot;share&quot; - Reshare an activity.
      */
     verb?: string;
   }
@@ -256,8 +265,7 @@ export namespace plus_v1 {
      */
     items?: Schema$Activity[];
     /**
-     * Identifies this resource as a collection of activities. Value:
-     * &quot;plus#activityFeed&quot;.
+     * Identifies this resource as a collection of activities. Value: &quot;plus#activityFeed&quot;.
      */
     kind?: string;
     /**
@@ -265,9 +273,7 @@ export namespace plus_v1 {
      */
     nextLink?: string;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * Provide this value in a subsequent request to return the next page of
-     * results.
+     * The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -275,13 +281,11 @@ export namespace plus_v1 {
      */
     selfLink?: string;
     /**
-     * The title of this collection of activities, which is a truncated portion
-     * of the content.
+     * The title of this collection of activities, which is a truncated portion of the content.
      */
     title?: string;
     /**
-     * The time at which this collection of activities was last updated.
-     * Formatted as an RFC 3339 timestamp.
+     * The time at which this collection of activities was last updated. Formatted as an RFC 3339 timestamp.
      */
     updated?: string;
   }
@@ -290,12 +294,12 @@ export namespace plus_v1 {
      * The person who posted this comment.
      */
     actor?: {
-      clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string;};};
+      clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string}};
       displayName?: string;
       id?: string;
-      image?: {url?: string;};
+      image?: {url?: string};
       url?: string;
-      verification?: {adHocVerified?: string;};
+      verification?: {adHocVerified?: string};
     };
     /**
      * ETag of this response for caching purposes.
@@ -308,7 +312,7 @@ export namespace plus_v1 {
     /**
      * The activity this comment replied to.
      */
-    inReplyTo?: Array<{id?: string; url?: string;}>;
+    inReplyTo?: Array<{id?: string; url?: string}>;
     /**
      * Identifies this resource as a comment. Value: &quot;plus#comment&quot;.
      */
@@ -316,14 +320,13 @@ export namespace plus_v1 {
     /**
      * The object of this comment.
      */
-    object?: {content?: string; objectType?: string; originalContent?: string;};
+    object?: {content?: string; objectType?: string; originalContent?: string};
     /**
      * People who +1&#39;d this comment.
      */
-    plusoners?: {totalItems?: number;};
+    plusoners?: {totalItems?: number};
     /**
-     * The time at which this comment was initially published. Formatted as an
-     * RFC 3339 timestamp.
+     * The time at which this comment was initially published. Formatted as an RFC 3339 timestamp.
      */
     published?: string;
     /**
@@ -331,13 +334,11 @@ export namespace plus_v1 {
      */
     selfLink?: string;
     /**
-     * The time at which this comment was last updated. Formatted as an RFC 3339
-     * timestamp.
+     * The time at which this comment was last updated. Formatted as an RFC 3339 timestamp.
      */
     updated?: string;
     /**
-     * This comment&#39;s verb, indicating what action was performed. Possible
-     * values are:   - &quot;post&quot; - Publish content to the stream.
+     * This comment&#39;s verb, indicating what action was performed. Possible values are:   - &quot;post&quot; - Publish content to the stream.
      */
     verb?: string;
   }
@@ -355,8 +356,7 @@ export namespace plus_v1 {
      */
     items?: Schema$Comment[];
     /**
-     * Identifies this resource as a collection of comments. Value:
-     * &quot;plus#commentFeed&quot;.
+     * Identifies this resource as a collection of comments. Value: &quot;plus#commentFeed&quot;.
      */
     kind?: string;
     /**
@@ -364,9 +364,7 @@ export namespace plus_v1 {
      */
     nextLink?: string;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * Provide this value in a subsequent request to return the next page of
-     * results.
+     * The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -374,8 +372,7 @@ export namespace plus_v1 {
      */
     title?: string;
     /**
-     * The time at which this collection of comments was last updated. Formatted
-     * as an RFC 3339 timestamp.
+     * The time at which this collection of comments was last updated. Formatted as an RFC 3339 timestamp.
      */
     updated?: string;
   }
@@ -385,20 +382,15 @@ export namespace plus_v1 {
      */
     etag?: string;
     /**
-     * The people in this page of results. Each item includes the id,
-     * displayName, image, and url for the person. To retrieve additional
-     * profile data, see the people.get method.
+     * The people in this page of results. Each item includes the id, displayName, image, and url for the person. To retrieve additional profile data, see the people.get method.
      */
     items?: Schema$Person[];
     /**
-     * Identifies this resource as a collection of people. Value:
-     * &quot;plus#peopleFeed&quot;.
+     * Identifies this resource as a collection of people. Value: &quot;plus#peopleFeed&quot;.
      */
     kind?: string;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * Provide this value in a subsequent request to return the next page of
-     * results.
+     * The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -410,9 +402,7 @@ export namespace plus_v1 {
      */
     title?: string;
     /**
-     * The total number of people available in this list. The number of people
-     * in a response might be smaller due to paging. This might not be set for
-     * all collections.
+     * The total number of people available in this list. The number of people in a response might be smaller due to paging. This might not be set for all collections.
      */
     totalItems?: number;
   }
@@ -422,11 +412,9 @@ export namespace plus_v1 {
      */
     aboutMe?: string;
     /**
-     * The age range of the person. Valid ranges are 17 or younger, 18 to 20,
-     * and 21 or older. Age is determined from the user&#39;s birthday using
-     * Western age reckoning.
+     * The age range of the person. Valid ranges are 17 or younger, 18 to 20, and 21 or older. Age is determined from the user&#39;s birthday using Western age reckoning.
      */
-    ageRange?: {max?: number; min?: number;};
+    ageRange?: {max?: number; min?: number};
     /**
      * The person&#39;s date of birth, represented as YYYY-MM-DD.
      */
@@ -436,16 +424,15 @@ export namespace plus_v1 {
      */
     braggingRights?: string;
     /**
-     * For followers who are visible, the number of people who have added this
-     * person or page to a circle.
+     * For followers who are visible, the number of people who have added this person or page to a circle.
      */
     circledByCount?: number;
     /**
      * The cover photo content.
      */
     cover?: {
-      coverInfo?: {leftImageOffset?: number; topImageOffset?: number;};
-      coverPhoto?: {height?: number; url?: string; width?: number;};
+      coverInfo?: {leftImageOffset?: number; topImageOffset?: number};
+      coverPhoto?: {height?: number; url?: string; width?: number};
       layout?: string;
     };
     /**
@@ -457,27 +444,19 @@ export namespace plus_v1 {
      */
     displayName?: string;
     /**
-     * The hosted domain name for the user&#39;s Google Apps account. For
-     * instance, example.com. The plus.profile.emails.read or email scope is
-     * needed to get this domain name.
+     * The hosted domain name for the user&#39;s Google Apps account. For instance, example.com. The plus.profile.emails.read or email scope is needed to get this domain name.
      */
     domain?: string;
     /**
-     * A list of email addresses that this person has, including their Google
-     * account email address, and the public verified email addresses on their
-     * Google+ profile. The plus.profile.emails.read scope is needed to retrieve
-     * these email addresses, or the email scope can be used to retrieve just
-     * the Google account email address.
+     * A list of email addresses that this person has, including their Google account email address, and the public verified email addresses on their Google+ profile. The plus.profile.emails.read scope is needed to retrieve these email addresses, or the email scope can be used to retrieve just the Google account email address.
      */
-    emails?: Array<{type?: string; value?: string;}>;
+    emails?: Array<{type?: string; value?: string}>;
     /**
      * ETag of this response for caching purposes.
      */
     etag?: string;
     /**
-     * The person&#39;s gender. Possible values include, but are not limited to,
-     * the following values:   - &quot;male&quot; - Male gender.  -
-     * &quot;female&quot; - Female gender.  - &quot;other&quot; - Other.
+     * The person&#39;s gender. Possible values include, but are not limited to, the following values:   - &quot;male&quot; - Male gender.  - &quot;female&quot; - Female gender.  - &quot;other&quot; - Other.
      */
     gender?: string;
     /**
@@ -487,7 +466,7 @@ export namespace plus_v1 {
     /**
      * The representation of the person&#39;s profile photo.
      */
-    image?: {isDefault?: boolean; url?: string;};
+    image?: {isDefault?: boolean; url?: string};
     /**
      * Whether this user has signed up for Google+.
      */
@@ -501,8 +480,7 @@ export namespace plus_v1 {
      */
     language?: string;
     /**
-     * An object representation of the individual components of a person&#39;s
-     * name.
+     * An object representation of the individual components of a person&#39;s name.
      */
     name?: {
       familyName?: string;
@@ -517,9 +495,7 @@ export namespace plus_v1 {
      */
     nickname?: string;
     /**
-     * Type of person within Google+. Possible values include, but are not
-     * limited to, the following values:   - &quot;person&quot; - represents an
-     * actual person.  - &quot;page&quot; - represents a page.
+     * Type of person within Google+. Possible values include, but are not limited to, the following values:   - &quot;person&quot; - represents an actual person.  - &quot;page&quot; - represents a page.
      */
     objectType?: string;
     /**
@@ -527,8 +503,7 @@ export namespace plus_v1 {
      */
     occupation?: string;
     /**
-     * A list of current or past organizations with which this person is
-     * associated.
+     * A list of current or past organizations with which this person is associated.
      */
     organizations?: Array<{
       department?: string;
@@ -544,21 +519,13 @@ export namespace plus_v1 {
     /**
      * A list of places where this person has lived.
      */
-    placesLived?: Array<{primary?: boolean; value?: string;}>;
+    placesLived?: Array<{primary?: boolean; value?: string}>;
     /**
      * If a Google+ Page, the number of people who have +1&#39;d this page.
      */
     plusOneCount?: number;
     /**
-     * The person&#39;s relationship status. Possible values include, but are
-     * not limited to, the following values:   - &quot;single&quot; - Person is
-     * single.  - &quot;in_a_relationship&quot; - Person is in a relationship.
-     * - &quot;engaged&quot; - Person is engaged.  - &quot;married&quot; -
-     * Person is married.  - &quot;its_complicated&quot; - The relationship is
-     * complicated.  - &quot;open_relationship&quot; - Person is in an open
-     * relationship.  - &quot;widowed&quot; - Person is widowed.  -
-     * &quot;in_domestic_partnership&quot; - Person is in a domestic
-     * partnership.  - &quot;in_civil_union&quot; - Person is in a civil union.
+     * The person&#39;s relationship status. Possible values include, but are not limited to, the following values:   - &quot;single&quot; - Person is single.  - &quot;in_a_relationship&quot; - Person is in a relationship.  - &quot;engaged&quot; - Person is engaged.  - &quot;married&quot; - Person is married.  - &quot;its_complicated&quot; - The relationship is complicated.  - &quot;open_relationship&quot; - Person is in an open relationship.  - &quot;widowed&quot; - Person is widowed.  - &quot;in_domestic_partnership&quot; - Person is in a domestic partnership.  - &quot;in_civil_union&quot; - Person is in a civil union.
      */
     relationshipStatus?: string;
     /**
@@ -576,7 +543,7 @@ export namespace plus_v1 {
     /**
      * A list of URLs for this person.
      */
-    urls?: Array<{label?: string; type?: string; value?: string;}>;
+    urls?: Array<{label?: string; type?: string; value?: string}>;
     /**
      * Whether the person or Google+ Page has been verified.
      */
@@ -586,7 +553,7 @@ export namespace plus_v1 {
     /**
      * The physical address of the place.
      */
-    address?: {formatted?: string;};
+    address?: {formatted?: string};
     /**
      * The display name of the place.
      */
@@ -602,7 +569,7 @@ export namespace plus_v1 {
     /**
      * The position of the place.
      */
-    position?: {latitude?: number; longitude?: number;};
+    position?: {latitude?: number; longitude?: number};
   }
   export interface Schema$PlusAclentryResource {
     /**
@@ -610,24 +577,14 @@ export namespace plus_v1 {
      */
     displayName?: string;
     /**
-     * The ID of the entry. For entries of type &quot;person&quot; or
-     * &quot;circle&quot;, this is the ID of the resource. For other types, this
-     * property is not set.
+     * The ID of the entry. For entries of type &quot;person&quot; or &quot;circle&quot;, this is the ID of the resource. For other types, this property is not set.
      */
     id?: string;
     /**
-     * The type of entry describing to whom access is granted. Possible values
-     * are:   - &quot;person&quot; - Access to an individual.  -
-     * &quot;circle&quot; - Access to members of a circle.  -
-     * &quot;myCircles&quot; - Access to members of all the person&#39;s
-     * circles.  - &quot;extendedCircles&quot; - Access to members of all the
-     * person&#39;s circles, plus all of the people in their circles.  -
-     * &quot;domain&quot; - Access to members of the person&#39;s Google Apps
-     * domain.  - &quot;public&quot; - Access to anyone on the web.
+     * The type of entry describing to whom access is granted. Possible values are:   - &quot;person&quot; - Access to an individual.  - &quot;circle&quot; - Access to members of a circle.  - &quot;myCircles&quot; - Access to members of all the person&#39;s circles.  - &quot;extendedCircles&quot; - Access to members of all the person&#39;s circles, plus all of the people in their circles.  - &quot;domain&quot; - Access to members of the person&#39;s Google Apps domain.  - &quot;public&quot; - Access to anyone on the web.
      */
     type?: string;
   }
-
 
   export class Resource$Activities {
     context: APIRequestContext;
@@ -635,11 +592,9 @@ export namespace plus_v1 {
       this.context = context;
     }
 
-
     /**
      * plus.activities.get
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plus.activities.get
      * @memberOf! ()
      *
@@ -649,19 +604,27 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Activities$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Activity>;
-    get(params: Params$Resource$Activities$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Activity>,
-        callback: BodyResponseCallback<Schema$Activity>): void;
-    get(params: Params$Resource$Activities$Get,
-        callback: BodyResponseCallback<Schema$Activity>): void;
+    get(
+      params?: Params$Resource$Activities$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Activity>;
+    get(
+      params: Params$Resource$Activities$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Activity>,
+      callback: BodyResponseCallback<Schema$Activity>
+    ): void;
+    get(
+      params: Params$Resource$Activities$Get,
+      callback: BodyResponseCallback<Schema$Activity>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Activity>): void;
-    get(paramsOrCallback?: Params$Resource$Activities$Get|
-        BodyResponseCallback<Schema$Activity>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Activity>,
-        callback?: BodyResponseCallback<Schema$Activity>):
-        void|GaxiosPromise<Schema$Activity> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Activities$Get
+        | BodyResponseCallback<Schema$Activity>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Activity>,
+      callback?: BodyResponseCallback<Schema$Activity>
+    ): void | GaxiosPromise<Schema$Activity> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -679,16 +642,19 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/plus/v1/activities/{activityId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/plus/v1/activities/{activityId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['activityId'],
         pathParams: ['activityId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Activity>(parameters, callback);
@@ -697,11 +663,9 @@ export namespace plus_v1 {
       }
     }
 
-
     /**
      * plus.activities.list
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plus.activities.list
      * @memberOf! ()
      *
@@ -714,23 +678,29 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Activities$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ActivityFeed>;
     list(
-        params: Params$Resource$Activities$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ActivityFeed>,
-        callback: BodyResponseCallback<Schema$ActivityFeed>): void;
+      params?: Params$Resource$Activities$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ActivityFeed>;
     list(
-        params: Params$Resource$Activities$List,
-        callback: BodyResponseCallback<Schema$ActivityFeed>): void;
+      params: Params$Resource$Activities$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ActivityFeed>,
+      callback: BodyResponseCallback<Schema$ActivityFeed>
+    ): void;
+    list(
+      params: Params$Resource$Activities$List,
+      callback: BodyResponseCallback<Schema$ActivityFeed>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ActivityFeed>): void;
     list(
-        paramsOrCallback?: Params$Resource$Activities$List|
-        BodyResponseCallback<Schema$ActivityFeed>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ActivityFeed>,
-        callback?: BodyResponseCallback<Schema$ActivityFeed>):
-        void|GaxiosPromise<Schema$ActivityFeed> {
+      paramsOrCallback?:
+        | Params$Resource$Activities$List
+        | BodyResponseCallback<Schema$ActivityFeed>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ActivityFeed>,
+      callback?: BodyResponseCallback<Schema$ActivityFeed>
+    ): void | GaxiosPromise<Schema$ActivityFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -748,17 +718,18 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/plus/v1/people/{userId}/activities/{collection}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/plus/v1/people/{userId}/activities/{collection}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ActivityFeed>(parameters, callback);
@@ -767,11 +738,9 @@ export namespace plus_v1 {
       }
     }
 
-
     /**
      * plus.activities.search
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plus.activities.search
      * @memberOf! ()
      *
@@ -785,25 +754,31 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: Params$Resource$Activities$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$ActivityFeed>;
     search(
-        params: Params$Resource$Activities$Search,
-        options: MethodOptions|BodyResponseCallback<Schema$ActivityFeed>,
-        callback: BodyResponseCallback<Schema$ActivityFeed>): void;
+      params?: Params$Resource$Activities$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ActivityFeed>;
     search(
-        params: Params$Resource$Activities$Search,
-        callback: BodyResponseCallback<Schema$ActivityFeed>): void;
+      params: Params$Resource$Activities$Search,
+      options: MethodOptions | BodyResponseCallback<Schema$ActivityFeed>,
+      callback: BodyResponseCallback<Schema$ActivityFeed>
+    ): void;
+    search(
+      params: Params$Resource$Activities$Search,
+      callback: BodyResponseCallback<Schema$ActivityFeed>
+    ): void;
     search(callback: BodyResponseCallback<Schema$ActivityFeed>): void;
     search(
-        paramsOrCallback?: Params$Resource$Activities$Search|
-        BodyResponseCallback<Schema$ActivityFeed>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ActivityFeed>,
-        callback?: BodyResponseCallback<Schema$ActivityFeed>):
-        void|GaxiosPromise<Schema$ActivityFeed> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Activities$Search;
+      paramsOrCallback?:
+        | Params$Resource$Activities$Search
+        | BodyResponseCallback<Schema$ActivityFeed>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ActivityFeed>,
+      callback?: BodyResponseCallback<Schema$ActivityFeed>
+    ): void | GaxiosPromise<Schema$ActivityFeed> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Activities$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -820,16 +795,19 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/plus/v1/activities')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/plus/v1/activities').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['query'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ActivityFeed>(parameters, callback);
@@ -843,7 +821,7 @@ export namespace plus_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the activity to get.
@@ -854,46 +832,38 @@ export namespace plus_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The collection of activities to list.
      */
     collection?: string;
     /**
-     * The maximum number of activities to include in the response, which is
-     * used for paging. For any response, the actual number returned might be
-     * less than the specified maxResults.
+     * The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      */
     maxResults?: number;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response.
+     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
     /**
-     * The ID of the user to get activities for. The special value "me" can be
-     * used to indicate the authenticated user.
+     * The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
-  export interface Params$Resource$Activities$Search extends
-      StandardParameters {
+  export interface Params$Resource$Activities$Search
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Specify the preferred language to search with. See search language codes
-     * for available values.
+     * Specify the preferred language to search with. See search language codes for available values.
      */
     language?: string;
     /**
-     * The maximum number of activities to include in the response, which is
-     * used for paging. For any response, the actual number returned might be
-     * less than the specified maxResults.
+     * The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -901,10 +871,7 @@ export namespace plus_v1 {
      */
     orderBy?: string;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response. This token can be of any
-     * length.
+     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
      */
     pageToken?: string;
     /**
@@ -913,18 +880,15 @@ export namespace plus_v1 {
     query?: string;
   }
 
-
   export class Resource$Comments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * plus.comments.get
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plus.comments.get
      * @memberOf! ()
      *
@@ -934,19 +898,27 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Comments$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Comment>;
-    get(params: Params$Resource$Comments$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback: BodyResponseCallback<Schema$Comment>): void;
-    get(params: Params$Resource$Comments$Get,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+    get(
+      params?: Params$Resource$Comments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Comment>;
+    get(
+      params: Params$Resource$Comments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
+    get(
+      params: Params$Resource$Comments$Get,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Comment>): void;
-    get(paramsOrCallback?: Params$Resource$Comments$Get|
-        BodyResponseCallback<Schema$Comment>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>):
-        void|GaxiosPromise<Schema$Comment> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Comments$Get
+        | BodyResponseCallback<Schema$Comment>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>
+    ): void | GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -964,16 +936,19 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/plus/v1/comments/{commentId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/plus/v1/comments/{commentId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['commentId'],
         pathParams: ['commentId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -982,11 +957,9 @@ export namespace plus_v1 {
       }
     }
 
-
     /**
      * plus.comments.list
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plus.comments.list
      * @memberOf! ()
      *
@@ -999,23 +972,29 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Comments$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CommentFeed>;
     list(
-        params: Params$Resource$Comments$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentFeed>,
-        callback: BodyResponseCallback<Schema$CommentFeed>): void;
+      params?: Params$Resource$Comments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentFeed>;
     list(
-        params: Params$Resource$Comments$List,
-        callback: BodyResponseCallback<Schema$CommentFeed>): void;
+      params: Params$Resource$Comments$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentFeed>,
+      callback: BodyResponseCallback<Schema$CommentFeed>
+    ): void;
+    list(
+      params: Params$Resource$Comments$List,
+      callback: BodyResponseCallback<Schema$CommentFeed>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CommentFeed>): void;
     list(
-        paramsOrCallback?: Params$Resource$Comments$List|
-        BodyResponseCallback<Schema$CommentFeed>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentFeed>,
-        callback?: BodyResponseCallback<Schema$CommentFeed>):
-        void|GaxiosPromise<Schema$CommentFeed> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$List
+        | BodyResponseCallback<Schema$CommentFeed>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentFeed>,
+      callback?: BodyResponseCallback<Schema$CommentFeed>
+    ): void | GaxiosPromise<Schema$CommentFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1033,16 +1012,18 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/plus/v1/activities/{activityId}/comments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/plus/v1/activities/{activityId}/comments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['activityId'],
         pathParams: ['activityId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentFeed>(parameters, callback);
@@ -1056,7 +1037,7 @@ export namespace plus_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the comment to get.
@@ -1067,22 +1048,18 @@ export namespace plus_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the activity to get comments for.
      */
     activityId?: string;
     /**
-     * The maximum number of comments to include in the response, which is used
-     * for paging. For any response, the actual number returned might be less
-     * than the specified maxResults.
+     * The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      */
     maxResults?: number;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response.
+     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
     /**
@@ -1091,19 +1068,15 @@ export namespace plus_v1 {
     sortOrder?: string;
   }
 
-
   export class Resource$People {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * plus.people.get
-     * @desc Get a person's profile. If your app uses scope
-     * https://www.googleapis.com/auth/plus.login, this method is guaranteed to
-     * return ageRange and language.
+     * @desc Get a person's profile. If your app uses scope https://www.googleapis.com/auth/plus.login, this method is guaranteed to return ageRange and language.
      * @alias plus.people.get
      * @memberOf! ()
      *
@@ -1113,19 +1086,27 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$People$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Person>;
-    get(params: Params$Resource$People$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback: BodyResponseCallback<Schema$Person>): void;
-    get(params: Params$Resource$People$Get,
-        callback: BodyResponseCallback<Schema$Person>): void;
+    get(
+      params?: Params$Resource$People$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Person>;
+    get(
+      params: Params$Resource$People$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
+    get(
+      params: Params$Resource$People$Get,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Person>): void;
-    get(paramsOrCallback?: Params$Resource$People$Get|
-        BodyResponseCallback<Schema$Person>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback?: BodyResponseCallback<Schema$Person>):
-        void|GaxiosPromise<Schema$Person> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$People$Get
+        | BodyResponseCallback<Schema$Person>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback?: BodyResponseCallback<Schema$Person>
+    ): void | GaxiosPromise<Schema$Person> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1143,16 +1124,19 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/plus/v1/people/{userId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/plus/v1/people/{userId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -1160,7 +1144,6 @@ export namespace plus_v1 {
         return createAPIRequest<Schema$Person>(parameters);
       }
     }
-
 
     /**
      * plus.people.list
@@ -1178,23 +1161,29 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$People$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PeopleFeed>;
     list(
-        params: Params$Resource$People$List,
-        options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
-        callback: BodyResponseCallback<Schema$PeopleFeed>): void;
+      params?: Params$Resource$People$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PeopleFeed>;
     list(
-        params: Params$Resource$People$List,
-        callback: BodyResponseCallback<Schema$PeopleFeed>): void;
+      params: Params$Resource$People$List,
+      options: MethodOptions | BodyResponseCallback<Schema$PeopleFeed>,
+      callback: BodyResponseCallback<Schema$PeopleFeed>
+    ): void;
+    list(
+      params: Params$Resource$People$List,
+      callback: BodyResponseCallback<Schema$PeopleFeed>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PeopleFeed>): void;
     list(
-        paramsOrCallback?: Params$Resource$People$List|
-        BodyResponseCallback<Schema$PeopleFeed>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PeopleFeed>,
-        callback?: BodyResponseCallback<Schema$PeopleFeed>):
-        void|GaxiosPromise<Schema$PeopleFeed> {
+      paramsOrCallback?:
+        | Params$Resource$People$List
+        | BodyResponseCallback<Schema$PeopleFeed>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PeopleFeed>,
+      callback?: BodyResponseCallback<Schema$PeopleFeed>
+    ): void | GaxiosPromise<Schema$PeopleFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1212,16 +1201,18 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/plus/v1/people/{userId}/people/{collection}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/plus/v1/people/{userId}/people/{collection}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PeopleFeed>(parameters, callback);
@@ -1230,11 +1221,9 @@ export namespace plus_v1 {
       }
     }
 
-
     /**
      * plus.people.listByActivity
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plus.people.listByActivity
      * @memberOf! ()
      *
@@ -1248,25 +1237,30 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     listByActivity(
-        params?: Params$Resource$People$Listbyactivity,
-        options?: MethodOptions): GaxiosPromise<Schema$PeopleFeed>;
+      params?: Params$Resource$People$Listbyactivity,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PeopleFeed>;
     listByActivity(
-        params: Params$Resource$People$Listbyactivity,
-        options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
-        callback: BodyResponseCallback<Schema$PeopleFeed>): void;
+      params: Params$Resource$People$Listbyactivity,
+      options: MethodOptions | BodyResponseCallback<Schema$PeopleFeed>,
+      callback: BodyResponseCallback<Schema$PeopleFeed>
+    ): void;
     listByActivity(
-        params: Params$Resource$People$Listbyactivity,
-        callback: BodyResponseCallback<Schema$PeopleFeed>): void;
+      params: Params$Resource$People$Listbyactivity,
+      callback: BodyResponseCallback<Schema$PeopleFeed>
+    ): void;
     listByActivity(callback: BodyResponseCallback<Schema$PeopleFeed>): void;
     listByActivity(
-        paramsOrCallback?: Params$Resource$People$Listbyactivity|
-        BodyResponseCallback<Schema$PeopleFeed>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PeopleFeed>,
-        callback?: BodyResponseCallback<Schema$PeopleFeed>):
-        void|GaxiosPromise<Schema$PeopleFeed> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$People$Listbyactivity;
+      paramsOrCallback?:
+        | Params$Resource$People$Listbyactivity
+        | BodyResponseCallback<Schema$PeopleFeed>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PeopleFeed>,
+      callback?: BodyResponseCallback<Schema$PeopleFeed>
+    ): void | GaxiosPromise<Schema$PeopleFeed> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Listbyactivity;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1283,17 +1277,18 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/plus/v1/activities/{activityId}/people/{collection}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/plus/v1/activities/{activityId}/people/{collection}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['activityId', 'collection'],
         pathParams: ['activityId', 'collection'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PeopleFeed>(parameters, callback);
@@ -1302,11 +1297,9 @@ export namespace plus_v1 {
       }
     }
 
-
     /**
      * plus.people.search
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plus.people.search
      * @memberOf! ()
      *
@@ -1319,23 +1312,29 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: Params$Resource$People$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$PeopleFeed>;
     search(
-        params: Params$Resource$People$Search,
-        options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
-        callback: BodyResponseCallback<Schema$PeopleFeed>): void;
+      params?: Params$Resource$People$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PeopleFeed>;
     search(
-        params: Params$Resource$People$Search,
-        callback: BodyResponseCallback<Schema$PeopleFeed>): void;
+      params: Params$Resource$People$Search,
+      options: MethodOptions | BodyResponseCallback<Schema$PeopleFeed>,
+      callback: BodyResponseCallback<Schema$PeopleFeed>
+    ): void;
+    search(
+      params: Params$Resource$People$Search,
+      callback: BodyResponseCallback<Schema$PeopleFeed>
+    ): void;
     search(callback: BodyResponseCallback<Schema$PeopleFeed>): void;
     search(
-        paramsOrCallback?: Params$Resource$People$Search|
-        BodyResponseCallback<Schema$PeopleFeed>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PeopleFeed>,
-        callback?: BodyResponseCallback<Schema$PeopleFeed>):
-        void|GaxiosPromise<Schema$PeopleFeed> {
+      paramsOrCallback?:
+        | Params$Resource$People$Search
+        | BodyResponseCallback<Schema$PeopleFeed>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PeopleFeed>,
+      callback?: BodyResponseCallback<Schema$PeopleFeed>
+    ): void | GaxiosPromise<Schema$PeopleFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1353,15 +1352,16 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/plus/v1/people').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/plus/v1/people').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['query'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PeopleFeed>(parameters, callback);
@@ -1375,11 +1375,10 @@ export namespace plus_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the person to get the profile for. The special value "me" can
-     * be used to indicate the authenticated user.
+     * The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -1387,16 +1386,14 @@ export namespace plus_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The collection of people to list.
      */
     collection?: string;
     /**
-     * The maximum number of people to include in the response, which is used
-     * for paging. For any response, the actual number returned might be less
-     * than the specified maxResults.
+     * The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -1404,23 +1401,20 @@ export namespace plus_v1 {
      */
     orderBy?: string;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response.
+     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
     /**
-     * Get the collection of people for the person identified. Use "me" to
-     * indicate the authenticated user.
+     * Get the collection of people for the person identified. Use "me" to indicate the authenticated user.
      */
     userId?: string;
   }
-  export interface Params$Resource$People$Listbyactivity extends
-      StandardParameters {
+  export interface Params$Resource$People$Listbyactivity
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the activity to get the list of people for.
@@ -1431,15 +1425,11 @@ export namespace plus_v1 {
      */
     collection?: string;
     /**
-     * The maximum number of people to include in the response, which is used
-     * for paging. For any response, the actual number returned might be less
-     * than the specified maxResults.
+     * The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      */
     maxResults?: number;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response.
+     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -1447,29 +1437,22 @@ export namespace plus_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Specify the preferred language to search with. See search language codes
-     * for available values.
+     * Specify the preferred language to search with. See search language codes for available values.
      */
     language?: string;
     /**
-     * The maximum number of people to include in the response, which is used
-     * for paging. For any response, the actual number returned might be less
-     * than the specified maxResults.
+     * The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      */
     maxResults?: number;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response. This token can be of any
-     * length.
+     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
      */
     pageToken?: string;
     /**
-     * Specify a query string for full text search of public text in all
-     * profiles.
+     * Specify a query string for full text search of public text in all profiles.
      */
     query?: string;
   }

@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace siteVerification_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace siteVerification_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -83,7 +92,10 @@ export namespace siteVerification_v1 {
     webResource: Resource$Webresource;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.webResource = new Resource$Webresource(this.context);
     }
@@ -93,26 +105,19 @@ export namespace siteVerification_v1 {
     /**
      * The site for which a verification token will be generated.
      */
-    site?: {identifier?: string; type?: string;};
+    site?: {identifier?: string; type?: string};
     /**
-     * The verification method that will be used to verify this site. For sites,
-     * &#39;FILE&#39; or &#39;META&#39; methods may be used. For domains, only
-     * &#39;DNS&#39; may be used.
+     * The verification method that will be used to verify this site. For sites, &#39;FILE&#39; or &#39;META&#39; methods may be used. For domains, only &#39;DNS&#39; may be used.
      */
     verificationMethod?: string;
   }
   export interface Schema$SiteVerificationWebResourceGettokenResponse {
     /**
-     * The verification method to use in conjunction with this token. For FILE,
-     * the token should be placed in the top-level directory of the site, stored
-     * inside a file of the same name. For META, the token should be placed in
-     * the HEAD tag of the default page that is loaded for the site. For DNS,
-     * the token should be placed in a TXT record of the domain.
+     * The verification method to use in conjunction with this token. For FILE, the token should be placed in the top-level directory of the site, stored inside a file of the same name. For META, the token should be placed in the HEAD tag of the default page that is loaded for the site. For DNS, the token should be placed in a TXT record of the domain.
      */
     method?: string;
     /**
-     * The verification token. The token must be placed appropriately in order
-     * for verification to succeed.
+     * The verification token. The token must be placed appropriately in order for verification to succeed.
      */
     token?: string;
   }
@@ -124,9 +129,7 @@ export namespace siteVerification_v1 {
   }
   export interface Schema$SiteVerificationWebResourceResource {
     /**
-     * The string used to identify this site. This value should be used in the
-     * &quot;id&quot; portion of the REST URL for the Get, Update, and Delete
-     * operations.
+     * The string used to identify this site. This value should be used in the &quot;id&quot; portion of the REST URL for the Get, Update, and Delete operations.
      */
     id?: string;
     /**
@@ -136,16 +139,14 @@ export namespace siteVerification_v1 {
     /**
      * The address and type of a site that is verified or will be verified.
      */
-    site?: {identifier?: string; type?: string;};
+    site?: {identifier?: string; type?: string};
   }
-
 
   export class Resource$Webresource {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * siteVerification.webResource.delete
@@ -160,23 +161,28 @@ export namespace siteVerification_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Webresource$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Webresource$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Webresource$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Webresource$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Webresource$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Webresource$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Webresource$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Webresource$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Webresource$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Webresource$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -193,16 +199,19 @@ export namespace siteVerification_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/siteVerification/v1/webResource/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/siteVerification/v1/webResource/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -210,7 +219,6 @@ export namespace siteVerification_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * siteVerification.webResource.get
@@ -224,28 +232,35 @@ export namespace siteVerification_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Webresource$Get, options?: MethodOptions):
-        GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
-    get(params: Params$Resource$Webresource$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-        callback:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void;
-    get(params: Params$Resource$Webresource$Get,
-        callback:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void;
-    get(callback:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void;
-    get(paramsOrCallback?: Params$Resource$Webresource$Get|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-        callback?:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void|GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
+    get(
+      params?: Params$Resource$Webresource$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
+    get(
+      params: Params$Resource$Webresource$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+    ): void;
+    get(
+      params: Params$Resource$Webresource$Get,
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Webresource$Get
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback?: BodyResponseCallback<
+        Schema$SiteVerificationWebResourceResource
+      >
+    ): void | GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webresource$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -263,26 +278,31 @@ export namespace siteVerification_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/siteVerification/v1/webResource/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/siteVerification/v1/webResource/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * siteVerification.webResource.getToken
@@ -297,31 +317,50 @@ export namespace siteVerification_v1 {
      * @return {object} Request object
      */
     getToken(
-        params?: Params$Resource$Webresource$Gettoken, options?: MethodOptions):
-        GaxiosPromise<Schema$SiteVerificationWebResourceGettokenResponse>;
+      params?: Params$Resource$Webresource$Gettoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SiteVerificationWebResourceGettokenResponse>;
     getToken(
-        params: Params$Resource$Webresource$Gettoken,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$SiteVerificationWebResourceGettokenResponse>,
-        callback: BodyResponseCallback<
-            Schema$SiteVerificationWebResourceGettokenResponse>): void;
+      params: Params$Resource$Webresource$Gettoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$SiteVerificationWebResourceGettokenResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$SiteVerificationWebResourceGettokenResponse
+      >
+    ): void;
     getToken(
-        params: Params$Resource$Webresource$Gettoken,
-        callback: BodyResponseCallback<
-            Schema$SiteVerificationWebResourceGettokenResponse>): void;
-    getToken(callback: BodyResponseCallback<
-             Schema$SiteVerificationWebResourceGettokenResponse>): void;
+      params: Params$Resource$Webresource$Gettoken,
+      callback: BodyResponseCallback<
+        Schema$SiteVerificationWebResourceGettokenResponse
+      >
+    ): void;
     getToken(
-        paramsOrCallback?: Params$Resource$Webresource$Gettoken|
-        BodyResponseCallback<
-            Schema$SiteVerificationWebResourceGettokenResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$SiteVerificationWebResourceGettokenResponse>,
-        callback?: BodyResponseCallback<
-            Schema$SiteVerificationWebResourceGettokenResponse>):
-        void|GaxiosPromise<Schema$SiteVerificationWebResourceGettokenResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Webresource$Gettoken;
+      callback: BodyResponseCallback<
+        Schema$SiteVerificationWebResourceGettokenResponse
+      >
+    ): void;
+    getToken(
+      paramsOrCallback?:
+        | Params$Resource$Webresource$Gettoken
+        | BodyResponseCallback<
+            Schema$SiteVerificationWebResourceGettokenResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$SiteVerificationWebResourceGettokenResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$SiteVerificationWebResourceGettokenResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$SiteVerificationWebResourceGettokenResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Webresource$Gettoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -338,26 +377,31 @@ export namespace siteVerification_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/siteVerification/v1/token')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/siteVerification/v1/token').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceGettokenResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$SiteVerificationWebResourceGettokenResponse>(parameters);
+          Schema$SiteVerificationWebResourceGettokenResponse
+        >(parameters);
       }
     }
-
 
     /**
      * siteVerification.webResource.insert
@@ -373,34 +417,36 @@ export namespace siteVerification_v1 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Webresource$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
+      params?: Params$Resource$Webresource$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
     insert(
-        params: Params$Resource$Webresource$Insert,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-        callback:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void;
+      params: Params$Resource$Webresource$Insert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+    ): void;
     insert(
-        params: Params$Resource$Webresource$Insert,
-        callback:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void;
+      params: Params$Resource$Webresource$Insert,
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+    ): void;
     insert(
-        callback:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void;
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+    ): void;
     insert(
-        paramsOrCallback?: Params$Resource$Webresource$Insert|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-        callback?:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void|GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Webresource$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Webresource$Insert
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback?: BodyResponseCallback<
+        Schema$SiteVerificationWebResourceResource
+      >
+    ): void | GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Webresource$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -417,26 +463,31 @@ export namespace siteVerification_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/siteVerification/v1/webResource')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/siteVerification/v1/webResource').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['verificationMethod'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * siteVerification.webResource.list
@@ -449,28 +500,41 @@ export namespace siteVerification_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Webresource$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SiteVerificationWebResourceListResponse>;
     list(
-        params: Params$Resource$Webresource$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
-        callback: BodyResponseCallback<
-            Schema$SiteVerificationWebResourceListResponse>): void;
+      params?: Params$Resource$Webresource$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SiteVerificationWebResourceListResponse>;
     list(
-        params: Params$Resource$Webresource$List,
-        callback: BodyResponseCallback<
-            Schema$SiteVerificationWebResourceListResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$SiteVerificationWebResourceListResponse>): void;
+      params: Params$Resource$Webresource$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
+      callback: BodyResponseCallback<
+        Schema$SiteVerificationWebResourceListResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Webresource$List|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
-        callback?: BodyResponseCallback<
-            Schema$SiteVerificationWebResourceListResponse>):
-        void|GaxiosPromise<Schema$SiteVerificationWebResourceListResponse> {
+      params: Params$Resource$Webresource$List,
+      callback: BodyResponseCallback<
+        Schema$SiteVerificationWebResourceListResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$SiteVerificationWebResourceListResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Webresource$List
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
+      callback?: BodyResponseCallback<
+        Schema$SiteVerificationWebResourceListResponse
+      >
+    ): void | GaxiosPromise<Schema$SiteVerificationWebResourceListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webresource$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -488,31 +552,35 @@ export namespace siteVerification_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/siteVerification/v1/webResource')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/siteVerification/v1/webResource').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
 
-
     /**
      * siteVerification.webResource.patch
-     * @desc Modify the list of owners for your website or domain. This method
-     * supports patch semantics.
+     * @desc Modify the list of owners for your website or domain. This method supports patch semantics.
      * @alias siteVerification.webResource.patch
      * @memberOf! ()
      *
@@ -523,33 +591,37 @@ export namespace siteVerification_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Webresource$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
     patch(
-        params: Params$Resource$Webresource$Patch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-        callback:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void;
+      params?: Params$Resource$Webresource$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
     patch(
-        params: Params$Resource$Webresource$Patch,
-        callback:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void;
-    patch(callback:
-              BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void;
+      params: Params$Resource$Webresource$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+    ): void;
     patch(
-        paramsOrCallback?: Params$Resource$Webresource$Patch|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-        callback?:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void|GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Webresource$Patch;
+      params: Params$Resource$Webresource$Patch,
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Webresource$Patch
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback?: BodyResponseCallback<
+        Schema$SiteVerificationWebResourceResource
+      >
+    ): void | GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Webresource$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -566,26 +638,31 @@ export namespace siteVerification_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/siteVerification/v1/webResource/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/siteVerification/v1/webResource/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * siteVerification.webResource.update
@@ -601,34 +678,36 @@ export namespace siteVerification_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Webresource$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
+      params?: Params$Resource$Webresource$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
     update(
-        params: Params$Resource$Webresource$Update,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-        callback:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void;
+      params: Params$Resource$Webresource$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+    ): void;
     update(
-        params: Params$Resource$Webresource$Update,
-        callback:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void;
+      params: Params$Resource$Webresource$Update,
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+    ): void;
     update(
-        callback:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void;
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+    ): void;
     update(
-        paramsOrCallback?: Params$Resource$Webresource$Update|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-        callback?:
-            BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void|GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Webresource$Update;
+      paramsOrCallback?:
+        | Params$Resource$Webresource$Update
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback?: BodyResponseCallback<
+        Schema$SiteVerificationWebResourceResource
+      >
+    ): void | GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Webresource$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -645,33 +724,39 @@ export namespace siteVerification_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/siteVerification/v1/webResource/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/siteVerification/v1/webResource/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Webresource$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Webresource$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id of a verified site or domain.
@@ -682,32 +767,31 @@ export namespace siteVerification_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id of a verified site or domain.
      */
     id?: string;
   }
-  export interface Params$Resource$Webresource$Gettoken extends
-      StandardParameters {
+  export interface Params$Resource$Webresource$Gettoken
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$SiteVerificationWebResourceGettokenRequest;
   }
-  export interface Params$Resource$Webresource$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Webresource$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The method to use for verifying a site or domain.
@@ -723,14 +807,14 @@ export namespace siteVerification_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Webresource$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Webresource$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id of a verified site or domain.
@@ -742,12 +826,12 @@ export namespace siteVerification_v1 {
      */
     requestBody?: Schema$SiteVerificationWebResourceResource;
   }
-  export interface Params$Resource$Webresource$Update extends
-      StandardParameters {
+  export interface Params$Resource$Webresource$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id of a verified site or domain.

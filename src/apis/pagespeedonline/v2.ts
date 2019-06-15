@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace pagespeedonline_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace pagespeedonline_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -66,8 +75,7 @@ export namespace pagespeedonline_v2 {
   /**
    * PageSpeed Insights API
    *
-   * Analyzes the performance of a web page and provides tailored suggestions to
-   * make that page faster.
+   * Analyzes the performance of a web page and provides tailored suggestions to make that page faster.
    *
    * @example
    * const {google} = require('googleapis');
@@ -84,7 +92,10 @@ export namespace pagespeedonline_v2 {
     pagespeedapi: Resource$Pagespeedapi;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.pagespeedapi = new Resource$Pagespeedapi(this.context);
     }
@@ -96,18 +107,23 @@ export namespace pagespeedonline_v2 {
      */
     args?: Array<{
       key?: string;
-      rects?: Array<
-          {height?: number; left?: number; top?: number; width?: number;}>;
-      secondary_rects?: Array<
-          {height?: number; left?: number; top?: number; width?: number;}>;
+      rects?: Array<{
+        height?: number;
+        left?: number;
+        top?: number;
+        width?: number;
+      }>;
+      secondary_rects?: Array<{
+        height?: number;
+        left?: number;
+        top?: number;
+        width?: number;
+      }>;
       type?: string;
       value?: string;
     }>;
     /**
-     * A localized format string with {{FOO}} placeholders, where &#39;FOO&#39;
-     * is the key of the argument whose value should be substituted. For
-     * HYPERLINK arguments, the format string will instead contain {{BEGIN_FOO}}
-     * and {{END_FOO}} for the argument with key &#39;FOO&#39;.
+     * A localized format string with {{FOO}} placeholders, where &#39;FOO&#39; is the key of the argument whose value should be substituted. For HYPERLINK arguments, the format string will instead contain {{BEGIN_FOO}} and {{END_FOO}} for the argument with key &#39;FOO&#39;.
      */
     format?: string;
   }
@@ -129,10 +145,9 @@ export namespace pagespeedonline_v2 {
      */
     mime_type?: string;
     /**
-     * The region of the page that is captured by this image, with dimensions
-     * measured in CSS pixels.
+     * The region of the page that is captured by this image, with dimensions measured in CSS pixels.
      */
-    page_rect?: {height?: number; left?: number; top?: number; width?: number;};
+    page_rect?: {height?: number; left?: number; top?: number; width?: number};
     /**
      * Width of screenshot in pixels.
      */
@@ -144,8 +159,7 @@ export namespace pagespeedonline_v2 {
      */
     captchaResult?: string;
     /**
-     * Localized PageSpeed results. Contains a ruleResults entry for each
-     * PageSpeed rule instantiated and run by the server.
+     * Localized PageSpeed results. Contains a ruleResults entry for each PageSpeed rule instantiated and run by the server.
      */
     formattedResults?: {
       locale?: string;
@@ -166,13 +180,11 @@ export namespace pagespeedonline_v2 {
       };
     };
     /**
-     * Canonicalized and final URL for the document, after following page
-     * redirects (if any).
+     * Canonicalized and final URL for the document, after following page redirects (if any).
      */
     id?: string;
     /**
-     * List of rules that were specified in the request, but which the server
-     * did not know how to instantiate.
+     * List of rules that were specified in the request, but which the server did not know how to instantiate.
      */
     invalidRules?: string[];
     /**
@@ -180,8 +192,7 @@ export namespace pagespeedonline_v2 {
      */
     kind?: string;
     /**
-     * Summary statistics for the page, such as number of JavaScript bytes,
-     * number of HTML bytes, etc.
+     * Summary statistics for the page, such as number of JavaScript bytes, number of HTML bytes, etc.
      */
     pageStats?: {
       cssResponseBytes?: string;
@@ -199,14 +210,13 @@ export namespace pagespeedonline_v2 {
       totalRequestBytes?: string;
     };
     /**
-     * Response code for the document. 200 indicates a normal page load. 4xx/5xx
-     * indicates an error.
+     * Response code for the document. 200 indicates a normal page load. 4xx/5xx indicates an error.
      */
     responseCode?: number;
     /**
      * A map with one entry for each rule group in these results.
      */
-    ruleGroups?: {[key: string]: {score?: number;};};
+    ruleGroups?: {[key: string]: {score?: number}};
     /**
      * Base64-encoded screenshot of the page that was analyzed.
      */
@@ -218,9 +228,8 @@ export namespace pagespeedonline_v2 {
     /**
      * The version of PageSpeed used to generate these results.
      */
-    version?: {major?: number; minor?: number;};
+    version?: {major?: number; minor?: number};
   }
-
 
   export class Resource$Pagespeedapi {
     context: APIRequestContext;
@@ -228,12 +237,9 @@ export namespace pagespeedonline_v2 {
       this.context = context;
     }
 
-
     /**
      * pagespeedonline.pagespeedapi.runpagespeed
-     * @desc Runs PageSpeed analysis on the page at the specified URL, and
-     * returns PageSpeed scores, a list of suggestions to make that page faster,
-     * and other information.
+     * @desc Runs PageSpeed analysis on the page at the specified URL, and returns PageSpeed scores, a list of suggestions to make that page faster, and other information.
      * @alias pagespeedonline.pagespeedapi.runpagespeed
      * @memberOf! ()
      *
@@ -249,24 +255,28 @@ export namespace pagespeedonline_v2 {
      * @return {object} Request object
      */
     runpagespeed(
-        params?: Params$Resource$Pagespeedapi$Runpagespeed,
-        options?: MethodOptions): GaxiosPromise<Schema$Result>;
+      params?: Params$Resource$Pagespeedapi$Runpagespeed,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Result>;
     runpagespeed(
-        params: Params$Resource$Pagespeedapi$Runpagespeed,
-        options: MethodOptions|BodyResponseCallback<Schema$Result>,
-        callback: BodyResponseCallback<Schema$Result>): void;
+      params: Params$Resource$Pagespeedapi$Runpagespeed,
+      options: MethodOptions | BodyResponseCallback<Schema$Result>,
+      callback: BodyResponseCallback<Schema$Result>
+    ): void;
     runpagespeed(
-        params: Params$Resource$Pagespeedapi$Runpagespeed,
-        callback: BodyResponseCallback<Schema$Result>): void;
+      params: Params$Resource$Pagespeedapi$Runpagespeed,
+      callback: BodyResponseCallback<Schema$Result>
+    ): void;
     runpagespeed(callback: BodyResponseCallback<Schema$Result>): void;
     runpagespeed(
-        paramsOrCallback?: Params$Resource$Pagespeedapi$Runpagespeed|
-        BodyResponseCallback<Schema$Result>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Result>,
-        callback?: BodyResponseCallback<Schema$Result>):
-        void|GaxiosPromise<Schema$Result> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Pagespeedapi$Runpagespeed;
+      paramsOrCallback?:
+        | Params$Resource$Pagespeedapi$Runpagespeed
+        | BodyResponseCallback<Schema$Result>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Result>,
+      callback?: BodyResponseCallback<Schema$Result>
+    ): void | GaxiosPromise<Schema$Result> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Pagespeedapi$Runpagespeed;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -283,16 +293,19 @@ export namespace pagespeedonline_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/pagespeedonline/v2/runPagespeed')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/pagespeedonline/v2/runPagespeed').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['url'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Result>(parameters, callback);
@@ -302,16 +315,15 @@ export namespace pagespeedonline_v2 {
     }
   }
 
-  export interface Params$Resource$Pagespeedapi$Runpagespeed extends
-      StandardParameters {
+  export interface Params$Resource$Pagespeedapi$Runpagespeed
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Indicates if third party resources should be filtered out before
-     * PageSpeed analysis.
+     * Indicates if third party resources should be filtered out before PageSpeed analysis.
      */
     filter_third_party_resources?: boolean;
     /**

@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace tasks_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace tasks_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -84,7 +93,10 @@ export namespace tasks_v1 {
     tasks: Resource$Tasks;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.tasklists = new Resource$Tasklists(this.context);
       this.tasks = new Resource$Tasks(this.context);
@@ -93,8 +105,7 @@ export namespace tasks_v1 {
 
   export interface Schema$Task {
     /**
-     * Completion date of the task (as a RFC 3339 timestamp). This field is
-     * omitted if the task has not been completed.
+     * Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.
      */
     completed?: string;
     /**
@@ -110,9 +121,7 @@ export namespace tasks_v1 {
      */
     etag?: string;
     /**
-     * Flag indicating whether the task is hidden. This is the case if the task
-     * had been marked completed when the task list was last cleared. The
-     * default is False. This field is read-only.
+     * Flag indicating whether the task is hidden. This is the case if the task had been marked completed when the task list was last cleared. The default is False. This field is read-only.
      */
     hidden?: boolean;
     /**
@@ -126,25 +135,17 @@ export namespace tasks_v1 {
     /**
      * Collection of links. This collection is read-only.
      */
-    links?: Array<{description?: string; link?: string; type?: string;}>;
+    links?: Array<{description?: string; link?: string; type?: string}>;
     /**
      * Notes describing the task. Optional.
      */
     notes?: string;
     /**
-     * Parent task identifier. This field is omitted if it is a top-level task.
-     * This field is read-only. Use the &quot;move&quot; method to move the task
-     * under a different parent or to the top level.
+     * Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the &quot;move&quot; method to move the task under a different parent or to the top level.
      */
     parent?: string;
     /**
-     * String indicating the position of the task among its sibling tasks under
-     * the same parent task or at the top level. If this string is greater than
-     * another task&#39;s corresponding position string according to
-     * lexicographical ordering, the task is positioned after the other task
-     * under the same parent task (or at the top level). This field is
-     * read-only. Use the &quot;move&quot; method to move the task to another
-     * position.
+     * String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task&#39;s corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the &quot;move&quot; method to move the task to another position.
      */
     position?: string;
     /**
@@ -152,8 +153,7 @@ export namespace tasks_v1 {
      */
     selfLink?: string;
     /**
-     * Status of the task. This is either &quot;needsAction&quot; or
-     * &quot;completed&quot;.
+     * Status of the task. This is either &quot;needsAction&quot; or &quot;completed&quot;.
      */
     status?: string;
     /**
@@ -179,8 +179,7 @@ export namespace tasks_v1 {
      */
     kind?: string;
     /**
-     * URL pointing to this task list. Used to retrieve, update, or delete this
-     * task list.
+     * URL pointing to this task list. Used to retrieve, update, or delete this task list.
      */
     selfLink?: string;
     /**
@@ -229,13 +228,11 @@ export namespace tasks_v1 {
     nextPageToken?: string;
   }
 
-
   export class Resource$Tasklists {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * tasks.tasklists.delete
@@ -249,21 +246,27 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Tasklists$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Tasklists$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Tasklists$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Tasklists$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Tasklists$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Tasklists$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Tasklists$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Tasklists$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -281,16 +284,19 @@ export namespace tasks_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -298,7 +304,6 @@ export namespace tasks_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tasks.tasklists.get
@@ -312,19 +317,27 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Tasklists$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TaskList>;
-    get(params: Params$Resource$Tasklists$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-        callback: BodyResponseCallback<Schema$TaskList>): void;
-    get(params: Params$Resource$Tasklists$Get,
-        callback: BodyResponseCallback<Schema$TaskList>): void;
+    get(
+      params?: Params$Resource$Tasklists$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TaskList>;
+    get(
+      params: Params$Resource$Tasklists$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TaskList>,
+      callback: BodyResponseCallback<Schema$TaskList>
+    ): void;
+    get(
+      params: Params$Resource$Tasklists$Get,
+      callback: BodyResponseCallback<Schema$TaskList>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TaskList>): void;
-    get(paramsOrCallback?: Params$Resource$Tasklists$Get|
-        BodyResponseCallback<Schema$TaskList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-        callback?: BodyResponseCallback<Schema$TaskList>):
-        void|GaxiosPromise<Schema$TaskList> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Tasklists$Get
+        | BodyResponseCallback<Schema$TaskList>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>
+    ): void | GaxiosPromise<Schema$TaskList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -342,16 +355,19 @@ export namespace tasks_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -360,11 +376,9 @@ export namespace tasks_v1 {
       }
     }
 
-
     /**
      * tasks.tasklists.insert
-     * @desc Creates a new task list and adds it to the authenticated user's
-     * task lists.
+     * @desc Creates a new task list and adds it to the authenticated user's task lists.
      * @alias tasks.tasklists.insert
      * @memberOf! ()
      *
@@ -374,22 +388,27 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Tasklists$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$TaskList>;
     insert(
-        params: Params$Resource$Tasklists$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-        callback: BodyResponseCallback<Schema$TaskList>): void;
+      params?: Params$Resource$Tasklists$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TaskList>;
     insert(
-        params: Params$Resource$Tasklists$Insert,
-        callback: BodyResponseCallback<Schema$TaskList>): void;
+      params: Params$Resource$Tasklists$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$TaskList>,
+      callback: BodyResponseCallback<Schema$TaskList>
+    ): void;
+    insert(
+      params: Params$Resource$Tasklists$Insert,
+      callback: BodyResponseCallback<Schema$TaskList>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$TaskList>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Tasklists$Insert|
-        BodyResponseCallback<Schema$TaskList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-        callback?: BodyResponseCallback<Schema$TaskList>):
-        void|GaxiosPromise<Schema$TaskList> {
+      paramsOrCallback?:
+        | Params$Resource$Tasklists$Insert
+        | BodyResponseCallback<Schema$TaskList>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>
+    ): void | GaxiosPromise<Schema$TaskList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -407,16 +426,19 @@ export namespace tasks_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tasks/v1/users/@me/lists')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tasks/v1/users/@me/lists').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -424,7 +446,6 @@ export namespace tasks_v1 {
         return createAPIRequest<Schema$TaskList>(parameters);
       }
     }
-
 
     /**
      * tasks.tasklists.list
@@ -439,23 +460,29 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Tasklists$List, options?: MethodOptions):
-        GaxiosPromise<Schema$TaskLists>;
     list(
-        params: Params$Resource$Tasklists$List,
-        options: MethodOptions|BodyResponseCallback<Schema$TaskLists>,
-        callback: BodyResponseCallback<Schema$TaskLists>): void;
+      params?: Params$Resource$Tasklists$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TaskLists>;
     list(
-        params: Params$Resource$Tasklists$List,
-        callback: BodyResponseCallback<Schema$TaskLists>): void;
+      params: Params$Resource$Tasklists$List,
+      options: MethodOptions | BodyResponseCallback<Schema$TaskLists>,
+      callback: BodyResponseCallback<Schema$TaskLists>
+    ): void;
+    list(
+      params: Params$Resource$Tasklists$List,
+      callback: BodyResponseCallback<Schema$TaskLists>
+    ): void;
     list(callback: BodyResponseCallback<Schema$TaskLists>): void;
     list(
-        paramsOrCallback?: Params$Resource$Tasklists$List|
-        BodyResponseCallback<Schema$TaskLists>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TaskLists>,
-        callback?: BodyResponseCallback<Schema$TaskLists>):
-        void|GaxiosPromise<Schema$TaskLists> {
+      paramsOrCallback?:
+        | Params$Resource$Tasklists$List
+        | BodyResponseCallback<Schema$TaskLists>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TaskLists>,
+      callback?: BodyResponseCallback<Schema$TaskLists>
+    ): void | GaxiosPromise<Schema$TaskLists> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -473,16 +500,19 @@ export namespace tasks_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tasks/v1/users/@me/lists')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tasks/v1/users/@me/lists').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TaskLists>(parameters, callback);
@@ -491,11 +521,9 @@ export namespace tasks_v1 {
       }
     }
 
-
     /**
      * tasks.tasklists.patch
-     * @desc Updates the authenticated user's specified task list. This method
-     * supports patch semantics.
+     * @desc Updates the authenticated user's specified task list. This method supports patch semantics.
      * @alias tasks.tasklists.patch
      * @memberOf! ()
      *
@@ -506,22 +534,27 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Tasklists$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$TaskList>;
     patch(
-        params: Params$Resource$Tasklists$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-        callback: BodyResponseCallback<Schema$TaskList>): void;
+      params?: Params$Resource$Tasklists$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TaskList>;
     patch(
-        params: Params$Resource$Tasklists$Patch,
-        callback: BodyResponseCallback<Schema$TaskList>): void;
+      params: Params$Resource$Tasklists$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$TaskList>,
+      callback: BodyResponseCallback<Schema$TaskList>
+    ): void;
+    patch(
+      params: Params$Resource$Tasklists$Patch,
+      callback: BodyResponseCallback<Schema$TaskList>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$TaskList>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Tasklists$Patch|
-        BodyResponseCallback<Schema$TaskList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-        callback?: BodyResponseCallback<Schema$TaskList>):
-        void|GaxiosPromise<Schema$TaskList> {
+      paramsOrCallback?:
+        | Params$Resource$Tasklists$Patch
+        | BodyResponseCallback<Schema$TaskList>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>
+    ): void | GaxiosPromise<Schema$TaskList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -539,16 +572,19 @@ export namespace tasks_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -556,7 +592,6 @@ export namespace tasks_v1 {
         return createAPIRequest<Schema$TaskList>(parameters);
       }
     }
-
 
     /**
      * tasks.tasklists.update
@@ -571,22 +606,27 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Tasklists$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$TaskList>;
     update(
-        params: Params$Resource$Tasklists$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-        callback: BodyResponseCallback<Schema$TaskList>): void;
+      params?: Params$Resource$Tasklists$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TaskList>;
     update(
-        params: Params$Resource$Tasklists$Update,
-        callback: BodyResponseCallback<Schema$TaskList>): void;
+      params: Params$Resource$Tasklists$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$TaskList>,
+      callback: BodyResponseCallback<Schema$TaskList>
+    ): void;
+    update(
+      params: Params$Resource$Tasklists$Update,
+      callback: BodyResponseCallback<Schema$TaskList>
+    ): void;
     update(callback: BodyResponseCallback<Schema$TaskList>): void;
     update(
-        paramsOrCallback?: Params$Resource$Tasklists$Update|
-        BodyResponseCallback<Schema$TaskList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-        callback?: BodyResponseCallback<Schema$TaskList>):
-        void|GaxiosPromise<Schema$TaskList> {
+      paramsOrCallback?:
+        | Params$Resource$Tasklists$Update
+        | BodyResponseCallback<Schema$TaskList>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>
+    ): void | GaxiosPromise<Schema$TaskList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -604,16 +644,19 @@ export namespace tasks_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -627,7 +670,7 @@ export namespace tasks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Task list identifier.
@@ -638,7 +681,7 @@ export namespace tasks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Task list identifier.
@@ -649,8 +692,7 @@ export namespace tasks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -661,11 +703,10 @@ export namespace tasks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Maximum number of task lists returned on one page. Optional. The default
-     * is 20 (max allowed: 100).
+     * Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      */
     maxResults?: string;
     /**
@@ -677,7 +718,7 @@ export namespace tasks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Task list identifier.
@@ -693,7 +734,7 @@ export namespace tasks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Task list identifier.
@@ -706,19 +747,15 @@ export namespace tasks_v1 {
     requestBody?: Schema$TaskList;
   }
 
-
   export class Resource$Tasks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
-
     /**
      * tasks.tasks.clear
-     * @desc Clears all completed tasks from the specified task list. The
-     * affected tasks will be marked as 'hidden' and no longer be returned by
-     * default when retrieving all tasks for a task list.
+     * @desc Clears all completed tasks from the specified task list. The affected tasks will be marked as 'hidden' and no longer be returned by default when retrieving all tasks for a task list.
      * @alias tasks.tasks.clear
      * @memberOf! ()
      *
@@ -728,21 +765,27 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clear(params?: Params$Resource$Tasks$Clear, options?: MethodOptions):
-        GaxiosPromise<void>;
     clear(
-        params: Params$Resource$Tasks$Clear,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Tasks$Clear,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     clear(
-        params: Params$Resource$Tasks$Clear,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Tasks$Clear,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    clear(
+      params: Params$Resource$Tasks$Clear,
+      callback: BodyResponseCallback<void>
+    ): void;
     clear(callback: BodyResponseCallback<void>): void;
     clear(
-        paramsOrCallback?: Params$Resource$Tasks$Clear|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Tasks$Clear
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Clear;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -760,16 +803,19 @@ export namespace tasks_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tasks/v1/lists/{tasklist}/clear')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/clear').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -777,7 +823,6 @@ export namespace tasks_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tasks.tasks.delete
@@ -792,21 +837,27 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Tasks$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Tasks$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Tasks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Tasks$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Tasks$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Tasks$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Tasks$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Tasks$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -824,16 +875,19 @@ export namespace tasks_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -841,7 +895,6 @@ export namespace tasks_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tasks.tasks.get
@@ -856,19 +909,27 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Tasks$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Task>;
-    get(params: Params$Resource$Tasks$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback: BodyResponseCallback<Schema$Task>): void;
-    get(params: Params$Resource$Tasks$Get,
-        callback: BodyResponseCallback<Schema$Task>): void;
+    get(
+      params?: Params$Resource$Tasks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Task>;
+    get(
+      params: Params$Resource$Tasks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
+    get(
+      params: Params$Resource$Tasks$Get,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Task>): void;
-    get(paramsOrCallback?: Params$Resource$Tasks$Get|
-        BodyResponseCallback<Schema$Task>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>):
-        void|GaxiosPromise<Schema$Task> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Tasks$Get
+        | BodyResponseCallback<Schema$Task>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>
+    ): void | GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -886,16 +947,19 @@ export namespace tasks_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -903,7 +967,6 @@ export namespace tasks_v1 {
         return createAPIRequest<Schema$Task>(parameters);
       }
     }
-
 
     /**
      * tasks.tasks.insert
@@ -920,22 +983,27 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Tasks$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Task>;
     insert(
-        params: Params$Resource$Tasks$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback: BodyResponseCallback<Schema$Task>): void;
+      params?: Params$Resource$Tasks$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Task>;
     insert(
-        params: Params$Resource$Tasks$Insert,
-        callback: BodyResponseCallback<Schema$Task>): void;
+      params: Params$Resource$Tasks$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
+    insert(
+      params: Params$Resource$Tasks$Insert,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Task>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Tasks$Insert|
-        BodyResponseCallback<Schema$Task>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>):
-        void|GaxiosPromise<Schema$Task> {
+      paramsOrCallback?:
+        | Params$Resource$Tasks$Insert
+        | BodyResponseCallback<Schema$Task>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>
+    ): void | GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -953,16 +1021,19 @@ export namespace tasks_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -970,7 +1041,6 @@ export namespace tasks_v1 {
         return createAPIRequest<Schema$Task>(parameters);
       }
     }
-
 
     /**
      * tasks.tasks.list
@@ -994,22 +1064,27 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Tasks$List, options?: MethodOptions):
-        GaxiosPromise<Schema$Tasks>;
     list(
-        params: Params$Resource$Tasks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Tasks>,
-        callback: BodyResponseCallback<Schema$Tasks>): void;
+      params?: Params$Resource$Tasks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Tasks>;
     list(
-        params: Params$Resource$Tasks$List,
-        callback: BodyResponseCallback<Schema$Tasks>): void;
+      params: Params$Resource$Tasks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Tasks>,
+      callback: BodyResponseCallback<Schema$Tasks>
+    ): void;
+    list(
+      params: Params$Resource$Tasks$List,
+      callback: BodyResponseCallback<Schema$Tasks>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Tasks>): void;
     list(
-        paramsOrCallback?: Params$Resource$Tasks$List|
-        BodyResponseCallback<Schema$Tasks>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Tasks>,
-        callback?: BodyResponseCallback<Schema$Tasks>):
-        void|GaxiosPromise<Schema$Tasks> {
+      paramsOrCallback?:
+        | Params$Resource$Tasks$List
+        | BodyResponseCallback<Schema$Tasks>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Tasks>,
+      callback?: BodyResponseCallback<Schema$Tasks>
+    ): void | GaxiosPromise<Schema$Tasks> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1027,16 +1102,19 @@ export namespace tasks_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Tasks>(parameters, callback);
@@ -1045,12 +1123,9 @@ export namespace tasks_v1 {
       }
     }
 
-
     /**
      * tasks.tasks.move
-     * @desc Moves the specified task to another position in the task list. This
-     * can include putting it as a child task under a new parent and/or move it
-     * to a different position among its sibling tasks.
+     * @desc Moves the specified task to another position in the task list. This can include putting it as a child task under a new parent and/or move it to a different position among its sibling tasks.
      * @alias tasks.tasks.move
      * @memberOf! ()
      *
@@ -1063,22 +1138,27 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    move(params?: Params$Resource$Tasks$Move, options?: MethodOptions):
-        GaxiosPromise<Schema$Task>;
     move(
-        params: Params$Resource$Tasks$Move,
-        options: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback: BodyResponseCallback<Schema$Task>): void;
+      params?: Params$Resource$Tasks$Move,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Task>;
     move(
-        params: Params$Resource$Tasks$Move,
-        callback: BodyResponseCallback<Schema$Task>): void;
+      params: Params$Resource$Tasks$Move,
+      options: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
+    move(
+      params: Params$Resource$Tasks$Move,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
     move(callback: BodyResponseCallback<Schema$Task>): void;
     move(
-        paramsOrCallback?: Params$Resource$Tasks$Move|
-        BodyResponseCallback<Schema$Task>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>):
-        void|GaxiosPromise<Schema$Task> {
+      paramsOrCallback?:
+        | Params$Resource$Tasks$Move
+        | BodyResponseCallback<Schema$Task>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>
+    ): void | GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1096,16 +1176,18 @@ export namespace tasks_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}/move')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}/move'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -1113,7 +1195,6 @@ export namespace tasks_v1 {
         return createAPIRequest<Schema$Task>(parameters);
       }
     }
-
 
     /**
      * tasks.tasks.patch
@@ -1129,22 +1210,27 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Tasks$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Task>;
     patch(
-        params: Params$Resource$Tasks$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback: BodyResponseCallback<Schema$Task>): void;
+      params?: Params$Resource$Tasks$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Task>;
     patch(
-        params: Params$Resource$Tasks$Patch,
-        callback: BodyResponseCallback<Schema$Task>): void;
+      params: Params$Resource$Tasks$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
+    patch(
+      params: Params$Resource$Tasks$Patch,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Task>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Tasks$Patch|
-        BodyResponseCallback<Schema$Task>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>):
-        void|GaxiosPromise<Schema$Task> {
+      paramsOrCallback?:
+        | Params$Resource$Tasks$Patch
+        | BodyResponseCallback<Schema$Task>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>
+    ): void | GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1162,16 +1248,19 @@ export namespace tasks_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -1179,7 +1268,6 @@ export namespace tasks_v1 {
         return createAPIRequest<Schema$Task>(parameters);
       }
     }
-
 
     /**
      * tasks.tasks.update
@@ -1195,22 +1283,27 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Tasks$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Task>;
     update(
-        params: Params$Resource$Tasks$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback: BodyResponseCallback<Schema$Task>): void;
+      params?: Params$Resource$Tasks$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Task>;
     update(
-        params: Params$Resource$Tasks$Update,
-        callback: BodyResponseCallback<Schema$Task>): void;
+      params: Params$Resource$Tasks$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
+    update(
+      params: Params$Resource$Tasks$Update,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Task>): void;
     update(
-        paramsOrCallback?: Params$Resource$Tasks$Update|
-        BodyResponseCallback<Schema$Task>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>):
-        void|GaxiosPromise<Schema$Task> {
+      paramsOrCallback?:
+        | Params$Resource$Tasks$Update
+        | BodyResponseCallback<Schema$Task>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>
+    ): void | GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1228,16 +1321,19 @@ export namespace tasks_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -1251,7 +1347,7 @@ export namespace tasks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Task list identifier.
@@ -1262,7 +1358,7 @@ export namespace tasks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Task identifier.
@@ -1277,7 +1373,7 @@ export namespace tasks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Task identifier.
@@ -1292,16 +1388,14 @@ export namespace tasks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Parent task identifier. If the task is created at the top level, this
-     * parameter is omitted. Optional.
+     * Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
      */
     parent?: string;
     /**
-     * Previous sibling task identifier. If the task is created at the first
-     * position among its siblings, this parameter is omitted. Optional.
+     * Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
      */
     previous?: string;
     /**
@@ -1318,31 +1412,26 @@ export namespace tasks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Upper bound for a task's completion date (as a RFC 3339 timestamp) to
-     * filter by. Optional. The default is not to filter by completion date.
+     * Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
      */
     completedMax?: string;
     /**
-     * Lower bound for a task's completion date (as a RFC 3339 timestamp) to
-     * filter by. Optional. The default is not to filter by completion date.
+     * Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
      */
     completedMin?: string;
     /**
-     * Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by.
-     * Optional. The default is not to filter by due date.
+     * Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
      */
     dueMax?: string;
     /**
-     * Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by.
-     * Optional. The default is not to filter by due date.
+     * Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
      */
     dueMin?: string;
     /**
-     * Maximum number of task lists returned on one page. Optional. The default
-     * is 20 (max allowed: 100).
+     * Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      */
     maxResults?: string;
     /**
@@ -1350,18 +1439,15 @@ export namespace tasks_v1 {
      */
     pageToken?: string;
     /**
-     * Flag indicating whether completed tasks are returned in the result.
-     * Optional. The default is True.
+     * Flag indicating whether completed tasks are returned in the result. Optional. The default is True.
      */
     showCompleted?: boolean;
     /**
-     * Flag indicating whether deleted tasks are returned in the result.
-     * Optional. The default is False.
+     * Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
      */
     showDeleted?: boolean;
     /**
-     * Flag indicating whether hidden tasks are returned in the result.
-     * Optional. The default is False.
+     * Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
      */
     showHidden?: boolean;
     /**
@@ -1369,9 +1455,7 @@ export namespace tasks_v1 {
      */
     tasklist?: string;
     /**
-     * Lower bound for a task's last modification time (as a RFC 3339 timestamp)
-     * to filter by. Optional. The default is not to filter by last modification
-     * time.
+     * Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
      */
     updatedMin?: string;
   }
@@ -1379,16 +1463,14 @@ export namespace tasks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * New parent task identifier. If the task is moved to the top level, this
-     * parameter is omitted. Optional.
+     * New parent task identifier. If the task is moved to the top level, this parameter is omitted. Optional.
      */
     parent?: string;
     /**
-     * New previous sibling task identifier. If the task is moved to the first
-     * position among its siblings, this parameter is omitted. Optional.
+     * New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. Optional.
      */
     previous?: string;
     /**
@@ -1404,7 +1486,7 @@ export namespace tasks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Task identifier.
@@ -1424,7 +1506,7 @@ export namespace tasks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Task identifier.

@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  OAuth2Client,
+  JWT,
+  Compute,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  GoogleConfigurable,
+  createAPIRequest,
+  MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
+} from 'googleapis-common';
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -39,9 +51,7 @@ export namespace oauth2_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -53,8 +63,7 @@ export namespace oauth2_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -83,11 +92,13 @@ export namespace oauth2_v2 {
     userinfo: Resource$Userinfo;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.userinfo = new Resource$Userinfo(this.context);
     }
-
 
     /**
      * oauth2.getCertForOpenIdConnect
@@ -100,22 +111,26 @@ export namespace oauth2_v2 {
      * @return {object} Request object
      */
     getCertForOpenIdConnect(
-        params?: Params$$Getcertforopenidconnect,
-        options?: MethodOptions): GaxiosPromise<Schema$Jwk>;
+      params?: Params$$Getcertforopenidconnect,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Jwk>;
     getCertForOpenIdConnect(
-        params: Params$$Getcertforopenidconnect,
-        options: MethodOptions|BodyResponseCallback<Schema$Jwk>,
-        callback: BodyResponseCallback<Schema$Jwk>): void;
+      params: Params$$Getcertforopenidconnect,
+      options: MethodOptions | BodyResponseCallback<Schema$Jwk>,
+      callback: BodyResponseCallback<Schema$Jwk>
+    ): void;
     getCertForOpenIdConnect(
-        params: Params$$Getcertforopenidconnect,
-        callback: BodyResponseCallback<Schema$Jwk>): void;
+      params: Params$$Getcertforopenidconnect,
+      callback: BodyResponseCallback<Schema$Jwk>
+    ): void;
     getCertForOpenIdConnect(callback: BodyResponseCallback<Schema$Jwk>): void;
     getCertForOpenIdConnect(
-        paramsOrCallback?: Params$$Getcertforopenidconnect|
-        BodyResponseCallback<Schema$Jwk>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Jwk>,
-        callback?: BodyResponseCallback<Schema$Jwk>):
-        void|GaxiosPromise<Schema$Jwk> {
+      paramsOrCallback?:
+        | Params$$Getcertforopenidconnect
+        | BodyResponseCallback<Schema$Jwk>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Jwk>,
+      callback?: BodyResponseCallback<Schema$Jwk>
+    ): void | GaxiosPromise<Schema$Jwk> {
       let params = (paramsOrCallback || {}) as Params$$Getcertforopenidconnect;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -133,15 +148,16 @@ export namespace oauth2_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/oauth2/v2/certs').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/oauth2/v2/certs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Jwk>(parameters, callback);
@@ -149,7 +165,6 @@ export namespace oauth2_v2 {
         return createAPIRequest<Schema$Jwk>(parameters);
       }
     }
-
 
     /**
      * oauth2.tokeninfo
@@ -164,23 +179,29 @@ export namespace oauth2_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    tokeninfo(params?: Params$$Tokeninfo, options?: MethodOptions):
-        GaxiosPromise<Schema$Tokeninfo>;
     tokeninfo(
-        params: Params$$Tokeninfo,
-        options: MethodOptions|BodyResponseCallback<Schema$Tokeninfo>,
-        callback: BodyResponseCallback<Schema$Tokeninfo>): void;
+      params?: Params$$Tokeninfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Tokeninfo>;
     tokeninfo(
-        params: Params$$Tokeninfo,
-        callback: BodyResponseCallback<Schema$Tokeninfo>): void;
+      params: Params$$Tokeninfo,
+      options: MethodOptions | BodyResponseCallback<Schema$Tokeninfo>,
+      callback: BodyResponseCallback<Schema$Tokeninfo>
+    ): void;
+    tokeninfo(
+      params: Params$$Tokeninfo,
+      callback: BodyResponseCallback<Schema$Tokeninfo>
+    ): void;
     tokeninfo(callback: BodyResponseCallback<Schema$Tokeninfo>): void;
     tokeninfo(
-        paramsOrCallback?: Params$$Tokeninfo|
-        BodyResponseCallback<Schema$Tokeninfo>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Tokeninfo>,
-        callback?: BodyResponseCallback<Schema$Tokeninfo>):
-        void|GaxiosPromise<Schema$Tokeninfo> {
+      paramsOrCallback?:
+        | Params$$Tokeninfo
+        | BodyResponseCallback<Schema$Tokeninfo>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Tokeninfo>,
+      callback?: BodyResponseCallback<Schema$Tokeninfo>
+    ): void | GaxiosPromise<Schema$Tokeninfo> {
       let params = (paramsOrCallback || {}) as Params$$Tokeninfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -198,16 +219,19 @@ export namespace oauth2_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/oauth2/v2/tokeninfo')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/oauth2/v2/tokeninfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Tokeninfo>(parameters, callback);
@@ -233,13 +257,11 @@ export namespace oauth2_v2 {
      */
     access_type?: string;
     /**
-     * Who is the intended audience for this token. In general the same as
-     * issued_to.
+     * Who is the intended audience for this token. In general the same as issued_to.
      */
     audience?: string;
     /**
-     * The email address of the user. Present only if the email scope is present
-     * in the request.
+     * The email address of the user. Present only if the email scope is present in the request.
      */
     email?: string;
     /**
@@ -263,8 +285,7 @@ export namespace oauth2_v2 {
      */
     user_id?: string;
     /**
-     * Boolean flag which is true if the email address is verified. Present only
-     * if the email scope is present in the request.
+     * Boolean flag which is true if the email address is verified. Present only if the email scope is present in the request.
      */
     verified_email?: boolean;
   }
@@ -310,8 +331,7 @@ export namespace oauth2_v2 {
      */
     picture?: string;
     /**
-     * Boolean flag which is true if the email address is verified. Always
-     * verified because we only return the user&#39;s primary email address.
+     * Boolean flag which is true if the email address is verified. Always verified because we only return the user&#39;s primary email address.
      */
     verified_email?: boolean;
   }
@@ -320,13 +340,13 @@ export namespace oauth2_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
   export interface Params$$Tokeninfo extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      *
@@ -350,7 +370,6 @@ export namespace oauth2_v2 {
       this.v2 = new Resource$Userinfo$V2(this.context);
     }
 
-
     /**
      * oauth2.userinfo.get
      * @alias oauth2.userinfo.get
@@ -361,20 +380,29 @@ export namespace oauth2_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Userinfo$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Userinfoplus>;
-    get(params: Params$Resource$Userinfo$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
-        callback: BodyResponseCallback<Schema$Userinfoplus>): void;
-    get(params: Params$Resource$Userinfo$Get,
-        callback: BodyResponseCallback<Schema$Userinfoplus>): void;
+    get(
+      params?: Params$Resource$Userinfo$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Userinfoplus>;
+    get(
+      params: Params$Resource$Userinfo$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Userinfoplus>,
+      callback: BodyResponseCallback<Schema$Userinfoplus>
+    ): void;
+    get(
+      params: Params$Resource$Userinfo$Get,
+      callback: BodyResponseCallback<Schema$Userinfoplus>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Userinfoplus>): void;
-    get(paramsOrCallback?: Params$Resource$Userinfo$Get|
-        BodyResponseCallback<Schema$Userinfoplus>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Userinfoplus>,
-        callback?: BodyResponseCallback<Schema$Userinfoplus>):
-        void|GaxiosPromise<Schema$Userinfoplus> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Userinfo$Get
+        | BodyResponseCallback<Schema$Userinfoplus>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Userinfoplus>,
+      callback?: BodyResponseCallback<Schema$Userinfoplus>
+    ): void | GaxiosPromise<Schema$Userinfoplus> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userinfo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -392,16 +420,19 @@ export namespace oauth2_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/oauth2/v2/userinfo')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/oauth2/v2/userinfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Userinfoplus>(parameters, callback);
@@ -415,7 +446,7 @@ export namespace oauth2_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
 
   export class Resource$Userinfo$V2 {
@@ -427,13 +458,11 @@ export namespace oauth2_v2 {
     }
   }
 
-
   export class Resource$Userinfo$V2$Me {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * oauth2.userinfo.v2.me.get
@@ -445,22 +474,31 @@ export namespace oauth2_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Userinfo$V2$Me$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Userinfoplus>;
-    get(params: Params$Resource$Userinfo$V2$Me$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
-        callback: BodyResponseCallback<Schema$Userinfoplus>): void;
-    get(params: Params$Resource$Userinfo$V2$Me$Get,
-        callback: BodyResponseCallback<Schema$Userinfoplus>): void;
+    get(
+      params?: Params$Resource$Userinfo$V2$Me$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Userinfoplus>;
+    get(
+      params: Params$Resource$Userinfo$V2$Me$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Userinfoplus>,
+      callback: BodyResponseCallback<Schema$Userinfoplus>
+    ): void;
+    get(
+      params: Params$Resource$Userinfo$V2$Me$Get,
+      callback: BodyResponseCallback<Schema$Userinfoplus>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Userinfoplus>): void;
-    get(paramsOrCallback?: Params$Resource$Userinfo$V2$Me$Get|
-        BodyResponseCallback<Schema$Userinfoplus>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Userinfoplus>,
-        callback?: BodyResponseCallback<Schema$Userinfoplus>):
-        void|GaxiosPromise<Schema$Userinfoplus> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Userinfo$V2$Me$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Userinfo$V2$Me$Get
+        | BodyResponseCallback<Schema$Userinfoplus>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Userinfoplus>,
+      callback?: BodyResponseCallback<Schema$Userinfoplus>
+    ): void | GaxiosPromise<Schema$Userinfoplus> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userinfo$V2$Me$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -477,15 +515,16 @@ export namespace oauth2_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/userinfo/v2/me').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/userinfo/v2/me').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Userinfoplus>(parameters, callback);
@@ -495,11 +534,11 @@ export namespace oauth2_v2 {
     }
   }
 
-  export interface Params$Resource$Userinfo$V2$Me$Get extends
-      StandardParameters {
+  export interface Params$Resource$Userinfo$V2$Me$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
 }

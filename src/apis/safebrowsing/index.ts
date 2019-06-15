@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {safebrowsing_v4} from './v4';
 
 export const VERSIONS = {
-  'v4': safebrowsing_v4.Safebrowsing,
+  v4: safebrowsing_v4.Safebrowsing,
 };
 
 export function safebrowsing(version: 'v4'): safebrowsing_v4.Safebrowsing;
-export function safebrowsing(options: safebrowsing_v4.Options):
-    safebrowsing_v4.Safebrowsing;
+export function safebrowsing(
+  options: safebrowsing_v4.Options
+): safebrowsing_v4.Safebrowsing;
 export function safebrowsing<T = safebrowsing_v4.Safebrowsing>(
-    this: GoogleConfigurable, versionOrOptions: 'v4'|safebrowsing_v4.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v4' | safebrowsing_v4.Options
+) {
   return getAPI<T>('safebrowsing', versionOrOptions, VERSIONS, this);
 }
 

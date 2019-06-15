@@ -17,7 +17,7 @@ const fs = require('fs');
 const path = require('path');
 const http = require('http');
 const url = require('url');
-const opn = require('opn');
+const opn = require('open');
 const destroyer = require('server-destroy');
 
 const {google} = require('googleapis');
