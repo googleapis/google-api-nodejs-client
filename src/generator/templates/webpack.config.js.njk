@@ -36,27 +36,27 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /node_modules\/google-auth-library\/src\/crypto\/node\/crypto/,
+        test: /node_modules[\\\/]google-auth-library[\\\/]src[\\\/]crypto[\\\/]node[\\\/]crypto/,
         use: 'null-loader',
       },
       {
-        test: /node_modules\/https-proxy-agent\//,
+        test: /node_modules[\\\/]https-proxy-agent[\\\/]/,
         use: 'null-loader',
       },
       {
-        test: /node_modules\/gcp-metadata\//,
+        test: /node_modules[\\\/]gcp-metadata[\\\/]/,
         use: 'null-loader',
       },
       {
-        test: /node_modules\/gtoken\//,
+        test: /node_modules[\\\/]gtoken[\\\/]/,
         use: 'null-loader',
       },
       {
-        test: /node_modules\/pkginfo\//,
+        test: /node_modules[\\\/]pkginfo[\\\/]/,
         use: 'null-loader',
       },
       {
-        test: /node_modules\/semver\//,
+        test: /node_modules[\\\/]semver[\\\/]/,
         use: 'null-loader',
       },
       {
