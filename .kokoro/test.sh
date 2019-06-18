@@ -36,10 +36,11 @@ else
   echo "coverage is only reported for Node $COVERAGE_NODE"
 fi
 
-# if the GITHUB_TOKEN is set, we kick off a task to update the release-PR.
-GITHUB_TOKEN=$(cat $KOKORO_KEYSTORE_DIR/73713_yoshi-automation-github-key) || true
-if [ "$GITHUB_TOKEN" ]; then
-  npx release-please release-pr --token=$GITHUB_TOKEN \
+# if release-please keys set, we kick off a task to update the release-PR.
+if [ -f ${KOKORO_KEYSTORE_DIR}/73713_github-magic-proxy-url-release-please ]; then
+  npx release-please release-pr --token=${KOKORO_KEYSTORE_DIR}/73713_github-magic-proxy-token-release-please \
     --repo-url=googleapis/google-api-nodejs-client \
-    --package-name=googleapis
+    --package-name=googleapis \
+    --api-url=${KOKORO_KEYSTORE_DIR}/73713_github-magic-proxy-url-release-please \
+    --proxy-key=${KOKORO_KEYSTORE_DIR}/73713_github-magic-proxy-key-release-please
 fi
