@@ -41,5 +41,8 @@ module.exports = {
     sourceFiles: false,
     systemName: 'googleapis',
     theme: 'lumen'
+  },
+  markdown: {
+    idInHeadings: true
   }
 };
