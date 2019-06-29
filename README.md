@@ -290,7 +290,7 @@ const drive = google.drive({
 });
 ```
 
-See the [Options section][options] for more information.
+See the [Options section](#request-options) for more information.
 
 ## Usage
 
