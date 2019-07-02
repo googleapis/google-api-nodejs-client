@@ -4,6 +4,16 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+### [40.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/v40.0.0...v40.0.1) (2019-07-02)
+
+
+### Bug Fixes
+
+* make webpack work on Windows ([#1742](https://www.github.com/googleapis/google-api-nodejs-client/issues/1742)) ([cac269f](https://www.github.com/googleapis/google-api-nodejs-client/commit/cac269f))
+* **deps:** update googleapis-common to most recent release. ([#1739](https://www.github.com/googleapis/google-api-nodejs-client/issues/1739)) ([8bfa702](https://www.github.com/googleapis/google-api-nodejs-client/commit/8bfa702))
+* **docs:** make anchors work in jsdoc ([#1747](https://www.github.com/googleapis/google-api-nodejs-client/issues/1747)) ([799e391](https://www.github.com/googleapis/google-api-nodejs-client/commit/799e391))
+* **docs:** move to new client docs URL ([#1734](https://www.github.com/googleapis/google-api-nodejs-client/issues/1734)) ([4df71ed](https://www.github.com/googleapis/google-api-nodejs-client/commit/4df71ed))
+
 ## [40.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v39.2.0...v40.0.0) (2019-05-13)
 
 
