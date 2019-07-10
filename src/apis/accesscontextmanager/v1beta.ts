@@ -187,6 +187,19 @@ export namespace accesscontextmanager_v1beta {
     conditions?: Schema$Condition[];
   }
   /**
+   * Alpha. Specifies which services are granted access via this Bridge Service Perimeter.
+   */
+  export interface Schema$BridgeServiceRestriction {
+    /**
+     * The list of APIs usable through the Bridge Perimeter. Must be empty unless &#39;enable_restriction&#39; is True.
+     */
+    allowedServices?: string[];
+    /**
+     * Whether to restrict the set of APIs callable through the Bridge Service Perimeter.
+     */
+    enableRestriction?: boolean;
+  }
+  /**
    * A condition necessary for an `AccessLevel` to be granted. The Condition is an AND over its fields. So a Condition is true if: 1) the request IP is from one of the listed subnetworks AND 2) the originating device complies with the listed device policy AND 3) all listed access levels are granted AND 4) the request was sent at a time allowed by the DateTimeRestriction.
    */
   export interface Schema$Condition {
@@ -243,6 +256,19 @@ export namespace accesscontextmanager_v1beta {
      * Whether or not screenlock is required for the DevicePolicy to be true. Defaults to `false`.
      */
     requireScreenlock?: boolean;
+  }
+  /**
+   * Alpha. Specifies how Access Levels are to be used for accessing the Service Perimeter.
+   */
+  export interface Schema$IngressServiceRestriction {
+    /**
+     * The list of APIs usable with a valid Access Level. Must be empty unless &#39;enable_restriction&#39; is True.
+     */
+    allowedServices?: string[];
+    /**
+     * Whether to restrict the set of APIs callable outside the Service Perimeter via Access Levels.
+     */
+    enableRestriction?: boolean;
   }
   /**
    * A response to `ListAccessLevelsRequest`.
@@ -367,6 +393,14 @@ export namespace accesscontextmanager_v1beta {
      */
     accessLevels?: string[];
     /**
+     * Alpha. Configuration for what services are accessible via the Bridge Perimeter. Must be empty for non-Bridge Perimeters.
+     */
+    bridgeServiceRestriction?: Schema$BridgeServiceRestriction;
+    /**
+     * Alpha. Configuration for which services may be used with Access Levels.
+     */
+    ingressServiceRestriction?: Schema$IngressServiceRestriction;
+    /**
      * A list of GCP resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number}`
      */
     resources?: string[];
@@ -378,9 +412,13 @@ export namespace accesscontextmanager_v1beta {
      * GCP services that are not subject to the Service Perimeter restrictions. Deprecated. Must be set to a single wildcard &quot;*&quot;.  The wildcard means that unless explicitly specified by &quot;restricted_services&quot; list, any service is treated as unrestricted.
      */
     unrestrictedServices?: string[];
+    /**
+     * Alpha. Configuration for within Perimeter allowed APIs.
+     */
+    vpcServiceRestriction?: Schema$VpcServiceRestriction;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -395,6 +433,19 @@ export namespace accesscontextmanager_v1beta {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
+  }
+  /**
+   * Alpha. Specifies how APIs are allowed to communicate within the Service Perimeter.
+   */
+  export interface Schema$VpcServiceRestriction {
+    /**
+     * The list of APIs usable within the Service Perimeter. Must be empty unless &#39;enable_restriction&#39; is True.
+     */
+    allowedServices?: string[];
+    /**
+     * Whether to restrict API calls within the Service Perimeter to the list of APIs specified in &#39;allowed_services&#39;.
+     */
+    enableRestriction?: boolean;
   }
 
   export class Resource$Accesspolicies {
@@ -1182,7 +1233,7 @@ export namespace accesscontextmanager_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`
-     * @param {string=} params.updateMask Required.  Mask to control which fields get updated. Must be non-empty.
+     * @param {string=} params.updateMask Required. Mask to control which fields get updated. Must be non-empty.
      * @param {().AccessLevel} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1330,7 +1381,7 @@ export namespace accesscontextmanager_v1beta {
      */
     name?: string;
     /**
-     * Required.  Mask to control which fields get updated. Must be non-empty.
+     * Required. Mask to control which fields get updated. Must be non-empty.
      */
     updateMask?: string;
 

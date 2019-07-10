@@ -593,7 +593,7 @@ export namespace tagmanager_v1 {
      */
     map?: Schema$Parameter[];
     /**
-     * The parameter type. Valid values are:  - boolean: The value represents a boolean, represented as &#39;true&#39; or &#39;false&#39;  - integer: The value represents a 64-bit signed integer value, in base 10  - list: A list of parameters should be specified  - map: A map of parameters should be specified  - template: The value represents any text; this can include variable references (even variable references that might return non-string types)
+     * The parameter type. Valid values are:  - boolean: The value represents a boolean, represented as &#39;true&#39; or &#39;false&#39;  - integer: The value represents a 64-bit signed integer value, in base 10  - list: A list of parameters should be specified  - map: A map of parameters should be specified  - template: The value represents any text; this can include variable references (even variable references that might return non-string types)  - trigger_reference: The value represents a trigger, represented as the trigger id
      */
     type?: string;
     /**

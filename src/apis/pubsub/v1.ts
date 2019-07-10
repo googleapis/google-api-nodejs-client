@@ -255,6 +255,12 @@ export namespace pubsub_v1 {
      */
     subscriptions?: string[];
   }
+  export interface Schema$MessageStoragePolicy {
+    /**
+     * A list of IDs of GCP regions where messages that are published to the topic may be persisted in storage. Messages published by publishers running in non-allowed GCP regions (or running outside of GCP altogether) will be routed for storage in one of the allowed regions. An empty list means that no regions are allowed, and is not a valid configuration.
+     */
+    allowedPersistenceRegions?: string[];
+  }
   /**
    * Request for the ModifyAckDeadline method.
    */
@@ -505,9 +511,17 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Topic {
     /**
+     * The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic.  The expected format is `projects/x/locations/x/keyRings/x/cryptoKeys/x.
+     */
+    kmsKeyName?: string;
+    /**
      * See &lt;a href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating and managing labels&lt;/a&gt;.
      */
     labels?: {[key: string]: string};
+    /**
+     * Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not present, then no constraints are in effect.
+     */
+    messageStoragePolicy?: Schema$MessageStoragePolicy;
     /**
      * The name of the topic. It must have the format `&quot;projects/{project}/topics/{topic}&quot;`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `&quot;goog&quot;`.
      */
@@ -575,6 +589,63 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.snapshots.create
      * @desc Creates a snapshot from the requested subscription. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. <br><br>If the snapshot already exists, returns `ALREADY_EXISTS`. If the requested subscription doesn't exist, returns `NOT_FOUND`. If the backlog in the subscription is too old -- and the resulting snapshot would expire in less than 1 hour -- then `FAILED_PRECONDITION` is returned. See also the `Snapshot.expire_time` field. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription, conforming to the [resource name format](https://cloud.google.com/pubsub/docs/admin#resource_names). The generated name is populated in the returned Snapshot object. Note that for REST API requests, you must specify a name in the request.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Pub/Sub API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/pubsub
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var pubsub = google.pubsub('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Optional user-provided name for this snapshot.
+     *     // If the name is not provided in the request, the server will assign a random
+     *     // name for this snapshot on the same project as the subscription.
+     *     // Note that for REST API requests, you must specify a name.  See the
+     *     // <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">
+     *     // resource name rules</a>.
+     *     // Format is `projects/{project}/snapshots/{snap}`.
+     *     name: 'projects/my-project/snapshots/my-snapshot',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. All existing properties
+     *       // will be replaced.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   pubsub.projects.snapshots.create(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias pubsub.projects.snapshots.create
      * @memberOf! ()
      *
@@ -645,6 +716,50 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.snapshots.delete
      * @desc Removes an existing snapshot. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.<br><br> When the snapshot is deleted, all messages retained in the snapshot are immediately dropped. After a snapshot is deleted, a new one may be created with the same name, but the new one has no association with the old snapshot or its subscription, unless the same subscription is specified.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Pub/Sub API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/pubsub
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var pubsub = google.pubsub('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the snapshot to delete.
+     *     // Format is `projects/{project}/snapshots/{snap}`.
+     *     snapshot: 'projects/my-project/snapshots/my-snapshot',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   pubsub.projects.snapshots.delete(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias pubsub.projects.snapshots.delete
      * @memberOf! ()
      *
@@ -714,6 +829,53 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.snapshots.get
      * @desc Gets the configuration details of a snapshot. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Pub/Sub API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/pubsub
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var pubsub = google.pubsub('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the snapshot to get.
+     *     // Format is `projects/{project}/snapshots/{snap}`.
+     *     snapshot: 'projects/my-project/snapshots/my-snapshot',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   pubsub.projects.snapshots.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias pubsub.projects.snapshots.get
      * @memberOf! ()
      *
@@ -786,7 +948,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -798,7 +960,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -822,16 +984,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.snapshots.getIamPolicy
@@ -906,6 +1064,66 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.snapshots.list
      * @desc Lists the existing snapshots. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Pub/Sub API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/pubsub
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var pubsub = google.pubsub('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the project in which to list snapshots.
+     *     // Format is `projects/{project-id}`.
+     *     project: 'projects/my-project',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var snapshotsPage = response['snapshots'];
+     *     if (!snapshotsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < snapshotsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `snapshotsPage`:
+     *       console.log(JSON.stringify(snapshotsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       pubsub.projects.snapshots.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   pubsub.projects.snapshots.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias pubsub.projects.snapshots.list
      * @memberOf! ()
      *
@@ -984,6 +1202,57 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.snapshots.patch
      * @desc Updates an existing snapshot. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Pub/Sub API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/pubsub
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var pubsub = google.pubsub('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the snapshot.
+     *     name: 'projects/my-project/snapshots/my-snapshot',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   pubsub.projects.snapshots.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias pubsub.projects.snapshots.patch
      * @memberOf! ()
      *
@@ -1057,7 +1326,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1069,7 +1338,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -1097,16 +1366,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.snapshots.setIamPolicy
@@ -1185,7 +1450,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1197,7 +1462,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -1225,16 +1490,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.snapshots.testIamPermissions
@@ -1454,7 +1715,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1466,7 +1727,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -1491,16 +1752,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.subscriptions.acknowledge
@@ -1579,7 +1836,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1591,7 +1848,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -1624,16 +1881,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.subscriptions.create
@@ -1711,7 +1964,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1723,7 +1976,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -1744,16 +1997,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.subscriptions.delete
@@ -1831,7 +2080,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1843,7 +2092,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -1867,16 +2116,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.subscriptions.get
@@ -1956,7 +2201,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1968,7 +2213,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -1992,16 +2237,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.subscriptions.getIamPolicy
@@ -2079,7 +2320,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -2091,13 +2332,13 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of the cloud project that subscriptions belong to.
-     *     // Format is `projects/{project}`.
+     *     // The name of the project in which to list subscriptions.
+     *     // Format is `projects/{project-id}`.
      *     project: 'projects/my-project',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
@@ -2128,16 +2369,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.subscriptions.list
@@ -2226,7 +2463,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -2238,7 +2475,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -2263,16 +2500,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.subscriptions.modifyAckDeadline
@@ -2351,7 +2584,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -2363,7 +2596,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -2388,16 +2621,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.subscriptions.modifyPushConfig
@@ -2473,6 +2702,62 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.subscriptions.patch
      * @desc Updates an existing subscription. Note that certain properties of a subscription, such as its topic, are not modifiable.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Pub/Sub API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/pubsub
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var pubsub = google.pubsub('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the subscription. It must have the format
+     *     // `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
+     *     // start with a letter, and contain only letters (`[A-Za-z]`), numbers
+     *     // (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
+     *     // plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
+     *     // in length, and it must not start with `"goog"`.
+     *     name: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   pubsub.projects.subscriptions.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias pubsub.projects.subscriptions.patch
      * @memberOf! ()
      *
@@ -2548,7 +2833,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -2560,7 +2845,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -2588,16 +2873,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.subscriptions.pull
@@ -2675,6 +2956,56 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.subscriptions.seek
      * @desc Seeks an existing subscription to a point in time or to a given snapshot, whichever is provided in the request. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. Note that both the subscription and the snapshot must be on the same topic.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Pub/Sub API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/pubsub
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var pubsub = google.pubsub('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The subscription to affect.
+     *     subscription: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   pubsub.projects.subscriptions.seek(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias pubsub.projects.subscriptions.seek
      * @memberOf! ()
      *
@@ -2753,7 +3084,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -2765,7 +3096,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -2793,16 +3124,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.subscriptions.setIamPolicy
@@ -2881,7 +3208,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -2893,7 +3220,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -2921,16 +3248,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.subscriptions.testIamPermissions
@@ -3241,7 +3564,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -3253,7 +3576,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -3286,16 +3609,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.topics.create
@@ -3371,7 +3690,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -3383,7 +3702,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -3404,16 +3723,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.topics.delete
@@ -3488,7 +3803,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -3500,7 +3815,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -3524,16 +3839,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.topics.get
@@ -3608,7 +3919,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -3620,7 +3931,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -3644,16 +3955,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.topics.getIamPolicy
@@ -3731,7 +4038,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -3743,13 +4050,13 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of the cloud project that topics belong to.
-     *     // Format is `projects/{project}`.
+     *     // The name of the project in which to list topics.
+     *     // Format is `projects/{project-id}`.
      *     project: 'projects/my-project',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
@@ -3780,16 +4087,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.topics.list
@@ -3868,6 +4171,62 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.topics.patch
      * @desc Updates an existing topic. Note that certain properties of a topic are not modifiable.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Pub/Sub API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/pubsub
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var pubsub = google.pubsub('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the topic. It must have the format
+     *     // `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
+     *     // and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
+     *     // underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
+     *     // signs (`%`). It must be between 3 and 255 characters in length, and it
+     *     // must not start with `"goog"`.
+     *     name: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   pubsub.projects.topics.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias pubsub.projects.topics.patch
      * @memberOf! ()
      *
@@ -3941,7 +4300,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -3953,7 +4312,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -3981,16 +4340,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.topics.publish
@@ -4071,7 +4426,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -4083,7 +4438,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -4111,16 +4466,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.topics.setIamPolicy
@@ -4199,7 +4550,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -4211,7 +4562,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -4239,16 +4590,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.topics.testIamPermissions
@@ -4482,6 +4829,66 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.topics.snapshots.list
      * @desc Lists the names of the snapshots on this topic. Snapshots are used in <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a> operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Pub/Sub API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/pubsub
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var pubsub = google.pubsub('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the topic that snapshots are attached to.
+     *     // Format is `projects/{project}/topics/{topic}`.
+     *     topic: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var snapshotsPage = response['snapshots'];
+     *     if (!snapshotsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < snapshotsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `snapshotsPage`:
+     *       console.log(JSON.stringify(snapshotsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       pubsub.projects.topics.snapshots.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   pubsub.projects.topics.snapshots.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias pubsub.projects.topics.snapshots.list
      * @memberOf! ()
      *
@@ -4596,7 +5003,7 @@ export namespace pubsub_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Pub/Sub API
+     * // 1. If not already done, enable the Cloud Pub/Sub API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/pubsub
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -4608,7 +5015,7 @@ export namespace pubsub_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var pubsub = google.pubsub('v1');
      *
      * authorize(function(authClient) {
@@ -4645,16 +5052,12 @@ export namespace pubsub_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias pubsub.projects.topics.subscriptions.list

@@ -171,7 +171,7 @@ export namespace genomics_v2alpha1 {
      */
     mounts?: Schema$Mount[];
     /**
-     * An optional name for the container. The container hostname will be set to this name, making it useful for inter-container communication. The name must contain only upper and lowercase alphanumeric characters and hypens and cannot start with a hypen.
+     * An optional name for the container. The container hostname will be set to this name, making it useful for inter-container communication. The name must contain only upper and lowercase alphanumeric characters and hypens and cannot start with a hyphen.
      */
     name?: string;
     /**
@@ -307,7 +307,7 @@ export namespace genomics_v2alpha1 {
    */
   export interface Schema$Disk {
     /**
-     * A user-supplied name for the disk. Used when mounting the disk into actions. The name must contain only upper and lowercase alphanumeric characters and hypens and cannot start with a hypen.
+     * A user-supplied name for the disk. Used when mounting the disk into actions. The name must contain only upper and lowercase alphanumeric characters and hypens and cannot start with a hyphen.
      */
     name?: string;
     /**
@@ -642,7 +642,7 @@ export namespace genomics_v2alpha1 {
     scopes?: string[];
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -700,7 +700,7 @@ export namespace genomics_v2alpha1 {
      */
     enableStackdriverMonitoring?: boolean;
     /**
-     * Optional set of labels to apply to the VM and any attached disk resources. These labels must adhere to the name and value restrictions on VM labels imposed by Compute Engine.  Labels applied at creation time to the VM. Applied on a best-effort basis to attached disk resources shortly after VM creation.
+     * Optional set of labels to apply to the VM and any attached disk resources. These labels must adhere to the name and value restrictions on VM labels imposed by Compute Engine.  Labels keys with the prefix &#39;google-&#39; are reserved for use by Google.  Labels applied at creation time to the VM. Applied on a best-effort basis to attached disk resources shortly after VM creation.
      */
     labels?: {[key: string]: string};
     /**
@@ -785,6 +785,53 @@ export namespace genomics_v2alpha1 {
     /**
      * genomics.pipelines.run
      * @desc Runs a pipeline.  **Note:** Before you can use this method, the Genomics Service Agent must have access to your project. This is done automatically when the Cloud Genomics API is first enabled, but if you delete this permission, or if you enabled the Cloud Genomics API before the v2alpha1 API launch, you must disable and re-enable the API to grant the Genomics Service Agent the required permissions. Authorization requires the following [Google IAM](https://cloud.google.com/iam/) permission:  * `genomics.operations.create`  [1]: /genomics/gsa
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Genomics API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/genomics
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var genomics = google.genomics('v2alpha1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   genomics.pipelines.run(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias genomics.pipelines.run
      * @memberOf! ()
      *
@@ -886,6 +933,53 @@ export namespace genomics_v2alpha1 {
     /**
      * genomics.projects.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients may use Operations.GetOperation or Operations.ListOperations to check whether the cancellation succeeded or the operation completed despite cancellation. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `genomics.operations.cancel`
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Genomics API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/genomics
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var genomics = google.genomics('v2alpha1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/operations/my-operation',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   genomics.projects.operations.cancel(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias genomics.projects.operations.cancel
      * @memberOf! ()
      *
@@ -959,6 +1053,52 @@ export namespace genomics_v2alpha1 {
     /**
      * genomics.projects.operations.get
      * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `genomics.operations.get`
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Genomics API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/genomics
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var genomics = google.genomics('v2alpha1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/operations/my-operation',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   genomics.projects.operations.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias genomics.projects.operations.get
      * @memberOf! ()
      *
@@ -1030,6 +1170,65 @@ export namespace genomics_v2alpha1 {
     /**
      * genomics.projects.operations.list
      * @desc Lists operations that match the specified filter in the request. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `genomics.operations.list`
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Genomics API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/genomics
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var genomics = google.genomics('v2alpha1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/operations',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var operationsPage = response['operations'];
+     *     if (!operationsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < operationsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `operationsPage`:
+     *       console.log(JSON.stringify(operationsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       genomics.projects.operations.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   genomics.projects.operations.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias genomics.projects.operations.list
      * @memberOf! ()
      *
@@ -1167,6 +1366,56 @@ export namespace genomics_v2alpha1 {
     /**
      * genomics.workers.checkIn
      * @desc The worker uses this method to retrieve the assigned operation and provide periodic status updates.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Genomics API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/genomics
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var genomics = google.genomics('v2alpha1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The worker id, assigned when it was created.
+     *     id: 'my-id',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   genomics.workers.checkIn(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias genomics.workers.checkIn
      * @memberOf! ()
      *

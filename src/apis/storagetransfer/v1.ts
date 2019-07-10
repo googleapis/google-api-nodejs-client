@@ -128,11 +128,11 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$AwsAccessKey {
     /**
-     * AWS access key ID. Required.
+     * Required. AWS access key ID.
      */
     accessKeyId?: string;
     /**
-     * AWS secret access key. This field is not returned in RPC responses. Required.
+     * Required. AWS secret access key. This field is not returned in RPC responses.
      */
     secretAccessKey?: string;
   }
@@ -141,11 +141,11 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$AwsS3Data {
     /**
-     * AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key. Required.
+     * Required. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key.
      */
     awsAccessKey?: Schema$AwsAccessKey;
     /**
-     * S3 Bucket name (see [Creating a bucket](http://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html)). Required.
+     * Required. S3 Bucket name (see [Creating a bucket](http://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html)).
      */
     bucketName?: string;
   }
@@ -179,7 +179,7 @@ export namespace storagetransfer_v1 {
      */
     errorDetails?: string[];
     /**
-     * A URL that refers to the target (a data source, a data sink, or an object) with which the error is associated. Required.
+     * Required. A URL that refers to the target (a data source, a data sink, or an object) with which the error is associated.
      */
     url?: string;
   }
@@ -192,7 +192,7 @@ export namespace storagetransfer_v1 {
      */
     errorCode?: string;
     /**
-     * Count of this type of error. Required.
+     * Required. Count of this type of error.
      */
     errorCount?: string;
     /**
@@ -205,7 +205,7 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$GcsData {
     /**
-     * Google Cloud Storage bucket name (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/naming#requirements)). Required.
+     * Required. Google Cloud Storage bucket name (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/naming#requirements)).
      */
     bucketName?: string;
   }
@@ -214,7 +214,7 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$GoogleServiceAccount {
     /**
-     * Required.
+     * Email address of the service account.
      */
     accountEmail?: string;
   }
@@ -223,7 +223,7 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$HttpData {
     /**
-     * The URL that points to the file that stores the object list entries. This file must allow public access.  Currently, only URLs with HTTP and HTTPS schemes are supported. Required.
+     * Required. The URL that points to the file that stores the object list entries. This file must allow public access.  Currently, only URLs with HTTP and HTTPS schemes are supported.
      */
     listUrl?: string;
   }
@@ -266,11 +266,11 @@ export namespace storagetransfer_v1 {
      */
     includePrefixes?: string[];
     /**
-     * If specified, only objects with a `lastModificationTime` on or after `NOW` - `maxTimeElapsedSinceLastModification` and objects that don&#39;t have a `lastModificationTime` are transferred.  Note that `NOW` refers to the creation time of the transfer job, and `lastModificationTime` refers to the time of the last change to the object&#39;s content or metadata. Specifically, this would be the `updated` property of GCS objects and the `LastModified` field of S3 objects.
+     * If specified, only objects with a `lastModificationTime` on or after `NOW` - `maxTimeElapsedSinceLastModification` and objects that don&#39;t have a `lastModificationTime` are transferred.  Note that, for each `TransferOperation` started by this `TransferJob`, `NOW` refers to the `start_time` of the &#39;TransferOperation`. Also, `lastModificationTime` refers to the time of the last change to the object&#39;s content or metadata - specifically, this would be the `updated` property of GCS objects and the `LastModified` field of S3 objects.
      */
     maxTimeElapsedSinceLastModification?: string;
     /**
-     * If specified, only objects with a `lastModificationTime` before `NOW` - `minTimeElapsedSinceLastModification` and objects that don&#39;t have a `lastModificationTime` are transferred.  Note that `NOW` refers to the creation time of the transfer job, and `lastModificationTime` refers to the time of the last change to the object&#39;s content or metadata. Specifically, this would be the `updated` property of GCS objects and the `LastModified` field of S3 objects.
+     * If specified, only objects with a `lastModificationTime` before `NOW` - `minTimeElapsedSinceLastModification` and objects that don&#39;t have a `lastModificationTime` are transferred.  Note that, for each `TransferOperation` started by this `TransferJob`, `NOW` refers to the `start_time` of the &#39;TransferOperation`. Also, `lastModificationTime` refers to the time of the last change to the object&#39;s content or metadata - specifically, this would be the `updated` property of GCS objects and the `LastModified` field of S3 objects.
      */
     minTimeElapsedSinceLastModification?: string;
   }
@@ -316,7 +316,7 @@ export namespace storagetransfer_v1 {
      */
     scheduleEndDate?: Schema$Date;
     /**
-     * The first day the recurring transfer is scheduled to run. If `scheduleStartDate` is in the past, the transfer will run for the first time on the following day. Required.
+     * Required. The first day the recurring transfer is scheduled to run. If `scheduleStartDate` is in the past, the transfer will run for the first time on the following day.
      */
     scheduleStartDate?: Schema$Date;
     /**
@@ -325,7 +325,7 @@ export namespace storagetransfer_v1 {
     startTimeOfDay?: Schema$TimeOfDay;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -493,7 +493,7 @@ export namespace storagetransfer_v1 {
      */
     name?: string;
     /**
-     * The ID of the Google Cloud Platform Project that owns the operation. Required.
+     * The ID of the Google Cloud Platform Project that owns the operation.
      */
     projectId?: string;
     /**
@@ -509,7 +509,7 @@ export namespace storagetransfer_v1 {
      */
     transferJobName?: string;
     /**
-     * Transfer specification. Required.
+     * Transfer specification.
      */
     transferSpec?: Schema$TransferSpec;
   }
@@ -564,11 +564,11 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$UpdateTransferJobRequest {
     /**
-     * The ID of the Google Cloud Platform Console project that owns the job. Required.
+     * Required. The ID of the Google Cloud Platform Console project that owns the job.
      */
     projectId?: string;
     /**
-     * The job to update. `transferJob` is expected to specify only three fields: `description`, `transferSpec`, and `status`.  An UpdateTransferJobRequest that specifies other fields will be rejected with an error `INVALID_ARGUMENT`. Required.
+     * Required. The job to update. `transferJob` is expected to specify only three fields: `description`, `transferSpec`, and `status`.  An UpdateTransferJobRequest that specifies other fields will be rejected with an error `INVALID_ARGUMENT`.
      */
     transferJob?: Schema$TransferJob;
     /**
@@ -589,7 +589,7 @@ export namespace storagetransfer_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
+     * // 1. If not already done, enable the Storage Transfer API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -601,14 +601,13 @@ export namespace storagetransfer_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The ID of the Google Cloud Platform Console project that the Google service
-     *     // account is associated with.
-     *     // Required.
+     *     // Required. The ID of the Google Cloud Platform Console project that the
+     *     // Google service account is associated with.
      *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
@@ -626,23 +625,19 @@ export namespace storagetransfer_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias storagetransfer.googleServiceAccounts.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the Google Cloud Platform Console project that the Google service account is associated with. Required.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform Console project that the Google service account is associated with.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -721,7 +716,7 @@ export namespace storagetransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the Google Cloud Platform Console project that the Google service account is associated with. Required.
+     * Required. The ID of the Google Cloud Platform Console project that the Google service account is associated with.
      */
     projectId?: string;
   }
@@ -738,7 +733,7 @@ export namespace storagetransfer_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
+     * // 1. If not already done, enable the Storage Transfer API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -750,7 +745,7 @@ export namespace storagetransfer_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
      * authorize(function(authClient) {
@@ -774,16 +769,12 @@ export namespace storagetransfer_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias storagetransfer.transferJobs.create
@@ -861,7 +852,7 @@ export namespace storagetransfer_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
+     * // 1. If not already done, enable the Storage Transfer API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -873,13 +864,12 @@ export namespace storagetransfer_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The job to get.
-     *     // Required.
+     *     // Required. The job to get.
      *     jobName: 'transferJobs/my-transfer-job',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
@@ -897,24 +887,20 @@ export namespace storagetransfer_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias storagetransfer.transferJobs.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.jobName The job to get. Required.
-     * @param {string=} params.projectId The ID of the Google Cloud Platform Console project that owns the job. Required.
+     * @param {string} params.jobName Required. The job to get.
+     * @param {string=} params.projectId Required. The ID of the Google Cloud Platform Console project that owns the job.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -984,7 +970,7 @@ export namespace storagetransfer_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
+     * // 1. If not already done, enable the Storage Transfer API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -996,7 +982,7 @@ export namespace storagetransfer_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
      * authorize(function(authClient) {
@@ -1029,23 +1015,19 @@ export namespace storagetransfer_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias storagetransfer.transferJobs.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A list of query parameters specified as JSON text in the form of {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project_id` is required. `job_names` and `job_statuses` are optional.  The valid values for `job_statuses` are case-insensitive: `ENABLED`, `DISABLED`, and `DELETED`.
+     * @param {string=} params.filter Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id",  "job_names":["jobid1","jobid2",...],  "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project_id` is required. `job_names` and `job_statuses` are optional.  The valid values for `job_statuses` are case-insensitive: `ENABLED`, `DISABLED`, and `DELETED`.
      * @param {integer=} params.pageSize The list page size. The max allowed value is 256.
      * @param {string=} params.pageToken The list page token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1120,7 +1102,7 @@ export namespace storagetransfer_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
+     * // 1. If not already done, enable the Storage Transfer API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1132,13 +1114,12 @@ export namespace storagetransfer_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of job to update.
-     *     // Required.
+     *     // Required. The name of job to update.
      *     jobName: 'transferJobs/my-transfer-job',  // TODO: Update placeholder value.
      *
      *     resource: {
@@ -1161,23 +1142,19 @@ export namespace storagetransfer_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias storagetransfer.transferJobs.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.jobName The name of job to update. Required.
+     * @param {string} params.jobName Required. The name of job to update.
      * @param {().UpdateTransferJobRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1263,11 +1240,11 @@ export namespace storagetransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The job to get. Required.
+     * Required. The job to get.
      */
     jobName?: string;
     /**
-     * The ID of the Google Cloud Platform Console project that owns the job. Required.
+     * Required. The ID of the Google Cloud Platform Console project that owns the job.
      */
     projectId?: string;
   }
@@ -1279,7 +1256,7 @@ export namespace storagetransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A list of query parameters specified as JSON text in the form of {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project_id` is required. `job_names` and `job_statuses` are optional.  The valid values for `job_statuses` are case-insensitive: `ENABLED`, `DISABLED`, and `DELETED`.
+     * Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id",  "job_names":["jobid1","jobid2",...],  "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project_id` is required. `job_names` and `job_statuses` are optional.  The valid values for `job_statuses` are case-insensitive: `ENABLED`, `DISABLED`, and `DELETED`.
      */
     filter?: string;
     /**
@@ -1299,7 +1276,7 @@ export namespace storagetransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of job to update. Required.
+     * Required. The name of job to update.
      */
     jobName?: string;
 
@@ -1321,7 +1298,7 @@ export namespace storagetransfer_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
+     * // 1. If not already done, enable the Storage Transfer API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1333,7 +1310,7 @@ export namespace storagetransfer_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
      * authorize(function(authClient) {
@@ -1353,16 +1330,12 @@ export namespace storagetransfer_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias storagetransfer.transferOperations.cancel
@@ -1438,7 +1411,7 @@ export namespace storagetransfer_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
+     * // 1. If not already done, enable the Storage Transfer API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1450,7 +1423,7 @@ export namespace storagetransfer_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
      * authorize(function(authClient) {
@@ -1470,16 +1443,12 @@ export namespace storagetransfer_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias storagetransfer.transferOperations.delete
@@ -1555,7 +1524,7 @@ export namespace storagetransfer_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
+     * // 1. If not already done, enable the Storage Transfer API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1567,7 +1536,7 @@ export namespace storagetransfer_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
      * authorize(function(authClient) {
@@ -1590,16 +1559,12 @@ export namespace storagetransfer_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias storagetransfer.transferOperations.get
@@ -1677,7 +1642,7 @@ export namespace storagetransfer_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
+     * // 1. If not already done, enable the Storage Transfer API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1689,12 +1654,12 @@ export namespace storagetransfer_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The value `transferOperations`.
+     *     // Required. The value `transferOperations`.
      *     name: 'transferOperations',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
@@ -1725,24 +1690,20 @@ export namespace storagetransfer_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias storagetransfer.transferOperations.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A list of query parameters specified as JSON text in the form of {\"project_id\" : \"my_project_id\", \"job_names\" : [\"jobid1\", \"jobid2\",...], \"operation_names\" : [\"opid1\", \"opid2\",...], \"transfer_statuses\":[\"status1\", \"status2\",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `job_names`, `operation_names`, and `transfer_statuses` are optional.
-     * @param {string} params.name The value `transferOperations`.
+     * @param {string=} params.filter Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id",  "job_names":["jobid1","jobid2",...],  "operation_names":["opid1","opid2",...],  "transfer_statuses":["status1","status2",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `project_id` is required. `job_names`, `operation_names`, and `transfer_statuses` are optional. The valid values for `transfer_statuses` are case-insensitive: `IN_PROGRESS`, `PAUSED`, `SUCCESS`, `FAILED`, and `ABORTED`.
+     * @param {string} params.name Required. The value `transferOperations`.
      * @param {integer=} params.pageSize The list page size. The max allowed value is 256.
      * @param {string=} params.pageToken The list page token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1817,7 +1778,7 @@ export namespace storagetransfer_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
+     * // 1. If not already done, enable the Storage Transfer API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1829,13 +1790,12 @@ export namespace storagetransfer_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of the transfer operation.
-     *     // Required.
+     *     // Required. The name of the transfer operation.
      *     name: 'transferOperations/my-transfer-operation',  // TODO: Update placeholder value.
      *
      *     resource: {
@@ -1854,23 +1814,19 @@ export namespace storagetransfer_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias storagetransfer.transferOperations.pause
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the transfer operation. Required.
+     * @param {string} params.name Required. The name of the transfer operation.
      * @param {().PauseTransferOperationRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1940,7 +1896,7 @@ export namespace storagetransfer_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
+     * // 1. If not already done, enable the Storage Transfer API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1952,13 +1908,12 @@ export namespace storagetransfer_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of the transfer operation.
-     *     // Required.
+     *     // Required. The name of the transfer operation.
      *     name: 'transferOperations/my-transfer-operation',  // TODO: Update placeholder value.
      *
      *     resource: {
@@ -1977,23 +1932,19 @@ export namespace storagetransfer_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias storagetransfer.transferOperations.resume
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the transfer operation. Required.
+     * @param {string} params.name Required. The name of the transfer operation.
      * @param {().ResumeTransferOperationRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2102,11 +2053,11 @@ export namespace storagetransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A list of query parameters specified as JSON text in the form of {\"project_id\" : \"my_project_id\", \"job_names\" : [\"jobid1\", \"jobid2\",...], \"operation_names\" : [\"opid1\", \"opid2\",...], \"transfer_statuses\":[\"status1\", \"status2\",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `job_names`, `operation_names`, and `transfer_statuses` are optional.
+     * Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id",  "job_names":["jobid1","jobid2",...],  "operation_names":["opid1","opid2",...],  "transfer_statuses":["status1","status2",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `project_id` is required. `job_names`, `operation_names`, and `transfer_statuses` are optional. The valid values for `transfer_statuses` are case-insensitive: `IN_PROGRESS`, `PAUSED`, `SUCCESS`, `FAILED`, and `ABORTED`.
      */
     filter?: string;
     /**
-     * The value `transferOperations`.
+     * Required. The value `transferOperations`.
      */
     name?: string;
     /**
@@ -2126,7 +2077,7 @@ export namespace storagetransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the transfer operation. Required.
+     * Required. The name of the transfer operation.
      */
     name?: string;
 
@@ -2143,7 +2094,7 @@ export namespace storagetransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the transfer operation. Required.
+     * Required. The name of the transfer operation.
      */
     name?: string;
 

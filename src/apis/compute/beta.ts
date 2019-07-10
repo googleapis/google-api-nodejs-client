@@ -127,10 +127,15 @@ export namespace compute_beta {
     regionCommitments: Resource$Regioncommitments;
     regionDisks: Resource$Regiondisks;
     regionDiskTypes: Resource$Regiondisktypes;
+    regionHealthChecks: Resource$Regionhealthchecks;
     regionInstanceGroupManagers: Resource$Regioninstancegroupmanagers;
     regionInstanceGroups: Resource$Regioninstancegroups;
     regionOperations: Resource$Regionoperations;
     regions: Resource$Regions;
+    regionSslCertificates: Resource$Regionsslcertificates;
+    regionTargetHttpProxies: Resource$Regiontargethttpproxies;
+    regionTargetHttpsProxies: Resource$Regiontargethttpsproxies;
+    regionUrlMaps: Resource$Regionurlmaps;
     reservations: Resource$Reservations;
     resourcePolicies: Resource$Resourcepolicies;
     routers: Resource$Routers;
@@ -209,6 +214,7 @@ export namespace compute_beta {
       this.regionCommitments = new Resource$Regioncommitments(this.context);
       this.regionDisks = new Resource$Regiondisks(this.context);
       this.regionDiskTypes = new Resource$Regiondisktypes(this.context);
+      this.regionHealthChecks = new Resource$Regionhealthchecks(this.context);
       this.regionInstanceGroupManagers = new Resource$Regioninstancegroupmanagers(
         this.context
       );
@@ -217,6 +223,16 @@ export namespace compute_beta {
       );
       this.regionOperations = new Resource$Regionoperations(this.context);
       this.regions = new Resource$Regions(this.context);
+      this.regionSslCertificates = new Resource$Regionsslcertificates(
+        this.context
+      );
+      this.regionTargetHttpProxies = new Resource$Regiontargethttpproxies(
+        this.context
+      );
+      this.regionTargetHttpsProxies = new Resource$Regiontargethttpsproxies(
+        this.context
+      );
+      this.regionUrlMaps = new Resource$Regionurlmaps(this.context);
       this.reservations = new Resource$Reservations(this.context);
       this.resourcePolicies = new Resource$Resourcepolicies(this.context);
       this.routers = new Resource$Routers(this.context);
@@ -255,7 +271,7 @@ export namespace compute_beta {
     acceleratorType?: string;
   }
   /**
-   * An Accelerator Type resource. (== resource_for beta.acceleratorTypes ==) (== resource_for v1.acceleratorTypes ==)
+   * Represents an Accelerator Type resource.  Google Cloud Platform provides graphics processing units (accelerators) that you can add to VM instances to improve or accelerate performance when working with intensive workloads. For more information, read GPUs on Compute Engine. (== resource_for beta.acceleratorTypes ==) (== resource_for v1.acceleratorTypes ==)
    */
   export interface Schema$AcceleratorType {
     /**
@@ -381,7 +397,7 @@ export namespace compute_beta {
      */
     kind?: string;
     /**
-     * The name of this access configuration. The default and recommended name is External NAT but you can use any arbitrary string you would like. For example, My external IP or Network Access.
+     * The name of this access configuration. The default and recommended name is External NAT, but you can use any arbitrary string, such as My external IP or Network Access.
      */
     name?: string;
     /**
@@ -393,11 +409,11 @@ export namespace compute_beta {
      */
     networkTier?: string;
     /**
-     * The DNS domain name for the public PTR record. This field can only be set when the set_public_ptr field is enabled.
+     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled.
      */
     publicPtrDomainName?: string;
     /**
-     * Specifies whether a public DNS ?PTR? record should be created to map the external IP address of the instance to a DNS domain name.
+     * Specifies whether a public DNS &#39;PTR&#39; record should be created to map the external IP address of the instance to a DNS domain name.
      */
     setPublicPtr?: boolean;
     /**
@@ -406,7 +422,7 @@ export namespace compute_beta {
     type?: string;
   }
   /**
-   * A reserved address resource. (== resource_for beta.addresses ==) (== resource_for v1.addresses ==) (== resource_for beta.globalAddresses ==) (== resource_for v1.globalAddresses ==)
+   * Represents an IP Address resource.  An address resource represents a regional internal IP address. Regional internal IP addresses are RFC 1918 addresses that come from either a primary or secondary IP range of a subnet in a VPC network. Regional external IP addresses can be assigned to GCP VM instances, Cloud VPN gateways, regional external forwarding rules for network load balancers (in either Standard or Premium Tier), and regional external forwarding rules for HTTP(S), SSL Proxy, and TCP Proxy load balancers in Standard Tier. For more information, read IP addresses.  A globalAddresses resource represent a global external IP address. Global external IP addresses are IPv4 or IPv6 addresses. They can only be assigned to global forwarding rules for HTTP(S), SSL Proxy, or TCP Proxy load balancers in Premium Tier. For more information, read Global resources. (== resource_for beta.addresses ==) (== resource_for v1.addresses ==) (== resource_for beta.globalAddresses ==) (== resource_for v1.globalAddresses ==)
    */
   export interface Schema$Address {
     /**
@@ -422,7 +438,7 @@ export namespace compute_beta {
      */
     creationTimestamp?: string;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this field when you create the resource.
      */
     description?: string;
     /**
@@ -430,7 +446,7 @@ export namespace compute_beta {
      */
     id?: string;
     /**
-     * The IP Version that will be used by this address. Valid options are IPV4 or IPV6. This can only be specified for a global address.
+     * The IP version that will be used by this address. Valid options are IPV4 or IPV6. This can only be specified for a global address.
      */
     ipVersion?: string;
     /**
@@ -446,15 +462,15 @@ export namespace compute_beta {
      */
     labels?: {[key: string]: string};
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      */
     name?: string;
     /**
-     * The URL of the network in which to reserve the address. This field can only be used with INTERNAL type with VPC_PEERING purpose.
+     * The URL of the network in which to reserve the address. This field can only be used with INTERNAL type with the VPC_PEERING purpose.
      */
     network?: string;
     /**
-     * This signifies the networking tier used for configuring this Address and can only take the following values: PREMIUM, STANDARD. Global forwarding rules can only be Premium Tier. Regional forwarding rules can be either Premium or Standard Tier. Standard Tier addresses applied to regional forwarding rules can be used with any external load balancer. Regional forwarding rules in Premium Tier can only be used with a Network load balancer.  If this field is not specified, it is assumed to be PREMIUM.
+     * This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Global forwarding rules can only be Premium Tier. Regional forwarding rules can be either Premium or Standard Tier. Standard Tier addresses applied to regional forwarding rules can be used with any external load balancer. Regional forwarding rules in Premium Tier can only be used with a network load balancer.  If this field is not specified, it is assumed to be PREMIUM.
      */
     networkTier?: string;
     /**
@@ -462,11 +478,11 @@ export namespace compute_beta {
      */
     prefixLength?: number;
     /**
-     * The purpose of resource, only used with INTERNAL type.
+     * The purpose of this resource, which can be one of the following values:   - `GCE_ENDPOINT` for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources.  - `DNS_RESOLVER` for a DNS resolver address in a subnetwork  - `VPC_PEERING` for addresses that are reserved for VPC peer networks.  - `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT.
      */
     purpose?: string;
     /**
-     * [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses. You must specify this field as part of the HTTP request URL. You cannot set this field in the request body.
+     * [Output Only] The URL of the region where the regional address resides. This field is not applicable to global addresses. You must specify this field as part of the HTTP request URL.
      */
     region?: string;
     /**
@@ -478,7 +494,7 @@ export namespace compute_beta {
      */
     status?: string;
     /**
-     * The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range. This field can only be used with INTERNAL type with GCE_ENDPOINT/DNS_RESOLVER purposes.
+     * The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range. This field can only be used with INTERNAL type with a GCE_ENDPOINT or DNS_RESOLVER purpose.
      */
     subnetwork?: string;
     /**
@@ -568,11 +584,11 @@ export namespace compute_beta {
    */
   export interface Schema$AliasIpRange {
     /**
-     * The IP CIDR range represented by this alias IP range. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. This range may be a single IP address (e.g. 10.2.3.4), a netmask (e.g. /24) or a CIDR format string (e.g. 10.1.2.0/24).
+     * The IP alias ranges to allocate for this interface. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. This range may be a single IP address (such as 10.2.3.4), a netmask (such as /24) or a CIDR-formatted string (such as 10.1.2.0/24).
      */
     ipCidrRange?: string;
     /**
-     * Optional subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. If left unspecified, the primary range of the subnetwork will be used.
+     * The name of a subnetwork secondary IP range from which to allocate an IP alias range. If not specified, the primary range of the subnetwork is used.
      */
     subnetworkRangeName?: string;
   }
@@ -657,7 +673,7 @@ export namespace compute_beta {
      */
     initializeParams?: Schema$AttachedDiskInitializeParams;
     /**
-     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
+     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance. TODO(b/131765817): Update documentation when NVME is supported.
      */
     interface?: string;
     /**
@@ -767,7 +783,7 @@ export namespace compute_beta {
     permissionType?: string;
   }
   /**
-   * Represents an Autoscaler resource. Autoscalers allow you to automatically scale virtual machine instances in managed instance groups according to an autoscaling policy that you define. For more information, read Autoscaling Groups of Instances. (== resource_for beta.autoscalers ==) (== resource_for v1.autoscalers ==) (== resource_for beta.regionAutoscalers ==) (== resource_for v1.regionAutoscalers ==)
+   * Represents an Autoscaler resource.    Use autoscalers to automatically add or delete instances from a managed instance group according to your defined autoscaling policy. For more information, read Autoscaling Groups of Instances.  For zonal managed instance groups resource, use the autoscaler resource.  For regional managed instance groups, use the regionAutoscalers resource. (== resource_for beta.autoscalers ==) (== resource_for v1.autoscalers ==) (== resource_for beta.regionAutoscalers ==) (== resource_for v1.regionAutoscalers ==)
    */
   export interface Schema$Autoscaler {
     /**
@@ -983,7 +999,7 @@ export namespace compute_beta {
    */
   export interface Schema$Backend {
     /**
-     * Specifies the balancing mode for this backend. For global HTTP(S) or TCP/SSL load balancing, the default is UTILIZATION. Valid values are UTILIZATION, RATE (for HTTP(S)) and CONNECTION (for TCP/SSL).  For Internal Load Balancing, the default and only supported mode is CONNECTION.
+     * Specifies the balancing mode for the backend.  When choosing a balancing mode, you need to consider the loadBalancingScheme, and protocol for the backend service, as well as the type of backend (instance group or NEG).    - If the load balancing mode is CONNECTION, then the load is spread based on how many concurrent connections the backend can handle. The CONNECTION balancing mode is only available if the protocol for the backend service is SSL, TCP, or UDP.  If the loadBalancingScheme for the backend service is EXTERNAL (SSL Proxy and TCP Proxy load balancers), you must also specify exactly one of the following parameters: maxConnections, maxConnectionsPerInstance, or maxConnectionsPerEndpoint.  If the loadBalancingScheme for the backend service is INTERNAL (internal TCP/UDP load balancers), you cannot specify any additional parameters.   - If the load balancing mode is RATE, then the load is spread based on the rate of HTTP requests per second (RPS). The RATE balancing mode is only available if the protocol for the backend service is HTTP or HTTPS. You must specify exactly one of the following parameters: maxRate, maxRatePerInstance, or maxRatePerEndpoint.   - If the load balancing mode is UTILIZATION, then the load is spread based on the CPU utilization of instances in an instance group. The UTILIZATION balancing mode is only available if the loadBalancingScheme of the backend service is EXTERNAL, INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED and the backend is made up of instance groups. There are no restrictions on the backend service protocol.
      */
     balancingMode?: string;
     /**
@@ -999,19 +1015,19 @@ export namespace compute_beta {
      */
     failover?: boolean;
     /**
-     * The fully-qualified URL of an Instance Group or Network Endpoint Group resource. In case of instance group this defines the list of instances that serve traffic. Member virtual machine instances from each instance group must live in the same zone as the instance group itself. No two backends in a backend service are allowed to use same Instance Group resource.  For Network Endpoint Groups this defines list of endpoints. All endpoints of Network Endpoint Group must be hosted on instances located in the same zone as the Network Endpoint Group.  Backend service can not contain mix of Instance Group and Network Endpoint Group backends.  Note that you must specify an Instance Group or Network Endpoint Group resource using the fully-qualified URL, rather than a partial URL.  When the BackendService has load balancing scheme INTERNAL, the instance group must be within the same region as the BackendService. Network Endpoint Groups are not supported for INTERNAL load balancing scheme.
+     * The fully-qualified URL of an instance group or network endpoint group (NEG) resource. The type of backend that a backend service supports depends on the backend service&#39;s loadBalancingScheme.    - When the loadBalancingScheme for the backend service is EXTERNAL, INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, the backend can be either an instance group or a NEG. The backends on the backend service must be either all instance groups or all NEGs. You cannot mix instance group and NEG backends on the same backend service.    - When the loadBalancingScheme for the backend service is INTERNAL, the backend must be an instance group in the same region as the backend service. NEGs are not supported.    You must use the fully-qualified URL (starting with https://www.googleapis.com/) to specify the instance group or NEG. Partial URLs are not supported.
      */
     group?: string;
     /**
-     * The max number of simultaneous connections for the group. Can be used with either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or maxConnectionsPerInstance must be set.  This cannot be used for internal load balancing.
+     * Defines a maximum target for simultaneous connections for the entire backend (instance group or NEG). If the backend&#39;s balancingMode is UTILIZATION, this is an optional parameter. If the backend&#39;s balancingMode is CONNECTION, and backend is attached to a backend service whose loadBalancingScheme is EXTERNAL, you must specify either this parameter, maxConnectionsPerInstance, or maxConnectionsPerEndpoint.  Not available if the backend&#39;s balancingMode is RATE. If the loadBalancingScheme is INTERNAL, then maxConnections is not supported, even though the backend requires a balancing mode of CONNECTION.
      */
     maxConnections?: number;
     /**
-     * The max number of simultaneous connections that a single backend network endpoint can handle. This is used to calculate the capacity of the group. Can be used in either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or maxConnectionsPerEndpoint must be set.  This cannot be used for internal load balancing.
+     * Defines a maximum target for simultaneous connections for an endpoint of a NEG. This is multiplied by the number of endpoints in the NEG to implicitly calculate a maximum number of target maximum simultaneous connections for the NEG. If the backend&#39;s balancingMode is CONNECTION, and the backend is attached to a backend service whose loadBalancingScheme is EXTERNAL, you must specify either this parameter, maxConnections, or maxConnectionsPerInstance.  Not available if the backend&#39;s balancingMode is RATE. Internal TCP/UDP load balancing does not support setting maxConnectionsPerEndpoint even though its backends require a balancing mode of CONNECTION.
      */
     maxConnectionsPerEndpoint?: number;
     /**
-     * The max number of simultaneous connections that a single backend instance can handle. This is used to calculate the capacity of the group. Can be used in either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or maxConnectionsPerInstance must be set.  This cannot be used for internal load balancing.
+     * Defines a maximum target for simultaneous connections for a single VM in a backend instance group. This is multiplied by the number of instances in the instance group to implicitly calculate a target maximum number of simultaneous connections for the whole instance group. If the backend&#39;s balancingMode is UTILIZATION, this is an optional parameter. If the backend&#39;s balancingMode is CONNECTION, and backend is attached to a backend service whose loadBalancingScheme is EXTERNAL, you must specify either this parameter, maxConnections, or maxConnectionsPerEndpoint.  Not available if the backend&#39;s balancingMode is RATE. Internal TCP/UDP load balancing does not support setting maxConnectionsPerInstance even though its backends require a balancing mode of CONNECTION.
      */
     maxConnectionsPerInstance?: number;
     /**
@@ -1019,20 +1035,20 @@ export namespace compute_beta {
      */
     maxRate?: number;
     /**
-     * The max requests per second (RPS) that a single backend network endpoint can handle. This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerEndpoint must be set.  This cannot be used for internal load balancing.
+     * Defines a maximum target for requests per second (RPS) for an endpoint of a NEG. This is multiplied by the number of endpoints in the NEG to implicitly calculate a target maximum rate for the NEG.  If the backend&#39;s balancingMode is RATE, you must specify either this parameter, maxRate, or maxRatePerInstance.  Not available if the backend&#39;s balancingMode is CONNECTION.
      */
     maxRatePerEndpoint?: number;
     /**
-     * The max requests per second (RPS) that a single backend instance can handle. This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerInstance must be set.  This cannot be used for internal load balancing.
+     * Defines a maximum target for requests per second (RPS) for a single VM in a backend instance group. This is multiplied by the number of instances in the instance group to implicitly calculate a target maximum rate for the whole instance group.  If the backend&#39;s balancingMode is UTILIZATION, this is an optional parameter. If the backend&#39;s balancingMode is RATE, you must specify either this parameter, maxRate, or maxRatePerEndpoint.  Not available if the backend&#39;s balancingMode is CONNECTION.
      */
     maxRatePerInstance?: number;
     /**
-     * Used when balancingMode is UTILIZATION. This ratio defines the CPU utilization target for the group. The default is 0.8. Valid range is [0.0, 1.0].  This cannot be used for internal load balancing.
+     * Defines the maximum average CPU utilization of a backend VM in an instance group. The valid range is [0.0, 1.0]. This is an optional parameter if the backend&#39;s balancingMode is UTILIZATION.  This parameter can be used in conjunction with maxRate, maxRatePerInstance, maxConnections, or maxConnectionsPerInstance.
      */
     maxUtilization?: number;
   }
   /**
-   * A BackendBucket resource. This resource defines a Cloud Storage bucket.
+   * Represents a Cloud Storage Bucket resource.  This Cloud Storage bucket resource is referenced by a URL map of a load balancer. For more information, read Backend Buckets.
    */
   export interface Schema$BackendBucket {
     /**
@@ -1119,11 +1135,11 @@ export namespace compute_beta {
     };
   }
   /**
-   * A BackendService resource. This resource defines a group of backend virtual machines and their serving capacity. (== resource_for v1.backendService ==) (== resource_for beta.backendService ==)
+   * Represents a Backend Service resource.    Backend services must have an associated health check. Backend services also store information about session affinity. For more information, read Backend Services.  A backendServices resource represents a global backend service. Global backend services are used for HTTP(S), SSL Proxy, TCP Proxy load balancing and Traffic Director.  A regionBackendServices resource represents a regional backend service. Regional backend services are used for internal TCP/UDP load balancing. For more information, read Internal TCP/UDP Load balancing. (== resource_for v1.backendService ==) (== resource_for beta.backendService ==)
    */
   export interface Schema$BackendService {
     /**
-     * Lifetime of cookies in seconds if session_affinity is GENERATED_COOKIE. If set to 0, the cookie is non-persistent and lasts only until the end of the browser session (or equivalent). The maximum allowed value for TTL is one day.  When the load balancing scheme is INTERNAL, this field is not used.
+     * If set to 0, the cookie is non-persistent and lasts only until the end of the browser session (or equivalent). The maximum allowed value is one day (86,400).
      */
     affinityCookieTtlSec?: number;
     /**
@@ -1134,7 +1150,15 @@ export namespace compute_beta {
      * Cloud CDN configuration for this BackendService.
      */
     cdnPolicy?: Schema$BackendServiceCdnPolicy;
+    /**
+     * Settings controlling the volume of connections to a backend service.  This field is applicable to either:   - A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED.  - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.
+     */
+    circuitBreakers?: Schema$CircuitBreakers;
     connectionDraining?: Schema$ConnectionDraining;
+    /**
+     * Consistent Hash-based load balancing can be used to provide soft session affinity based on HTTP headers, cookies or other properties. This load balancing policy is applicable only for HTTP connections. The affinity to a particular destination host will be lost when one or more hosts are added/removed from the destination service. This field specifies parameters that control consistent hashing. This field is only applicable when localityLbPolicy is set to MAGLEV or RING_HASH.  This field is applicable to either:   - A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED.  - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.
+     */
+    consistentHash?: Schema$ConsistentHashLoadBalancerSettings;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
@@ -1148,9 +1172,12 @@ export namespace compute_beta {
      */
     description?: string;
     /**
-     * If true, enable Cloud CDN for this BackendService.  When the load balancing scheme is INTERNAL, this field is not used.
+     * If true, enables Cloud CDN for the backend service. Only applicable if the loadBalancingScheme is EXTERNAL and the protocol is HTTP or HTTPS.
      */
     enableCDN?: boolean;
+    /**
+     * Applicable only to Failover for Internal TCP/UDP Load Balancing. Requires at least one backend instance group to be defined as a backup (failover) backend.
+     */
     failoverPolicy?: Schema$BackendServiceFailoverPolicy;
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a BackendService. An up-to-date fingerprint must be provided in order to update the BackendService, otherwise the request will fail with error 412 conditionNotMet.  To see the latest fingerprint, make a get() request to retrieve a BackendService.
@@ -1174,6 +1201,10 @@ export namespace compute_beta {
      */
     loadBalancingScheme?: string;
     /**
+     * The load balancing algorithm used within the scope of the locality. The possible values are:   - ROUND_ROBIN: This is a simple policy in which each healthy backend is selected in round robin order. This is the default.  - LEAST_REQUEST: An O(1) algorithm which selects two random healthy hosts and picks the host which has fewer active requests.  - RING_HASH: The ring/modulo hash load balancer implements consistent hashing to backends. The algorithm has the property that the addition/removal of a host from a set of N hosts only affects 1/N of the requests.  - RANDOM: The load balancer selects a random healthy host.  - ORIGINAL_DESTINATION: Backend host is selected based on the client connection metadata, i.e., connections are opened to the same address as the destination address of the incoming connection before the connection was redirected to the load balancer.  - MAGLEV: used as a drop in replacement for the ring hash load balancer. Maglev is not as stable as ring hash but has faster table lookup build times and host selection times. For more information about Maglev, refer to https://ai.google/research/pubs/pub44824   This field is applicable to either:   - A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED.  - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.
+     */
+    localityLbPolicy?: string;
+    /**
      * This field denotes the logging options for the load balancer traffic served by this backend service. If logging is enabled, logs will be exported to Stackdriver.
      */
     logConfig?: Schema$BackendServiceLogConfig;
@@ -1182,15 +1213,19 @@ export namespace compute_beta {
      */
     name?: string;
     /**
-     * Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.  This cannot be used for internal load balancing.
+     * Settings controlling eviction of unhealthy hosts from the load balancing pool. This field is applicable to either:   - A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED.  - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.
+     */
+    outlierDetection?: Schema$OutlierDetection;
+    /**
+     * Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.  This cannot be used if the loadBalancingScheme is INTERNAL (Internal TCP/UDP Load Balancing).
      */
     port?: number;
     /**
-     * Name of backend port. The same name should appear in the instance groups referenced by this service. Required when the load balancing scheme is EXTERNAL.  When the load balancing scheme is INTERNAL, this field is not used.
+     * A named port on a backend instance group representing the port for communication to the backend VMs in that group. Required when the loadBalancingScheme is EXTERNAL and the backends are instance groups. The named port must be defined on each backend instance group. This parameter has no meaning if the backends are NEGs.    Must be omitted when the loadBalancingScheme is INTERNAL (Internal TCP/UDP Load Blaancing).
      */
     portName?: string;
     /**
-     * The protocol this BackendService uses to communicate with backends.  Possible values are HTTP, HTTPS, TCP, and SSL. The default is HTTP.  For internal load balancing, the possible values are TCP and UDP, and the default is TCP.
+     * The protocol this BackendService uses to communicate with backends.  Possible values are HTTP, HTTPS, TCP, SSL, or UDP, depending on the chosen load balancer or Traffic Director configuration. Refer to the documentation for the load balancer or for Traffic director for more information.
      */
     protocol?: string;
     /**
@@ -1206,11 +1241,11 @@ export namespace compute_beta {
      */
     selfLink?: string;
     /**
-     * Type of session affinity to use. The default is NONE.  When the load balancing scheme is EXTERNAL, can be NONE, CLIENT_IP, or GENERATED_COOKIE.  When the load balancing scheme is INTERNAL, can be NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.  When the protocol is UDP, this field is not used.
+     * Type of session affinity to use. The default is NONE. Session affinity is not applicable if the --protocol is UDP.  When the loadBalancingScheme is EXTERNAL, possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. GENERATED_COOKIE is only available if the protocol is HTTP or HTTPS.  When the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.  When the loadBalancingScheme is INTERNAL_SELF_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.
      */
     sessionAffinity?: string;
     /**
-     * How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds.
+     * The backend service timeout has a different meaning depending on the type of load balancer. For more information read,  Backend service settings The default is 30 seconds.
      */
     timeoutSec?: number;
   }
@@ -1266,15 +1301,15 @@ export namespace compute_beta {
   }
   export interface Schema$BackendServiceFailoverPolicy {
     /**
-     * On failover or failback, this field indicates whether connection drain will be honored. Setting this to true has the following effect: connections to the old active pool are not drained. Connections to the new active pool use the timeout of 10 min (currently fixed). Setting to false has the following effect: both old and new connections will have a drain timeout of 10 min.  This can be set to true only if the protocol is TCP.  The default is false.
+     * This can be set to true only if the protocol is TCP.  The default is false.
      */
     disableConnectionDrainOnFailover?: boolean;
     /**
-     * This option is used only when no healthy VMs are detected in the primary and backup instance groups. When set to true, traffic is dropped. When set to false, new connections are sent across all VMs in the primary group.  The default is false.
+     * Applicable only to Failover for Internal TCP/UDP Load Balancing. If set to true, connections to the load balancer are dropped when all primary and all backup backend VMs are unhealthy. If set to false, connections are distributed among all primary VMs when all primary and all backup backend VMs are unhealthy.  The default is false.
      */
     dropTrafficIfUnhealthy?: boolean;
     /**
-     * The value of the field must be in [0, 1]. If the ratio of the healthy VMs in the primary backend is at or below this number, traffic arriving at the load-balanced IP will be directed to the failover backend.  In case where &#39;failoverRatio&#39; is not set or all the VMs in the backup backend are unhealthy, the traffic will be directed back to the primary backend in the &quot;force&quot; mode, where traffic will be spread to the healthy VMs with the best effort, or to all VMs when no VM is healthy.  This field is only used with l4 load balancing.
+     * Applicable only to Failover for Internal TCP/UDP Load Balancing. The value of the field must be in the range [0, 1]. If the value is 0, the load balancer performs a failover when the number of healthy primary VMs equals zero. For all other values, the load balancer performs a failover when the total number of healthy primary VMs is less than this ratio.
      */
     failoverRatio?: number;
   }
@@ -1413,7 +1448,36 @@ export namespace compute_beta {
     queryStringWhitelist?: string[];
   }
   /**
-   * Represents a Commitment resource. Creating a Commitment resource means that you are purchasing a committed use contract with an explicit start and end time. You can create commitments based on vCPUs and memory usage and receive discounted rates. For full details, read Signing Up for Committed Use Discounts.  Committed use discounts are subject to Google Cloud Platform&#39;s Service Specific Terms. By purchasing a committed use discount, you agree to these terms. Committed use discounts will not renew, so you must purchase a new commitment to continue receiving discounts. (== resource_for beta.commitments ==) (== resource_for v1.commitments ==)
+   * Settings controlling the volume of connections to a backend service.
+   */
+  export interface Schema$CircuitBreakers {
+    /**
+     * The timeout for new network connections to hosts.
+     */
+    connectTimeout?: Schema$Duration;
+    /**
+     * The maximum number of connections to the backend cluster. If not specified, the default is 1024.
+     */
+    maxConnections?: number;
+    /**
+     * The maximum number of pending requests allowed to the backend cluster. If not specified, the default is 1024.
+     */
+    maxPendingRequests?: number;
+    /**
+     * The maximum number of parallel requests that allowed to the backend cluster. If not specified, the default is 1024.
+     */
+    maxRequests?: number;
+    /**
+     * Maximum requests for a single backend connection. This parameter is respected by both the HTTP/1.1 and HTTP/2 implementations. If not specified, there is no limit. Setting this parameter to 1 will effectively disable keep alive.
+     */
+    maxRequestsPerConnection?: number;
+    /**
+     * The maximum number of parallel retries allowed to the backend cluster. If not specified, the default is 3.
+     */
+    maxRetries?: number;
+  }
+  /**
+   * Represents a regional Commitment resource.  Creating a commitment resource means that you are purchasing a committed use contract with an explicit start and end time. You can create commitments based on vCPUs and memory usage and receive discounted rates. For full details, read Signing Up for Committed Use Discounts. (== resource_for beta.regionCommitments ==) (== resource_for v1.regionCommitments ==)
    */
   export interface Schema$Commitment {
     /**
@@ -1472,6 +1536,10 @@ export namespace compute_beta {
      * [Output Only] An optional, human-readable explanation of the status.
      */
     statusMessage?: string;
+    /**
+     * The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines.
+     */
+    type?: string;
   }
   export interface Schema$CommitmentAggregatedList {
     /**
@@ -1580,9 +1648,80 @@ export namespace compute_beta {
    */
   export interface Schema$ConnectionDraining {
     /**
-     * Time for which instance will be drained (not accept new connections, but still work to finish started).
+     * The amount of time in seconds to allow existing connections to persist while on unhealthy backend VMs. Only applicable if the protocol is not UDP. The valid range is [0, 3600].
      */
     drainingTimeoutSec?: number;
+  }
+  /**
+   * This message defines settings for a consistent hash style load balancer.
+   */
+  export interface Schema$ConsistentHashLoadBalancerSettings {
+    /**
+     * Hash is based on HTTP Cookie. This field describes a HTTP cookie that will be used as the hash key for the consistent hash load balancer. If the cookie is not present, it will be generated. This field is applicable if the sessionAffinity is set to HTTP_COOKIE.
+     */
+    httpCookie?: Schema$ConsistentHashLoadBalancerSettingsHttpCookie;
+    /**
+     * The hash based on the value of the specified header field. This field is applicable if the sessionAffinity is set to HEADER_FIELD.
+     */
+    httpHeaderName?: string;
+    /**
+     * The minimum number of virtual nodes to use for the hash ring. Defaults to 1024. Larger ring sizes result in more granular load distributions. If the number of hosts in the load balancing pool is larger than the ring size, each host will be assigned a single virtual node.
+     */
+    minimumRingSize?: string;
+  }
+  /**
+   * The information about the HTTP Cookie on which the hash function is based for load balancing policies that use a consistent hash.
+   */
+  export interface Schema$ConsistentHashLoadBalancerSettingsHttpCookie {
+    /**
+     * Name of the cookie.
+     */
+    name?: string;
+    /**
+     * Path to set for the cookie.
+     */
+    path?: string;
+    /**
+     * Lifetime of the cookie.
+     */
+    ttl?: Schema$Duration;
+  }
+  /**
+   * The specification for allowing client side cross-origin requests. Please see W3C Recommendation for Cross Origin Resource Sharing
+   */
+  export interface Schema$CorsPolicy {
+    /**
+     * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header. Default is false.
+     */
+    allowCredentials?: boolean;
+    /**
+     * Specifies the content for the Access-Control-Allow-Headers header.
+     */
+    allowHeaders?: string[];
+    /**
+     * Specifies the content for the Access-Control-Allow-Methods header.
+     */
+    allowMethods?: string[];
+    /**
+     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript  An origin is allowed if it matches either allow_origins or allow_origin_regex.
+     */
+    allowOriginRegexes?: string[];
+    /**
+     * Specifies the list of origins that will be allowed to do CORS requests. An origin is allowed if it matches either allow_origins or allow_origin_regex.
+     */
+    allowOrigins?: string[];
+    /**
+     * If true, specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
+     */
+    disabled?: boolean;
+    /**
+     * Specifies the content for the Access-Control-Expose-Headers header.
+     */
+    exposeHeaders?: string[];
+    /**
+     * Specifies how long the results of a preflight request can be cached. This translates to the content for the Access-Control-Max-Age header.
+     */
+    maxAge?: number;
   }
   /**
    * Represents a customer-supplied encryption key
@@ -1641,7 +1780,7 @@ export namespace compute_beta {
     state?: string;
   }
   /**
-   * A Disk resource. (== resource_for beta.disks ==) (== resource_for v1.disks ==)
+   * Represents a Persistent Disk resource.  Persistent disks are required for running your VM instances. Create both boot and non-boot (data) persistent disks. For more information, read Persistent Disks. For more storage options, read Storage options.  The disks resource represents a zonal persistent disk. For more information, read Zonal persistent disks.  The regionDisks resource represents a regional persistent disk. For more information, read  Regional resources. (== resource_for beta.disks ==) (== resource_for v1.disks ==) (== resource_for v1.regionDisks ==) (== resource_for beta.regionDisks ==)
    */
   export interface Schema$Disk {
     /**
@@ -1653,7 +1792,7 @@ export namespace compute_beta {
      */
     description?: string;
     /**
-     * Encrypts the disk using a customer-supplied encryption key.  After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later (e.g. to create a disk snapshot or an image, or to attach the disk to a virtual machine).  Customer-supplied encryption keys do not protect access to metadata of the disk.  If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
+     * Encrypts the disk using a customer-supplied encryption key.  After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later (e.g. to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine).  Customer-supplied encryption keys do not protect access to metadata of the disk.  If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
      */
     diskEncryptionKey?: Schema$CustomerEncryptionKey;
     /**
@@ -1757,11 +1896,11 @@ export namespace compute_beta {
      */
     storageType?: string;
     /**
-     * URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: project/zones/zone/diskTypes/pd-standard or pd-ssd
+     * URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project/zones/zone/diskTypes/pd-standard or pd-ssd
      */
     type?: string;
     /**
-     * [Output Only] Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
+     * [Output Only] Links to the users of the disk (attached instances) in form: projects/project/zones/zone/instances/instance
      */
     users?: string[];
     /**
@@ -1896,7 +2035,7 @@ export namespace compute_beta {
     };
   }
   /**
-   * A DiskType resource. (== resource_for beta.diskTypes ==) (== resource_for v1.diskTypes ==)
+   * Represents a Disk Type resource.  You can choose from a variety of disk types based on your needs. For more information, read Storage options.  The diskTypes resource represents disk types for a zonal persistent disk. For more information, read Zonal persistent disks.  The regionDiskTypes resource represents disk types for a regional persistent disk. For more information, read Regional persistent disks. (== resource_for beta.diskTypes ==) (== resource_for v1.diskTypes ==) (== resource_for v1.regionDiskTypes ==) (== resource_for beta.regionDiskTypes ==)
    */
   export interface Schema$DiskType {
     /**
@@ -2042,13 +2181,26 @@ export namespace compute_beta {
      */
     zone?: string;
   }
+  /**
+   * A Duration represents a fixed-length span of time represented as a count of seconds and fractions of seconds at nanosecond resolution. It is independent of any calendar and concepts like &quot;day&quot; or &quot;month&quot;. Range is approximately 10,000 years.
+   */
+  export interface Schema$Duration {
+    /**
+     * Span of time that&#39;s a fraction of a second at nanosecond resolution. Durations less than one second are represented with a 0 `seconds` field and a positive `nanos` field. Must be from 0 to 999,999,999 inclusive.
+     */
+    nanos?: number;
+    /**
+     * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
+     */
+    seconds?: string;
+  }
   export interface Schema$ExchangedPeeringRoute {
     /**
      * The destination range of the route.
      */
     destRange?: string;
     /**
-     * If the peering route is imported if there is no confliction.
+     * True if the peering route has been imported from a peer. The actual import happens if the field networkPeering.importCustomRoutes is true for this network, and networkPeering.exportCustomRoutes is true for the peer network, and the import does not result in a route conflict.
      */
     imported?: boolean;
     /**
@@ -2208,7 +2360,7 @@ export namespace compute_beta {
     };
   }
   /**
-   * Represents a Firewall resource.
+   * Represents a Firewall Rule resource.  Firewall rules allow or deny ingress traffic to, and egress traffic from your instances. For more information, read Firewall rules.
    */
   export interface Schema$Firewall {
     /**
@@ -2224,19 +2376,19 @@ export namespace compute_beta {
      */
     denied?: Array<{IPProtocol?: string; ports?: string[]}>;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this field when you create the resource.
      */
     description?: string;
     /**
-     * If destination ranges are specified, the firewall will apply only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Only IPv4 is supported.
+     * If destination ranges are specified, the firewall rule applies only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Only IPv4 is supported.
      */
     destinationRanges?: string[];
     /**
-     * Direction of traffic to which this firewall applies; default is INGRESS. Note: For INGRESS traffic, it is NOT supported to specify destinationRanges; For EGRESS traffic, it is NOT supported to specify sourceRanges OR sourceTags.
+     * Direction of traffic to which this firewall applies, either `INGRESS` or `EGRESS`. The default is `INGRESS`. For `INGRESS` traffic, you cannot specify the destinationRanges field, and for `EGRESS` traffic, you cannot specify the sourceRanges or sourceTags fields.
      */
     direction?: string;
     /**
-     * Denotes whether the firewall rule is disabled, i.e not applied to the network it is associated with. When set to true, the firewall rule is not enforced and the network behaves as if it did not exist. If this is unspecified, the firewall rule will be enabled.
+     * Denotes whether the firewall rule is disabled. When set to true, the firewall rule is not enforced and the network behaves as if it did not exist. If this is unspecified, the firewall rule will be enabled.
      */
     disabled?: boolean;
     /**
@@ -2256,15 +2408,15 @@ export namespace compute_beta {
      */
     logConfig?: Schema$FirewallLogConfig;
     /**
-     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      */
     name?: string;
     /**
-     * URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used: global/networks/default If you choose to specify this property, you can specify the network as a full or partial URL. For example, the following are all valid URLs:   - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network  - projects/myproject/global/networks/my-network  - global/networks/default
+     * URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used: global/networks/default If you choose to specify this field, you can specify the network as a full or partial URL. For example, the following are all valid URLs:   - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network  - projects/myproject/global/networks/my-network  - global/networks/default
      */
     network?: string;
     /**
-     * Priority for this rule. This is an integer between 0 and 65535, both inclusive. When not specified, the value assumed is 1000. Relative priorities determine precedence of conflicting rules. Lower value of priority implies higher precedence (eg, a rule with priority 0 has higher precedence than a rule with priority 1). DENY rules take precedence over ALLOW rules having equal priority.
+     * Priority for this rule. This is an integer between `0` and `65535`, both inclusive. The default value is `1000`. Relative priorities determine which rule takes effect if multiple rules apply. Lower values indicate higher priority. For example, a rule with priority `0` has higher precedence than a rule with priority `1`. DENY rules take precedence over ALLOW rules if they have equal priority. Note that VPC networks have implied rules with a priority of `65535`. To avoid conflicts with the implied rules, use a priority number less than `65535`.
      */
     priority?: number;
     /**
@@ -2272,15 +2424,15 @@ export namespace compute_beta {
      */
     selfLink?: string;
     /**
-     * If source ranges are specified, the firewall will apply only to traffic that has source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply. Only IPv4 is supported.
+     * If source ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both fields are set, the rule applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the rule to apply. Only IPv4 is supported.
      */
     sourceRanges?: string[];
     /**
-     * If source service accounts are specified, the firewall will apply only to traffic originating from an instance with a service account in this list. Source service accounts cannot be used to control traffic to an instance&#39;s external IP address because service accounts are associated with an instance, not an IP address. sourceRanges can be set at the same time as sourceServiceAccounts. If both are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP belongs to an instance with service account listed in sourceServiceAccount. The connection does not need to match both properties for the firewall to apply. sourceServiceAccounts cannot be used at the same time as sourceTags or targetTags.
+     * If source service accounts are specified, the firewall rules apply only to traffic originating from an instance with a service account in this list. Source service accounts cannot be used to control traffic to an instance&#39;s external IP address because service accounts are associated with an instance, not an IP address. sourceRanges can be set at the same time as sourceServiceAccounts. If both are set, the firewall applies to traffic that has a source IP address within the sourceRanges OR a source IP that belongs to an instance with service account listed in sourceServiceAccount. The connection does not need to match both fields for the firewall to apply. sourceServiceAccounts cannot be used at the same time as sourceTags or targetTags.
      */
     sourceServiceAccounts?: string[];
     /**
-     * If source tags are specified, the firewall rule applies only to traffic with source IPs that match the primary network interfaces of VM instances that have the tag and are in the same VPC network. Source tags cannot be used to control traffic to an instance&#39;s external IP address, it only applies to traffic between instances in the same virtual network. Because tags are associated with instances, not IP addresses. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply.
+     * If source tags are specified, the firewall rule applies only to traffic with source IPs that match the primary network interfaces of VM instances that have the tag and are in the same VPC network. Source tags cannot be used to control traffic to an instance&#39;s external IP address, it only applies to traffic between instances in the same virtual network. Because tags are associated with instances, not IP addresses. One or both of sourceRanges and sourceTags may be set. If both fields are set, the firewall applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the firewall to apply.
      */
     sourceTags?: string[];
     /**
@@ -2352,7 +2504,7 @@ export namespace compute_beta {
     percent?: number;
   }
   /**
-   * A ForwardingRule resource. A ForwardingRule resource specifies which pool of target virtual machines to forward a packet to if it matches the given [IPAddress, IPProtocol, ports] tuple. (== resource_for beta.forwardingRules ==) (== resource_for v1.forwardingRules ==) (== resource_for beta.globalForwardingRules ==) (== resource_for v1.globalForwardingRules ==) (== resource_for beta.regionForwardingRules ==) (== resource_for v1.regionForwardingRules ==)
+   * Represents a Forwarding Rule resource.    A forwardingRules resource represents a regional forwarding rule.  Regional external forwarding rules can reference any of the following resources:   - A target instance  - A Cloud VPN Classic gateway (targetVpnGateway),   - A target pool for a Network Load Balancer  - A global target HTTP(S) proxy for an HTTP(S) load balancer using Standard Tier  - A target SSL proxy for a SSL Proxy load balancer using Standard Tier  - A target TCP proxy for a TCP Proxy load balancer using Standard Tier.    Regional internal forwarding rules can reference the backend service of an internal TCP/UDP load balancer.  For regional internal forwarding rules, the following applies:   - If the loadBalancingScheme for the load balancer is INTERNAL, then the forwarding rule references a regional internal backend service.  - If the loadBalancingScheme for the load balancer is INTERNAL_MANAGED, then the forwarding rule must reference a regional target HTTP(S) proxy.    For more information, read Using Forwarding rules.  A globalForwardingRules resource represents a global forwarding rule.  Global forwarding rules are only used by load balancers that use Premium Tier. (== resource_for beta.forwardingRules ==) (== resource_for v1.forwardingRules ==) (== resource_for beta.globalForwardingRules ==) (== resource_for v1.globalForwardingRules ==) (== resource_for beta.regionForwardingRules ==) (== resource_for v1.regionForwardingRules ==)
    */
   export interface Schema$ForwardingRule {
     /**
@@ -2411,6 +2563,10 @@ export namespace compute_beta {
      * This signifies what the ForwardingRule will be used for and can only take the following values: INTERNAL, INTERNAL_SELF_MANAGED, EXTERNAL. The value of INTERNAL means that this will be used for Internal Network Load Balancing (TCP, UDP). The value of INTERNAL_SELF_MANAGED means that this will be used for Internal Global HTTP(S) LB. The value of EXTERNAL means that this will be used for External Load Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
      */
     loadBalancingScheme?: string;
+    /**
+     * Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. If a match takes place, the relevant routing configuration is made available to those proxies. For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels in the provided metadata. metadataFilters specified here can be overridden by those specified in the UrlMap that this ForwardingRule references. metadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
+     */
+    metadataFilters?: Schema$MetadataFilter[];
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
@@ -2622,7 +2778,7 @@ export namespace compute_beta {
     type?: string;
   }
   /**
-   * An HealthCheck resource. This resource defines a template for how individual virtual machines should be checked for health, via one of the supported protocols.
+   * Represents a Health Check resource.  Health checks are used for most GCP load balancers and managed instance group auto-healing. For more information, read Health Check Concepts.  To perform health checks on network load balancers, you must use either httpHealthChecks or httpsHealthChecks.
    */
   export interface Schema$HealthCheck {
     /**
@@ -2656,6 +2812,10 @@ export namespace compute_beta {
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     name?: string;
+    /**
+     * [Output Only] Region where the health check resides. Not applicable to global health checks.
+     */
+    region?: string;
     /**
      * [Output Only] Server-defined URL for the resource.
      */
@@ -2713,6 +2873,50 @@ export namespace compute_beta {
    */
   export interface Schema$HealthCheckReference {
     healthCheck?: string;
+  }
+  export interface Schema$HealthChecksAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of HealthChecksScopedList resources.
+     */
+    items?: {[key: string]: Schema$HealthChecksScopedList};
+    /**
+     * Type of resource.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    };
+  }
+  export interface Schema$HealthChecksScopedList {
+    /**
+     * A list of HealthChecks contained in this scope.
+     */
+    healthChecks?: Schema$HealthCheck[];
+    /**
+     * Informational warning which replaces the list of backend services when the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    };
   }
   export interface Schema$HealthStatus {
     /**
@@ -2797,6 +3001,120 @@ export namespace compute_beta {
      */
     response?: string;
   }
+  /**
+   * Specification for how requests are aborted as part of fault injection.
+   */
+  export interface Schema$HttpFaultAbort {
+    /**
+     * The HTTP status code used to abort the request. The value must be between 200 and 599 inclusive.
+     */
+    httpStatus?: number;
+    /**
+     * The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection. The value must be between 0.0 and 100.0 inclusive.
+     */
+    percentage?: number;
+  }
+  /**
+   * Specifies the delay introduced by Loadbalancer before forwarding the request to the backend service as part of fault injection.
+   */
+  export interface Schema$HttpFaultDelay {
+    /**
+     * Specifies the value of the fixed delay interval.
+     */
+    fixedDelay?: Schema$Duration;
+    /**
+     * The percentage of traffic (connections/operations/requests) on which delay will be introduced as part of fault injection. The value must be between 0.0 and 100.0 inclusive.
+     */
+    percentage?: number;
+  }
+  /**
+   * The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure. As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a percentage of requests before sending those request to the backend service. Similarly requests from clients can be aborted by the Loadbalancer for a percentage of requests.
+   */
+  export interface Schema$HttpFaultInjection {
+    /**
+     * The specification for how client requests are aborted as part of fault injection.
+     */
+    abort?: Schema$HttpFaultAbort;
+    /**
+     * The specification for how client requests are delayed as part of fault injection, before being sent to a backend service.
+     */
+    delay?: Schema$HttpFaultDelay;
+  }
+  /**
+   * The request and response header transformations that take effect before the request is passed along to the selected backendService.
+   */
+  export interface Schema$HttpHeaderAction {
+    /**
+     * Headers to add to a matching request prior to forwarding the request to the backendService.
+     */
+    requestHeadersToAdd?: Schema$HttpHeaderOption[];
+    /**
+     * A list of header names for headers that need to be removed from the request prior to forwarding the request to the backendService.
+     */
+    requestHeadersToRemove?: string[];
+    /**
+     * Headers to add the response prior to sending the response back to the client.
+     */
+    responseHeadersToAdd?: Schema$HttpHeaderOption[];
+    /**
+     * A list of header names for headers that need to be removed from the response prior to sending the response back to the client.
+     */
+    responseHeadersToRemove?: string[];
+  }
+  /**
+   * matchRule criteria for request header matches.
+   */
+  export interface Schema$HttpHeaderMatch {
+    /**
+     * The value should exactly match contents of exactMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     */
+    exactMatch?: string;
+    /**
+     * The name of the HTTP header to match. For matching against the HTTP request&#39;s authority, use a headerMatch with the header name &quot;:authority&quot;. For matching a request&#39;s method, use the headerName &quot;:method&quot;.
+     */
+    headerName?: string;
+    /**
+     * If set to false, the headerMatch is considered a match if the match criteria above are met. If set to true, the headerMatch is considered a match if the match criteria above are NOT met. The default setting is false.
+     */
+    invertMatch?: boolean;
+    /**
+     * The value of the header must start with the contents of prefixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     */
+    prefixMatch?: string;
+    /**
+     * A header with the contents of headerName must exist. The match takes place whether or not the request&#39;s header has a value or not. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     */
+    presentMatch?: boolean;
+    /**
+     * The header value must be an integer and its value must be in the range specified in rangeMatch. If the header does not contain an integer, number or is empty, the match fails. For example for a range [-5, 0]   - -3 will match.  - 0 will not match.  - 0.25 will not match.  - -3someString will not match.   Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     */
+    rangeMatch?: Schema$Int64RangeMatch;
+    /**
+     * The value of the header must match the regualar expression specified in regexMatch. For regular expression grammar, please see:  en.cppreference.com/w/cpp/regex/ecmascript  For matching against a port specified in the HTTP request, use a headerMatch with headerName set to PORT and a regular expression that satisfies the RFC2616 Host header&#39;s port specifier. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     */
+    regexMatch?: string;
+    /**
+     * The value of the header must end with the contents of suffixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     */
+    suffixMatch?: string;
+  }
+  /**
+   * Specification determining how headers are added to requests or responses.
+   */
+  export interface Schema$HttpHeaderOption {
+    /**
+     * The name of the header.
+     */
+    headerName?: string;
+    /**
+     * The value of the header to add.
+     */
+    headerValue?: string;
+    /**
+     * If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The default value is false.
+     */
+    replace?: boolean;
+  }
   export interface Schema$HTTPHealthCheck {
     /**
      * The value of the host header in the HTTP health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
@@ -2828,7 +3146,7 @@ export namespace compute_beta {
     response?: string;
   }
   /**
-   * An HttpHealthCheck resource. This resource defines a template for how individual instances should be checked for health, via HTTP.
+   * Represents a legacy HTTP Health Check resource.  Legacy health checks are required by network load balancers. For more information, read Health Check Concepts.
    */
   export interface Schema$HttpHealthCheck {
     /**
@@ -2868,7 +3186,7 @@ export namespace compute_beta {
      */
     port?: number;
     /**
-     * The request path of the HTTP health check request. The default value is /.
+     * The request path of the HTTP health check request. The default value is /. This field does not support query parameters.
      */
     requestPath?: string;
     /**
@@ -2917,6 +3235,158 @@ export namespace compute_beta {
       message?: string;
     };
   }
+  /**
+   * HttpRouteRuleMatch criteria for a request&#39;s query parameter.
+   */
+  export interface Schema$HttpQueryParameterMatch {
+    /**
+     * The queryParameterMatch matches if the value of the parameter exactly matches the contents of exactMatch. Only one of presentMatch, exactMatch and regexMatch must be set.
+     */
+    exactMatch?: string;
+    /**
+     * The name of the query parameter to match. The query parameter must exist in the request, in the absence of which the request match fails.
+     */
+    name?: string;
+    /**
+     * Specifies that the queryParameterMatch matches if the request contains the query parameter, irrespective of whether the parameter has a value or not. Only one of presentMatch, exactMatch and regexMatch must be set.
+     */
+    presentMatch?: boolean;
+    /**
+     * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch, exactMatch and regexMatch must be set.
+     */
+    regexMatch?: string;
+  }
+  /**
+   * Specifies settings for an HTTP redirect.
+   */
+  export interface Schema$HttpRedirectAction {
+    /**
+     * The host that will be used in the redirect response instead of the one that was supplied in the request. The value must be between 1 and 255 characters.
+     */
+    hostRedirect?: string;
+    /**
+     * If set to true, the URL scheme in the redirected request is set to https. If set to false, the URL scheme of the redirected request will remain the same as that of the request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this true for TargetHttpsProxy is not permitted. The default is set to false.
+     */
+    httpsRedirect?: boolean;
+    /**
+     * The path that will be used in the redirect response instead of the one that was supplied in the request. Only one of pathRedirect or prefixRedirect must be specified. The value must be between 1 and 1024 characters.
+     */
+    pathRedirect?: string;
+    /**
+     * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch, retaining the remaining portion of the URL before redirecting the request.
+     */
+    prefixRedirect?: string;
+    /**
+     * The HTTP Status code to use for this RedirectAction. Supported values are:   - MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.  - FOUND, which corresponds to 302.  - SEE_OTHER which corresponds to 303.  - TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method will be retained.  - PERMANENT_REDIRECT, which corresponds to 308. In this case, the request method will be retained.
+     */
+    redirectResponseCode?: string;
+    /**
+     * If set to true, any accompanying query portion of the original URL is removed prior to redirecting the request. If set to false, the query portion of the original URL is retained. The default is set to false.
+     */
+    stripQuery?: boolean;
+  }
+  /**
+   * The retry policy associates with HttpRouteRule
+   */
+  export interface Schema$HttpRetryPolicy {
+    /**
+     * Specifies the allowed number retries. This number must be &gt; 0.
+     */
+    numRetries?: number;
+    /**
+     * Specifies a non-zero timeout per retry attempt.
+     */
+    perTryTimeout?: Schema$Duration;
+    /**
+     * Specfies one or more conditions when this retry rule applies. Valid values are:   - 5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code, or if the backend service does not respond at all, example: disconnects, reset, read timeout, connection failure, and refused streams.  - gateway-error: Similar to 5xx, but only applies to response codes 502, 503 or 504. -  - connect-failure: Loadbalancer will retry on failures connecting to backend services, for example due to connection timeouts.  - retriable-4xx: Loadbalancer will retry for retriable 4xx response codes. Currently the only retriable error supported is 409.  - refused-stream:Loadbalancer will retry if the backend service resets the stream with a REFUSED_STREAM error code. This reset type indicates that it is safe to retry.  - cancelledLoadbalancer will retry if the gRPC status code in the response header is set to cancelled  - deadline-exceeded: Loadbalancer will retry if the gRPC status code in the response header is set to deadline-exceeded  - resource-exhausted: Loadbalancer will retry if the gRPC status code in the response header is set to resource-exhausted  - unavailable: Loadbalancer will retry if the gRPC status code in the response header is set to unavailable
+     */
+    retryConditions?: string[];
+  }
+  export interface Schema$HttpRouteAction {
+    /**
+     * The specification for allowing client side cross-origin requests. Please see W3C Recommendation for Cross Origin Resource Sharing
+     */
+    corsPolicy?: Schema$CorsPolicy;
+    /**
+     * The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure. As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a percentage of requests before sending those request to the backend service. Similarly requests from clients can be aborted by the Loadbalancer for a percentage of requests. timeout and retry_policy will be ignored by clients that are configured with a fault_injection_policy.
+     */
+    faultInjectionPolicy?: Schema$HttpFaultInjection;
+    /**
+     * Specifies the policy on how requests intended for the route&#39;s backends are shadowed to a separate mirrored backend service. Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host / authority header is suffixed with -shadow.
+     */
+    requestMirrorPolicy?: Schema$RequestMirrorPolicy;
+    /**
+     * Specifies the retry policy associated with this route.
+     */
+    retryPolicy?: Schema$HttpRetryPolicy;
+    /**
+     * Specifies the timeout for the selected route. Timeout is computed from the time the request is has been fully processed (i.e. end-of-stream) up until the response has been completely processed. Timeout includes all retries. If not specified, the default value is 15 seconds.
+     */
+    timeout?: Schema$Duration;
+    /**
+     * The spec to modify the URL of the request, prior to forwarding the request to the matched service
+     */
+    urlRewrite?: Schema$UrlRewrite;
+    /**
+     * A list of weighted backend services to send traffic to when a route match occurs. The weights determine the fraction of traffic that flows to their corresponding backend service. If all traffic needs to go to a single backend service, there must be one  weightedBackendService with weight set to a non 0 number. Once a backendService is identified and before forwarding the request to the backend service, advanced routing actions like Url rewrites and header transformations are applied depending on additional settings specified in this HttpRouteAction.
+     */
+    weightedBackendServices?: Schema$WeightedBackendService[];
+  }
+  /**
+   * An HttpRouteRule specifies how to match an HTTP request and the corresponding routing action that load balancing proxies will perform.
+   */
+  export interface Schema$HttpRouteRule {
+    /**
+     * Specifies changes to request and response headers that need to take effect for the selected backendService. The headerAction specified here are applied before the matching pathMatchers[].headerAction and after pathMatchers[].routeRules[].routeAction.weightedBackendService.backendServiceWeightAction[].headerAction
+     */
+    headerAction?: Schema$HttpHeaderAction;
+    matchRules?: Schema$HttpRouteRuleMatch[];
+    /**
+     * In response to a matching matchRule, the load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If  routeAction specifies any  weightedBackendServices, service must not be set. Conversely if service is set, routeAction cannot contain any  weightedBackendServices. Only one of routeAction or urlRedirect must be set.
+     */
+    routeAction?: Schema$HttpRouteAction;
+    /**
+     * The full or partial URL of the backend service resource to which traffic is directed if this rule is matched. If routeAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if service is specified, routeAction cannot contain any weightedBackendService s. Conversely, if routeAction specifies any  weightedBackendServices, service must not be specified. Only one of urlRedirect, service or routeAction.weightedBackendService must be set.
+     */
+    service?: string;
+    /**
+     * When this rule is matched, the request is redirected to a URL specified by urlRedirect. If urlRedirect is specified, service or routeAction must not be set.
+     */
+    urlRedirect?: Schema$HttpRedirectAction;
+  }
+  /**
+   * HttpRouteRuleMatch specifies a set of criteria for matching requests to an HttpRouteRule. All specified criteria must be satisfied for a match to occur.
+   */
+  export interface Schema$HttpRouteRuleMatch {
+    /**
+     * For satifying the matchRule condition, the path of the request must exactly match the value specified in fullPathMatch after removing any query parameters and anchor that may be part of the original URL. FullPathMatch must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
+     */
+    fullPathMatch?: string;
+    /**
+     * Specifies a list of header match criteria, all of which must match corresponding headers in the request.
+     */
+    headerMatches?: Schema$HttpHeaderMatch[];
+    /**
+     * Specifies that prefixMatch and fullPathMatch matches are case sensitive. The default value is false. caseSensitive must not be used with regexMatch.
+     */
+    ignoreCase?: boolean;
+    /**
+     * Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. If a match takes place, the relevant routing configuration is made available to those proxies. For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels in the provided metadata. metadataFilters specified here can be overrides those specified in ForwardingRule that refers to this UrlMap. metadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
+     */
+    metadataFilters?: Schema$MetadataFilter[];
+    /**
+     * For satifying the matchRule condition, the request&#39;s path must begin with the specified prefixMatch. prefixMatch must begin with a /. The value must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
+     */
+    prefixMatch?: string;
+    /**
+     * Specifies a list of query parameter match criteria, all of which must match corresponding query parameters in the request.
+     */
+    queryParameterMatches?: Schema$HttpQueryParameterMatch[];
+    /**
+     * For satifying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
+     */
+    regexMatch?: string;
+  }
   export interface Schema$HTTPSHealthCheck {
     /**
      * The value of the host header in the HTTPS health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
@@ -2948,7 +3418,7 @@ export namespace compute_beta {
     response?: string;
   }
   /**
-   * An HttpsHealthCheck resource. This resource defines a template for how individual instances should be checked for health, via HTTPS.
+   * Represents a legacy HTTPS Health Check resource.  Legacy health checks are required by network load balancers. For more information, read Health Check Concepts.
    */
   export interface Schema$HttpsHealthCheck {
     /**
@@ -3038,7 +3508,7 @@ export namespace compute_beta {
     };
   }
   /**
-   * An Image resource. (== resource_for beta.images ==) (== resource_for v1.images ==)
+   * Represents an Image resource.  You can use images to create boot disks for your VM instances. For more information, read Images. (== resource_for beta.images ==) (== resource_for v1.images ==)
    */
   export interface Schema$Image {
     /**
@@ -3153,6 +3623,10 @@ export namespace compute_beta {
      * [Output Only] The status of the image. An image can be used to create other resources, such as instances, only after the image has been successfully created and the status is set to READY. Possible values are FAILED, PENDING, or READY.
      */
     status?: string;
+    /**
+     * GCS bucket storage location of the image (regional or multi-regional).
+     */
+    storageLocations?: string[];
   }
   /**
    * Contains a list of images.
@@ -3188,7 +3662,7 @@ export namespace compute_beta {
     };
   }
   /**
-   * An Instance resource. (== resource_for beta.instances ==) (== resource_for v1.instances ==)
+   * Represents an Instance resource.  An instance is a virtual machine that is hosted on Google Cloud Platform. For more information, read Virtual Machine Instances. (== resource_for beta.instances ==) (== resource_for v1.instances ==)
    */
   export interface Schema$Instance {
     /**
@@ -3261,7 +3735,7 @@ export namespace compute_beta {
      */
     networkInterfaces?: Schema$NetworkInterface[];
     /**
-     * The configuration of desired allocations which this Instance could consume capacity from.
+     * Specifies the reservations that this instance can consume from.
      */
     reservationAffinity?: Schema$ReservationAffinity;
     /**
@@ -3307,7 +3781,7 @@ export namespace compute_beta {
      */
     id?: string;
     /**
-     * A list of InstancesScopedList resources.
+     * An object that contains a list of instances scoped by zone.
      */
     items?: {[key: string]: Schema$InstancesScopedList};
     /**
@@ -3332,7 +3806,7 @@ export namespace compute_beta {
     };
   }
   /**
-   * InstanceGroups (== resource_for beta.instanceGroups ==) (== resource_for v1.instanceGroups ==) (== resource_for beta.regionInstanceGroups ==) (== resource_for v1.regionInstanceGroups ==)
+   * Represents an unmanaged Instance Group resource.  Use unmanaged instance groups if you need to apply load balancing to groups of heterogeneous instances or if you need to manage the instances yourself. For more information, read  Instance groups.  For zonal unmanaged Instance Group, use instanceGroups resource.  For regional unmanaged Instance Group, use regionInstanceGroups resource. (== resource_for beta.instanceGroups ==) (== resource_for v1.instanceGroups ==) (== resource_for beta.regionInstanceGroups ==) (== resource_for v1.regionInstanceGroups ==)
    */
   export interface Schema$InstanceGroup {
     /**
@@ -3452,7 +3926,7 @@ export namespace compute_beta {
     };
   }
   /**
-   * An Instance Group Manager resource. (== resource_for beta.instanceGroupManagers ==) (== resource_for v1.instanceGroupManagers ==) (== resource_for beta.regionInstanceGroupManagers ==) (== resource_for v1.regionInstanceGroupManagers ==)
+   * Represents a Managed Instance Group resource.  An instance group is a collection of VM instances that you can manage as a single entity. For more information, read Instance groups.  For zonal Managed Instance Group, use the instanceGroupManagers resource.  For regional Managed Instance Group, use the regionInstanceGroupManagers resource. (== resource_for beta.instanceGroupManagers ==) (== resource_for v1.instanceGroupManagers ==) (== resource_for beta.regionInstanceGroupManagers ==) (== resource_for v1.regionInstanceGroupManagers ==)
    */
   export interface Schema$InstanceGroupManager {
     /**
@@ -3692,15 +4166,15 @@ export namespace compute_beta {
    */
   export interface Schema$InstanceGroupManagersApplyUpdatesRequest {
     /**
-     * The list of URLs of one or more instances for which we want to apply updates on this managed instance group. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     * The list of URLs of one or more instances for which you want to apply updates. Each URL can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      */
     instances?: string[];
     /**
-     * The minimal action that should be perfomed on the instances. By default NONE.
+     * The minimal action that you want to perform on each instance during the update:   - REPLACE: At minimum, delete the instance and create it again.  - RESTART: Stop the instance and start it again.  - REFRESH: Do not stop the instance.  - NONE: Do not disrupt the instance at all.  By default, the minimum action is NONE. If your update requires a more disruptive action than you set with this flag, the necessary action is performed to execute the update.
      */
     minimalAction?: string;
     /**
-     * The most disruptive action that allowed to be performed on the instances. By default REPLACE.
+     * The most disruptive action that you want to perform on each instance during the update:   - REPLACE: Delete the instance and create it again.  - RESTART: Stop the instance and start it again.  - REFRESH: Do not stop the instance.  - NONE: Do not disrupt the instance at all.  By default, the most disruptive allowed action is REPLACE. If your update requires a more disruptive action than you set with this flag, the update request will fail.
      */
     mostDisruptiveAllowedAction?: string;
   }
@@ -3803,6 +4277,9 @@ export namespace compute_beta {
      * Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600].
      */
     minReadySec?: number;
+    /**
+     * The type of update process. You can specify either PROACTIVE so that the instance group manager proactively executes actions in order to bring instances to their target versions or OPPORTUNISTIC so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
+     */
     type?: string;
   }
   export interface Schema$InstanceGroupManagerVersion {
@@ -4009,7 +4486,7 @@ export namespace compute_beta {
      */
     networkInterfaces?: Schema$NetworkInterface[];
     /**
-     * The configuration of desired reservations which this Instance could consume capacity from.
+     * Specifies the reservations that this instance can consume from.
      */
     reservationAffinity?: Schema$ReservationAffinity;
     /**
@@ -4102,7 +4579,7 @@ export namespace compute_beta {
     disks?: Schema$CustomerEncryptionKeyProtectedDisk[];
   }
   /**
-   * An Instance Template resource. (== resource_for beta.instanceTemplates ==) (== resource_for v1.instanceTemplates ==)
+   * Represents an Instance Template resource.  You can use instance templates to create VM instances and managed instance groups. For more information, read Instance Templates. (== resource_for beta.instanceTemplates ==) (== resource_for v1.instanceTemplates ==)
    */
   export interface Schema$InstanceTemplate {
     /**
@@ -4190,7 +4667,20 @@ export namespace compute_beta {
     status?: string;
   }
   /**
-   * Represents an Interconnects resource. The Interconnects resource is a dedicated connection between Google&#39;s network and your on-premises network. For more information, see the  Dedicated overview page. (== resource_for v1.interconnects ==) (== resource_for beta.interconnects ==)
+   * HttpRouteRuleMatch criteria for field values that must stay within the specified integer range.
+   */
+  export interface Schema$Int64RangeMatch {
+    /**
+     * The end of the range (exclusive) in signed long integer format.
+     */
+    rangeEnd?: string;
+    /**
+     * The start of the range (inclusive) in signed long integer format.
+     */
+    rangeStart?: string;
+  }
+  /**
+   * Represents an Interconnect resource.  An Interconnect resource is a dedicated connection between the GCP network and your on-premises network. For more information, read the  Dedicated Interconnect Overview. (== resource_for v1.interconnects ==) (== resource_for beta.interconnects ==)
    */
   export interface Schema$Interconnect {
     /**
@@ -4234,7 +4724,7 @@ export namespace compute_beta {
      */
     interconnectAttachments?: string[];
     /**
-     * Type of interconnect. Note that &quot;IT_PRIVATE&quot; has been deprecated in favor of &quot;DEDICATED&quot;
+     * Type of interconnect, which can take one of the following values:  - PARTNER: A partner-managed interconnection shared between customers though a partner.  - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
      */
     interconnectType?: string;
     /**
@@ -4250,7 +4740,7 @@ export namespace compute_beta {
      */
     labels?: {[key: string]: string};
     /**
-     * Type of link requested. This field indicates speed of each of the links in the bundle, not the entire bundle.
+     * Type of link requested, which can take one of the following values:  - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics  - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
      */
     linkType?: string;
     /**
@@ -4266,7 +4756,7 @@ export namespace compute_beta {
      */
     nocContactEmail?: string;
     /**
-     * [Output Only] The current status of whether or not this Interconnect is functional.
+     * [Output Only] The current status of this Interconnect&#39;s functionality, which can take one of the following values:  - OS_ACTIVE: A valid Interconnect, which is turned up and is ready to use. Attachments may be provisioned on this Interconnect.  - OS_UNPROVISIONED: An Interconnect that has not completed turnup. No attachments may be provisioned on this Interconnect.  - OS_UNDER_MAINTENANCE: An Interconnect that is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect.
      */
     operationalStatus?: string;
     /**
@@ -4286,12 +4776,12 @@ export namespace compute_beta {
      */
     selfLink?: string;
     /**
-     * [Output Only] The current state of whether or not this Interconnect is functional.
+     * [Output Only] The current state of Interconnect functionality, which can take one of the following values:  - ACTIVE: The Interconnect is valid, turned up and ready to use. Attachments may be provisioned on this Interconnect.  - UNPROVISIONED: The Interconnect has not completed turnup. No attachments may be provisioned on this Interconnect.  - UNDER_MAINTENANCE: The Interconnect is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect.
      */
     state?: string;
   }
   /**
-   * Represents an InterconnectAttachment (VLAN attachment) resource. For more information, see  Creating VLAN Attachments. (== resource_for beta.interconnectAttachments ==) (== resource_for v1.interconnectAttachments ==)
+   * Represents an Interconnect Attachment (VLAN) resource.  You can use Interconnect attachments (VLANS) to connect your Virtual Private Cloud networks to your on-premises networks through an Interconnect. For more information, read  Creating VLAN Attachments. (== resource_for beta.interconnectAttachments ==) (== resource_for v1.interconnectAttachments ==)
    */
   export interface Schema$InterconnectAttachment {
     /**
@@ -4299,7 +4789,7 @@ export namespace compute_beta {
      */
     adminEnabled?: boolean;
     /**
-     * Provisioned bandwidth capacity for the interconnectAttachment. Can be set by the partner to update the customer&#39;s provisioned bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED.
+     * Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values:  - BPS_50M: 50 Mbit/s  - BPS_100M: 100 Mbit/s  - BPS_200M: 200 Mbit/s  - BPS_300M: 300 Mbit/s  - BPS_400M: 400 Mbit/s  - BPS_500M: 500 Mbit/s  - BPS_1G: 1 Gbit/s  - BPS_2G: 2 Gbit/s  - BPS_5G: 5 Gbit/s  - BPS_10G: 10 Gbit/s
      */
     bandwidth?: string;
     /**
@@ -4323,11 +4813,11 @@ export namespace compute_beta {
      */
     description?: string;
     /**
-     * Desired availability domain for the attachment. Only available for type PARTNER, at creation time. For improved reliability, customers should configure a pair of attachments with one per availability domain. The selected availability domain will be provided to the Partner via the pairing key so that the provisioned circuit will lie in the specified domain. If not specified, the value will default to AVAILABILITY_DOMAIN_ANY.
+     * Desired availability domain for the attachment. Only available for type PARTNER, at creation time, and can take one of the following values:  - AVAILABILITY_DOMAIN_ANY  - AVAILABILITY_DOMAIN_1  - AVAILABILITY_DOMAIN_2 For improved reliability, customers should configure a pair of attachments, one per availability domain. The selected availability domain will be provided to the Partner via the pairing key, so that the provisioned circuit will lie in the specified domain. If not specified, the value will default to AVAILABILITY_DOMAIN_ANY.
      */
     edgeAvailabilityDomain?: string;
     /**
-     * [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
+     * [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues. [Deprecated] This field is not used.
      */
     googleReferenceId?: string;
     /**
@@ -4355,7 +4845,7 @@ export namespace compute_beta {
      */
     name?: string;
     /**
-     * [Output Only] The current status of whether or not this interconnect attachment is functional.
+     * [Output Only] The current status of whether or not this interconnect attachment is functional, which can take one of the following values:  - OS_ACTIVE: The attachment has been turned up and is ready to use.  - OS_UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete.
      */
     operationalStatus?: string;
     /**
@@ -4363,7 +4853,7 @@ export namespace compute_beta {
      */
     pairingKey?: string;
     /**
-     * Optional BGP ASN for the router that should be supplied by a layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
+     * Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      */
     partnerAsn?: string;
     /**
@@ -4387,9 +4877,12 @@ export namespace compute_beta {
      */
     selfLink?: string;
     /**
-     * [Output Only] The current state of this attachment&#39;s functionality.
+     * [Output Only] The current state of this attachment&#39;s functionality. Enum values ACTIVE and UNPROVISIONED are shared by DEDICATED/PRIVATE, PARTNER, and PARTNER_PROVIDER interconnect attachments, while enum values PENDING_PARTNER, PARTNER_REQUEST_RECEIVED, and PENDING_CUSTOMER are used for only PARTNER and PARTNER_PROVIDER interconnect attachments. This state can take one of the following values:  - ACTIVE: The attachment has been turned up and is ready to use.  - UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete.  - PENDING_PARTNER: A newly-created PARTNER attachment that has not yet been configured on the Partner side.  - PARTNER_REQUEST_RECEIVED: A PARTNER attachment is in the process of provisioning after a PARTNER_PROVIDER attachment was created that references it.  - PENDING_CUSTOMER: A PARTNER or PARTNER_PROVIDER attachment that is waiting for a customer to activate it.  - DEFUNCT: The attachment was deleted externally and is no longer functional. This could be because the associated Interconnect was removed, or because the other side of a Partner attachment was deleted.
      */
     state?: string;
+    /**
+     * The type of interconnect attachment this is, which can take one of the following values:  - DEDICATED: an attachment to a Dedicated Interconnect.  - PARTNER: an attachment to a Partner Interconnect, created by the customer.  - PARTNER_PROVIDER: an attachment to a Partner Interconnect, created by the partner.
+     */
     type?: string;
     /**
      * The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. Only specified at creation time.
@@ -4472,7 +4965,7 @@ export namespace compute_beta {
      */
     partnerName?: string;
     /**
-     * URL of the Partner?s portal for this Attachment. Partners may customise this to be a deep-link to the specific resource on the Partner portal. This value may be validated to match approved Partner values.
+     * URL of the Partner?s portal for this Attachment. Partners may customise this to be a deep link to the specific resource on the Partner portal. This value may be validated to match approved Partner values.
      */
     portalUrl?: string;
   }
@@ -4555,6 +5048,9 @@ export namespace compute_beta {
      * System ID of the port on the neighbor?s side of the LACP exchange.
      */
     neighborSystemId?: string;
+    /**
+     * The state of a LACP link, which can take one of the following values:  - ACTIVE: The link is configured and active within the bundle.  - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty.
+     */
     state?: string;
   }
   export interface Schema$InterconnectDiagnosticsLinkOpticalPower {
@@ -4624,7 +5120,7 @@ export namespace compute_beta {
     };
   }
   /**
-   * Represents an InterconnectLocations resource. The InterconnectLocations resource describes the locations where you can connect to Google&#39;s networks. For more information, see  Colocation Facilities.
+   * Represents an Interconnect Attachment (VLAN) Location resource.  You can use this resource to find location details about an Interconnect attachment (VLAN). For more information about interconnect attachments, read  Creating VLAN Attachments.
    */
   export interface Schema$InterconnectLocation {
     /**
@@ -4640,7 +5136,7 @@ export namespace compute_beta {
      */
     city?: string;
     /**
-     * [Output Only] Continent for this location.
+     * [Output Only] Continent for this location, which can take one of the following values:  - AFRICA  - ASIA_PAC  - EUROPE  - NORTH_AMERICA  - SOUTH_AMERICA
      */
     continent?: string;
     /**
@@ -4684,7 +5180,7 @@ export namespace compute_beta {
      */
     selfLink?: string;
     /**
-     * [Output Only] The status of this InterconnectLocation. If the status is AVAILABLE, new Interconnects may be provisioned in this InterconnectLocation. Otherwise, no new Interconnects may be provisioned.
+     * [Output Only] The status of this InterconnectLocation, which can take one of the following values:  - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects.  - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects.
      */
     status?: string;
   }
@@ -4755,7 +5251,7 @@ export namespace compute_beta {
      */
     endTime?: string;
     /**
-     * Form this outage is expected to take. Note that the &quot;IT_&quot; versions of this enum have been deprecated in favor of the unprefixed values.
+     * Form this outage is expected to take, which can take one of the following values:  - OUTAGE: The Interconnect may be completely out of service for some or all of the specified window.  - PARTIAL_OUTAGE: Some circuits comprising the Interconnect as a whole should remain up, but with reduced bandwidth. Note that the versions of this enum prefixed with &quot;IT_&quot; have been deprecated in favor of the unprefixed values.
      */
     issueType?: string;
     /**
@@ -4763,7 +5259,7 @@ export namespace compute_beta {
      */
     name?: string;
     /**
-     * The party that generated this notification. Note that &quot;NSRC_GOOGLE&quot; has been deprecated in favor of &quot;GOOGLE&quot;
+     * The party that generated this notification, which can take the following value:  - GOOGLE: this notification as generated by Google. Note that the value of NSRC_GOOGLE has been deprecated in favor of GOOGLE.
      */
     source?: string;
     /**
@@ -4771,7 +5267,7 @@ export namespace compute_beta {
      */
     startTime?: string;
     /**
-     * State of this notification. Note that the &quot;NS_&quot; versions of this enum have been deprecated in favor of the unprefixed values.
+     * State of this notification, which can take one of the following values:  - ACTIVE: This outage notification is active. The event could be in the past, present, or future. See start_time and end_time for scheduling.  - CANCELLED: The outage associated with this notification was cancelled before the outage was due to start. Note that the versions of this enum prefixed with &quot;NS_&quot; have been deprecated in favor of the unprefixed values.
      */
     state?: string;
   }
@@ -4955,12 +5451,12 @@ export namespace compute_beta {
    */
   export interface Schema$LogConfigDataAccessOptions {
     /**
-     * Whether Gin logging should happen in a fail-closed manner at the caller. This is relevant only in the LocalIAM implementation, for now.  NOTE: Logging to Gin in a fail-closed manner is currently unsupported while work is being done to satisfy the requirements of go/345. Currently, setting LOG_FAIL_CLOSED mode will have no effect, but still exists because there is active work being done to support it (b/115874152).
+     * Whether Gin logging should happen in a fail-closed manner at the caller. This is relevant only in the LocalIAM implementation, for now.
      */
     logMode?: string;
   }
   /**
-   * A Machine Type resource. (== resource_for v1.machineTypes ==) (== resource_for beta.machineTypes ==)
+   * Represents a Machine Type resource.  You can use specific machine types for your VM instances based on performance and pricing requirements. For more information, read Machine Types. (== resource_for v1.machineTypes ==) (== resource_for beta.machineTypes ==)
    */
   export interface Schema$MachineType {
     /**
@@ -5158,6 +5654,32 @@ export namespace compute_beta {
     kind?: string;
   }
   /**
+   * Opaque filter criteria used by loadbalancers to restrict routing configuration to a limited set of loadbalancing proxies. Proxies and sidecars involved in loadbalancing would typically present metadata to the loadbalancers which need to match criteria specified here. If a match takes place, the relevant routing configuration is made available to those proxies. For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels in the provided metadata. An example for using metadataFilters would be: if loadbalancing involves  Envoys, they will only receive routing configuration when values in metadataFilters match values supplied in &lt;a href=&quot;https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/core/base.proto#envoy-api-msg-core-node&quot; Node metadata of their XDS requests to loadbalancers.
+   */
+  export interface Schema$MetadataFilter {
+    /**
+     * The list of label value pairs that must match labels in the provided metadata based on filterMatchCriteria  This list must not be empty and can have at the most 64 entries.
+     */
+    filterLabels?: Schema$MetadataFilterLabelMatch[];
+    /**
+     * Specifies how individual filterLabel matches within the list of filterLabels contribute towards the overall metadataFilter match. Supported values are:   - MATCH_ANY: At least one of the filterLabels must have a matching label in the provided metadata.  - MATCH_ALL: All filterLabels must have matching labels in the provided metadata.
+     */
+    filterMatchCriteria?: string;
+  }
+  /**
+   * MetadataFilter label name value pairs that are expected to match corresponding labels presented as metadata to the loadbalancer.
+   */
+  export interface Schema$MetadataFilterLabelMatch {
+    /**
+     * Name of metadata label. The name can have a maximum length of 1024 characters and must be at least 1 character long.
+     */
+    name?: string;
+    /**
+     * The value of the label must match the specified value. value can have a maximum length of 1024 characters.
+     */
+    value?: string;
+  }
+  /**
    * The named port. For example: .
    */
   export interface Schema$NamedPort {
@@ -5171,7 +5693,7 @@ export namespace compute_beta {
     port?: number;
   }
   /**
-   * Represents a Network resource. Read Virtual Private Cloud (VPC) Network Overview for more information. (== resource_for v1.networks ==) (== resource_for beta.networks ==)
+   * Represents a VPC Network resource.  Networks connect resources to each other and to the internet. For more information, read Virtual Private Cloud (VPC) Network. (== resource_for v1.networks ==) (== resource_for beta.networks ==)
    */
   export interface Schema$Network {
     /**
@@ -5183,11 +5705,11 @@ export namespace compute_beta {
      */
     creationTimestamp?: string;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this field when you create the resource.
      */
     description?: string;
     /**
-     * [Output Only] The gateway address for default routing out of the network. This value is read only and is selected by GCP.
+     * [Output Only] The gateway address for default routing out of the network, selected by GCP.
      */
     gatewayIPv4?: string;
     /**
@@ -5203,7 +5725,7 @@ export namespace compute_beta {
      */
     kind?: string;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      */
     name?: string;
     /**
@@ -5455,7 +5977,7 @@ export namespace compute_beta {
      */
     accessConfigs?: Schema$AccessConfig[];
     /**
-     * An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.
+     * An array of alias IP ranges for this network interface. You can only specify this field for network interfaces in VPC networks.
      */
     aliasIpRanges?: Schema$AliasIpRange[];
     /**
@@ -5467,19 +5989,19 @@ export namespace compute_beta {
      */
     kind?: string;
     /**
-     * [Output Only] The name of the network interface, generated by the server. For network devices, these are eth0, eth1, etc.
+     * [Output Only] The name of the network interface, which is generated by the server. For network devices, these are eth0, eth1, etc.
      */
     name?: string;
     /**
-     * URL of the network resource for this instance. When creating an instance, if neither the network nor the subnetwork is specified, the default network global/networks/default is used; if the network is not specified but the subnetwork is specified, the network is inferred.  This field is optional when creating a firewall rule. If not specified when creating a firewall rule, the default network global/networks/default is used.  If you specify this property, you can specify the network as a full or partial URL. For example, the following are all valid URLs:   - https://www.googleapis.com/compute/v1/projects/project/global/networks/network  - projects/project/global/networks/network  - global/networks/default
+     * URL of the network resource for this instance. When creating an instance, if neither the network nor the subnetwork is specified, the default network global/networks/default is used; if the network is not specified but the subnetwork is specified, the network is inferred.  If you specify this property, you can specify the network as a full or partial URL. For example, the following are all valid URLs:   - https://www.googleapis.com/compute/v1/projects/project/global/networks/network  - projects/project/global/networks/network  - global/networks/default
      */
     network?: string;
     /**
-     * An IPv4 internal network address to assign to the instance for this network interface. If not specified by the user, an unused internal IP is assigned by the system.
+     * An IPv4 internal IP address to assign to the instance for this network interface. If not specified by the user, an unused internal IP is assigned by the system.
      */
     networkIP?: string;
     /**
-     * The URL of the Subnetwork resource for this instance. If the network resource is in legacy mode, do not provide this property. If the network is in auto subnet mode, providing the subnetwork is optional. If the network is in custom subnet mode, then this field should be specified. If you specify this property, you can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs:   - https://www.googleapis.com/compute/v1/projects/project/regions/region/subnetworks/subnetwork  - regions/region/subnetworks/subnetwork
+     * The URL of the Subnetwork resource for this instance. If the network resource is in legacy mode, do not specify this field. If the network is in auto subnet mode, specifying the subnetwork is optional. If the network is in custom subnet mode, specifying the subnetwork is required. If you specify this field, you can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs:   - https://www.googleapis.com/compute/v1/projects/project/regions/region/subnetworks/subnetwork  - regions/region/subnetworks/subnetwork
      */
     subnetwork?: string;
   }
@@ -5521,11 +6043,11 @@ export namespace compute_beta {
    */
   export interface Schema$NetworkPeering {
     /**
-     * This field will be deprecated soon. Prefer using exchange_subnet_routes instead. Indicates whether full mesh connectivity is created and managed automatically. When it is set to true, Google Compute Engine will automatically create and manage the routes between two networks when the state is ACTIVE. Otherwise, user needs to create routes manually to route packets to peer network.
+     * This field will be deprecated soon. Use the exchange_subnet_routes field instead. Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
      */
     autoCreateRoutes?: boolean;
     /**
-     * Whether full mesh connectivity is created and managed automatically. When it is set to true, Google Compute Engine will automatically create and manage the routes between two networks when the peering state is ACTIVE. Otherwise, user needs to create routes manually to route packets to peer network.
+     * Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
      */
     exchangeSubnetRoutes?: boolean;
     /**
@@ -5537,7 +6059,7 @@ export namespace compute_beta {
      */
     importCustomRoutes?: boolean;
     /**
-     * Name of this peering. Provided by the client when the peering is created. The name must comply with RFC1035. Specifically, the name must be 1-63 characters long and match regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all the following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of this peering. Provided by the client when the peering is created. The name must comply with RFC1035. Specifically, the name must be 1-63 characters long and match regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all the following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     name?: string;
     /**
@@ -5545,7 +6067,7 @@ export namespace compute_beta {
      */
     network?: string;
     /**
-     * [Output Only] State for the peering.
+     * [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The peering is `ACTIVE` when there&#39;s a matching configuration in the peer network.
      */
     state?: string;
     /**
@@ -5558,13 +6080,13 @@ export namespace compute_beta {
    */
   export interface Schema$NetworkRoutingConfig {
     /**
-     * The network-wide routing mode to use. If set to REGIONAL, this network&#39;s cloud routers will only advertise routes with subnets of this network in the same region as the router. If set to GLOBAL, this network&#39;s cloud routers will advertise routes with all subnets of this network, across regions.
+     * The network-wide routing mode to use. If set to REGIONAL, this network&#39;s Cloud Routers will only advertise routes with subnets of this network in the same region as the router. If set to GLOBAL, this network&#39;s Cloud Routers will advertise routes with all subnets of this network, across regions.
      */
     routingMode?: string;
   }
   export interface Schema$NetworksAddPeeringRequest {
     /**
-     * This field will be deprecated soon. Prefer using exchange_subnet_routes in network_peering instead. Whether Google Compute Engine manages the routes automatically.
+     * This field will be deprecated soon. Use exchange_subnet_routes in network_peering instead. Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
      */
     autoCreateRoutes?: boolean;
     /**
@@ -5572,7 +6094,7 @@ export namespace compute_beta {
      */
     name?: string;
     /**
-     * Network peering parameters. In order to specify route policies for peering using import/export custom routes, you will have to fill all peering related parameters (name, peer network, exchange_subnet_routes) in network_peeringfield. Corresponding fields in NetworksAddPeeringRequest will be deprecated soon.
+     * Network peering parameters. In order to specify route policies for peering using import and export custom routes, you must specify all peering related parameters (name, peer network, exchange_subnet_routes) in the network_peering field. The corresponding fields in NetworksAddPeeringRequest will be deprecated soon.
      */
     networkPeering?: Schema$NetworkPeering;
     /**
@@ -5590,7 +6112,7 @@ export namespace compute_beta {
     networkPeering?: Schema$NetworkPeering;
   }
   /**
-   * A NodeGroup resource. To create a node group, you must first create a node templates. To learn more about node groups and sole-tenant nodes, read the Sole-tenant nodes documentation. (== resource_for beta.nodeGroups ==) (== resource_for v1.nodeGroups ==)
+   * Represent a sole-tenant Node Group resource.  A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes. (== resource_for beta.nodeGroups ==) (== resource_for v1.nodeGroups ==) NextID: 15
    */
   export interface Schema$NodeGroup {
     /**
@@ -5773,7 +6295,7 @@ export namespace compute_beta {
     nodeTemplate?: string;
   }
   /**
-   * A Node Template resource. To learn more about node templates and sole-tenant nodes, read the Sole-tenant nodes documentation. (== resource_for beta.nodeTemplates ==) (== resource_for v1.nodeTemplates ==)
+   * Represent a sole-tenant Node Template resource.  You can use a template to define properties for nodes in a node group. For more information, read Creating node groups and instances. (== resource_for beta.nodeTemplates ==) (== resource_for v1.nodeTemplates ==) (== NextID: 16 ==)
    */
   export interface Schema$NodeTemplate {
     /**
@@ -5817,7 +6339,7 @@ export namespace compute_beta {
      */
     selfLink?: string;
     /**
-     * Binding properties for the physical server.
+     * Sets the binding properties for the physical server. Valid values include:   - [Default] RESTART_NODE_ON_ANY_SERVER: Restarts VMs on any available physical server  - RESTART_NODE_ON_MINIMAL_SERVER: Restarts VMs on the same physical server whenever possible    See Sole-tenant node options for more information.
      */
     serverBinding?: Schema$ServerBinding;
     /**
@@ -5912,7 +6434,7 @@ export namespace compute_beta {
     };
   }
   /**
-   * A Node Type resource.
+   * Represent a sole-tenant Node Type resource.  Each node within a node group must have a node type. A node type specifies the total amount of cores and memory for that node. Currently, the only available node type is n1-node-96-624 node type that has 96 vCPUs and 624 GB of memory, available in multiple zones. For more information read Node types. (== resource_for beta.nodeTypes ==) (== resource_for v1.nodeTypes ==)
    */
   export interface Schema$NodeType {
     /**
@@ -6042,7 +6564,7 @@ export namespace compute_beta {
     };
   }
   /**
-   * An Operation resource, used to manage asynchronous API requests. (== resource_for v1.globalOperations ==) (== resource_for beta.globalOperations ==) (== resource_for v1.regionOperations ==) (== resource_for beta.regionOperations ==) (== resource_for v1.zoneOperations ==) (== resource_for beta.zoneOperations ==)
+   * Represents an Operation resource.  You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses.  Operations can be global, regional or zonal.   - For global operations, use the globalOperations resource.  - For regional operations, use the regionOperations resource.  - For zonal operations, use the zonalOperations resource.    For more information, read  Global, Regional, and Zonal Resources. (== resource_for v1.globalOperations ==) (== resource_for beta.globalOperations ==) (== resource_for v1.regionOperations ==) (== resource_for beta.regionOperations ==) (== resource_for v1.zoneOperations ==) (== resource_for beta.zoneOperations ==)
    */
   export interface Schema$Operation {
     /**
@@ -6100,7 +6622,7 @@ export namespace compute_beta {
      */
     progress?: number;
     /**
-     * [Output Only] The URL of the region where the operation resides. Only available when performing regional operations. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * [Output Only] The URL of the region where the operation resides. Only applicable when performing regional operations.
      */
     region?: string;
     /**
@@ -6140,7 +6662,7 @@ export namespace compute_beta {
       message?: string;
     }>;
     /**
-     * [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * [Output Only] The URL of the zone where the operation resides. Only applicable when performing per-zone operations.
      */
     zone?: string;
   }
@@ -6222,17 +6744,78 @@ export namespace compute_beta {
     };
   }
   /**
+   * Settings controlling eviction of unhealthy hosts from the load balancing pool.
+   */
+  export interface Schema$OutlierDetection {
+    /**
+     * The base time that a host is ejected for. The real time is equal to the base time multiplied by the number of times the host has been ejected. Defaults to 30000ms or 30s.
+     */
+    baseEjectionTime?: Schema$Duration;
+    /**
+     * Number of errors before a host is ejected from the connection pool. When the backend host is accessed over HTTP, a 5xx return code qualifies as an error. Defaults to 5.
+     */
+    consecutiveErrors?: number;
+    /**
+     * The number of consecutive gateway failures (502, 503, 504 status or connection errors that are mapped to one of those status codes) before a consecutive gateway failure ejection occurs. Defaults to 5.
+     */
+    consecutiveGatewayFailure?: number;
+    /**
+     * The percentage chance that a host will be actually ejected when an outlier status is detected through consecutive 5xx. This setting can be used to disable ejection or to ramp it up slowly. Defaults to 100.
+     */
+    enforcingConsecutiveErrors?: number;
+    /**
+     * The percentage chance that a host will be actually ejected when an outlier status is detected through consecutive gateway failures. This setting can be used to disable ejection or to ramp it up slowly. Defaults to 0.
+     */
+    enforcingConsecutiveGatewayFailure?: number;
+    /**
+     * The percentage chance that a host will be actually ejected when an outlier status is detected through success rate statistics. This setting can be used to disable ejection or to ramp it up slowly. Defaults to 100.
+     */
+    enforcingSuccessRate?: number;
+    /**
+     * Time interval between ejection sweep analysis. This can result in both new ejections as well as hosts being returned to service. Defaults to 10 seconds.
+     */
+    interval?: Schema$Duration;
+    /**
+     * Maximum percentage of hosts in the load balancing pool for the backend service that can be ejected. Defaults to 10%.
+     */
+    maxEjectionPercent?: number;
+    /**
+     * The number of hosts in a cluster that must have enough request volume to detect success rate outliers. If the number of hosts is less than this setting, outlier detection via success rate statistics is not performed for any host in the cluster. Defaults to 5.
+     */
+    successRateMinimumHosts?: number;
+    /**
+     * The minimum number of total requests that must be collected in one interval (as defined by the interval duration above) to include this host in success rate based outlier detection. If the volume is lower than this setting, outlier detection via success rate statistics is not performed for that host. Defaults to 100.
+     */
+    successRateRequestVolume?: number;
+    /**
+     * This factor is used to determine the ejection threshold for success rate outlier ejection. The ejection threshold is the difference between the mean success rate, and the product of this factor and the standard deviation of the mean success rate: mean - (stdev * success_rate_stdev_factor). This factor is divided by a thousand to get a double. That is, if the desired factor is 1.9, the runtime value should be 1900. Defaults to 1900.
+     */
+    successRateStdevFactor?: number;
+  }
+  /**
    * A matcher for the path portion of the URL. The BackendService from the longest-matched rule will serve the URL. If no rule was matched, the default service will be used.
    */
   export interface Schema$PathMatcher {
+    /**
+     * defaultRouteAction takes effect when none of the  pathRules or routeRules match. The load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If defaultRouteAction specifies any weightedBackendServices, defaultService must not be set. Conversely if defaultService is set, defaultRouteAction cannot contain any  weightedBackendServices. Only one of defaultRouteAction or defaultUrlRedirect must be set.
+     */
+    defaultRouteAction?: Schema$HttpRouteAction;
     /**
      * The full or partial URL to the BackendService resource. This will be used if none of the pathRules or routeRules defined by this PathMatcher are matched. For example, the following are all valid URLs to a BackendService resource:   - https://www.googleapis.com/compute/v1/projects/project/global/backendServices/backendService  - compute/v1/projects/project/global/backendServices/backendService  - global/backendServices/backendService  If defaultRouteAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if defaultService is specified, defaultRouteAction cannot contain any weightedBackendServices. Conversely, if defaultRouteAction specifies any weightedBackendServices, defaultService must not be specified. Only one of defaultService, defaultUrlRedirect  or defaultRouteAction.weightedBackendService must be set. Authorization requires one or more of the following Google IAM permissions on the specified resource default_service:   - compute.backendBuckets.use  - compute.backendServices.use
      */
     defaultService?: string;
     /**
+     * When when none of the specified pathRules or routeRules match, the request is redirected to a URL specified by defaultUrlRedirect. If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.
+     */
+    defaultUrlRedirect?: Schema$HttpRedirectAction;
+    /**
      * An optional description of this resource. Provide this property when you create the resource.
      */
     description?: string;
+    /**
+     * Specifies changes to request and response headers that need to take effect for the selected backendService. HeaderAction specified here are applied after the matching HttpRouteRule HeaderAction and before the HeaderAction in the UrlMap
+     */
+    headerAction?: Schema$HttpHeaderAction;
     /**
      * The name to which this PathMatcher is referred by the HostRule.
      */
@@ -6241,6 +6824,10 @@ export namespace compute_beta {
      * The list of path rules. Use this list instead of routeRules when routing based on simple path matching is all that&#39;s required. The order by which path rules are specified does not matter. Matches are always done on the longest-path-first basis. For example: a pathRule with a path /a/b/c/* will match before /a/b/* irrespective of the order in which those paths appear in this list. Only one of pathRules or routeRules must be set.
      */
     pathRules?: Schema$PathRule[];
+    /**
+     * The list of ordered HTTP route rules. Use this list instead of pathRules when advanced route matching and routing actions are desired. The order of specifying routeRules matters: the first rule that matches will cause its specified routing action to take effect. Only one of pathRules or routeRules must be set.
+     */
+    routeRules?: Schema$HttpRouteRule[];
   }
   /**
    * A path-matching rule for a URL. If matched, will use the specified BackendService to handle the traffic arriving at this URL.
@@ -6251,9 +6838,17 @@ export namespace compute_beta {
      */
     paths?: string[];
     /**
+     * In response to a matching path, the load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If routeAction specifies any  weightedBackendServices, service must not be set. Conversely if service is set, routeAction cannot contain any  weightedBackendServices. Only one of routeAction or urlRedirect must be set.
+     */
+    routeAction?: Schema$HttpRouteAction;
+    /**
      * The full or partial URL of the backend service resource to which traffic is directed if this rule is matched. If routeAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if service is specified, routeAction cannot contain any weightedBackendService s. Conversely, if routeAction specifies any  weightedBackendServices, service must not be specified. Only one of urlRedirect, service or routeAction.weightedBackendService must be set.
      */
     service?: string;
+    /**
+     * When a path pattern is matched, the request is redirected to a URL specified by urlRedirect. If urlRedirect is specified, service or routeAction must not be set.
+     */
+    urlRedirect?: Schema$HttpRedirectAction;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.    A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**  { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/owner&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/viewer&quot;, &quot;members&quot;: [&quot;user:sean@example.com&quot;] } ] }  **YAML Example**  bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-other-app@appspot.gserviceaccount.com role: roles/owner - members: - user:sean@example.com role: roles/viewer    For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
@@ -6288,7 +6883,7 @@ export namespace compute_beta {
     expressionSets?: Schema$WafExpressionSet[];
   }
   /**
-   * A Project resource. For an overview of projects, see  Cloud Platform Resource Hierarchy. (== resource_for v1.projects ==) (== resource_for beta.projects ==)
+   * Represents a Project resource.  A project is used to organize resources in a Google Cloud Platform environment. For more information, read about the  Resource Hierarchy. (== resource_for v1.projects ==) (== resource_for beta.projects ==)
    */
   export interface Schema$Project {
     /**
@@ -6425,7 +7020,7 @@ export namespace compute_beta {
     target?: string;
   }
   /**
-   * Region resource. (== resource_for beta.regions ==) (== resource_for v1.regions ==)
+   * Represents a Region resource.  A region is a geographical area where a resource is located. For more information, read Regions and Zones. (== resource_for beta.regions ==) (== resource_for v1.regions ==)
    */
   export interface Schema$Region {
     /**
@@ -6633,15 +7228,15 @@ export namespace compute_beta {
    */
   export interface Schema$RegionInstanceGroupManagersApplyUpdatesRequest {
     /**
-     * The list of instances for which we want to apply changes on this managed instance group.
+     * The list of URLs of one or more instances for which you want to apply updates. Each URL can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      */
     instances?: string[];
     /**
-     * The minimal action that should be perfomed on the instances. By default NONE.
+     * The minimal action that you want to perform on each instance during the update:   - REPLACE: At minimum, delete the instance and create it again.  - RESTART: Stop the instance and start it again.  - REFRESH: Do not stop the instance.  - NONE: Do not disrupt the instance at all.  By default, the minimum action is NONE. If your update requires a more disruptive action than you set with this flag, the necessary action is performed to execute the update.
      */
     minimalAction?: string;
     /**
-     * The most disruptive action that allowed to be performed on the instances. By default REPLACE.
+     * The most disruptive action that you want to perform on each instance during the update:   - REPLACE: Delete the instance and create it again.  - RESTART: Stop the instance and start it again.  - REFRESH: Do not stop the instance.  - NONE: Do not disrupt the instance at all.  By default, the most disruptive allowed action is REPLACE. If your update requires a more disruptive action than you set with this flag, the update request will fail.
      */
     mostDisruptiveAllowedAction?: string;
   }
@@ -6793,8 +7388,29 @@ export namespace compute_beta {
      */
     policy?: Schema$Policy;
   }
+  export interface Schema$RegionTargetHttpsProxiesSetSslCertificatesRequest {
+    /**
+     * New set of SslCertificate resources to associate with this TargetHttpsProxy resource. Currently exactly one SslCertificate resource must be specified.
+     */
+    sslCertificates?: string[];
+  }
+  export interface Schema$RegionUrlMapsValidateRequest {
+    /**
+     * Content of the UrlMap to be validated.
+     */
+    resource?: Schema$UrlMap;
+  }
   /**
-   * Reservation resource
+   * A policy that specifies how requests intended for the route&#39;s backends are shadowed to a separate mirrored backend service. Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host / authority header is suffixed with -shadow.
+   */
+  export interface Schema$RequestMirrorPolicy {
+    /**
+     * The full or partial URL to the BackendService resource being mirrored to.
+     */
+    backendService?: string;
+  }
+  /**
+   * Represents a reservation resource. A reservation ensures that capacity is held in a specific zone even if the reserved VMs are not running. For more information, read  Reserving zonal resources. (== resource_for beta.reservations ==) (== resource_for v1.reservations ==) (== NextID: 13 ==)
    */
   export interface Schema$Reservation {
     /**
@@ -6830,25 +7446,32 @@ export namespace compute_beta {
      */
     specificReservation?: Schema$AllocationSpecificSKUReservation;
     /**
-     * Indicates whether the reservation can be consumed by VMs with &quot;any reservation&quot; defined. If the field is set, then only VMs that target the reservation by name using --reservation-affinity can consume this reservation.
+     * Indicates whether the reservation can be consumed by VMs with affinity for &quot;any&quot; reservation. If the field is set, then only VMs that target the reservation by name can consume from this reservation.
      */
     specificReservationRequired?: boolean;
+    /**
+     * [Output Only] The status of the reservation.
+     */
+    status?: string;
     /**
      * Zone in which the reservation resides, must be provided if reservation is created with commitment creation.
      */
     zone?: string;
   }
   /**
-   * AllocationAffinity is the configuration of desired allocation which this instance could take capacity from.
+   * Specifies the reservations that this instance can consume from.
    */
   export interface Schema$ReservationAffinity {
+    /**
+     * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See  Consuming reserved instances for examples.
+     */
     consumeReservationType?: string;
     /**
-     * Corresponds to the label key of reservation resource.
+     * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify googleapis.com/reservation-name as the key and specify the name of your reservation as its value.
      */
     key?: string;
     /**
-     * Corresponds to the label values of reservation resource.
+     * Corresponds to the label values of a reservation resource.
      */
     values?: string[];
   }
@@ -7182,7 +7805,7 @@ export namespace compute_beta {
     startTime?: string;
   }
   /**
-   * Represents a Route resource. A route specifies how certain packets should be handled by the network. Routes are associated with instances by tags and the set of routes for a particular instance is called its routing table.  For each packet leaving an instance, the system searches that instance&#39;s routing table for a single best matching route. Routes match packets by destination IP address, preferring smaller or more specific ranges over larger ones. If there is a tie, the system selects the route with the smallest priority value. If there is still a tie, it uses the layer three and four packet headers to select just one of the remaining matching routes. The packet is then forwarded as specified by the nextHop field of the winning route - either to another instance destination, an instance gateway, or a Google Compute Engine-operated gateway.  Packets that do not match any route in the sending instance&#39;s routing table are dropped. (== resource_for beta.routes ==) (== resource_for v1.routes ==)
+   * Represents a Route resource.  A route defines a path from VM instances in the VPC network to a specific destination. This destination can be inside or outside the VPC network. For more information, read the Routes overview. (== resource_for beta.routes ==) (== resource_for v1.routes ==)
    */
   export interface Schema$Route {
     /**
@@ -7190,7 +7813,7 @@ export namespace compute_beta {
      */
     creationTimestamp?: string;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this field when you create the resource.
      */
     description?: string;
     /**
@@ -7206,7 +7829,7 @@ export namespace compute_beta {
      */
     kind?: string;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      */
     name?: string;
     /**
@@ -7214,7 +7837,7 @@ export namespace compute_beta {
      */
     network?: string;
     /**
-     * The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL:  projects/&lt;project-id&gt;/global/gateways/default-internet-gateway
+     * The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL:  projects/project/global/gateways/default-internet-gateway
      */
     nextHopGateway?: string;
     /**
@@ -7246,7 +7869,7 @@ export namespace compute_beta {
      */
     nextHopVpnTunnel?: string;
     /**
-     * The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In the case of two routes with equal prefix length, the one with the lowest-numbered priority value wins. Default value is 1000. Valid range is 0 through 65535.
+     * The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In cases where multiple routes have equal prefix length, the one with the lowest-numbered priority value wins. The default value is `1000`. The priority value must be from `0` to `65535`, inclusive.
      */
     priority?: number;
     /**
@@ -7300,7 +7923,7 @@ export namespace compute_beta {
     };
   }
   /**
-   * Router resource.
+   * Represents a Cloud Router resource.  For more information about Cloud Router, read the the Cloud Router overview.
    */
   export interface Schema$Router {
     /**
@@ -7308,7 +7931,7 @@ export namespace compute_beta {
      */
     bgp?: Schema$RouterBgp;
     /**
-     * BGP information that needs to be configured into the routing stack to establish the BGP peering. It must specify peer ASN and either interface name, IP, or peer IP. Please refer to RFC4273.
+     * BGP information that must be configured into the routing stack to establish BGP peering. This information must specify the peer ASN and either the interface name, IP address, or peer IP address. Please refer to RFC4273.
      */
     bgpPeers?: Schema$RouterBgpPeer[];
     /**
@@ -7324,7 +7947,7 @@ export namespace compute_beta {
      */
     id?: string;
     /**
-     * Router interfaces. Each interface requires either one linked resource (e.g. linkedVpnTunnel), or IP address and IP address range (e.g. ipRange), or both.
+     * Router interfaces. Each interface requires either one linked resource, (for example, linkedVpnTunnel), or IP address and IP address range (for example, ipRange), or both.
      */
     interfaces?: Schema$RouterInterface[];
     /**
@@ -7336,7 +7959,7 @@ export namespace compute_beta {
      */
     name?: string;
     /**
-     * A list of Nat services created in this router.
+     * A list of NAT services created in this router.
      */
     nats?: Schema$RouterNat[];
     /**
@@ -7408,7 +8031,7 @@ export namespace compute_beta {
      */
     advertisedIpRanges?: Schema$RouterAdvertisedIpRange[];
     /**
-     * User-specified flag to indicate which mode to use for advertisement.
+     * User-specified flag to indicate which mode to use for advertisement. The options are DEFAULT or CUSTOM.
      */
     advertiseMode?: string;
     /**
@@ -7418,15 +8041,15 @@ export namespace compute_beta {
   }
   export interface Schema$RouterBgpPeer {
     /**
-     * User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in Bgp message). These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * User-specified list of prefix groups to advertise in custom mode, which can take one of the following options:  - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets.  - ALL_VPC_SUBNETS: Advertises the router&#39;s own VPC subnets.  - ALL_PEER_VPC_SUBNETS: Advertises peer subnets of the router&#39;s VPC network. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the &quot;bgp&quot; message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
      */
     advertisedGroups?: string[];
     /**
-     * User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in Bgp message). These IP ranges will be advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
+     * User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the &quot;bgp&quot; message). These IP ranges are advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
      */
     advertisedIpRanges?: Schema$RouterAdvertisedIpRange[];
     /**
-     * The priority of routes advertised to this BGP peer. In the case where there is more than one matching route of maximum length, the routes with lowest priority value win.
+     * The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
      */
     advertisedRoutePriority?: number;
     /**
@@ -7442,7 +8065,7 @@ export namespace compute_beta {
      */
     ipAddress?: string;
     /**
-     * [Output Only] The resource that configures and manages this BGP peer. MANAGED_BY_USER is the default value and can be managed by you or other users; MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google will automatically create, update, and delete this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     * [Output Only] The resource that configures and manages this BGP peer.  - MANAGED_BY_USER is the default value and can be managed by you or other users  - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
      */
     managementType?: string;
     /**
@@ -7450,29 +8073,29 @@ export namespace compute_beta {
      */
     name?: string;
     /**
-     * Peer BGP Autonomous System Number (ASN). For VPN use case, this value can be different for every tunnel.
+     * Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
      */
     peerAsn?: number;
     /**
-     * IP address of the BGP interface outside Google cloud. Only IPv4 is supported.
+     * IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
      */
     peerIpAddress?: string;
   }
   export interface Schema$RouterInterface {
     /**
-     * IP address and range of the interface. The IP range must be in the RFC3927 link-local IP space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
+     * IP address and range of the interface. The IP range must be in the RFC3927 link-local IP address space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
      */
     ipRange?: string;
     /**
-     * URI of the linked interconnect attachment. It must be in the same region as the router. Each interface can have at most one linked resource and it could either be a VPN Tunnel or an interconnect attachment.
+     * URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be either be a VPN tunnel or an Interconnect attachment.
      */
     linkedInterconnectAttachment?: string;
     /**
-     * URI of the linked VPN tunnel. It must be in the same region as the router. Each interface can have at most one linked resource and it could either be a VPN Tunnel or an interconnect attachment.
+     * URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be either a VPN tunnel or an Interconnect attachment.
      */
     linkedVpnTunnel?: string;
     /**
-     * [Output Only] The resource that configures and manages this interface. MANAGED_BY_USER is the default value and can be managed by you or other users; MANAGED_BY_ATTACHMENT is an interface that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google will automatically create, update, and delete this type of interface when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     * [Output Only] The resource that configures and manages this interface.  - MANAGED_BY_USER is the default value and can be managed directly by users.  - MANAGED_BY_ATTACHMENT is an interface that is configured and managed by Cloud Interconnect, specifically, by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of interface when the PARTNER InterconnectAttachment is created, updated, or deleted.
      */
     managementType?: string;
     /**
@@ -7526,7 +8149,7 @@ export namespace compute_beta {
      */
     logConfig?: Schema$RouterNatLogConfig;
     /**
-     * Minimum number of ports allocated to a VM from this NAT config. If not set, a default number of ports is allocated to a VM. This gets rounded up to the nearest power of 2. Eg. if the value of this field is 50, at least 64 ports will be allocated to a VM.
+     * Minimum number of ports allocated to a VM from this NAT config. If not set, a default number of ports is allocated to a VM. This is rounded up to the nearest power of 2. For example, if the value of this field is 50, at least 64 ports are allocated to a VM.
      */
     minPortsPerVm?: number;
     /**
@@ -7534,15 +8157,15 @@ export namespace compute_beta {
      */
     name?: string;
     /**
-     * Specify the NatIpAllocateOption. If it is AUTO_ONLY, then nat_ip should be empty.
+     * Specify the NatIpAllocateOption, which can take one of the following values:  - MANUAL_ONLY: Uses only Nat IP addresses provided by customers. When there are not enough specified Nat IPs, the Nat service fails for new VMs.  - AUTO_ONLY: Nat IPs are allocated by Google Cloud Platform; customers can&#39;t specify any Nat IPs. When choosing AUTO_ONLY, then nat_ip should be empty.
      */
     natIpAllocateOption?: string;
     /**
-     * A list of URLs of the IP resources used for this Nat service. These IPs must be valid static external IP addresses assigned to the project. max_length is subject to change post alpha.
+     * A list of URLs of the IP resources used for this Nat service. These IP addresses must be valid static external IP addresses assigned to the project.
      */
     natIps?: string[];
     /**
-     * Specify the Nat option. If this field contains ALL_SUBNETWORKS_ALL_IP_RANGES or ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES, then there should not be any other Router.Nat section in any Router for this network in this region.
+     * Specify the Nat option, which can take one of the following values:  - ALL_SUBNETWORKS_ALL_IP_RANGES: All of the IP ranges in every Subnetwork are allowed to Nat.  - ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES: All of the primary IP ranges in every Subnetwork are allowed to Nat.  - LIST_OF_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field subnetwork below) The default is SUBNETWORK_IP_RANGE_TO_NAT_OPTION_UNSPECIFIED. Note that if this field contains ALL_SUBNETWORKS_ALL_IP_RANGES or ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES, then there should not be any other Router.Nat section in any Router for this network in this region.
      */
     sourceSubnetworkIpRangesToNat?: string;
     /**
@@ -7580,7 +8203,7 @@ export namespace compute_beta {
    */
   export interface Schema$RouterNatSubnetworkToNat {
     /**
-     * URL for the subnetwork resource to use NAT.
+     * URL for the subnetwork resource that will use NAT.
      */
     name?: string;
     /**
@@ -7588,7 +8211,7 @@ export namespace compute_beta {
      */
     secondaryIpRangeNames?: string[];
     /**
-     * Specify the options for NAT ranges in the Subnetwork. All usages of single value are valid except NAT_IP_RANGE_OPTION_UNSPECIFIED. The only valid option with multiple values is: [&quot;PRIMARY_IP_RANGE&quot;, &quot;LIST_OF_SECONDARY_IP_RANGES&quot;] Default: [ALL_IP_RANGES]
+     * Specify the options for NAT ranges in the Subnetwork. All options of a single value are valid except NAT_IP_RANGE_OPTION_UNSPECIFIED. The only valid option with multiple values is: [&quot;PRIMARY_IP_RANGE&quot;, &quot;LIST_OF_SECONDARY_IP_RANGES&quot;] Default: [ALL_IP_RANGES]
      */
     sourceIpRangesToNat?: string[];
   }
@@ -7740,7 +8363,7 @@ export namespace compute_beta {
     permissions?: string[];
   }
   /**
-   * Sets the scheduling options for an Instance.
+   * Sets the scheduling options for an Instance. NextID: 9
    */
   export interface Schema$Scheduling {
     /**
@@ -7748,7 +8371,7 @@ export namespace compute_beta {
      */
     automaticRestart?: boolean;
     /**
-     * A set of node affinity and anti-affinity.
+     * A set of node affinity and anti-affinity configurations. Refer to Configuring node affinity for more information.
      */
     nodeAffinities?: Schema$SchedulingNodeAffinity[];
     /**
@@ -7769,7 +8392,7 @@ export namespace compute_beta {
      */
     key?: string;
     /**
-     * Defines the operation of node selection.
+     * Defines the operation of node selection. Valid operators are IN for affinity and NOT_IN for anti-affinity.
      */
     operator?: string;
     /**
@@ -7784,7 +8407,7 @@ export namespace compute_beta {
     wafRules?: Schema$PreconfiguredWafSet;
   }
   /**
-   * A security policy is comprised of one or more rules. It can also be associated with one or more &#39;targets&#39;. (== resource_for v1.securityPolicies ==) (== resource_for beta.securityPolicies ==)
+   * Represents a Cloud Armor Security Policy resource.  Only external backend services that use load balancers can reference a Security Policy. For more information, read  Cloud Armor Security Policy Concepts. (== resource_for v1.securityPolicies ==) (== resource_for beta.securityPolicies ==)
    */
   export interface Schema$SecurityPolicy {
     /**
@@ -8076,7 +8699,7 @@ export namespace compute_beta {
     keyValue?: string;
   }
   /**
-   * A persistent disk snapshot resource. (== resource_for beta.snapshots ==) (== resource_for v1.snapshots ==)
+   * Represents a Persistent Disk Snapshot resource.  You can use snapshots to back up data on a regular interval. For more information, read  Creating persistent disk snapshots. (== resource_for beta.snapshots ==) (== resource_for v1.snapshots ==)
    */
   export interface Schema$Snapshot {
     /**
@@ -8128,7 +8751,7 @@ export namespace compute_beta {
      */
     selfLink?: string;
     /**
-     * Encrypts the snapshot using a customer-supplied encryption key.  After you encrypt a snapshot using a customer-supplied key, you must provide the same key if you use the image later For example, you must provide the encryption key when you create a disk from the encrypted snapshot in a future request.  Customer-supplied encryption keys do not protect access to metadata of the disk.  If you do not provide an encryption key when creating the snapshot, then the snapshot will be encrypted using an automatically generated key and you do not need to provide a key to use the snapshot later.
+     * Encrypts the snapshot using a customer-supplied encryption key.  After you encrypt a snapshot using a customer-supplied key, you must provide the same key if you use the snapshot later. For example, you must provide the encryption key when you create a disk from the encrypted snapshot in a future request.  Customer-supplied encryption keys do not protect access to metadata of the snapshot.  If you do not provide an encryption key when creating the snapshot, then the snapshot will be encrypted using an automatically generated key and you do not need to provide a key to use the snapshot later.
      */
     snapshotEncryptionKey?: Schema$CustomerEncryptionKey;
     /**
@@ -8203,7 +8826,7 @@ export namespace compute_beta {
     diskConfigs?: Schema$DiskInstantiationConfig[];
   }
   /**
-   * An SslCertificate resource. This resource provides a mechanism to upload an SSL key and certificate to the load balancer to serve secure connections from the user. (== resource_for beta.sslCertificates ==) (== resource_for v1.sslCertificates ==)
+   * Represents an SSL Certificate resource.  This SSL certificate resource also contains a private key. You can use SSL keys and certificates to secure connections to a load balancer. For more information, read  Creating and Using SSL Certificates. (== resource_for beta.sslCertificates ==) (== resource_for v1.sslCertificates ==)
    */
   export interface Schema$SslCertificate {
     /**
@@ -8243,6 +8866,10 @@ export namespace compute_beta {
      */
     privateKey?: string;
     /**
+     * [Output Only] URL of the region where the regional SSL Certificate resides. This field is not applicable to global SSL Certificate.
+     */
+    region?: string;
+    /**
      * [Output only] Server-defined URL for the resource.
      */
     selfLink?: string;
@@ -8258,6 +8885,36 @@ export namespace compute_beta {
      * (Optional) Specifies the type of SSL certificate, either &quot;SELF_MANAGED&quot; or &quot;MANAGED&quot;. If not specified, the certificate is self-managed and the fields certificate and private_key are used.
      */
     type?: string;
+  }
+  export interface Schema$SslCertificateAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of SslCertificatesScopedList resources.
+     */
+    items?: {[key: string]: Schema$SslCertificatesScopedList};
+    /**
+     * [Output Only] Type of resource. Always compute#sslCertificateAggregatedList for lists of SSL Certificates.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of SslCertificate resources.
@@ -8322,6 +8979,20 @@ export namespace compute_beta {
      */
     privateKey?: string;
   }
+  export interface Schema$SslCertificatesScopedList {
+    /**
+     * List of SslCertificates contained in this scope.
+     */
+    sslCertificates?: Schema$SslCertificate[];
+    /**
+     * Informational warning which replaces the list of backend services when the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    };
+  }
   export interface Schema$SSLHealthCheck {
     /**
      * The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
@@ -8382,7 +9053,7 @@ export namespace compute_beta {
     features?: string[];
   }
   /**
-   * A SSL policy specifies the server-side support for SSL features. This can be attached to a TargetHttpsProxy or a TargetSslProxy. This affects connections between clients and the HTTPS or SSL proxy load balancer. They do not affect the connection between the load balancers and the backends.
+   * Represents a Cloud Armor Security Policy resource.  Only external backend services used by HTTP or HTTPS load balancers can reference a Security Policy. For more information, read read  Cloud Armor Security Policy Concepts. (== resource_for beta.sslPolicies ==) (== resource_for v1.sslPolicies ==)
    */
   export interface Schema$SslPolicy {
     /**
@@ -8445,7 +9116,7 @@ export namespace compute_beta {
     sslPolicy?: string;
   }
   /**
-   * A Subnetwork resource. (== resource_for beta.subnetworks ==) (== resource_for v1.subnetworks ==)
+   * Represents a Subnetwork resource.  A subnetwork (also known as a subnet) is a logical partition of a Virtual Private Cloud network with one primary IP range and zero or more secondary IP ranges. For more information, read  Virtual Private Cloud (VPC) Network. (== resource_for beta.subnetworks ==) (== resource_for v1.subnetworks ==)
    */
   export interface Schema$Subnetwork {
     /**
@@ -8485,7 +9156,7 @@ export namespace compute_beta {
      */
     kind?: string;
     /**
-     * This field denotes the logging options for the load balancer traffic served by this backend service. If logging is enabled, logs will be exported to Stackdriver.
+     * This field denotes the VPC flow logging options for this subnetwork. If logging is enabled, logs are exported to Stackdriver.
      */
     logConfig?: Schema$SubnetworkLogConfig;
     /**
@@ -8501,9 +9172,17 @@ export namespace compute_beta {
      */
     privateIpGoogleAccess?: boolean;
     /**
+     * The purpose of the resource. This field can be either PRIVATE_RFC_1918 or INTERNAL_HTTPS_LOAD_BALANCER. A subnetwork with purpose set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing. If unspecified, the purpose defaults to PRIVATE_RFC_1918.
+     */
+    purpose?: string;
+    /**
      * URL of the region where the Subnetwork resides. This field can be set only at resource creation time.
      */
     region?: string;
+    /**
+     * The role of subnetwork. Currenly, this field is only used when purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be set to ACTIVE or BACKUP. An ACTIVE subnetwork is one that is currently being used for Internal HTTP(S) Load Balancing. A BACKUP subnetwork is one that is ready to be promoted to ACTIVE or is currently draining. This field can be updated with a patch request.
+     */
+    role?: string;
     /**
      * An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. The primary IP of such VM must belong to the primary ipCidrRange of the subnetwork. The alias IPs may belong to either primary or secondary ranges. This field can be updated with a patch request.
      */
@@ -8512,6 +9191,10 @@ export namespace compute_beta {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * [Output Only] The state of the subnetwork, which can be one of READY or DRAINING. A subnetwork that is READY is ready to be used. The state of DRAINING is only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY.
+     */
+    state?: string;
   }
   export interface Schema$SubnetworkAggregatedList {
     /**
@@ -8589,11 +9272,11 @@ export namespace compute_beta {
      */
     enable?: boolean;
     /**
-     * Can only be specified if VPC flow logging for this subnetwork is enabled. The value of the field must be in [0, 1]. Set the sampling rate of VPC flow logs within the subnetwork where 1.0 means all collected logs are reported and 0.0 means no logs are reported. Default is 0.5 which means half of all collected logs are reported.
+     * Can only be specified if VPC flow logging for this subnetwork is enabled. The value of the field must be in [0, 1]. Set the sampling rate of VPC flow logs within the subnetwork where 1.0 means all collected logs are reported and 0.0 means no logs are reported. Default is 0.5, which means half of all collected logs are reported.
      */
     flowSampling?: number;
     /**
-     * Can only be specified if VPC flow logging for this subnetwork is enabled. Configures whether metadata fields should be added to the reported VPC flow logs. Default is INCLUDE_ALL_METADATA.
+     * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is INCLUDE_ALL_METADATA.
      */
     metadata?: string;
   }
@@ -8646,8 +9329,22 @@ export namespace compute_beta {
      */
     items?: string[];
   }
+  export interface Schema$TargetHttpProxiesScopedList {
+    /**
+     * A list of TargetHttpProxies contained in this scope.
+     */
+    targetHttpProxies?: Schema$TargetHttpProxy[];
+    /**
+     * Informational warning which replaces the list of backend services when the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    };
+  }
   /**
-   * A TargetHttpProxy resource. This resource defines an HTTP proxy. (== resource_for beta.targetHttpProxies ==) (== resource_for v1.targetHttpProxies ==)
+   * Represents a Target HTTP Proxy resource.  A target HTTP proxy is a component of certain types of load balancers. Global forwarding rules reference a target HTTP proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies. (== resource_for beta.targetHttpProxies ==) (== resource_for v1.targetHttpProxies ==)
    */
   export interface Schema$TargetHttpProxy {
     /**
@@ -8671,6 +9368,10 @@ export namespace compute_beta {
      */
     name?: string;
     /**
+     * [Output Only] URL of the region where the regional Target HTTP Proxy resides. This field is not applicable to global Target HTTP Proxies.
+     */
+    region?: string;
+    /**
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
@@ -8678,6 +9379,36 @@ export namespace compute_beta {
      * URL to the UrlMap resource that defines the mapping from URL to the BackendService.
      */
     urlMap?: string;
+  }
+  export interface Schema$TargetHttpProxyAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of TargetHttpProxiesScopedList resources.
+     */
+    items?: {[key: string]: Schema$TargetHttpProxiesScopedList};
+    /**
+     * [Output Only] Type of resource. Always compute#targetHttpProxyAggregatedList for lists of Target HTTP Proxies.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    };
   }
   /**
    * A list of TargetHttpProxy resources.
@@ -8712,6 +9443,20 @@ export namespace compute_beta {
       message?: string;
     };
   }
+  export interface Schema$TargetHttpsProxiesScopedList {
+    /**
+     * A list of TargetHttpsProxies contained in this scope.
+     */
+    targetHttpsProxies?: Schema$TargetHttpsProxy[];
+    /**
+     * Informational warning which replaces the list of backend services when the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    };
+  }
   export interface Schema$TargetHttpsProxiesSetQuicOverrideRequest {
     /**
      * QUIC policy for the TargetHttpsProxy resource.
@@ -8725,7 +9470,7 @@ export namespace compute_beta {
     sslCertificates?: string[];
   }
   /**
-   * A TargetHttpsProxy resource. This resource defines an HTTPS proxy. (== resource_for beta.targetHttpsProxies ==) (== resource_for v1.targetHttpsProxies ==)
+   * Represents a Target HTTPS Proxy resource.  A target HTTPS proxy is a component of certain types of load balancers. Global forwarding rules reference a target HTTPS proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies. (== resource_for beta.targetHttpsProxies ==) (== resource_for v1.targetHttpsProxies ==)
    */
   export interface Schema$TargetHttpsProxy {
     /**
@@ -8753,6 +9498,10 @@ export namespace compute_beta {
      */
     quicOverride?: string;
     /**
+     * [Output Only] URL of the region where the regional TargetHttpsProxy resides. This field is not applicable to global TargetHttpsProxies.
+     */
+    region?: string;
+    /**
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
@@ -8768,6 +9517,36 @@ export namespace compute_beta {
      * A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map:   - https://www.googleapis.compute/v1/projects/project/global/urlMaps/url-map  - projects/project/global/urlMaps/url-map  - global/urlMaps/url-map
      */
     urlMap?: string;
+  }
+  export interface Schema$TargetHttpsProxyAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of TargetHttpsProxiesScopedList resources.
+     */
+    items?: {[key: string]: Schema$TargetHttpsProxiesScopedList};
+    /**
+     * [Output Only] Type of resource. Always compute#targetHttpsProxyAggregatedList for lists of Target HTTP Proxies.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of TargetHttpsProxy resources.
@@ -8803,7 +9582,7 @@ export namespace compute_beta {
     };
   }
   /**
-   * A TargetInstance resource. This resource defines an endpoint instance that terminates traffic of certain protocols. (== resource_for beta.targetInstances ==) (== resource_for v1.targetInstances ==)
+   * Represents a Target Instance resource.  You can use a target instance to handle traffic for one or more forwarding rules, which is ideal for forwarding protocol traffic that is managed by a single source. For example, ESP, AH, TCP, or UDP. For more information, read Target instances. (== resource_for beta.targetInstances ==) (== resource_for v1.targetInstances ==)
    */
   export interface Schema$TargetInstance {
     /**
@@ -8921,7 +9700,7 @@ export namespace compute_beta {
     };
   }
   /**
-   * A TargetPool resource. This resource defines a pool of instances, an associated HttpHealthCheck resource, and the fallback target pool. (== resource_for beta.targetPools ==) (== resource_for v1.targetPools ==)
+   * Represents a Target Pool resource.  Target pools are used for network TCP/UDP load balancing. A target pool references member instances, an associated legacy HttpHealthCheck resource, and, optionally, a backup target pool. For more information, read Using target pools. (== resource_for beta.targetPools ==) (== resource_for v1.targetPools ==)
    */
   export interface Schema$TargetPool {
     /**
@@ -9103,7 +9882,7 @@ export namespace compute_beta {
     sslCertificates?: string[];
   }
   /**
-   * A TargetSslProxy resource. This resource defines an SSL proxy. (== resource_for beta.targetSslProxies ==) (== resource_for v1.targetSslProxies ==)
+   * Represents a Target SSL Proxy resource.  A target SSL proxy is a component of a SSL Proxy load balancer. Global forwarding rules reference a target SSL proxy, and the target proxy then references an external backend service. For more information, read Using Target Proxies. (== resource_for beta.targetSslProxies ==) (== resource_for v1.targetSslProxies ==)
    */
   export interface Schema$TargetSslProxy {
     /**
@@ -9193,7 +9972,7 @@ export namespace compute_beta {
     proxyHeader?: string;
   }
   /**
-   * A TargetTcpProxy resource. This resource defines a TCP proxy. (== resource_for beta.targetTcpProxies ==) (== resource_for v1.targetTcpProxies ==)
+   * Represents a Target TCP Proxy resource.  A target TCP proxy is a component of a TCP Proxy load balancer. Global forwarding rules reference ta target TCP proxy, and the target proxy then references an external backend service. For more information, read TCP Proxy Load Balancing Concepts. (== resource_for beta.targetTcpProxies ==) (== resource_for v1.targetTcpProxies ==)
    */
   export interface Schema$TargetTcpProxy {
     /**
@@ -9263,7 +10042,7 @@ export namespace compute_beta {
     };
   }
   /**
-   * Represents a Target VPN gateway resource. (== resource_for beta.targetVpnGateways ==) (== resource_for v1.targetVpnGateways ==)
+   * Represents a Target VPN Gateway resource.  The target VPN gateway resource represents a Classic Cloud VPN gateway. For more information, read the the Cloud VPN Overview. (== resource_for beta.targetVpnGateways ==) (== resource_for v1.targetVpnGateways ==)
    */
   export interface Schema$TargetVpnGateway {
     /**
@@ -9441,7 +10220,7 @@ export namespace compute_beta {
     permissions?: string[];
   }
   /**
-   * A UrlMap resource. This resource defines the mapping from URL to the BackendService resource, based on the &quot;longest-match&quot; of the URL&#39;s host and path.
+   * Represents a URL Map resource.  A URL map resource is a component of certain types of load balancers. This resource defines mappings from host names and URL paths to either a backend service or a backend bucket.  To use this resource, the backend service must have a loadBalancingScheme of either EXTERNAL, INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED For more information, read URL Map Concepts.
    */
   export interface Schema$UrlMap {
     /**
@@ -9449,9 +10228,17 @@ export namespace compute_beta {
      */
     creationTimestamp?: string;
     /**
+     * defaultRouteAction takes effect when none of the  hostRules match. The load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If defaultRouteAction specifies any weightedBackendServices, defaultService must not be set. Conversely if defaultService is set, defaultRouteAction cannot contain any  weightedBackendServices. Only one of defaultRouteAction or defaultUrlRedirect must be set.
+     */
+    defaultRouteAction?: Schema$HttpRouteAction;
+    /**
      * The full or partial URL of the defaultService resource to which traffic is directed if none of the hostRules match. If defaultRouteAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if defaultService is specified, defaultRouteAction cannot contain any weightedBackendServices. Conversely, if routeAction specifies any weightedBackendServices, service must not be specified. Only one of defaultService, defaultUrlRedirect  or defaultRouteAction.weightedBackendService must be set.
      */
     defaultService?: string;
+    /**
+     * When none of the specified hostRules match, the request is redirected to a URL specified by defaultUrlRedirect. If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.
+     */
+    defaultUrlRedirect?: Schema$HttpRedirectAction;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      */
@@ -9460,6 +10247,10 @@ export namespace compute_beta {
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a UrlMap. An up-to-date fingerprint must be provided in order to update the UrlMap, otherwise the request will fail with error 412 conditionNotMet.  To see the latest fingerprint, make a get() request to retrieve a UrlMap.
      */
     fingerprint?: string;
+    /**
+     * Specifies changes to request and response headers that need to take effect for the selected backendService. The headerAction specified here take effect after headerAction specified under pathMatcher.
+     */
+    headerAction?: Schema$HttpHeaderAction;
     /**
      * The list of HostRules to use against the URL.
      */
@@ -9480,6 +10271,10 @@ export namespace compute_beta {
      * The list of named PathMatchers to use against the URL.
      */
     pathMatchers?: Schema$PathMatcher[];
+    /**
+     * [Output Only] URL of the region where the regional URL map resides. This field is not applicable to global URL maps. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     */
+    region?: string;
     /**
      * [Output Only] Server-defined URL for the resource.
      */
@@ -9525,6 +10320,50 @@ export namespace compute_beta {
   export interface Schema$UrlMapReference {
     urlMap?: string;
   }
+  export interface Schema$UrlMapsAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of UrlMapsScopedList resources.
+     */
+    items?: {[key: string]: Schema$UrlMapsScopedList};
+    /**
+     * Type of resource.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    };
+  }
+  export interface Schema$UrlMapsScopedList {
+    /**
+     * A list of UrlMaps contained in this scope.
+     */
+    urlMaps?: Schema$UrlMap[];
+    /**
+     * Informational warning which replaces the list of backend services when the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    };
+  }
   export interface Schema$UrlMapsValidateRequest {
     /**
      * Content of the UrlMap to be validated.
@@ -9569,6 +10408,19 @@ export namespace compute_beta {
      * If successfully loaded, this field indicates whether the test passed. If false, &#39;testFailures&#39;s indicate the reason of failure.
      */
     testPassed?: boolean;
+  }
+  /**
+   * The spec for modifying the path before sending the request to the matched backend service.
+   */
+  export interface Schema$UrlRewrite {
+    /**
+     * Prior to forwarding the request to the selected service, the request&#39;s host header is replaced with contents of hostRewrite. The value must be between 1 and 255 characters.
+     */
+    hostRewrite?: string;
+    /**
+     * Prior to forwarding the request to the selected backend service, the matching portion of the request&#39;s path is replaced by pathPrefixRewrite. The value must be between 1 and 1024 characters.
+     */
+    pathPrefixRewrite?: string;
   }
   /**
    * Subnetwork which the current user has compute.subnetworks.use permission on.
@@ -9911,7 +10763,7 @@ export namespace compute_beta {
     ipAddress?: string;
   }
   /**
-   * VPN tunnel resource. (== resource_for beta.vpnTunnels ==) (== resource_for v1.vpnTunnels ==)
+   * Represents a Cloud VPN Tunnel resource.  For more information about VPN, read the the Cloud VPN Overview. (== resource_for beta.vpnTunnels ==) (== resource_for v1.vpnTunnels ==)
    */
   export interface Schema$VpnTunnel {
     /**
@@ -10108,6 +10960,23 @@ export namespace compute_beta {
      */
     id?: string;
   }
+  /**
+   * In contrast to a single BackendService in  HttpRouteAction to which all matching traffic is directed to, WeightedBackendService allows traffic to be split across multiple BackendServices. The volume of traffic for each BackendService is proportional to the weight specified in each WeightedBackendService
+   */
+  export interface Schema$WeightedBackendService {
+    /**
+     * The full or partial URL to the default BackendService resource. Before forwarding the request to backendService, the loadbalancer applies any relevant headerActions specified as part of this backendServiceWeight.
+     */
+    backendService?: string;
+    /**
+     * Specifies changes to request and response headers that need to take effect for the selected backendService. headerAction specified here take effect before headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.
+     */
+    headerAction?: Schema$HttpHeaderAction;
+    /**
+     * Specifies the fraction of traffic sent to backendService, computed as weight / (sum of all weightedBackendService weights in routeAction) . The selection of a backend service is determined only for new traffic. Once a user&#39;s request has been directed to a backendService, subsequent requests will be sent to the same backendService as determined by the BackendService&#39;s session affinity policy. The value must be between 0 and 1000
+     */
+    weight?: number;
+  }
   export interface Schema$XpnHostList {
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
@@ -10152,7 +11021,7 @@ export namespace compute_beta {
     type?: string;
   }
   /**
-   * A Zone resource. (== resource_for beta.zones ==) (== resource_for v1.zones ==) Next ID: 17
+   * Represents a Zone resource.  A zone is a deployment area. These deployment areas are subsets of a region. For example the zone us-east1-a is located in the us-east1 region. For more information, read Regions and Zones. (== resource_for beta.zones ==) (== resource_for v1.zones ==)
    */
   export interface Schema$Zone {
     /**
@@ -10381,7 +11250,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10518,7 +11387,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10663,7 +11532,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10896,7 +11765,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11027,7 +11896,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11156,7 +12025,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11182,7 +12051,7 @@ export namespace compute_beta {
 
     /**
      * compute.addresses.insert
-     * @desc Creates an address resource in the specified project using the data included in the request.
+     * @desc Creates an address resource in the specified project by using the data included in the request.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -11289,7 +12158,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11433,7 +12302,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11571,7 +12440,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11712,7 +12581,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12044,7 +12913,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12177,7 +13046,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12308,7 +13177,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12442,7 +13311,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12586,7 +13455,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12722,7 +13591,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12863,7 +13732,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12999,7 +13868,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13294,7 +14163,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13423,7 +14292,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13500,7 +14369,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13628,7 +14497,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13758,7 +14627,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13898,7 +14767,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14032,7 +14901,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14167,7 +15036,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14436,7 +15305,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14581,7 +15450,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14715,7 +15584,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14792,7 +15661,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14920,7 +15789,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15056,7 +15925,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15189,7 +16058,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15330,7 +16199,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15465,7 +16334,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15600,7 +16469,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15737,7 +16606,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15872,7 +16741,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16237,7 +17106,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16380,7 +17249,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16471,7 +17340,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.disk Name of the persistent disk to snapshot.
-     * @param {boolean=} params.guestFlush
+     * @param {boolean=} params.guestFlush [Input Only] Specifies to create an application consistent snapshot by informing the OS to prepare for the snapshot process. Currently only supported on Windows instances using the Volume Shadow Copy Service (VSS).
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
@@ -16518,7 +17387,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16650,7 +17519,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16779,7 +17648,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16853,7 +17722,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16987,7 +17856,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17128,7 +17997,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17207,7 +18076,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17344,7 +18213,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17419,7 +18288,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17556,7 +18425,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17697,7 +18566,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17791,7 +18660,7 @@ export namespace compute_beta {
      */
     disk?: string;
     /**
-     *
+     * [Input Only] Specifies to create an application consistent snapshot by informing the OS to prepare for the snapshot process. Currently only supported on Windows instances using the Volume Shadow Copy Service (VSS).
      */
     guestFlush?: boolean;
     /**
@@ -18196,7 +19065,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18324,7 +19193,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18468,7 +19337,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18630,7 +19499,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18705,7 +19574,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18781,7 +19650,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18861,7 +19730,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18937,7 +19806,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19017,7 +19886,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19280,7 +20149,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19405,7 +20274,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19534,7 +20403,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19673,7 +20542,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19806,7 +20675,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19943,7 +20812,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20077,7 +20946,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20380,7 +21249,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20518,7 +21387,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20650,7 +21519,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20784,7 +21653,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20929,7 +21798,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21007,7 +21876,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21145,7 +22014,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21283,7 +22152,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21424,7 +22293,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21802,7 +22671,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21928,7 +22797,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21954,7 +22823,7 @@ export namespace compute_beta {
 
     /**
      * compute.globalAddresses.insert
-     * @desc Creates an address resource in the specified project using the data included in the request.
+     * @desc Creates an address resource in the specified project by using the data included in the request.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -22058,7 +22927,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22198,7 +23067,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22330,7 +23199,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22467,7 +23336,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22731,7 +23600,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22859,7 +23728,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22989,7 +23858,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23130,7 +23999,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23207,7 +24076,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23340,7 +24209,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23474,7 +24343,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23611,7 +24480,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23941,7 +24810,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24063,7 +24932,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24191,7 +25060,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24332,7 +25201,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24452,6 +25321,91 @@ export namespace compute_beta {
     }
 
     /**
+     * compute.healthChecks.aggregatedList
+     * @desc Retrieves the list of all HealthCheck resources, regional and global, available to the specified project.
+     * @alias compute.healthChecks.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+      params?: Params$Resource$Healthchecks$Aggregatedlist,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HealthChecksAggregatedList>;
+    aggregatedList(
+      params: Params$Resource$Healthchecks$Aggregatedlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HealthChecksAggregatedList>,
+      callback: BodyResponseCallback<Schema$HealthChecksAggregatedList>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Healthchecks$Aggregatedlist,
+      callback: BodyResponseCallback<Schema$HealthChecksAggregatedList>
+    ): void;
+    aggregatedList(
+      callback: BodyResponseCallback<Schema$HealthChecksAggregatedList>
+    ): void;
+    aggregatedList(
+      paramsOrCallback?:
+        | Params$Resource$Healthchecks$Aggregatedlist
+        | BodyResponseCallback<Schema$HealthChecksAggregatedList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HealthChecksAggregatedList>,
+      callback?: BodyResponseCallback<Schema$HealthChecksAggregatedList>
+    ): void | GaxiosPromise<Schema$HealthChecksAggregatedList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Healthchecks$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Healthchecks$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/aggregated/healthChecks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HealthChecksAggregatedList>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$HealthChecksAggregatedList>(parameters);
+      }
+    }
+
+    /**
      * compute.healthChecks.delete
      * @desc Deletes the specified HealthCheck resource.
      * @example
@@ -24556,7 +25510,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24683,7 +25637,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24813,7 +25767,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24953,7 +25907,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25087,7 +26041,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25224,7 +26178,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25359,7 +26313,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25384,6 +26338,34 @@ export namespace compute_beta {
     }
   }
 
+  export interface Params$Resource$Healthchecks$Aggregatedlist
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+  }
   export interface Params$Resource$Healthchecks$Delete
     extends StandardParameters {
     /**
@@ -25651,7 +26633,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25779,7 +26761,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25909,7 +26891,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26050,7 +27032,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26185,7 +27167,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26322,7 +27304,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26457,7 +27439,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26750,7 +27732,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26878,7 +27860,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27008,7 +27990,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27151,7 +28133,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27286,7 +28268,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27423,7 +28405,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27558,7 +28540,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27850,7 +28832,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27982,7 +28964,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28107,7 +29089,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28232,7 +29214,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28305,7 +29287,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28435,7 +29417,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28574,7 +29556,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28647,7 +29629,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28779,7 +29761,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28916,7 +29898,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29265,7 +30247,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29410,7 +30392,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29494,7 +30476,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29627,7 +30609,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29765,7 +30747,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29899,7 +30881,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30033,7 +31015,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30180,7 +31162,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30349,7 +31331,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30492,7 +31474,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30630,7 +31612,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30769,7 +31751,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30907,7 +31889,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31047,7 +32029,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31185,7 +32167,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31323,7 +32305,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31464,7 +32446,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31603,7 +32585,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32253,7 +33235,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32398,7 +33380,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32534,7 +33516,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32666,7 +33648,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32800,7 +33782,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32945,7 +33927,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -33103,7 +34085,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -33244,7 +34226,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -33382,7 +34364,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -33523,7 +34505,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -33955,7 +34937,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34100,7 +35082,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34238,7 +35220,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34370,7 +35352,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34511,7 +35493,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34654,7 +35636,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34783,7 +35765,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34863,7 +35845,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34937,7 +35919,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35073,7 +36055,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35153,7 +36135,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35231,7 +36213,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35365,7 +36347,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35509,7 +36491,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35663,7 +36645,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35795,7 +36777,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35872,7 +36854,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36008,7 +36990,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36149,7 +37131,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36230,7 +37212,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36368,7 +37350,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36506,7 +37488,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36644,7 +37626,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36782,7 +37764,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36920,7 +37902,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37058,7 +38040,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37196,7 +38178,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37276,7 +38258,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37356,7 +38338,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37494,7 +38476,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37572,7 +38554,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37704,7 +38686,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37844,7 +38826,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37976,7 +38958,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38054,7 +39036,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38195,7 +39177,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38337,7 +39319,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38415,7 +39397,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38560,7 +39542,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38640,7 +39622,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38720,7 +39702,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -39991,7 +40973,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40119,7 +41101,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40192,7 +41174,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40322,7 +41304,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40465,7 +41447,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40539,7 +41521,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40676,7 +41658,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40980,7 +41962,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41118,7 +42100,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41252,7 +42234,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41386,7 +42368,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41535,7 +42517,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41616,7 +42598,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41694,7 +42676,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41835,7 +42817,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42185,7 +43167,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42328,7 +43310,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42509,7 +43491,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42637,7 +43619,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42718,7 +43700,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42853,7 +43835,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42993,7 +43975,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43127,7 +44109,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43203,7 +44185,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43340,7 +44322,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43590,7 +44572,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43688,7 +44670,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43813,7 +44795,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43886,7 +44868,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43961,7 +44943,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -44039,7 +45021,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -44112,7 +45094,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -44383,7 +45365,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -44517,7 +45499,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -44662,7 +45644,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -44831,7 +45813,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -44916,7 +45898,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -44993,7 +45975,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -45073,7 +46055,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -45151,7 +46133,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -45228,7 +46210,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -45309,7 +46291,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -45408,7 +46390,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -45494,7 +46476,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -45889,7 +46871,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46017,7 +46999,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46142,7 +47124,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46271,7 +47253,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46410,7 +47392,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46495,7 +47477,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46632,7 +47614,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46766,7 +47748,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46895,7 +47877,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47032,7 +48014,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47109,7 +48091,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47460,7 +48442,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47542,7 +48524,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47618,7 +48600,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47696,7 +48678,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47771,7 +48753,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47845,7 +48827,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47923,7 +48905,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48001,7 +48983,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48081,7 +49063,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48156,7 +49138,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48234,7 +49216,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48315,7 +49297,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48729,7 +49711,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48809,7 +49791,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48885,7 +49867,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48959,7 +49941,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49036,7 +50018,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49115,7 +50097,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49190,7 +50172,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49271,7 +50253,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49560,7 +50542,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49632,7 +50614,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49710,7 +50692,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49921,7 +50903,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49946,7 +50928,7 @@ export namespace compute_beta {
 
     /**
      * compute.projects.disableXpnResource
-     * @desc Disable a serivce resource (a.k.a service project) associated with this host project.
+     * @desc Disable a service resource (also known as service project) associated with this host project.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -50050,7 +51032,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -50174,7 +51156,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -50303,7 +51285,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -50423,7 +51405,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -50545,7 +51527,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -50689,7 +51671,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -50834,7 +51816,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -50963,7 +51945,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -51092,7 +52074,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -51223,7 +52205,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -51301,7 +52283,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -51432,7 +52414,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -51835,7 +52817,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -51967,7 +52949,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52101,7 +53083,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52248,7 +53230,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52384,7 +53366,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52525,7 +53507,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52661,7 +53643,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52986,7 +53968,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53118,7 +54100,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53258,7 +54240,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53395,7 +54377,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53540,7 +54522,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53679,7 +54661,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53820,7 +54802,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53959,7 +54941,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -54321,7 +55303,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -54453,7 +55435,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -54587,7 +55569,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -54732,7 +55714,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -54810,7 +55792,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55030,7 +56012,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55108,7 +56090,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55185,7 +56167,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55258,7 +56240,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55332,7 +56314,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55410,7 +56392,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55486,7 +56468,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55566,7 +56548,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55644,7 +56626,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55719,7 +56701,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55797,7 +56779,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55878,7 +56860,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56278,7 +57260,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56357,7 +57339,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56433,6 +57415,638 @@ export namespace compute_beta {
      * The name of the region for this request.
      */
     region?: string;
+  }
+
+  export class Resource$Regionhealthchecks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * compute.regionHealthChecks.delete
+     * @desc Deletes the specified HealthCheck resource.
+     * @alias compute.regionHealthChecks.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.healthCheck Name of the HealthCheck resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Regionhealthchecks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Regionhealthchecks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Regionhealthchecks$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthchecks$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthchecks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthchecks$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/healthChecks/{healthCheck}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthCheck'],
+        pathParams: ['healthCheck', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionHealthChecks.get
+     * @desc Returns the specified HealthCheck resource. Gets a list of available health checks by making a list() request.
+     * @alias compute.regionHealthChecks.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.healthCheck Name of the HealthCheck resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Regionhealthchecks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HealthCheck>;
+    get(
+      params: Params$Resource$Regionhealthchecks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$HealthCheck>,
+      callback: BodyResponseCallback<Schema$HealthCheck>
+    ): void;
+    get(
+      params: Params$Resource$Regionhealthchecks$Get,
+      callback: BodyResponseCallback<Schema$HealthCheck>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$HealthCheck>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthchecks$Get
+        | BodyResponseCallback<Schema$HealthCheck>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HealthCheck>,
+      callback?: BodyResponseCallback<Schema$HealthCheck>
+    ): void | GaxiosPromise<Schema$HealthCheck> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthchecks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthchecks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/healthChecks/{healthCheck}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthCheck'],
+        pathParams: ['healthCheck', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HealthCheck>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$HealthCheck>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionHealthChecks.insert
+     * @desc Creates a HealthCheck resource in the specified project using the data included in the request.
+     * @alias compute.regionHealthChecks.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().HealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params?: Params$Resource$Regionhealthchecks$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    insert(
+      params: Params$Resource$Regionhealthchecks$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Regionhealthchecks$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthchecks$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthchecks$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthchecks$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/healthChecks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionHealthChecks.list
+     * @desc Retrieves the list of HealthCheck resources available to the specified project.
+     * @alias compute.regionHealthChecks.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Regionhealthchecks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HealthCheckList>;
+    list(
+      params: Params$Resource$Regionhealthchecks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$HealthCheckList>,
+      callback: BodyResponseCallback<Schema$HealthCheckList>
+    ): void;
+    list(
+      params: Params$Resource$Regionhealthchecks$List,
+      callback: BodyResponseCallback<Schema$HealthCheckList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$HealthCheckList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthchecks$List
+        | BodyResponseCallback<Schema$HealthCheckList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HealthCheckList>,
+      callback?: BodyResponseCallback<Schema$HealthCheckList>
+    ): void | GaxiosPromise<Schema$HealthCheckList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthchecks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthchecks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/healthChecks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HealthCheckList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$HealthCheckList>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionHealthChecks.patch
+     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @alias compute.regionHealthChecks.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.healthCheck Name of the HealthCheck resource to patch.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().HealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Regionhealthchecks$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Regionhealthchecks$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Regionhealthchecks$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthchecks$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthchecks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthchecks$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/healthChecks/{healthCheck}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthCheck'],
+        pathParams: ['healthCheck', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionHealthChecks.update
+     * @desc Updates a HealthCheck resource in the specified project using the data included in the request.
+     * @alias compute.regionHealthChecks.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.healthCheck Name of the HealthCheck resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().HealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(
+      params?: Params$Resource$Regionhealthchecks$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    update(
+      params: Params$Resource$Regionhealthchecks$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(
+      params: Params$Resource$Regionhealthchecks$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthchecks$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthchecks$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthchecks$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/healthChecks/{healthCheck}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthCheck'],
+        pathParams: ['healthCheck', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regionhealthchecks$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the HealthCheck resource to delete.
+     */
+    healthCheck?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Regionhealthchecks$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the HealthCheck resource to return.
+     */
+    healthCheck?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regionhealthchecks$Insert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HealthCheck;
+  }
+  export interface Params$Resource$Regionhealthchecks$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regionhealthchecks$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the HealthCheck resource to patch.
+     */
+    healthCheck?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HealthCheck;
+  }
+  export interface Params$Resource$Regionhealthchecks$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the HealthCheck resource to update.
+     */
+    healthCheck?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HealthCheck;
   }
 
   export class Resource$Regioninstancegroupmanagers {
@@ -56555,7 +58169,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56634,7 +58248,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56767,7 +58381,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56905,7 +58519,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57039,7 +58653,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57173,7 +58787,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57322,7 +58936,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57496,7 +59110,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57639,7 +59253,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57777,7 +59391,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57914,7 +59528,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -58054,7 +59668,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -58192,7 +59806,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -58330,7 +59944,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -58471,7 +60085,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -58610,7 +60224,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -59197,7 +60811,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -59344,7 +60958,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -59502,7 +61116,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -59645,7 +61259,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -59786,7 +61400,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60068,7 +61682,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60200,7 +61814,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60345,7 +61959,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60550,7 +62164,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60689,7 +62303,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60757,6 +62371,2426 @@ export namespace compute_beta {
     project?: string;
   }
 
+  export class Resource$Regionsslcertificates {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * compute.regionSslCertificates.delete
+     * @desc Deletes the specified SslCertificate resource in the region.
+     * @alias compute.regionSslCertificates.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.sslCertificate Name of the SslCertificate resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Regionsslcertificates$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Regionsslcertificates$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Regionsslcertificates$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Regionsslcertificates$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionsslcertificates$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslcertificates$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/sslCertificates/{sslCertificate}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'sslCertificate'],
+        pathParams: ['project', 'region', 'sslCertificate'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionSslCertificates.get
+     * @desc Returns the specified SslCertificate resource in the specified region. Get a list of available SSL certificates by making a list() request.
+     * @alias compute.regionSslCertificates.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.sslCertificate Name of the SslCertificate resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Regionsslcertificates$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SslCertificate>;
+    get(
+      params: Params$Resource$Regionsslcertificates$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SslCertificate>,
+      callback: BodyResponseCallback<Schema$SslCertificate>
+    ): void;
+    get(
+      params: Params$Resource$Regionsslcertificates$Get,
+      callback: BodyResponseCallback<Schema$SslCertificate>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SslCertificate>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Regionsslcertificates$Get
+        | BodyResponseCallback<Schema$SslCertificate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SslCertificate>,
+      callback?: BodyResponseCallback<Schema$SslCertificate>
+    ): void | GaxiosPromise<Schema$SslCertificate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionsslcertificates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslcertificates$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/sslCertificates/{sslCertificate}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'sslCertificate'],
+        pathParams: ['project', 'region', 'sslCertificate'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SslCertificate>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SslCertificate>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionSslCertificates.insert
+     * @desc Creates a SslCertificate resource in the specified project and region using the data included in the request
+     * @alias compute.regionSslCertificates.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().SslCertificate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params?: Params$Resource$Regionsslcertificates$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    insert(
+      params: Params$Resource$Regionsslcertificates$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Regionsslcertificates$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Regionsslcertificates$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionsslcertificates$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslcertificates$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/sslCertificates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionSslCertificates.list
+     * @desc Retrieves the list of SslCertificate resources available to the specified project in the specified region.
+     * @alias compute.regionSslCertificates.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Regionsslcertificates$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SslCertificateList>;
+    list(
+      params: Params$Resource$Regionsslcertificates$List,
+      options: MethodOptions | BodyResponseCallback<Schema$SslCertificateList>,
+      callback: BodyResponseCallback<Schema$SslCertificateList>
+    ): void;
+    list(
+      params: Params$Resource$Regionsslcertificates$List,
+      callback: BodyResponseCallback<Schema$SslCertificateList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$SslCertificateList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Regionsslcertificates$List
+        | BodyResponseCallback<Schema$SslCertificateList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SslCertificateList>,
+      callback?: BodyResponseCallback<Schema$SslCertificateList>
+    ): void | GaxiosPromise<Schema$SslCertificateList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionsslcertificates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslcertificates$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/sslCertificates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SslCertificateList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SslCertificateList>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regionsslcertificates$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the SslCertificate resource to delete.
+     */
+    sslCertificate?: string;
+  }
+  export interface Params$Resource$Regionsslcertificates$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * Name of the SslCertificate resource to return.
+     */
+    sslCertificate?: string;
+  }
+  export interface Params$Resource$Regionsslcertificates$Insert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SslCertificate;
+  }
+  export interface Params$Resource$Regionsslcertificates$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+
+  export class Resource$Regiontargethttpproxies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * compute.regionTargetHttpProxies.delete
+     * @desc Deletes the specified TargetHttpProxy resource.
+     * @alias compute.regionTargetHttpProxies.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.targetHttpProxy Name of the TargetHttpProxy resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Regiontargethttpproxies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Regiontargethttpproxies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Regiontargethttpproxies$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Regiontargethttpproxies$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regiontargethttpproxies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpproxies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/targetHttpProxies/{targetHttpProxy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpProxy'],
+        pathParams: ['project', 'region', 'targetHttpProxy'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionTargetHttpProxies.get
+     * @desc Returns the specified TargetHttpProxy resource in the specified region. Gets a list of available target HTTP proxies by making a list() request.
+     * @alias compute.regionTargetHttpProxies.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.targetHttpProxy Name of the TargetHttpProxy resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Regiontargethttpproxies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TargetHttpProxy>;
+    get(
+      params: Params$Resource$Regiontargethttpproxies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TargetHttpProxy>,
+      callback: BodyResponseCallback<Schema$TargetHttpProxy>
+    ): void;
+    get(
+      params: Params$Resource$Regiontargethttpproxies$Get,
+      callback: BodyResponseCallback<Schema$TargetHttpProxy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$TargetHttpProxy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Regiontargethttpproxies$Get
+        | BodyResponseCallback<Schema$TargetHttpProxy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetHttpProxy>,
+      callback?: BodyResponseCallback<Schema$TargetHttpProxy>
+    ): void | GaxiosPromise<Schema$TargetHttpProxy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regiontargethttpproxies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpproxies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/targetHttpProxies/{targetHttpProxy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpProxy'],
+        pathParams: ['project', 'region', 'targetHttpProxy'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TargetHttpProxy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TargetHttpProxy>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionTargetHttpProxies.insert
+     * @desc Creates a TargetHttpProxy resource in the specified project and region using the data included in the request.
+     * @alias compute.regionTargetHttpProxies.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().TargetHttpProxy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params?: Params$Resource$Regiontargethttpproxies$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    insert(
+      params: Params$Resource$Regiontargethttpproxies$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Regiontargethttpproxies$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Regiontargethttpproxies$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regiontargethttpproxies$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpproxies$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/targetHttpProxies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionTargetHttpProxies.list
+     * @desc Retrieves the list of TargetHttpProxy resources available to the specified project in the specified region.
+     * @alias compute.regionTargetHttpProxies.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Regiontargethttpproxies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TargetHttpProxyList>;
+    list(
+      params: Params$Resource$Regiontargethttpproxies$List,
+      options: MethodOptions | BodyResponseCallback<Schema$TargetHttpProxyList>,
+      callback: BodyResponseCallback<Schema$TargetHttpProxyList>
+    ): void;
+    list(
+      params: Params$Resource$Regiontargethttpproxies$List,
+      callback: BodyResponseCallback<Schema$TargetHttpProxyList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$TargetHttpProxyList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Regiontargethttpproxies$List
+        | BodyResponseCallback<Schema$TargetHttpProxyList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetHttpProxyList>,
+      callback?: BodyResponseCallback<Schema$TargetHttpProxyList>
+    ): void | GaxiosPromise<Schema$TargetHttpProxyList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regiontargethttpproxies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpproxies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/targetHttpProxies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TargetHttpProxyList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TargetHttpProxyList>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionTargetHttpProxies.setUrlMap
+     * @desc Changes the URL map for TargetHttpProxy.
+     * @alias compute.regionTargetHttpProxies.setUrlMap
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.targetHttpProxy Name of the TargetHttpProxy to set a URL map for.
+     * @param {().UrlMapReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setUrlMap(
+      params?: Params$Resource$Regiontargethttpproxies$Seturlmap,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    setUrlMap(
+      params: Params$Resource$Regiontargethttpproxies$Seturlmap,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setUrlMap(
+      params: Params$Resource$Regiontargethttpproxies$Seturlmap,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setUrlMap(callback: BodyResponseCallback<Schema$Operation>): void;
+    setUrlMap(
+      paramsOrCallback?:
+        | Params$Resource$Regiontargethttpproxies$Seturlmap
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regiontargethttpproxies$Seturlmap;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpproxies$Seturlmap;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/targetHttpProxies/{targetHttpProxy}/setUrlMap'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpProxy'],
+        pathParams: ['project', 'region', 'targetHttpProxy'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regiontargethttpproxies$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the TargetHttpProxy resource to delete.
+     */
+    targetHttpProxy?: string;
+  }
+  export interface Params$Resource$Regiontargethttpproxies$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * Name of the TargetHttpProxy resource to return.
+     */
+    targetHttpProxy?: string;
+  }
+  export interface Params$Resource$Regiontargethttpproxies$Insert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TargetHttpProxy;
+  }
+  export interface Params$Resource$Regiontargethttpproxies$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regiontargethttpproxies$Seturlmap
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the TargetHttpProxy to set a URL map for.
+     */
+    targetHttpProxy?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UrlMapReference;
+  }
+
+  export class Resource$Regiontargethttpsproxies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * compute.regionTargetHttpsProxies.delete
+     * @desc Deletes the specified TargetHttpsProxy resource.
+     * @alias compute.regionTargetHttpsProxies.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Regiontargethttpsproxies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Regiontargethttpsproxies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Regiontargethttpsproxies$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Regiontargethttpsproxies$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regiontargethttpsproxies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpsProxy'],
+        pathParams: ['project', 'region', 'targetHttpsProxy'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionTargetHttpsProxies.get
+     * @desc Returns the specified TargetHttpsProxy resource in the specified region. Gets a list of available target HTTP proxies by making a list() request.
+     * @alias compute.regionTargetHttpsProxies.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Regiontargethttpsproxies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TargetHttpsProxy>;
+    get(
+      params: Params$Resource$Regiontargethttpsproxies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TargetHttpsProxy>,
+      callback: BodyResponseCallback<Schema$TargetHttpsProxy>
+    ): void;
+    get(
+      params: Params$Resource$Regiontargethttpsproxies$Get,
+      callback: BodyResponseCallback<Schema$TargetHttpsProxy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$TargetHttpsProxy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Regiontargethttpsproxies$Get
+        | BodyResponseCallback<Schema$TargetHttpsProxy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetHttpsProxy>,
+      callback?: BodyResponseCallback<Schema$TargetHttpsProxy>
+    ): void | GaxiosPromise<Schema$TargetHttpsProxy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regiontargethttpsproxies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpsProxy'],
+        pathParams: ['project', 'region', 'targetHttpsProxy'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TargetHttpsProxy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TargetHttpsProxy>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionTargetHttpsProxies.insert
+     * @desc Creates a TargetHttpsProxy resource in the specified project and region using the data included in the request.
+     * @alias compute.regionTargetHttpsProxies.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().TargetHttpsProxy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params?: Params$Resource$Regiontargethttpsproxies$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    insert(
+      params: Params$Resource$Regiontargethttpsproxies$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Regiontargethttpsproxies$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Regiontargethttpsproxies$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regiontargethttpsproxies$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/targetHttpsProxies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionTargetHttpsProxies.list
+     * @desc Retrieves the list of TargetHttpsProxy resources available to the specified project in the specified region.
+     * @alias compute.regionTargetHttpsProxies.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Regiontargethttpsproxies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TargetHttpsProxyList>;
+    list(
+      params: Params$Resource$Regiontargethttpsproxies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetHttpsProxyList>,
+      callback: BodyResponseCallback<Schema$TargetHttpsProxyList>
+    ): void;
+    list(
+      params: Params$Resource$Regiontargethttpsproxies$List,
+      callback: BodyResponseCallback<Schema$TargetHttpsProxyList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$TargetHttpsProxyList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Regiontargethttpsproxies$List
+        | BodyResponseCallback<Schema$TargetHttpsProxyList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetHttpsProxyList>,
+      callback?: BodyResponseCallback<Schema$TargetHttpsProxyList>
+    ): void | GaxiosPromise<Schema$TargetHttpsProxyList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regiontargethttpsproxies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/targetHttpsProxies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TargetHttpsProxyList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TargetHttpsProxyList>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionTargetHttpsProxies.setSslCertificates
+     * @desc Replaces SslCertificates for TargetHttpsProxy.
+     * @alias compute.regionTargetHttpsProxies.setSslCertificates
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
+     * @param {().RegionTargetHttpsProxiesSetSslCertificatesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setSslCertificates(
+      params?: Params$Resource$Regiontargethttpsproxies$Setsslcertificates,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    setSslCertificates(
+      params: Params$Resource$Regiontargethttpsproxies$Setsslcertificates,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setSslCertificates(
+      params: Params$Resource$Regiontargethttpsproxies$Setsslcertificates,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setSslCertificates(callback: BodyResponseCallback<Schema$Operation>): void;
+    setSslCertificates(
+      paramsOrCallback?:
+        | Params$Resource$Regiontargethttpsproxies$Setsslcertificates
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regiontargethttpsproxies$Setsslcertificates;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$Setsslcertificates;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpsProxy'],
+        pathParams: ['project', 'region', 'targetHttpsProxy'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionTargetHttpsProxies.setUrlMap
+     * @desc Changes the URL map for TargetHttpsProxy.
+     * @alias compute.regionTargetHttpsProxies.setUrlMap
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy to set a URL map for.
+     * @param {().UrlMapReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setUrlMap(
+      params?: Params$Resource$Regiontargethttpsproxies$Seturlmap,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    setUrlMap(
+      params: Params$Resource$Regiontargethttpsproxies$Seturlmap,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setUrlMap(
+      params: Params$Resource$Regiontargethttpsproxies$Seturlmap,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setUrlMap(callback: BodyResponseCallback<Schema$Operation>): void;
+    setUrlMap(
+      paramsOrCallback?:
+        | Params$Resource$Regiontargethttpsproxies$Seturlmap
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regiontargethttpsproxies$Seturlmap;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$Seturlmap;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}/setUrlMap'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpsProxy'],
+        pathParams: ['project', 'region', 'targetHttpsProxy'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regiontargethttpsproxies$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the TargetHttpsProxy resource to delete.
+     */
+    targetHttpsProxy?: string;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * Name of the TargetHttpsProxy resource to return.
+     */
+    targetHttpsProxy?: string;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$Insert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TargetHttpsProxy;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$Setsslcertificates
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
+     */
+    targetHttpsProxy?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionTargetHttpsProxiesSetSslCertificatesRequest;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$Seturlmap
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the TargetHttpsProxy to set a URL map for.
+     */
+    targetHttpsProxy?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UrlMapReference;
+  }
+
+  export class Resource$Regionurlmaps {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * compute.regionUrlMaps.delete
+     * @desc Deletes the specified UrlMap resource.
+     * @alias compute.regionUrlMaps.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {string} params.urlMap Name of the UrlMap resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Regionurlmaps$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Regionurlmaps$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Regionurlmaps$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Regionurlmaps$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionurlmaps$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionurlmaps$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/urlMaps/{urlMap}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'urlMap'],
+        pathParams: ['project', 'region', 'urlMap'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionUrlMaps.get
+     * @desc Returns the specified UrlMap resource. Gets a list of available URL maps by making a list() request.
+     * @alias compute.regionUrlMaps.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.urlMap Name of the UrlMap resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Regionurlmaps$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UrlMap>;
+    get(
+      params: Params$Resource$Regionurlmaps$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UrlMap>,
+      callback: BodyResponseCallback<Schema$UrlMap>
+    ): void;
+    get(
+      params: Params$Resource$Regionurlmaps$Get,
+      callback: BodyResponseCallback<Schema$UrlMap>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$UrlMap>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Regionurlmaps$Get
+        | BodyResponseCallback<Schema$UrlMap>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$UrlMap>,
+      callback?: BodyResponseCallback<Schema$UrlMap>
+    ): void | GaxiosPromise<Schema$UrlMap> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionurlmaps$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionurlmaps$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/urlMaps/{urlMap}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'urlMap'],
+        pathParams: ['project', 'region', 'urlMap'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UrlMap>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$UrlMap>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionUrlMaps.insert
+     * @desc Creates a UrlMap resource in the specified project using the data included in the request.
+     * @alias compute.regionUrlMaps.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {().UrlMap} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params?: Params$Resource$Regionurlmaps$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    insert(
+      params: Params$Resource$Regionurlmaps$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Regionurlmaps$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Regionurlmaps$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionurlmaps$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionurlmaps$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/urlMaps'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionUrlMaps.invalidateCache
+     * @desc Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap.
+     * @alias compute.regionUrlMaps.invalidateCache
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {string} params.urlMap Name of the UrlMap scoping this request.
+     * @param {().CacheInvalidationRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    invalidateCache(
+      params?: Params$Resource$Regionurlmaps$Invalidatecache,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    invalidateCache(
+      params: Params$Resource$Regionurlmaps$Invalidatecache,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    invalidateCache(
+      params: Params$Resource$Regionurlmaps$Invalidatecache,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    invalidateCache(callback: BodyResponseCallback<Schema$Operation>): void;
+    invalidateCache(
+      paramsOrCallback?:
+        | Params$Resource$Regionurlmaps$Invalidatecache
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionurlmaps$Invalidatecache;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionurlmaps$Invalidatecache;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/urlMaps/{urlMap}/invalidateCache'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'urlMap'],
+        pathParams: ['project', 'region', 'urlMap'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionUrlMaps.list
+     * @desc Retrieves the list of UrlMap resources available to the specified project in the specified region.
+     * @alias compute.regionUrlMaps.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Regionurlmaps$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UrlMapList>;
+    list(
+      params: Params$Resource$Regionurlmaps$List,
+      options: MethodOptions | BodyResponseCallback<Schema$UrlMapList>,
+      callback: BodyResponseCallback<Schema$UrlMapList>
+    ): void;
+    list(
+      params: Params$Resource$Regionurlmaps$List,
+      callback: BodyResponseCallback<Schema$UrlMapList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$UrlMapList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Regionurlmaps$List
+        | BodyResponseCallback<Schema$UrlMapList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlMapList>,
+      callback?: BodyResponseCallback<Schema$UrlMapList>
+    ): void | GaxiosPromise<Schema$UrlMapList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionurlmaps$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionurlmaps$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/urlMaps'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UrlMapList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$UrlMapList>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionUrlMaps.patch
+     * @desc Patches the specified UrlMap resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     * @alias compute.regionUrlMaps.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {string} params.urlMap Name of the UrlMap resource to patch.
+     * @param {().UrlMap} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Regionurlmaps$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Regionurlmaps$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Regionurlmaps$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Regionurlmaps$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionurlmaps$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionurlmaps$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/urlMaps/{urlMap}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'urlMap'],
+        pathParams: ['project', 'region', 'urlMap'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionUrlMaps.update
+     * @desc Updates the specified UrlMap resource with the data included in the request.
+     * @alias compute.regionUrlMaps.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {string} params.urlMap Name of the UrlMap resource to update.
+     * @param {().UrlMap} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(
+      params?: Params$Resource$Regionurlmaps$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    update(
+      params: Params$Resource$Regionurlmaps$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(
+      params: Params$Resource$Regionurlmaps$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Regionurlmaps$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionurlmaps$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionurlmaps$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/urlMaps/{urlMap}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'urlMap'],
+        pathParams: ['project', 'region', 'urlMap'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionUrlMaps.validate
+     * @desc Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap.
+     * @alias compute.regionUrlMaps.validate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.urlMap Name of the UrlMap resource to be validated as.
+     * @param {().RegionUrlMapsValidateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    validate(
+      params?: Params$Resource$Regionurlmaps$Validate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UrlMapsValidateResponse>;
+    validate(
+      params: Params$Resource$Regionurlmaps$Validate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlMapsValidateResponse>,
+      callback: BodyResponseCallback<Schema$UrlMapsValidateResponse>
+    ): void;
+    validate(
+      params: Params$Resource$Regionurlmaps$Validate,
+      callback: BodyResponseCallback<Schema$UrlMapsValidateResponse>
+    ): void;
+    validate(
+      callback: BodyResponseCallback<Schema$UrlMapsValidateResponse>
+    ): void;
+    validate(
+      paramsOrCallback?:
+        | Params$Resource$Regionurlmaps$Validate
+        | BodyResponseCallback<Schema$UrlMapsValidateResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlMapsValidateResponse>,
+      callback?: BodyResponseCallback<Schema$UrlMapsValidateResponse>
+    ): void | GaxiosPromise<Schema$UrlMapsValidateResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionurlmaps$Validate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionurlmaps$Validate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/urlMaps/{urlMap}/validate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'urlMap'],
+        pathParams: ['project', 'region', 'urlMap'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UrlMapsValidateResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$UrlMapsValidateResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regionurlmaps$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     */
+    requestId?: string;
+    /**
+     * Name of the UrlMap resource to delete.
+     */
+    urlMap?: string;
+  }
+  export interface Params$Resource$Regionurlmaps$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * Name of the UrlMap resource to return.
+     */
+    urlMap?: string;
+  }
+  export interface Params$Resource$Regionurlmaps$Insert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UrlMap;
+  }
+  export interface Params$Resource$Regionurlmaps$Invalidatecache
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     */
+    requestId?: string;
+    /**
+     * Name of the UrlMap scoping this request.
+     */
+    urlMap?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CacheInvalidationRule;
+  }
+  export interface Params$Resource$Regionurlmaps$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regionurlmaps$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     */
+    requestId?: string;
+    /**
+     * Name of the UrlMap resource to patch.
+     */
+    urlMap?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UrlMap;
+  }
+  export interface Params$Resource$Regionurlmaps$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     */
+    requestId?: string;
+    /**
+     * Name of the UrlMap resource to update.
+     */
+    urlMap?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UrlMap;
+  }
+  export interface Params$Resource$Regionurlmaps$Validate
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * Name of the UrlMap resource to be validated as.
+     */
+    urlMap?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionUrlMapsValidateRequest;
+  }
+
   export class Resource$Reservations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -60821,7 +64855,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60901,7 +64935,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60976,7 +65010,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61050,7 +65084,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61076,7 +65110,7 @@ export namespace compute_beta {
 
     /**
      * compute.reservations.insert
-     * @desc Creates a new reservation.
+     * @desc Creates a new reservation. For more information, read Reserving zonal resources.
      * @alias compute.reservations.insert
      * @memberOf! ()
      *
@@ -61127,7 +65161,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61206,7 +65240,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61284,7 +65318,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61359,7 +65393,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61440,7 +65474,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61757,7 +65791,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61839,7 +65873,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61915,7 +65949,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61936,6 +65970,80 @@ export namespace compute_beta {
         createAPIRequest<Schema$ResourcePolicy>(parameters, callback);
       } else {
         return createAPIRequest<Schema$ResourcePolicy>(parameters);
+      }
+    }
+
+    /**
+     * compute.resourcePolicies.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * @alias compute.resourcePolicies.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+      params?: Params$Resource$Resourcepolicies$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Resourcepolicies$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Resourcepolicies$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Resourcepolicies$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Resourcepolicies$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resourcepolicies$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/resourcePolicies/{resource}/getIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -61992,7 +66100,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62071,7 +66179,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62092,6 +66200,81 @@ export namespace compute_beta {
         createAPIRequest<Schema$ResourcePolicyList>(parameters, callback);
       } else {
         return createAPIRequest<Schema$ResourcePolicyList>(parameters);
+      }
+    }
+
+    /**
+     * compute.resourcePolicies.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @alias compute.resourcePolicies.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().RegionSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+      params?: Params$Resource$Resourcepolicies$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Resourcepolicies$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Resourcepolicies$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Resourcepolicies$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Resourcepolicies$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resourcepolicies$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/resourcePolicies/{resource}/setIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -62152,7 +66335,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62249,6 +66432,26 @@ export namespace compute_beta {
      */
     resourcePolicy?: string;
   }
+  export interface Params$Resource$Resourcepolicies$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Resourcepolicies$Insert
     extends StandardParameters {
     /**
@@ -62305,6 +66508,31 @@ export namespace compute_beta {
      * Name of the region for this request.
      */
     region?: string;
+  }
+  export interface Params$Resource$Resourcepolicies$Setiampolicy
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionSetPolicyRequest;
   }
   export interface Params$Resource$Resourcepolicies$Testiampermissions
     extends StandardParameters {
@@ -62459,7 +66687,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62590,7 +66818,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62719,7 +66947,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62803,7 +67031,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62942,7 +67170,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -63075,7 +67303,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -63219,7 +67447,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -63357,7 +67585,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -63497,7 +67725,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -63638,7 +67866,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -63664,7 +67892,7 @@ export namespace compute_beta {
 
     /**
      * compute.routers.update
-     * @desc Updates the specified Router resource with the data included in the request.
+     * @desc Updates the specified Router resource with the data included in the request. This method conforms to PUT semantics, which requests that the state of the target resource be created or replaced with the state defined by the representation enclosed in the request message payload.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -63776,7 +68004,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -64198,7 +68426,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -64322,7 +68550,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -64450,7 +68678,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -64589,7 +68817,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -64725,7 +68953,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -64912,7 +69140,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65041,7 +69269,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65169,7 +69397,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65245,7 +69473,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65376,7 +69604,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65517,7 +69745,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65617,7 +69845,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65756,7 +69984,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65834,7 +70062,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65910,7 +70138,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65986,7 +70214,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -66123,7 +70351,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -66537,7 +70765,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -66662,7 +70890,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -66735,7 +70963,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -66875,7 +71103,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -66948,7 +71176,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -67081,7 +71309,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -67218,7 +71446,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -67391,6 +71619,93 @@ export namespace compute_beta {
     }
 
     /**
+     * compute.sslCertificates.aggregatedList
+     * @desc Retrieves the list of all SslCertificate resources, regional and global, available to the specified project.
+     * @alias compute.sslCertificates.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+      params?: Params$Resource$Sslcertificates$Aggregatedlist,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SslCertificateAggregatedList>;
+    aggregatedList(
+      params: Params$Resource$Sslcertificates$Aggregatedlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SslCertificateAggregatedList>,
+      callback: BodyResponseCallback<Schema$SslCertificateAggregatedList>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Sslcertificates$Aggregatedlist,
+      callback: BodyResponseCallback<Schema$SslCertificateAggregatedList>
+    ): void;
+    aggregatedList(
+      callback: BodyResponseCallback<Schema$SslCertificateAggregatedList>
+    ): void;
+    aggregatedList(
+      paramsOrCallback?:
+        | Params$Resource$Sslcertificates$Aggregatedlist
+        | BodyResponseCallback<Schema$SslCertificateAggregatedList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SslCertificateAggregatedList>,
+      callback?: BodyResponseCallback<Schema$SslCertificateAggregatedList>
+    ): void | GaxiosPromise<Schema$SslCertificateAggregatedList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sslcertificates$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sslcertificates$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/aggregated/sslCertificates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SslCertificateAggregatedList>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$SslCertificateAggregatedList>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * compute.sslCertificates.delete
      * @desc Deletes the specified SslCertificate resource.
      * @example
@@ -67495,7 +71810,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -67623,7 +71938,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -67753,7 +72068,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -67894,7 +72209,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68031,7 +72346,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68056,6 +72371,34 @@ export namespace compute_beta {
     }
   }
 
+  export interface Params$Resource$Sslcertificates$Aggregatedlist
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+  }
   export interface Params$Resource$Sslcertificates$Delete
     extends StandardParameters {
     /**
@@ -68221,7 +72564,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68295,7 +72638,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68371,7 +72714,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68447,7 +72790,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68536,7 +72879,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68618,7 +72961,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68698,7 +73041,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69008,7 +73351,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69141,7 +73484,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69279,7 +73622,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69410,7 +73753,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69540,7 +73883,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69674,7 +74017,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69818,7 +74161,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69900,7 +74243,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69997,6 +74340,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.drainTimeoutSeconds The drain timeout specifies the upper bound in seconds on the amount of time allowed to drain connections from the current ACTIVE subnetwork to the current BACKUP subnetwork. The drain timeout is only applicable when the following conditions are true: - the subnetwork being patched has purpose = INTERNAL_HTTPS_LOAD_BALANCER - the subnetwork being patched has role = BACKUP - the patch request is setting the role to ACTIVE. Note that after this patch operation the roles of the ACTIVE and BACKUP subnetworks will be swapped.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -70044,7 +74388,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -70179,7 +74523,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -70319,7 +74663,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -70460,7 +74804,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -70697,6 +75041,10 @@ export namespace compute_beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
+     * The drain timeout specifies the upper bound in seconds on the amount of time allowed to drain connections from the current ACTIVE subnetwork to the current BACKUP subnetwork. The drain timeout is only applicable when the following conditions are true: - the subnetwork being patched has purpose = INTERNAL_HTTPS_LOAD_BALANCER - the subnetwork being patched has role = BACKUP - the patch request is setting the role to ACTIVE. Note that after this patch operation the roles of the ACTIVE and BACKUP subnetworks will be swapped.
+     */
+    drainTimeoutSeconds?: number;
+    /**
      * Project ID for this request.
      */
     project?: string;
@@ -70805,6 +75153,93 @@ export namespace compute_beta {
     }
 
     /**
+     * compute.targetHttpProxies.aggregatedList
+     * @desc Retrieves the list of all TargetHttpProxy resources, regional and global, available to the specified project.
+     * @alias compute.targetHttpProxies.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+      params?: Params$Resource$Targethttpproxies$Aggregatedlist,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TargetHttpProxyAggregatedList>;
+    aggregatedList(
+      params: Params$Resource$Targethttpproxies$Aggregatedlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetHttpProxyAggregatedList>,
+      callback: BodyResponseCallback<Schema$TargetHttpProxyAggregatedList>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Targethttpproxies$Aggregatedlist,
+      callback: BodyResponseCallback<Schema$TargetHttpProxyAggregatedList>
+    ): void;
+    aggregatedList(
+      callback: BodyResponseCallback<Schema$TargetHttpProxyAggregatedList>
+    ): void;
+    aggregatedList(
+      paramsOrCallback?:
+        | Params$Resource$Targethttpproxies$Aggregatedlist
+        | BodyResponseCallback<Schema$TargetHttpProxyAggregatedList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetHttpProxyAggregatedList>,
+      callback?: BodyResponseCallback<Schema$TargetHttpProxyAggregatedList>
+    ): void | GaxiosPromise<Schema$TargetHttpProxyAggregatedList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Targethttpproxies$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Targethttpproxies$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/aggregated/targetHttpProxies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TargetHttpProxyAggregatedList>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$TargetHttpProxyAggregatedList>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * compute.targetHttpProxies.delete
      * @desc Deletes the specified TargetHttpProxy resource.
      * @example
@@ -70909,7 +75344,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -71037,7 +75472,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -71167,7 +75602,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -71308,7 +75743,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -71442,7 +75877,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -71579,7 +76014,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -71604,6 +76039,34 @@ export namespace compute_beta {
     }
   }
 
+  export interface Params$Resource$Targethttpproxies$Aggregatedlist
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+  }
   export interface Params$Resource$Targethttpproxies$Delete
     extends StandardParameters {
     /**
@@ -71743,6 +76206,93 @@ export namespace compute_beta {
     }
 
     /**
+     * compute.targetHttpsProxies.aggregatedList
+     * @desc Retrieves the list of all TargetHttpsProxy resources, regional and global, available to the specified project.
+     * @alias compute.targetHttpsProxies.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+      params?: Params$Resource$Targethttpsproxies$Aggregatedlist,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TargetHttpsProxyAggregatedList>;
+    aggregatedList(
+      params: Params$Resource$Targethttpsproxies$Aggregatedlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>,
+      callback: BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Targethttpsproxies$Aggregatedlist,
+      callback: BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>
+    ): void;
+    aggregatedList(
+      callback: BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>
+    ): void;
+    aggregatedList(
+      paramsOrCallback?:
+        | Params$Resource$Targethttpsproxies$Aggregatedlist
+        | BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>,
+      callback?: BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>
+    ): void | GaxiosPromise<Schema$TargetHttpsProxyAggregatedList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Targethttpsproxies$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Targethttpsproxies$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/aggregated/targetHttpsProxies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TargetHttpsProxyAggregatedList>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$TargetHttpsProxyAggregatedList>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * compute.targetHttpsProxies.delete
      * @desc Deletes the specified TargetHttpsProxy resource.
      * @example
@@ -71847,7 +76397,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -71975,7 +76525,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -72105,7 +76655,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -72248,7 +76798,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -72325,7 +76875,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -72459,7 +77009,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -72536,7 +77086,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -72670,7 +77220,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -72807,7 +77357,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -72832,6 +77382,34 @@ export namespace compute_beta {
     }
   }
 
+  export interface Params$Resource$Targethttpsproxies$Aggregatedlist
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+  }
   export interface Params$Resource$Targethttpsproxies$Delete
     extends StandardParameters {
     /**
@@ -73166,7 +77744,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -73304,7 +77882,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -73436,7 +78014,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -73570,7 +78148,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -73715,7 +78293,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -73856,7 +78434,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -74156,7 +78734,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -74294,7 +78872,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -74439,7 +79017,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -74572,7 +79150,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -74703,7 +79281,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -74844,7 +79422,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -74978,7 +79556,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -75122,7 +79700,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -75260,7 +79838,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -75398,7 +79976,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -75537,7 +80115,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -75678,7 +80256,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -76141,7 +80719,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -76269,7 +80847,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -76399,7 +80977,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -76540,7 +81118,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -76674,7 +81252,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -76808,7 +81386,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -76942,7 +81520,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -77019,7 +81597,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -77156,7 +81734,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -77499,7 +82077,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -77627,7 +82205,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -77757,7 +82335,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -77898,7 +82476,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -78032,7 +82610,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -78166,7 +82744,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -78454,7 +83032,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -78592,7 +83170,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -78724,7 +83302,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -78858,7 +83436,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -79005,7 +83583,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -79083,7 +83661,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -79224,7 +83802,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -79440,6 +84018,87 @@ export namespace compute_beta {
     }
 
     /**
+     * compute.urlMaps.aggregatedList
+     * @desc Retrieves the list of all UrlMap resources, regional and global, available to the specified project.
+     * @alias compute.urlMaps.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+      params?: Params$Resource$Urlmaps$Aggregatedlist,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UrlMapsAggregatedList>;
+    aggregatedList(
+      params: Params$Resource$Urlmaps$Aggregatedlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlMapsAggregatedList>,
+      callback: BodyResponseCallback<Schema$UrlMapsAggregatedList>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Urlmaps$Aggregatedlist,
+      callback: BodyResponseCallback<Schema$UrlMapsAggregatedList>
+    ): void;
+    aggregatedList(
+      callback: BodyResponseCallback<Schema$UrlMapsAggregatedList>
+    ): void;
+    aggregatedList(
+      paramsOrCallback?:
+        | Params$Resource$Urlmaps$Aggregatedlist
+        | BodyResponseCallback<Schema$UrlMapsAggregatedList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlMapsAggregatedList>,
+      callback?: BodyResponseCallback<Schema$UrlMapsAggregatedList>
+    ): void | GaxiosPromise<Schema$UrlMapsAggregatedList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Urlmaps$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Urlmaps$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/compute/beta/projects/{project}/aggregated/urlMaps'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UrlMapsAggregatedList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$UrlMapsAggregatedList>(parameters);
+      }
+    }
+
+    /**
      * compute.urlMaps.delete
      * @desc Deletes the specified UrlMap resource.
      * @example
@@ -79543,7 +84202,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -79668,7 +84327,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -79797,7 +84456,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -79930,7 +84589,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -80070,7 +84729,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -80203,7 +84862,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -80340,7 +84999,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -80474,7 +85133,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -80610,7 +85269,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -80635,6 +85294,34 @@ export namespace compute_beta {
     }
   }
 
+  export interface Params$Resource$Urlmaps$Aggregatedlist
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+  }
   export interface Params$Resource$Urlmaps$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -80895,7 +85582,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -80972,7 +85659,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -81047,7 +85734,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -81127,7 +85814,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -81209,7 +85896,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -81287,7 +85974,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -81365,7 +86052,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -81694,7 +86381,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -81826,7 +86513,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -81957,7 +86644,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -82091,7 +86778,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -82235,7 +86922,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -82313,7 +87000,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -82454,7 +87141,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -82770,7 +87457,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -82902,7 +87589,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -83047,7 +87734,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -83252,7 +87939,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -83389,7 +88076,7 @@ export namespace compute_beta {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {

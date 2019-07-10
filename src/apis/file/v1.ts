@@ -139,7 +139,7 @@ export namespace file_v1 {
     name?: string;
   }
   /**
-   * Instance represents the interface for SLM services to actuate the state of control plane resources.  Example Instance in JSON, where   consumer-project=snapchat,   producer-project=cloud-sql:  ```json Instance: {   &quot;name&quot;:   &quot;projects/snapchat/locations/us-east1/instances/prod-instance&quot;,   &quot;create_time&quot;: {     &quot;seconds&quot;: 1526406431,   },   &quot;labels&quot;: {     &quot;env&quot;: &quot;prod&quot;,     &quot;foo&quot;: &quot;bar&quot;   },   &quot;state&quot;: READY,   &quot;software_version&quot;: &quot;cloud-sql-09-28-2018&quot;,   &quot;maintenance_policy_names&quot;: {     &quot;UpdatePolicy&quot;:     &quot;projects/snapchat/locations/us-east1/maintenancePolicies/prod-update-policy&quot;,   }   &quot;rollout_metadata&quot;: {     &quot;projects/cloud-sql/locations/global/rolloutTypes/software_update&quot;: {       &quot;release&quot;:       &quot;projects/cloud-sql/locations/global/releases/cloud-sql-09-28-2018&quot;,       &quot;rollout&quot;:       &quot;projects/cloud-sql/locations/us-east1/rollouts/cloud-sql-09-28-2018-canary&quot;,     }     &quot;projects/cloud-sql/locations/global/rolloutTypes/instance_restart&quot;: {       &quot;release&quot;:       &quot;projects/cloud-sql/locations/global/releases/cloud-sql-09-20-repair&quot;,       &quot;rollout&quot;:       &quot;projects/cloud-sql/locations/us-east1/rollouts/cloud-sql-09-20-repair-100-percent&quot;,     }   }   &quot;tenant_project_id&quot;: &quot;cloud-sql-test-tenant&quot;,   &quot;producer_metadata&quot;: {     &quot;cloud-sql-tier&quot;: &quot;basic&quot;,     &quot;cloud-sql-instance-size&quot;: &quot;1G&quot;,   },   &quot;provisioned_resources&quot;: [     {       &quot;resource-type&quot;: &quot;compute-instance&quot;,       &quot;resource-url&quot;:       &quot;https://www.googleapis.com/compute/v1/projects/cloud-sql/zones/us-east1-b/instances/vm-1&quot;,     }   ], } ```
+   * Instance represents the interface for SLM services to actuate the state of control plane resources.  Example Instance in JSON, where   consumer-project=snapchat,   producer-project=cloud-sql:  ```json Instance: {   &quot;name&quot;:   &quot;projects/snapchat/locations/us-east1/instances/prod-instance&quot;,   &quot;create_time&quot;: {     &quot;seconds&quot;: 1526406431,   },   &quot;labels&quot;: {     &quot;env&quot;: &quot;prod&quot;,     &quot;foo&quot;: &quot;bar&quot;   },   &quot;state&quot;: READY,   &quot;software_versions&quot;: {     &quot;software_update&quot;: &quot;cloud-sql-09-28-2018&quot;,   },   &quot;maintenance_policy_names&quot;: {     &quot;UpdatePolicy&quot;:     &quot;projects/snapchat/locations/us-east1/maintenancePolicies/prod-update-policy&quot;,   }   &quot;rollout_metadata&quot;: {     &quot;projects/cloud-sql/locations/global/rolloutTypes/software_update&quot;: {       &quot;release&quot;:       &quot;projects/cloud-sql/locations/global/releases/cloud-sql-09-28-2018&quot;,       &quot;rollout&quot;:       &quot;projects/cloud-sql/locations/us-east1/rollouts/cloud-sql-09-28-2018-canary&quot;,     },     &quot;projects/cloud-sql/locations/global/rolloutTypes/instance_restart&quot;: {       &quot;release&quot;:       &quot;projects/cloud-sql/locations/global/releases/cloud-sql-09-20-repair&quot;,       &quot;rollout&quot;:       &quot;projects/cloud-sql/locations/us-east1/rollouts/cloud-sql-09-20-repair-100-percent&quot;,     }   }   &quot;tenant_project_id&quot;: &quot;cloud-sql-test-tenant&quot;,   &quot;producer_metadata&quot;: {     &quot;cloud-sql-tier&quot;: &quot;basic&quot;,     &quot;cloud-sql-instance-size&quot;: &quot;1G&quot;,   },   &quot;provisioned_resources&quot;: [     {       &quot;resource-type&quot;: &quot;compute-instance&quot;,       &quot;resource-url&quot;:       &quot;https://www.googleapis.com/compute/v1/projects/cloud-sql/zones/us-east1-b/instances/vm-1&quot;,     }   ],   &quot;maintenance_schedules&quot;: {     &quot;csa_rollout&quot;: {        &quot;start_time&quot;: {           &quot;seconds&quot;: 1526406431,        },        &quot;end_time&quot;: {           &quot;seconds&quot;: 1535406431,        },     },     &quot;ncsa_rollout&quot;: {        &quot;start_time&quot;: {           &quot;seconds&quot;: 1526406431,        },        &quot;end_time&quot;: {           &quot;seconds&quot;: 1535406431,        },     }   } } ```
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1Instance {
     /**
@@ -151,9 +151,15 @@ export namespace file_v1 {
      */
     labels?: {[key: string]: string};
     /**
-     * The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to //depot/google3/google/cloud/saasaccelerator/maintenancepolicy/api/v1/maintenance_policy_resources.proto
+     * The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug.
      */
     maintenancePolicyNames?: {[key: string]: string};
+    /**
+     * The MaintenanceSchedule contains the scheduling information of published maintenance schedule.
+     */
+    maintenanceSchedules?: {
+      [key: string]: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule;
+    };
     /**
      * Unique name of the resource. It uses the form:  `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      */
@@ -192,6 +198,40 @@ export namespace file_v1 {
      * Output only. Timestamp when the resource was last modified.
      */
     updateTime?: string;
+  }
+  /**
+   * Maintenance schedule which is exposed to customer and potentially end user, indicating published upcoming future maintenance schedule
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule {
+    /**
+     * Can this scheduled update be rescheduled? By default, it&#39;s true and API needs to do explicitly check whether it&#39;s set, if it&#39;s set as false explicitly, it&#39;s false
+     */
+    canReschedule?: boolean;
+    /**
+     * The scheduled end time for the maintenance.
+     */
+    endTime?: string;
+    /**
+     * The scheduled start time for the maintenance.
+     */
+    startTime?: string;
+  }
+  /**
+   * Node information for custom per-node SLO implementations. SSA does not support per-node SLO, but producers can populate per-node information in SloMetadata for custom precomputations. SSA Eligibility Exporter will emit per-node metric based on this information.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata {
+    /**
+     * By default node is eligible if instance is eligible. But individual node might be excluded from SLO by adding entry here. For semantic see SloMetadata.exclusions. If both instance and node level exclusions are present for time period, the node level&#39;s reason will be reported by Eligibility Exporter.
+     */
+    exclusions?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
+    /**
+     * The location of the node, if different from instance location.
+     */
+    location?: string;
+    /**
+     * The id of the node. This should be equal to SaasInstanceNode.node_id.
+     */
+    nodeId?: string;
   }
   /**
    * NotificationMetadata is the notification state for an instance.
@@ -245,7 +285,7 @@ export namespace file_v1 {
     rolloutName?: string;
   }
   /**
-   * A temporal SLO exclusion specification.
+   * SloExclusion represents an excusion in SLI calculation applies to all SLOs.
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion {
     /**
@@ -261,9 +301,9 @@ export namespace file_v1 {
      */
     reason?: string;
     /**
-     * Name of an SLI/SLO that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLI/SLOs defined in the service SLO configuration.
+     * Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs defined in the service SLO configuration.
      */
-    sloName?: string;
+    sliName?: string;
   }
   /**
    * SloMetadata contains resources required for proper SLO classification of the instance.
@@ -273,6 +313,10 @@ export namespace file_v1 {
      * List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published.  It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state).  This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, a dedicated tier name can be used that does not have targets specified in the service SLO configuration.
      */
     exclusions?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
+    /**
+     * Optional: list of nodes. Some producers need to use per-node metadata to calculate SLO. This field allows such producers to publish per-node SLO meta data, which will be consumed by SSA Eligibility Exporter and published in the form of per node metric to Monarch.
+     */
+    nodes?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata[];
     /**
      * Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration.  Field is mandatory and must not be empty.
      */
@@ -429,7 +473,7 @@ export namespace file_v1 {
      */
     metadata?: {[key: string]: any};
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
     name?: string;
     /**
@@ -471,7 +515,7 @@ export namespace file_v1 {
     verb?: string;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**

@@ -622,7 +622,7 @@ export namespace clouddebugger_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudDebugger = google.clouddebugger('v2');
      *
      * authorize(function(authClient) {
@@ -646,16 +646,12 @@ export namespace clouddebugger_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias clouddebugger.controller.debuggees.register
@@ -772,7 +768,7 @@ export namespace clouddebugger_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudDebugger = google.clouddebugger('v2');
      *
      * authorize(function(authClient) {
@@ -795,16 +791,12 @@ export namespace clouddebugger_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias clouddebugger.controller.debuggees.breakpoints.list
@@ -907,7 +899,7 @@ export namespace clouddebugger_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudDebugger = google.clouddebugger('v2');
      *
      * authorize(function(authClient) {
@@ -938,16 +930,12 @@ export namespace clouddebugger_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias clouddebugger.controller.debuggees.breakpoints.update
@@ -1112,7 +1100,7 @@ export namespace clouddebugger_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudDebugger = google.clouddebugger('v2');
      *
      * authorize(function(authClient) {
@@ -1132,16 +1120,12 @@ export namespace clouddebugger_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias clouddebugger.debugger.debuggees.list
@@ -1266,7 +1250,7 @@ export namespace clouddebugger_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudDebugger = google.clouddebugger('v2');
      *
      * authorize(function(authClient) {
@@ -1289,16 +1273,12 @@ export namespace clouddebugger_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias clouddebugger.debugger.debuggees.breakpoints.delete
@@ -1391,7 +1371,7 @@ export namespace clouddebugger_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudDebugger = google.clouddebugger('v2');
      *
      * authorize(function(authClient) {
@@ -1417,16 +1397,12 @@ export namespace clouddebugger_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias clouddebugger.debugger.debuggees.breakpoints.get
@@ -1523,7 +1499,7 @@ export namespace clouddebugger_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudDebugger = google.clouddebugger('v2');
      *
      * authorize(function(authClient) {
@@ -1546,16 +1522,12 @@ export namespace clouddebugger_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias clouddebugger.debugger.debuggees.breakpoints.list
@@ -1655,7 +1627,7 @@ export namespace clouddebugger_v2 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudDebugger = google.clouddebugger('v2');
      *
      * authorize(function(authClient) {
@@ -1682,16 +1654,12 @@ export namespace clouddebugger_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias clouddebugger.debugger.debuggees.breakpoints.set

@@ -29,15 +29,15 @@
     "webpack": "webpack"
   },
   "dependencies": {
-    "googleapis-common": "^2.0.0"
+    "googleapis-common": "^2.0.4"
   },
   "devDependencies": {
     "gts": "^1.0.0",
     "null-loader": "^3.0.0",
-    "ts-loader": "^6.0.0",
-    "typedoc": "^0.14.2",
-    "typescript": "~3.5.0",
-    "webpack": "^4.31.0",
-    "webpack-cli": "^3.3.2"
+    "ts-loader": "^6.0.4",
+    "typedoc": "^0.15.0",
+    "typescript": "~3.5.3",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5"
   }
 }

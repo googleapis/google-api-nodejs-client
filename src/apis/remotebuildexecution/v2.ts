@@ -134,7 +134,7 @@ export namespace remotebuildexecution_v2 {
      */
     commandDigest?: Schema$BuildBazelRemoteExecutionV2Digest;
     /**
-     * If true, then the `Action`&#39;s result cannot be cached.
+     * If true, then the `Action`&#39;s result cannot be cached, and in-flight requests for the same `Action` may not be merged.
      */
     doNotCache?: boolean;
     /**
@@ -165,35 +165,35 @@ export namespace remotebuildexecution_v2 {
      */
     exitCode?: number;
     /**
-     * The output directories of the action. For each output directory requested in the `output_directories` field of the Action, if the corresponding directory existed after the action completed, a single entry will be present in the output list, which will contain the digest of a Tree message containing the directory tree, and the path equal exactly to the corresponding Action output_directories member.  As an example, suppose the Action had an output directory `a/b/dir` and the execution produced the following contents in `a/b/dir`: a file named `bar` and a directory named `foo` with an executable file named `baz`. Then, output_directory will contain (hashes shortened for readability):  ```json // OutputDirectory proto: {   path: &quot;a/b/dir&quot;   tree_digest: {     hash: &quot;4a73bc9d03...&quot;,     size: 55   } } // Tree proto with hash &quot;4a73bc9d03...&quot; and size 55: {   root: {     files: [       {         name: &quot;bar&quot;,         digest: {           hash: &quot;4a73bc9d03...&quot;,           size: 65534         }       }     ],     directories: [       {         name: &quot;foo&quot;,         digest: {           hash: &quot;4cf2eda940...&quot;,           size: 43         }       }     ]   }   children : {     // (Directory proto with hash &quot;4cf2eda940...&quot; and size 43)     files: [       {         name: &quot;baz&quot;,         digest: {           hash: &quot;b2c941073e...&quot;,           size: 1294,         },         is_executable: true       }     ]   } } ```
+     * The output directories of the action. For each output directory requested in the `output_directories` field of the Action, if the corresponding directory existed after the action completed, a single entry will be present in the output list, which will contain the digest of a Tree message containing the directory tree, and the path equal exactly to the corresponding Action output_directories member.  As an example, suppose the Action had an output directory `a/b/dir` and the execution produced the following contents in `a/b/dir`: a file named `bar` and a directory named `foo` with an executable file named `baz`. Then, output_directory will contain (hashes shortened for readability):  ```json // OutputDirectory proto: {   path: &quot;a/b/dir&quot;   tree_digest: {     hash: &quot;4a73bc9d03...&quot;,     size: 55   } } // Tree proto with hash &quot;4a73bc9d03...&quot; and size 55: {   root: {     files: [       {         name: &quot;bar&quot;,         digest: {           hash: &quot;4a73bc9d03...&quot;,           size: 65534         }       }     ],     directories: [       {         name: &quot;foo&quot;,         digest: {           hash: &quot;4cf2eda940...&quot;,           size: 43         }       }     ]   }   children : {     // (Directory proto with hash &quot;4cf2eda940...&quot; and size 43)     files: [       {         name: &quot;baz&quot;,         digest: {           hash: &quot;b2c941073e...&quot;,           size: 1294,         },         is_executable: true       }     ]   } } ``` If an output of the same name was found, but was not a directory, the server will return a FAILED_PRECONDITION.
      */
     outputDirectories?: Schema$BuildBazelRemoteExecutionV2OutputDirectory[];
     /**
-     * The output directories of the action that are symbolic links to other directories. Those may be links to other output directories, or input directories, or even absolute paths outside of the working directory, if the server supports SymlinkAbsolutePathStrategy.ALLOWED. For each output directory requested in the `output_directories` field of the Action, if the directory file existed after the action completed, a single entry will be present either in this field, or in the `output_directories` field, if the directory was not a symbolic link.  If the action does not produce the requested output, or produces a file where a directory is expected or vice versa, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.
+     * The output directories of the action that are symbolic links to other directories. Those may be links to other output directories, or input directories, or even absolute paths outside of the working directory, if the server supports SymlinkAbsolutePathStrategy.ALLOWED. For each output directory requested in the `output_directories` field of the Action, if the directory existed after the action completed, a single entry will be present either in this field, or in the `output_directories` field, if the directory was not a symbolic link.  If an output of the same name was found, but was a symbolic link to a file instead of a directory, the server will return a FAILED_PRECONDITION. If the action does not produce the requested output, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.
      */
     outputDirectorySymlinks?: Schema$BuildBazelRemoteExecutionV2OutputSymlink[];
     /**
-     * The output files of the action. For each output file requested in the `output_files` field of the Action, if the corresponding file existed after the action completed, a single entry will be present either in this field, or in the output_file_symlinks field, if the file was a symbolic link to another file.  If the action does not produce the requested output, or produces a directory where a regular file is expected or vice versa, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.
+     * The output files of the action. For each output file requested in the `output_files` field of the Action, if the corresponding file existed after the action completed, a single entry will be present either in this field, or the `output_file_symlinks` field if the file was a symbolic link to another file.  If an output of the same name was found, but was a directory rather than a regular file, the server will return a FAILED_PRECONDITION. If the action does not produce the requested output, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.
      */
     outputFiles?: Schema$BuildBazelRemoteExecutionV2OutputFile[];
     /**
-     * The output files of the action that are symbolic links to other files. Those may be links to other output files, or input files, or even absolute paths outside of the working directory, if the server supports SymlinkAbsolutePathStrategy.ALLOWED. For each output file requested in the `output_files` field of the Action, if the corresponding file existed after the action completed, a single entry will be present either in this field, or in the `output_files` field, if the file was not a symbolic link.  If the action does not produce the requested output, or produces a directory where a regular file is expected or vice versa, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.
+     * The output files of the action that are symbolic links to other files. Those may be links to other output files, or input files, or even absolute paths outside of the working directory, if the server supports SymlinkAbsolutePathStrategy.ALLOWED. For each output file requested in the `output_files` field of the Action, if the corresponding file existed after the action completed, a single entry will be present either in this field, or in the `output_files` field, if the file was not a symbolic link.  If an output symbolic link of the same name was found, but its target type was not a regular file, the server will return a FAILED_PRECONDITION. If the action does not produce the requested output, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.
      */
     outputFileSymlinks?: Schema$BuildBazelRemoteExecutionV2OutputSymlink[];
     /**
-     * The digest for a blob containing the standard error of the action, which can be retrieved from the ContentAddressableStorage. See `stderr_raw` for when this will be set.
+     * The digest for a blob containing the standard error of the action, which can be retrieved from the ContentAddressableStorage.
      */
     stderrDigest?: Schema$BuildBazelRemoteExecutionV2Digest;
     /**
-     * The standard error buffer of the action. The server will determine, based on the size of the buffer, whether to return it in raw form or to return a digest in `stderr_digest` that points to the buffer. If neither is set, then the buffer is empty. The client SHOULD NOT assume it will get one of the raw buffer or a digest on any given request and should be prepared to handle either.
+     * The standard error buffer of the action. The server SHOULD NOT inline stderr unless requested by the client in the GetActionResultRequest message. The server MAY omit inlining, even if requested, and MUST do so if inlining would cause the response to exceed message size limits.
      */
     stderrRaw?: string;
     /**
-     * The digest for a blob containing the standard output of the action, which can be retrieved from the ContentAddressableStorage. See `stdout_raw` for when this will be set.
+     * The digest for a blob containing the standard output of the action, which can be retrieved from the ContentAddressableStorage.
      */
     stdoutDigest?: Schema$BuildBazelRemoteExecutionV2Digest;
     /**
-     * The standard output buffer of the action. The server will determine, based on the size of the buffer, whether to return it in raw form or to return a digest in `stdout_digest` that points to the buffer. If neither is set, then the buffer is empty. The client SHOULD NOT assume it will get one of the raw buffer or a digest on any given request and should be prepared to handle either.
+     * The standard output buffer of the action. The server SHOULD NOT inline stdout unless requested by the client in the GetActionResultRequest message. The server MAY omit inlining, even if requested, and MUST do so if inlining would cause the response to exceed message size limits.
      */
     stdoutRaw?: string;
   }
@@ -216,7 +216,7 @@ export namespace remotebuildexecution_v2 {
     responses?: Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponseResponse[];
   }
   /**
-   * A response corresponding to a single blob that the client tried to upload.
+   * A response corresponding to a single blob that the client tried to download.
    */
   export interface Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponseResponse {
     /**
@@ -314,7 +314,7 @@ export namespace remotebuildexecution_v2 {
      */
     environmentVariables?: Schema$BuildBazelRemoteExecutionV2CommandEnvironmentVariable[];
     /**
-     * A list of the output directories that the client expects to retrieve from the action. Only the listed directories will be returned (an entire directory structure will be returned as a Tree message digest, see OutputDirectory), as well as files listed in `output_files`. Other files or directories that may be created during command execution are discarded.  The paths are relative to the working directory of the action execution. The paths are specified using a single forward slash (`/`) as a path separator, even if the execution platform natively uses a different separator. The path MUST NOT include a trailing slash, nor a leading slash, being a relative path. The special value of empty string is allowed, although not recommended, and can be used to capture the entire working directory tree, including inputs.  In order to ensure consistent hashing of the same Action, the output paths MUST be sorted lexicographically by code point (or, equivalently, by UTF-8 bytes).  An output directory cannot be duplicated or have the same path as any of the listed output files.  Directories leading up to the output directories (but not the output directories themselves) are created by the worker prior to execution, even if they are not explicitly part of the input root.
+     * A list of the output directories that the client expects to retrieve from the action. Only the listed directories will be returned (an entire directory structure will be returned as a Tree message digest, see OutputDirectory), as well as files listed in `output_files`. Other files or directories that may be created during command execution are discarded.  The paths are relative to the working directory of the action execution. The paths are specified using a single forward slash (`/`) as a path separator, even if the execution platform natively uses a different separator. The path MUST NOT include a trailing slash, nor a leading slash, being a relative path. The special value of empty string is allowed, although not recommended, and can be used to capture the entire working directory tree, including inputs.  In order to ensure consistent hashing of the same Action, the output paths MUST be sorted lexicographically by code point (or, equivalently, by UTF-8 bytes).  An output directory cannot be duplicated or have the same path as any of the listed output files. An output directory is allowed to be a parent of another output directory.  Directories leading up to the output directories (but not the output directories themselves) are created by the worker prior to execution, even if they are not explicitly part of the input root.
      */
     outputDirectories?: string[];
     /**
@@ -322,7 +322,7 @@ export namespace remotebuildexecution_v2 {
      */
     outputFiles?: string[];
     /**
-     * The platform requirements for the execution environment. The server MAY choose to execute the action on any worker satisfying the requirements, so the client SHOULD ensure that running the action on any such worker will have the same result.
+     * The platform requirements for the execution environment. The server MAY choose to execute the action on any worker satisfying the requirements, so the client SHOULD ensure that running the action on any such worker will have the same result. A detailed lexicon for this can be found in the accompanying platform.md.
      */
     platform?: Schema$BuildBazelRemoteExecutionV2Platform;
     /**
@@ -357,7 +357,7 @@ export namespace remotebuildexecution_v2 {
     sizeBytes?: string;
   }
   /**
-   * A `Directory` represents a directory node in a file tree, containing zero or more children FileNodes, DirectoryNodes and SymlinkNodes. Each `Node` contains its name in the directory, either the digest of its content (either a file blob or a `Directory` proto) or a symlink target, as well as possibly some metadata about the file or directory.  In order to ensure that two equivalent directory trees hash to the same value, the following restrictions MUST be obeyed when constructing a a `Directory`:  * Every child in the directory must have a path of exactly one segment.   Multiple levels of directory hierarchy may not be collapsed. * Each child in the directory must have a unique path segment (file name). * The files, directories and symlinks in the directory must each be sorted   in lexicographical order by path. The path strings must be sorted by code   point, equivalently, by UTF-8 bytes.  A `Directory` that obeys the restrictions is said to be in canonical form.  As an example, the following could be used for a file named `bar` and a directory named `foo` with an executable file named `baz` (hashes shortened for readability):  ```json // (Directory proto) {   files: [     {       name: &quot;bar&quot;,       digest: {         hash: &quot;4a73bc9d03...&quot;,         size: 65534       }     }   ],   directories: [     {       name: &quot;foo&quot;,       digest: {         hash: &quot;4cf2eda940...&quot;,         size: 43       }     }   ] }  // (Directory proto with hash &quot;4cf2eda940...&quot; and size 43) {   files: [     {       name: &quot;baz&quot;,       digest: {         hash: &quot;b2c941073e...&quot;,         size: 1294,       },       is_executable: true     }   ] } ```
+   * A `Directory` represents a directory node in a file tree, containing zero or more children FileNodes, DirectoryNodes and SymlinkNodes. Each `Node` contains its name in the directory, either the digest of its content (either a file blob or a `Directory` proto) or a symlink target, as well as possibly some metadata about the file or directory.  In order to ensure that two equivalent directory trees hash to the same value, the following restrictions MUST be obeyed when constructing a a `Directory`:  * Every child in the directory must have a path of exactly one segment.   Multiple levels of directory hierarchy may not be collapsed. * Each child in the directory must have a unique path segment (file name).   Note that while the API itself is case-sensitive, the environment where   the Action is executed may or may not be case-sensitive. That is, it is   legal to call the API with a Directory that has both &quot;Foo&quot; and &quot;foo&quot; as   children, but the Action may be rejected by the remote system upon   execution. * The files, directories and symlinks in the directory must each be sorted   in lexicographical order by path. The path strings must be sorted by code   point, equivalently, by UTF-8 bytes.  A `Directory` that obeys the restrictions is said to be in canonical form.  As an example, the following could be used for a file named `bar` and a directory named `foo` with an executable file named `baz` (hashes shortened for readability):  ```json // (Directory proto) {   files: [     {       name: &quot;bar&quot;,       digest: {         hash: &quot;4a73bc9d03...&quot;,         size: 65534       }     }   ],   directories: [     {       name: &quot;foo&quot;,       digest: {         hash: &quot;4cf2eda940...&quot;,         size: 43       }     }   ] }  // (Directory proto with hash &quot;4cf2eda940...&quot; and size 43) {   files: [     {       name: &quot;baz&quot;,       digest: {         hash: &quot;b2c941073e...&quot;,         size: 1294,       },       is_executable: true     }   ] } ```
    */
   export interface Schema$BuildBazelRemoteExecutionV2Directory {
     /**
@@ -439,6 +439,9 @@ export namespace remotebuildexecution_v2 {
      * The digest of the Action being executed.
      */
     actionDigest?: Schema$BuildBazelRemoteExecutionV2Digest;
+    /**
+     * The current stage of execution.
+     */
     stage?: string;
     /**
      * If set, the client can use this name with ByteStream.Read to stream the standard error.
@@ -466,7 +469,7 @@ export namespace remotebuildexecution_v2 {
      */
     resultsCachePolicy?: Schema$BuildBazelRemoteExecutionV2ResultsCachePolicy;
     /**
-     * If true, the action will be executed anew even if its result was already present in the cache. If false, the result may be served from the ActionCache.
+     * If true, the action will be executed even if its result is already present in the ActionCache. The execution is still allowed to be merged with other in-flight executions of the same action, however - semantically, the service MUST only guarantee that the results of an execution with this field set were not visible before the corresponding execution request was sent. Note that actions from execution requests setting this field set are still eligible to be entered into the action cache upon completion, and services SHOULD overwrite any existing entries that may exist. This allows skip_cache_lookup requests to be used as a mechanism for replacing action cache entries that reference outputs no longer available or that are poisoned in any way. If false, the result may be served from the action cache.
      */
     skipCacheLookup?: boolean;
   }
@@ -596,9 +599,13 @@ export namespace remotebuildexecution_v2 {
     treeDigest?: Schema$BuildBazelRemoteExecutionV2Digest;
   }
   /**
-   * An `OutputFile` is similar to a FileNode, but it is used as an output in an `ActionResult`. It allows a full file path rather than only a name.  `OutputFile` is binary-compatible with `FileNode`.
+   * An `OutputFile` is similar to a FileNode, but it is used as an output in an `ActionResult`. It allows a full file path rather than only a name.
    */
   export interface Schema$BuildBazelRemoteExecutionV2OutputFile {
+    /**
+     * The contents of the file if inlining was requested. The server SHOULD NOT inline file contents unless requested by the client in the GetActionResultRequest message. The server MAY omit inlining, even if requested, and MUST do so if inlining would cause the response to exceed message size limits.
+     */
+    contents?: string;
     /**
      * The digest of the file&#39;s content.
      */
@@ -661,7 +668,7 @@ export namespace remotebuildexecution_v2 {
     minPriority?: number;
   }
   /**
-   * An optional Metadata to attach to any RPC request to tell the server about an external context of the request. The server may use this for logging or other purposes. To use it, the client attaches the header to the call using the canonical proto serialization:  * name: `build.bazel.remote.execution.v2.requestmetadata-bin` * contents: the base64 encoded binary `RequestMetadata` message.
+   * An optional Metadata to attach to any RPC request to tell the server about an external context of the request. The server may use this for logging or other purposes. To use it, the client attaches the header to the call using the canonical proto serialization:  * name: `build.bazel.remote.execution.v2.requestmetadata-bin` * contents: the base64 encoded binary `RequestMetadata` message. Note: the gRPC library serializes binary headers encoded in base 64 by default (https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md#requests). Therefore, if the gRPC library is used to pass/retrieve this metadata, the user may ignore the base64 encoding and assume it is simply serialized as a binary message.
    */
   export interface Schema$BuildBazelRemoteExecutionV2RequestMetadata {
     /**
@@ -834,6 +841,19 @@ export namespace remotebuildexecution_v2 {
     numWarnings?: string;
   }
   /**
+   * The internal status of the command result.
+   */
+  export interface Schema$GoogleDevtoolsRemotebuildbotCommandStatus {
+    /**
+     * The status code.
+     */
+    code?: string;
+    /**
+     * The error message.
+     */
+    message?: string;
+  }
+  /**
    * The request used for `CreateInstance`.
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateInstanceRequest {
@@ -938,6 +958,10 @@ export namespace remotebuildexecution_v2 {
   }
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsRequest {
     /**
+     * Optional. A filter to constrain the pools returned. Filters have the form:  &lt;field&gt; &lt;operator&gt; &lt;value&gt; [[AND|OR] &lt;field&gt; &lt;operator&gt; &lt;value&gt;]...  &lt;field&gt; is the path for a field or map key in the Pool proto message. e.g. &quot;configuration.disk_size_gb&quot; or &quot;configuration.labels.key&quot;. &lt;operator&gt; can be one of &quot;&lt;&quot;, &quot;&lt;=&quot;, &quot;&gt;=&quot;, &quot;&gt;&quot;, &quot;=&quot;, &quot;!=&quot;, &quot;:&quot;. &quot;:&quot; is a HAS operation for strings and repeated primitive fields. &lt;value&gt; is the value to test, case-insensitive for strings. &quot;*&quot; stands for any value and can be used to test for key presence. Parenthesis determine AND/OR precedence. In space separated restrictions, AND is implicit, e.g. &quot;a = b x = y&quot; is equivalent to &quot;a = b AND x = y&quot;.  Example filter: configuration.labels.key1 = * AND (state = RUNNING OR state = UPDATING)
+     */
+    filter?: string;
+    /**
      * Resource name of the instance. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
      */
     parent?: string;
@@ -973,6 +997,10 @@ export namespace remotebuildexecution_v2 {
      * Required. Disk Type to use for the worker. See [Storage options](https://cloud.google.com/compute/docs/disks/#introduction). Currently only `pd-standard` is supported.
      */
     diskType?: string;
+    /**
+     * Labels associated with the workers. Label keys and values can be no longer than 63 characters, can only contain lowercase letters, numeric characters, underscores and dashes. International letters are permitted. Keys must start with a letter but values are optional. There can not be more than 64 labels per resource.
+     */
+    labels?: {[key: string]: string};
     /**
      * Required. Machine type of the worker, such as `n1-standard-2`. See https://cloud.google.com/compute/docs/machine-types for a list of supported machine types. Note that `f1-micro` and `g1-small` are not yet supported.
      */
@@ -1521,7 +1549,7 @@ export namespace remotebuildexecution_v2 {
     response?: {[key: string]: any};
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$GoogleRpcStatus {
     /**
@@ -1546,12 +1574,15 @@ export namespace remotebuildexecution_v2 {
 
     /**
      * remotebuildexecution.actionResults.get
-     * @desc Retrieve a cached execution result.  Errors:  * `NOT_FOUND`: The requested `ActionResult` is not in the cache.
+     * @desc Retrieve a cached execution result.  Implementations SHOULD ensure that any blobs referenced from the ContentAddressableStorage are available at the time of returning the ActionResult and will be for some period of time afterwards. The TTLs of the referenced blobs SHOULD be increased if necessary and applicable.  Errors:  * `NOT_FOUND`: The requested `ActionResult` is not in the cache.
      * @alias remotebuildexecution.actionResults.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.hash The hash. In the case of SHA-256, it will always be a lowercase hex string exactly 64 characters long.
+     * @param {string=} params.inlineOutputFiles A hint to the server to inline the contents of the listed output files. Each path needs to exactly match one path in `output_files` in the Command message.
+     * @param {boolean=} params.inlineStderr A hint to the server to request inlining stderr in the ActionResult message.
+     * @param {boolean=} params.inlineStdout A hint to the server to request inlining stdout in the ActionResult message.
      * @param {string} params.instanceName The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      * @param {string} params.sizeBytes The size of the blob, in bytes.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1744,6 +1775,18 @@ export namespace remotebuildexecution_v2 {
      * The hash. In the case of SHA-256, it will always be a lowercase hex string exactly 64 characters long.
      */
     hash?: string;
+    /**
+     * A hint to the server to inline the contents of the listed output files. Each path needs to exactly match one path in `output_files` in the Command message.
+     */
+    inlineOutputFiles?: string[];
+    /**
+     * A hint to the server to request inlining stderr in the ActionResult message.
+     */
+    inlineStderr?: boolean;
+    /**
+     * A hint to the server to request inlining stdout in the ActionResult message.
+     */
+    inlineStdout?: boolean;
     /**
      * The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      */
@@ -2493,7 +2536,7 @@ export namespace remotebuildexecution_v2 {
 
     /**
      * remotebuildexecution.getCapabilities
-     * @desc GetCapabilities returns the server capabilities configuration.
+     * @desc GetCapabilities returns the server capabilities configuration of the remote endpoint. Only the capabilities of the services supported by the endpoint will be returned: * Execution + CAS + Action Cache endpoints should return both   CacheCapabilities and ExecutionCapabilities. * Execution only endpoints should return ExecutionCapabilities. * CAS + Action Cache only endpoints should return CacheCapabilities.
      * @alias remotebuildexecution.getCapabilities
      * @memberOf! ()
      *

@@ -106,6 +106,7 @@ export namespace videointelligence_v1 {
   export class Videointelligence {
     context: APIRequestContext;
     operations: Resource$Operations;
+    projects: Resource$Projects;
     videos: Resource$Videos;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -115,6 +116,7 @@ export namespace videointelligence_v1 {
       };
 
       this.operations = new Resource$Operations(this.context);
+      this.projects = new Resource$Projects(this.context);
       this.videos = new Resource$Videos(this.context);
     }
   }
@@ -309,7 +311,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_SpeechRecognitionAlternative {
     /**
-     * The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is typically provided only for the top hypothesis, and only for `is_final=true` results. Clients should not rely on the `confidence` field as it is not guaranteed to be accurate or consistent. The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
     confidence?: number;
     /**
@@ -317,7 +319,7 @@ export namespace videointelligence_v1 {
      */
     transcript?: string;
     /**
-     * A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1beta2_WordInfo[];
   }
@@ -382,6 +384,10 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress {
     /**
+     * Specifies which feature is being tracked if the request contains more than one features.
+     */
+    feature?: string;
+    /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string;
@@ -389,6 +395,10 @@ export namespace videointelligence_v1 {
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
     progressPercent?: number;
+    /**
+     * Specifies which segment is being tracked if the request contains more than one segments.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
     /**
      * Time when the request was received.
      */
@@ -423,7 +433,7 @@ export namespace videointelligence_v1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_ObjectTrackingAnnotation[];
     /**
-     * Label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
@@ -431,7 +441,7 @@ export namespace videointelligence_v1 {
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment[];
     /**
-     * Label annotations on shot level. There is exactly one element for each unique label.
+     * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
@@ -671,7 +681,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative {
     /**
-     * The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is typically provided only for the top hypothesis, and only for `is_final=true` results. Clients should not rely on the `confidence` field as it is not guaranteed to be accurate or consistent. The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
     confidence?: number;
     /**
@@ -679,7 +689,7 @@ export namespace videointelligence_v1 {
      */
     transcript?: string;
     /**
-     * A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1p1beta1_WordInfo[];
   }
@@ -744,6 +754,10 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress {
     /**
+     * Specifies which feature is being tracked if the request contains more than one features.
+     */
+    feature?: string;
+    /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string;
@@ -751,6 +765,10 @@ export namespace videointelligence_v1 {
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
     progressPercent?: number;
+    /**
+     * Specifies which segment is being tracked if the request contains more than one segments.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
     /**
      * Time when the request was received.
      */
@@ -785,7 +803,7 @@ export namespace videointelligence_v1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_ObjectTrackingAnnotation[];
     /**
-     * Label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
@@ -793,7 +811,7 @@ export namespace videointelligence_v1 {
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment[];
     /**
-     * Label annotations on shot level. There is exactly one element for each unique label.
+     * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
@@ -1033,7 +1051,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_SpeechRecognitionAlternative {
     /**
-     * The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is typically provided only for the top hypothesis, and only for `is_final=true` results. Clients should not rely on the `confidence` field as it is not guaranteed to be accurate or consistent. The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
     confidence?: number;
     /**
@@ -1041,7 +1059,7 @@ export namespace videointelligence_v1 {
      */
     transcript?: string;
     /**
-     * A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1p2beta1_WordInfo[];
   }
@@ -1106,6 +1124,10 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationProgress {
     /**
+     * Specifies which feature is being tracked if the request contains more than one features.
+     */
+    feature?: string;
+    /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string;
@@ -1113,6 +1135,10 @@ export namespace videointelligence_v1 {
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
     progressPercent?: number;
+    /**
+     * Specifies which segment is being tracked if the request contains more than one segments.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
     /**
      * Time when the request was received.
      */
@@ -1147,7 +1173,7 @@ export namespace videointelligence_v1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_ObjectTrackingAnnotation[];
     /**
-     * Label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
@@ -1155,7 +1181,7 @@ export namespace videointelligence_v1 {
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment[];
     /**
-     * Label annotations on shot level. There is exactly one element for each unique label.
+     * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
@@ -1222,6 +1248,23 @@ export namespace videointelligence_v1 {
      * Annotation results for all videos specified in `AnnotateVideoRequest`.
      */
     annotationResults?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationResults[];
+  }
+  /**
+   * A generic detected attribute represented by name in string format.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute {
+    /**
+     * Detected attribute confidence. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc. A full list of supported type names will be provided in the document.
+     */
+    name?: string;
+    /**
+     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     */
+    value?: string;
   }
   /**
    * Detected entity from video analysis.
@@ -1310,6 +1353,23 @@ export namespace videointelligence_v1 {
     segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
   }
   /**
+   * Annotation corresponding to one detected, tracked and recognized logo class.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_LogoRecognitionAnnotation {
+    /**
+     * Entity category information to specify the logo class that all the logo tracks within this LogoRecognitionAnnotation are recognized as.
+     */
+    entity?: Schema$GoogleCloudVideointelligenceV1p3beta1_Entity;
+    /**
+     * All video segments where the recognized logo appears. There might be multiple instances of the same logo class appearing in one VideoSegment.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment[];
+    /**
+     * All logo tracks where the recognized logo appears. Each track corresponds to one logo instance appearing in consecutive frames.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track[];
+  }
+  /**
    * Normalized bounding box. The normalized vertex coordinates are relative to the original image. Range: [0, 1].
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingBox {
@@ -1395,7 +1455,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechRecognitionAlternative {
     /**
-     * The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is typically provided only for the top hypothesis, and only for `is_final=true` results. Clients should not rely on the `confidence` field as it is not guaranteed to be accurate or consistent. The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
     confidence?: number;
     /**
@@ -1403,7 +1463,7 @@ export namespace videointelligence_v1 {
      */
     transcript?: string;
     /**
-     * A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1p3beta1_WordInfo[];
   }
@@ -1502,9 +1562,51 @@ export namespace videointelligence_v1 {
     segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
   }
   /**
+   * For tracking related features, such as LOGO_RECOGNITION, FACE_DETECTION, CELEBRITY_RECOGNITION, PERSON_DETECTION. An object at time_offset with attributes, and located with normalized_bounding_box.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_TimestampedObject {
+    /**
+     * Optional. The attributes of the object in the bounding box.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute[];
+    /**
+     * Normalized Bounding box in a frame, where the object is located.
+     */
+    normalizedBoundingBox?: Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingBox;
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this object.
+     */
+    timeOffset?: string;
+  }
+  /**
+   * A track of an object instance.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_Track {
+    /**
+     * Optional. Attributes in the track level.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute[];
+    /**
+     * Optional. The confidence score of the tracked object.
+     */
+    confidence?: number;
+    /**
+     * Video segment of a track.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
+    /**
+     * The object with timestamp and attributes per frame in the track.
+     */
+    timestampedObjects?: Schema$GoogleCloudVideointelligenceV1p3beta1_TimestampedObject[];
+  }
+  /**
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress {
+    /**
+     * Specifies which feature is being tracked if the request contains more than one features.
+     */
+    feature?: string;
     /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
@@ -1513,6 +1615,10 @@ export namespace videointelligence_v1 {
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
     progressPercent?: number;
+    /**
+     * Specifies which segment is being tracked if the request contains more than one segments.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
     /**
      * Time when the request was received.
      */
@@ -1543,11 +1649,15 @@ export namespace videointelligence_v1 {
      */
     inputUri?: string;
     /**
+     * Annotations for list of logos detected, tracked and recognized in video.
+     */
+    logoRecognitionAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LogoRecognitionAnnotation[];
+    /**
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_ObjectTrackingAnnotation[];
     /**
-     * Label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
@@ -1555,7 +1665,7 @@ export namespace videointelligence_v1 {
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment[];
     /**
-     * Label annotations on shot level. There is exactly one element for each unique label.
+     * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
@@ -1841,6 +1951,15 @@ export namespace videointelligence_v1 {
     trackId?: string;
   }
   /**
+   * Config for OBJECT_TRACKING.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_ObjectTrackingConfig {
+    /**
+     * Model to use for object tracking. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
+     */
+    model?: string;
+  }
+  /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_ObjectTrackingFrame {
@@ -1876,7 +1995,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_SpeechRecognitionAlternative {
     /**
-     * The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is typically provided only for the top hypothesis, and only for `is_final=true` results. Clients should not rely on the `confidence` field as it is not guaranteed to be accurate or consistent. The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
     confidence?: number;
     /**
@@ -1884,7 +2003,7 @@ export namespace videointelligence_v1 {
      */
     transcript?: string;
     /**
-     * A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1_WordInfo[];
   }
@@ -1963,6 +2082,10 @@ export namespace videointelligence_v1 {
      * Language hint can be specified if the language to be detected is known a priori. It can increase the accuracy of the detection. Language hint must be language code in BCP-47 format.  Automatic language detection is performed if no hint is provided.
      */
     languageHints?: string[];
+    /**
+     * Model to use for text detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
+     */
+    model?: string;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.
@@ -1999,6 +2122,10 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_VideoAnnotationProgress {
     /**
+     * Specifies which feature is being tracked if the request contains more than one features.
+     */
+    feature?: string;
+    /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string;
@@ -2006,6 +2133,10 @@ export namespace videointelligence_v1 {
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
     progressPercent?: number;
+    /**
+     * Specifies which segment is being tracked if the request contains more than one segments.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
     /**
      * Time when the request was received.
      */
@@ -2040,7 +2171,7 @@ export namespace videointelligence_v1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1_ObjectTrackingAnnotation[];
     /**
-     * Label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
@@ -2048,7 +2179,7 @@ export namespace videointelligence_v1 {
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1_VideoSegment[];
     /**
-     * Label annotations on shot level. There is exactly one element for each unique label.
+     * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
@@ -2072,6 +2203,10 @@ export namespace videointelligence_v1 {
      * Config for LABEL_DETECTION.
      */
     labelDetectionConfig?: Schema$GoogleCloudVideointelligenceV1_LabelDetectionConfig;
+    /**
+     * Config for OBJECT_TRACKING.
+     */
+    objectTrackingConfig?: Schema$GoogleCloudVideointelligenceV1_ObjectTrackingConfig;
     /**
      * Video segments to annotate. The segments may overlap and are not required to be contiguous or span the whole video. If unspecified, each video is treated as a single segment.
      */
@@ -2161,7 +2296,7 @@ export namespace videointelligence_v1 {
      */
     metadata?: {[key: string]: any};
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
     name?: string;
     /**
@@ -2174,7 +2309,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleProtobuf_Empty {}
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$GoogleRpc_Status {
     /**
@@ -2193,8 +2328,10 @@ export namespace videointelligence_v1 {
 
   export class Resource$Operations {
     context: APIRequestContext;
+    projects: Resource$Operations$Projects;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.projects = new Resource$Operations$Projects(this.context);
     }
 
     /**
@@ -2205,7 +2342,6 @@ export namespace videointelligence_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().GoogleLongrunning_CancelOperationRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2432,97 +2568,6 @@ export namespace videointelligence_v1 {
         return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);
       }
     }
-
-    /**
-     * videointelligence.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     * @alias videointelligence.operations.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string=} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params?: Params$Resource$Operations$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse>;
-    list(
-      params: Params$Resource$Operations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunning_ListOperationsResponse
-      >
-    ): void;
-    list(
-      params: Params$Resource$Operations$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunning_ListOperationsResponse
-      >
-    ): void;
-    list(
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunning_ListOperationsResponse
-      >
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Operations$List
-        | BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleLongrunning_ListOperationsResponse
-      >
-    ): void | GaxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://videointelligence.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/operations').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunning_ListOperationsResponse>(
-          parameters,
-          callback
-        );
-      } else {
-        return createAPIRequest<
-          Schema$GoogleLongrunning_ListOperationsResponse
-        >(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Operations$Cancel
@@ -2536,11 +2581,6 @@ export namespace videointelligence_v1 {
      * The name of the operation resource to be cancelled.
      */
     name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleLongrunning_CancelOperationRequest;
   }
   export interface Params$Resource$Operations$Delete
     extends StandardParameters {
@@ -2565,7 +2605,700 @@ export namespace videointelligence_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List extends StandardParameters {
+
+  export class Resource$Operations$Projects {
+    context: APIRequestContext;
+    locations: Resource$Operations$Projects$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Operations$Projects$Locations(this.context);
+    }
+  }
+
+  export class Resource$Operations$Projects$Locations {
+    context: APIRequestContext;
+    operations: Resource$Operations$Projects$Locations$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Operations$Projects$Locations$Operations(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Operations$Projects$Locations$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * videointelligence.operations.projects.locations.operations.cancel
+     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @alias videointelligence.operations.projects.locations.operations.cancel
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel(
+      params?: Params$Resource$Operations$Projects$Locations$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobuf_Empty>;
+    cancel(
+      params: Params$Resource$Operations$Projects$Locations$Operations$Cancel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Projects$Locations$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Projects$Locations$Operations$Cancel
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+    ): void | GaxiosPromise<Schema$GoogleProtobuf_Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Projects$Locations$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Projects$Locations$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://videointelligence.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/operations/{+name}:cancel').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
+      }
+    }
+
+    /**
+     * videointelligence.operations.projects.locations.operations.delete
+     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @alias videointelligence.operations.projects.locations.operations.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Operations$Projects$Locations$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobuf_Empty>;
+    delete(
+      params: Params$Resource$Operations$Projects$Locations$Operations$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Operations$Projects$Locations$Operations$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Projects$Locations$Operations$Delete
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+    ): void | GaxiosPromise<Schema$GoogleProtobuf_Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Projects$Locations$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Projects$Locations$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://videointelligence.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/operations/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
+      }
+    }
+
+    /**
+     * videointelligence.operations.projects.locations.operations.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @alias videointelligence.operations.projects.locations.operations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Operations$Projects$Locations$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunning_Operation>;
+    get(
+      params: Params$Resource$Operations$Projects$Locations$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Projects$Locations$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Projects$Locations$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunning_Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Projects$Locations$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Projects$Locations$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://videointelligence.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/operations/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunning_Operation>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Operations$Projects$Locations$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Operations$Projects$Locations$Operations$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Operations$Projects$Locations$Operations$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+
+  export class Resource$Projects {
+    context: APIRequestContext;
+    locations: Resource$Projects$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Locations$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * videointelligence.projects.locations.operations.cancel
+     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @alias videointelligence.projects.locations.operations.cancel
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {().GoogleLongrunning_CancelOperationRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel(
+      params?: Params$Resource$Projects$Locations$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobuf_Empty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Cancel
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+    ): void | GaxiosPromise<Schema$GoogleProtobuf_Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://videointelligence.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
+      }
+    }
+
+    /**
+     * videointelligence.projects.locations.operations.delete
+     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @alias videointelligence.projects.locations.operations.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Projects$Locations$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobuf_Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Delete
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+    ): void | GaxiosPromise<Schema$GoogleProtobuf_Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://videointelligence.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
+      }
+    }
+
+    /**
+     * videointelligence.projects.locations.operations.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @alias videointelligence.projects.locations.operations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Locations$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunning_Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunning_Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://videointelligence.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunning_Operation>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);
+      }
+    }
+
+    /**
+     * videointelligence.projects.locations.operations.list
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @alias videointelligence.projects.locations.operations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The standard list filter.
+     * @param {string} params.name The name of the operation's parent resource.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Locations$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunning_ListOperationsResponse
+      >
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunning_ListOperationsResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunning_ListOperationsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$List
+        | BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleLongrunning_ListOperationsResponse
+      >
+    ): void | GaxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://videointelligence.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunning_ListOperationsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<
+          Schema$GoogleLongrunning_ListOperationsResponse
+        >(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleLongrunning_CancelOperationRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

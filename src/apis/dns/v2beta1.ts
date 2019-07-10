@@ -317,7 +317,7 @@ export namespace dns_v2beta1 {
   }
   export interface Schema$ManagedZoneDnsSecConfig {
     /**
-     * Specifies parameters that will be used for generating initial DnsKeys for this ManagedZone. Output only while state is not OFF.
+     * Specifies parameters that will be used for generating initial DnsKeys for this ManagedZone. Can only be changed while state is OFF.
      */
     defaultKeySpecs?: Schema$DnsKeySpec[];
     /**
@@ -325,7 +325,7 @@ export namespace dns_v2beta1 {
      */
     kind?: string;
     /**
-     * Specifies the mechanism used to provide authenticated denial-of-existence responses. Output only while state is not OFF.
+     * Specifies the mechanism used to provide authenticated denial-of-existence responses. Can only be changed while state is OFF.
      */
     nonExistence?: string;
     /**
@@ -588,7 +588,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -618,16 +618,12 @@ export namespace dns_v2beta1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.changes.create
@@ -719,7 +715,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -748,16 +744,12 @@ export namespace dns_v2beta1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.changes.get
@@ -849,7 +841,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -888,16 +880,12 @@ export namespace dns_v2beta1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.changes.list
@@ -1079,7 +1067,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -1108,16 +1096,12 @@ export namespace dns_v2beta1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.dnsKeys.get
@@ -1210,7 +1194,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -1249,16 +1233,12 @@ export namespace dns_v2beta1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.dnsKeys.list
@@ -1415,7 +1395,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -1444,16 +1424,12 @@ export namespace dns_v2beta1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.managedZoneOperations.get
@@ -1548,7 +1524,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -1587,16 +1563,12 @@ export namespace dns_v2beta1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.managedZoneOperations.list
@@ -1761,7 +1733,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -1788,16 +1760,12 @@ export namespace dns_v2beta1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.managedZones.create
@@ -1890,7 +1858,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -1904,28 +1872,21 @@ export namespace dns_v2beta1 {
      *     auth: authClient,
      *   };
      *
-     *   dns.managedZones.delete(request, function(err, response) {
+     *   dns.managedZones.delete(request, function(err) {
      *     if (err) {
      *       console.error(err);
      *       return;
      *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.managedZones.delete
@@ -2017,7 +1978,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -2043,16 +2004,12 @@ export namespace dns_v2beta1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.managedZones.get
@@ -2145,7 +2102,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -2181,16 +2138,12 @@ export namespace dns_v2beta1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.managedZones.list
@@ -2286,7 +2239,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -2317,16 +2270,12 @@ export namespace dns_v2beta1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.managedZones.patch
@@ -2421,7 +2370,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -2452,16 +2401,12 @@ export namespace dns_v2beta1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.managedZones.update
@@ -2698,7 +2643,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -2721,16 +2666,12 @@ export namespace dns_v2beta1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.projects.get
@@ -2843,7 +2784,7 @@ export namespace dns_v2beta1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var dns = google.dns('v2beta1');
      *
      * authorize(function(authClient) {
@@ -2882,16 +2823,12 @@ export namespace dns_v2beta1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias dns.resourceRecordSets.list

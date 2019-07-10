@@ -133,7 +133,7 @@ export namespace cloudbilling_v1 {
     aggregationLevel?: string;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:foo@gmail.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:bar@gmail.com&quot;               ]             }           ]         }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -146,13 +146,17 @@ export namespace cloudbilling_v1 {
     service?: string;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:foo@gmail.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
     exemptedMembers?: string[];
+    /**
+     * Specifies whether principals can be exempted for the same LogType in lower-level resource policies. If true, any lower-level exemptions will be ignored.
+     */
+    ignoreChildExemptions?: boolean;
     /**
      * The log type that this config enables.
      */
@@ -188,7 +192,7 @@ export namespace cloudbilling_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
@@ -320,7 +324,7 @@ export namespace cloudbilling_v1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
     etag?: string;
     /**
@@ -517,6 +521,53 @@ export namespace cloudbilling_v1 {
     /**
      * cloudbilling.billingAccounts.create
      * @desc Creates a billing account. This method can only be used to create [billing subaccounts](https://cloud.google.com/billing/docs/concepts) by GCP resellers. When creating a subaccount, the current authenticated user must have the `billing.accounts.update` IAM permission on the master account, which is typically given to billing account [administrators](https://cloud.google.com/billing/docs/how-to/billing-access). This method will return an error if the master account has not been provisioned as a reseller account.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Billing API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudbilling
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudbilling = google.cloudbilling('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudbilling.billingAccounts.create(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudbilling.billingAccounts.create
      * @memberOf! ()
      *
@@ -594,7 +645,7 @@ export namespace cloudbilling_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Billing API
+     * // 1. If not already done, enable the Cloud Billing API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudbilling
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -606,7 +657,7 @@ export namespace cloudbilling_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudbilling = google.cloudbilling('v1');
      *
      * authorize(function(authClient) {
@@ -630,16 +681,12 @@ export namespace cloudbilling_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias cloudbilling.billingAccounts.get
@@ -713,10 +760,58 @@ export namespace cloudbilling_v1 {
     /**
      * cloudbilling.billingAccounts.getIamPolicy
      * @desc Gets the access control policy for a billing account. The caller must have the `billing.accounts.getIamPolicy` permission on the account, which is often given to billing account [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Billing API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudbilling
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudbilling = google.cloudbilling('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudbilling.billingAccounts.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudbilling.billingAccounts.getIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -788,7 +883,7 @@ export namespace cloudbilling_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Billing API
+     * // 1. If not already done, enable the Cloud Billing API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudbilling
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -800,7 +895,7 @@ export namespace cloudbilling_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudbilling = google.cloudbilling('v1');
      *
      * authorize(function(authClient) {
@@ -833,16 +928,12 @@ export namespace cloudbilling_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias cloudbilling.billingAccounts.list
@@ -928,6 +1019,57 @@ export namespace cloudbilling_v1 {
     /**
      * cloudbilling.billingAccounts.patch
      * @desc Updates a billing account's fields. Currently the only field that can be edited is `display_name`. The current authenticated user must have the `billing.accounts.update` IAM permission, which is typically given to the [administrator](https://cloud.google.com/billing/docs/how-to/billing-access) of the billing account.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Billing API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudbilling
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudbilling = google.cloudbilling('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the billing account resource to be updated.
+     *     name: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudbilling.billingAccounts.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudbilling.billingAccounts.patch
      * @memberOf! ()
      *
@@ -1001,6 +1143,57 @@ export namespace cloudbilling_v1 {
     /**
      * cloudbilling.billingAccounts.setIamPolicy
      * @desc Sets the access control policy for a billing account. Replaces any existing policy. The caller must have the `billing.accounts.setIamPolicy` permission on the account, which is often given to billing account [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Billing API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudbilling
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudbilling = google.cloudbilling('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudbilling.billingAccounts.setIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudbilling.billingAccounts.setIamPolicy
      * @memberOf! ()
      *
@@ -1074,6 +1267,57 @@ export namespace cloudbilling_v1 {
     /**
      * cloudbilling.billingAccounts.testIamPermissions
      * @desc Tests the access control policy for a billing account. This method takes the resource and a set of permissions as input and returns the subset of the input permissions that the caller is allowed for that resource.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Billing API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudbilling
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudbilling = google.cloudbilling('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudbilling.billingAccounts.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudbilling.billingAccounts.testIamPermissions
      * @memberOf! ()
      *
@@ -1186,6 +1430,10 @@ export namespace cloudbilling_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
+     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -1278,7 +1526,7 @@ export namespace cloudbilling_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Billing API
+     * // 1. If not already done, enable the Cloud Billing API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudbilling
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1290,7 +1538,7 @@ export namespace cloudbilling_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudbilling = google.cloudbilling('v1');
      *
      * authorize(function(authClient) {
@@ -1327,16 +1575,12 @@ export namespace cloudbilling_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias cloudbilling.billingAccounts.projects.list
@@ -1455,7 +1699,7 @@ export namespace cloudbilling_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Billing API
+     * // 1. If not already done, enable the Cloud Billing API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudbilling
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1467,7 +1711,7 @@ export namespace cloudbilling_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudbilling = google.cloudbilling('v1');
      *
      * authorize(function(authClient) {
@@ -1491,16 +1735,12 @@ export namespace cloudbilling_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias cloudbilling.projects.getBillingInfo
@@ -1582,7 +1822,7 @@ export namespace cloudbilling_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Billing API
+     * // 1. If not already done, enable the Cloud Billing API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudbilling
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1594,7 +1834,7 @@ export namespace cloudbilling_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudbilling = google.cloudbilling('v1');
      *
      * authorize(function(authClient) {
@@ -1623,16 +1863,12 @@ export namespace cloudbilling_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias cloudbilling.projects.updateBillingInfo
@@ -1754,7 +1990,7 @@ export namespace cloudbilling_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Billing API
+     * // 1. If not already done, enable the Cloud Billing API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudbilling
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1766,7 +2002,7 @@ export namespace cloudbilling_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudbilling = google.cloudbilling('v1');
      *
      * authorize(function(authClient) {
@@ -1799,16 +2035,12 @@ export namespace cloudbilling_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias cloudbilling.services.list
@@ -1910,7 +2142,7 @@ export namespace cloudbilling_v1 {
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Billing API
+     * // 1. If not already done, enable the Cloud Billing API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudbilling
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -1922,7 +2154,7 @@ export namespace cloudbilling_v1 {
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var cloudbilling = google.cloudbilling('v1');
      *
      * authorize(function(authClient) {
@@ -1959,16 +2191,12 @@ export namespace cloudbilling_v1 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias cloudbilling.services.skus.list

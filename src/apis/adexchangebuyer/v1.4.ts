@@ -324,6 +324,10 @@ export namespace adexchangebuyer_v1_4 {
      * The link to the Ad Preferences page. This is only supported for native ads.
      */
     adChoicesDestinationUrl?: string;
+    adTechnologyProviders?: {
+      detectedProviderIds?: string[];
+      hasUnidentifiedProvider?: boolean;
+    };
     /**
      * Detected advertiser id, if any. Read-only. This field should not be set in requests.
      */
@@ -420,7 +424,6 @@ export namespace adexchangebuyer_v1_4 {
       logo?: {height?: number; url?: string; width?: number};
       price?: string;
       starRating?: number;
-      store?: string;
       videoURL?: string;
     };
     /**

@@ -127,7 +127,7 @@ export namespace cloudtasks_v2beta3 {
     appEngineRoutingOverride?: Schema$AppEngineRouting;
   }
   /**
-   * App Engine HTTP request.  The message defines the HTTP request that is sent to an App Engine app when the task is dispatched.  This proto can only be used for tasks in a queue which has app_engine_http_queue set.  Using AppEngineHttpRequest requires [`appengine.applications.get`](https://cloud.google.com/appengine/docs/admin-api/access-control) Google IAM permission for the project and the following scope:  `https://www.googleapis.com/auth/cloud-platform`  The task will be delivered to the App Engine app which belongs to the same project as the queue. For more information, see [How Requests are Routed](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed) and how routing is affected by [dispatch files](https://cloud.google.com/appengine/docs/python/config/dispatchref). Traffic is encrypted during transport and never leaves Google datacenters. Because this traffic is carried over a communication mechanism internal to Google, you cannot explicitly set the protocol (for example, HTTP or HTTPS). The request to the handler, however, will appear to have used the HTTP protocol.  The AppEngineRouting used to construct the URL that the task is delivered to can be set at the queue-level or task-level:  * If set,    app_engine_routing_override    is used for all tasks in the queue, no matter what the setting    is for the    task-level app_engine_routing.   The `url` that the task will be sent to is:  * `url =` host `+`   relative_uri  Tasks can be dispatched to secure app handlers, unsecure app handlers, and URIs restricted with [`login: admin`](https://cloud.google.com/appengine/docs/standard/python/config/appref). Because tasks are not run as any user, they cannot be dispatched to URIs restricted with [`login: required`](https://cloud.google.com/appengine/docs/standard/python/config/appref) Task dispatches also do not follow redirects.  The task attempt has succeeded if the app&#39;s request handler returns an HTTP response code in the range [`200` - `299`]. `503` is considered an App Engine system error instead of an application error. Requests returning error `503` will be retried regardless of retry configuration and not counted against retry counts. Any other response code or a failure to receive a response before the deadline is a failed attempt.
+   * App Engine HTTP request.  The message defines the HTTP request that is sent to an App Engine app when the task is dispatched.  Using AppEngineHttpRequest requires [`appengine.applications.get`](https://cloud.google.com/appengine/docs/admin-api/access-control) Google IAM permission for the project and the following scope:  `https://www.googleapis.com/auth/cloud-platform`  The task will be delivered to the App Engine app which belongs to the same project as the queue. For more information, see [How Requests are Routed](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed) and how routing is affected by [dispatch files](https://cloud.google.com/appengine/docs/python/config/dispatchref). Traffic is encrypted during transport and never leaves Google datacenters. Because this traffic is carried over a communication mechanism internal to Google, you cannot explicitly set the protocol (for example, HTTP or HTTPS). The request to the handler, however, will appear to have used the HTTP protocol.  The AppEngineRouting used to construct the URL that the task is delivered to can be set at the queue-level or task-level:  * If set,    app_engine_routing_override    is used for all tasks in the queue, no matter what the setting    is for the    task-level app_engine_routing.   The `url` that the task will be sent to is:  * `url =` host `+`   relative_uri  Tasks can be dispatched to secure app handlers, unsecure app handlers, and URIs restricted with [`login: admin`](https://cloud.google.com/appengine/docs/standard/python/config/appref). Because tasks are not run as any user, they cannot be dispatched to URIs restricted with [`login: required`](https://cloud.google.com/appengine/docs/standard/python/config/appref) Task dispatches also do not follow redirects.  The task attempt has succeeded if the app&#39;s request handler returns an HTTP response code in the range [`200` - `299`]. The task attempt has failed if the app&#39;s handler returns a non-2xx response code or Cloud Tasks does not receive response before the deadline. Failed tasks will be retried according to the retry configuration. `503` (Service Unavailable) is considered an App Engine system error instead of an application error and will cause Cloud Tasks&#39; traffic congestion control to temporarily throttle the queue&#39;s dispatches. Unlike other types of task targets, a `429` (Too Many Requests) response from an app handler does not cause traffic congestion control to throttle the queue.
    */
   export interface Schema$AppEngineHttpRequest {
     /**
@@ -253,6 +253,35 @@ export namespace cloudtasks_v2beta3 {
    */
   export interface Schema$GetIamPolicyRequest {}
   /**
+   * HTTP request.  The task will be pushed to the worker as an HTTP request. If the worker or the redirected worker acknowledges the task by returning a successful HTTP response code ([`200` - `299`]), the task will removed from the queue. If any other HTTP response code is returned or no response is received, the task will be retried according to the following:  * User-specified throttling: retry configuration,   rate limits, and the queue&#39;s state.  * System throttling: To prevent the worker from overloading, Cloud Tasks may   temporarily reduce the queue&#39;s effective rate. User-specified settings   will not be changed.   System throttling happens because:    * Cloud Tasks backoffs on all errors. Normally the backoff specified in     rate limits will be used. But if the worker returns     `429` (Too Many Requests), `503` (Service Unavailable), or the rate of     errors is high, Cloud Tasks will use a higher backoff rate. The retry     specified in the `Retry-After` HTTP response header is considered.    * To prevent traffic spikes and to smooth sudden large traffic spikes,     dispatches ramp up slowly when the queue is newly created or idle and     if large numbers of tasks suddenly become available to dispatch (due to     spikes in create task rates, the queue being unpaused, or many tasks     that are scheduled at the same time).
+   */
+  export interface Schema$HttpRequest {
+    /**
+     * HTTP request body.  A request body is allowed only if the HTTP method is POST, PUT, or PATCH. It is an error to set body on a task with an incompatible HttpMethod.
+     */
+    body?: string;
+    /**
+     * HTTP request headers.  This map contains the header field names and values. Headers can be set when the task is created.  These headers represent a subset of the headers that will accompany the task&#39;s HTTP request. Some HTTP request headers will be ignored or replaced.  A partial list of headers that will be ignored or replaced is:  * Host: This will be computed by Cloud Tasks and derived from   HttpRequest.url. * Content-Length: This will be computed by Cloud Tasks. * User-Agent: This will be set to `&quot;Google-Cloud-Tasks&quot;`. * X-Google-*: Google use only. * X-AppEngine-*: Google use only.  `Content-Type` won&#39;t be set by Cloud Tasks. You can explicitly set `Content-Type` to a media type when the  task is created.  For example, `Content-Type` can be set to `&quot;application/octet-stream&quot;` or  `&quot;application/json&quot;`.  Headers which can have multiple values (according to RFC2616) can be specified using comma-separated values.  The size of the headers must be less than 80KB.
+     */
+    headers?: {[key: string]: string};
+    /**
+     * The HTTP method to use for the request. The default is POST.
+     */
+    httpMethod?: string;
+    /**
+     * If specified, an [OAuth token](https://developers.google.com/identity/protocols/OAuth2) will be generated and attached as an `Authorization` header in the HTTP request.  This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com.
+     */
+    oauthToken?: Schema$OAuthToken;
+    /**
+     * If specified, an [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect) token will be generated and attached as an `Authorization` header in the HTTP request.  This type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself.
+     */
+    oidcToken?: Schema$OidcToken;
+    /**
+     * Required. The full url path that the request will be sent to.  This string must begin with either &quot;http://&quot; or &quot;https://&quot;. Some examples are: `http://acme.com` and `https://acme.com/sales:8080`. Cloud Tasks will encode some characters for safety and compatibility. The maximum allowed URL length is 2083 characters after encoding.  The `Location` header response from a redirect response [`300` - `399`] may be followed. The redirect is not counted as a separate attempt.
+     */
+    url?: string;
+  }
+  /**
    * The response message for Locations.ListLocations.
    */
   export interface Schema$ListLocationsResponse {
@@ -317,6 +346,32 @@ export namespace cloudtasks_v2beta3 {
     name?: string;
   }
   /**
+   * Contains information needed for generating an [OAuth token](https://developers.google.com/identity/protocols/OAuth2). This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com.
+   */
+  export interface Schema$OAuthToken {
+    /**
+     * OAuth scope to be used for generating OAuth access token. If not specified, &quot;https://www.googleapis.com/auth/cloud-platform&quot; will be used.
+     */
+    scope?: string;
+    /**
+     * [Service account email](https://cloud.google.com/iam/docs/service-accounts) to be used for generating OAuth token. The service account must be within the same project as the queue. The caller must have iam.serviceAccounts.actAs permission for the service account.
+     */
+    serviceAccountEmail?: string;
+  }
+  /**
+   * Contains information needed for generating an [OpenID Connect token](https://developers.google.com/identity/protocols/OpenIDConnect). This type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself.
+   */
+  export interface Schema$OidcToken {
+    /**
+     * Audience to be used when generating OIDC token. If not specified, the URI specified in target will be used.
+     */
+    audience?: string;
+    /**
+     * [Service account email](https://cloud.google.com/iam/docs/service-accounts) to be used for generating OIDC token. The service account must be within the same project as the queue. The caller must have iam.serviceAccounts.actAs permission for the service account.
+     */
+    serviceAccountEmail?: string;
+  }
+  /**
    * Request message for PauseQueue.
    */
   export interface Schema$PauseQueueRequest {}
@@ -346,7 +401,7 @@ export namespace cloudtasks_v2beta3 {
    */
   export interface Schema$Queue {
     /**
-     * AppEngineHttpQueue settings apply only to App Engine tasks in this queue.
+     * AppEngineHttpQueue settings apply only to App Engine tasks in this queue. Http tasks are not affected by this proto.
      */
     appEngineHttpQueue?: Schema$AppEngineHttpQueue;
     /**
@@ -365,6 +420,10 @@ export namespace cloudtasks_v2beta3 {
      * Settings that determine the retry behavior.  * For tasks created using Cloud Tasks: the queue-level retry settings   apply to all tasks in the queue that were created using Cloud Tasks.   Retry settings cannot be set on individual tasks. * For tasks created using the App Engine SDK: the queue-level retry   settings apply to all tasks in the queue which do not have retry settings   explicitly set on the task and were created by the App Engine SDK. See   [App Engine   documentation](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
      */
     retryConfig?: Schema$RetryConfig;
+    /**
+     * Configuration options for writing logs to [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this field is unset, then no logs are written.
+     */
+    stackdriverLoggingConfig?: Schema$StackdriverLoggingConfig;
     /**
      * Output only. The state of the queue.  `state` can only be changed by called PauseQueue, ResumeQueue, or uploading [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref). UpdateQueue cannot be used to change `state`.
      */
@@ -435,7 +494,16 @@ export namespace cloudtasks_v2beta3 {
     policy?: Schema$Policy;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * Configuration options for writing logs to [Stackdriver Logging](https://cloud.google.com/logging/docs/).
+   */
+  export interface Schema$StackdriverLoggingConfig {
+    /**
+     * Specifies the fraction of operations to write to [Stackdriver Logging](https://cloud.google.com/logging/docs/). This field may contain any value between 0.0 and 1.0, inclusive. 0.0 is the default and means that no operations are logged.
+     */
+    samplingRatio?: number;
+  }
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -468,13 +536,17 @@ export namespace cloudtasks_v2beta3 {
      */
     dispatchCount?: number;
     /**
-     * The deadline for requests sent to the worker. If the worker does not respond by this deadline then the request is cancelled and the attempt is marked as a `DEADLINE_EXCEEDED` failure. Cloud Tasks will retry the task according to the RetryConfig.  Note that when the request is cancelled, Cloud Tasks will stop listing for the response, but whether the worker stops processing depends on the worker. For example, if the worker is stuck, it may not react to cancelled requests.  The default and maximum values depend on the type of request:   * For App Engine tasks, 0 indicates that the   request has the default deadline. The default deadline depends on the   [scaling   type](https://cloud.google.com/appengine/docs/standard/go/how-instances-are-managed#instance_scaling)   of the service: 10 minutes for standard apps with automatic scaling, 24   hours for standard apps with manual and basic scaling, and 60 minutes for   flex apps. If the request deadline is set, it must be in the interval [15   seconds, 24 hours 15 seconds]. Regardless of the task&#39;s   `dispatch_deadline`, the app handler will not run for longer than than   the service&#39;s timeout. We recommend setting the `dispatch_deadline` to   at most a few seconds more than the app handler&#39;s timeout. For more   information see   [Timeouts](https://cloud.google.com/tasks/docs/creating-appengine-handlers#timeouts).  `dispatch_deadline` will be truncated to the nearest millisecond. The deadline is an approximate deadline.
+     * The deadline for requests sent to the worker. If the worker does not respond by this deadline then the request is cancelled and the attempt is marked as a `DEADLINE_EXCEEDED` failure. Cloud Tasks will retry the task according to the RetryConfig.  Note that when the request is cancelled, Cloud Tasks will stop listing for the response, but whether the worker stops processing depends on the worker. For example, if the worker is stuck, it may not react to cancelled requests.  The default and maximum values depend on the type of request:  * For HTTP tasks, the default is 10 minutes. The deadline   must be in the interval [15 seconds, 30 minutes].  * For App Engine tasks, 0 indicates that the   request has the default deadline. The default deadline depends on the   [scaling   type](https://cloud.google.com/appengine/docs/standard/go/how-instances-are-managed#instance_scaling)   of the service: 10 minutes for standard apps with automatic scaling, 24   hours for standard apps with manual and basic scaling, and 60 minutes for   flex apps. If the request deadline is set, it must be in the interval [15   seconds, 24 hours 15 seconds]. Regardless of the task&#39;s   `dispatch_deadline`, the app handler will not run for longer than than   the service&#39;s timeout. We recommend setting the `dispatch_deadline` to   at most a few seconds more than the app handler&#39;s timeout. For more   information see   [Timeouts](https://cloud.google.com/tasks/docs/creating-appengine-handlers#timeouts).  `dispatch_deadline` will be truncated to the nearest millisecond. The deadline is an approximate deadline.
      */
     dispatchDeadline?: string;
     /**
      * Output only. The status of the task&#39;s first attempt.  Only dispatch_time will be set. The other Attempt information is not retained by Cloud Tasks.
      */
     firstAttempt?: Schema$Attempt;
+    /**
+     * HTTP request that is sent to the task&#39;s target.  An HTTP task is a task that has HttpRequest set.
+     */
+    httpRequest?: Schema$HttpRequest;
     /**
      * Output only. The status of the task&#39;s last attempt.
      */
@@ -535,6 +607,52 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.get
      * @desc Gets information about a location.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.get
      * @memberOf! ()
      *
@@ -604,6 +722,65 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.list
      * @desc Lists information about the supported locations for this service.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var locationsPage = response['locations'];
+     *     if (!locationsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < locationsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `locationsPage`:
+     *       console.log(JSON.stringify(locationsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       cloudTasks.projects.locations.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   cloudTasks.projects.locations.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.list
      * @memberOf! ()
      *
@@ -729,6 +906,61 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.create
      * @desc Creates a queue.  Queues created with this method allow tasks to live for a maximum of 31 days. After a task is 31 days old, the task will be deleted regardless of whether it was dispatched or not.  WARNING: Using this method may have unintended side effects if you are using an App Engine `queue.yaml` or `queue.xml` file to manage your queues. Read [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using this method.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The location name in which the queue will be created.
+     *     // For example: `projects/PROJECT_ID/locations/LOCATION_ID`
+     *     // The list of allowed locations can be obtained by calling Cloud
+     *     // Tasks' implementation of
+     *     // ListLocations.
+     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.create(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.create
      * @memberOf! ()
      *
@@ -802,6 +1034,51 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.delete
      * @desc Deletes a queue.  This command will delete the queue even if it has tasks in it.  Note: If you delete a queue, a queue with the same name can't be created for 7 days.  WARNING: Using this method may have unintended side effects if you are using an App Engine `queue.yaml` or `queue.xml` file to manage your queues. Read [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using this method.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The queue name. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     *     name: 'projects/my-project/locations/my-location/queues/my-queue',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.delete(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.delete
      * @memberOf! ()
      *
@@ -871,6 +1148,54 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.get
      * @desc Gets a queue.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The resource name of the queue. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     *     name: 'projects/my-project/locations/my-location/queues/my-queue',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.get
      * @memberOf! ()
      *
@@ -940,6 +1265,57 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.getIamPolicy
      * @desc Gets the access control policy for a Queue. Returns an empty policy if the resource exists and does not have a policy set.  Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission on the specified resource parent:  * `cloudtasks.queues.getIamPolicy`
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'projects/my-project/locations/my-location/queues/my-queue',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.getIamPolicy
      * @memberOf! ()
      *
@@ -1013,6 +1389,67 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.list
      * @desc Lists queues.  Queues are returned in lexicographical order.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The location name.
+     *     // For example: `projects/PROJECT_ID/locations/LOCATION_ID`
+     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var queuesPage = response['queues'];
+     *     if (!queuesPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < queuesPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `queuesPage`:
+     *       console.log(JSON.stringify(queuesPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       cloudTasks.projects.locations.queues.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.list
      * @memberOf! ()
      *
@@ -1090,6 +1527,73 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.patch
      * @desc Updates a queue.  This method creates the queue if it does not exist and updates the queue if it does exist.  Queues created with this method allow tasks to live for a maximum of 31 days. After a task is 31 days old, the task will be deleted regardless of whether it was dispatched or not.  WARNING: Using this method may have unintended side effects if you are using an App Engine `queue.yaml` or `queue.xml` file to manage your queues. Read [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using this method.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Caller-specified and required in CreateQueue,
+     *     // after which it becomes output only.
+     *     // The queue name.
+     *     // The queue name must have the following format:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     *     // * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),
+     *     // hyphens (-), colons (:), or periods (.).
+     *     // For more information, see
+     *     // [Identifying
+     *     // projects]
+     *     // (https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
+     *     // * `LOCATION_ID` is the canonical ID for the queue's location.
+     *     // The list of available locations can be obtained by calling
+     *     // ListLocations.
+     *     // For more information, see https://cloud.google.com/about/locations/.
+     *     // * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or
+     *     // hyphens (-). The maximum length is 100 characters.
+     *     name: 'projects/my-project/locations/my-location/queues/my-queue',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.patch
      * @memberOf! ()
      *
@@ -1161,6 +1665,58 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.pause
      * @desc Pauses the queue.  If a queue is paused then the system will stop dispatching tasks until the queue is resumed via ResumeQueue. Tasks can still be added when the queue is paused. A queue is paused if its state is PAUSED.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The queue name. For example:
+     *     // `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
+     *     name: 'projects/my-project/locations/my-location/queues/my-queue',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.pause(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.pause
      * @memberOf! ()
      *
@@ -1234,6 +1790,58 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.purge
      * @desc Purges a queue by deleting all of its tasks.  All tasks created before this method is called are permanently deleted.  Purge operations can take up to one minute to take effect. Tasks might be dispatched before the purge takes effect. A purge is irreversible.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The queue name. For example:
+     *     // `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
+     *     name: 'projects/my-project/locations/my-location/queues/my-queue',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.purge(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.purge
      * @memberOf! ()
      *
@@ -1307,6 +1915,58 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.resume
      * @desc Resume a queue.  This method resumes a queue after it has been PAUSED or DISABLED. The state of a queue is stored in the queue's state; after calling this method it will be set to RUNNING.  WARNING: Resuming many high-QPS queues at the same time can lead to target overloading. If you are resuming high-QPS queues, follow the 500/50/5 pattern described in [Managing Cloud Tasks Scaling Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The queue name. For example:
+     *     // `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
+     *     name: 'projects/my-project/locations/my-location/queues/my-queue',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.resume(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.resume
      * @memberOf! ()
      *
@@ -1380,6 +2040,57 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.setIamPolicy
      * @desc Sets the access control policy for a Queue. Replaces any existing policy.  Note: The Cloud Console does not check queue-level IAM permissions yet. Project-level permissions are required to use the Cloud Console.  Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission on the specified resource parent:  * `cloudtasks.queues.setIamPolicy`
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'projects/my-project/locations/my-location/queues/my-queue',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.setIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.setIamPolicy
      * @memberOf! ()
      *
@@ -1453,6 +2164,57 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.testIamPermissions
      * @desc Returns permissions that a caller has on a Queue. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'projects/my-project/locations/my-location/queues/my-queue',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.testIamPermissions
      * @memberOf! ()
      *
@@ -1730,7 +2492,60 @@ export namespace cloudtasks_v2beta3 {
 
     /**
      * cloudtasks.projects.locations.queues.tasks.create
-     * @desc Creates a task and adds it to a queue.  Tasks cannot be updated after creation; there is no UpdateTask command.  * For App Engine queues, the maximum task size is   100KB.
+     * @desc Creates a task and adds it to a queue.  Tasks cannot be updated after creation; there is no UpdateTask command.  * The maximum task size is 100KB.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The queue name. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     *     // The queue must already exist.
+     *     parent: 'projects/my-project/locations/my-location/queues/my-queue',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.tasks.create(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.tasks.create
      * @memberOf! ()
      *
@@ -1804,6 +2619,51 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.tasks.delete
      * @desc Deletes a task.  A task can be deleted if it is scheduled or dispatched. A task cannot be deleted if it has executed successfully or permanently failed.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The task name. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     *     name: 'projects/my-project/locations/my-location/queues/my-queue/tasks/my-task',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.tasks.delete(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.tasks.delete
      * @memberOf! ()
      *
@@ -1873,6 +2733,54 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.tasks.get
      * @desc Gets a task.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The task name. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     *     name: 'projects/my-project/locations/my-location/queues/my-queue/tasks/my-task',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.tasks.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.tasks.get
      * @memberOf! ()
      *
@@ -1943,11 +2851,72 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.tasks.list
      * @desc Lists the tasks in a queue.  By default, only the BASIC view is retrieved due to performance considerations; response_view controls the subset of information which is returned.  The tasks may be returned in any order. The ordering may change at any time.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The queue name. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     *     parent: 'projects/my-project/locations/my-location/queues/my-queue',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var tasksPage = response['tasks'];
+     *     if (!tasksPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < tasksPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `tasksPage`:
+     *       console.log(JSON.stringify(tasksPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       cloudTasks.projects.locations.queues.tasks.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.tasks.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.tasks.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested page size. Fewer tasks than requested might be returned.  The maximum page size is 1000. If unspecified, the page size will be the maximum. Fewer tasks than requested might be returned, even if more tasks exist; use next_page_token in the response to determine if more tasks exist.
+     * @param {integer=} params.pageSize Maximum page size.  Fewer tasks than requested might be returned, even if more tasks exist; use next_page_token in the response to determine if more tasks exist.  The maximum page size is 1000. If unspecified, the page size will be the maximum.
      * @param {string=} params.pageToken A token identifying the page of results to return.  To request the first page results, page_token must be empty. To request the next page of results, page_token must be the value of next_page_token returned from the previous call to ListTasks method.  The page token is valid for only 2 hours.
      * @param {string} params.parent Required.  The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      * @param {string=} params.responseView The response_view specifies which subset of the Task will be returned.  By default response_view is BASIC; not all information is retrieved by default because some data, such as payloads, might be desirable to return only when needed because of its large size or because of the sensitivity of data that it contains.  Authorization for FULL requires `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the Task resource.
@@ -2020,6 +2989,58 @@ export namespace cloudtasks_v2beta3 {
     /**
      * cloudtasks.projects.locations.queues.tasks.run
      * @desc Forces a task to run now.  When this method is called, Cloud Tasks will dispatch the task, even if the task is already running, the queue has reached its RateLimits or is PAUSED.  This command is meant to be used for manual debugging. For example, RunTask can be used to retry a failed task after a fix has been made or to manually force a task to be dispatched now.  The dispatched task is returned. That is, the task that is returned contains the status after the task is dispatched but before the task is received by its target.  If Cloud Tasks receives a successful response from the task's target, then the task will be deleted; otherwise the task's schedule_time will be reset to the time that RunTask was called plus the retry delay specified in the queue's RetryConfig.  RunTask returns NOT_FOUND when it is called on a task that has already succeeded or permanently failed.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Tasks API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudtasks
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudTasks = google.cloudtasks('v2beta3');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The task name. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     *     name: 'projects/my-project/locations/my-location/queues/my-queue/tasks/my-task',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudTasks.projects.locations.queues.tasks.run(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudtasks.projects.locations.queues.tasks.run
      * @memberOf! ()
      *
@@ -2144,7 +3165,7 @@ export namespace cloudtasks_v2beta3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Requested page size. Fewer tasks than requested might be returned.  The maximum page size is 1000. If unspecified, the page size will be the maximum. Fewer tasks than requested might be returned, even if more tasks exist; use next_page_token in the response to determine if more tasks exist.
+     * Maximum page size.  Fewer tasks than requested might be returned, even if more tasks exist; use next_page_token in the response to determine if more tasks exist.  The maximum page size is 1000. If unspecified, the page size will be the maximum.
      */
     pageSize?: number;
     /**

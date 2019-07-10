@@ -132,7 +132,7 @@ export namespace bigtableadmin_v2 {
      */
     etag?: string;
     /**
-     * Use a multi-cluster routing policy that may pick any cluster.
+     * Use a multi-cluster routing policy.
      */
     multiClusterRoutingUseAny?: Schema$MultiClusterRoutingUseAny;
     /**
@@ -337,7 +337,7 @@ export namespace bigtableadmin_v2 {
      */
     table?: Schema$Table;
     /**
-     * The name by which the new table should be referred to within the parent instance, e.g., `foobar` rather than `&lt;parent&gt;/tables/foobar`.
+     * The name by which the new table should be referred to within the parent instance, e.g., `foobar` rather than `&lt;parent&gt;/tables/foobar`. Maximum 50 characters.
      */
     tableId?: string;
   }
@@ -503,6 +503,19 @@ export namespace bigtableadmin_v2 {
     nextPageToken?: string;
   }
   /**
+   * The response message for Locations.ListLocations.
+   */
+  export interface Schema$ListLocationsResponse {
+    /**
+     * A list of locations that matches the specified filter in the request.
+     */
+    locations?: Schema$Location[];
+    /**
+     * The standard List next-page token.
+     */
+    nextPageToken?: string;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -527,6 +540,31 @@ export namespace bigtableadmin_v2 {
      * The tables present in the requested instance.
      */
     tables?: Schema$Table[];
+  }
+  /**
+   * A resource that represents Google Cloud Platform location.
+   */
+  export interface Schema$Location {
+    /**
+     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     */
+    displayName?: string;
+    /**
+     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     */
+    labels?: {[key: string]: string};
+    /**
+     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     */
+    locationId?: string;
+    /**
+     * Service-specific metadata. For example the available capacity at the given location.
+     */
+    metadata?: {[key: string]: any};
+    /**
+     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     */
+    name?: string;
   }
   /**
    * A create, update, or delete of a particular column family.
@@ -559,7 +597,7 @@ export namespace bigtableadmin_v2 {
     modifications?: Schema$Modification[];
   }
   /**
-   * Read/write requests may be routed to any cluster in the instance, and will fail over to another cluster in the event of transient errors or delays. Choosing this option sacrifices read-your-writes consistency to improve availability.
+   * Read/write requests are routed to the nearest cluster in the instance, and will fail over to the nearest cluster that is available in the event of transient errors or delays. Clusters in a region are considered equidistant. Choosing this option sacrifices read-your-writes consistency to improve availability.
    */
   export interface Schema$MultiClusterRoutingUseAny {}
   /**
@@ -579,7 +617,7 @@ export namespace bigtableadmin_v2 {
      */
     metadata?: {[key: string]: any};
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
     name?: string;
     /**
@@ -635,7 +673,7 @@ export namespace bigtableadmin_v2 {
     updateMask?: string;
   }
   /**
-   * Unconditionally routes all read/write requests to a specific cluster. This option preserves read-your-writes consistency, but does not improve availability.
+   * Unconditionally routes all read/write requests to a specific cluster. This option preserves read-your-writes consistency but does not improve availability.
    */
   export interface Schema$SingleClusterRouting {
     /**
@@ -657,7 +695,7 @@ export namespace bigtableadmin_v2 {
     key?: string;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -1156,9 +1194,11 @@ export namespace bigtableadmin_v2 {
   export class Resource$Projects {
     context: APIRequestContext;
     instances: Resource$Projects$Instances;
+    locations: Resource$Projects$Locations;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.instances = new Resource$Projects$Instances(this.context);
+      this.locations = new Resource$Projects$Locations(this.context);
     }
   }
 
@@ -2230,7 +2270,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of results per page. CURRENTLY UNIMPLEMENTED AND IGNORED.
+     * @param {integer=} params.pageSize Maximum number of results per page.  A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error.  Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
      * @param {string=} params.pageToken The value of `next_page_token` returned by a previous call.
      * @param {string} params.parent The unique name of the instance for which a list of app profiles is requested. Values are of the form `projects/<project>/instances/<instance>`. Use `<instance> = '-'` to list AppProfiles for all Instances in a project, e.g., `projects/myproject/instances/-`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2439,7 +2479,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Maximum number of results per page. CURRENTLY UNIMPLEMENTED AND IGNORED.
+     * Maximum number of results per page.  A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error.  Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
      */
     pageSize?: number;
     /**
@@ -3392,80 +3432,6 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * bigtableadmin.projects.instances.tables.getIamPolicy
-     * @desc Gets the access control policy for an instance resource. Returns an empty policy if an table exists but does not have a policy set.
-     * @alias bigtableadmin.projects.instances.tables.getIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy(
-      params?: Params$Resource$Projects$Instances$Tables$Getiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Instances$Tables$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Instances$Tables$Getiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Instances$Tables$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Instances$Tables$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Tables$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
      * bigtableadmin.projects.instances.tables.list
      * @desc Lists all tables served from a specified instance.
      * @alias bigtableadmin.projects.instances.tables.list
@@ -3616,163 +3582,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Table>(parameters);
       }
     }
-
-    /**
-     * bigtableadmin.projects.instances.tables.setIamPolicy
-     * @desc Sets the access control policy on a table resource. Replaces any existing policy.
-     * @alias bigtableadmin.projects.instances.tables.setIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy(
-      params?: Params$Resource$Projects$Instances$Tables$Setiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-      params: Params$Resource$Projects$Instances$Tables$Setiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Instances$Tables$Setiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Instances$Tables$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Instances$Tables$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Tables$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * bigtableadmin.projects.instances.tables.testIamPermissions
-     * @desc Returns permissions that the caller has on the specified table resource.
-     * @alias bigtableadmin.projects.instances.tables.testIamPermissions
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions(
-      params?: Params$Resource$Projects$Instances$Tables$Testiampermissions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-      params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Instances$Tables$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Instances$Tables$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Tables$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-          parameters,
-          callback
-        );
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Instances$Tables$Checkconsistency
@@ -3871,23 +3680,6 @@ export namespace bigtableadmin_v2 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Instances$Tables$Getiampolicy
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GetIamPolicyRequest;
-  }
   export interface Params$Resource$Projects$Instances$Tables$List
     extends StandardParameters {
     /**
@@ -3929,24 +3721,165 @@ export namespace bigtableadmin_v2 {
      */
     requestBody?: Schema$ModifyColumnFamiliesRequest;
   }
-  export interface Params$Resource$Projects$Instances$Tables$Setiampolicy
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * bigtableadmin.projects.locations.get
+     * @desc Gets information about a location.
+     * @alias bigtableadmin.projects.locations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name for the location.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
      */
-    resource?: string;
+    get(
+      params?: Params$Resource$Projects$Locations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Location>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Get
+        | BodyResponseCallback<Schema$Location>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>
+    ): void | GaxiosPromise<Schema$Location> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Location>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Location>(parameters);
+      }
+    }
 
     /**
-     * Request body metadata
+     * bigtableadmin.projects.locations.list
+     * @desc Lists information about the supported locations for this service.
+     * @alias bigtableadmin.projects.locations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The standard list filter.
+     * @param {string} params.name The resource that owns the locations collection, if applicable.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
      */
-    requestBody?: Schema$SetIamPolicyRequest;
+    list(
+      params?: Params$Resource$Projects$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$List
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListLocationsResponse>(parameters);
+      }
+    }
   }
-  export interface Params$Resource$Projects$Instances$Tables$Testiampermissions
+
+  export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -3954,13 +3887,32 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * Resource name for the location.
      */
-    resource?: string;
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Request body metadata
+     * The standard list filter.
      */
-    requestBody?: Schema$TestIamPermissionsRequest;
+    filter?: string;
+    /**
+     * The resource that owns the locations collection, if applicable.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
   }
 }

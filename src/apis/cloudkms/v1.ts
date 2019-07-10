@@ -225,7 +225,7 @@ export namespace cloudkms_v1 {
      */
     purpose?: string;
     /**
-     * next_rotation_time will be advanced by this period when the service automatically rotates a key. Must be at least one day.  If rotation_period is set, next_rotation_time must also be set.  Keys with purpose ENCRYPT_DECRYPT support automatic rotation. For other keys, this field must be omitted.
+     * next_rotation_time will be advanced by this period when the service automatically rotates a key. Must be at least 24 hours and at most 876,000 hours.  If rotation_period is set, next_rotation_time must also be set.  Keys with purpose ENCRYPT_DECRYPT support automatic rotation. For other keys, this field must be omitted.
      */
     rotationPeriod?: string;
     /**
@@ -261,6 +261,18 @@ export namespace cloudkms_v1 {
      * Output only. The time this CryptoKeyVersion&#39;s key material was generated.
      */
     generateTime?: string;
+    /**
+     * Output only. The root cause of an import failure. Only present if state is IMPORT_FAILED.
+     */
+    importFailureReason?: string;
+    /**
+     * Output only. The name of the ImportJob used to import this CryptoKeyVersion. Only present if the underlying key material was imported.
+     */
+    importJob?: string;
+    /**
+     * Output only. The time at which this CryptoKeyVersion&#39;s key material was imported.
+     */
+    importTime?: string;
     /**
      * Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x.
      */
@@ -378,6 +390,68 @@ export namespace cloudkms_v1 {
     title?: string;
   }
   /**
+   * Request message for KeyManagementService.ImportCryptoKeyVersion.
+   */
+  export interface Schema$ImportCryptoKeyVersionRequest {
+    /**
+     * Required. The algorithm of the key being imported. This does not need to match the version_template of the CryptoKey this version imports into.
+     */
+    algorithm?: string;
+    /**
+     * Required. The name of the ImportJob that was used to wrap this key material.
+     */
+    importJob?: string;
+    /**
+     * Wrapped key material produced with RSA_OAEP_3072_SHA1_AES_256 or RSA_OAEP_4096_SHA1_AES_256.  This field contains the concatenation of two wrapped keys: &lt;ol&gt;   &lt;li&gt;An ephemeral AES-256 wrapping key wrapped with the       public_key using RSAES-OAEP with SHA-1,       MGF1 with SHA-1, and an empty label.   &lt;/li&gt;   &lt;li&gt;The key to be imported, wrapped with the ephemeral AES-256 key       using AES-KWP (RFC 5649).   &lt;/li&gt; &lt;/ol&gt;  This format is the same as the format produced by PKCS#11 mechanism CKM_RSA_AES_KEY_WRAP.
+     */
+    rsaAesWrappedKey?: string;
+  }
+  /**
+   * An ImportJob can be used to create CryptoKeys and CryptoKeyVersions using pre-existing key material, generated outside of Cloud KMS.  When an ImportJob is created, Cloud KMS will generate a &quot;wrapping key&quot;, which is a public/private key pair. You use the wrapping key to encrypt (also known as wrap) the pre-existing key material to protect it during the import process. The nature of the wrapping key depends on the choice of import_method. When the wrapping key generation is complete, the state will be set to ACTIVE and the public_key can be fetched. The fetched public key can then be used to wrap your pre-existing key material.  Once the key material is wrapped, it can be imported into a new CryptoKeyVersion in an existing CryptoKey by calling ImportCryptoKeyVersion. Multiple CryptoKeyVersions can be imported with a single ImportJob. Cloud KMS uses the private key portion of the wrapping key to unwrap the key material. Only Cloud KMS has access to the private key.  An ImportJob expires 3 days after it is created. Once expired, Cloud KMS will no longer be able to import or unwrap any key material that was wrapped with the ImportJob&#39;s public key.  For more information, see [Importing a key](https://cloud.google.com/kms/docs/importing-a-key).
+   */
+  export interface Schema$ImportJob {
+    /**
+     * Output only. Statement that was generated and signed by the key creator (for example, an HSM) at key creation time. Use this statement to verify attributes of the key as stored on the HSM, independently of Google. Only present if the chosen ImportMethod is one with a protection level of HSM.
+     */
+    attestation?: Schema$KeyOperationAttestation;
+    /**
+     * Output only. The time at which this ImportJob was created.
+     */
+    createTime?: string;
+    /**
+     * Output only. The time this ImportJob expired. Only present if state is EXPIRED.
+     */
+    expireEventTime?: string;
+    /**
+     * Output only. The time at which this ImportJob is scheduled for expiration and can no longer be used to import key material.
+     */
+    expireTime?: string;
+    /**
+     * Output only. The time this ImportJob&#39;s key material was generated.
+     */
+    generateTime?: string;
+    /**
+     * Required and immutable. The wrapping method to be used for incoming key material.
+     */
+    importMethod?: string;
+    /**
+     * Output only. The resource name for this ImportJob in the format `projects/x/locations/x/keyRings/x/importJobs/x.
+     */
+    name?: string;
+    /**
+     * Required and immutable. The protection level of the ImportJob. This must match the protection_level of the version_template on the CryptoKey you attempt to import into.
+     */
+    protectionLevel?: string;
+    /**
+     * Output only. The public key with which to wrap key material prior to import. Only returned if state is ACTIVE.
+     */
+    publicKey?: Schema$WrappingPublicKey;
+    /**
+     * Output only. The current state of the ImportJob, indicating if it can be used.
+     */
+    state?: string;
+  }
+  /**
    * Contains an HSM-generated attestation about a key operation. For more information, see [Verifying attestations] (https://cloud.google.com/kms/docs/attest-key).
    */
   export interface Schema$KeyOperationAttestation {
@@ -434,6 +508,23 @@ export namespace cloudkms_v1 {
     nextPageToken?: string;
     /**
      * The total number of CryptoKeyVersions that matched the query.
+     */
+    totalSize?: number;
+  }
+  /**
+   * Response message for KeyManagementService.ListImportJobs.
+   */
+  export interface Schema$ListImportJobsResponse {
+    /**
+     * The list of ImportJobs.
+     */
+    importJobs?: Schema$ImportJob[];
+    /**
+     * A token to retrieve next page of results. Pass this value in ListImportJobsRequest.page_token to retrieve the next page of results.
+     */
+    nextPageToken?: string;
+    /**
+     * The total number of ImportJobs that matched the query.
      */
     totalSize?: number;
   }
@@ -578,6 +669,15 @@ export namespace cloudkms_v1 {
      * The id of the child CryptoKeyVersion to use as primary.
      */
     cryptoKeyVersionId?: string;
+  }
+  /**
+   * The public key component of the wrapping key. For details of the type of key this public key corresponds to, see the ImportMethod.
+   */
+  export interface Schema$WrappingPublicKey {
+    /**
+     * The public key, encoded in PEM format. For more information, see the [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13).
+     */
+    pem?: string;
   }
 
   export class Resource$Projects {
@@ -947,6 +1047,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1019,6 +1120,8 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter Optional. Only include resources that match the filter in the response (https://cloud.google.com/kms/docs/sorting-and-filtering).
+     * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order (https://cloud.google.com/kms/docs/sorting-and-filtering).
      * @param {integer=} params.pageSize Optional limit on the number of KeyRings to include in the response.  Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken Optional pagination token, returned earlier via ListKeyRingsResponse.next_page_token.
      * @param {string} params.parent Required. The resource name of the location associated with the KeyRings, in the format `projects/x/locations/x`.
@@ -1287,6 +1390,10 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
+     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -1298,6 +1405,14 @@ export namespace cloudkms_v1 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Optional. Only include resources that match the filter in the response (https://cloud.google.com/kms/docs/sorting-and-filtering).
+     */
+    filter?: string;
+    /**
+     * Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order (https://cloud.google.com/kms/docs/sorting-and-filtering).
+     */
+    orderBy?: string;
     /**
      * Optional limit on the number of KeyRings to include in the response.  Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
      */
@@ -1365,6 +1480,7 @@ export namespace cloudkms_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.cryptoKeyId Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      * @param {string} params.parent Required. The name of the KeyRing associated with the CryptoKeys.
+     * @param {boolean=} params.skipInitialVersionCreation If set to true, the request will create a CryptoKey without any CryptoKeyVersions. You must manually call CreateCryptoKeyVersion or ImportCryptoKeyVersion before you can use this CryptoKey.
      * @param {().CryptoKey} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1660,6 +1776,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1732,6 +1849,8 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter Optional. Only include resources that match the filter in the response (https://cloud.google.com/kms/docs/sorting-and-filtering).
+     * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order (https://cloud.google.com/kms/docs/sorting-and-filtering).
      * @param {integer=} params.pageSize Optional limit on the number of CryptoKeys to include in the response.  Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token.
      * @param {string} params.parent Required. The resource name of the KeyRing to list, in the format `projects/x/locations/x/keyRings/x`.
@@ -2125,6 +2244,10 @@ export namespace cloudkms_v1 {
      * Required. The name of the KeyRing associated with the CryptoKeys.
      */
     parent?: string;
+    /**
+     * If set to true, the request will create a CryptoKey without any CryptoKeyVersions. You must manually call CreateCryptoKeyVersion or ImportCryptoKeyVersion before you can use this CryptoKey.
+     */
+    skipInitialVersionCreation?: boolean;
 
     /**
      * Request body metadata
@@ -2185,6 +2308,10 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
+     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2196,6 +2323,14 @@ export namespace cloudkms_v1 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Optional. Only include resources that match the filter in the response (https://cloud.google.com/kms/docs/sorting-and-filtering).
+     */
+    filter?: string;
+    /**
+     * Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order (https://cloud.google.com/kms/docs/sorting-and-filtering).
+     */
+    orderBy?: string;
     /**
      * Optional limit on the number of CryptoKeys to include in the response.  Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
      */
@@ -2749,12 +2884,89 @@ export namespace cloudkms_v1 {
     }
 
     /**
+     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import
+     * @desc Imports a new CryptoKeyVersion into an existing CryptoKey using the wrapped key material provided in the request.  The version ID will be assigned the next sequential id within the CryptoKey.
+     * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The name of the CryptoKey to be imported into.
+     * @param {().ImportCryptoKeyVersionRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    import(
+      params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CryptoKeyVersion>;
+    import(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$CryptoKeyVersion>,
+      callback: BodyResponseCallback<Schema$CryptoKeyVersion>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import,
+      callback: BodyResponseCallback<Schema$CryptoKeyVersion>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import
+        | BodyResponseCallback<Schema$CryptoKeyVersion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CryptoKeyVersion>,
+      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>
+    ): void | GaxiosPromise<Schema$CryptoKeyVersion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/cryptoKeyVersions:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
+      }
+    }
+
+    /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list
      * @desc Lists CryptoKeyVersions.
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter Optional. Only include resources that match the filter in the response (https://cloud.google.com/kms/docs/sorting-and-filtering).
+     * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order (https://cloud.google.com/kms/docs/sorting-and-filtering).
      * @param {integer=} params.pageSize Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.
      * @param {string} params.parent Required. The resource name of the CryptoKey to list, in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
@@ -3075,6 +3287,23 @@ export namespace cloudkms_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the CryptoKey to be imported into.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportCryptoKeyVersionRequest;
+  }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List
     extends StandardParameters {
     /**
@@ -3082,6 +3311,14 @@ export namespace cloudkms_v1 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Optional. Only include resources that match the filter in the response (https://cloud.google.com/kms/docs/sorting-and-filtering).
+     */
+    filter?: string;
+    /**
+     * Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order (https://cloud.google.com/kms/docs/sorting-and-filtering).
+     */
+    orderBy?: string;
     /**
      * Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      */
@@ -3145,12 +3382,160 @@ export namespace cloudkms_v1 {
     }
 
     /**
+     * cloudkms.projects.locations.keyRings.importJobs.create
+     * @desc Create a new ImportJob within a KeyRing.  ImportJob.import_method is required.
+     * @alias cloudkms.projects.locations.keyRings.importJobs.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.importJobId Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
+     * @param {string} params.parent Required. The name of the KeyRing associated with the ImportJobs.
+     * @param {().ImportJob} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ImportJob>;
+    create(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ImportJob>,
+      callback: BodyResponseCallback<Schema$ImportJob>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Create,
+      callback: BodyResponseCallback<Schema$ImportJob>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$ImportJob>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Keyrings$Importjobs$Create
+        | BodyResponseCallback<Schema$ImportJob>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ImportJob>,
+      callback?: BodyResponseCallback<Schema$ImportJob>
+    ): void | GaxiosPromise<Schema$ImportJob> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/importJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ImportJob>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ImportJob>(parameters);
+      }
+    }
+
+    /**
+     * cloudkms.projects.locations.keyRings.importJobs.get
+     * @desc Returns metadata for a given ImportJob.
+     * @alias cloudkms.projects.locations.keyRings.importJobs.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the ImportJob to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ImportJob>;
+    get(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ImportJob>,
+      callback: BodyResponseCallback<Schema$ImportJob>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Get,
+      callback: BodyResponseCallback<Schema$ImportJob>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ImportJob>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Keyrings$Importjobs$Get
+        | BodyResponseCallback<Schema$ImportJob>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ImportJob>,
+      callback?: BodyResponseCallback<Schema$ImportJob>
+    ): void | GaxiosPromise<Schema$ImportJob> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ImportJob>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ImportJob>(parameters);
+      }
+    }
+
+    /**
      * cloudkms.projects.locations.keyRings.importJobs.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @alias cloudkms.projects.locations.keyRings.importJobs.getIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3213,6 +3598,86 @@ export namespace cloudkms_v1 {
         createAPIRequest<Schema$Policy>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * cloudkms.projects.locations.keyRings.importJobs.list
+     * @desc Lists ImportJobs.
+     * @alias cloudkms.projects.locations.keyRings.importJobs.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Optional. Only include resources that match the filter in the response (https://cloud.google.com/kms/docs/sorting-and-filtering).
+     * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order (https://cloud.google.com/kms/docs/sorting-and-filtering).
+     * @param {integer=} params.pageSize Optional limit on the number of ImportJobs to include in the response. Further ImportJobs can subsequently be obtained by including the ListImportJobsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     * @param {string=} params.pageToken Optional pagination token, returned earlier via ListImportJobsResponse.next_page_token.
+     * @param {string} params.parent Required. The resource name of the KeyRing to list, in the format `projects/x/locations/x/keyRings/x`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListImportJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListImportJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListImportJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$List,
+      callback: BodyResponseCallback<Schema$ListImportJobsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListImportJobsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Keyrings$Importjobs$List
+        | BodyResponseCallback<Schema$ListImportJobsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListImportJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListImportJobsResponse>
+    ): void | GaxiosPromise<Schema$ListImportJobsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/importJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListImportJobsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListImportJobsResponse>(parameters);
       }
     }
 
@@ -3372,6 +3837,39 @@ export namespace cloudkms_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
+     */
+    importJobId?: string;
+    /**
+     * Required. The name of the KeyRing associated with the ImportJobs.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportJob;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the ImportJob to get.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy
     extends StandardParameters {
     /**
@@ -3380,9 +3878,41 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
+     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. Only include resources that match the filter in the response (https://cloud.google.com/kms/docs/sorting-and-filtering).
+     */
+    filter?: string;
+    /**
+     * Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order (https://cloud.google.com/kms/docs/sorting-and-filtering).
+     */
+    orderBy?: string;
+    /**
+     * Optional limit on the number of ImportJobs to include in the response. Further ImportJobs can subsequently be obtained by including the ListImportJobsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional pagination token, returned earlier via ListImportJobsResponse.next_page_token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the KeyRing to list, in the format `projects/x/locations/x/keyRings/x`.
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy
     extends StandardParameters {

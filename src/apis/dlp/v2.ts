@@ -130,6 +130,10 @@ export namespace dlp_v2 {
      */
     jobNotificationEmails?: Schema$GooglePrivacyDlpV2JobNotificationEmails;
     /**
+     * Publish findings to Cloud Datahub.
+     */
+    publishFindingsToCloudDataCatalog?: Schema$GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog;
+    /**
      * Publish summary to Cloud Security Command Center (Alpha).
      */
     publishSummaryToCscc?: Schema$GooglePrivacyDlpV2PublishSummaryToCscc;
@@ -782,6 +786,10 @@ export namespace dlp_v2 {
      * The item to de-identify. Will be treated as text.
      */
     item?: Schema$GooglePrivacyDlpV2ContentItem;
+    /**
+     * The geographic location to process de-identification. Reserved for future extensions.
+     */
+    location?: string;
   }
   /**
    * Results of de-identifying a ContentItem.
@@ -890,7 +898,7 @@ export namespace dlp_v2 {
     deltaPresenceEstimationHistogram?: Schema$GooglePrivacyDlpV2DeltaPresenceEstimationHistogramBucket[];
   }
   /**
-   * Rule for modifying a CustomInfoType to alter behavior under certain circumstances, depending on the specific details of the rule. Not supported for the `surrogate_type` custom info type.
+   * Deprecated; use `InspectionRuleSet` instead. Rule for modifying a `CustomInfoType` to alter behavior under certain circumstances, depending on the specific details of the rule. Not supported for the `surrogate_type` custom infoType.
    */
   export interface Schema$GooglePrivacyDlpV2DetectionRule {
     /**
@@ -1627,6 +1635,15 @@ export namespace dlp_v2 {
     outputPath?: Schema$GooglePrivacyDlpV2CloudStoragePath;
   }
   /**
+   * Summary statistics of a custom dictionary.
+   */
+  export interface Schema$GooglePrivacyDlpV2LargeCustomDictionaryStats {
+    /**
+     * Approximate number of distinct phrases in the dictionary.
+     */
+    approxNumPhrases?: string;
+  }
+  /**
    * l-diversity metric, used for analysis of reidentification risk.
    */
   export interface Schema$GooglePrivacyDlpV2LDiversityConfig {
@@ -1905,11 +1922,15 @@ export namespace dlp_v2 {
     windowBefore?: number;
   }
   /**
+   * Publish findings of a DlpJob to Cloud Data Catalog. Labels summarizing the results of the DlpJob will be applied to the entry for the resource scanned in Cloud Data Catalog. Any labels previously written by another DlpJob will be deleted. InfoType naming patterns are strictly enforced when using this feature. Note that the findings will be persisted in Cloud Data Catalog storage and are governed by Data Catalog service-specific policy, see https://cloud.google.com/terms/service-terms Only a single instance of this action can be specified and only allowed if all resources being scanned are BigQuery tables. Compatible with: Inspect
+   */
+  export interface Schema$GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog {}
+  /**
    * Publish the result summary of a DlpJob to the Cloud Security Command Center (CSCC Alpha). This action is only available for projects which are parts of an organization and whitelisted for the alpha Cloud Security Command Center. The action will publish count of finding instances and their info types. The summary of findings will be persisted in CSCC and are governed by CSCC service-specific policy, see https://cloud.google.com/terms/service-terms Only a single instance of this action can be specified. Compatible with: Inspect
    */
   export interface Schema$GooglePrivacyDlpV2PublishSummaryToCscc {}
   /**
-   * Publish the results of a DlpJob to a pub sub channel. Compatible with: Inspect, Risk
+   * Publish a message into given Pub/Sub topic when DlpJob has completed. The message contains a single field, `DlpJobName`, which is equal to the finished job&#39;s [`DlpJob.name`](/dlp/docs/reference/rest/v2/projects.dlpJobs#DlpJob). Compatible with: Inspect, Risk
    */
   export interface Schema$GooglePrivacyDlpV2PublishToPubSub {
     /**
@@ -2268,6 +2289,15 @@ export namespace dlp_v2 {
     largeCustomDictionary?: Schema$GooglePrivacyDlpV2LargeCustomDictionaryConfig;
   }
   /**
+   * Statistics for a StoredInfoType.
+   */
+  export interface Schema$GooglePrivacyDlpV2StoredInfoTypeStats {
+    /**
+     * StoredInfoType where findings are defined by a dictionary of phrases.
+     */
+    largeCustomDictionary?: Schema$GooglePrivacyDlpV2LargeCustomDictionaryStats;
+  }
+  /**
    * Version of a StoredInfoType, including the configuration used to build it, create timestamp, and current state.
    */
   export interface Schema$GooglePrivacyDlpV2StoredInfoTypeVersion {
@@ -2287,6 +2317,10 @@ export namespace dlp_v2 {
      * Stored info type version state. Read-only, updated by the system during dictionary creation.
      */
     state?: string;
+    /**
+     * Statistics about this storedInfoType version.
+     */
+    stats?: Schema$GooglePrivacyDlpV2StoredInfoTypeStats;
   }
   /**
    * A reference to a StoredInfoType to use with scanning.
@@ -2545,7 +2579,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$GoogleRpcStatus {
     /**
@@ -4285,6 +4319,7 @@ export namespace dlp_v2 {
     image: Resource$Projects$Image;
     inspectTemplates: Resource$Projects$Inspecttemplates;
     jobTriggers: Resource$Projects$Jobtriggers;
+    locations: Resource$Projects$Locations;
     storedInfoTypes: Resource$Projects$Storedinfotypes;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -4298,6 +4333,7 @@ export namespace dlp_v2 {
         this.context
       );
       this.jobTriggers = new Resource$Projects$Jobtriggers(this.context);
+      this.locations = new Resource$Projects$Locations(this.context);
       this.storedInfoTypes = new Resource$Projects$Storedinfotypes(
         this.context
       );
@@ -5494,7 +5530,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled)  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
      * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
@@ -5650,7 +5686,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled)  The length of this field should be no more than 500 characters.
+     * Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -6905,6 +6941,144 @@ export namespace dlp_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GooglePrivacyDlpV2UpdateJobTriggerRequest;
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    content: Resource$Projects$Locations$Content;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.content = new Resource$Projects$Locations$Content(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations$Content {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dlp.projects.locations.content.deidentify
+     * @desc De-identifies potentially sensitive info from a ContentItem. This method has limits on input size and output size. See https://cloud.google.com/dlp/docs/deidentify-sensitive-data to learn more.  When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+     * @alias dlp.projects.locations.content.deidentify
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.location The geographic location to process de-identification. Reserved for future extensions.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {().GooglePrivacyDlpV2DeidentifyContentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deidentify(
+      params?: Params$Resource$Projects$Locations$Content$Deidentify,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>;
+    deidentify(
+      params: Params$Resource$Projects$Locations$Content$Deidentify,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+      >
+    ): void;
+    deidentify(
+      params: Params$Resource$Projects$Locations$Content$Deidentify,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+      >
+    ): void;
+    deidentify(
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+      >
+    ): void;
+    deidentify(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Content$Deidentify
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Content$Deidentify;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Content$Deidentify;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+parent}/locations/{location}/content:deidentify'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent', 'location'],
+        pathParams: ['location', 'parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+        >(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Content$Deidentify
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The geographic location to process de-identification. Reserved for future extensions.
+     */
+    location?: string;
+    /**
+     * The parent resource name, for example projects/my-project-id.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2DeidentifyContentRequest;
   }
 
   export class Resource$Projects$Storedinfotypes {

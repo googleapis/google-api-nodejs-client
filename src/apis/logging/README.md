@@ -2,7 +2,7 @@
 
 # logging
 
-> Writes log entries and manages your Logging configuration.
+> Writes log entries and manages your Stackdriver Logging configuration. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the [Stackdriver Logging documentation](/logging/docs).
 
 ## Installation
 

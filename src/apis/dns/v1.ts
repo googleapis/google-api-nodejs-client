@@ -317,7 +317,7 @@ export namespace dns_v1 {
   }
   export interface Schema$ManagedZoneDnsSecConfig {
     /**
-     * Specifies parameters that will be used for generating initial DnsKeys for this ManagedZone. Output only while state is not OFF.
+     * Specifies parameters that will be used for generating initial DnsKeys for this ManagedZone. Can only be changed while state is OFF.
      */
     defaultKeySpecs?: Schema$DnsKeySpec[];
     /**
@@ -325,7 +325,7 @@ export namespace dns_v1 {
      */
     kind?: string;
     /**
-     * Specifies the mechanism used to provide authenticated denial-of-existence responses. Output only while state is not OFF.
+     * Specifies the mechanism used to provide authenticated denial-of-existence responses. Can only be changed while state is OFF.
      */
     nonExistence?: string;
     /**
@@ -677,7 +677,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -807,7 +807,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -951,7 +951,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1112,7 +1112,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1189,7 +1189,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1328,7 +1328,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1410,7 +1410,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1605,7 +1605,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1729,7 +1729,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1856,7 +1856,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1997,7 +1997,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2074,7 +2074,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2150,7 +2150,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2413,7 +2413,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2585,7 +2585,7 @@ export namespace dns_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {

@@ -869,7 +869,7 @@ export namespace vision_v1p2beta1 {
      */
     gcsSource?: Schema$GoogleCloudVisionV1p1beta1GcsSource;
     /**
-     * The type of the file. Currently only &quot;application/pdf&quot; and &quot;image/tiff&quot; are supported. Wildcards are not supported.
+     * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
      */
     mimeType?: string;
   }
@@ -1030,7 +1030,7 @@ export namespace vision_v1p2beta1 {
      */
     name?: string;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods&quot;, &quot;apparel&quot;, or &quot;toys&quot;.  This field is immutable.
+     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
      */
     productCategory?: string;
     /**
@@ -1896,7 +1896,7 @@ export namespace vision_v1p2beta1 {
      */
     gcsSource?: Schema$GoogleCloudVisionV1p2beta1GcsSource;
     /**
-     * The type of the file. Currently only &quot;application/pdf&quot; and &quot;image/tiff&quot; are supported. Wildcards are not supported.
+     * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
      */
     mimeType?: string;
   }
@@ -2070,7 +2070,7 @@ export namespace vision_v1p2beta1 {
      */
     name?: string;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods&quot;, &quot;apparel&quot;, or &quot;toys&quot;.  This field is immutable.
+     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
      */
     productCategory?: string;
     /**
@@ -2104,7 +2104,7 @@ export namespace vision_v1p2beta1 {
      */
     filter?: string;
     /**
-     * The list of product categories to search in. Currently, we only consider the first category, and either &quot;homegoods&quot;, &quot;apparel&quot;, or &quot;toys&quot; should be specified.
+     * The list of product categories to search in. Currently, we only consider the first category, and either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot; should be specified. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported but will be deprecated. For new products, please use &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot; for better product search accuracy. It is recommended to migrate existing products to these categories as well.
      */
     productCategories?: string[];
     /**
@@ -2802,7 +2802,7 @@ export namespace vision_v1p2beta1 {
      */
     gcsSource?: Schema$GoogleCloudVisionV1p3beta1GcsSource;
     /**
-     * The type of the file. Currently only &quot;application/pdf&quot; and &quot;image/tiff&quot; are supported. Wildcards are not supported.
+     * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
      */
     mimeType?: string;
   }
@@ -2963,7 +2963,7 @@ export namespace vision_v1p2beta1 {
      */
     name?: string;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods&quot;, &quot;apparel&quot;, or &quot;toys&quot;.  This field is immutable.
+     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
      */
     productCategory?: string;
     /**
@@ -3700,7 +3700,7 @@ export namespace vision_v1p2beta1 {
      */
     gcsSource?: Schema$GoogleCloudVisionV1p4beta1GcsSource;
     /**
-     * The type of the file. Currently only &quot;application/pdf&quot; and &quot;image/tiff&quot; are supported. Wildcards are not supported.
+     * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
      */
     mimeType?: string;
   }
@@ -3861,7 +3861,7 @@ export namespace vision_v1p2beta1 {
      */
     name?: string;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods&quot;, &quot;apparel&quot;, or &quot;toys&quot;.  This field is immutable.
+     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
      */
     productCategory?: string;
     /**
@@ -4610,7 +4610,7 @@ export namespace vision_v1p2beta1 {
      */
     gcsSource?: Schema$GoogleCloudVisionV1p5beta1GcsSource;
     /**
-     * The type of the file. Currently only &quot;application/pdf&quot; and &quot;image/tiff&quot; are supported. Wildcards are not supported.
+     * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
      */
     mimeType?: string;
   }
@@ -4804,7 +4804,7 @@ export namespace vision_v1p2beta1 {
      */
     name?: string;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods&quot;, &quot;apparel&quot;, or &quot;toys&quot;.  This field is immutable.
+     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
      */
     productCategory?: string;
     /**
@@ -5183,6 +5183,945 @@ export namespace vision_v1p2beta1 {
     symbols?: Schema$GoogleCloudVisionV1p5beta1Symbol[];
   }
   /**
+   * Response to a single file annotation request. A file may contain one or more images, which individually have their own responses.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1AnnotateFileResponse {
+    /**
+     * Information about the file for which this response is generated.
+     */
+    inputConfig?: Schema$GoogleCloudVisionV1p6beta1InputConfig;
+    /**
+     * Individual responses to images found within the file.
+     */
+    responses?: Schema$GoogleCloudVisionV1p6beta1AnnotateImageResponse[];
+    /**
+     * This field gives the total number of pages in the file.
+     */
+    totalPages?: number;
+  }
+  /**
+   * Response to an image annotation request.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1AnnotateImageResponse {
+    /**
+     * If present, contextual information is needed to understand where this image comes from.
+     */
+    context?: Schema$GoogleCloudVisionV1p6beta1ImageAnnotationContext;
+    /**
+     * If present, crop hints have completed successfully.
+     */
+    cropHintsAnnotation?: Schema$GoogleCloudVisionV1p6beta1CropHintsAnnotation;
+    /**
+     * If set, represents the error message for the operation. Note that filled-in image annotations are guaranteed to be correct, even when `error` is set.
+     */
+    error?: Schema$Status;
+    /**
+     * If present, face detection has completed successfully.
+     */
+    faceAnnotations?: Schema$GoogleCloudVisionV1p6beta1FaceAnnotation[];
+    /**
+     * If present, text (OCR) detection or document (OCR) text detection has completed successfully. This annotation provides the structural hierarchy for the OCR detected text.
+     */
+    fullTextAnnotation?: Schema$GoogleCloudVisionV1p6beta1TextAnnotation;
+    /**
+     * If present, image properties were extracted successfully.
+     */
+    imagePropertiesAnnotation?: Schema$GoogleCloudVisionV1p6beta1ImageProperties;
+    /**
+     * If present, image quality calculation has completed successfully.
+     */
+    imageQualityAnnotation?: Schema$GoogleCloudVisionV1p6beta1ImageQuality;
+    /**
+     * If present, label detection has completed successfully.
+     */
+    labelAnnotations?: Schema$GoogleCloudVisionV1p6beta1EntityAnnotation[];
+    /**
+     * If present, landmark detection has completed successfully.
+     */
+    landmarkAnnotations?: Schema$GoogleCloudVisionV1p6beta1EntityAnnotation[];
+    /**
+     * If present, localized object detection has completed successfully. This will be sorted descending by confidence score.
+     */
+    localizedObjectAnnotations?: Schema$GoogleCloudVisionV1p6beta1LocalizedObjectAnnotation[];
+    /**
+     * If present, logo detection has completed successfully.
+     */
+    logoAnnotations?: Schema$GoogleCloudVisionV1p6beta1EntityAnnotation[];
+    /**
+     * If present, objects attributes calculation has completed successfully. The attributes value will be filled in the EntityAnnotation.properties. Example: object_attribute_annotations {   properties {     name: &quot;color&quot;     value: &quot;blue&quot;     confidence: 0.1   }   properties {     name: &quot;color&quot;     value: &quot;white&quot;     confidence: 0.2   }   properties {     name: &quot;material&quot;     value: &quot;silk&quot;     confidence: 0.3   } }
+     */
+    objectAttributeAnnotations?: Schema$GoogleCloudVisionV1p6beta1EntityAnnotation[];
+    /**
+     * If present, product search has completed successfully.
+     */
+    productSearchResults?: Schema$GoogleCloudVisionV1p6beta1ProductSearchResults;
+    /**
+     * If present, image quality optimization has completed successfully.
+     */
+    qualityOptimizationResult?: Schema$GoogleCloudVisionV1p6beta1QualityOptimizationResult;
+    /**
+     * If present, safe-search annotation has completed successfully.
+     */
+    safeSearchAnnotation?: Schema$GoogleCloudVisionV1p6beta1SafeSearchAnnotation;
+    /**
+     * If present, text (OCR) detection has completed successfully.
+     */
+    textAnnotations?: Schema$GoogleCloudVisionV1p6beta1EntityAnnotation[];
+    /**
+     * If present, web detection has completed successfully.
+     */
+    webDetection?: Schema$GoogleCloudVisionV1p6beta1WebDetection;
+  }
+  /**
+   * The response for a single offline file annotation request.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1AsyncAnnotateFileResponse {
+    /**
+     * The output location and metadata from AsyncAnnotateFileRequest.
+     */
+    outputConfig?: Schema$GoogleCloudVisionV1p6beta1OutputConfig;
+  }
+  /**
+   * Response to an async batch file annotation request.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1AsyncBatchAnnotateFilesResponse {
+    /**
+     * The list of file annotation responses, one for each request in AsyncBatchAnnotateFilesRequest.
+     */
+    responses?: Schema$GoogleCloudVisionV1p6beta1AsyncAnnotateFileResponse[];
+  }
+  /**
+   * Response to an async batch image annotation request.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1AsyncBatchAnnotateImagesResponse {
+    /**
+     * The output location and metadata from AsyncBatchAnnotateImagesRequest.
+     */
+    outputConfig?: Schema$GoogleCloudVisionV1p6beta1OutputConfig;
+  }
+  /**
+   * A list of file annotation responses.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1BatchAnnotateFilesResponse {
+    /**
+     * The list of file annotation responses, each response corresponding to each AnnotateFileRequest in BatchAnnotateFilesRequest.
+     */
+    responses?: Schema$GoogleCloudVisionV1p6beta1AnnotateFileResponse[];
+  }
+  /**
+   * Metadata for the batch operations such as the current state.  This is included in the `metadata` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1BatchOperationMetadata {
+    /**
+     * The time when the batch request is finished and google.longrunning.Operation.done is set to true.
+     */
+    endTime?: string;
+    /**
+     * The current state of the batch operation.
+     */
+    state?: string;
+    /**
+     * The time when the batch request was submitted to the server.
+     */
+    submitTime?: string;
+  }
+  /**
+   * Logical element on the page.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1Block {
+    /**
+     * Detected block type (text, image etc) for this block.
+     */
+    blockType?: string;
+    /**
+     * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:  * when the text is horizontal it might look like:          0----1         |    |         3----2  * when it&#39;s rotated 180 degrees around the top-left corner it becomes:          2----3         |    |         1----0    and the vertex order will still be (0, 1, 2, 3).
+     */
+    boundingBox?: Schema$GoogleCloudVisionV1p6beta1BoundingPoly;
+    /**
+     * Confidence of the OCR results on the block. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * List of paragraphs in this block (if this blocks is of type text).
+     */
+    paragraphs?: Schema$GoogleCloudVisionV1p6beta1Paragraph[];
+    /**
+     * Additional information detected for the block.
+     */
+    property?: Schema$GoogleCloudVisionV1p6beta1TextAnnotationTextProperty;
+  }
+  /**
+   * A bounding polygon for the detected image annotation.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1BoundingPoly {
+    /**
+     * The bounding polygon normalized vertices.
+     */
+    normalizedVertices?: Schema$GoogleCloudVisionV1p6beta1NormalizedVertex[];
+    /**
+     * The bounding polygon vertices.
+     */
+    vertices?: Schema$GoogleCloudVisionV1p6beta1Vertex[];
+  }
+  /**
+   * Color information consists of RGB channels, score, and the fraction of the image that the color occupies in the image.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1ColorInfo {
+    /**
+     * RGB components of the color.
+     */
+    color?: Schema$Color;
+    /**
+     * The fraction of pixels the color occupies in the image. Value in range [0, 1].
+     */
+    pixelFraction?: number;
+    /**
+     * Image-specific score for this color. Value in range [0, 1].
+     */
+    score?: number;
+  }
+  /**
+   * Single crop hint that is used to generate a new crop when serving an image.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1CropHint {
+    /**
+     * The bounding polygon for the crop region. The coordinates of the bounding box are in the original image&#39;s scale.
+     */
+    boundingPoly?: Schema$GoogleCloudVisionV1p6beta1BoundingPoly;
+    /**
+     * Confidence of this being a salient region.  Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * Fraction of importance of this salient region with respect to the original image.
+     */
+    importanceFraction?: number;
+  }
+  /**
+   * Set of crop hints that are used to generate new crops when serving images.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1CropHintsAnnotation {
+    /**
+     * Crop hint results.
+     */
+    cropHints?: Schema$GoogleCloudVisionV1p6beta1CropHint[];
+  }
+  /**
+   * Set of dominant colors and their corresponding scores.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1DominantColorsAnnotation {
+    /**
+     * RGB color values with their score and pixel fraction.
+     */
+    colors?: Schema$GoogleCloudVisionV1p6beta1ColorInfo[];
+  }
+  /**
+   * Set of detected entity features.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1EntityAnnotation {
+    /**
+     * Image region to which this entity belongs. Not produced for `LABEL_DETECTION` features.
+     */
+    boundingPoly?: Schema$GoogleCloudVisionV1p6beta1BoundingPoly;
+    /**
+     * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * Entity textual description, expressed in its `locale` language.
+     */
+    description?: string;
+    /**
+     * The language code for the locale in which the entity textual `description` is expressed.
+     */
+    locale?: string;
+    /**
+     * The location information for the detected entity. Multiple `LocationInfo` elements can be present because one location may indicate the location of the scene in the image, and another location may indicate the location of the place where the image was taken. Location information is usually present for landmarks.
+     */
+    locations?: Schema$GoogleCloudVisionV1p6beta1LocationInfo[];
+    /**
+     * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
+     */
+    mid?: string;
+    /**
+     * Some entities may have optional user-supplied `Property` (name/value) fields, such a score or string that qualifies the entity.
+     */
+    properties?: Schema$GoogleCloudVisionV1p6beta1Property[];
+    /**
+     * Overall score of the result. Range [0, 1].
+     */
+    score?: number;
+    /**
+     * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of &quot;tower&quot; is likely higher to an image containing the detected &quot;Eiffel Tower&quot; than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
+     */
+    topicality?: number;
+  }
+  /**
+   * A face annotation object contains the results of face detection.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1FaceAnnotation {
+    /**
+     * Anger likelihood.
+     */
+    angerLikelihood?: string;
+    /**
+     * Blurred likelihood.
+     */
+    blurredLikelihood?: string;
+    /**
+     * The bounding polygon around the face. The coordinates of the bounding box are in the original image&#39;s scale. The bounding box is computed to &quot;frame&quot; the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
+     */
+    boundingPoly?: Schema$GoogleCloudVisionV1p6beta1BoundingPoly;
+    /**
+     * Detection confidence. Range [0, 1].
+     */
+    detectionConfidence?: number;
+    /**
+     * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the &quot;amount of skin&quot; visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
+     */
+    fdBoundingPoly?: Schema$GoogleCloudVisionV1p6beta1BoundingPoly;
+    /**
+     * Headwear likelihood.
+     */
+    headwearLikelihood?: string;
+    /**
+     * Joy likelihood.
+     */
+    joyLikelihood?: string;
+    /**
+     * Face landmarking confidence. Range [0, 1].
+     */
+    landmarkingConfidence?: number;
+    /**
+     * Detected face landmarks.
+     */
+    landmarks?: Schema$GoogleCloudVisionV1p6beta1FaceAnnotationLandmark[];
+    /**
+     * Yaw angle, which indicates the leftward/rightward angle that the face is pointing relative to the vertical plane perpendicular to the image. Range [-180,180].
+     */
+    panAngle?: number;
+    /**
+     * Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180].
+     */
+    rollAngle?: number;
+    /**
+     * Sorrow likelihood.
+     */
+    sorrowLikelihood?: string;
+    /**
+     * Surprise likelihood.
+     */
+    surpriseLikelihood?: string;
+    /**
+     * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image&#39;s horizontal plane. Range [-180,180].
+     */
+    tiltAngle?: number;
+    /**
+     * Under-exposed likelihood.
+     */
+    underExposedLikelihood?: string;
+  }
+  /**
+   * A face-specific landmark (for example, a face feature).
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1FaceAnnotationLandmark {
+    /**
+     * Face landmark position.
+     */
+    position?: Schema$GoogleCloudVisionV1p6beta1Position;
+    /**
+     * Face landmark type.
+     */
+    type?: string;
+  }
+  /**
+   * The Google Cloud Storage location where the output will be written to.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1GcsDestination {
+    /**
+     * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide.  Examples:  *    File Prefix: gs://bucket-name/here/filenameprefix   The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with &quot;filenameprefix&quot;.  *    Directory Prefix: gs://bucket-name/some/location/   The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified.  If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
+     */
+    uri?: string;
+  }
+  /**
+   * The Google Cloud Storage location where the input will be read from.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1GcsSource {
+    /**
+     * Google Cloud Storage URI for the input file. This must only be a Google Cloud Storage object. Wildcards are not currently supported.
+     */
+    uri?: string;
+  }
+  /**
+   * If an image was produced from a file (e.g. a PDF), this message gives information about the source of that image.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1ImageAnnotationContext {
+    /**
+     * If the file was a PDF or TIFF, this field gives the page number within the file used to produce the image.
+     */
+    pageNumber?: number;
+    /**
+     * The URI of the file used to produce the image.
+     */
+    uri?: string;
+  }
+  /**
+   * Stores image properties, such as dominant colors.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1ImageProperties {
+    /**
+     * If present, dominant colors completed successfully.
+     */
+    dominantColors?: Schema$GoogleCloudVisionV1p6beta1DominantColorsAnnotation;
+  }
+  /**
+   * Stores image quality scores, could be aesthetic quality or technical quality.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1ImageQuality {}
+  /**
+   * Response message for the `ImportProductSets` method.  This message is returned by the google.longrunning.Operations.GetOperation method in the returned google.longrunning.Operation.response field.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1ImportProductSetsResponse {
+    /**
+     * The list of reference_images that are imported successfully.
+     */
+    referenceImages?: Schema$GoogleCloudVisionV1p6beta1ReferenceImage[];
+    /**
+     * The rpc status for each ImportProductSet request, including both successes and errors.  The number of statuses here matches the number of lines in the csv file, and statuses[i] stores the success or failure status of processing the i-th line of the csv, starting from line 0.
+     */
+    statuses?: Schema$Status[];
+  }
+  /**
+   * The desired input location and metadata.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1InputConfig {
+    /**
+     * File content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.  Currently, this field only works for BatchAnnotateFiles requests. It does not work for AsyncBatchAnnotateFiles requests.
+     */
+    content?: string;
+    /**
+     * The Google Cloud Storage location to read the input from.
+     */
+    gcsSource?: Schema$GoogleCloudVisionV1p6beta1GcsSource;
+    /**
+     * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
+     */
+    mimeType?: string;
+  }
+  /**
+   * Set of detected objects with bounding boxes.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1LocalizedObjectAnnotation {
+    /**
+     * Image region to which this object belongs. This must be populated.
+     */
+    boundingPoly?: Schema$GoogleCloudVisionV1p6beta1BoundingPoly;
+    /**
+     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     */
+    languageCode?: string;
+    /**
+     * Object ID that should align with EntityAnnotation mid.
+     */
+    mid?: string;
+    /**
+     * Object name, expressed in its `language_code` language.
+     */
+    name?: string;
+    /**
+     * Score of the result. Range [0, 1].
+     */
+    score?: number;
+  }
+  /**
+   * Detected entity location information.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1LocationInfo {
+    /**
+     * lat/long location coordinates.
+     */
+    latLng?: Schema$LatLng;
+  }
+  /**
+   * A vertex represents a 2D point in the image. NOTE: the normalized vertex coordinates are relative to the original image and range from 0 to 1.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1NormalizedVertex {
+    /**
+     * X coordinate.
+     */
+    x?: number;
+    /**
+     * Y coordinate.
+     */
+    y?: number;
+  }
+  /**
+   * Contains metadata for the BatchAnnotateImages operation.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1OperationMetadata {
+    /**
+     * The time when the batch request was received.
+     */
+    createTime?: string;
+    /**
+     * Current state of the batch operation.
+     */
+    state?: string;
+    /**
+     * The time when the operation result was last updated.
+     */
+    updateTime?: string;
+  }
+  /**
+   * The desired output location and metadata.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1OutputConfig {
+    /**
+     * The max number of response protos to put into each output JSON file on Google Cloud Storage. The valid range is [1, 100]. If not specified, the default value is 20.  For example, for one pdf file with 100 pages, 100 response protos will be generated. If `batch_size` = 20, then 5 json files each containing 20 response protos will be written under the prefix `gcs_destination`.`uri`.  Currently, batch_size only applies to GcsDestination, with potential future support for other output configurations.
+     */
+    batchSize?: number;
+    /**
+     * The Google Cloud Storage location to write the output(s) to.
+     */
+    gcsDestination?: Schema$GoogleCloudVisionV1p6beta1GcsDestination;
+  }
+  /**
+   * Detected page from OCR.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1Page {
+    /**
+     * List of blocks of text, images etc on this page.
+     */
+    blocks?: Schema$GoogleCloudVisionV1p6beta1Block[];
+    /**
+     * Confidence of the OCR results on the page. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
+     */
+    height?: number;
+    /**
+     * Additional information detected on the page.
+     */
+    property?: Schema$GoogleCloudVisionV1p6beta1TextAnnotationTextProperty;
+    /**
+     * Page width. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
+     */
+    width?: number;
+  }
+  /**
+   * Structural unit of text representing a number of words in certain order.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1Paragraph {
+    /**
+     * The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertex order will still be (0, 1, 2, 3).
+     */
+    boundingBox?: Schema$GoogleCloudVisionV1p6beta1BoundingPoly;
+    /**
+     * Confidence of the OCR results for the paragraph. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * Additional information detected for the paragraph.
+     */
+    property?: Schema$GoogleCloudVisionV1p6beta1TextAnnotationTextProperty;
+    /**
+     * List of words in this paragraph.
+     */
+    words?: Schema$GoogleCloudVisionV1p6beta1Word[];
+  }
+  /**
+   * A 3D position in the image, used primarily for Face detection landmarks. A valid Position must have both x and y coordinates. The position coordinates are in the same scale as the original image.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1Position {
+    /**
+     * X coordinate.
+     */
+    x?: number;
+    /**
+     * Y coordinate.
+     */
+    y?: number;
+    /**
+     * Z coordinate (or depth).
+     */
+    z?: number;
+  }
+  /**
+   * A Product contains ReferenceImages.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1Product {
+    /**
+     * User-provided metadata to be stored with this product. Must be at most 4096 characters long.
+     */
+    description?: string;
+    /**
+     * The user-provided name for this Product. Must not be empty. Must be at most 4096 characters long.
+     */
+    displayName?: string;
+    /**
+     * The resource name of the product.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field is ignored when creating a product.
+     */
+    name?: string;
+    /**
+     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
+     */
+    productCategory?: string;
+    /**
+     * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels.  Note that integer values can be provided as strings, e.g. &quot;1199&quot;. Only strings with integer values can match a range-based restriction which is to be supported soon.  Multiple values can be assigned to the same key. One product may have up to 100 product_labels.
+     */
+    productLabels?: Schema$GoogleCloudVisionV1p6beta1ProductKeyValue[];
+  }
+  /**
+   * A product label represented as a key-value pair.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1ProductKeyValue {
+    /**
+     * The key of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
+     */
+    key?: string;
+    /**
+     * The value of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
+     */
+    value?: string;
+  }
+  /**
+   * Results for a product search request.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1ProductSearchResults {
+    /**
+     * Timestamp of the index which provided these results. Products added to the product set and products removed from the product set after this time are not reflected in the current results.
+     */
+    indexTime?: string;
+    /**
+     * List of results grouped by products detected in the query image. Each entry corresponds to one bounding polygon in the query image, and contains the matching products specific to that region. There may be duplicate product matches in the union of all the per-product results.
+     */
+    productGroupedResults?: Schema$GoogleCloudVisionV1p6beta1ProductSearchResultsGroupedResult[];
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$GoogleCloudVisionV1p6beta1ProductSearchResultsResult[];
+  }
+  /**
+   * Information about the products similar to a single product in a query image.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1ProductSearchResultsGroupedResult {
+    /**
+     * The bounding polygon around the product detected in the query image.
+     */
+    boundingPoly?: Schema$GoogleCloudVisionV1p6beta1BoundingPoly;
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$GoogleCloudVisionV1p6beta1ProductSearchResultsResult[];
+  }
+  /**
+   * Information about a product.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1ProductSearchResultsResult {
+    /**
+     * The resource name of the image from the product that is the closest match to the query.
+     */
+    image?: string;
+    /**
+     * The Product.
+     */
+    product?: Schema$GoogleCloudVisionV1p6beta1Product;
+    /**
+     * A confidence level on the match, ranging from 0 (no confidence) to 1 (full confidence).
+     */
+    score?: number;
+  }
+  /**
+   * A `Property` consists of a user-supplied name/value pair.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1Property {
+    /**
+     * Value in range [0..1]. Confidence of this property value.
+     */
+    confidence?: number;
+    /**
+     * Opaque property value ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/). An example property for a blue coat would be: Property {   name: &#39;color&#39;   value: &#39;blue&#39;   mid: &#39;/m/01g5v&#39;  // For color blue }
+     */
+    mid?: string;
+    /**
+     * Name of the property.
+     */
+    name?: string;
+    /**
+     * Value of numeric properties.
+     */
+    uint64Value?: string;
+    /**
+     * Value of the property.
+     */
+    value?: string;
+  }
+  /**
+   * Stores enhanced image bytes.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1QualityOptimizationResult {
+    /**
+     * Optimized image bytes.
+     */
+    image?: string;
+    /**
+     * Mime type of the output image.
+     */
+    mimeType?: string;
+    /**
+     * Required optimization type.
+     */
+    qualityOptimizationType?: string;
+  }
+  /**
+   * A `ReferenceImage` represents a product image and its associated metadata, such as bounding boxes.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1ReferenceImage {
+    /**
+     * Bounding polygons around the areas of interest in the reference image. Optional. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
+     */
+    boundingPolys?: Schema$GoogleCloudVisionV1p6beta1BoundingPoly[];
+    /**
+     * The resource name of the reference image.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.  This field is ignored when creating a reference image.
+     */
+    name?: string;
+    /**
+     * The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.  Required.
+     */
+    uri?: string;
+  }
+  /**
+   * Set of features pertaining to the image, computed by computer vision methods over safe-search verticals (for example, adult, spoof, medical, violence).
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1SafeSearchAnnotation {
+    /**
+     * Represents the adult content likelihood for the image. Adult content may contain elements such as nudity, pornographic images or cartoons, or sexual activities.
+     */
+    adult?: string;
+    /**
+     * Likelihood that this is a medical image.
+     */
+    medical?: string;
+    /**
+     * Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
+     */
+    racy?: string;
+    /**
+     * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
+     */
+    spoof?: string;
+    /**
+     * Likelihood that this image contains violent content.
+     */
+    violence?: string;
+  }
+  /**
+   * A single symbol representation.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1Symbol {
+    /**
+     * The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertice order will still be (0, 1, 2, 3).
+     */
+    boundingBox?: Schema$GoogleCloudVisionV1p6beta1BoundingPoly;
+    /**
+     * Confidence of the OCR results for the symbol. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * Additional information detected for the symbol.
+     */
+    property?: Schema$GoogleCloudVisionV1p6beta1TextAnnotationTextProperty;
+    /**
+     * The actual UTF-8 representation of the symbol.
+     */
+    text?: string;
+  }
+  /**
+   * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this:     TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1TextAnnotation {
+    /**
+     * List of pages detected by OCR.
+     */
+    pages?: Schema$GoogleCloudVisionV1p6beta1Page[];
+    /**
+     * UTF-8 text detected on the pages.
+     */
+    text?: string;
+  }
+  /**
+   * Detected start or end of a structural component.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1TextAnnotationDetectedBreak {
+    /**
+     * True if break prepends the element.
+     */
+    isPrefix?: boolean;
+    /**
+     * Detected break type.
+     */
+    type?: string;
+  }
+  /**
+   * Detected language for a structural component.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1TextAnnotationDetectedLanguage {
+    /**
+     * Confidence of detected language. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     */
+    languageCode?: string;
+  }
+  /**
+   * Additional information detected on the structural component.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1TextAnnotationTextProperty {
+    /**
+     * Detected start or end of a text segment.
+     */
+    detectedBreak?: Schema$GoogleCloudVisionV1p6beta1TextAnnotationDetectedBreak;
+    /**
+     * A list of detected languages together with confidence.
+     */
+    detectedLanguages?: Schema$GoogleCloudVisionV1p6beta1TextAnnotationDetectedLanguage[];
+  }
+  /**
+   * A vertex represents a 2D point in the image. NOTE: the vertex coordinates are in the same scale as the original image.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1Vertex {
+    /**
+     * X coordinate.
+     */
+    x?: number;
+    /**
+     * Y coordinate.
+     */
+    y?: number;
+  }
+  /**
+   * Relevant information for the image from the Internet.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1WebDetection {
+    /**
+     * The service&#39;s best guess as to the topic of the request image. Inferred from similar images on the open web.
+     */
+    bestGuessLabels?: Schema$GoogleCloudVisionV1p6beta1WebDetectionWebLabel[];
+    /**
+     * Fully matching images from the Internet. Can include resized copies of the query image.
+     */
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p6beta1WebDetectionWebImage[];
+    /**
+     * Web pages containing the matching images from the Internet.
+     */
+    pagesWithMatchingImages?: Schema$GoogleCloudVisionV1p6beta1WebDetectionWebPage[];
+    /**
+     * Partial matching images from the Internet. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
+     */
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p6beta1WebDetectionWebImage[];
+    /**
+     * The visually similar image results.
+     */
+    visuallySimilarImages?: Schema$GoogleCloudVisionV1p6beta1WebDetectionWebImage[];
+    /**
+     * Deduced entities from similar images on the Internet.
+     */
+    webEntities?: Schema$GoogleCloudVisionV1p6beta1WebDetectionWebEntity[];
+  }
+  /**
+   * Entity deduced from similar images on the Internet.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1WebDetectionWebEntity {
+    /**
+     * Canonical description of the entity, in English.
+     */
+    description?: string;
+    /**
+     * Opaque entity ID.
+     */
+    entityId?: string;
+    /**
+     * Overall relevancy score for the entity. Not normalized and not comparable across different image queries.
+     */
+    score?: number;
+  }
+  /**
+   * Metadata for online images.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1WebDetectionWebImage {
+    /**
+     * (Deprecated) Overall relevancy score for the image.
+     */
+    score?: number;
+    /**
+     * The result image URL.
+     */
+    url?: string;
+  }
+  /**
+   * Label to provide extra metadata for the web detection.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1WebDetectionWebLabel {
+    /**
+     * Label for extra metadata.
+     */
+    label?: string;
+    /**
+     * The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     */
+    languageCode?: string;
+  }
+  /**
+   * Metadata for web pages.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1WebDetectionWebPage {
+    /**
+     * Fully matching images on the page. Can include resized copies of the query image.
+     */
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p6beta1WebDetectionWebImage[];
+    /**
+     * Title for the web page, may contain HTML markups.
+     */
+    pageTitle?: string;
+    /**
+     * Partial matching images on the page. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
+     */
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p6beta1WebDetectionWebImage[];
+    /**
+     * (Deprecated) Overall relevancy score for the web page.
+     */
+    score?: number;
+    /**
+     * The result web page URL.
+     */
+    url?: string;
+  }
+  /**
+   * A word representation.
+   */
+  export interface Schema$GoogleCloudVisionV1p6beta1Word {
+    /**
+     * The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertex order will still be (0, 1, 2, 3).
+     */
+    boundingBox?: Schema$GoogleCloudVisionV1p6beta1BoundingPoly;
+    /**
+     * Confidence of the OCR results for the word. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * Additional information detected for the word.
+     */
+    property?: Schema$GoogleCloudVisionV1p6beta1TextAnnotationTextProperty;
+    /**
+     * List of symbols in the word. The order of the symbols follows the natural reading order.
+     */
+    symbols?: Schema$GoogleCloudVisionV1p6beta1Symbol[];
+  }
+  /**
    * Information about the products similar to a single product in a query image.
    */
   export interface Schema$GroupedResult {
@@ -5243,7 +6182,7 @@ export namespace vision_v1p2beta1 {
      */
     gcsSource?: Schema$GcsSource;
     /**
-     * The type of the file. Currently only &quot;application/pdf&quot; and &quot;image/tiff&quot; are supported. Wildcards are not supported.
+     * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
      */
     mimeType?: string;
   }
@@ -5468,7 +6407,7 @@ export namespace vision_v1p2beta1 {
      */
     name?: string;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods&quot;, &quot;apparel&quot;, or &quot;toys&quot;.  This field is immutable.
+     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
      */
     productCategory?: string;
     /**
@@ -5570,7 +6509,7 @@ export namespace vision_v1p2beta1 {
     violence?: string;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**

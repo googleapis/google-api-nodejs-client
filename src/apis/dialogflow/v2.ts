@@ -122,7 +122,11 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2Agent {
     /**
-     * Optional. The URI of the agent&#39;s avatar. Avatars are used throughout the Dialogflow console and in the self-hosted [Web Demo](https://cloud.google.com/dialogflow-enterprise/docs/integrations/web-demo) integration.
+     * Optional. API version displayed in Dialogflow console. If not specified, V2 API is assumed. Clients are free to query different service endpoints for different API versions. However, bots connectors and webhook calls will follow the specified API version.
+     */
+    apiVersion?: string;
+    /**
+     * Optional. The URI of the agent&#39;s avatar. Avatars are used throughout the Dialogflow console and in the self-hosted [Web Demo](https://cloud.google.com/dialogflow/docs/integrations/web-demo) integration.
      */
     avatarUri?: string;
     /**
@@ -130,7 +134,7 @@ export namespace dialogflow_v2 {
      */
     classificationThreshold?: number;
     /**
-     * Required. The default language of the agent as a language tag. See [Language Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) for a list of the currently supported language codes. This field cannot be set by the `Update` method.
+     * Required. The default language of the agent as a language tag. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes. This field cannot be set by the `Update` method.
      */
     defaultLanguageCode?: string;
     /**
@@ -158,6 +162,10 @@ export namespace dialogflow_v2 {
      */
     supportedLanguageCodes?: string[];
     /**
+     * Optional. The agent tier. If not specified, TIER_STANDARD is assumed.
+     */
+    tier?: string;
+    /**
      * Required. The time zone of this agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.
      */
     timeZone?: string;
@@ -171,7 +179,7 @@ export namespace dialogflow_v2 {
      */
     entities?: Schema$GoogleCloudDialogflowV2EntityTypeEntity[];
     /**
-     * Optional. The language of entity synonyms defined in `entities`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language of entity synonyms defined in `entities`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
   }
@@ -184,7 +192,7 @@ export namespace dialogflow_v2 {
      */
     entityValues?: string[];
     /**
-     * Optional. The language of entity synonyms defined in `entities`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language of entity synonyms defined in `entities`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
   }
@@ -215,7 +223,7 @@ export namespace dialogflow_v2 {
      */
     entities?: Schema$GoogleCloudDialogflowV2EntityTypeEntity[];
     /**
-     * Optional. The language of entity synonyms defined in `entities`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language of entity synonyms defined in `entities`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
@@ -236,7 +244,7 @@ export namespace dialogflow_v2 {
      */
     entityTypeBatchUri?: string;
     /**
-     * Optional. The language of entity synonyms defined in `entity_types`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language of entity synonyms defined in `entity_types`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
@@ -270,7 +278,7 @@ export namespace dialogflow_v2 {
      */
     intentView?: string;
     /**
-     * Optional. The language of training phrases, parameters and rich messages defined in `intents`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language of training phrases, parameters and rich messages defined in `intents`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
@@ -286,6 +294,15 @@ export namespace dialogflow_v2 {
      * The collection of updated or created intents.
      */
     intents?: Schema$GoogleCloudDialogflowV2Intent[];
+  }
+  /**
+   * Metadata for article suggestion models.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ArticleSuggestionModelMetadata {
+    /**
+     * Optional. Type of the article suggestion model. The available values are: *   `article-suggestion-gbt-1` - (default) Article Suggestion Gbt model.
+     */
+    modelType?: string;
   }
   /**
    * The response message for EntityTypes.BatchUpdateEntityTypes.
@@ -318,9 +335,42 @@ export namespace dialogflow_v2 {
      */
     name?: string;
     /**
-     * Optional. The collection of parameters associated with this context. Refer to [this doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters) for syntax.
+     * Optional. The collection of parameters associated with this context. Refer to [this doc](https://cloud.google.com/dialogflow/docs/intents-actions-parameters) for syntax.
      */
     parameters?: {[key: string]: any};
+  }
+  /**
+   * Represents a conversation model.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ConversationModel {
+    /**
+     * Metadata for article suggestion models.
+     */
+    articleSuggestionModelMetadata?: Schema$GoogleCloudDialogflowV2beta1ArticleSuggestionModelMetadata;
+    /**
+     * Output only. Creation time of this model.
+     */
+    createTime?: string;
+    /**
+     * Required. Datasets used to create model.
+     */
+    datasets?: Schema$GoogleCloudDialogflowV2beta1InputDataset[];
+    /**
+     * Required. The display name of the model. At most 64 bytes long.
+     */
+    displayName?: string;
+    /**
+     * Output only. ConversationModel resource name. Format: `projects/&lt;Project ID&gt;/conversationModels/&lt;Conversation Model ID&gt;`
+     */
+    name?: string;
+    /**
+     * Metadata for smart reply models.
+     */
+    smartReplyModelMetadata?: Schema$GoogleCloudDialogflowV2beta1SmartReplyModelMetadata;
+    /**
+     * Output only. State of the model. A model can only serve prediction requests after it gets deployed.
+     */
+    state?: string;
   }
   /**
    * Represents an entity type. Entity types serve as a tool for extracting parameter values from natural language queries.
@@ -365,7 +415,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1EventInput {
     /**
-     * Required. The language of this query. See [Language Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
+     * Required. The language of this query. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
      */
     languageCode?: string;
     /**
@@ -391,6 +441,15 @@ export namespace dialogflow_v2 {
     agentUri?: string;
   }
   /**
+   * InputDataset used to create model or do evaluation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1InputDataset {
+    /**
+     * Required. ConversationDataset resource name. Format: `projects/&lt;Project ID&gt;/conversationDatasets/&lt;Conversation Dataset ID&gt;` or `projects/&lt;Project ID&gt;/conversationDatasets/&lt;Conversation Dataset ID&gt;/annotatedConversationDatasets/&lt;Annotated Conversation Dataset ID&gt;`
+     */
+    dataset?: string;
+  }
+  /**
    * Represents an intent. Intents convert a number of user expressions or patterns into an action. An action is an extraction of a user command or sentence semantics.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Intent {
@@ -399,7 +458,7 @@ export namespace dialogflow_v2 {
      */
     action?: string;
     /**
-     * Optional. The list of platforms for which the first response will be taken from among the messages assigned to the DEFAULT_PLATFORM.
+     * Optional. The list of platforms for which the first responses will be copied from the messages in PLATFORM_UNSPECIFIED (i.e. default platform).
      */
     defaultResponsePlatforms?: string[];
     /**
@@ -528,6 +587,18 @@ export namespace dialogflow_v2 {
      * Displays quick replies.
      */
     quickReplies?: Schema$GoogleCloudDialogflowV2beta1IntentMessageQuickReplies;
+    /**
+     * Rich Business Messaging (RBM) carousel rich card response.
+     */
+    rbmCarouselRichCard?: Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmCarouselCard;
+    /**
+     * Standalone Rich Business Messaging (RBM) rich card response.
+     */
+    rbmStandaloneRichCard?: Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmStandaloneCard;
+    /**
+     * Rich Business Messaging (RBM) text response.  RBM allows businesses to send enriched and branded versions of SMS. See https://jibe.google.com/business-messaging.
+     */
+    rbmText?: Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmText;
     /**
      * Returns a voice or text-only response for Actions on Google.
      */
@@ -738,6 +809,160 @@ export namespace dialogflow_v2 {
     title?: string;
   }
   /**
+   * Rich Business Messaging (RBM) Card content
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmCardContent {
+    /**
+     * Optional. Description of the card (at most 2000 bytes).  At least one of the title, description or media must be set.
+     */
+    description?: string;
+    /**
+     * Optional. However at least one of the title, description or media must be set. Media (image, GIF or a video) to include in the card.
+     */
+    media?: Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMedia;
+    /**
+     * Optional. List of suggestions to include in the card.
+     */
+    suggestions?: Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestion[];
+    /**
+     * Optional. Title of the card (at most 200 bytes).  At least one of the title, description or media must be set.
+     */
+    title?: string;
+  }
+  /**
+   * Rich Business Messaging (RBM) Media displayed in Cards The following media-types are currently supported:  ## Image Types   image/jpeg  image/jpg&#39;  image/gif  image/png  ## Video Types   video/h263  video/m4v  video/mp4  video/mpeg  video/mpeg4  video/webm
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMedia {
+    /**
+     * Required. Publicly reachable URI of the file. The RBM platform determines the MIME type of the file from the content-type field in the HTTP headers when the platform fetches the file. The content-type field must be present and accurate in the HTTP response from the URL.
+     */
+    fileUri?: string;
+    /**
+     * Required for cards with vertical orientation. The height of the media within a rich card with a vertical layout. (https://goo.gl/NeFCjz). For a standalone card with horizontal layout, height is not customizable, and this field is ignored.
+     */
+    height?: string;
+    /**
+     * Optional. Publicly reachable URI of the thumbnail.If you don&#39;t provide a thumbnail URI, the RBM platform displays a blank placeholder thumbnail until the user&#39;s device downloads the file. Depending on the user&#39;s setting, the file may not download automatically and may require the user to tap a download button.
+     */
+    thumbnailUri?: string;
+  }
+  /**
+   * Carousel Rich Business Messaging (RBM) rich card.  Rich cards allow you to respond to users with more vivid content, e.g. with media and suggestions.  For more details about RBM rich cards, please see: https://developers.google.com/rcs-business-messaging/rbm/guides/build/send-messages#rich-cards. If you want to show a single card with more control over the layout, please use RbmStandaloneCard instead.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmCarouselCard {
+    /**
+     * Required. The cards in the carousel. A carousel must have at least 2 cards and at most 10.
+     */
+    cardContents?: Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmCardContent[];
+    /**
+     * Required. The width of the cards in the carousel.
+     */
+    cardWidth?: string;
+  }
+  /**
+   * Standalone Rich Business Messaging (RBM) rich card.  Rich cards allow you to respond to users with more vivid content, e.g. with media and suggestions.  For more details about RBM rich cards, please see: https://developers.google.com/rcs-business-messaging/rbm/guides/build/send-messages#rich-cards. You can group multiple rich cards into one using RbmCarouselCard but carousel cards will give you less control over the card layout.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmStandaloneCard {
+    /**
+     * Required. Card content.
+     */
+    cardContent?: Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmCardContent;
+    /**
+     * Required. Orientation of the card.
+     */
+    cardOrientation?: string;
+    /**
+     * Required if orientation is horizontal. Image preview alignment for standalone cards with horizontal layout.
+     */
+    thumbnailImageAlignment?: string;
+  }
+  /**
+   * Rich Business Messaging (RBM) suggested client-side action that the user can choose from the card.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedAction {
+    /**
+     * Suggested client side action: Dial a phone number
+     */
+    dial?: Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionDial;
+    /**
+     * Suggested client side action: Open a URI on device
+     */
+    openUrl?: Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionOpenUri;
+    /**
+     * Opaque payload that the Dialogflow receives in a user event when the user taps the suggested action. This data will be also forwarded to webhook to allow performing custom business logic.
+     */
+    postbackData?: string;
+    /**
+     * Suggested client side action: Share user location
+     */
+    shareLocation?: Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionShareLocation;
+    /**
+     * Text to display alongside the action.
+     */
+    text?: string;
+  }
+  /**
+   * Opens the user&#39;s default dialer app with the specified phone number but does not dial automatically (https://goo.gl/ergbB2).
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionDial {
+    /**
+     * Required. The phone number to fill in the default dialer app. This field should be in [E.164](https://en.wikipedia.org/wiki/E.164) format. An example of a correctly formatted phone number: +15556767888.
+     */
+    phoneNumber?: string;
+  }
+  /**
+   * Opens the user&#39;s default web browser app to the specified uri (https://goo.gl/6GLJD2). If the user has an app installed that is registered as the default handler for the URL, then this app will be opened instead, and its icon will be used in the suggested action UI.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionOpenUri {
+    /**
+     * Required. The uri to open on the user device
+     */
+    uri?: string;
+  }
+  /**
+   * Opens the device&#39;s location chooser so the user can pick a location to send back to the agent (https://goo.gl/GXotJW).
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionShareLocation {}
+  /**
+   * Rich Business Messaging (RBM) suggested reply that the user can click instead of typing in their own response.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedReply {
+    /**
+     * Opaque payload that the Dialogflow receives in a user event when the user taps the suggested reply. This data will be also forwarded to webhook to allow performing custom business logic.
+     */
+    postbackData?: string;
+    /**
+     * Suggested reply text.
+     */
+    text?: string;
+  }
+  /**
+   * Rich Business Messaging (RBM) suggestion. Suggestions allow user to easily select/click a predefined response or perform an action (like opening a web uri).
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestion {
+    /**
+     * Predefined client side actions that user can choose
+     */
+    action?: Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedAction;
+    /**
+     * Predefined replies for user to select instead of typing
+     */
+    reply?: Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedReply;
+  }
+  /**
+   * Rich Business Messaging (RBM) text response with suggestions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmText {
+    /**
+     * Optional. One or more suggestions to show to the user.
+     */
+    rbmSuggestion?: Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestion[];
+    /**
+     * Required. Text sent and displayed to the user.
+     */
+    text?: string;
+  }
+  /**
    * Additional info about the select item for when it is triggered in a dialog.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageSelectItemInfo {
@@ -863,7 +1088,7 @@ export namespace dialogflow_v2 {
      */
     name?: string;
     /**
-     * Optional. The collection of prompts that the agent can present to the user in order to collect value for the parameter.
+     * Optional. The collection of prompts that the agent can present to the user in order to collect a value for the parameter.
      */
     prompts?: string[];
     /**
@@ -982,7 +1207,7 @@ export namespace dialogflow_v2 {
      */
     action?: string;
     /**
-     * This field is set to: - `false` if the matched intent has required parameters and not all of    the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the    matched intent doesn&#39;t contain any required parameters.
+     * This field is set to:  - `false` if the matched intent has required parameters and not all of    the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the    matched intent doesn&#39;t contain any required parameters.
      */
     allRequiredParamsPresent?: boolean;
     /**
@@ -1002,7 +1227,7 @@ export namespace dialogflow_v2 {
      */
     intent?: Schema$GoogleCloudDialogflowV2beta1Intent;
     /**
-     * The intent detection confidence. Values range from 0.0 (completely uncertain) to 1.0 (completely certain). If there are `multiple knowledge_answers` messages, this value is set to the greatest `knowledgeAnswers.match_confidence` value in the list.
+     * The intent detection confidence. Values range from 0.0 (completely uncertain) to 1.0 (completely certain). This value is for informational purpose only and is only used to help match the best intent within the classification threshold. This value may change for the same end-user expression at any time due to a model retraining or change in implementation. If there are `multiple knowledge_answers` messages, this value is set to the greatest `knowledgeAnswers.match_confidence` value in the list.
      */
     intentDetectionConfidence?: number;
     /**
@@ -1010,7 +1235,7 @@ export namespace dialogflow_v2 {
      */
     knowledgeAnswers?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAnswers;
     /**
-     * The language that was triggered during intent detection. See [Language Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) for a list of the currently supported language codes.
+     * The language that was triggered during intent detection. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes.
      */
     languageCode?: string;
     /**
@@ -1022,7 +1247,7 @@ export namespace dialogflow_v2 {
      */
     parameters?: {[key: string]: any};
     /**
-     * The original conversational query text: - If natural language text was provided as input, `query_text` contains   a copy of the input. - If natural language speech audio was provided as input, `query_text`   contains the speech recognition result. If speech recognizer produced   multiple alternatives, a particular one is picked. - If an event was provided as input, `query_text` is not set.
+     * The original conversational query text:  - If natural language text was provided as input, `query_text` contains   a copy of the input. - If natural language speech audio was provided as input, `query_text`   contains the speech recognition result. If speech recognizer produced   multiple alternatives, a particular one is picked. - If automatic spell correction is enabled, `query_text` will contain the   corrected user input.
      */
     queryText?: string;
     /**
@@ -1065,6 +1290,10 @@ export namespace dialogflow_v2 {
     queryTextSentiment?: Schema$GoogleCloudDialogflowV2beta1Sentiment;
   }
   /**
+   * Metadata for smart reply models.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SmartReplyModelMetadata {}
+  /**
    * The request message for a webhook call.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1WebhookRequest {
@@ -1098,7 +1327,7 @@ export namespace dialogflow_v2 {
      */
     endInteraction?: boolean;
     /**
-     * Optional. Makes the platform immediately invoke another `DetectIntent` call internally with the specified event as input.
+     * Optional. Makes the platform immediately invoke another `DetectIntent` call internally with the specified event as input. When this field is set, Dialogflow ignores the `fulfillment_text`, `fulfillment_messages`, and `payload` fields.
      */
     followupEventInput?: Schema$GoogleCloudDialogflowV2beta1EventInput;
     /**
@@ -1135,7 +1364,7 @@ export namespace dialogflow_v2 {
      */
     name?: string;
     /**
-     * Optional. The collection of parameters associated with this context. Refer to [this doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters) for syntax.
+     * Optional. The collection of parameters associated with this context. Refer to [this doc](https://cloud.google.com/dialogflow/docs/intents-actions-parameters) for syntax.
      */
     parameters?: {[key: string]: any};
   }
@@ -1237,7 +1466,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2EventInput {
     /**
-     * Required. The language of this query. See [Language Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
+     * Required. The language of this query. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
      */
     languageCode?: string;
     /**
@@ -1293,7 +1522,7 @@ export namespace dialogflow_v2 {
      */
     audioEncoding?: string;
     /**
-     * Required. The language of the supplied audio. Dialogflow does not do translations. See [Language Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
+     * Required. The language of the supplied audio. Dialogflow does not do translations. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
      */
     languageCode?: string;
     /**
@@ -1301,13 +1530,17 @@ export namespace dialogflow_v2 {
      */
     modelVariant?: string;
     /**
-     * Optional. The collection of phrase hints which are used to boost accuracy of speech recognition. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details.
+     * Optional. A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood.  See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details.
      */
     phraseHints?: string[];
     /**
      * Required. Sample rate (in Hertz) of the audio content sent in the query. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics) for more details.
      */
     sampleRateHertz?: number;
+    /**
+     * Optional. If `false` (default), recognition does not cease until the client closes the stream. If `true`, the recognizer will detect a single spoken utterance in input audio. Recognition ceases when it detects the audio&#39;s voice has stopped or paused. In this case, once a detected intent is received, the client should close the stream and start a new request with a new stream as needed. Note: This setting is relevant only for streaming methods. Note: When specified, InputAudioConfig.single_utterance takes precedence over StreamingDetectIntentRequest.single_utterance.
+     */
+    singleUtterance?: boolean;
   }
   /**
    * Represents an intent. Intents convert a number of user expressions or patterns into an action. An action is an extraction of a user command or sentence semantics.
@@ -1318,7 +1551,7 @@ export namespace dialogflow_v2 {
      */
     action?: string;
     /**
-     * Optional. The list of platforms for which the first response will be taken from among the messages assigned to the DEFAULT_PLATFORM.
+     * Optional. The list of platforms for which the first responses will be copied from the messages in PLATFORM_UNSPECIFIED (i.e. default platform).
      */
     defaultResponsePlatforms?: string[];
     /**
@@ -1740,7 +1973,7 @@ export namespace dialogflow_v2 {
      */
     name?: string;
     /**
-     * Optional. The collection of prompts that the agent can present to the user in order to collect value for the parameter.
+     * Optional. The collection of prompts that the agent can present to the user in order to collect a value for the parameter.
      */
     prompts?: string[];
     /**
@@ -1935,7 +2168,7 @@ export namespace dialogflow_v2 {
      */
     action?: string;
     /**
-     * This field is set to: - `false` if the matched intent has required parameters and not all of    the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the    matched intent doesn&#39;t contain any required parameters.
+     * This field is set to:  - `false` if the matched intent has required parameters and not all of    the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the    matched intent doesn&#39;t contain any required parameters.
      */
     allRequiredParamsPresent?: boolean;
     /**
@@ -1955,11 +2188,11 @@ export namespace dialogflow_v2 {
      */
     intent?: Schema$GoogleCloudDialogflowV2Intent;
     /**
-     * The intent detection confidence. Values range from 0.0 (completely uncertain) to 1.0 (completely certain). If there are `multiple knowledge_answers` messages, this value is set to the greatest `knowledgeAnswers.match_confidence` value in the list.
+     * The intent detection confidence. Values range from 0.0 (completely uncertain) to 1.0 (completely certain). This value is for informational purpose only and is only used to help match the best intent within the classification threshold. This value may change for the same end-user expression at any time due to a model retraining or change in implementation. If there are `multiple knowledge_answers` messages, this value is set to the greatest `knowledgeAnswers.match_confidence` value in the list.
      */
     intentDetectionConfidence?: number;
     /**
-     * The language that was triggered during intent detection. See [Language Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) for a list of the currently supported language codes.
+     * The language that was triggered during intent detection. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes.
      */
     languageCode?: string;
     /**
@@ -1971,7 +2204,7 @@ export namespace dialogflow_v2 {
      */
     parameters?: {[key: string]: any};
     /**
-     * The original conversational query text: - If natural language text was provided as input, `query_text` contains   a copy of the input. - If natural language speech audio was provided as input, `query_text`   contains the speech recognition result. If speech recognizer produced   multiple alternatives, a particular one is picked. - If an event was provided as input, `query_text` is not set.
+     * The original conversational query text:  - If natural language text was provided as input, `query_text` contains   a copy of the input. - If natural language speech audio was provided as input, `query_text`   contains the speech recognition result. If speech recognizer produced   multiple alternatives, a particular one is picked. - If automatic spell correction is enabled, `query_text` will contain the   corrected user input.
      */
     queryText?: string;
     /**
@@ -2095,7 +2328,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2TextInput {
     /**
-     * Required. The language of this conversational query. See [Language Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
+     * Required. The language of this conversational query. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
      */
     languageCode?: string;
     /**
@@ -2146,7 +2379,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2WebhookResponse {
     /**
-     * Optional. Makes the platform immediately invoke another `DetectIntent` call internally with the specified event as input.
+     * Optional. Makes the platform immediately invoke another `DetectIntent` call internally with the specified event as input. When this field is set, Dialogflow ignores the `fulfillment_text`, `fulfillment_messages`, and `payload` fields.
      */
     followupEventInput?: Schema$GoogleCloudDialogflowV2EventInput;
     /**
@@ -2169,6 +2402,19 @@ export namespace dialogflow_v2 {
      * Optional. This value is passed directly to `QueryResult.webhook_source`.
      */
     source?: string;
+  }
+  /**
+   * The response message for Operations.ListOperations.
+   */
+  export interface Schema$GoogleLongrunningListOperationsResponse {
+    /**
+     * The standard List next-page token.
+     */
+    nextPageToken?: string;
+    /**
+     * A list of operations that matches the specified filter in the request.
+     */
+    operations?: Schema$GoogleLongrunningOperation[];
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -2200,7 +2446,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$GoogleRpcStatus {
     /**
@@ -2238,6 +2484,166 @@ export namespace dialogflow_v2 {
       this.context = context;
       this.agent = new Resource$Projects$Agent(this.context);
       this.operations = new Resource$Projects$Operations(this.context);
+    }
+
+    /**
+     * dialogflow.projects.agent
+     * @desc Creates/updates the specified agent.
+     * @alias dialogflow.projects.agent
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The project of this agent. Format: `projects/<Project ID>`.
+     * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
+     * @param {().GoogleCloudDialogflowV2Agent} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    agent(
+      params?: Params$Resource$Projects$Agent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2Agent>;
+    agent(
+      params: Params$Resource$Projects$Agent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>
+    ): void;
+    agent(
+      params: Params$Resource$Projects$Agent,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>
+    ): void;
+    agent(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>
+    ): void;
+    agent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agent
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>
+    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2Agent> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Agent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/agent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2Agent>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2Agent>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * dialogflow.projects.deleteAgent
+     * @desc Deletes the specified agent.
+     * @alias dialogflow.projects.deleteAgent
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The project that the agent to delete is associated with. Format: `projects/<Project ID>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteAgent(
+      params?: Params$Resource$Projects$Deleteagent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    deleteAgent(
+      params: Params$Resource$Projects$Deleteagent,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    deleteAgent(
+      params: Params$Resource$Projects$Deleteagent,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    deleteAgent(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    deleteAgent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Deleteagent
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Deleteagent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Deleteagent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/agent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
     }
 
     /**
@@ -2324,6 +2730,38 @@ export namespace dialogflow_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Agent extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The project of this agent. Format: `projects/<Project ID>`.
+     */
+    parent?: string;
+    /**
+     * Optional. The mask to control which fields get updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2Agent;
+  }
+  export interface Params$Resource$Projects$Deleteagent
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The project that the agent to delete is associated with. Format: `projects/<Project ID>`.
+     */
+    parent?: string;
+  }
   export interface Params$Resource$Projects$Getagent
     extends StandardParameters {
     /**
@@ -3049,7 +3487,7 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {string} params.parent Required. The agent to create a entity type for. Format: `projects/<Project ID>/agent`.
      * @param {().GoogleCloudDialogflowV2EntityType} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3205,7 +3643,7 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional. The language to retrieve entity synonyms for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * @param {string=} params.languageCode Optional. The language to retrieve entity synonyms for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {string} params.name Required. The name of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3286,7 +3724,7 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional. The language to list entity synonyms for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * @param {string=} params.languageCode Optional. The language to list entity synonyms for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
      * @param {string} params.parent Required. The agent to list all entity types from. Format: `projects/<Project ID>/agent`.
@@ -3388,7 +3826,7 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {string} params.name The unique identifier of the entity type. Required for EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes methods. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2EntityType} params.resource Request body data
@@ -3507,7 +3945,7 @@ export namespace dialogflow_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
@@ -3540,7 +3978,7 @@ export namespace dialogflow_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The language to retrieve entity synonyms for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language to retrieve entity synonyms for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
@@ -3556,7 +3994,7 @@ export namespace dialogflow_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The language to list entity synonyms for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language to list entity synonyms for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
@@ -3580,7 +4018,7 @@ export namespace dialogflow_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
@@ -4081,7 +4519,7 @@ export namespace dialogflow_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
-     * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {string} params.parent Required. The agent to create a intent for. Format: `projects/<Project ID>/agent`.
      * @param {().GoogleCloudDialogflowV2Intent} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4238,7 +4676,7 @@ export namespace dialogflow_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
-     * @param {string=} params.languageCode Optional. The language to retrieve training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * @param {string=} params.languageCode Optional. The language to retrieve training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {string} params.name Required. The name of the intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4320,7 +4758,7 @@ export namespace dialogflow_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
-     * @param {string=} params.languageCode Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * @param {string=} params.languageCode Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
      * @param {string} params.parent Required. The agent to list all intents from. Format: `projects/<Project ID>/agent`.
@@ -4421,7 +4859,7 @@ export namespace dialogflow_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
-     * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {string} params.name The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2Intent} params.resource Request body data
@@ -4544,7 +4982,7 @@ export namespace dialogflow_v2 {
      */
     intentView?: string;
     /**
-     * Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
@@ -4581,7 +5019,7 @@ export namespace dialogflow_v2 {
      */
     intentView?: string;
     /**
-     * Optional. The language to retrieve training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language to retrieve training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
@@ -4601,7 +5039,7 @@ export namespace dialogflow_v2 {
      */
     intentView?: string;
     /**
-     * Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
@@ -4629,7 +5067,7 @@ export namespace dialogflow_v2 {
      */
     intentView?: string;
     /**
-     * Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
@@ -5992,6 +6430,100 @@ export namespace dialogflow_v2 {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
+
+    /**
+     * dialogflow.projects.operations.list
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @alias dialogflow.projects.operations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The standard list filter.
+     * @param {string} params.name The name of the operation's parent resource.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunningListOperationsResponse
+      >
+    ): void;
+    list(
+      params: Params$Resource$Projects$Operations$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunningListOperationsResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunningListOperationsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Operations$List
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleLongrunningListOperationsResponse
+      >
+    ): void | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Operations$Get
@@ -6005,5 +6537,29 @@ export namespace dialogflow_v2 {
      * The name of the operation resource.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Operations$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
   }
 }

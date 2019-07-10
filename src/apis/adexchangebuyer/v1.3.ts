@@ -238,6 +238,10 @@ export namespace adexchangebuyer_v1_3 {
      * Account id.
      */
     accountId?: number;
+    adTechnologyProviders?: {
+      detectedProviderIds?: string[];
+      hasUnidentifiedProvider?: boolean;
+    };
     /**
      * Detected advertiser id, if any. Read-only. This field should not be set in requests.
      */
@@ -312,7 +316,6 @@ export namespace adexchangebuyer_v1_3 {
       logo?: {height?: number; url?: string; width?: number};
       price?: string;
       starRating?: number;
-      store?: string;
     };
     /**
      * Detected product categories, if any. Read-only. This field should not be set in requests.

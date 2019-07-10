@@ -122,6 +122,15 @@ export namespace redis_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Request for Export.
+   */
+  export interface Schema$ExportInstanceRequest {
+    /**
+     * Required. Specify data to be exported.
+     */
+    outputConfig?: Schema$OutputConfig;
+  }
+  /**
    * Request for Failover.
    */
   export interface Schema$FailoverInstanceRequest {
@@ -129,6 +138,24 @@ export namespace redis_v1 {
      * Optional. Available data protection modes that the user can choose. If it&#39;s unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
      */
     dataProtectionMode?: string;
+  }
+  /**
+   * The Cloud Storage location for the output content
+   */
+  export interface Schema$GcsDestination {
+    /**
+     * Required. Data destination URI (e.g. &#39;gs://my_bucket/my_object&#39;). Existing files will be overwritten.
+     */
+    uri?: string;
+  }
+  /**
+   * The Cloud Storage location for the input content
+   */
+  export interface Schema$GcsSource {
+    /**
+     * Required. Source data URI. (e.g. &#39;gs://my_bucket/my_object&#39;).
+     */
+    uri?: string;
   }
   /**
    * This location metadata represents additional configuration options for a given location where a Redis instance may be created. All fields are output only. It is returned as content of the `google.cloud.location.Location.metadata` field.
@@ -177,6 +204,24 @@ export namespace redis_v1 {
    */
   export interface Schema$GoogleCloudRedisV1ZoneMetadata {}
   /**
+   * Request for Import.
+   */
+  export interface Schema$ImportInstanceRequest {
+    /**
+     * Required. Specify data to be imported.
+     */
+    inputConfig?: Schema$InputConfig;
+  }
+  /**
+   * The input content
+   */
+  export interface Schema$InputConfig {
+    /**
+     * Google Cloud Storage location where input content is located.
+     */
+    gcsSource?: Schema$GcsSource;
+  }
+  /**
    * A Google Cloud Redis instance.
    */
   export interface Schema$Instance {
@@ -221,15 +266,19 @@ export namespace redis_v1 {
      */
     name?: string;
     /**
+     * Output only. Cloud IAM identity used by import / export operations to transfer data to/from Cloud Storage. Format is &quot;serviceAccount:&lt;service_account_email&gt;&quot;. The value may change over time for a given instance so should be checked before each import/export operation.
+     */
+    persistenceIamIdentity?: string;
+    /**
      * Output only. The port number of the exposed Redis endpoint.
      */
     port?: number;
     /**
-     * Optional. Redis configuration parameters, according to http://redis.io/topics/config. Currently, the only supported parameters are:   *   maxmemory-policy  *   notify-keyspace-events
+     * Optional. Redis configuration parameters, according to http://redis.io/topics/config. Currently, the only supported parameters are:   Redis 3.2 and above:   *   maxmemory-policy  *   notify-keyspace-events   Redis 4.0 and above:   *   activedefrag  *   lfu-log-factor  *   lfu-decay-time
      */
     redisConfigs?: {[key: string]: string};
     /**
-     * Optional. The version of Redis software. If not provided, latest supported version will be used. Updating the version will perform an upgrade/downgrade to the new version. Currently, the supported values are `REDIS_3_2` for Redis 3.2.
+     * Optional. The version of Redis software. If not provided, latest supported version will be used. Updating the version will perform an upgrade/downgrade to the new version. Currently, the supported values are:   *   `REDIS_4_0` for Redis 4.0 compatibility (default)  *   `REDIS_3_2` for Redis 3.2 compatibility
      */
     redisVersion?: string;
     /**
@@ -334,7 +383,7 @@ export namespace redis_v1 {
      */
     metadata?: {[key: string]: any};
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
     name?: string;
     /**
@@ -343,7 +392,16 @@ export namespace redis_v1 {
     response?: {[key: string]: any};
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The output content
+   */
+  export interface Schema$OutputConfig {
+    /**
+     * Google Cloud Storage destination for output content.
+     */
+    gcsDestination?: Schema$GcsDestination;
+  }
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -721,6 +779,78 @@ export namespace redis_v1 {
     }
 
     /**
+     * redis.projects.locations.instances.export
+     * @desc Export Redis instance data into a Redis RDB format file in Cloud Storage.  Redis will continue serving during this operation.  The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
+     * @alias redis.projects.locations.instances.export
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Redis instance resource name using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     * @param {().ExportInstanceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    export(
+      params?: Params$Resource$Projects$Locations$Instances$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    export(
+      params: Params$Resource$Projects$Locations$Instances$Export,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Instances$Export,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    export(callback: BodyResponseCallback<Schema$Operation>): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Export
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * redis.projects.locations.instances.failover
      * @desc Initiates a failover of the master node to current replica node for a specific STANDARD tier Cloud Memorystore for Redis instance.
      * @alias redis.projects.locations.instances.failover
@@ -861,6 +991,78 @@ export namespace redis_v1 {
         createAPIRequest<Schema$Instance>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Instance>(parameters);
+      }
+    }
+
+    /**
+     * redis.projects.locations.instances.import
+     * @desc Import a Redis RDB snapshot file from Cloud Storage into a Redis instance.  Redis may stop serving during this operation. Instance state will be IMPORTING for entire operation. When complete, the instance will contain only data from the imported file.  The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
+     * @alias redis.projects.locations.instances.import
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Redis instance resource name using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     * @param {().ImportInstanceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    import(
+      params?: Params$Resource$Projects$Locations$Instances$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Instances$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Instances$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Import
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:import').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -1049,6 +1251,23 @@ export namespace redis_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Instances$Export
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Redis instance resource name using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExportInstanceRequest;
+  }
   export interface Params$Resource$Projects$Locations$Instances$Failover
     extends StandardParameters {
     /**
@@ -1077,6 +1296,23 @@ export namespace redis_v1 {
      * Required. Redis instance resource name using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Import
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Redis instance resource name using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportInstanceRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$List
     extends StandardParameters {

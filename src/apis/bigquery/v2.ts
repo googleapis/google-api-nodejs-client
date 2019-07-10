@@ -93,6 +93,7 @@ export namespace bigquery_v2 {
     jobs: Resource$Jobs;
     models: Resource$Models;
     projects: Resource$Projects;
+    routines: Resource$Routines;
     tabledata: Resource$Tabledata;
     tables: Resource$Tables;
 
@@ -106,13 +107,14 @@ export namespace bigquery_v2 {
       this.jobs = new Resource$Jobs(this.context);
       this.models = new Resource$Models(this.context);
       this.projects = new Resource$Projects(this.context);
+      this.routines = new Resource$Routines(this.context);
       this.tabledata = new Resource$Tabledata(this.context);
       this.tables = new Resource$Tables(this.context);
     }
   }
 
   /**
-   * Aggregate metrics for classification models. For multi-class models, the metrics are either macro-averaged: metrics are calculated for each label and then an unweighted average is taken of those values or micro-averaged: the metric is calculated globally by counting the total number of correctly predicted rows.
+   * Aggregate metrics for classification/classifier models. For multi-class models, the metrics are either macro-averaged or micro-averaged. When macro-averaged, the metrics are calculated for each label and then an unweighted average is taken of those values. When micro-averaged, the metric is calculated globally by counting the total number of correctly predicted rows.
    */
   export interface Schema$AggregateClassificationMetrics {
     /**
@@ -143,6 +145,27 @@ export namespace bigquery_v2 {
      * Threshold at which the metrics are computed. For binary classification models this is the positive class threshold. For multi-class classfication models this is the confidence threshold.
      */
     threshold?: number;
+  }
+  /**
+   * Input/output argument of a function or a stored procedure.
+   */
+  export interface Schema$Argument {
+    /**
+     * Optional. Defaults to FIXED_TYPE.
+     */
+    argumentKind?: string;
+    /**
+     * Required unless argument_kind = ANY_TYPE.
+     */
+    dataType?: Schema$StandardSqlDataType;
+    /**
+     * Optional. Specifies whether the argument is input or output. Can be set for procedures only.
+     */
+    mode?: string;
+    /**
+     * Optional. The name of this argument. Can be absent for function return argument.
+     */
+    name?: string;
   }
   export interface Schema$BigQueryModelTraining {
     /**
@@ -214,7 +237,7 @@ export namespace bigquery_v2 {
     readRowkeyAsString?: boolean;
   }
   /**
-   * Evaluation metrics for binary classification models.
+   * Evaluation metrics for binary classification/classifier models.
    */
   export interface Schema$BinaryClassificationMetrics {
     /**
@@ -225,11 +248,27 @@ export namespace bigquery_v2 {
      * Binary confusion matrix at multiple thresholds.
      */
     binaryConfusionMatrixList?: Schema$BinaryConfusionMatrix[];
+    /**
+     * Label representing the negative class.
+     */
+    negativeLabel?: string;
+    /**
+     * Label representing the positive class.
+     */
+    positiveLabel?: string;
   }
   /**
    * Confusion matrix for binary classification models.
    */
   export interface Schema$BinaryConfusionMatrix {
+    /**
+     * The fraction of predictions given the correct label.
+     */
+    accuracy?: number;
+    /**
+     * The equally weighted average of recall and precision.
+     */
+    f1Score?: number;
     /**
      * Number of false samples predicted as false.
      */
@@ -243,11 +282,11 @@ export namespace bigquery_v2 {
      */
     positiveClassThreshold?: number;
     /**
-     * Aggregate precision.
+     * The fraction of actual positive predictions that had positive actual labels.
      */
     precision?: number;
     /**
-     * Aggregate recall.
+     * The fraction of actual positive labels that were given a positive prediction.
      */
     recall?: number;
     /**
@@ -298,7 +337,6 @@ export namespace bigquery_v2 {
      * [Output-only, Beta] Training options used by this training run. These options are mutable for subsequent training runs. Default values are explicitly stored for options not specified in the input query of the first training run. For subsequent training runs, any option not explicitly specified in the input query will be copied from the previous training run.
      */
     trainingOptions?: {
-      minRelProgress?: number;
       l2Reg?: number;
       learnRateStrategy?: string;
       warmStart?: boolean;
@@ -307,6 +345,7 @@ export namespace bigquery_v2 {
       l1Reg?: number;
       maxIteration?: string;
       learnRate?: number;
+      minRelProgress?: number;
     };
   }
   /**
@@ -389,8 +428,8 @@ export namespace bigquery_v2 {
      * [Optional] An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER;
      */
     access?: Array<{
-      domain?: string;
       userByEmail?: string;
+      domain?: string;
       iamMember?: string;
       specialGroup?: string;
       role?: string;
@@ -405,6 +444,7 @@ export namespace bigquery_v2 {
      * [Required] A reference that identifies the dataset.
      */
     datasetReference?: Schema$DatasetReference;
+    defaultEncryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
      * [Optional] The default partition expiration for all partitioned tables in the dataset, in milliseconds. Once this property is set, all newly-created partitioned tables in the dataset will have an expirationMs property in the timePartitioning settings set to this value, and changing the value will only affect new tables, not existing ones. The storage in a partition will have an expiration time of its partition time plus this value. Setting this property overrides the use of defaultTableExpirationMs for partitioned tables: only one of defaultTableExpirationMs and defaultPartitionExpirationMs will be used for any new partitioned table. If you provide an explicit timePartitioning.expirationMs when creating or updating a partitioned table, that value takes precedence over the default partition expiration time indicated by this property.
      */
@@ -455,12 +495,12 @@ export namespace bigquery_v2 {
      * An array of the dataset resources in the project. Each resource contains basic information. For full information about a particular dataset resource, use the Datasets: get method. This property is omitted when there are no datasets in the project.
      */
     datasets?: Array<{
-      kind?: string;
-      labels?: {[key: string]: string};
-      datasetReference?: Schema$DatasetReference;
       id?: string;
       location?: string;
       friendlyName?: string;
+      kind?: string;
+      labels?: {[key: string]: string};
+      datasetReference?: Schema$DatasetReference;
     }>;
     /**
      * A hash value of the results page. You can use this property to determine if the page has changed since the last request.
@@ -537,11 +577,11 @@ export namespace bigquery_v2 {
     reason?: string;
   }
   /**
-   * Evaluation metrics of a model. These are either computed on all training data or just the eval data based on whether eval data was used during training.
+   * Evaluation metrics of a model. These are either computed on all training data or just the eval data based on whether eval data was used during training. These are not present for imported models.
    */
   export interface Schema$EvaluationMetrics {
     /**
-     * Populated for binary classification models.
+     * Populated for binary classification/classifier models.
      */
     binaryClassificationMetrics?: Schema$BinaryClassificationMetrics;
     /**
@@ -549,7 +589,7 @@ export namespace bigquery_v2 {
      */
     clusteringMetrics?: Schema$ClusteringMetrics;
     /**
-     * Populated for multi-class classification models.
+     * Populated for multi-class classification/classifier models.
      */
     multiClassClassificationMetrics?: Schema$MultiClassClassificationMetrics;
     /**
@@ -707,9 +747,13 @@ export namespace bigquery_v2 {
      */
     googleSheetsOptions?: Schema$GoogleSheetsOptions;
     /**
-     * [Optional, Experimental] If hive partitioning is enabled, which mode to use. Two modes are supported: - AUTO: automatically infer partition key name(s) and type(s). - STRINGS: automatic infer partition key name(s). All types are strings. Not all storage formats support hive partitioning -- requesting hive partitioning on an unsupported format will lead to an error.
+     * [Optional, Trusted Tester] If hive partitioning is enabled, which mode to use. Two modes are supported: - AUTO: automatically infer partition key name(s) and type(s). - STRINGS: automatic infer partition key name(s). All types are strings. Not all storage formats support hive partitioning -- requesting hive partitioning on an unsupported format will lead to an error. Note: this setting is in the process of being deprecated in favor of hivePartitioningOptions.
      */
     hivePartitioningMode?: string;
+    /**
+     * [Optional, Trusted Tester] Options to configure hive partitioning support.
+     */
+    hivePartitioningOptions?: Schema$HivePartitioningOptions;
     /**
      * [Optional] Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don&#39;t match any column names Google Cloud Bigtable: This setting is ignored. Google Cloud Datastore backups: This setting is ignored. Avro: This setting is ignored.
      */
@@ -800,6 +844,16 @@ export namespace bigquery_v2 {
      * [Optional] The number of rows at the top of a sheet that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows that should be skipped. When autodetect is on, behavior is the following: * skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected, the row is read as data. Otherwise data is read starting from the second row. * skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row. * skipLeadingRows = N &gt; 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected, row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
      */
     skipLeadingRows?: string;
+  }
+  export interface Schema$HivePartitioningOptions {
+    /**
+     * [Optional, Trusted Tester] When set, what mode of hive partitioning to use when reading data. Two modes are supported. (1) AUTO: automatically infer partition key name(s) and type(s). (2) STRINGS: automatically infer partition key name(s). All types are interpreted as strings. Not all storage formats support hive partitioning. Requesting hive partitioning on an unsupported format will lead to an error. Currently supported types include: AVRO, CSV, JSON, ORC and Parquet.
+     */
+    mode?: string;
+    /**
+     * [Optional, Trusted Tester] When hive partition detection is requested, a common prefix for all source uris should be supplied. The prefix must end immediately before the partition key encoding begins. For example, consider files following this data layout. gs://bucket/path_to_table/dt=2019-01-01/country=BR/id=7/file.avro gs://bucket/path_to_table/dt=2018-12-31/country=CA/id=3/file.avro When hive partitioning is requested with either AUTO or STRINGS detection, the common prefix can be either of gs://bucket/path_to_table or gs://bucket/path_to_table/ (trailing slash does not matter).
+     */
+    sourceUriPrefix?: string;
   }
   /**
    * Information about a single iteration of the training run.
@@ -984,9 +1038,13 @@ export namespace bigquery_v2 {
      */
     fieldDelimiter?: string;
     /**
-     * [Optional, Experimental] If hive partitioning is enabled, which mode to use. Two modes are supported: - AUTO: automatically infer partition key name(s) and type(s). - STRINGS: automatic infer partition key name(s). All types are strings. Not all storage formats support hive partitioning -- requesting hive partitioning on an unsupported format will lead to an error.
+     * [Optional, Trusted Tester] If hive partitioning is enabled, which mode to use. Two modes are supported: - AUTO: automatically infer partition key name(s) and type(s). - STRINGS: automatic infer partition key name(s). All types are strings. Not all storage formats support hive partitioning -- requesting hive partitioning on an unsupported format will lead to an error.
      */
     hivePartitioningMode?: string;
+    /**
+     * [Optional, Trusted Tester] Options to configure hive partitioning support.
+     */
+    hivePartitioningOptions?: Schema$HivePartitioningOptions;
     /**
      * [Optional] Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don&#39;t match any column names
      */
@@ -1177,15 +1235,15 @@ export namespace bigquery_v2 {
      * List of jobs that were requested.
      */
     jobs?: Array<{
+      id?: string;
+      configuration?: Schema$JobConfiguration;
       user_email?: string;
-      errorResult?: Schema$ErrorProto;
       kind?: string;
+      errorResult?: Schema$ErrorProto;
       jobReference?: Schema$JobReference;
       status?: Schema$JobStatus;
       state?: string;
       statistics?: Schema$JobStatistics;
-      id?: string;
-      configuration?: Schema$JobConfiguration;
     }>;
     /**
      * The resource type of the response.
@@ -1250,7 +1308,11 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: Array<{slotMs?: string; name?: string}>;
+    reservationUsage?: Array<{name?: string; slotMs?: string}>;
+    /**
+     * [Output-only] Name of the primary reservation assigned to this job. Note that this could be different than reservations reported in the reservation usage field if parent reservations were used to execute this job.
+     */
+    reservation_id?: string;
     /**
      * [Output-only] Start time of this job, in milliseconds since the epoch. This field will be present when the job transitions from the PENDING state to either RUNNING or DONE.
      */
@@ -1415,6 +1477,16 @@ export namespace bigquery_v2 {
      */
     nextPageToken?: string;
   }
+  export interface Schema$ListRoutinesResponse {
+    /**
+     * A token to request the next page of results.
+     */
+    nextPageToken?: string;
+    /**
+     * Routines in the requested dataset. Only the following fields are populated: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, language.
+     */
+    routines?: Schema$Routine[];
+  }
   /**
    * BigQuery-specific metadata about a location. This will be set on google.cloud.location.Location.metadata in Cloud Location API responses.
    */
@@ -1440,7 +1512,7 @@ export namespace bigquery_v2 {
      */
     creationTime?: string;
     /**
-     * [Optional] A user-friendly description of this model. @mutable bigquery.models.patch
+     * [Optional] A user-friendly description of this model.
      */
     description?: string;
     /**
@@ -1448,7 +1520,7 @@ export namespace bigquery_v2 {
      */
     etag?: string;
     /**
-     * [Optional] The time when this model expires, in milliseconds since the epoch. If not present, the model will persist indefinitely. Expired models will be deleted and their storage reclaimed.  The defaultTableExpirationMs property of the encapsulating dataset can be used to set a default expirationTime on newly created models. @mutable bigquery.models.patch
+     * [Optional] The time when this model expires, in milliseconds since the epoch. If not present, the model will persist indefinitely. Expired models will be deleted and their storage reclaimed.  The defaultTableExpirationMs property of the encapsulating dataset can be used to set a default expirationTime on newly created models.
      */
     expirationTime?: string;
     /**
@@ -1456,15 +1528,15 @@ export namespace bigquery_v2 {
      */
     featureColumns?: Schema$StandardSqlField[];
     /**
-     * [Optional] A descriptive name for this model. @mutable bigquery.models.patch
+     * [Optional] A descriptive name for this model.
      */
     friendlyName?: string;
     /**
-     * Output only. Label columns that were used to train this model. The output of the model will have a “predicted_” prefix to these columns.
+     * Output only. Label columns that were used to train this model. The output of the model will have a &quot;predicted_&quot; prefix to these columns.
      */
     labelColumns?: Schema$StandardSqlField[];
     /**
-     * [Optional] The labels associated with this model. You can use these to organize and group your models. Label keys and values can be no longer than 63 characters, can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter and each label in the list must have a different key. @mutable bigquery.models.patch
+     * [Optional] The labels associated with this model. You can use these to organize and group your models. Label keys and values can be no longer than 63 characters, can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter and each label in the list must have a different key.
      */
     labels?: {[key: string]: string};
     /**
@@ -1492,7 +1564,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only, Beta] Model options used for the first training run. These options are immutable for subsequent training runs. Default values are used for any options not specified in the input query.
      */
-    modelOptions?: {lossType?: string; modelType?: string; labels?: string[]};
+    modelOptions?: {labels?: string[]; lossType?: string; modelType?: string};
     /**
      * [Output-only, Beta] Information about ml training runs, each training run comprises of multiple iterations and there may be multiple training runs for the model if warm start is used or if a user decides to continue a previously cancelled query.
      */
@@ -1516,7 +1588,7 @@ export namespace bigquery_v2 {
     projectId?: string;
   }
   /**
-   * Evaluation metrics for multi-class classification models.
+   * Evaluation metrics for multi-class classification/classifier models.
    */
   export interface Schema$MultiClassClassificationMetrics {
     /**
@@ -1545,11 +1617,11 @@ export namespace bigquery_v2 {
      * Projects to which you have at least READ access.
      */
     projects?: Array<{
-      id?: string;
-      projectReference?: Schema$ProjectReference;
       friendlyName?: string;
       numericId?: string;
       kind?: string;
+      id?: string;
+      projectReference?: Schema$ProjectReference;
     }>;
     /**
      * The total number of projects in the list.
@@ -1734,7 +1806,7 @@ export namespace bigquery_v2 {
     /**
      * [TrustedTester] [Required] Defines the ranges for range partitioning.
      */
-    range?: {interval?: string; start?: string; end?: string};
+    range?: {end?: string; interval?: string; start?: string};
   }
   /**
    * Evaluation metrics for regression models.
@@ -1760,6 +1832,51 @@ export namespace bigquery_v2 {
      * R^2 score.
      */
     rSquared?: number;
+  }
+  /**
+   * A user-defined function or a stored procedure.
+   */
+  export interface Schema$Routine {
+    /**
+     * Optional.
+     */
+    arguments?: Schema$Argument[];
+    /**
+     * Output only. The time when this routine was created, in milliseconds since the epoch.
+     */
+    creationTime?: string;
+    /**
+     * Required. The body of the routine.  For functions, this is the expression in the AS clause.  If language=SQL, it is the substring inside (but excluding) the parentheses. For example, for the function created with the following statement:  `CREATE FUNCTION JoinLines(x string, y string) as (concat(x, &quot;x/&quot;, y))`  The definition_body is `concat(x, &quot;x/&quot;, y)` (x/ is not replaced with linebreak).  If language=JAVASCRIPT, it is the evaluated string in the AS clause. For example, for the function created with the following statement:  `CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS &#39;return &quot;x/&quot;;x/&#39;`  The definition_body is  `return &quot;x/&quot;;x/`  Note that both x/ are replaced with linebreaks.
+     */
+    definitionBody?: string;
+    /**
+     * Output only. A hash of this resource.
+     */
+    etag?: string;
+    /**
+     * Optional. If language = &quot;JAVASCRIPT&quot;, this field stores the path of the imported JAVASCRIPT libraries.
+     */
+    importedLibraries?: string[];
+    /**
+     * Optional. Defaults to &quot;SQL&quot;.
+     */
+    language?: string;
+    /**
+     * Output only. The time when this routine was last modified, in milliseconds since the epoch.
+     */
+    lastModifiedTime?: string;
+    /**
+     * Optional if language = &quot;SQL&quot;; required otherwise.  If absent, the return type is inferred from definition_body at query time in each query that references this routine. If present, then the evaluated result will be cast to the specified returned type at query time.  For example, for the functions created with the following statements:  * `CREATE FUNCTION Add(x FLOAT64, y FLOAT64) RETURNS FLOAT64 AS (x + y);`  * `CREATE FUNCTION Increment(x FLOAT64) AS (Add(x, 1));`  * `CREATE FUNCTION Decrement(x FLOAT64) RETURNS FLOAT64 AS (Add(x, -1));`  The return_type is `{type_kind: &quot;FLOAT64&quot;}` for `Add` and `Decrement`, and is absent for `Increment` (inferred as FLOAT64 at query time).  Suppose the function `Add` is replaced by   `CREATE OR REPLACE FUNCTION Add(x INT64, y INT64) AS (x + y);`  Then the inferred return type of `Increment` is automatically changed to INT64 at query time, while the return type of `Decrement` remains FLOAT64.
+     */
+    returnType?: Schema$StandardSqlDataType;
+    /**
+     * Required. Reference describing the ID of this routine.
+     */
+    routineReference?: Schema$RoutineReference;
+    /**
+     * Required.
+     */
+    routineType?: string;
   }
   export interface Schema$RoutineReference {
     /**
@@ -2054,8 +2171,8 @@ export namespace bigquery_v2 {
       id?: string;
       expirationTime?: string;
       tableReference?: Schema$TableReference;
-      timePartitioning?: Schema$TimePartitioning;
       friendlyName?: string;
+      timePartitioning?: Schema$TimePartitioning;
       kind?: string;
       view?: {useLegacySql?: boolean};
       creationTime?: string;
@@ -2125,11 +2242,11 @@ export namespace bigquery_v2 {
      */
     distanceType?: string;
     /**
-     * Whether to stop early when the loss doesn&#39;t improve significantly any more (compared to min_relative_progress).
+     * Whether to stop early when the loss doesn&#39;t improve significantly any more (compared to min_relative_progress). Used only for iterative training algorithms.
      */
     earlyStop?: boolean;
     /**
-     * Specifies the initial learning rate for line search to start at.
+     * Specifies the initial learning rate for the line search learn rate strategy.
      */
     initialLearnRate?: number;
     /**
@@ -2145,15 +2262,15 @@ export namespace bigquery_v2 {
      */
     l2Regularization?: number;
     /**
-     * Weights associated with each label class, for rebalancing the training data.
+     * Weights associated with each label class, for rebalancing the training data. Only applicable for classification models.
      */
     labelClassWeights?: {[key: string]: number};
     /**
-     * Learning rate in training.
+     * Learning rate in training. Used only for iterative training algorithms.
      */
     learnRate?: number;
     /**
-     * The strategy to determine learning rate.
+     * The strategy to determine learn rate for the current iteration.
      */
     learnRateStrategy?: string;
     /**
@@ -2161,17 +2278,25 @@ export namespace bigquery_v2 {
      */
     lossType?: string;
     /**
-     * The maximum number of iterations in training.
+     * The maximum number of iterations in training. Used only for iterative training algorithms.
      */
     maxIterations?: string;
     /**
-     * When early_stop is true, stops training when accuracy improvement is less than &#39;min_relative_progress&#39;.
+     * When early_stop is true, stops training when accuracy improvement is less than &#39;min_relative_progress&#39;. Used only for iterative training algorithms.
      */
     minRelativeProgress?: number;
+    /**
+     * [Beta] Google Cloud Storage URI from which the model was imported. Only applicable for imported models.
+     */
+    modelUri?: string;
     /**
      * [Beta] Number of clusters for clustering models.
      */
     numClusters?: string;
+    /**
+     * Optimization strategy for training linear regression models.
+     */
+    optimizationStrategy?: string;
     /**
      * Whether to train a model from the last checkpoint.
      */
@@ -2270,16 +2395,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.datasets.delete
@@ -2328,7 +2449,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2395,16 +2516,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.datasets.get
@@ -2452,7 +2569,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2520,16 +2637,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.datasets.insert
@@ -2577,7 +2690,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2654,16 +2767,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.datasets.list
@@ -2716,7 +2825,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2788,16 +2897,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.datasets.patch
@@ -2846,7 +2951,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2918,16 +3023,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.datasets.update
@@ -2976,7 +3077,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3168,16 +3269,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.jobs.cancel
@@ -3228,7 +3325,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3295,16 +3392,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.jobs.get
@@ -3353,7 +3446,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3433,16 +3526,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.jobs.getQueryResults
@@ -3502,7 +3591,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3577,16 +3666,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.jobs.insert
@@ -3637,7 +3722,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3718,16 +3803,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.jobs.list
@@ -3781,7 +3862,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3850,16 +3931,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.jobs.query
@@ -3909,7 +3986,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4103,6 +4180,55 @@ export namespace bigquery_v2 {
     /**
      * bigquery.models.delete
      * @desc Deletes the model specified by modelId from the dataset.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID of the model to delete.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     *
+     *     // Dataset ID of the model to delete.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+     *
+     *     // Model ID of the model to delete.
+     *     modelId: 'my-model-id',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   bigquery.models.delete(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias bigquery.models.delete
      * @memberOf! ()
      *
@@ -4149,7 +4275,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4176,6 +4302,58 @@ export namespace bigquery_v2 {
     /**
      * bigquery.models.get
      * @desc Gets the specified model resource by model ID.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID of the requested model.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     *
+     *     // Dataset ID of the requested model.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+     *
+     *     // Model ID of the requested model.
+     *     modelId: 'my-model-id',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   bigquery.models.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias bigquery.models.get
      * @memberOf! ()
      *
@@ -4222,7 +4400,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4249,12 +4427,74 @@ export namespace bigquery_v2 {
     /**
      * bigquery.models.list
      * @desc Lists all models in the specified dataset. Requires the READER dataset role.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID of the models to list.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     *
+     *     // Dataset ID of the models to list.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var modelsPage = response['models'];
+     *     if (!modelsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < modelsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `modelsPage`:
+     *       console.log(JSON.stringify(modelsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       bigquery.models.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   bigquery.models.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias bigquery.models.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of the models to list.
-     * @param {integer=} params.maxResults The maximum number of results per page.
+     * @param {integer=} params.maxResults The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
      * @param {string=} params.pageToken Page token, returned by a previous call to request the next page of results
      * @param {string} params.projectId Project ID of the models to list.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4298,7 +4538,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4325,6 +4565,63 @@ export namespace bigquery_v2 {
     /**
      * bigquery.models.patch
      * @desc Patch specific fields in the specified model.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID of the model to patch.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     *
+     *     // Dataset ID of the model to patch.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+     *
+     *     // Model ID of the model to patch.
+     *     modelId: 'my-model-id',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   bigquery.models.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias bigquery.models.patch
      * @memberOf! ()
      *
@@ -4372,7 +4669,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4446,7 +4743,7 @@ export namespace bigquery_v2 {
      */
     datasetId?: string;
     /**
-     * The maximum number of results per page.
+     * The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
      */
     maxResults?: number;
     /**
@@ -4530,16 +4827,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.projects.getServiceAccount
@@ -4593,7 +4886,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4670,16 +4963,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.projects.list
@@ -4729,7 +5018,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4780,6 +5069,768 @@ export namespace bigquery_v2 {
      * Page token, returned by a previous call, to request the next page of results
      */
     pageToken?: string;
+  }
+
+  export class Resource$Routines {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * bigquery.routines.delete
+     * @desc Deletes the routine specified by routineId from the dataset.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID of the routine to delete
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     *
+     *     // Dataset ID of the routine to delete
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+     *
+     *     // Routine ID of the routine to delete
+     *     routineId: 'my-routine-id',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   bigquery.routines.delete(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
+     * @alias bigquery.routines.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the routine to delete
+     * @param {string} params.projectId Project ID of the routine to delete
+     * @param {string} params.routineId Routine ID of the routine to delete
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Routines$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Routines$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Routines$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Routines$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Routines$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routines$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/routines/{+routineId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'datasetId', 'routineId'],
+        pathParams: ['datasetId', 'projectId', 'routineId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * bigquery.routines.get
+     * @desc Gets the specified routine resource by routine ID.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID of the requested routine
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     *
+     *     // Dataset ID of the requested routine
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+     *
+     *     // Routine ID of the requested routine
+     *     routineId: 'my-routine-id',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   bigquery.routines.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
+     * @alias bigquery.routines.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the requested routine
+     * @param {string=} params.fieldMask If set, only the Routine fields in the field mask are returned in the response. If unset, all Routine fields are returned.
+     * @param {string} params.projectId Project ID of the requested routine
+     * @param {string} params.routineId Routine ID of the requested routine
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Routines$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Routine>;
+    get(
+      params: Params$Resource$Routines$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Routine>,
+      callback: BodyResponseCallback<Schema$Routine>
+    ): void;
+    get(
+      params: Params$Resource$Routines$Get,
+      callback: BodyResponseCallback<Schema$Routine>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Routine>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Routines$Get
+        | BodyResponseCallback<Schema$Routine>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Routine>,
+      callback?: BodyResponseCallback<Schema$Routine>
+    ): void | GaxiosPromise<Schema$Routine> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Routines$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routines$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/routines/{+routineId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'datasetId', 'routineId'],
+        pathParams: ['datasetId', 'projectId', 'routineId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Routine>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Routine>(parameters);
+      }
+    }
+
+    /**
+     * bigquery.routines.insert
+     * @desc Creates a new routine in the dataset.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID of the new routine
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     *
+     *     // Dataset ID of the new routine
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   bigquery.routines.insert(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
+     * @alias bigquery.routines.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the new routine
+     * @param {string} params.projectId Project ID of the new routine
+     * @param {().Routine} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params?: Params$Resource$Routines$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Routine>;
+    insert(
+      params: Params$Resource$Routines$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Routine>,
+      callback: BodyResponseCallback<Schema$Routine>
+    ): void;
+    insert(
+      params: Params$Resource$Routines$Insert,
+      callback: BodyResponseCallback<Schema$Routine>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Routine>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Routines$Insert
+        | BodyResponseCallback<Schema$Routine>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Routine>,
+      callback?: BodyResponseCallback<Schema$Routine>
+    ): void | GaxiosPromise<Schema$Routine> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Routines$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routines$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/routines'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'datasetId'],
+        pathParams: ['datasetId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Routine>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Routine>(parameters);
+      }
+    }
+
+    /**
+     * bigquery.routines.list
+     * @desc Lists all routines in the specified dataset. Requires the READER dataset role.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID of the routines to list
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     *
+     *     // Dataset ID of the routines to list
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var routinesPage = response['routines'];
+     *     if (!routinesPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < routinesPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `routinesPage`:
+     *       console.log(JSON.stringify(routinesPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       bigquery.routines.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   bigquery.routines.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
+     * @alias bigquery.routines.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the routines to list
+     * @param {integer=} params.maxResults The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+     * @param {string} params.projectId Project ID of the routines to list
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Routines$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRoutinesResponse>;
+    list(
+      params: Params$Resource$Routines$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRoutinesResponse>,
+      callback: BodyResponseCallback<Schema$ListRoutinesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Routines$List,
+      callback: BodyResponseCallback<Schema$ListRoutinesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListRoutinesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Routines$List
+        | BodyResponseCallback<Schema$ListRoutinesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRoutinesResponse>,
+      callback?: BodyResponseCallback<Schema$ListRoutinesResponse>
+    ): void | GaxiosPromise<Schema$ListRoutinesResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Routines$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routines$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/routines'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'datasetId'],
+        pathParams: ['datasetId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRoutinesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListRoutinesResponse>(parameters);
+      }
+    }
+
+    /**
+     * bigquery.routines.update
+     * @desc Updates information in an existing routine. The update method replaces the entire Routine resource.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the BigQuery API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/bigquery
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var bigquery = google.bigquery('v2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID of the routine to update
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     *
+     *     // Dataset ID of the routine to update
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+     *
+     *     // Routine ID of the routine to update
+     *     routineId: 'my-routine-id',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. All existing properties
+     *       // will be replaced.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   bigquery.routines.update(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
+     * @alias bigquery.routines.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.datasetId Dataset ID of the routine to update
+     * @param {string} params.projectId Project ID of the routine to update
+     * @param {string} params.routineId Routine ID of the routine to update
+     * @param {().Routine} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(
+      params?: Params$Resource$Routines$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Routine>;
+    update(
+      params: Params$Resource$Routines$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Routine>,
+      callback: BodyResponseCallback<Schema$Routine>
+    ): void;
+    update(
+      params: Params$Resource$Routines$Update,
+      callback: BodyResponseCallback<Schema$Routine>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$Routine>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Routines$Update
+        | BodyResponseCallback<Schema$Routine>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Routine>,
+      callback?: BodyResponseCallback<Schema$Routine>
+    ): void | GaxiosPromise<Schema$Routine> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Routines$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routines$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/routines/{+routineId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'datasetId', 'routineId'],
+        pathParams: ['datasetId', 'projectId', 'routineId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Routine>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Routine>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Routines$Delete extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Dataset ID of the routine to delete
+     */
+    datasetId?: string;
+    /**
+     * Project ID of the routine to delete
+     */
+    projectId?: string;
+    /**
+     * Routine ID of the routine to delete
+     */
+    routineId?: string;
+  }
+  export interface Params$Resource$Routines$Get extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Dataset ID of the requested routine
+     */
+    datasetId?: string;
+    /**
+     * If set, only the Routine fields in the field mask are returned in the response. If unset, all Routine fields are returned.
+     */
+    fieldMask?: string;
+    /**
+     * Project ID of the requested routine
+     */
+    projectId?: string;
+    /**
+     * Routine ID of the requested routine
+     */
+    routineId?: string;
+  }
+  export interface Params$Resource$Routines$Insert extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Dataset ID of the new routine
+     */
+    datasetId?: string;
+    /**
+     * Project ID of the new routine
+     */
+    projectId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Routine;
+  }
+  export interface Params$Resource$Routines$List extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Dataset ID of the routines to list
+     */
+    datasetId?: string;
+    /**
+     * The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     */
+    maxResults?: number;
+    /**
+     * Page token, returned by a previous call, to request the next page of results
+     */
+    pageToken?: string;
+    /**
+     * Project ID of the routines to list
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Routines$Update extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Dataset ID of the routine to update
+     */
+    datasetId?: string;
+    /**
+     * Project ID of the routine to update
+     */
+    projectId?: string;
+    /**
+     * Routine ID of the routine to update
+     */
+    routineId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Routine;
   }
 
   export class Resource$Tabledata {
@@ -4839,16 +5890,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.tabledata.insertAll
@@ -4905,7 +5952,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4992,16 +6039,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.tabledata.list
@@ -5056,7 +6099,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5192,16 +6235,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.tables.delete
@@ -5250,7 +6289,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5321,16 +6360,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.tables.get
@@ -5380,7 +6415,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5452,16 +6487,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.tables.insert
@@ -5510,7 +6541,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5591,16 +6622,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.tables.list
@@ -5652,7 +6679,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5728,16 +6755,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.tables.patch
@@ -5787,7 +6810,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5863,16 +6886,12 @@ export namespace bigquery_v2 {
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
      *   });
      * }
      * @alias bigquery.tables.update
@@ -5922,7 +6941,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {

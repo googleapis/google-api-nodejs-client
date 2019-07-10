@@ -183,6 +183,10 @@ export namespace servicemanagement_v1 {
      */
     exemptedMembers?: string[];
     /**
+     * Specifies whether principals can be exempted for the same LogType in lower-level resource policies. If true, any lower-level exemptions will be ignored.
+     */
+    ignoreChildExemptions?: boolean;
+    /**
      * The log type that this config enables.
      */
     logType?: string;
@@ -220,15 +224,6 @@ export namespace servicemanagement_v1 {
      * Selects the methods to which this rule applies.  Refer to selector for syntax details.
      */
     selector?: string;
-  }
-  /**
-   * Configuration of authorization.  This section determines the authorization provider, if unspecified, then no authorization check will be done.  Example:      experimental:       authorization:         provider: firebaserules.googleapis.com
-   */
-  export interface Schema$AuthorizationConfig {
-    /**
-     * The name of the authorization provider, such as firebaserules.googleapis.com.
-     */
-    provider?: string;
   }
   /**
    * Configuration for an authentication provider, including support for [JSON Web Token (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32).
@@ -552,6 +547,10 @@ export namespace servicemanagement_v1 {
      */
     rules?: Schema$DocumentationRule[];
     /**
+     * Specifies the service root url if the default one (the service name from the yaml file) is not suitable. This can be seen in any fully specified service urls as well as sections that show a base that other urls are relative to.
+     */
+    serviceRootUrl?: string;
+    /**
      * A short summary of what the service does. Can only be provided by plain text.
      */
     summary?: string;
@@ -648,15 +647,6 @@ export namespace servicemanagement_v1 {
      * Protocol buffer options.
      */
     options?: Schema$Option[];
-  }
-  /**
-   * Experimental service configuration. These configuration options can only be used by whitelisted users.
-   */
-  export interface Schema$Experimental {
-    /**
-     * Authorization configuration.
-     */
-    authorization?: Schema$AuthorizationConfig;
   }
   /**
    * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
@@ -774,7 +764,21 @@ export namespace servicemanagement_v1 {
   /**
    * Request message for `GetIamPolicy` method.
    */
-  export interface Schema$GetIamPolicyRequest {}
+  export interface Schema$GetIamPolicyRequest {
+    /**
+     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`. This field is only used by Cloud IAM.
+     */
+    options?: Schema$GetPolicyOptions;
+  }
+  /**
+   * Encapsulates settings provided to GetIamPolicy.
+   */
+  export interface Schema$GetPolicyOptions {
+    /**
+     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    requestedPolicyVersion?: number;
+  }
   /**
    * Defines the HTTP configuration for an API service. It contains a list of HttpRule, each specifying the mapping of an RPC method to one or more HTTP REST API methods.
    */
@@ -1012,6 +1016,10 @@ export namespace servicemanagement_v1 {
      */
     labels?: Schema$LabelDescriptor[];
     /**
+     * Optional. The launch stage of the metric definition.
+     */
+    launchStage?: string;
+    /**
      * Optional. Metadata which can be used to guide usage of the metric.
      */
     metadata?: Schema$MetricDescriptorMetadata;
@@ -1045,7 +1053,7 @@ export namespace servicemanagement_v1 {
      */
     ingestDelay?: string;
     /**
-     * The launch stage of the metric definition.
+     * Deprecated. Please use the MetricDescriptor.launch_stage instead. The launch stage of the metric definition.
      */
     launchStage?: string;
     /**
@@ -1160,7 +1168,7 @@ export namespace servicemanagement_v1 {
      */
     metadata?: {[key: string]: any};
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
     name?: string;
     /**
@@ -1380,10 +1388,6 @@ export namespace servicemanagement_v1 {
      */
     enums?: Schema$Enum[];
     /**
-     * Experimental configuration.
-     */
-    experimental?: Schema$Experimental;
-    /**
      * HTTP configuration.
      */
     http?: Schema$Http;
@@ -1480,7 +1484,7 @@ export namespace servicemanagement_v1 {
     sourceFiles?: Array<{[key: string]: any}>;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -3658,6 +3662,7 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.baseRolloutId Unimplemented. Do not use this feature until this comment is removed.  The rollout id that rollout to be created based on.  Rollout should be constructed based on current successful rollout, this field indicates the current successful rollout id that new rollout based on to construct, if current successful rollout changed when server receives the request, request will be rejected for safety.
      * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {().Rollout} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3893,6 +3898,10 @@ export namespace servicemanagement_v1 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Unimplemented. Do not use this feature until this comment is removed.  The rollout id that rollout to be created based on.  Rollout should be constructed based on current successful rollout, this field indicates the current successful rollout id that new rollout based on to construct, if current successful rollout changed when server receives the request, request will be rejected for safety.
+     */
+    baseRolloutId?: string;
     /**
      * The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      */

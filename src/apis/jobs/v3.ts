@@ -327,11 +327,11 @@ export namespace jobs_v3 {
      */
     range?: Schema$CompensationRange;
     /**
-     * Optional.  Compensation type.  Default is CompensationUnit.OTHER_COMPENSATION_TYPE.
+     * Optional.  Compensation type.  Default is CompensationUnit.COMPENSATION_TYPE_UNSPECIFIED.
      */
     type?: string;
     /**
-     * Optional.  Frequency of the specified amount.  Default is CompensationUnit.OTHER_COMPENSATION_UNIT.
+     * Optional.  Frequency of the specified amount.  Default is CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED.
      */
     unit?: string;
   }
@@ -340,7 +340,7 @@ export namespace jobs_v3 {
    */
   export interface Schema$CompensationFilter {
     /**
-     * Optional.  Whether to include jobs whose compensation range is unspecified.
+     * Optional.  If set to true, jobs with unspecified compensation range fields are included.
      */
     includeJobsWithUnspecifiedCompensationRange?: boolean;
     /**
@@ -877,7 +877,7 @@ export namespace jobs_v3 {
      */
     regionCode?: string;
     /**
-     * Optional.  Allows the client to return jobs without a set location, specifically, telecommuting jobs (telecomuting is considered by the service as a special location. Job.posting_region indicates if a job permits telecommuting. If this field is set to TelecommutePreference.TELECOMMUTE_ALLOWED, telecommuting jobs are searched, and address and lat_lng are ignored. If not set or set to TelecommutePreference.TELECOMMUTE_EXCLUDED, telecommute job are not searched.  This filter can be used by itself to search exclusively for telecommuting jobs, or it can be combined with another location filter to search for a combination of job locations, such as &quot;Mountain View&quot; or &quot;telecommuting&quot; jobs. However, when used in combination with other location filters, telecommuting jobs can be treated as less relevant than other jobs in the search response.
+     * Optional.  Allows the client to return jobs without a set location, specifically, telecommuting jobs (telecommuting is considered by the service as a special location. Job.posting_region indicates if a job permits telecommuting. If this field is set to TelecommutePreference.TELECOMMUTE_ALLOWED, telecommuting jobs are searched, and address and lat_lng are ignored. If not set or set to TelecommutePreference.TELECOMMUTE_EXCLUDED, telecommute job are not searched.  This filter can be used by itself to search exclusively for telecommuting jobs, or it can be combined with another location filter to search for a combination of job locations, such as &quot;Mountain View&quot; or &quot;telecommuting&quot; jobs. However, when used in combination with other location filters, telecommuting jobs can be treated as less relevant than other jobs in the search response.
      */
     telecommutePreference?: string;
   }
@@ -1078,7 +1078,7 @@ export namespace jobs_v3 {
      */
     offset?: number;
     /**
-     * Optional.  The criteria determining how search results are sorted. Default is &quot;relevance desc&quot;.  Supported options are:  * &quot;relevance desc&quot;: By relevance descending, as determined by the API algorithms. Relevance thresholding of query results is only available with this ordering. * &quot;posting`_`publish`_`time desc&quot;: By Job.posting_publish_time descending. * &quot;posting`_`update`_`time desc&quot;: By Job.posting_update_time descending. * &quot;title&quot;: By Job.title ascending. * &quot;title desc&quot;: By Job.title descending. * &quot;annualized`_`base`_`compensation&quot;: By job&#39;s CompensationInfo.annualized_base_compensation_range ascending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * &quot;annualized`_`base`_`compensation desc&quot;: By job&#39;s CompensationInfo.annualized_base_compensation_range descending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * &quot;annualized`_`total`_`compensation&quot;: By job&#39;s CompensationInfo.annualized_total_compensation_range ascending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * &quot;annualized`_`total`_`compensation desc&quot;: By job&#39;s CompensationInfo.annualized_total_compensation_range descending. Jobs whose annualized base compensation is unspecified are put at the end of search results.
+     * Optional.  The criteria determining how search results are sorted. Default is &quot;relevance desc&quot;.  Supported options are:  * `&quot;relevance desc&quot;`: By relevance descending, as determined by the API algorithms. Relevance thresholding of query results is only available with this ordering. * `&quot;posting_publish_time desc&quot;`: By Job.posting_publish_time descending. * `&quot;posting_update_time desc&quot;`: By Job.posting_update_time descending. * `&quot;title&quot;`: By Job.title ascending. * `&quot;title desc&quot;`: By Job.title descending. * `&quot;annualized_base_compensation&quot;`: By job&#39;s CompensationInfo.annualized_base_compensation_range ascending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * `&quot;annualized_base_compensation desc&quot;`: By job&#39;s CompensationInfo.annualized_base_compensation_range descending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * `&quot;annualized_total_compensation&quot;`: By job&#39;s CompensationInfo.annualized_total_compensation_range ascending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * `&quot;annualized_total_compensation desc&quot;`: By job&#39;s CompensationInfo.annualized_total_compensation_range descending. Jobs whose annualized base compensation is unspecified are put at the end of search results.
      */
     orderBy?: string;
     /**
@@ -1090,7 +1090,7 @@ export namespace jobs_v3 {
      */
     pageToken?: string;
     /**
-     * Required.  The meta information collected about the job searcher, used to improve the search quality of the service.. The identifiers, (such as `user_id`) are provided by users, and must be unique and consistent.
+     * Required.  The meta information collected about the job searcher, used to improve the search quality of the service. The identifiers (such as `user_id`) are provided by users, and must be unique and consistent.
      */
     requestMetadata?: Schema$RequestMetadata;
     /**

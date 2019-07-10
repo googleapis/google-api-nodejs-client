@@ -14,14 +14,22 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {websecurityscanner_v1} from './v1';
 import {websecurityscanner_v1alpha} from './v1alpha';
 import {websecurityscanner_v1beta} from './v1beta';
 
 export const VERSIONS = {
+  v1: websecurityscanner_v1.Websecurityscanner,
   v1alpha: websecurityscanner_v1alpha.Websecurityscanner,
   v1beta: websecurityscanner_v1beta.Websecurityscanner,
 };
 
+export function websecurityscanner(
+  version: 'v1'
+): websecurityscanner_v1.Websecurityscanner;
+export function websecurityscanner(
+  options: websecurityscanner_v1.Options
+): websecurityscanner_v1.Websecurityscanner;
 export function websecurityscanner(
   version: 'v1alpha'
 ): websecurityscanner_v1alpha.Websecurityscanner;
@@ -36,11 +44,14 @@ export function websecurityscanner(
 ): websecurityscanner_v1beta.Websecurityscanner;
 export function websecurityscanner<
   T =
+    | websecurityscanner_v1.Websecurityscanner
     | websecurityscanner_v1alpha.Websecurityscanner
     | websecurityscanner_v1beta.Websecurityscanner
 >(
   this: GoogleConfigurable,
   versionOrOptions:
+    | 'v1'
+    | websecurityscanner_v1.Options
     | 'v1alpha'
     | websecurityscanner_v1alpha.Options
     | 'v1beta'

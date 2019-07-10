@@ -123,7 +123,11 @@ export namespace run_v1alpha1 {
    * Information for connecting over HTTP(s).
    */
   export interface Schema$Addressable {
+    /**
+     * Deprecated - use url instead.
+     */
     hostname?: string;
+    url?: string;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:foo@gmail.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:bar@gmail.com&quot;               ]             }           ]         }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
@@ -208,11 +212,32 @@ export namespace run_v1alpha1 {
     optional?: boolean;
   }
   /**
+   * Adapts a ConfigMap into a volume. The contents of the target ConfigMap&#39;s Data field will be presented in a volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths.
+   */
+  export interface Schema$ConfigMapVolumeSource {
+    /**
+     * Mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+     */
+    defaultMode?: number;
+    /**
+     * If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional.
+     */
+    items?: Schema$KeyToPath[];
+    /**
+     * Name of the config.
+     */
+    name?: string;
+    /**
+     * Specify whether the Secret or its keys must be defined.
+     */
+    optional?: boolean;
+  }
+  /**
    * Configuration represents the &quot;floating HEAD&quot; of a linear history of Revisions, and optionally how the containers those revisions reference are built. Users create new Revisions by updating the Configuration&#39;s spec. The &quot;latest created&quot; revision&#39;s name is available under status, as is the &quot;latest ready&quot; revision&#39;s name. See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#configuration
    */
   export interface Schema$Configuration {
     /**
-     * The API version for this call such as &quot;v1alpha1&quot;.
+     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
     apiVersion?: string;
     /**
@@ -249,6 +274,10 @@ export namespace run_v1alpha1 {
      */
     reason?: string;
     /**
+     * How to interpret failures of this condition, one of Error, Warning, Info +optional
+     */
+    severity?: string;
+    /**
      * Status of the condition, one of True, False, Unknown.
      */
     status?: string;
@@ -270,7 +299,7 @@ export namespace run_v1alpha1 {
      */
     revisionTemplate?: Schema$RevisionTemplate;
     /**
-     * Template holds the latest specification for the Revision to be stamped out. Not currently supported by Cloud Run.
+     * Template holds the latest specification for the Revision to be stamped out.
      */
     template?: Schema$RevisionTemplate;
   }
@@ -414,7 +443,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$DomainMapping {
     /**
-     * The API version for this call such as &quot;v1alpha1&quot;.
+     * The API version for this call such as &quot;domains.cloudrun.com/v1alpha1&quot;.
      */
     apiVersion?: string;
     /**
@@ -439,6 +468,10 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$DomainMappingCondition {
     /**
+     * Last time the condition transitioned from one status to another. +optional
+     */
+    lastTransitionTime?: string;
+    /**
      * Human readable message indicating details about the current status. +optional
      */
     message?: string;
@@ -446,6 +479,10 @@ export namespace run_v1alpha1 {
      * One-word CamelCase reason for the condition&#39;s current status. +optional
      */
     reason?: string;
+    /**
+     * How to interpret failures of this condition, one of Error, Warning, Info +optional
+     */
+    severity?: string;
     /**
      * Status of the condition, one of True, False, Unknown.
      */
@@ -526,6 +563,46 @@ export namespace run_v1alpha1 {
      * Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any route environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to &quot;&quot;. +optional
      */
     value?: string;
+  }
+  export interface Schema$EventType {
+    /**
+     * The API version for this call such as &quot;eventing.knative.dev/v1alpha1&quot;.
+     */
+    apiVersion?: string;
+    /**
+     * The kind of resource, in this case &quot;EventType&quot;.
+     */
+    kind?: string;
+    /**
+     * Metadata associated with this EventType.
+     */
+    metadata?: Schema$ObjectMeta;
+    /**
+     * Spec defines the desired state of the EventType.
+     */
+    spec?: Schema$EventTypeSpec;
+  }
+  export interface Schema$EventTypeSpec {
+    /**
+     * Refers to the Broker that can provide the EventType.
+     */
+    broker?: string;
+    /**
+     * Description is a string describing what the EventType is about. +optional
+     */
+    description?: string;
+    /**
+     * Schema is a URI with the EventType schema. It may be a JSON schema, a protobuf schema, etc. +optional
+     */
+    schema?: string;
+    /**
+     * Source is a valid URI. Refers to the CloudEvent source as it enters into the eventing mesh.
+     */
+    source?: string;
+    /**
+     * Type is authoritative. This refers to the CloudEvent type as it enters into the eventing mesh.
+     */
+    type?: string;
   }
   /**
    * ExecAction describes a &quot;run in container&quot; action.
@@ -648,6 +725,23 @@ export namespace run_v1alpha1 {
     type?: string;
   }
   /**
+   * Maps a string key to a path within a volume.
+   */
+  export interface Schema$KeyToPath {
+    /**
+     * The key to project.
+     */
+    key?: string;
+    /**
+     * Mode bits to use on this file, must be a value between 0 and 0777. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. +optional
+     */
+    mode?: number;
+    /**
+     * The relative path of the file to map the key to. May not be an absolute path. May not contain the path element &#39;..&#39;. May not start with the string &#39;..&#39;.
+     */
+    path?: string;
+  }
+  /**
    * Lifecycle describes actions that the management system should take in response to container lifecycle events. For the PostStart and PreStop lifecycle handlers, management of the container blocks until the action is complete, unless the container process fails, in which case the handler is aborted.
    */
   export interface Schema$Lifecycle {
@@ -678,7 +772,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListConfigurationsResponse {
     /**
-     * The API version for this call such as &quot;v1alpha1&quot;.
+     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
     apiVersion?: string;
     /**
@@ -703,7 +797,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListDomainMappingsResponse {
     /**
-     * The API version for this call such as &quot;v1alpha1&quot;.
+     * The API version for this call such as &quot;domains.cloudrun.com/v1alpha1&quot;.
      */
     apiVersion?: string;
     /**
@@ -718,6 +812,31 @@ export namespace run_v1alpha1 {
      * Metadata associated with this DomainMapping list.
      */
     metadata?: Schema$ListMeta;
+  }
+  /**
+   * ListEventTypesResponse is a list of EventType resources.
+   */
+  export interface Schema$ListEventTypesResponse {
+    /**
+     * The API version for this call such as &quot;eventing.knative.dev/v1alpha1&quot;.
+     */
+    apiVersion?: string;
+    /**
+     * List of EventTypes.
+     */
+    items?: Schema$EventType[];
+    /**
+     * The kind of this resource, in this case &quot;EventTypeList&quot;.
+     */
+    kind?: string;
+    /**
+     * Metadata associated with this EventType list.
+     */
+    metadata?: Schema$ListMeta;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[];
   }
   /**
    * The response message for Locations.ListLocations.
@@ -754,7 +873,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListRevisionsResponse {
     /**
-     * The API version for this call such as &quot;v1alpha1&quot;.
+     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
     apiVersion?: string;
     /**
@@ -779,7 +898,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListRoutesResponse {
     /**
-     * The API version for this call such as &quot;v1alpha1&quot;.
+     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
     apiVersion?: string;
     /**
@@ -804,7 +923,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListServicesResponse {
     /**
-     * The API version for this call such as &quot;v1alpha1&quot;.
+     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
     apiVersion?: string;
     /**
@@ -829,7 +948,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListTriggersResponse {
     /**
-     * The API version for this call such as &quot;v1alpha1&quot;.
+     * The API version for this call such as &quot;eventing.knative.dev/v1alpha1&quot;.
      */
     apiVersion?: string;
     /**
@@ -1116,7 +1235,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$Revision {
     /**
-     * The API version for this call such as &quot;v1alpha1&quot;.
+     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
     apiVersion?: string;
     /**
@@ -1153,6 +1272,10 @@ export namespace run_v1alpha1 {
      */
     reason?: string;
     /**
+     * How to interpret failures of this condition, one of Error, Warning, Info +optional
+     */
+    severity?: string;
+    /**
      * Status of the condition, one of True, False, Unknown.
      */
     status?: string;
@@ -1178,7 +1301,7 @@ export namespace run_v1alpha1 {
      */
     containerConcurrency?: number;
     /**
-     * Containers holds the single container that defines the unit of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle.
+     * Containers holds the single container that defines the unit of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle. In Cloud Run, only a single container may be provided.
      */
     containers?: Schema$Container[];
     /**
@@ -1186,7 +1309,7 @@ export namespace run_v1alpha1 {
      */
     generation?: number;
     /**
-     * Not currently used by Cloud Run.
+     * Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project&#39;s default service account.
      */
     serviceAccountName?: string;
     /**
@@ -1197,6 +1320,7 @@ export namespace run_v1alpha1 {
      * TimeoutSeconds holds the max duration the instance is allowed for responding to a request. Not currently used by Cloud Run.
      */
     timeoutSeconds?: number;
+    volumes?: Schema$Volume[];
   }
   /**
    * RevisionStatus communicates the observed state of the Revision (from the controller).
@@ -1228,7 +1352,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$RevisionTemplate {
     /**
-     * Optional metadata for this Revision, including labels and annotations. Name will be generated by the Configuration.
+     * Optional metadata for this Revision, including labels and annotations. Name will be generated by the Configuration. To set minimum instances for this revision, use the &quot;autoscaling.knative.dev/minScale&quot; annotation key. (Cloud Run on GKE only). To set maximum instances for this revision, use the &quot;autoscaling.knative.dev/maxScale&quot; annotation key. To set Cloud SQL connections for the revision, use the &quot;run.googleapis.com/cloudsql-instances&quot; annotation key. Values should be comma separated.
      */
     metadata?: Schema$ObjectMeta;
     /**
@@ -1241,7 +1365,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$Route {
     /**
-     * The API version for this call such as &quot;v1alpha1&quot;.
+     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
     apiVersion?: string;
     /**
@@ -1278,6 +1402,10 @@ export namespace run_v1alpha1 {
      */
     reason?: string;
     /**
+     * How to interpret failures of this condition, one of Error, Warning, Info +optional
+     */
+    severity?: string;
+    /**
      * Status of the condition, one of &quot;True&quot;, &quot;False&quot;, &quot;Unknown&quot;.
      */
     status?: string;
@@ -1304,7 +1432,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$RouteStatus {
     /**
-     * Similar to domain, information on where the service is available on HTTP.
+     * Similar to url, information on where the service is available on HTTP.
      */
     address?: Schema$Addressable;
     /**
@@ -1312,11 +1440,11 @@ export namespace run_v1alpha1 {
      */
     conditions?: Schema$RouteCondition[];
     /**
-     * Domain holds the top-level domain that will distribute traffic over the provided targets. It generally has the form https://{route-hash}-{project-hash}-{cluster-level-suffix}.a.run.app
+     * Deprecated - use url instead. Domain holds the top-level domain that will distribute traffic over the provided targets.
      */
     domain?: string;
     /**
-     * For Cloud Run, identifical to domain.
+     * Deprecated - use address instead. For Cloud Run, identifical to domain.
      */
     domainInternal?: string;
     /**
@@ -1327,6 +1455,10 @@ export namespace run_v1alpha1 {
      * Traffic holds the configured traffic distribution. These entries will always contain RevisionName references. When ConfigurationName appears in the spec, this will hold the LatestReadyRevisionName that we last observed.
      */
     traffic?: Schema$TrafficTarget[];
+    /**
+     * URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form https://{route-hash}-{project-hash}-{cluster-level-suffix}.a.run.app
+     */
+    url?: string;
   }
   /**
    * SecretEnvSource selects a Secret to populate the environment variables with.  The contents of the target Secret&#39;s Data field will represent the key-value pairs as environment variables.
@@ -1340,6 +1472,27 @@ export namespace run_v1alpha1 {
      * Specify whether the Secret must be defined +optional
      */
     optional?: boolean;
+  }
+  /**
+   * The contents of the target Secret&#39;s Data field will be presented in a volume as files using the keys in the Data field as the file names.
+   */
+  export interface Schema$SecretVolumeSource {
+    /**
+     * Mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+     */
+    defaultMode?: number;
+    /**
+     * If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional.
+     */
+    items?: Schema$KeyToPath[];
+    /**
+     * Specify whether the Secret or its keys must be defined.
+     */
+    optional?: boolean;
+    /**
+     * Name of the secret in the container&#39;s namespace to use.
+     */
+    secretName?: string;
   }
   /**
    * SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext.  When both are set, the values in SecurityContext take precedence.
@@ -1404,7 +1557,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$Service {
     /**
-     * The API version for this call such as &quot;v1alpha1&quot;.
+     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
     apiVersion?: string;
     /**
@@ -1441,6 +1594,10 @@ export namespace run_v1alpha1 {
      */
     reason?: string;
     /**
+     * How to interpret failures of this condition, one of Error, Warning, Info +optional
+     */
+    severity?: string;
+    /**
      * Status of the condition, one of True, False, Unknown.
      */
     status?: string;
@@ -1474,11 +1631,11 @@ export namespace run_v1alpha1 {
      */
     runLatest?: Schema$ServiceSpecRunLatest;
     /**
-     * Template holds the latest specification for the Revision to be stamped out.  Not currently supported by Cloud Run.
+     * Template holds the latest specification for the Revision to be stamped out.
      */
     template?: Schema$RevisionTemplate;
     /**
-     * Traffic specifies how to distribute traffic over a collection of Knative Revisions and Configurations. This will replace existing service specs (ServiceSpecRunLatest, ServiceSpecPinnedType, ServiceSpecReleaseType, and ServiceSpecManualType).  Not currently supported by Cloud Run.
+     * Traffic specifies how to distribute traffic over a collection of Knative Revisions and Configurations.
      */
     traffic?: Schema$TrafficTarget[];
   }
@@ -1530,7 +1687,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ServiceStatus {
     /**
-     * From RouteStatus. Similar to domain, information on where the service is available on HTTP.
+     * From RouteStatus. Similar to url, information on where the service is available on HTTP.
      */
     address?: Schema$Addressable;
     /**
@@ -1557,6 +1714,10 @@ export namespace run_v1alpha1 {
      * From RouteStatus. Traffic holds the configured traffic distribution. These entries will always contain RevisionName references. When ConfigurationName appears in the spec, this will hold the LatestReadyRevisionName that we last observed.
      */
     traffic?: Schema$TrafficTarget[];
+    /**
+     * From RouteStatus. URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form https://{route-hash}-{project-hash}-{cluster-level-suffix}.a.run.app
+     */
+    url?: string;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -1621,6 +1782,10 @@ export namespace run_v1alpha1 {
      */
     configurationName?: string;
     /**
+     * LatestRevision may be optionally provided to indicate that the latest ready Revision of the Configuration should be used for this traffic target. When provided LatestRevision must be true if RevisionName is empty; it must be false when RevisionName is non-empty.  Not currently supported in Cloud Run. +optional
+     */
+    latestRevision?: boolean;
+    /**
      * Name is optionally used to expose a dedicated hostname for referencing this target exclusively.  Not currently supported by Cloud Run. +optional
      */
     name?: string;
@@ -1632,10 +1797,18 @@ export namespace run_v1alpha1 {
      * RevisionName of a specific revision to which to send this portion of traffic. This is mutually exclusive with ConfigurationName.  Providing RevisionName in spec is not currently supported by Cloud Run.
      */
     revisionName?: string;
+    /**
+     * Tag is optionally used to expose a dedicated url for referencing this target exclusively.  Not currently supported in Cloud Run. +optional
+     */
+    tag?: string;
+    /**
+     * Output only. URL displays the URL for accessing named traffic targets. URL is displayed in status, and is disallowed on spec. URL must contain a scheme (e.g. http://) and a hostname, but may not contain anything else (e.g. basic auth, url path, etc.  Not currently supported in Cloud Run.
+     */
+    url?: string;
   }
   export interface Schema$Trigger {
     /**
-     * The API version for this call such as &quot;v1alpha1&quot;.
+     * The API version for this call such as &quot;eventing.knative.dev/v1alpha1&quot;.
      */
     apiVersion?: string;
     /**
@@ -1671,6 +1844,10 @@ export namespace run_v1alpha1 {
      * One-word CamelCase reason for the condition&#39;s current status. +optional
      */
     reason?: string;
+    /**
+     * How to interpret failures of this condition, one of Error, Warning, Info +optional
+     */
+    severity?: string;
     /**
      * Status of the condition, one of True, False, Unknown.
      */
@@ -1725,6 +1902,17 @@ export namespace run_v1alpha1 {
     subscriberUri?: string;
   }
   /**
+   * Volume represents a named volume in a container.
+   */
+  export interface Schema$Volume {
+    configMap?: Schema$ConfigMapVolumeSource;
+    /**
+     * Volume&#39;s name.
+     */
+    name?: string;
+    secret?: Schema$SecretVolumeSource;
+  }
+  /**
    * volumeDevice describes a mapping of a raw block device within a container.
    */
   export interface Schema$VolumeDevice {
@@ -1768,6 +1956,7 @@ export namespace run_v1alpha1 {
     authorizeddomains: Resource$Namespaces$Authorizeddomains;
     configurations: Resource$Namespaces$Configurations;
     domainmappings: Resource$Namespaces$Domainmappings;
+    eventtypes: Resource$Namespaces$Eventtypes;
     revisions: Resource$Namespaces$Revisions;
     routes: Resource$Namespaces$Routes;
     services: Resource$Namespaces$Services;
@@ -1783,6 +1972,7 @@ export namespace run_v1alpha1 {
       this.domainmappings = new Resource$Namespaces$Domainmappings(
         this.context
       );
+      this.eventtypes = new Resource$Namespaces$Eventtypes(this.context);
       this.revisions = new Resource$Namespaces$Revisions(this.context);
       this.routes = new Resource$Namespaces$Routes(this.context);
       this.services = new Resource$Namespaces$Services(this.context);
@@ -2528,6 +2718,222 @@ export namespace run_v1alpha1 {
     limit?: number;
     /**
      * The project ID or project number from which the domain mappings should be listed.
+     */
+    parent?: string;
+    /**
+     * The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
+     */
+    resourceVersion?: string;
+    /**
+     * Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
+     */
+    watch?: boolean;
+  }
+
+  export class Resource$Namespaces$Eventtypes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * run.namespaces.eventtypes.get
+     * @desc Rpc to get information about an EventType.
+     * @alias run.namespaces.eventtypes.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the trigger being retrieved. If needed, replace {namespace_id} with the project ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Namespaces$Eventtypes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventType>;
+    get(
+      params: Params$Resource$Namespaces$Eventtypes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$EventType>,
+      callback: BodyResponseCallback<Schema$EventType>
+    ): void;
+    get(
+      params: Params$Resource$Namespaces$Eventtypes$Get,
+      callback: BodyResponseCallback<Schema$EventType>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$EventType>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Eventtypes$Get
+        | BodyResponseCallback<Schema$EventType>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventType>,
+      callback?: BodyResponseCallback<Schema$EventType>
+    ): void | GaxiosPromise<Schema$EventType> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Eventtypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Namespaces$Eventtypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/apis/eventing.knative.dev/v1alpha1/{+name}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EventType>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$EventType>(parameters);
+      }
+    }
+
+    /**
+     * run.namespaces.eventtypes.list
+     * @desc Rpc to list EventTypes.
+     * @alias run.namespaces.eventtypes.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.continue Optional encoded string to continue paging.
+     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
+     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
+     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     * @param {integer=} params.limit The maximum number of records that should be returned.
+     * @param {string} params.parent The project ID or project number from which the EventTypes should be listed.
+     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
+     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Namespaces$Eventtypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEventTypesResponse>;
+    list(
+      params: Params$Resource$Namespaces$Eventtypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEventTypesResponse>,
+      callback: BodyResponseCallback<Schema$ListEventTypesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Namespaces$Eventtypes$List,
+      callback: BodyResponseCallback<Schema$ListEventTypesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListEventTypesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Eventtypes$List
+        | BodyResponseCallback<Schema$ListEventTypesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEventTypesResponse>,
+      callback?: BodyResponseCallback<Schema$ListEventTypesResponse>
+    ): void | GaxiosPromise<Schema$ListEventTypesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Eventtypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Namespaces$Eventtypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/apis/eventing.knative.dev/v1alpha1/{+parent}/eventtypes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEventTypesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListEventTypesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Namespaces$Eventtypes$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the trigger being retrieved. If needed, replace {namespace_id} with the project ID.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Namespaces$Eventtypes$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional encoded string to continue paging.
+     */
+    continue?: string;
+    /**
+     * Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
+     */
+    fieldSelector?: string;
+    /**
+     * Not currently used by Cloud Run.
+     */
+    includeUninitialized?: boolean;
+    /**
+     * Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     */
+    labelSelector?: string;
+    /**
+     * The maximum number of records that should be returned.
+     */
+    limit?: number;
+    /**
+     * The project ID or project number from which the EventTypes should be listed.
      */
     parent?: string;
     /**
@@ -4064,6 +4470,7 @@ export namespace run_v1alpha1 {
     authorizeddomains: Resource$Projects$Locations$Authorizeddomains;
     configurations: Resource$Projects$Locations$Configurations;
     domainmappings: Resource$Projects$Locations$Domainmappings;
+    eventtypes: Resource$Projects$Locations$Eventtypes;
     revisions: Resource$Projects$Locations$Revisions;
     routes: Resource$Projects$Locations$Routes;
     services: Resource$Projects$Locations$Services;
@@ -4077,6 +4484,9 @@ export namespace run_v1alpha1 {
         this.context
       );
       this.domainmappings = new Resource$Projects$Locations$Domainmappings(
+        this.context
+      );
+      this.eventtypes = new Resource$Projects$Locations$Eventtypes(
         this.context
       );
       this.revisions = new Resource$Projects$Locations$Revisions(this.context);
@@ -4934,6 +5344,220 @@ export namespace run_v1alpha1 {
     watch?: boolean;
   }
 
+  export class Resource$Projects$Locations$Eventtypes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * run.projects.locations.eventtypes.get
+     * @desc Rpc to get information about an EventType.
+     * @alias run.projects.locations.eventtypes.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the trigger being retrieved. If needed, replace {namespace_id} with the project ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Locations$Eventtypes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventType>;
+    get(
+      params: Params$Resource$Projects$Locations$Eventtypes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$EventType>,
+      callback: BodyResponseCallback<Schema$EventType>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Eventtypes$Get,
+      callback: BodyResponseCallback<Schema$EventType>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$EventType>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Eventtypes$Get
+        | BodyResponseCallback<Schema$EventType>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventType>,
+      callback?: BodyResponseCallback<Schema$EventType>
+    ): void | GaxiosPromise<Schema$EventType> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Eventtypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Eventtypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EventType>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$EventType>(parameters);
+      }
+    }
+
+    /**
+     * run.projects.locations.eventtypes.list
+     * @desc Rpc to list EventTypes.
+     * @alias run.projects.locations.eventtypes.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.continue Optional encoded string to continue paging.
+     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
+     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
+     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     * @param {integer=} params.limit The maximum number of records that should be returned.
+     * @param {string} params.parent The project ID or project number from which the EventTypes should be listed.
+     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
+     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Locations$Eventtypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEventTypesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Eventtypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEventTypesResponse>,
+      callback: BodyResponseCallback<Schema$ListEventTypesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Eventtypes$List,
+      callback: BodyResponseCallback<Schema$ListEventTypesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListEventTypesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Eventtypes$List
+        | BodyResponseCallback<Schema$ListEventTypesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEventTypesResponse>,
+      callback?: BodyResponseCallback<Schema$ListEventTypesResponse>
+    ): void | GaxiosPromise<Schema$ListEventTypesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Eventtypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Eventtypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/eventtypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEventTypesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListEventTypesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Eventtypes$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the trigger being retrieved. If needed, replace {namespace_id} with the project ID.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Eventtypes$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional encoded string to continue paging.
+     */
+    continue?: string;
+    /**
+     * Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
+     */
+    fieldSelector?: string;
+    /**
+     * Not currently used by Cloud Run.
+     */
+    includeUninitialized?: boolean;
+    /**
+     * Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     */
+    labelSelector?: string;
+    /**
+     * The maximum number of records that should be returned.
+     */
+    limit?: number;
+    /**
+     * The project ID or project number from which the EventTypes should be listed.
+     */
+    parent?: string;
+    /**
+     * The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
+     */
+    resourceVersion?: string;
+    /**
+     * Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
+     */
+    watch?: boolean;
+  }
+
   export class Resource$Projects$Locations$Revisions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5685,6 +6309,7 @@ export namespace run_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6123,6 +6748,10 @@ export namespace run_v1alpha1 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    'options.requestedPolicyVersion'?: number;
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */

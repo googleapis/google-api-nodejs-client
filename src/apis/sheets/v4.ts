@@ -3693,7 +3693,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -3832,7 +3832,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -3951,7 +3951,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -4082,7 +4082,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -4288,7 +4288,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -4413,7 +4413,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -4589,7 +4589,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -4751,7 +4751,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -4894,7 +4894,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -5026,7 +5026,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -5172,7 +5172,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -5315,7 +5315,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -5465,7 +5465,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -5603,7 +5603,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -5754,7 +5754,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -5883,7 +5883,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
@@ -6022,7 +6022,7 @@ export namespace sheets_v4 {
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
-     * var google = require('googleapis');
+     * const {google} = require('googleapis');
      * var sheets = google.sheets('v4');
      *
      * authorize(function(authClient) {
