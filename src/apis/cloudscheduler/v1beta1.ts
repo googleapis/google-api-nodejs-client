@@ -184,11 +184,11 @@ export namespace cloudscheduler_v1beta1 {
      */
     httpMethod?: string;
     /**
-     * If specified, an [OAuth token](https://developers.google.com/identity/protocols/OAuth2) will be generated and attached as an `Authorization` header in the HTTP request.  This type of authorization should be used when sending requests to a GCP endpoint.
+     * If specified, an [OAuth token](https://developers.google.com/identity/protocols/OAuth2) will be generated and attached as an `Authorization` header in the HTTP request.  This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com.
      */
     oauthToken?: Schema$OAuthToken;
     /**
-     * If specified, an [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect) token will be generated and attached as an `Authorization` header in the HTTP request.  This type of authorization should be used when sending requests to third party endpoints or Cloud Run.
+     * If specified, an [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect) token will be generated and attached as an `Authorization` header in the HTTP request.  This type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself.
      */
     oidcToken?: Schema$OidcToken;
     /**
@@ -309,7 +309,7 @@ export namespace cloudscheduler_v1beta1 {
     name?: string;
   }
   /**
-   * Contains information needed for generating an [OAuth token](https://developers.google.com/identity/protocols/OAuth2). This type of authorization should be used when sending requests to a GCP endpoint.
+   * Contains information needed for generating an [OAuth token](https://developers.google.com/identity/protocols/OAuth2). This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com.
    */
   export interface Schema$OAuthToken {
     /**
@@ -322,7 +322,7 @@ export namespace cloudscheduler_v1beta1 {
     serviceAccountEmail?: string;
   }
   /**
-   * Contains information needed for generating an [OpenID Connect token](https://developers.google.com/identity/protocols/OpenIDConnect). This type of authorization should be used when sending requests to third party endpoints or Cloud Run.
+   * Contains information needed for generating an [OpenID Connect token](https://developers.google.com/identity/protocols/OpenIDConnect). This type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself.
    */
   export interface Schema$OidcToken {
     /**
@@ -410,7 +410,7 @@ export namespace cloudscheduler_v1beta1 {
    */
   export interface Schema$RunJobRequest {}
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -447,6 +447,52 @@ export namespace cloudscheduler_v1beta1 {
     /**
      * cloudscheduler.projects.locations.get
      * @desc Gets information about a location.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Scheduler API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudscheduler
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudScheduler = google.cloudscheduler('v1beta1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudScheduler.projects.locations.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudscheduler.projects.locations.get
      * @memberOf! ()
      *
@@ -517,6 +563,65 @@ export namespace cloudscheduler_v1beta1 {
     /**
      * cloudscheduler.projects.locations.list
      * @desc Lists information about the supported locations for this service.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Scheduler API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudscheduler
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudScheduler = google.cloudscheduler('v1beta1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var locationsPage = response['locations'];
+     *     if (!locationsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < locationsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `locationsPage`:
+     *       console.log(JSON.stringify(locationsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       cloudScheduler.projects.locations.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   cloudScheduler.projects.locations.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudscheduler.projects.locations.list
      * @memberOf! ()
      *
@@ -641,6 +746,58 @@ export namespace cloudscheduler_v1beta1 {
     /**
      * cloudscheduler.projects.locations.jobs.create
      * @desc Creates a job.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Scheduler API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudscheduler
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudScheduler = google.cloudscheduler('v1beta1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The location name. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID`.
+     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudScheduler.projects.locations.jobs.create(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudscheduler.projects.locations.jobs.create
      * @memberOf! ()
      *
@@ -715,6 +872,51 @@ export namespace cloudscheduler_v1beta1 {
     /**
      * cloudscheduler.projects.locations.jobs.delete
      * @desc Deletes a job.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Scheduler API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudscheduler
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudScheduler = google.cloudscheduler('v1beta1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The job name. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     *     name: 'projects/my-project/locations/my-location/jobs/my-job',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudScheduler.projects.locations.jobs.delete(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudscheduler.projects.locations.jobs.delete
      * @memberOf! ()
      *
@@ -785,6 +987,54 @@ export namespace cloudscheduler_v1beta1 {
     /**
      * cloudscheduler.projects.locations.jobs.get
      * @desc Gets a job.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Scheduler API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudscheduler
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudScheduler = google.cloudscheduler('v1beta1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The job name. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     *     name: 'projects/my-project/locations/my-location/jobs/my-job',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudScheduler.projects.locations.jobs.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudscheduler.projects.locations.jobs.get
      * @memberOf! ()
      *
@@ -855,6 +1105,67 @@ export namespace cloudscheduler_v1beta1 {
     /**
      * cloudscheduler.projects.locations.jobs.list
      * @desc Lists jobs.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Scheduler API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudscheduler
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudScheduler = google.cloudscheduler('v1beta1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The location name. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID`.
+     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var jobsPage = response['jobs'];
+     *     if (!jobsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < jobsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `jobsPage`:
+     *       console.log(JSON.stringify(jobsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       cloudScheduler.projects.locations.jobs.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   cloudScheduler.projects.locations.jobs.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudscheduler.projects.locations.jobs.list
      * @memberOf! ()
      *
@@ -932,6 +1243,72 @@ export namespace cloudscheduler_v1beta1 {
     /**
      * cloudscheduler.projects.locations.jobs.patch
      * @desc Updates a job.  If successful, the updated Job is returned. If the job does not exist, `NOT_FOUND` is returned.  If UpdateJob does not successfully return, it is possible for the job to be in an Job.State.UPDATE_FAILED state. A job in this state may not be executed. If this happens, retry the UpdateJob request until a successful response is received.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Scheduler API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudscheduler
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudScheduler = google.cloudscheduler('v1beta1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Optionally caller-specified in CreateJob, after
+     *     // which it becomes output only.
+     *     // The job name. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     *     // * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),
+     *     // hyphens (-), colons (:), or periods (.).
+     *     // For more information, see
+     *     // [Identifying
+     *     // projects]
+     *     // (https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
+     *     // * `LOCATION_ID` is the canonical ID for the job's location.
+     *     // The list of available locations can be obtained by calling
+     *     // ListLocations.
+     *     // For more information, see https://cloud.google.com/about/locations/.
+     *     // * `JOB_ID` can contain only letters ([A-Za-z]), numbers ([0-9]),
+     *     // hyphens (-), or underscores (_). The maximum length is 500 characters.
+     *     name: 'projects/my-project/locations/my-location/jobs/my-job',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudScheduler.projects.locations.jobs.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudscheduler.projects.locations.jobs.patch
      * @memberOf! ()
      *
@@ -1004,6 +1381,58 @@ export namespace cloudscheduler_v1beta1 {
     /**
      * cloudscheduler.projects.locations.jobs.pause
      * @desc Pauses a job.  If a job is paused then the system will stop executing the job until it is re-enabled via ResumeJob. The state of the job is stored in state; if paused it will be set to Job.State.PAUSED. A job must be in Job.State.ENABLED to be paused.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Scheduler API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudscheduler
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudScheduler = google.cloudscheduler('v1beta1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The job name. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     *     name: 'projects/my-project/locations/my-location/jobs/my-job',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudScheduler.projects.locations.jobs.pause(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudscheduler.projects.locations.jobs.pause
      * @memberOf! ()
      *
@@ -1078,6 +1507,58 @@ export namespace cloudscheduler_v1beta1 {
     /**
      * cloudscheduler.projects.locations.jobs.resume
      * @desc Resume a job.  This method reenables a job after it has been Job.State.PAUSED. The state of a job is stored in Job.state; after calling this method it will be set to Job.State.ENABLED. A job must be in Job.State.PAUSED to be resumed.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Scheduler API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudscheduler
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudScheduler = google.cloudscheduler('v1beta1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The job name. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     *     name: 'projects/my-project/locations/my-location/jobs/my-job',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudScheduler.projects.locations.jobs.resume(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudscheduler.projects.locations.jobs.resume
      * @memberOf! ()
      *
@@ -1152,6 +1633,58 @@ export namespace cloudscheduler_v1beta1 {
     /**
      * cloudscheduler.projects.locations.jobs.run
      * @desc Forces a job to run now.  When this method is called, Cloud Scheduler will dispatch the job, even if the job is already running.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Scheduler API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudscheduler
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var cloudScheduler = google.cloudscheduler('v1beta1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Required.
+     *     // The job name. For example:
+     *     // `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     *     name: 'projects/my-project/locations/my-location/jobs/my-job',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudScheduler.projects.locations.jobs.run(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias cloudscheduler.projects.locations.jobs.run
      * @memberOf! ()
      *

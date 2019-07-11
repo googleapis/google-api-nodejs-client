@@ -321,7 +321,7 @@ export namespace jobs_v2 {
      */
     type?: string;
     /**
-     * Optional.  Frequency of the specified amount.  Default is CompensationUnit.OTHER_COMPENSATION_UNIT.
+     * Optional.  Frequency of the specified amount.  Default is CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED.
      */
     unit?: string;
   }
@@ -664,7 +664,7 @@ export namespace jobs_v2 {
      */
     type?: string;
     /**
-     * Optional.  Frequency of the specified amount.  Default is CompensationUnit.OTHER_COMPENSATION_UNIT.
+     * Optional.  Frequency of the specified amount.  Default is CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED.
      */
     unit?: string;
     /**

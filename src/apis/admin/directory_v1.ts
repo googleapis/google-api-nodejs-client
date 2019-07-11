@@ -471,7 +471,7 @@ export namespace admin_directory_v1 {
      */
     id?: string;
     /**
-     * Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string &quot;api#channel&quot;.
+     * Identifies this as a notification channel used to watch for changes to a resource, which is &quot;api#channel&quot;.
      */
     kind?: string;
     /**

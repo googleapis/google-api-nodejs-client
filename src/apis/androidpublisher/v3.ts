@@ -480,6 +480,27 @@ export namespace androidpublisher_v3 {
      */
     sha256?: string;
   }
+  /**
+   * Contains the introductory price information for a subscription.
+   */
+  export interface Schema$IntroductoryPriceInfo {
+    /**
+     * Introductory price of the subscription, not including tax. The currency is the same as price_currency_code. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is €1.99, price_amount_micros is 1990000.
+     */
+    introductoryPriceAmountMicros?: string;
+    /**
+     * ISO 4217 currency code for the introductory subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is &quot;GBP&quot;.
+     */
+    introductoryPriceCurrencyCode?: string;
+    /**
+     * The number of billing period to offer introductory pricing.
+     */
+    introductoryPriceCycles?: number;
+    /**
+     * Introductory price period, specified in ISO 8601 format. Common values are (but not limited to) &quot;P1W&quot; (one week), &quot;P1M&quot; (one month), &quot;P3M&quot; (three months), &quot;P6M&quot; (six months), and &quot;P1Y&quot; (one year).
+     */
+    introductoryPricePeriod?: string;
+  }
   export interface Schema$Listing {
     /**
      * Full description of the app; this may be up to 4000 characters in length.
@@ -569,7 +590,7 @@ export namespace androidpublisher_v3 {
      */
     orderId?: string;
     /**
-     * The purchase state of the order. Possible values are:   - Purchased  - Canceled
+     * The purchase state of the order. Possible values are:   - Purchased  - Canceled  - Pending
      */
     purchaseState?: number;
     /**
@@ -693,6 +714,10 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$SubscriptionPurchase {
     /**
+     * The acknowledgement state of the subscription product. Possible values are:   - Yet to be acknowledged  - Acknowledged
+     */
+    acknowledgementState?: number;
+    /**
      * Whether the subscription will automatically be renewed when it reaches its current expiry time.
      */
     autoRenewing?: boolean;
@@ -733,6 +758,10 @@ export namespace androidpublisher_v3 {
      */
     givenName?: string;
     /**
+     * Introductory price information of the subscription. This is only present when the subscription was purchased with an introductory price.  This field does not indicate the subscription is currently in introductory price period.
+     */
+    introductoryPriceInfo?: Schema$IntroductoryPriceInfo;
+    /**
      * This kind represents a subscriptionPurchase object in the androidpublisher service.
      */
     kind?: string;
@@ -761,7 +790,7 @@ export namespace androidpublisher_v3 {
      */
     priceCurrencyCode?: string;
     /**
-     * The profile id of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
+     * The Google profile id of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
      */
     profileId?: string;
     /**
@@ -800,7 +829,13 @@ export namespace androidpublisher_v3 {
     newExpiryTimeMillis?: string;
   }
   export interface Schema$Testers {
+    /**
+     * A list of all Google Groups, as email addresses, that define testers for this track.
+     */
     googleGroups?: string[];
+    /**
+     * A list of all Google+ Communities, as URLs, that define testers for this track.
+     */
     googlePlusCommunities?: string[];
   }
   export interface Schema$Timestamp {

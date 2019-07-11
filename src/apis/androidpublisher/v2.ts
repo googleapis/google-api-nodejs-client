@@ -547,7 +547,7 @@ export namespace androidpublisher_v2 {
      */
     orderId?: string;
     /**
-     * The purchase state of the order. Possible values are:   - Purchased  - Canceled
+     * The purchase state of the order. Possible values are:   - Purchased  - Canceled  - Pending
      */
     purchaseState?: number;
     /**
@@ -729,7 +729,7 @@ export namespace androidpublisher_v2 {
      */
     priceCurrencyCode?: string;
     /**
-     * The profile id of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
+     * The Google profile id of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
      */
     profileId?: string;
     /**
@@ -762,7 +762,13 @@ export namespace androidpublisher_v2 {
     newExpiryTimeMillis?: string;
   }
   export interface Schema$Testers {
+    /**
+     * A list of all Google Groups, as email addresses, that define testers for this track.
+     */
     googleGroups?: string[];
+    /**
+     * A list of all Google+ Communities, as URLs, that define testers for this track.
+     */
     googlePlusCommunities?: string[];
   }
   export interface Schema$Timestamp {

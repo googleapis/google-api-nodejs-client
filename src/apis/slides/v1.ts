@@ -1134,7 +1134,7 @@ export namespace slides_v1 {
    */
   export interface Schema$PageProperties {
     /**
-     * The color scheme of the page. If unset, the color scheme is inherited from a parent page. If the page has no parent, the color scheme uses a default Slides color scheme. This field is read-only.
+     * The color scheme of the page. If unset, the color scheme is inherited from a parent page. If the page has no parent, the color scheme uses a default Slides color scheme, matching the defaults in the Slides editor.  Only the concrete colors of the first 12 ThemeColorTypes are editable. In addition, only the color scheme on Master pages can be updated. To update the field, a color scheme containing mappings from all the first 12 ThemeColorTypes to their concrete colors must be provided. Colors for the remaining ThemeColorTypes will be ignored.
      */
     colorScheme?: Schema$ColorScheme;
     /**

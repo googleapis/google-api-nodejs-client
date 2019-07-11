@@ -164,7 +164,7 @@ export namespace securitycenter_v1 {
     projectIds?: string[];
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:foo@gmail.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:bar@gmail.com&quot;               ]             }           ]         }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -177,13 +177,17 @@ export namespace securitycenter_v1 {
     service?: string;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:foo@gmail.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
     exemptedMembers?: string[];
+    /**
+     * Specifies whether principals can be exempted for the same LogType in lower-level resource policies. If true, any lower-level exemptions will be ignored.
+     */
+    ignoreChildExemptions?: boolean;
     /**
      * The log type that this config enables.
      */
@@ -198,7 +202,7 @@ export namespace securitycenter_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
@@ -244,7 +248,7 @@ export namespace securitycenter_v1 {
      */
     createTime?: string;
     /**
-     * The time at which the event took place. For example, if the finding represents an open firewall it would capture the time the open firewall was detected.
+     * The time at which the event took place. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector.
      */
     eventTime?: string;
     /**
@@ -279,7 +283,21 @@ export namespace securitycenter_v1 {
   /**
    * Request message for `GetIamPolicy` method.
    */
-  export interface Schema$GetIamPolicyRequest {}
+  export interface Schema$GetIamPolicyRequest {
+    /**
+     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`. This field is only used by Cloud IAM.
+     */
+    options?: Schema$GetPolicyOptions;
+  }
+  /**
+   * Encapsulates settings provided to GetIamPolicy.
+   */
+  export interface Schema$GetPolicyOptions {
+    /**
+     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    requestedPolicyVersion?: number;
+  }
   /**
    * Response of asset discovery run
    */
@@ -577,7 +595,7 @@ export namespace securitycenter_v1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
     etag?: string;
     /**
@@ -662,7 +680,7 @@ export namespace securitycenter_v1 {
      */
     description?: string;
     /**
-     * The source&#39;s display name. A source&#39;s display name must be unique amongst its siblings, for example, two sources with the same parent can&#39;t share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens, and underscores, and can be no longer than 32 characters. This is captured by the regular expression: [\p{L}\p{N}]({\p{L}\p{N}_- ]{0,30}[\p{L}\p{N}])?.
+     * The source&#39;s display name. A source&#39;s display name must be unique amongst its siblings, for example, two sources with the same parent can&#39;t share the same display name. The display name must have a length between 1 and 64 characters (inclusive).
      */
     displayName?: string;
     /**
@@ -671,7 +689,7 @@ export namespace securitycenter_v1 {
     name?: string;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -721,6 +739,53 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.getOrganizationSettings
      * @desc Gets the settings for an organization.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the organization to get organization settings for. Its format is
+     *     // "organizations/[organization_id]/organizationSettings".
+     *     name: 'organizations/my-organization/organizationSettings',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.getOrganizationSettings(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.getOrganizationSettings
      * @memberOf! ()
      *
@@ -797,6 +862,60 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.updateOrganizationSettings
      * @desc Updates an organization's settings.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The relative resource name of the settings. See:
+     *     // https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *     // Example:
+     *     // "organizations/123/organizationSettings".
+     *     name: 'organizations/my-organization/organizationSettings',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.updateOrganizationSettings(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.updateOrganizationSettings
      * @memberOf! ()
      *
@@ -916,6 +1035,70 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.assets.group
      * @desc Filters an organization's assets and  groups them by their specified properties.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the organization to groupBy. Its format is
+     *     // "organizations/[organization_id]".
+     *     parent: 'organizations/my-organization',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var groupByResultsPage = response['groupByResults'];
+     *     if (!groupByResultsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < groupByResultsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `groupByResultsPage`:
+     *       console.log(JSON.stringify(groupByResultsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.resource.pageToken = response.nextPageToken;
+     *       securityCommandCenter.organizations.assets.group(request, handlePage);
+     *     }
+     *   };
+     *
+     *   securityCommandCenter.organizations.assets.group(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.assets.group
      * @memberOf! ()
      *
@@ -992,12 +1175,72 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.assets.list
      * @desc Lists an organization's assets.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the organization assets should belong to. Its format is
+     *     // "organizations/[organization_id]".
+     *     parent: 'organizations/my-organization',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var listAssetsResultsPage = response['listAssetsResults'];
+     *     if (!listAssetsResultsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < listAssetsResultsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `listAssetsResultsPage`:
+     *       console.log(JSON.stringify(listAssetsResultsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       securityCommandCenter.organizations.assets.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   securityCommandCenter.organizations.assets.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.assets.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.compareDuration When compare_duration is set, the ListAssetsResult's "state_change" attribute is updated to indicate whether the asset was added, removed, or remained present during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence of the asset at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the asset is removed and re-created again.  Possible "state_change" values when compare_duration is specified:  * "ADDED":   indicates that the asset was not present at the start of                compare_duration, but present at read_time. * "REMOVED": indicates that the asset was present at the start of                compare_duration, but not present at read_time. * "ACTIVE":  indicates that the asset was present at both the                start and the end of the time period defined by                compare_duration and read_time.  If compare_duration is not specified, then the only possible state_change is "UNUSED",  which will be the state_change set for all assets present at read_time.
-     * @param {string=} params.fieldMask Optional.  A field mask to specify the ListAssetsResult fields to be listed in the response. An empty field mask will list all fields.
+     * @param {string=} params.fieldMask Optional. A field mask to specify the ListAssetsResult fields to be listed in the response. An empty field mask will list all fields.
      * @param {string=} params.filter Expression that defines the filter to apply across assets. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `<field> <operator> <value>` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the Asset resource. Examples include:  * name * security_center_properties.resource_name * resource_properties.a_property * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following are the allowed field and operator combinations:  * name: `=` * update_time: `>`, `<`, `>=`, `<=` * iam_policy.policy_blob: `=`, `:` * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=` * security_marks: `=`, `:` * security_center_properties.resource_name: `=`, `:` * security_center_properties.resource_type: `=`, `:` * security_center_properties.resource_parent: `=`, `:` * security_center_properties.resource_project: `=`, `:` * security_center_properties.resource_owners: `=`, `:`  For example, `resource_properties.size = 100` is a valid filter string.
      * @param {string=} params.orderBy Expression that defines what fields and order to use for sorting. The string value should follow SQL syntax: comma separated list of fields. For example: "name,resource_properties.a_property". The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be appended to the field name. For example: "name desc,resource_properties.a_property". Redundant space characters in the syntax are insignificant. "name desc,resource_properties.a_property" and " name     desc  ,   resource_properties.a_property  " are equivalent.  The following fields are supported: name update_time resource_properties security_marks security_center_properties.resource_name security_center_properties.resource_parent security_center_properties.resource_project security_center_properties.resource_type
      * @param {integer=} params.pageSize The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
@@ -1074,6 +1317,57 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.assets.runDiscovery
      * @desc Runs asset discovery. The discovery is tracked with a long-running operation.  This API can only be called with limited frequency for an organization. If it is called too frequently the caller will receive a TOO_MANY_REQUESTS error.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the organization to run asset discovery for. Its format is
+     *     // "organizations/[organization_id]".
+     *     parent: 'organizations/my-organization',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.assets.runDiscovery(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.assets.runDiscovery
      * @memberOf! ()
      *
@@ -1150,6 +1444,61 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.assets.updateSecurityMarks
      * @desc Updates security marks.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The relative resource name of the SecurityMarks. See:
+     *     // https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *     // Examples:
+     *     // "organizations/123/assets/456/securityMarks"
+     *     // "organizations/123/sources/456/findings/789/securityMarks".
+     *     name: 'organizations/my-organization/assets/my-asset/securityMarks',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.assets.updateSecurityMarks(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.assets.updateSecurityMarks
      * @memberOf! ()
      *
@@ -1254,7 +1603,7 @@ export namespace securitycenter_v1 {
      */
     compareDuration?: string;
     /**
-     * Optional.  A field mask to specify the ListAssetsResult fields to be listed in the response. An empty field mask will list all fields.
+     * Optional. A field mask to specify the ListAssetsResult fields to be listed in the response. An empty field mask will list all fields.
      */
     fieldMask?: string;
     /**
@@ -1334,6 +1683,49 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'organizations/my-organization/operations/my-operation',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.operations.cancel(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.operations.cancel
      * @memberOf! ()
      *
@@ -1404,6 +1796,49 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.operations.delete
      * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the operation resource to be deleted.
+     *     name: 'organizations/my-organization/operations/my-operation',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.operations.delete(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.operations.delete
      * @memberOf! ()
      *
@@ -1474,6 +1909,52 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the operation resource.
+     *     name: 'organizations/my-organization/operations/my-operation',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.operations.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.operations.get
      * @memberOf! ()
      *
@@ -1546,6 +2027,65 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the operation's parent resource.
+     *     name: 'organizations/my-organization/operations',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var operationsPage = response['operations'];
+     *     if (!operationsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < operationsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `operationsPage`:
+     *       console.log(JSON.stringify(operationsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       securityCommandCenter.organizations.operations.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   securityCommandCenter.organizations.operations.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.operations.list
      * @memberOf! ()
      *
@@ -1693,6 +2233,57 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.sources.create
      * @desc Creates a source.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Resource name of the new source's parent. Its format should be
+     *     // "organizations/[organization_id]".
+     *     parent: 'organizations/my-organization',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.sources.create(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.sources.create
      * @memberOf! ()
      *
@@ -1767,6 +2358,53 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.sources.get
      * @desc Gets a source.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Relative resource name of the source. Its format is
+     *     // "organizations/[organization_id]/source/[source_id]".
+     *     name: 'organizations/my-organization/sources/my-source',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.sources.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.sources.get
      * @memberOf! ()
      *
@@ -1837,6 +2475,57 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.sources.getIamPolicy
      * @desc Gets the access control policy on the specified Source.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'organizations/my-organization/sources/my-source',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.sources.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.sources.getIamPolicy
      * @memberOf! ()
      *
@@ -1911,6 +2600,66 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.sources.list
      * @desc Lists all sources belonging to an organization.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Resource name of the parent of sources to list. Its format should be
+     *     // "organizations/[organization_id]".
+     *     parent: 'organizations/my-organization',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var sourcesPage = response['sources'];
+     *     if (!sourcesPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < sourcesPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `sourcesPage`:
+     *       console.log(JSON.stringify(sourcesPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       securityCommandCenter.organizations.sources.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   securityCommandCenter.organizations.sources.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.sources.list
      * @memberOf! ()
      *
@@ -1988,6 +2737,60 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.sources.patch
      * @desc Updates a source.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The relative resource name of this source. See:
+     *     // https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *     // Example:
+     *     // "organizations/123/sources/456"
+     *     name: 'organizations/my-organization/sources/my-source',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.sources.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.sources.patch
      * @memberOf! ()
      *
@@ -2060,6 +2863,57 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.sources.setIamPolicy
      * @desc Sets the access control policy on the specified Source.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'organizations/my-organization/sources/my-source',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.sources.setIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.sources.setIamPolicy
      * @memberOf! ()
      *
@@ -2134,6 +2988,57 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.sources.testIamPermissions
      * @desc Returns the permissions that a caller has on the specified source.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'organizations/my-organization/sources/my-source',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.sources.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.sources.testIamPermissions
      * @memberOf! ()
      *
@@ -2346,6 +3251,57 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.sources.findings.create
      * @desc Creates a finding. The corresponding source must exist for finding creation to succeed.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Resource name of the new finding's parent. Its format should be
+     *     // "organizations/[organization_id]/sources/[source_id]".
+     *     parent: 'organizations/my-organization/sources/my-source',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.sources.findings.create(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.sources.findings.create
      * @memberOf! ()
      *
@@ -2421,6 +3377,72 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.sources.findings.group
      * @desc Filters an organization or source's findings and  groups them by their specified properties.  To group across all sources provide a `-` as the source id. Example: /v1/organizations/123/sources/-/findings
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the source to groupBy. Its format is
+     *     // "organizations/[organization_id]/sources/[source_id]". To groupBy across
+     *     // all sources provide a source_id of `-`. For example:
+     *     // organizations/123/sources/-
+     *     parent: 'organizations/my-organization/sources/my-source',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var groupByResultsPage = response['groupByResults'];
+     *     if (!groupByResultsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < groupByResultsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `groupByResultsPage`:
+     *       console.log(JSON.stringify(groupByResultsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.resource.pageToken = response.nextPageToken;
+     *       securityCommandCenter.organizations.sources.findings.group(request, handlePage);
+     *     }
+     *   };
+     *
+     *   securityCommandCenter.organizations.sources.findings.group(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.sources.findings.group
      * @memberOf! ()
      *
@@ -2499,12 +3521,74 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.sources.findings.list
      * @desc Lists an organization or source's findings.  To list across all sources provide a `-` as the source id. Example: /v1/organizations/123/sources/-/findings
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the source the findings belong to. Its format is
+     *     // "organizations/[organization_id]/sources/[source_id]". To list across all
+     *     // sources provide a source_id of `-`. For example:
+     *     // organizations/123/sources/-
+     *     parent: 'organizations/my-organization/sources/my-source',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var listFindingsResultsPage = response['listFindingsResults'];
+     *     if (!listFindingsResultsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < listFindingsResultsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `listFindingsResultsPage`:
+     *       console.log(JSON.stringify(listFindingsResultsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       securityCommandCenter.organizations.sources.findings.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   securityCommandCenter.organizations.sources.findings.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.sources.findings.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.compareDuration When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again.  Possible "state_change" values when compare_duration is specified:  * "CHANGED":   indicates that the finding was present at the start of                  compare_duration, but changed its state at read_time. * "UNCHANGED": indicates that the finding was present at the start of                  compare_duration and did not change state at read_time. * "ADDED":     indicates that the finding was not present at the start                  of compare_duration, but was present at read_time.  If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
-     * @param {string=} params.fieldMask Optional.  A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
+     * @param {string=} params.fieldMask Optional. A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
      * @param {string=} params.filter Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `<field> <operator> <value>` and may have a `-` character in front of them to indicate negation. Examples include:   * name  * source_properties.a_property  * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  name: `=` parent: `=`, `:` resource_name: `=`, `:` state: `=`, `:` category: `=`, `:` external_uri: `=`, `:` event_time: `>`, `<`, `>=`, `<=` security_marks: `=`, `:` source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`  For example, `source_properties.size = 100` is a valid filter string.
      * @param {string=} params.orderBy Expression that defines what fields and order to use for sorting. The string value should follow SQL syntax: comma separated list of fields. For example: "name,resource_properties.a_property". The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be appended to the field name. For example: "name desc,source_properties.a_property". Redundant space characters in the syntax are insignificant. "name desc,source_properties.a_property" and " name     desc  ,   source_properties.a_property  " are equivalent.  The following fields are supported: name parent state category resource_name event_time source_properties security_marks
      * @param {integer=} params.pageSize The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
@@ -2583,6 +3667,60 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.sources.findings.patch
      * @desc Creates or updates a finding. The corresponding source must exist for a finding creation to succeed.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The relative resource name of this finding. See:
+     *     // https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *     // Example:
+     *     // "organizations/123/sources/456/findings/789"
+     *     name: 'organizations/my-organization/sources/my-source/findings/my-finding',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.sources.findings.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.sources.findings.patch
      * @memberOf! ()
      *
@@ -2655,6 +3793,59 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.sources.findings.setState
      * @desc Updates the state of a finding.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The relative resource name of the finding. See:
+     *     // https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *     // Example:
+     *     // "organizations/123/sources/456/finding/789".
+     *     name: 'organizations/my-organization/sources/my-source/findings/my-finding',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.sources.findings.setState(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.sources.findings.setState
      * @memberOf! ()
      *
@@ -2729,6 +3920,61 @@ export namespace securitycenter_v1 {
     /**
      * securitycenter.organizations.sources.findings.updateSecurityMarks
      * @desc Updates security marks.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Security Command Center API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/securitycenter
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var securityCommandCenter = google.securitycommandcenter('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The relative resource name of the SecurityMarks. See:
+     *     // https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *     // Examples:
+     *     // "organizations/123/assets/456/securityMarks"
+     *     // "organizations/123/sources/456/findings/789/securityMarks".
+     *     name: 'organizations/my-organization/sources/my-source/findings/my-finding/securityMarks',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   securityCommandCenter.organizations.sources.findings.updateSecurityMarks(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
      * @alias securitycenter.organizations.sources.findings.updateSecurityMarks
      * @memberOf! ()
      *
@@ -2854,7 +4100,7 @@ export namespace securitycenter_v1 {
      */
     compareDuration?: string;
     /**
-     * Optional.  A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
+     * Optional. A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
      */
     fieldMask?: string;
     /**

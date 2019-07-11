@@ -85,7 +85,9 @@ import * as doubleclicksearch from './doubleclicksearch';
 import * as drive from './drive';
 import * as driveactivity from './driveactivity';
 import * as factchecktools from './factchecktools';
+import * as fcm from './fcm';
 import * as file from './file';
+import * as firebase from './firebase';
 import * as firebasedynamiclinks from './firebasedynamiclinks';
 import * as firebasehosting from './firebasehosting';
 import * as firebaserules from './firebaserules';
@@ -248,7 +250,9 @@ export const APIS: APIList = {
   drive: drive.VERSIONS,
   driveactivity: driveactivity.VERSIONS,
   factchecktools: factchecktools.VERSIONS,
+  fcm: fcm.VERSIONS,
   file: file.VERSIONS,
+  firebase: firebase.VERSIONS,
   firebasedynamiclinks: firebasedynamiclinks.VERSIONS,
   firebasehosting: firebasehosting.VERSIONS,
   firebaserules: firebaserules.VERSIONS,
@@ -409,7 +413,9 @@ export class GeneratedAPIs {
   drive = drive.drive;
   driveactivity = driveactivity.driveactivity;
   factchecktools = factchecktools.factchecktools;
+  fcm = fcm.fcm;
   file = file.file;
+  firebase = firebase.firebase;
   firebasedynamiclinks = firebasedynamiclinks.firebasedynamiclinks;
   firebasehosting = firebasehosting.firebasehosting;
   firebaserules = firebaserules.firebaserules;

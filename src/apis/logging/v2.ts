@@ -91,7 +91,7 @@ export namespace logging_v2 {
   /**
    * Stackdriver Logging API
    *
-   * Writes log entries and manages your Logging configuration.
+   * Writes log entries and manages your Stackdriver Logging configuration. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the Stackdriver Logging documentation.
    *
    * @example
    * const {google} = require('googleapis');
@@ -421,7 +421,7 @@ export namespace logging_v2 {
      */
     operation?: Schema$LogEntryOperation;
     /**
-     * The log entry payload, represented as a protocol buffer. Some Google Cloud Platform services use this field for their log entry payloads.
+     * The log entry payload, represented as a protocol buffer. Some Google Cloud Platform services use this field for their log entry payloads.The following protocol buffer types are supported; user-defined types are not supported:&quot;type.googleapis.com/google.cloud.audit.AuditLog&quot;  &quot;type.googleapis.com/google.appengine.logging.v1.RequestLog&quot;
      */
     protoPayload?: {[key: string]: any};
     /**
@@ -429,7 +429,7 @@ export namespace logging_v2 {
      */
     receiveTimestamp?: string;
     /**
-     * Required. The primary monitored resource associated with this log entry.Example: a log entry that reports a database error would be associated with the monitored resource designating the particular database that reported the error.
+     * Required. The monitored resource that produced this log entry.Example: a log entry that reports a database error would be associated with the monitored resource designating the particular database that reported the error.
      */
     resource?: Schema$MonitoredResource;
     /**
@@ -648,6 +648,10 @@ export namespace logging_v2 {
      */
     labels?: Schema$LabelDescriptor[];
     /**
+     * Optional. The launch stage of the metric definition.
+     */
+    launchStage?: string;
+    /**
      * Optional. Metadata which can be used to guide usage of the metric.
      */
     metadata?: Schema$MetricDescriptorMetadata;
@@ -681,7 +685,7 @@ export namespace logging_v2 {
      */
     ingestDelay?: string;
     /**
-     * The launch stage of the metric definition.
+     * Deprecated. Please use the MetricDescriptor.launch_stage instead. The launch stage of the metric definition.
      */
     launchStage?: string;
     /**

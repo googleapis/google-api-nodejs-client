@@ -328,6 +328,19 @@ export namespace androidenterprise_v1 {
     kind?: string;
   }
   /**
+   * List of states set by the app.
+   */
+  export interface Schema$AppState {
+    /**
+     * List of keyed app states. This field will always be present.
+     */
+    keyedAppState?: Schema$KeyedAppState[];
+    /**
+     * The package name of the app. This field will always be present.
+     */
+    packageName?: string;
+  }
+  /**
    * An event generated when a new version of an app is uploaded to Google Play. Notifications are sent for new public versions only: alpha, beta, or canary versions do not generate this event. To fetch up-to-date version history for an app, use Products.Get on the EMM API.
    */
   export interface Schema$AppUpdateEvent {
@@ -446,6 +459,40 @@ export namespace androidenterprise_v1 {
      * The policy enforced on the device.
      */
     policy?: Schema$Policy;
+    /**
+     * The device report updated with the latest app states.
+     */
+    report?: Schema$DeviceReport;
+  }
+  /**
+   * Device report updated with the latest app states for managed apps on the device.
+   */
+  export interface Schema$DeviceReport {
+    /**
+     * List of app states set by managed apps on the device. App states are defined by the app&#39;s developers. This field will always be present.
+     */
+    appState?: Schema$AppState[];
+    /**
+     * The timestamp of the last report update in milliseconds since epoch. This field will always be present.
+     */
+    lastUpdatedTimestampMillis?: string;
+  }
+  /**
+   * An event generated when an updated device report is available.
+   */
+  export interface Schema$DeviceReportUpdateEvent {
+    /**
+     * The Android ID of the device. This field will always be present.
+     */
+    deviceId?: string;
+    /**
+     * The device report updated with the latest app states. This field will always be present.
+     */
+    report?: Schema$DeviceReport;
+    /**
+     * The ID of the user. This field will always be present.
+     */
+    userId?: string;
   }
   /**
    * The device resources for the user.
@@ -683,6 +730,31 @@ export namespace androidenterprise_v1 {
     kind?: string;
   }
   /**
+   * Represents a keyed app state containing a key, timestamp, severity level, optional description, and optional data.
+   */
+  export interface Schema$KeyedAppState {
+    /**
+     * Additional field intended for machine-readable data. For example, a number or JSON object. To prevent XSS, we recommend removing any HTML from the data before displaying it.
+     */
+    data?: string;
+    /**
+     * Key indicating what the app is providing a state for. The content of the key is set by the app&#39;s developer. To prevent XSS, we recommend removing any HTML from the key before displaying it. This field will always be present.
+     */
+    key?: string;
+    /**
+     * Free-form, human-readable message describing the app state. For example, an error message. To prevent XSS, we recommend removing any HTML from the message before displaying it.
+     */
+    message?: string;
+    /**
+     * Severity of the app state. This field will always be present.
+     */
+    severity?: string;
+    /**
+     * Timestamp of when the app set the state in milliseconds since epoch. This field will always be present.
+     */
+    stateTimestampMillis?: string;
+  }
+  /**
    * A localized string with its locale.
    */
   export interface Schema$LocalizedText {
@@ -886,6 +958,10 @@ export namespace androidenterprise_v1 {
      */
     appUpdateEvent?: Schema$AppUpdateEvent;
     /**
+     * Notifications about device report updates.
+     */
+    deviceReportUpdateEvent?: Schema$DeviceReportUpdateEvent;
+    /**
      * The ID of the enterprise for which the notification is sent. This will always be present.
      */
     enterpriseId?: string;
@@ -969,6 +1045,10 @@ export namespace androidenterprise_v1 {
      * The auto-update policy for apps installed on the device. &quot;choiceToTheUser&quot; allows the device&#39;s user to configure the app update policy. &quot;always&quot; enables auto updates. &quot;never&quot; disables auto updates. &quot;wifiOnly&quot; enables auto updates only when the device is connected to wifi.
      */
     autoUpdatePolicy?: string;
+    /**
+     * Whether the device reports app states to the EMM. The default value is &quot;deviceReportDisabled&quot;.
+     */
+    deviceReportPolicy?: string;
     /**
      * The maintenance window defining when apps running in the foreground should be updated.
      */
@@ -1563,6 +1643,80 @@ export namespace androidenterprise_v1 {
     }
 
     /**
+     * androidenterprise.devices.forceReportUpload
+     * @desc Uploads a report containing any changes in app states on the device since the last report was generated. You can call this method up to 3 times every 24 hours for a given device.
+     * @alias androidenterprise.devices.forceReportUpload
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.deviceId The ID of the device.
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    forceReportUpload(
+      params?: Params$Resource$Devices$Forcereportupload,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    forceReportUpload(
+      params: Params$Resource$Devices$Forcereportupload,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    forceReportUpload(
+      params: Params$Resource$Devices$Forcereportupload,
+      callback: BodyResponseCallback<void>
+    ): void;
+    forceReportUpload(callback: BodyResponseCallback<void>): void;
+    forceReportUpload(
+      paramsOrCallback?:
+        | Params$Resource$Devices$Forcereportupload
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Devices$Forcereportupload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Devices$Forcereportupload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/forceReportUpload'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['enterpriseId', 'userId', 'deviceId'],
+        pathParams: ['deviceId', 'enterpriseId', 'userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
      * androidenterprise.devices.get
      * @desc Retrieves the details of a device.
      * @alias androidenterprise.devices.get
@@ -2011,6 +2165,26 @@ export namespace androidenterprise_v1 {
     }
   }
 
+  export interface Params$Resource$Devices$Forcereportupload
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The ID of the device.
+     */
+    deviceId?: string;
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+    /**
+     * The ID of the user.
+     */
+    userId?: string;
+  }
   export interface Params$Resource$Devices$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request

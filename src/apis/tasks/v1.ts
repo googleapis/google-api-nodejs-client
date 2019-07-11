@@ -113,7 +113,7 @@ export namespace tasks_v1 {
      */
     deleted?: boolean;
     /**
-     * Due date of the task (as a RFC 3339 timestamp). Optional.
+     * Due date of the task (as a RFC 3339 timestamp). Optional. The due date only records date information; the time portion of the timestamp is discarded when setting the due date. It isn&#39;t possible to read or write the time that a task is due via the API.
      */
     due?: string;
     /**

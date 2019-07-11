@@ -138,7 +138,7 @@ export namespace healthcare_v1alpha2 {
      */
     resourceAnnotation?: Schema$ResourceAnnotation;
     /**
-     * Annotations for sentitive texts, e.g., range of such texts.
+     * Annotations for sensitive texts, e.g., range of such texts.
      */
     textAnnotation?: Schema$SensitiveTextAnnotation;
   }
@@ -165,7 +165,7 @@ export namespace healthcare_v1alpha2 {
     name?: string;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:foo@gmail.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:bar@gmail.com&quot;               ]             }           ]         }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -178,13 +178,17 @@ export namespace healthcare_v1alpha2 {
     service?: string;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:foo@gmail.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
     exemptedMembers?: string[];
+    /**
+     * Specifies whether principals can be exempted for the same LogType in lower-level resource policies. If true, any lower-level exemptions will be ignored.
+     */
+    ignoreChildExemptions?: boolean;
     /**
      * The log type that this config enables.
      */
@@ -199,7 +203,7 @@ export namespace healthcare_v1alpha2 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
@@ -402,7 +406,7 @@ export namespace healthcare_v1alpha2 {
    */
   export interface Schema$ExportDicomDataRequest {
     /**
-     * The BigQuery output destination.  For now, only exporting to a dataset in the current project is supported  The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
+     * The BigQuery output destination.  You can only export to a BigQuery dataset that&#39;s in the same project as the DICOM store you&#39;re exporting from.  The BigQuery location requires two IAM roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1alpha2DicomBigQueryDestination;
     /**
@@ -485,6 +489,18 @@ export namespace healthcare_v1alpha2 {
      * If non-empty, publish all resource modifications of this FHIR store to this destination. The Cloud Pub/Sub message attributes will contain a map with a string describing the action that has triggered the notification, e.g. &quot;action&quot;:&quot;CreateResource&quot;.
      */
     notificationConfig?: Schema$NotificationConfig;
+    /**
+     * A list of streaming configs that configure the destinations of streaming export for every resource mutation in this FHIR store. Each store is allowed to have up to 10 streaming configs. After a new config is added, the next resource mutation will be streamed to the new location in addition to the existing ones. When a location is removed from the list, the server will simply stop streaming to that location. Before adding a new config, you must add the required [`bigquery.dataEditor`](https://cloud.google.com/bigquery/docs/access-control#bigquery.dataEditor) role to your project&#39;s **Cloud Healthcare Service Agent** [service account](https://cloud.google.com/iam/docs/service-accounts). Some lag (typically on the order of dozens of seconds) is expected before the results show up in the streaming destination.
+     */
+    streamConfigs?: Schema$StreamConfig[];
+    /**
+     * Configuration of FHIR Subscription: https://www.hl7.org/fhir/subscription.html.
+     */
+    subscriptionConfig?: Schema$SubscriptionConfig;
+    /**
+     * Configuration for how incoming FHIR resources will be validated against configured profiles.
+     */
+    validationConfig?: Schema$ValidationConfig;
   }
   /**
    * Specifies FHIR paths to match, and how to handle de-identification of matching fields.
@@ -516,7 +532,21 @@ export namespace healthcare_v1alpha2 {
   /**
    * Request message for `GetIamPolicy` method.
    */
-  export interface Schema$GetIamPolicyRequest {}
+  export interface Schema$GetIamPolicyRequest {
+    /**
+     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`. This field is only used by Cloud IAM.
+     */
+    options?: Schema$GetPolicyOptions;
+  }
+  /**
+   * Encapsulates settings provided to GetIamPolicy.
+   */
+  export interface Schema$GetPolicyOptions {
+    /**
+     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    requestedPolicyVersion?: number;
+  }
   /**
    * The BigQuery table where the output should be written.
    */
@@ -718,7 +748,7 @@ export namespace healthcare_v1alpha2 {
    */
   export interface Schema$ImportResourcesRequest {
     /**
-     * The content structure in the source location. The default is BUNDLE.
+     * The content structure in the source location. If not specified, the server treats the input source files as BUNDLE.
      */
     contentStructure?: string;
     /**
@@ -726,7 +756,7 @@ export namespace healthcare_v1alpha2 {
      */
     gcsErrorDestination?: Schema$GoogleCloudHealthcareV1alpha2FhirRestGcsErrorDestination;
     /**
-     * Cloud Storage source data location and import configuration.  The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.  Each Cloud Storage object should be a text file that contains newline delimited JSON structures conforming to FHIR standard.  To improve performance, use multiple Cloud Storage objects where each object contains a subset of all of the newline-delimited JSON structures. You can select all of the objects using the uri as the prefix. The maximum number of objects is 1,000.
+     * Cloud Storage source data location and import configuration.  The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.  Each Cloud Storage object should be a text file that contains the format specified in ContentStructu.
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1alpha2FhirRestGcsSource;
   }
@@ -928,7 +958,7 @@ export namespace healthcare_v1alpha2 {
    */
   export interface Schema$Message {
     /**
-     * The datetime when the message was created. Set by the server.
+     * Output only. The datetime when the message was created. Set by the server.
      */
     createTime?: string;
     /**
@@ -948,7 +978,7 @@ export namespace healthcare_v1alpha2 {
      */
     name?: string;
     /**
-     * The parsed version of the raw message data.
+     * Output only. The parsed version of the raw message data.
      */
     parsedData?: Schema$ParsedData;
     /**
@@ -1031,7 +1061,7 @@ export namespace healthcare_v1alpha2 {
      */
     allowNullHeader?: boolean;
     /**
-     * Byte(s) to be used as the segment terminator. If this is unset, &#39;\r&#39; will be used as segment terminator.
+     * Byte(s) to be used as the segment terminator. If this is unset, &#39;\r&#39; will be used as the segment terminator, matching the HL7 version 2 specification.
      */
     segmentTerminator?: string;
   }
@@ -1061,7 +1091,7 @@ export namespace healthcare_v1alpha2 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
     etag?: string;
     /**
@@ -1101,7 +1131,7 @@ export namespace healthcare_v1alpha2 {
     label?: string;
   }
   /**
-   * Configuration for the FHIR BigQuery schema. Determines how the server generates the schema.
+   * Configuration for the FHIR BigQuery and Cloud Storage schema. Determines how the server generates the schema.
    */
   export interface Schema$SchemaConfig {
     /**
@@ -1162,7 +1192,7 @@ export namespace healthcare_v1alpha2 {
     updateMask?: string;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -1177,6 +1207,41 @@ export namespace healthcare_v1alpha2 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
+  }
+  /**
+   * This structure contains configuration for streaming FHIR export.
+   */
+  export interface Schema$StreamConfig {
+    /**
+     * The destination BigQuery structure that contains both the dataset location and corresponding schema config. The output will be organized in one table per resource type. The server will inspect and potentially create new tables (if they don&#39;t exist) in the given BigQuery dataset. Results will be appended to the corresponding BigQuery tables. The views of the latest snapshot will also be automatically created in the dataset.
+     */
+    bigqueryDestination?: Schema$GoogleCloudHealthcareV1alpha2FhirBigQueryDestination;
+    /**
+     * Supply a FHIR resource type (such as &quot;Patient&quot; or &quot;Observation&quot;). See https://www.hl7.org/fhir/valueset-resource-types.html for a list of all FHIR resource types. The server will treat an empty list as an intent to stream all the supported resource types in this FHIR store.
+     */
+    resourceTypes?: string[];
+  }
+  /**
+   * Configuration of FHIR Subscription: https://www.hl7.org/fhir/subscription.html.
+   */
+  export interface Schema$SubscriptionConfig {
+    /**
+     * REST hook endpoints that are allowed to receive subscription notifications. The create or update operation on a FHIR Subscription resource will fail if the FHIR Subscription resource contains a REST hook endpoint that is not in this list. A subscription notification push will fail if the FHIR Subscription resource contains a REST hook endpoint that is not in this list. The REST hook endpoint in a subscription resource will be compared with the endpoints in this list by exact matching. Users must verify their ownership of the domain of an endpoint before adding it to this list. To verify domain ownership, go to https://search.google.com/search-console/welcome.
+     */
+    allowedRestHookEndpoints?: Schema$SubscriptionRestHookEndpoint[];
+  }
+  /**
+   * REST hook endpoint of FHIR Subscription.
+   */
+  export interface Schema$SubscriptionRestHookEndpoint {
+    /**
+     * Whether this endpoint is allowed to receive full resource payloads. If set to false, the subscription notificiation sending to this endpoint with full resource payload will be blocked.
+     */
+    allowResourcePayload?: boolean;
+    /**
+     * Address of the REST hook endpoint. It must be a valid HTTPS URL with TLS certificate.
+     */
+    endpoint?: string;
   }
   /**
    * List of tags to be filtered.
@@ -1214,6 +1279,19 @@ export namespace healthcare_v1alpha2 {
      * The transformations to apply to the detected data.
      */
     transformations?: Schema$InfoTypeTransformation[];
+  }
+  /**
+   * This structure contains the configuration for FHIR profiles and validation.
+   */
+  export interface Schema$ValidationConfig {
+    /**
+     * Whether profile validation should be disabled for this FHIR store. Set this to true to disable checking incoming resources for conformance against StructureDefinitions in this FHIR store.
+     */
+    disableProfileValidation?: boolean;
+    /**
+     * A list of ImplementationGuide IDs in this FHIR store that will be used to configure which profiles are used for validation. For example, to enable an implementation guide with ID 1 set `enabled_implementation_guides` to `[&quot;1&quot;]`. If `enabled_implementation_guides` is empty or omitted then incoming resources will only be required to conform to the base FHIR profiles. Otherwise, a resource must conform to at least one profile listed in the `global` property of one of the enabled ImplementationGuides.
+     */
+    enabledImplementationGuides?: string[];
   }
   /**
    * A 2D coordinate in an image. The origin is the top-left.
@@ -1460,7 +1538,7 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.create
-     * @desc Creates a new health dataset. Results are returned through the Operation interface which returns either an `Operation.response` which contains a Dataset or `Operation.error`. The metadata field type is OperationMetadata.
+     * @desc Creates a new health dataset. Results are returned through the Operation interface which returns either an `Operation.response` which contains a Dataset or `Operation.error`. The metadata field type is OperationMetadata. A Google Cloud Platform project can contain up to 500 datasets across all regions.
      * @alias healthcare.projects.locations.datasets.create
      * @memberOf! ()
      *
@@ -1754,6 +1832,7 @@ export namespace healthcare_v1alpha2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2193,6 +2272,10 @@ export namespace healthcare_v1alpha2 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    'options.requestedPolicyVersion'?: number;
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -2734,7 +2817,7 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.setIamPolicy
-     * @desc POLICIES Sets the access control policy for a resource. Replaces any existing policy.  Authorization requires the Google IAM permission 'healthcare.annotationStores.setIamPolicy' on the specified resource
+     * @desc POLICIES Sets the access control policy for a resource. Replaces any existing policy.  Authorization requires the Google IAM permission `healthcare.annotationStores.setIamPolicy` on the specified resource
      * @alias healthcare.projects.locations.datasets.annotationStores.setIamPolicy
      * @memberOf! ()
      *
@@ -3799,6 +3882,7 @@ export namespace healthcare_v1alpha2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4317,6 +4401,10 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
+     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -4430,12 +4518,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.searchForInstances
-     * @desc SearchForInstances returns a list of matching instances. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
+     * @desc SearchForInstances returns a list of matching instances. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.6.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.searchForInstances
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `instances`).
+     * @param {string} params.dicomWebPath The path of the SearchForInstancesRequest DICOMweb request (e.g., `instances` or `series/{series_uid}/instances` or `studies/{study_uid}/instances`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4502,12 +4590,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.searchForSeries
-     * @desc SearchForSeries returns a list of matching series. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
+     * @desc SearchForSeries returns a list of matching series. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.6.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.searchForSeries
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `series`).
+     * @param {string} params.dicomWebPath The path of the SearchForSeries DICOMweb request(e.g., `series` or `studies/{study_uid}/series`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4574,12 +4662,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.searchForStudies
-     * @desc SearchForStudies returns a list of matching studies. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
+     * @desc SearchForStudies returns a list of matching studies. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.6.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.searchForStudies
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies`).
+     * @param {string} params.dicomWebPath The path of the SearchForStudies DICOMweb request (e.g., `studies`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4646,12 +4734,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.storeInstances
-     * @desc StoreInstances stores DICOM instances associated with study instance unique identifiers (SUID). See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.6.1.
+     * @desc StoreInstances stores DICOM instances associated with study instance unique identifiers (SUID). See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.5.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.storeInstances
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}`).
+     * @param {string} params.dicomWebPath The path of the StoreInstances DICOMweb request (e.g., `studies/[{study_id}]`). Note that the `study_uid` is optional.
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {().HttpBody} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4726,7 +4814,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `instances`).
+     * The path of the SearchForInstancesRequest DICOMweb request (e.g., `instances` or `series/{series_uid}/instances` or `studies/{study_uid}/instances`).
      */
     dicomWebPath?: string;
     /**
@@ -4742,7 +4830,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `series`).
+     * The path of the SearchForSeries DICOMweb request(e.g., `series` or `studies/{study_uid}/series`).
      */
     dicomWebPath?: string;
     /**
@@ -4758,7 +4846,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies`).
+     * The path of the SearchForStudies DICOMweb request (e.g., `studies`).
      */
     dicomWebPath?: string;
     /**
@@ -4774,7 +4862,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}`).
+     * The path of the StoreInstances DICOMweb request (e.g., `studies/[{study_id}]`). Note that the `study_uid` is optional.
      */
     dicomWebPath?: string;
     /**
@@ -4805,7 +4893,7 @@ export namespace healthcare_v1alpha2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}`).
+     * @param {string} params.dicomWebPath The path of the DeleteStudy request (e.g., `studies/{study_id}`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4872,12 +4960,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.metadata
-     * @desc RetrieveStudyMetadata returns instance associated with the given study presented as metadata with the bulk data removed. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.6.
+     * @desc RetrieveStudyMetadata returns instance associated with the given study presented as metadata with the bulk data removed. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.metadata
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/metadata`.
+     * @param {string} params.dicomWebPath The path of the RetrieveStudyMetadata DICOMweb request (e.g., `studies/{study_id}/metadata`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4944,12 +5032,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.retrieveStudy
-     * @desc RetrieveStudy returns all instances within the given study. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.1.
+     * @desc RetrieveStudy returns all instances within the given study. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.retrieveStudy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}`).
+     * @param {string} params.dicomWebPath The path of the RetrieveStudy DICOMweb request (e.g., `studies/{study_id}`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5016,12 +5104,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.searchForInstances
-     * @desc SearchForInstances returns a list of matching instances. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
+     * @desc SearchForInstances returns a list of matching instances. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.6.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.searchForInstances
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `instances`).
+     * @param {string} params.dicomWebPath The path of the SearchForInstancesRequest DICOMweb request (e.g., `instances` or `series/{series_uid}/instances` or `studies/{study_uid}/instances`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5088,12 +5176,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.searchForSeries
-     * @desc SearchForSeries returns a list of matching series. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
+     * @desc SearchForSeries returns a list of matching series. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.6.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.searchForSeries
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `series`).
+     * @param {string} params.dicomWebPath The path of the SearchForSeries DICOMweb request(e.g., `series` or `studies/{study_uid}/series`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5160,12 +5248,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.storeInstances
-     * @desc StoreInstances stores DICOM instances associated with study instance unique identifiers (SUID). See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.6.1.
+     * @desc StoreInstances stores DICOM instances associated with study instance unique identifiers (SUID). See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.5.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.storeInstances
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}`).
+     * @param {string} params.dicomWebPath The path of the StoreInstances DICOMweb request (e.g., `studies/[{study_id}]`). Note that the `study_uid` is optional.
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {().HttpBody} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5240,7 +5328,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}`).
+     * The path of the DeleteStudy request (e.g., `studies/{study_id}`).
      */
     dicomWebPath?: string;
     /**
@@ -5256,7 +5344,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/metadata`.
+     * The path of the RetrieveStudyMetadata DICOMweb request (e.g., `studies/{study_id}/metadata`).
      */
     dicomWebPath?: string;
     /**
@@ -5272,7 +5360,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}`).
+     * The path of the RetrieveStudy DICOMweb request (e.g., `studies/{study_id}`).
      */
     dicomWebPath?: string;
     /**
@@ -5288,7 +5376,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `instances`).
+     * The path of the SearchForInstancesRequest DICOMweb request (e.g., `instances` or `series/{series_uid}/instances` or `studies/{study_uid}/instances`).
      */
     dicomWebPath?: string;
     /**
@@ -5304,7 +5392,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `series`).
+     * The path of the SearchForSeries DICOMweb request(e.g., `series` or `studies/{study_uid}/series`).
      */
     dicomWebPath?: string;
     /**
@@ -5320,7 +5408,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}`).
+     * The path of the StoreInstances DICOMweb request (e.g., `studies/[{study_id}]`). Note that the `study_uid` is optional.
      */
     dicomWebPath?: string;
     /**
@@ -5351,7 +5439,7 @@ export namespace healthcare_v1alpha2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}`).
+     * @param {string} params.dicomWebPath The path of the DeleteSeries request (e.g., `studies/{study_id}/series/{series_id}`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5418,12 +5506,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.metadata
-     * @desc RetrieveSeriesMetadata returns instance associated with the given study and series, presented as metadata with the bulk data removed. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.6.
+     * @desc RetrieveSeriesMetadata returns instance associated with the given study and series, presented as metadata with the bulk data removed. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.metadata
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/metadata`.
+     * @param {string} params.dicomWebPath The path of the RetrieveSeriesMetadata DICOMweb request (e.g., `studies/{study_id}/series/{series_id}/metadata`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5490,12 +5578,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.retrieveSeries
-     * @desc RetrieveSeries returns all instances within the given study and series. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.2.
+     * @desc RetrieveSeries returns all instances within the given study and series. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.retrieveSeries
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}`).
+     * @param {string} params.dicomWebPath The path of the RetrieveSeries DICOMweb request (e.g., `studies/{study_id}/series/{series_id}`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5562,12 +5650,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.searchForInstances
-     * @desc SearchForInstances returns a list of matching instances. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.7
+     * @desc SearchForInstances returns a list of matching instances. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.6.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.searchForInstances
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `instances`).
+     * @param {string} params.dicomWebPath The path of the SearchForInstancesRequest DICOMweb request (e.g., `instances` or `series/{series_uid}/instances` or `studies/{study_uid}/instances`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5641,7 +5729,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}`).
+     * The path of the DeleteSeries request (e.g., `studies/{study_id}/series/{series_id}`).
      */
     dicomWebPath?: string;
     /**
@@ -5657,7 +5745,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/metadata`.
+     * The path of the RetrieveSeriesMetadata DICOMweb request (e.g., `studies/{study_id}/series/{series_id}/metadata`).
      */
     dicomWebPath?: string;
     /**
@@ -5673,7 +5761,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}`).
+     * The path of the RetrieveSeries DICOMweb request (e.g., `studies/{study_id}/series/{series_id}`).
      */
     dicomWebPath?: string;
     /**
@@ -5689,7 +5777,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `instances`).
+     * The path of the SearchForInstancesRequest DICOMweb request (e.g., `instances` or `series/{series_uid}/instances` or `studies/{study_uid}/instances`).
      */
     dicomWebPath?: string;
     /**
@@ -5715,7 +5803,7 @@ export namespace healthcare_v1alpha2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}`).
+     * @param {string} params.dicomWebPath The path of the DeleteInstance request (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5782,12 +5870,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.metadata
-     * @desc RetrieveInstanceMetadata returns instance associated with the given study, series, and SOP Instance UID presented as metadata with the bulk data removed. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.6.
+     * @desc RetrieveInstanceMetadata returns instance associated with the given study, series, and SOP Instance UID presented as metadata with the bulk data removed. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.metadata
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}/metadata`).
+     * @param {string} params.dicomWebPath The path of the RetrieveInstanceMetadata DICOMweb request (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}/metadata`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5854,12 +5942,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.rendered
-     * @desc RetrieveRenderedInstance returns instance associated with the given study, series, and SOP Instance UID in an acceptable Rendered Media Type. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.8.
+     * @desc RetrieveRenderedInstance returns instance associated with the given study, series, and SOP Instance UID in an acceptable Rendered Media Type. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.rendered
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instance/{instance_id}/rendered`).
+     * @param {string} params.dicomWebPath The path of the RetrieveRenderedInstance DICOMweb request (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}/rendered`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5926,12 +6014,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.retrieveInstance
-     * @desc RetrieveInstance returns instance associated with the given study, series, and SOP Instance UID. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.3.
+     * @desc RetrieveInstance returns instance associated with the given study, series, and SOP Instance UID. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.retrieveInstance
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instance/{instance_id}`).
+     * @param {string} params.dicomWebPath The path of the RetrieveInstance DICOMweb request (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6005,7 +6093,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}`).
+     * The path of the DeleteInstance request (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}`).
      */
     dicomWebPath?: string;
     /**
@@ -6021,7 +6109,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}/metadata`).
+     * The path of the RetrieveInstanceMetadata DICOMweb request (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}/metadata`).
      */
     dicomWebPath?: string;
     /**
@@ -6037,7 +6125,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instance/{instance_id}/rendered`).
+     * The path of the RetrieveRenderedInstance DICOMweb request (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}/rendered`).
      */
     dicomWebPath?: string;
     /**
@@ -6053,7 +6141,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instance/{instance_id}`).
+     * The path of the RetrieveInstance DICOMweb request (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}`).
      */
     dicomWebPath?: string;
     /**
@@ -6070,12 +6158,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.frames.rendered
-     * @desc RetrieveRenderedFrames returns instances associated with the given study, series, SOP Instance UID and frame numbers in an acceptable Rendered Media Type. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.8.
+     * @desc RetrieveRenderedFrames returns instances associated with the given study, series, SOP Instance UID and frame numbers in an acceptable Rendered Media Type. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.frames.rendered
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instance/{instance_id}/frames/{frame_list}/rendered`).
+     * @param {string} params.dicomWebPath The path of the RetrieveRenderedFrames DICOMweb request (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}/frames/{frame_list}/rendered`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6142,12 +6230,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.frames.retrieveFrames
-     * @desc RetrieveFrames returns instances associated with the given study, series, SOP Instance UID and frame numbers. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_6.5.4.
+     * @desc RetrieveFrames returns instances associated with the given study, series, SOP Instance UID and frame numbers. See http://dicom.nema.org/medical/dicom/current/output/html/part18.html#sect_10.4.
      * @alias healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.frames.retrieveFrames
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dicomWebPath The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instance/{instance_id}/frames/{frame_list}`).
+     * @param {string} params.dicomWebPath The path of the RetrieveFrames DICOMweb request (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}/frames/{frame_list}`).
      * @param {string} params.parent The name of the DICOM store that is being accessed (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6221,7 +6309,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instance/{instance_id}/frames/{frame_list}/rendered`).
+     * The path of the RetrieveRenderedFrames DICOMweb request (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}/frames/{frame_list}/rendered`).
      */
     dicomWebPath?: string;
     /**
@@ -6237,7 +6325,7 @@ export namespace healthcare_v1alpha2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS, or QIDO-RS standard (e.g., `studies/{study_id}/series/{series_id}/instance/{instance_id}/frames/{frame_list}`).
+     * The path of the RetrieveFrames DICOMweb request (e.g., `studies/{study_id}/series/{series_id}/instances/{instance_id}/frames/{frame_list}`).
      */
     dicomWebPath?: string;
     /**
@@ -6625,11 +6713,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.getIamPolicy
-     * @desc Gets the access control policy for a FHIR store or security label within a FHIR store. Returns NOT_FOUND error if the resource does not exist. Returns an empty policy if the resource exists but does not have a policy set.  Authorization requires the Google IAM permission 'healthcare.fhirStores.getIamPolicy' for a FHIR store or 'healthcare.securityLabels.getIamPolicy' for a security label
+     * @desc Gets the access control policy for a FHIR store or security label within a FHIR store. Returns NOT_FOUND error if the resource does not exist. Returns an empty policy if the resource exists but does not have a policy set.  Authorization requires the Google IAM permission `healthcare.fhirStores.getIamPolicy` for a FHIR store or `healthcare.securityLabels.getIamPolicy` for a security label
      * @alias healthcare.projects.locations.datasets.fhirStores.getIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6924,7 +7013,7 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.setIamPolicy
-     * @desc Sets the access control policy for a FHIR store or security label within a FHIR store. Replaces any existing policy.  Authorization requires the Google IAM permission 'healthcare.fhirStores.setIamPolicy' for a FHIR store or 'healthcare.securityLabels.setIamPolicy' for a security label
+     * @desc Sets the access control policy for a FHIR store or security label within a FHIR store. Replaces any existing policy.  Authorization requires the Google IAM permission `healthcare.fhirStores.setIamPolicy` for a FHIR store or `healthcare.securityLabels.setIamPolicy` for a security label
      * @alias healthcare.projects.locations.datasets.fhirStores.setIamPolicy
      * @memberOf! ()
      *
@@ -7159,6 +7248,10 @@ export namespace healthcare_v1alpha2 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    'options.requestedPolicyVersion'?: number;
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -8210,7 +8303,7 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.search
-     * @desc Searches for resources in the given FHIR store according to criteria specified as query parameters.  Implements the FHIR standard [search interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#search) using the search semantics described in the [FHIR Search specification](http://hl7.org/implement/standards/fhir/STU3/search.html).  Supports three methods of search defined by the specification:  *  `GET [base]?[parameters]` to search across all resources. *  `GET [base]/[type]?[parameters]` to search resources of a specified type. *  `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method.  The `GET` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters.  On success, the response body will contain a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  # Search Parameters  The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the [FHIR Search Parameter Registry](http://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html).  # Search Modifiers  Modifier   | Supported ----------- | --------- `:missing`  | Yes `:exact`    | Yes `:contains` | Yes `:text`     | Yes `:in`       | Yes `:not-in`   | Yes `:above`    | Yes `:below`    | Yes `:[type]`   | Yes `:not`      | Yes `:recurse`  | No
+     * @desc Searches for resources in the given FHIR store according to criteria specified as query parameters.  Implements the FHIR standard [search interaction](http://hl7.org/implement/standards/fhir/STU3/http.html#search) using the search semantics described in the [FHIR Search specification](http://hl7.org/implement/standards/fhir/STU3/search.html).  Supports three methods of search defined by the specification:  *  `GET [base]?[parameters]` to search across all resources. *  `GET [base]/[type]?[parameters]` to search resources of a specified type. *  `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method.  The `GET` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters.  On success, the response body will contain a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the [FHIR Search Parameter Registry](http://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html).  Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `:recurse`.  Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`.  The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. If there are additional results, the returned `Bundle` will contain pagination links.
      * @alias healthcare.projects.locations.datasets.fhirStores.fhir.search
      * @memberOf! ()
      *
@@ -8697,11 +8790,12 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.securityLabels.getIamPolicy
-     * @desc Gets the access control policy for a FHIR store or security label within a FHIR store. Returns NOT_FOUND error if the resource does not exist. Returns an empty policy if the resource exists but does not have a policy set.  Authorization requires the Google IAM permission 'healthcare.fhirStores.getIamPolicy' for a FHIR store or 'healthcare.securityLabels.getIamPolicy' for a security label
+     * @desc Gets the access control policy for a FHIR store or security label within a FHIR store. Returns NOT_FOUND error if the resource does not exist. Returns an empty policy if the resource exists but does not have a policy set.  Authorization requires the Google IAM permission `healthcare.fhirStores.getIamPolicy` for a FHIR store or `healthcare.securityLabels.getIamPolicy` for a security label
      * @alias healthcare.projects.locations.datasets.fhirStores.securityLabels.getIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8769,7 +8863,7 @@ export namespace healthcare_v1alpha2 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.securityLabels.setIamPolicy
-     * @desc Sets the access control policy for a FHIR store or security label within a FHIR store. Replaces any existing policy.  Authorization requires the Google IAM permission 'healthcare.fhirStores.setIamPolicy' for a FHIR store or 'healthcare.securityLabels.setIamPolicy' for a security label
+     * @desc Sets the access control policy for a FHIR store or security label within a FHIR store. Replaces any existing policy.  Authorization requires the Google IAM permission `healthcare.fhirStores.setIamPolicy` for a FHIR store or `healthcare.securityLabels.setIamPolicy` for a security label
      * @alias healthcare.projects.locations.datasets.fhirStores.securityLabels.setIamPolicy
      * @memberOf! ()
      *
@@ -8848,6 +8942,10 @@ export namespace healthcare_v1alpha2 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    'options.requestedPolicyVersion'?: number;
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -9104,6 +9202,7 @@ export namespace healthcare_v1alpha2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9529,6 +9628,10 @@ export namespace healthcare_v1alpha2 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    'options.requestedPolicyVersion'?: number;
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */

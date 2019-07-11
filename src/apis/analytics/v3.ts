@@ -2358,7 +2358,7 @@ export namespace analytics_v3 {
      */
     created?: string;
     /**
-     * Set to true to reset the retention period of the user identifier with each new event from that user (thus setting the expiration date to current time plus retention period). Set to false to delete data associated with the user identifer automatically after the rentention period. This property cannot be set on insert.
+     * Set to true to reset the retention period of the user identifier with each new event from that user (thus setting the expiration date to current time plus retention period). Set to false to delete data associated with the user identifier automatically after the rentention period. This property cannot be set on insert.
      */
     dataRetentionResetOnNewActivity?: boolean;
     /**
@@ -5519,7 +5519,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.filters.get
-     * @desc Returns a filters to which the user has access.
+     * @desc Returns filters to which the user has access.
      * @alias analytics.management.filters.get
      * @memberOf! ()
      *

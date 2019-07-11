@@ -327,11 +327,11 @@ export namespace jobs_v3p1beta1 {
      */
     range?: Schema$CompensationRange;
     /**
-     * Optional.  Compensation type.  Default is CompensationUnit.OTHER_COMPENSATION_TYPE.
+     * Optional.  Compensation type.  Default is CompensationUnit.COMPENSATION_TYPE_UNSPECIFIED.
      */
     type?: string;
     /**
-     * Optional.  Frequency of the specified amount.  Default is CompensationUnit.OTHER_COMPENSATION_UNIT.
+     * Optional.  Frequency of the specified amount.  Default is CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED.
      */
     unit?: string;
   }
@@ -340,7 +340,7 @@ export namespace jobs_v3p1beta1 {
    */
   export interface Schema$CompensationFilter {
     /**
-     * Optional.  Whether to include jobs whose compensation range is unspecified.
+     * Optional.  If set to true, jobs with unspecified compensation range fields are included.
      */
     includeJobsWithUnspecifiedCompensationRange?: boolean;
     /**
@@ -803,7 +803,7 @@ export namespace jobs_v3p1beta1 {
      */
     employmentTypes?: string[];
     /**
-     * Optional.  This filter specifies a list of job names to be excluded during search.  At most 200 excluded job names are allowed.
+     * Optional.  This filter specifies a list of job names to be excluded during search.  At most 400 excluded job names are allowed.
      */
     excludedJobs?: string[];
     /**
@@ -916,7 +916,7 @@ export namespace jobs_v3p1beta1 {
      */
     regionCode?: string;
     /**
-     * Optional.  Allows the client to return jobs without a set location, specifically, telecommuting jobs (telecomuting is considered by the service as a special location. Job.posting_region indicates if a job permits telecommuting. If this field is set to TelecommutePreference.TELECOMMUTE_ALLOWED, telecommuting jobs are searched, and address and lat_lng are ignored. If not set or set to TelecommutePreference.TELECOMMUTE_EXCLUDED, telecommute job are not searched.  This filter can be used by itself to search exclusively for telecommuting jobs, or it can be combined with another location filter to search for a combination of job locations, such as &quot;Mountain View&quot; or &quot;telecommuting&quot; jobs. However, when used in combination with other location filters, telecommuting jobs can be treated as less relevant than other jobs in the search response.
+     * Optional.  Allows the client to return jobs without a set location, specifically, telecommuting jobs (telecommuting is considered by the service as a special location. Job.posting_region indicates if a job permits telecommuting. If this field is set to TelecommutePreference.TELECOMMUTE_ALLOWED, telecommuting jobs are searched, and address and lat_lng are ignored. If not set or set to TelecommutePreference.TELECOMMUTE_EXCLUDED, telecommute job are not searched.  This filter can be used by itself to search exclusively for telecommuting jobs, or it can be combined with another location filter to search for a combination of job locations, such as &quot;Mountain View&quot; or &quot;telecommuting&quot; jobs. However, when used in combination with other location filters, telecommuting jobs can be treated as less relevant than other jobs in the search response.
      */
     telecommutePreference?: string;
   }
@@ -1150,7 +1150,7 @@ export namespace jobs_v3p1beta1 {
      */
     offset?: number;
     /**
-     * Optional.  The criteria determining how search results are sorted. Default is &quot;relevance desc&quot;.  Supported options are:  * &quot;relevance desc&quot;: By relevance descending, as determined by the API algorithms. Relevance thresholding of query results is only available with this ordering. * &quot;posting`_`publish`_`time desc&quot;: By Job.posting_publish_time descending. * &quot;posting`_`update`_`time desc&quot;: By Job.posting_update_time descending. * &quot;title&quot;: By Job.title ascending. * &quot;title desc&quot;: By Job.title descending. * &quot;annualized`_`base`_`compensation&quot;: By job&#39;s CompensationInfo.annualized_base_compensation_range ascending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * &quot;annualized`_`base`_`compensation desc&quot;: By job&#39;s CompensationInfo.annualized_base_compensation_range descending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * &quot;annualized`_`total`_`compensation&quot;: By job&#39;s CompensationInfo.annualized_total_compensation_range ascending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * &quot;annualized`_`total`_`compensation desc&quot;: By job&#39;s CompensationInfo.annualized_total_compensation_range descending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * &quot;custom`_`ranking desc&quot;: By the relevance score adjusted to the SearchJobsRequest.custom_ranking_info.ranking_expression with weight factor assigned by SearchJobsRequest.custom_ranking_info.importance_level in descending order. * &quot;location`_`distance&quot;: By the distance between the location on jobs and  locations specified in the SearchJobsRequest.job_query.location_filters. When this order is selected, the SearchJobsRequest.job_query.location_filters must not be empty. When a job has multiple locations, the location closest to one of the locations specified in the location filter will be used to calculate location distance. Distance is calculated by the distance between two lat/long coordinates, with a precision of 10e-4 degrees (11.3 meters). Jobs that don&#39;t have locations specified will be ranked below jobs having locations. Diversification strategy is still applied unless explicitly disabled in SearchJobsRequest.diversification_level.
+     * Optional.  The criteria determining how search results are sorted. Default is &quot;relevance desc&quot;.  Supported options are:  * `&quot;relevance desc&quot;`: By relevance descending, as determined by the API algorithms. Relevance thresholding of query results is only available with this ordering. * `&quot;posting_publish_time desc&quot;`: By Job.posting_publish_time descending. * `&quot;posting_update_time desc&quot;`: By Job.posting_update_time descending. * `&quot;title&quot;`: By Job.title ascending. * `&quot;title desc&quot;`: By Job.title descending. * `&quot;annualized_base_compensation&quot;`: By job&#39;s CompensationInfo.annualized_base_compensation_range ascending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * `&quot;annualized_base_compensation desc&quot;`: By job&#39;s CompensationInfo.annualized_base_compensation_range descending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * `&quot;annualized_total_compensation&quot;`: By job&#39;s CompensationInfo.annualized_total_compensation_range ascending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * `&quot;annualized_total_compensation desc&quot;`: By job&#39;s CompensationInfo.annualized_total_compensation_range descending. Jobs whose annualized base compensation is unspecified are put at the end of search results. * `&quot;custom_ranking desc&quot;`: By the relevance score adjusted to the SearchJobsRequest.custom_ranking_info.ranking_expression with weight factor assigned by SearchJobsRequest.custom_ranking_info.importance_level in descending order. * Location sorting: Use the special syntax to order jobs by distance:&lt;br&gt; &quot;`distance_from(&#39;Hawaii&#39;)`&quot;: Order by distance from Hawaii.&lt;br&gt; &quot;`distance_from(19.89, 155.5)`&quot;: Order by distance from a coordinate.&lt;br&gt; &quot;`distance_from(&#39;Hawaii&#39;), distance_from(&#39;Puerto Rico&#39;)`&quot;: Order by multiple locations. See details below.&lt;br&gt; &quot;`distance_from(&#39;Hawaii&#39;), distance_from(19.89, 155.5)`&quot;: Order by multiple locations. See details below.&lt;br&gt; The string can have a maximum of 256 characters. When multiple distance centers are provided, a job that is close to any of the distance centers would have a high rank. When a job has multiple locations, the job location closest to one of the distance centers will be used. Jobs that don&#39;t have locations will be ranked at the bottom. Distance is calculated with a precision of 11.3 meters (37.4 feet). Diversification strategy is still applied unless explicitly disabled in diversification_level.
      */
     orderBy?: string;
     /**
@@ -1162,7 +1162,7 @@ export namespace jobs_v3p1beta1 {
      */
     pageToken?: string;
     /**
-     * Required.  The meta information collected about the job searcher, used to improve the search quality of the service.. The identifiers, (such as `user_id`) are provided by users, and must be unique and consistent.
+     * Required.  The meta information collected about the job searcher, used to improve the search quality of the service. The identifiers (such as `user_id`) are provided by users, and must be unique and consistent.
      */
     requestMetadata?: Schema$RequestMetadata;
     /**
@@ -1233,7 +1233,7 @@ export namespace jobs_v3p1beta1 {
     correctedText?: string;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**

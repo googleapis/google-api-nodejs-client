@@ -307,7 +307,7 @@ export namespace videointelligence_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_SpeechRecognitionAlternative {
     /**
-     * The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is typically provided only for the top hypothesis, and only for `is_final=true` results. Clients should not rely on the `confidence` field as it is not guaranteed to be accurate or consistent. The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
     confidence?: number;
     /**
@@ -315,7 +315,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     transcript?: string;
     /**
-     * A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1beta2_WordInfo[];
   }
@@ -380,6 +380,10 @@ export namespace videointelligence_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress {
     /**
+     * Specifies which feature is being tracked if the request contains more than one features.
+     */
+    feature?: string;
+    /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string;
@@ -387,6 +391,10 @@ export namespace videointelligence_v1p1beta1 {
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
     progressPercent?: number;
+    /**
+     * Specifies which segment is being tracked if the request contains more than one segments.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
     /**
      * Time when the request was received.
      */
@@ -421,7 +429,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_ObjectTrackingAnnotation[];
     /**
-     * Label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
@@ -429,7 +437,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment[];
     /**
-     * Label annotations on shot level. There is exactly one element for each unique label.
+     * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
@@ -715,6 +723,15 @@ export namespace videointelligence_v1p1beta1 {
     trackId?: string;
   }
   /**
+   * Config for OBJECT_TRACKING.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_ObjectTrackingConfig {
+    /**
+     * Model to use for object tracking. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
+     */
+    model?: string;
+  }
+  /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_ObjectTrackingFrame {
@@ -750,7 +767,7 @@ export namespace videointelligence_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative {
     /**
-     * The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is typically provided only for the top hypothesis, and only for `is_final=true` results. Clients should not rely on the `confidence` field as it is not guaranteed to be accurate or consistent. The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
     confidence?: number;
     /**
@@ -758,7 +775,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     transcript?: string;
     /**
-     * A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1p1beta1_WordInfo[];
   }
@@ -837,6 +854,10 @@ export namespace videointelligence_v1p1beta1 {
      * Language hint can be specified if the language to be detected is known a priori. It can increase the accuracy of the detection. Language hint must be language code in BCP-47 format.  Automatic language detection is performed if no hint is provided.
      */
     languageHints?: string[];
+    /**
+     * Model to use for text detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
+     */
+    model?: string;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.
@@ -873,6 +894,10 @@ export namespace videointelligence_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress {
     /**
+     * Specifies which feature is being tracked if the request contains more than one features.
+     */
+    feature?: string;
+    /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string;
@@ -880,6 +905,10 @@ export namespace videointelligence_v1p1beta1 {
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
     progressPercent?: number;
+    /**
+     * Specifies which segment is being tracked if the request contains more than one segments.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
     /**
      * Time when the request was received.
      */
@@ -914,7 +943,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_ObjectTrackingAnnotation[];
     /**
-     * Label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
@@ -922,7 +951,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment[];
     /**
-     * Label annotations on shot level. There is exactly one element for each unique label.
+     * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
@@ -946,6 +975,10 @@ export namespace videointelligence_v1p1beta1 {
      * Config for LABEL_DETECTION.
      */
     labelDetectionConfig?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelDetectionConfig;
+    /**
+     * Config for OBJECT_TRACKING.
+     */
+    objectTrackingConfig?: Schema$GoogleCloudVideointelligenceV1p1beta1_ObjectTrackingConfig;
     /**
      * Video segments to annotate. The segments may overlap and are not required to be contiguous or span the whole video. If unspecified, each video is treated as a single segment.
      */
@@ -1191,7 +1224,7 @@ export namespace videointelligence_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_SpeechRecognitionAlternative {
     /**
-     * The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is typically provided only for the top hypothesis, and only for `is_final=true` results. Clients should not rely on the `confidence` field as it is not guaranteed to be accurate or consistent. The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
     confidence?: number;
     /**
@@ -1199,7 +1232,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     transcript?: string;
     /**
-     * A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1p2beta1_WordInfo[];
   }
@@ -1264,6 +1297,10 @@ export namespace videointelligence_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationProgress {
     /**
+     * Specifies which feature is being tracked if the request contains more than one features.
+     */
+    feature?: string;
+    /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string;
@@ -1271,6 +1308,10 @@ export namespace videointelligence_v1p1beta1 {
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
     progressPercent?: number;
+    /**
+     * Specifies which segment is being tracked if the request contains more than one segments.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
     /**
      * Time when the request was received.
      */
@@ -1305,7 +1346,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_ObjectTrackingAnnotation[];
     /**
-     * Label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
@@ -1313,7 +1354,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment[];
     /**
-     * Label annotations on shot level. There is exactly one element for each unique label.
+     * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
@@ -1380,6 +1421,23 @@ export namespace videointelligence_v1p1beta1 {
      * Annotation results for all videos specified in `AnnotateVideoRequest`.
      */
     annotationResults?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationResults[];
+  }
+  /**
+   * A generic detected attribute represented by name in string format.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute {
+    /**
+     * Detected attribute confidence. Range [0, 1].
+     */
+    confidence?: number;
+    /**
+     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc. A full list of supported type names will be provided in the document.
+     */
+    name?: string;
+    /**
+     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     */
+    value?: string;
   }
   /**
    * Detected entity from video analysis.
@@ -1468,6 +1526,23 @@ export namespace videointelligence_v1p1beta1 {
     segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
   }
   /**
+   * Annotation corresponding to one detected, tracked and recognized logo class.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_LogoRecognitionAnnotation {
+    /**
+     * Entity category information to specify the logo class that all the logo tracks within this LogoRecognitionAnnotation are recognized as.
+     */
+    entity?: Schema$GoogleCloudVideointelligenceV1p3beta1_Entity;
+    /**
+     * All video segments where the recognized logo appears. There might be multiple instances of the same logo class appearing in one VideoSegment.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment[];
+    /**
+     * All logo tracks where the recognized logo appears. Each track corresponds to one logo instance appearing in consecutive frames.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track[];
+  }
+  /**
    * Normalized bounding box. The normalized vertex coordinates are relative to the original image. Range: [0, 1].
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingBox {
@@ -1553,7 +1628,7 @@ export namespace videointelligence_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechRecognitionAlternative {
     /**
-     * The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is typically provided only for the top hypothesis, and only for `is_final=true` results. Clients should not rely on the `confidence` field as it is not guaranteed to be accurate or consistent. The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
     confidence?: number;
     /**
@@ -1561,7 +1636,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     transcript?: string;
     /**
-     * A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1p3beta1_WordInfo[];
   }
@@ -1660,9 +1735,51 @@ export namespace videointelligence_v1p1beta1 {
     segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
   }
   /**
+   * For tracking related features, such as LOGO_RECOGNITION, FACE_DETECTION, CELEBRITY_RECOGNITION, PERSON_DETECTION. An object at time_offset with attributes, and located with normalized_bounding_box.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_TimestampedObject {
+    /**
+     * Optional. The attributes of the object in the bounding box.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute[];
+    /**
+     * Normalized Bounding box in a frame, where the object is located.
+     */
+    normalizedBoundingBox?: Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingBox;
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this object.
+     */
+    timeOffset?: string;
+  }
+  /**
+   * A track of an object instance.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_Track {
+    /**
+     * Optional. Attributes in the track level.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute[];
+    /**
+     * Optional. The confidence score of the tracked object.
+     */
+    confidence?: number;
+    /**
+     * Video segment of a track.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
+    /**
+     * The object with timestamp and attributes per frame in the track.
+     */
+    timestampedObjects?: Schema$GoogleCloudVideointelligenceV1p3beta1_TimestampedObject[];
+  }
+  /**
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress {
+    /**
+     * Specifies which feature is being tracked if the request contains more than one features.
+     */
+    feature?: string;
     /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
@@ -1671,6 +1788,10 @@ export namespace videointelligence_v1p1beta1 {
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
     progressPercent?: number;
+    /**
+     * Specifies which segment is being tracked if the request contains more than one segments.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
     /**
      * Time when the request was received.
      */
@@ -1701,11 +1822,15 @@ export namespace videointelligence_v1p1beta1 {
      */
     inputUri?: string;
     /**
+     * Annotations for list of logos detected, tracked and recognized in video.
+     */
+    logoRecognitionAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LogoRecognitionAnnotation[];
+    /**
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_ObjectTrackingAnnotation[];
     /**
-     * Label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
@@ -1713,7 +1838,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment[];
     /**
-     * Label annotations on shot level. There is exactly one element for each unique label.
+     * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
@@ -1953,7 +2078,7 @@ export namespace videointelligence_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_SpeechRecognitionAlternative {
     /**
-     * The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is typically provided only for the top hypothesis, and only for `is_final=true` results. Clients should not rely on the `confidence` field as it is not guaranteed to be accurate or consistent. The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
     confidence?: number;
     /**
@@ -1961,7 +2086,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     transcript?: string;
     /**
-     * A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1_WordInfo[];
   }
@@ -2026,6 +2151,10 @@ export namespace videointelligence_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_VideoAnnotationProgress {
     /**
+     * Specifies which feature is being tracked if the request contains more than one features.
+     */
+    feature?: string;
+    /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string;
@@ -2033,6 +2162,10 @@ export namespace videointelligence_v1p1beta1 {
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
     progressPercent?: number;
+    /**
+     * Specifies which segment is being tracked if the request contains more than one segments.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
     /**
      * Time when the request was received.
      */
@@ -2067,7 +2200,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1_ObjectTrackingAnnotation[];
     /**
-     * Label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
@@ -2075,7 +2208,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1_VideoSegment[];
     /**
-     * Label annotations on shot level. There is exactly one element for each unique label.
+     * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
@@ -2142,7 +2275,7 @@ export namespace videointelligence_v1p1beta1 {
      */
     metadata?: {[key: string]: any};
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
     name?: string;
     /**
@@ -2151,7 +2284,7 @@ export namespace videointelligence_v1p1beta1 {
     response?: {[key: string]: any};
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$GoogleRpc_Status {
     /**

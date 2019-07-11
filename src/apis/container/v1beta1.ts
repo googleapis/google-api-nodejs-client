@@ -151,7 +151,7 @@ export namespace container_v1beta1 {
      */
     istioConfig?: Schema$IstioConfig;
     /**
-     * Configuration for the Kubernetes Dashboard.
+     * Configuration for the Kubernetes Dashboard. This addon is deprecated, and will be disabled in 1.15. It is recommended to use the Cloud Console to manage and monitor your Kubernetes clusters, workloads and applications. For more information, see: https://cloud.google.com/kubernetes-engine/docs/concepts/dashboards
      */
     kubernetesDashboard?: Schema$KubernetesDashboard;
     /**
@@ -417,7 +417,7 @@ export namespace container_v1beta1 {
      */
     nodeConfig?: Schema$NodeConfig;
     /**
-     * [Output only] The size of the address space on each node for hosting containers. This is provisioned from within the `container_ipv4_cidr` range.
+     * [Output only] The size of the address space on each node for hosting containers. This is provisioned from within the `container_ipv4_cidr` range. This field will only be set when cluster is in route-based network mode.
      */
     nodeIpv4CidrSize?: number;
     /**
@@ -465,6 +465,10 @@ export namespace container_v1beta1 {
      */
     subnetwork?: string;
     /**
+     * Cluster tier settings.
+     */
+    tierSettings?: Schema$TierSettings;
+    /**
      * [Output only] The IP address range of the Cloud TPUs in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`).
      */
     tpuIpv4CidrBlock?: string;
@@ -472,6 +476,10 @@ export namespace container_v1beta1 {
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
     verticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
+    /**
+     * Configuration for the use of Kubernetes Service Accounts in GCP IAM policies.
+     */
+    workloadIdentityConfig?: Schema$WorkloadIdentityConfig;
     /**
      * [Output only] The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field is deprecated, use location instead.
      */
@@ -481,6 +489,10 @@ export namespace container_v1beta1 {
    * ClusterAutoscaling contains global, per-cluster information required by Cluster Autoscaler to automatically adjust the size of the cluster and create/delete node pools based on the current needs.
    */
   export interface Schema$ClusterAutoscaling {
+    /**
+     * The list of Google Compute Engine [zones](/compute/docs/zones#available) in which the NodePool&#39;s nodes can be created by NAP.
+     */
+    autoprovisioningLocations?: string[];
     /**
      * AutoprovisioningNodePoolDefaults contains defaults for a node pool created by NAP.
      */
@@ -547,7 +559,7 @@ export namespace container_v1beta1 {
      */
     desiredNodePoolAutoscaling?: Schema$NodePoolAutoscaling;
     /**
-     * The node pool to be upgraded. This field is mandatory if &quot;desired_node_version&quot;, &quot;desired_image_family&quot; or &quot;desired_node_pool_autoscaling&quot; is specified and there is more than one node pool on the cluster.
+     * The node pool to be upgraded. This field is mandatory if &quot;desired_node_version&quot;, &quot;desired_image_family&quot;, &quot;desired_node_pool_autoscaling&quot;, or &quot;desired_workload_metadata_config&quot; is specified and there is more than one node pool on the cluster.
      */
     desiredNodePoolId?: string;
     /**
@@ -559,6 +571,10 @@ export namespace container_v1beta1 {
      */
     desiredPodSecurityPolicyConfig?: Schema$PodSecurityPolicyConfig;
     /**
+     * The desired private cluster configuration.
+     */
+    desiredPrivateClusterConfig?: Schema$PrivateClusterConfig;
+    /**
      * The desired configuration for exporting resource usage.
      */
     desiredResourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
@@ -566,6 +582,10 @@ export namespace container_v1beta1 {
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
     desiredVerticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
+    /**
+     * Configuration for Workload Identity.
+     */
+    desiredWorkloadIdentityConfig?: Schema$WorkloadIdentityConfig;
   }
   /**
    * CompleteIPRotationRequest moves the cluster master back into single-IP mode.
@@ -587,6 +607,15 @@ export namespace container_v1beta1 {
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
+  }
+  /**
+   * Parameters for controlling consumption metering.
+   */
+  export interface Schema$ConsumptionMeteringConfig {
+    /**
+     * Whether to enable consumption metering for this cluster. If enabled, a second BigQuery table will be created to hold resource consumption records.
+     */
+    enabled?: boolean;
   }
   /**
    * CreateClusterRequest creates a cluster.
@@ -643,7 +672,7 @@ export namespace container_v1beta1 {
      */
     duration?: string;
     /**
-     * Time within the maintenance window to start the maintenance operations. It must be in format &quot;HH:MM”, where HH : [00-23] and MM : [00-59] GMT.
+     * Time within the maintenance window to start the maintenance operations. It must be in format &quot;HH:MM&quot;, where HH : [00-23] and MM : [00-59] GMT.
      */
     startTime?: string;
   }
@@ -974,9 +1003,6 @@ export namespace container_v1beta1 {
      * [Output only] Base64-encoded private key used by clients to authenticate to the cluster endpoint.
      */
     clientKey?: string;
-    /**
-     * [Output only] Base64-encoded public certificate that is the root of trust for the cluster.
-     */
     clusterCaCertificate?: string;
     /**
      * The password to use for HTTP basic authentication to the master endpoint. Because the master endpoint is open to the Internet, you should create a strong password.  If a password is provided for cluster creation, username must be non-empty.
@@ -1102,7 +1128,7 @@ export namespace container_v1beta1 {
      */
     machineType?: string;
     /**
-     * The metadata key/value pairs assigned to instances in the cluster.  Keys must conform to the regexp [a-zA-Z0-9-_]+ and be less than 128 bytes in length. These are reflected as part of a URL in the metadata server. Additionally, to avoid ambiguity, keys must not conflict with any other metadata keys for the project or be one of the reserved keys:  &quot;cluster-location&quot;  &quot;cluster-name&quot;  &quot;cluster-uid&quot;  &quot;configure-sh&quot;  &quot;containerd-configure-sh&quot;  &quot;enable-oslogin&quot;  &quot;gci-ensure-gke-docker&quot;  &quot;gci-update-strategy&quot;  &quot;instance-template&quot;  &quot;kube-env&quot;  &quot;startup-script&quot;  &quot;user-data&quot;  Values are free-form strings, and only have meaning as interpreted by the image running in the instance. The only restriction placed on them is that each value&#39;s size must be less than or equal to 32 KB.  The total size of all keys and values must be less than 512 KB.
+     * The metadata key/value pairs assigned to instances in the cluster.  Keys must conform to the regexp [a-zA-Z0-9-_]+ and be less than 128 bytes in length. These are reflected as part of a URL in the metadata server. Additionally, to avoid ambiguity, keys must not conflict with any other metadata keys for the project or be one of the reserved keys:  &quot;cluster-location&quot;  &quot;cluster-name&quot;  &quot;cluster-uid&quot;  &quot;configure-sh&quot;  &quot;containerd-configure-sh&quot;  &quot;enable-oslogin&quot;  &quot;gci-ensure-gke-docker&quot;  &quot;gci-update-strategy&quot;  &quot;instance-template&quot;  &quot;kube-env&quot;  &quot;startup-script&quot;  &quot;user-data&quot;  &quot;disable-address-manager&quot;  &quot;windows-startup-script-ps1&quot;  &quot;common-psm1&quot;  &quot;k8s-node-setup-psm1&quot;  &quot;install-ssh-psm1&quot;  &quot;user-profile-psm1&quot;  &quot;serial-port-logging-enable&quot; Values are free-form strings, and only have meaning as interpreted by the image running in the instance. The only restriction placed on them is that each value&#39;s size must be less than or equal to 32 KB.  The total size of all keys and values must be less than 512 KB.
      */
     metadata?: {[key: string]: string};
     /**
@@ -1125,6 +1151,10 @@ export namespace container_v1beta1 {
      * The Google Cloud Platform Service Account to be used by the node VMs. If no Service Account is specified, the &quot;default&quot; service account is used.
      */
     serviceAccount?: string;
+    /**
+     * Shielded Instance options.
+     */
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
     /**
      * The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster or node pool creation. Each tag within the list must comply with RFC1035.
      */
@@ -1179,6 +1209,10 @@ export namespace container_v1beta1 {
      * [Output only] The resource URLs of the [managed instance groups](/compute/docs/instance-groups/creating-groups-of-managed-instances) associated with this node pool.
      */
     instanceGroupUrls?: string[];
+    /**
+     * The list of Google Compute Engine [zones](/compute/docs/zones#available) in which the NodePool&#39;s nodes should be located.
+     */
+    locations?: string[];
     /**
      * NodeManagement configuration for this NodePool.
      */
@@ -1346,6 +1380,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$PrivateClusterConfig {
     /**
+     * Whether to enable route sharing over the network peering.
+     */
+    enablePeeringRouteSharing?: boolean;
+    /**
      * Whether the master&#39;s internal IP address is used as the cluster endpoint.
      */
     enablePrivateEndpoint?: boolean;
@@ -1391,6 +1429,10 @@ export namespace container_v1beta1 {
      * Configuration to use BigQuery as usage export destination.
      */
     bigqueryDestination?: Schema$BigQueryDestination;
+    /**
+     * Configuration to enable resource consumption metering.
+     */
+    consumptionMeteringConfig?: Schema$ConsumptionMeteringConfig;
     /**
      * Whether to enable network egress metering for this cluster. If enabled, a daemonset will be created in the cluster to meter network egress traffic.
      */
@@ -1776,6 +1818,19 @@ export namespace container_v1beta1 {
     zone?: string;
   }
   /**
+   * A set of Shielded Instance options.
+   */
+  export interface Schema$ShieldedInstanceConfig {
+    /**
+     * Defines whether the instance has integrity monitoring enabled.  Enables monitoring and attestation of the boot integrity of the instance. The attestation is performed against the integrity policy baseline. This baseline is initially derived from the implicitly trusted boot image when the instance is created.
+     */
+    enableIntegrityMonitoring?: boolean;
+    /**
+     * Defines whether the instance has Secure Boot enabled.  Secure Boot helps ensure that the system only runs authentic software by verifying the digital signature of all boot components, and halting the boot process if signature verification fails.
+     */
+    enableSecureBoot?: boolean;
+  }
+  /**
    * StartIPRotationRequest creates a new IP for the cluster and then performs a node upgrade on each node pool to point to the new IP.
    */
   export interface Schema$StartIPRotationRequest {
@@ -1812,6 +1867,15 @@ export namespace container_v1beta1 {
      * Human-friendly representation of the condition
      */
     message?: string;
+  }
+  /**
+   * Cluster tier settings.
+   */
+  export interface Schema$TierSettings {
+    /**
+     * Cluster tier.
+     */
+    tier?: string;
   }
   /**
    * UpdateClusterRequest updates the settings of a cluster.
@@ -1876,6 +1940,10 @@ export namespace container_v1beta1 {
      */
     imageType?: string;
     /**
+     * The desired list of Google Compute Engine [zones](/compute/docs/zones#available) in which the node pool&#39;s nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.
+     */
+    locations?: string[];
+    /**
      * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
      */
     name?: string;
@@ -1891,6 +1959,10 @@ export namespace container_v1beta1 {
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
+    /**
+     * The desired image type for the node pool.
+     */
+    workloadMetadataConfig?: Schema$WorkloadMetadataConfig;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
@@ -1946,6 +2018,15 @@ export namespace container_v1beta1 {
      * Enables vertical pod autoscaling.
      */
     enabled?: boolean;
+  }
+  /**
+   * Configuration for the use of Kubernetes Service Accounts in GCP IAM policies.
+   */
+  export interface Schema$WorkloadIdentityConfig {
+    /**
+     * IAM Identity Namespace to attach all Kubernetes Service Accounts to.
+     */
+    identityNamespace?: string;
   }
   /**
    * WorkloadMetadataConfig defines the metadata configuration to expose to workloads on the node pool.

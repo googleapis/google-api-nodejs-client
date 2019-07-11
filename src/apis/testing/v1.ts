@@ -523,11 +523,11 @@ export namespace testing_v1 {
    */
   export interface Schema$DeviceFile {
     /**
-     * A reference to an opaque binary blob file
+     * A reference to an opaque binary blob file.
      */
     obbFile?: Schema$ObbFile;
     /**
-     * A reference to a regular file
+     * A reference to a regular file.
      */
     regularFile?: Schema$RegularFile;
   }
@@ -606,7 +606,7 @@ export namespace testing_v1 {
     apkDetail?: Schema$ApkDetail;
   }
   /**
-   * Enables automatic Google account login. If set, the service will automatically generate a Google test account and add it to the device, before executing the test. Note that test accounts might be reused. Many applications show their full set of functionalities when an account is present on the device. Logging into the device with these generated accounts allows testing more functionalities.
+   * Enables automatic Google account login. If set, the service automatically generates a Google test account and adds it to the device, before executing the test. Note that test accounts might be reused. Many applications show their full set of functionalities when an account is present on the device. Logging into the device with these generated accounts allows testing more functionalities.
    */
   export interface Schema$GoogleAuto {}
   /**
@@ -729,7 +729,7 @@ export namespace testing_v1 {
     orientations?: Schema$Orientation[];
   }
   /**
-   * A description of how to set up an iOS device prior to a test.
+   * A description of how to set up an iOS device prior to running the test.
    */
   export interface Schema$IosTestSetup {
     /**
@@ -886,6 +886,10 @@ export namespace testing_v1 {
      */
     googleCloudStorage?: Schema$GoogleCloudStorage;
     /**
+     * Output only. URL to the results in the Firebase Web Console.
+     */
+    resultsUrl?: string;
+    /**
      * Output only. The tool results execution that results are written to.
      */
     toolResultsExecution?: Schema$ToolResultsExecution;
@@ -915,7 +919,13 @@ export namespace testing_v1 {
    * Message for specifying the start activities to crawl.
    */
   export interface Schema$RoboStartingIntent {
+    /**
+     * An intent that starts the main launcher activity.
+     */
     launcherActivity?: Schema$LauncherActivityIntent;
+    /**
+     * An intent that starts an activity with specific details.
+     */
     startActivity?: Schema$StartActivityIntent;
     /**
      * Timeout in seconds for each intent.
@@ -974,7 +984,7 @@ export namespace testing_v1 {
     softwareCatalog?: Schema$ProvidedSoftwareCatalog;
   }
   /**
-   * Specifies a single test to be executed in a single environment.
+   * A single test executed in a single environment.
    */
   export interface Schema$TestExecution {
     /**
@@ -982,7 +992,7 @@ export namespace testing_v1 {
      */
     environment?: Schema$Environment;
     /**
-     * Output only. Unique id set by the backend.
+     * Output only. Unique id set by the service.
      */
     id?: string;
     /**
@@ -1015,7 +1025,7 @@ export namespace testing_v1 {
     toolResultsStep?: Schema$ToolResultsStep;
   }
   /**
-   * A group of one or more TestExecutions, built by taking a product of values over a pre-defined set of axes.
+   * TestMatrix captures all details about a test. It contains the environment configuration, test specification, test executions and overall state and outcome.
    */
   export interface Schema$TestMatrix {
     /**
@@ -1023,7 +1033,7 @@ export namespace testing_v1 {
      */
     clientInfo?: Schema$ClientInfo;
     /**
-     * Required. How the host machine(s) are configured.
+     * Required. The devices the tests are being executed on.
      */
     environmentMatrix?: Schema$EnvironmentMatrix;
     /**
@@ -1035,6 +1045,10 @@ export namespace testing_v1 {
      */
     invalidMatrixDetails?: string;
     /**
+     * Output Only. The overall outcome of the test. Only set when the test matrix state is FINISHED.
+     */
+    outcomeSummary?: string;
+    /**
      * The cloud project that owns the test matrix.
      */
     projectId?: string;
@@ -1043,7 +1057,7 @@ export namespace testing_v1 {
      */
     resultStorage?: Schema$ResultStorage;
     /**
-     * Output only. Indicates the current progress of the test matrix (e.g., FINISHED).
+     * Output only. Indicates the current progress of the test matrix.
      */
     state?: string;
     /**
@@ -1109,11 +1123,11 @@ export namespace testing_v1 {
      */
     androidTestLoop?: Schema$AndroidTestLoop;
     /**
-     * Disables performance metrics recording; may reduce test latency.
+     * Disables performance metrics recording. May reduce test latency.
      */
     disablePerformanceMetrics?: boolean;
     /**
-     * Disables video recording; may reduce test latency.
+     * Disables video recording. May reduce test latency.
      */
     disableVideoRecording?: boolean;
     /**

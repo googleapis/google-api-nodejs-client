@@ -779,6 +779,12 @@ export namespace content_v2 {
      */
     tax?: Schema$Price;
   }
+  export interface Schema$BusinessDayConfig {
+    /**
+     * Regular business days. May not be empty.
+     */
+    businessDays?: string[];
+  }
   export interface Schema$CarrierRate {
     /**
      * Carrier service, such as &quot;UPS&quot; or &quot;Fedex&quot;. The list of supported carriers can be retrieved via the getSupportedCarriers method. Required.
@@ -1222,6 +1228,10 @@ export namespace content_v2 {
      */
     cutoffTime?: Schema$CutoffTime;
     /**
+     * The business days during which orders can be handled. If not provided, Monday to Friday business days will be assumed.
+     */
+    handlingBusinessDayConfig?: Schema$BusinessDayConfig;
+    /**
      * Holiday cutoff definitions. If configured, they specify order cutoff times for holiday-specific shipping.
      */
     holidayCutoffs?: Schema$HolidayCutoff[];
@@ -1238,11 +1248,15 @@ export namespace content_v2 {
      */
     minHandlingTimeInDays?: number;
     /**
-     * Minimum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Either {min,max}transitTimeInDays or transitTimeTable must be set, but not both.
+     * Minimum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Either {min,max}TransitTimeInDays or transitTimeTable must be set, but not both.
      */
     minTransitTimeInDays?: number;
     /**
-     * Transit time table, number of business days spent in transit based on row and column dimensions. Either {min,max}transitTimeInDays or transitTimeTable can be set, but not both.
+     * The business days during which orders can be in-transit. If not provided, Monday to Friday business days will be assumed.
+     */
+    transitBusinessDayConfig?: Schema$BusinessDayConfig;
+    /**
+     * Transit time table, number of business days spent in transit based on row and column dimensions. Either {min,max}TransitTimeInDays or transitTimeTable can be set, but not both.
      */
     transitTimeTable?: Schema$TransitTable;
   }
@@ -1921,7 +1935,7 @@ export namespace content_v2 {
      */
     customer?: Schema$OrderCustomer;
     /**
-     * The details for the delivery.
+     * Delivery details for shipments.
      */
     deliveryDetails?: Schema$OrderDeliveryDetails;
     /**
@@ -3232,7 +3246,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment.  Acceptable values for US are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;    Acceptable values for FR are:   - &quot;colissimo&quot;  - &quot;chronopost&quot;
+     * The carrier handling the shipment.  Acceptable values for US are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;  - &quot;efw&quot;    Acceptable values for FR are:   - &quot;colissimo&quot;  - &quot;chronopost&quot;  - &quot;gls&quot;  - &quot;dpd&quot;  - &quot;bpost&quot;
      */
     carrier?: string;
     /**
@@ -5094,6 +5108,10 @@ export namespace content_v2 {
      * The two-letter ISO 639-1 language code for the item.
      */
     contentLanguage?: string;
+    /**
+     * Fees for the item. Optional.
+     */
+    fees?: Schema$OrderLineItemProductFee[];
     /**
      * Global Trade Item Number (GTIN) of the item. Optional.
      */
@@ -11676,13 +11694,13 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.acknowledged Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to false, in conjunction with the acknowledge call, such that only un-acknowledged orders are returned.
-     * @param {integer=} params.maxResults The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page. Known issue: All List calls will return all Orders without limit regardless of the value of this field.
+     * @param {integer=} params.maxResults The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page.
      * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string=} params.orderBy The ordering of the returned list. The only supported value are placedDate desc and placedDate asc for now, which returns orders sorted by placement date. "placedDate desc" stands for listing orders by placement date, from oldest to most recent. "placedDate asc" stands for listing orders by placement date, from most recent to oldest. In future releases we'll support other sorting criteria.
+     * @param {string=} params.orderBy Order results by placement date in descending or ascending order.  Acceptable values are: - placedDateAsc - placedDateDesc
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string=} params.placedDateEnd Obtains orders placed before this date (exclusively), in ISO 8601 format.
      * @param {string=} params.placedDateStart Obtains orders placed after this date (inclusively), in ISO 8601 format.
-     * @param {string=} params.statuses Obtains orders that match any of the specified statuses. Multiple values can be specified with comma separation. Additionally, please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped , partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
+     * @param {string=} params.statuses Obtains orders that match any of the specified statuses. Please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped, partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12753,7 +12771,7 @@ export namespace content_v2 {
      */
     acknowledged?: boolean;
     /**
-     * The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page. Known issue: All List calls will return all Orders without limit regardless of the value of this field.
+     * The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page.
      */
     maxResults?: number;
     /**
@@ -12761,7 +12779,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
     /**
-     * The ordering of the returned list. The only supported value are placedDate desc and placedDate asc for now, which returns orders sorted by placement date. "placedDate desc" stands for listing orders by placement date, from oldest to most recent. "placedDate asc" stands for listing orders by placement date, from most recent to oldest. In future releases we'll support other sorting criteria.
+     * Order results by placement date in descending or ascending order.  Acceptable values are: - placedDateAsc - placedDateDesc
      */
     orderBy?: string;
     /**
@@ -12777,7 +12795,7 @@ export namespace content_v2 {
      */
     placedDateStart?: string;
     /**
-     * Obtains orders that match any of the specified statuses. Multiple values can be specified with comma separation. Additionally, please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped , partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
+     * Obtains orders that match any of the specified statuses. Please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped, partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
      */
     statuses?: string[];
   }

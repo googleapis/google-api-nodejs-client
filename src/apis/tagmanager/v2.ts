@@ -706,6 +706,16 @@ export namespace tagmanager_v2 {
      */
     tag?: Schema$Tag[];
   }
+  export interface Schema$ListTemplatesResponse {
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    nextPageToken?: string;
+    /**
+     * All GTM Custom Templates of a GTM Container.
+     */
+    template?: Schema$CustomTemplate[];
+  }
   /**
    * List triggers response.
    */
@@ -798,7 +808,7 @@ export namespace tagmanager_v2 {
      */
     map?: Schema$Parameter[];
     /**
-     * The parameter type. Valid values are:  - boolean: The value represents a boolean, represented as &#39;true&#39; or &#39;false&#39;  - integer: The value represents a 64-bit signed integer value, in base 10  - list: A list of parameters should be specified  - map: A map of parameters should be specified  - template: The value represents any text; this can include variable references (even variable references that might return non-string types)
+     * The parameter type. Valid values are:  - boolean: The value represents a boolean, represented as &#39;true&#39; or &#39;false&#39;  - integer: The value represents a 64-bit signed integer value, in base 10  - list: A list of parameters should be specified  - map: A map of parameters should be specified  - template: The value represents any text; this can include variable references (even variable references that might return non-string types)  - trigger_reference: The value represents a trigger, represented as the trigger id
      */
     type?: string;
     /**
@@ -862,6 +872,15 @@ export namespace tagmanager_v2 {
      * Tag as it appears in the latest container version since the last workspace synchronization operation. If no tag is present, that means the tag was deleted in the latest container version.
      */
     tag?: Schema$Tag;
+  }
+  /**
+   * The result of reverting a template in a workspace.
+   */
+  export interface Schema$RevertTemplateResponse {
+    /**
+     * Template as it appears in the latest container version since the last workspace synchronization operation. If no template is present, that means the template was deleted in the latest container version.
+     */
+    template?: Schema$CustomTemplate;
   }
   /**
    * The result of reverting a trigger in a workspace.
@@ -3583,6 +3602,7 @@ export namespace tagmanager_v2 {
     built_in_variables: Resource$Accounts$Containers$Workspaces$Built_in_variables;
     folders: Resource$Accounts$Containers$Workspaces$Folders;
     tags: Resource$Accounts$Containers$Workspaces$Tags;
+    templates: Resource$Accounts$Containers$Workspaces$Templates;
     triggers: Resource$Accounts$Containers$Workspaces$Triggers;
     variables: Resource$Accounts$Containers$Workspaces$Variables;
     zones: Resource$Accounts$Containers$Workspaces$Zones;
@@ -3595,6 +3615,9 @@ export namespace tagmanager_v2 {
         this.context
       );
       this.tags = new Resource$Accounts$Containers$Workspaces$Tags(
+        this.context
+      );
+      this.templates = new Resource$Accounts$Containers$Workspaces$Templates(
         this.context
       );
       this.triggers = new Resource$Accounts$Containers$Workspaces$Triggers(
@@ -6206,6 +6229,559 @@ export namespace tagmanager_v2 {
      * Request body metadata
      */
     requestBody?: Schema$Tag;
+  }
+
+  export class Resource$Accounts$Containers$Workspaces$Templates {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * tagmanager.accounts.containers.workspaces.templates.create
+     * @desc Creates a GTM Custom Template.
+     * @alias tagmanager.accounts.containers.workspaces.templates.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * @param {().CustomTemplate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Templates$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomTemplate>;
+    create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomTemplate>,
+      callback: BodyResponseCallback<Schema$CustomTemplate>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Create,
+      callback: BodyResponseCallback<Schema$CustomTemplate>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$CustomTemplate>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Templates$Create
+        | BodyResponseCallback<Schema$CustomTemplate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomTemplate>,
+      callback?: BodyResponseCallback<Schema$CustomTemplate>
+    ): void | GaxiosPromise<Schema$CustomTemplate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Templates$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/templates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomTemplate>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$CustomTemplate>(parameters);
+      }
+    }
+
+    /**
+     * tagmanager.accounts.containers.workspaces.templates.delete
+     * @desc Deletes a GTM Template.
+     * @alias tagmanager.accounts.containers.workspaces.templates.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.path GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Templates$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Templates$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Templates$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['path'],
+        pathParams: ['path'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * tagmanager.accounts.containers.workspaces.templates.get
+     * @desc Gets a GTM Template.
+     * @alias tagmanager.accounts.containers.workspaces.templates.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.path GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Templates$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomTemplate>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomTemplate>,
+      callback: BodyResponseCallback<Schema$CustomTemplate>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Get,
+      callback: BodyResponseCallback<Schema$CustomTemplate>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$CustomTemplate>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Templates$Get
+        | BodyResponseCallback<Schema$CustomTemplate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomTemplate>,
+      callback?: BodyResponseCallback<Schema$CustomTemplate>
+    ): void | GaxiosPromise<Schema$CustomTemplate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Templates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['path'],
+        pathParams: ['path'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomTemplate>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$CustomTemplate>(parameters);
+      }
+    }
+
+    /**
+     * tagmanager.accounts.containers.workspaces.templates.list
+     * @desc Lists all GTM Templates of a GTM container workspace.
+     * @alias tagmanager.accounts.containers.workspaces.templates.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+     * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Templates$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTemplatesResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTemplatesResponse>,
+      callback: BodyResponseCallback<Schema$ListTemplatesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$List,
+      callback: BodyResponseCallback<Schema$ListTemplatesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListTemplatesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Templates$List
+        | BodyResponseCallback<Schema$ListTemplatesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTemplatesResponse>,
+      callback?: BodyResponseCallback<Schema$ListTemplatesResponse>
+    ): void | GaxiosPromise<Schema$ListTemplatesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Templates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Templates$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/templates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTemplatesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListTemplatesResponse>(parameters);
+      }
+    }
+
+    /**
+     * tagmanager.accounts.containers.workspaces.templates.revert
+     * @desc Reverts changes to a GTM Template in a GTM Workspace.
+     * @alias tagmanager.accounts.containers.workspaces.templates.revert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the template in storage.
+     * @param {string} params.path GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    revert(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Templates$Revert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RevertTemplateResponse>;
+    revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Revert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevertTemplateResponse>,
+      callback: BodyResponseCallback<Schema$RevertTemplateResponse>
+    ): void;
+    revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Revert,
+      callback: BodyResponseCallback<Schema$RevertTemplateResponse>
+    ): void;
+    revert(callback: BodyResponseCallback<Schema$RevertTemplateResponse>): void;
+    revert(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Templates$Revert
+        | BodyResponseCallback<Schema$RevertTemplateResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevertTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$RevertTemplateResponse>
+    ): void | GaxiosPromise<Schema$RevertTemplateResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Templates$Revert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Revert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:revert').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['path'],
+        pathParams: ['path'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RevertTemplateResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$RevertTemplateResponse>(parameters);
+      }
+    }
+
+    /**
+     * tagmanager.accounts.containers.workspaces.templates.update
+     * @desc Updates a GTM Template.
+     * @alias tagmanager.accounts.containers.workspaces.templates.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the templates in storage.
+     * @param {string} params.path GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     * @param {().CustomTemplate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Templates$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomTemplate>;
+    update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomTemplate>,
+      callback: BodyResponseCallback<Schema$CustomTemplate>
+    ): void;
+    update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Update,
+      callback: BodyResponseCallback<Schema$CustomTemplate>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$CustomTemplate>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Templates$Update
+        | BodyResponseCallback<Schema$CustomTemplate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomTemplate>,
+      callback?: BodyResponseCallback<Schema$CustomTemplate>
+    ): void | GaxiosPromise<Schema$CustomTemplate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Templates$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['path'],
+        pathParams: ['path'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomTemplate>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$CustomTemplate>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CustomTemplate;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     */
+    path?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     */
+    path?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Revert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * When provided, this fingerprint must match the fingerprint of the template in storage.
+     */
+    fingerprint?: string;
+    /**
+     * GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     */
+    path?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * When provided, this fingerprint must match the fingerprint of the templates in storage.
+     */
+    fingerprint?: string;
+    /**
+     * GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     */
+    path?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CustomTemplate;
   }
 
   export class Resource$Accounts$Containers$Workspaces$Triggers {

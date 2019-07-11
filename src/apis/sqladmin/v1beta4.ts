@@ -829,7 +829,7 @@ export namespace sqladmin_v1beta4 {
      */
     timeToRetire?: string;
     /**
-     * The type of this IP address. A PRIMARY address is an address that can accept incoming connections. An OUTGOING address is the source address of connections originating from the instance, if supported.
+     * The type of this IP address. A PRIMARY address is a public address that can accept incoming connections. A PRIVATE address is a private address that can accept incoming connections. An OUTGOING address is the source address of connections originating from the instance, if supported.
      */
     type?: string;
   }
@@ -1075,6 +1075,10 @@ export namespace sqladmin_v1beta4 {
      * This is always sql#restoreBackupContext.
      */
     kind?: string;
+    /**
+     * The full project ID of the source instance.
+     */
+    project?: string;
   }
   /**
    * Instance rotate server CA context.

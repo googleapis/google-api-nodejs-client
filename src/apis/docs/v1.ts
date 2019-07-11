@@ -424,65 +424,65 @@ export namespace docs_v1 {
    */
   export interface Schema$Document {
     /**
-     * The main body of the document.
+     * Output only. The main body of the document.
      */
     body?: Schema$Body;
     /**
-     * The ID of the document.
+     * Output only. The ID of the document.
      */
     documentId?: string;
     /**
-     * The style of the document.
+     * Output only. The style of the document.
      */
     documentStyle?: Schema$DocumentStyle;
     /**
-     * The footers in the document, keyed by footer ID.
+     * Output only. The footers in the document, keyed by footer ID.
      */
     footers?: {[key: string]: Schema$Footer};
     /**
-     * The footnotes in the document, keyed by footnote ID.
+     * Output only. The footnotes in the document, keyed by footnote ID.
      */
     footnotes?: {[key: string]: Schema$Footnote};
     /**
-     * The headers in the document, keyed by header ID.
+     * Output only. The headers in the document, keyed by header ID.
      */
     headers?: {[key: string]: Schema$Header};
     /**
-     * The inline objects in the document, keyed by object ID.
+     * Output only. The inline objects in the document, keyed by object ID.
      */
     inlineObjects?: {[key: string]: Schema$InlineObject};
     /**
-     * The lists in the document, keyed by list ID.
+     * Output only. The lists in the document, keyed by list ID.
      */
     lists?: {[key: string]: Schema$List};
     /**
-     * The named ranges in the document, keyed by name.
+     * Output only. The named ranges in the document, keyed by name.
      */
     namedRanges?: {[key: string]: Schema$NamedRanges};
     /**
-     * The named styles of the document.
+     * Output only. The named styles of the document.
      */
     namedStyles?: Schema$NamedStyles;
     /**
-     * The positioned objects in the document, keyed by object ID.
+     * Output only. The positioned objects in the document, keyed by object ID.
      */
     positionedObjects?: {[key: string]: Schema$PositionedObject};
     /**
-     * The revision ID of the document. Can be used in update requests to specify which revision of a document to apply updates to and how the request should behave if the document has been edited since that revision. Only populated if the user has edit access to the document.  The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the document has not changed. Conversely, a changed ID (for the same document and user) usually means the document has been updated; however, a changed ID can also be due to internal factors such as ID format changes.
+     * Output only. The revision ID of the document. Can be used in update requests to specify which revision of a document to apply updates to and how the request should behave if the document has been edited since that revision. Only populated if the user has edit access to the document.  The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the document has not changed. Conversely, a changed ID (for the same document and user) usually means the document has been updated; however, a changed ID can also be due to internal factors such as ID format changes.
      */
     revisionId?: string;
     /**
-     * The suggested changes to the style of the document, keyed by suggestion ID.
+     * Output only. The suggested changes to the style of the document, keyed by suggestion ID.
      */
     suggestedDocumentStyleChanges?: {
       [key: string]: Schema$SuggestedDocumentStyle;
     };
     /**
-     * The suggested changes to the named styles of the document, keyed by suggestion ID.
+     * Output only. The suggested changes to the named styles of the document, keyed by suggestion ID.
      */
     suggestedNamedStylesChanges?: {[key: string]: Schema$SuggestedNamedStyles};
     /**
-     * The suggestions view mode applied to the document.  Note: When editing a document, changes must be based on a document with SUGGESTIONS_INLINE.
+     * Output only. The suggestions view mode applied to the document.  Note: When editing a document, changes must be based on a document with SUGGESTIONS_INLINE.
      */
     suggestionsViewMode?: string;
     /**
@@ -669,7 +669,7 @@ export namespace docs_v1 {
      */
     marginTop?: Schema$Dimension;
     /**
-     * The size of the embedded object.
+     * The visible size of the image after cropping.
      */
     size?: Schema$Size;
     /**
@@ -900,7 +900,7 @@ export namespace docs_v1 {
      */
     contrast?: number;
     /**
-     * The crop properties of the image.  After cropping, the image will be stretched to fit in its container.
+     * The crop properties of the image.
      */
     cropProperties?: Schema$CropProperties;
     /**
@@ -2289,11 +2289,11 @@ export namespace docs_v1 {
     tableCellStyle?: Schema$TableCellStyle;
   }
   /**
-   * A border around a table cell.  Table cell borders cannot be transparent. To hide a table cell border, make its width 0.
+   * A border around a table cell.
    */
   export interface Schema$TableCellBorder {
     /**
-     * The color of the border. This color cannot be transparent.
+     * The color of the border.
      */
     color?: Schema$OptionalColor;
     /**

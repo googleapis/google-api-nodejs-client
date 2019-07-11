@@ -124,7 +124,7 @@ export namespace androidpublisher_v1_1 {
      */
     orderId?: string;
     /**
-     * The purchase state of the order. Possible values are:   - Purchased  - Canceled
+     * The purchase state of the order. Possible values are:   - Purchased  - Canceled  - Pending
      */
     purchaseState?: number;
     /**

@@ -519,6 +519,10 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$MaliciousEntity {
     /**
+     * The header from display name.
+     */
+    displayName?: string;
+    /**
      * The sender email address.
      */
     fromHeader?: string;

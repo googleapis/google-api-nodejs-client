@@ -169,7 +169,7 @@ export namespace fitness_v1 {
      */
     endTimeMillis?: string;
     /**
-     * DO NOT POPULATE THIS FIELD. As data quality standards are deprecated, filling it in will result in no data sources being returned. It will be removed in a future version entirely.
+     * DO NOT POPULATE THIS FIELD. It is ignored.
      */
     filteredDataQualityStandard?: string[];
     /**

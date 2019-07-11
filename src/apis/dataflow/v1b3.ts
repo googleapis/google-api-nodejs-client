@@ -883,6 +883,23 @@ export namespace dataflow_v1b3 {
     firstBucketOffset?: number;
   }
   /**
+   * Proto describing a hot key detected on a given WorkItem.
+   */
+  export interface Schema$HotKeyDetection {
+    /**
+     * The age of the hot key measured from when it was first detected.
+     */
+    hotKeyAge?: string;
+    /**
+     * System-defined name of the step containing this hot key. Unique across the workflow.
+     */
+    systemName?: string;
+    /**
+     * User-provided name of the step that contains this hot key.
+     */
+    userStepName?: string;
+  }
+  /**
    * An input of an instruction, as a reference to an output of a producer instruction.
    */
   export interface Schema$InstructionInput {
@@ -1203,6 +1220,14 @@ export namespace dataflow_v1b3 {
      * The runtime parameters to pass to the job.
      */
     parameters?: {[key: string]: string};
+    /**
+     * Only applicable when updating a pipeline. Map of transform name prefixes of the job to be replaced to the corresponding name prefixes of the new job.
+     */
+    transformNameMapping?: {[key: string]: string};
+    /**
+     * If set, replace the existing pipeline with the name specified by jobName with this pipeline, preserving state.
+     */
+    update?: boolean;
   }
   /**
    * Response to the request to launch a template.
@@ -1761,6 +1786,10 @@ export namespace dataflow_v1b3 {
      */
     bypassTempDirValidation?: boolean;
     /**
+     * Optional. Name for the Cloud KMS key for the job. Key format is: projects/&lt;project&gt;/locations/&lt;location&gt;/keyRings/&lt;keyring&gt;/cryptoKeys/&lt;key&gt;
+     */
+    kmsKeyName?: string;
+    /**
      * The machine type to use for the job. Defaults to the value from the template if not specified.
      */
     machineType?: string;
@@ -2228,7 +2257,7 @@ export namespace dataflow_v1b3 {
     stateFamily?: string;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -2931,6 +2960,10 @@ export namespace dataflow_v1b3 {
      * Other data returned by the service, specific to the particular worker harness.
      */
     harnessData?: {[key: string]: any};
+    /**
+     * A hot key is a symptom of poor data distribution in which there are enough elements mapped to a single key to impact pipeline performance. When present, this field includes metadata associated with any hot key.
+     */
+    hotKeyDetection?: Schema$HotKeyDetection;
     /**
      * Time at which the current lease will expire.
      */
@@ -4659,11 +4692,15 @@ export namespace dataflow_v1b3 {
     context: APIRequestContext;
     debug: Resource$Projects$Locations$Jobs$Debug;
     messages: Resource$Projects$Locations$Jobs$Messages;
+    snapshots: Resource$Projects$Locations$Jobs$Snapshots;
     workItems: Resource$Projects$Locations$Jobs$Workitems;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.debug = new Resource$Projects$Locations$Jobs$Debug(this.context);
       this.messages = new Resource$Projects$Locations$Jobs$Messages(
+        this.context
+      );
+      this.snapshots = new Resource$Projects$Locations$Jobs$Snapshots(
         this.context
       );
       this.workItems = new Resource$Projects$Locations$Jobs$Workitems(
@@ -5638,6 +5675,112 @@ export namespace dataflow_v1b3 {
     startTime?: string;
   }
 
+  export class Resource$Projects$Locations$Jobs$Snapshots {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dataflow.projects.locations.jobs.snapshots.list
+     * @desc Lists snapshots.
+     * @alias dataflow.projects.locations.jobs.snapshots.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId If specified, list snapshots created from this job.
+     * @param {string} params.location The location to list snapshots in.
+     * @param {string} params.projectId The project ID to list snapshots for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSnapshotsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
+      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSnapshotsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Snapshots$List
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void | GaxiosPromise<Schema$ListSnapshotsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Snapshots$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Jobs$Snapshots$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/snapshots'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'location', 'jobId'],
+        pathParams: ['jobId', 'location', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSnapshotsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Jobs$Snapshots$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * If specified, list snapshots created from this job.
+     */
+    jobId?: string;
+    /**
+     * The location to list snapshots in.
+     */
+    location?: string;
+    /**
+     * The project ID to list snapshots for.
+     */
+    projectId?: string;
+  }
+
   export class Resource$Projects$Locations$Jobs$Workitems {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -6026,6 +6169,7 @@ export namespace dataflow_v1b3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.jobId If specified, list snapshots created from this job.
      * @param {string} params.location The location to list snapshots in.
      * @param {string} params.projectId The project ID to list snapshots for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6144,6 +6288,10 @@ export namespace dataflow_v1b3 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * If specified, list snapshots created from this job.
+     */
+    jobId?: string;
     /**
      * The location to list snapshots in.
      */
@@ -6667,6 +6815,7 @@ export namespace dataflow_v1b3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.jobId If specified, list snapshots created from this job.
      * @param {string=} params.location The location to list snapshots in.
      * @param {string} params.projectId The project ID to list snapshots for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6765,6 +6914,10 @@ export namespace dataflow_v1b3 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * If specified, list snapshots created from this job.
+     */
+    jobId?: string;
     /**
      * The location to list snapshots in.
      */

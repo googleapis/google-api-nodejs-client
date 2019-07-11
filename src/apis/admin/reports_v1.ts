@@ -157,7 +157,9 @@ export namespace admin_reports_v1 {
       parameters?: Array<{
         boolValue?: boolean;
         intValue?: string;
+        messageValue?: {parameter?: Schema$NestedParameter[]};
         multiIntValue?: string[];
+        multiMessageValue?: Array<{parameter?: Schema$NestedParameter[]}>;
         multiValue?: string[];
         name?: string;
         value?: string;
@@ -203,7 +205,7 @@ export namespace admin_reports_v1 {
      */
     id?: string;
     /**
-     * Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string &quot;api#channel&quot;.
+     * Identifies this as a notification channel used to watch for changes to a resource, which is &quot;api#channel&quot;.
      */
     kind?: string;
     /**
@@ -230,6 +232,39 @@ export namespace admin_reports_v1 {
      * The type of delivery mechanism used for this channel.
      */
     type?: string;
+  }
+  /**
+   * JSON template for a parameter used in various reports.
+   */
+  export interface Schema$NestedParameter {
+    /**
+     * Boolean value of the parameter.
+     */
+    boolValue?: boolean;
+    /**
+     * Integral value of the parameter.
+     */
+    intValue?: string;
+    /**
+     * Multiple boolean values of the parameter.
+     */
+    multiBoolValue?: boolean[];
+    /**
+     * Multiple integral values of the parameter.
+     */
+    multiIntValue?: string[];
+    /**
+     * Multiple string values of the parameter.
+     */
+    multiValue?: string[];
+    /**
+     * The name of the parameter.
+     */
+    name?: string;
+    /**
+     * String value of the parameter.
+     */
+    value?: string;
   }
   /**
    * JSON template for a usage report.

@@ -276,7 +276,7 @@ export namespace drive_v3 {
      */
     id?: string;
     /**
-     * Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string &quot;api#channel&quot;.
+     * Identifies this as a notification channel used to watch for changes to a resource, which is &quot;api#channel&quot;.
      */
     kind?: string;
     /**
@@ -3165,7 +3165,7 @@ export namespace drive_v3 {
 
     /**
      * drive.files.generateIds
-     * @desc Generates a set of file IDs which can be provided in create requests.
+     * @desc Generates a set of file IDs which can be provided in create or copy requests.
      * @alias drive.files.generateIds
      * @memberOf! ()
      *
