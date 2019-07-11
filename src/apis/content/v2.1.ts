@@ -38,7 +38,7 @@ import {GaxiosPromise} from 'gaxios';
 
 export namespace content_v2_1 {
   export interface Options extends GlobalOptions {
-    version: 'v2_1';
+    version: 'v2.1';
   }
 
   interface StandardParameters {

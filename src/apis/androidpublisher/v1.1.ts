@@ -38,7 +38,7 @@ import {GaxiosPromise} from 'gaxios';
 
 export namespace androidpublisher_v1_1 {
   export interface Options extends GlobalOptions {
-    version: 'v1_1';
+    version: 'v1.1';
   }
 
   interface StandardParameters {
