@@ -4,6 +4,23 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [41.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v40.0.1...v41.0.0) (2019-07-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* options when instantiating clients now expect correct `vx.x` format rather than failing `vx_x` format (effects only TypeScript).
+* auto generate libraries (#1759)
+
+### Bug Fixes
+
+* don't replace '.' with '_' in interface ([#1757](https://www.github.com/googleapis/google-api-nodejs-client/issues/1757)) ([3a183c2](https://www.github.com/googleapis/google-api-nodejs-client/commit/3a183c2))
+
+
+### Features
+
+* auto generate libraries ([#1759](https://www.github.com/googleapis/google-api-nodejs-client/issues/1759)) ([c726608](https://www.github.com/googleapis/google-api-nodejs-client/commit/c726608))
+
 ### [40.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/v40.0.0...v40.0.1) (2019-07-02)
 
 
