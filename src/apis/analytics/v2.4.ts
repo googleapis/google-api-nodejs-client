@@ -38,7 +38,7 @@ import {GaxiosPromise} from 'gaxios';
 
 export namespace analytics_v2_4 {
   export interface Options extends GlobalOptions {
-    version: 'v2_4';
+    version: 'v2.4';
   }
 
   interface StandardParameters {

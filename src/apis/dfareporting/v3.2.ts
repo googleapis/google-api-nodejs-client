@@ -38,7 +38,7 @@ import {GaxiosPromise} from 'gaxios';
 
 export namespace dfareporting_v3_2 {
   export interface Options extends GlobalOptions {
-    version: 'v3_2';
+    version: 'v3.2';
   }
 
   interface StandardParameters {

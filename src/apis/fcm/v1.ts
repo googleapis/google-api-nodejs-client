@@ -192,6 +192,10 @@ export namespace fcm_v1 {
      */
     icon?: string;
     /**
+     * Contains the URL of an image that is going to be displayed in a notification. If present, it will override google.firebase.fcm.v1.Notification.image.
+     */
+    image?: string;
+    /**
      * The sound to play when the device receives the notification. Supports &quot;default&quot; or the filename of a sound resource bundled in the app. Sound files must reside in /res/raw/.
      */
     sound?: string;
@@ -237,6 +241,10 @@ export namespace fcm_v1 {
      * Label associated with the message&#39;s analytics data.
      */
     analyticsLabel?: string;
+    /**
+     * Contains the URL of an image that is going to be displayed in a notification. If present, it will override google.firebase.fcm.v1.Notification.image.
+     */
+    image?: string;
   }
   /**
    * Platform independent options for features provided by the FCM SDKs.
@@ -300,6 +308,10 @@ export namespace fcm_v1 {
      * The notification&#39;s body text.
      */
     body?: string;
+    /**
+     * Contains the URL of an image that is going to be downloaded on the device and displayed in a notification. JPEG, PNG, BMP have full support across platforms. Animated GIF and video only work on iOS. WebP and HEIF have varying levels of support across platforms and platform versions. Android has 1MB image size limit. Quota usage and implications/costs for hosting image on Firebase Storage: https://firebase.google.com/pricing
+     */
+    image?: string;
     /**
      * The notification&#39;s title.
      */

@@ -38,7 +38,7 @@ import {GaxiosPromise} from 'gaxios';
 
 export namespace adexchangebuyer_v1_2 {
   export interface Options extends GlobalOptions {
-    version: 'v1_2';
+    version: 'v1.2';
   }
 
   interface StandardParameters {

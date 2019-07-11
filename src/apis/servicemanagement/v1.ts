@@ -183,10 +183,6 @@ export namespace servicemanagement_v1 {
      */
     exemptedMembers?: string[];
     /**
-     * Specifies whether principals can be exempted for the same LogType in lower-level resource policies. If true, any lower-level exemptions will be ignored.
-     */
-    ignoreChildExemptions?: boolean;
-    /**
      * The log type that this config enables.
      */
     logType?: string;
@@ -546,10 +542,6 @@ export namespace servicemanagement_v1 {
      * A list of documentation rules that apply to individual API elements.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
      */
     rules?: Schema$DocumentationRule[];
-    /**
-     * Specifies the service root url if the default one (the service name from the yaml file) is not suitable. This can be seen in any fully specified service urls as well as sections that show a base that other urls are relative to.
-     */
-    serviceRootUrl?: string;
     /**
      * A short summary of what the service does. Can only be provided by plain text.
      */
