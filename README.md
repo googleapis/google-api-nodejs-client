@@ -462,7 +462,7 @@ async function main() {
 main().catch(console.error);
 ```
 
-You can also override *gaxios* options per request, such as `url`, `method`, and `encoding`.
+You can also override *gaxios* options per request, such as `url`, `method`, and `responseType`.
 
 For example:
 
@@ -472,7 +472,7 @@ const res = await drive.files.export({
   mimeType: 'application/pdf'
 }, {
   // Make sure we get the binary data
-  encoding: null
+  responseType: 'stream'
 });
 ```
 

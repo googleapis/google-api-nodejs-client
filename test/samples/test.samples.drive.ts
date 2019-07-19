@@ -53,12 +53,12 @@ describe('Drive samples', () => {
   });
 
   it('should download the doc', async () => {
-    const fileId = '1ZdR3L3qP4Bkq8noWLJHSr_iBau0DNT4Kli4SxNc2YEo';
+    const fileId = '1EkgdLY3T-_9hWml0VssdDWQZLEc8qqpMB77Nvsx6khA';
     const scope = nock(Utils.baseUrl)
       .get(`/drive/v3/files/${fileId}/export?mimeType=application%2Fpdf`)
       .replyWithFile(200, someFile);
     await samples.export.runSample();
-    assert(fs.existsSync(`${os.tmpdir()}/resume.pdf`));
+    assert(fs.existsSync(`${os.tmpdir()}/important.pdf`));
     scope.done();
   });
 
