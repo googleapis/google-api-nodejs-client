@@ -17,6 +17,7 @@ const {google} = require('googleapis');
 const sampleClient = require('../sampleclient');
 const fs = require('fs');
 const os = require('os');
+const path = require('path');
 
 const drive = google.drive({
   version: 'v3',
@@ -25,17 +26,17 @@ const drive = google.drive({
 
 async function runSample() {
   // [START main_body]
-  return new Promise(async (resolve, reject) => {
-    const fileId = '1ZdR3L3qP4Bkq8noWLJHSr_iBau0DNT4Kli4SxNc2YEo';
-    const dest = fs.createWriteStream(`${os.tmpdir()}/resume.pdf`);
-
-    const res = await drive.files.export(
-      {fileId, mimeType: 'application/pdf'},
-      {responseType: 'stream'}
-    );
+  const fileId = '1EkgdLY3T-_9hWml0VssdDWQZLEc8qqpMB77Nvsx6khA';
+  const destPath = path.join(os.tmpdir(), 'important.pdf');
+  const dest = fs.createWriteStream(destPath);
+  const res = await drive.files.export(
+    {fileId, mimeType: 'application/pdf'},
+    {responseType: 'stream'}
+  );
+  await new Promise((resolve, reject) => {
     res.data
       .on('end', () => {
-        console.log('Done downloading document.');
+        console.log(`Done downloading document: ${destPath}.`);
         resolve();
       })
       .on('error', err => {
@@ -49,7 +50,7 @@ async function runSample() {
 
 // if invoked directly (not tests), authenticate and run the samples
 if (module === require.main) {
-  const scopes = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
+  const scopes = ['https://www.googleapis.com/auth/drive.readonly'];
   sampleClient
     .authenticate(scopes)
     .then(runSample)
