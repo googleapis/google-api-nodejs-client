@@ -28,6 +28,8 @@ export class AuthPlus extends GoogleAuth {
   Compute = Compute;
   // tslint:disable-next-line: variable-name
   OAuth2 = OAuth2Client;
+  // tslint:disable-next-line: variable-name
+  GoogleAuth = GoogleAuth;
 }
 
 export class GoogleApis extends apis.GeneratedAPIs {

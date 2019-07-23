@@ -23,13 +23,14 @@ const compute = google.compute('v1');
 
 async function listVMs() {
   // [START auth]
-  const authClient = await google.auth.getClient({
+  const auth = new google.auth.GoogleAuth({
     scopes: [
       'https://www.googleapis.com/auth/cloud-platform',
       'https://www.googleapis.com/auth/compute',
       'https://www.googleapis.com/auth/compute.readonly',
     ],
-  });
+  })
+  const authClient = await auth.getClient();
   // [END auth]
 
   // [START list]
