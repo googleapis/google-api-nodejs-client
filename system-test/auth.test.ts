@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 import {expect} from 'chai';
 import {google} from '../src';
 const compute = google.compute('v1');
@@ -23,9 +22,7 @@ describe('google.auth', async () => {
   describe('google.auth.getClient', async () => {
     it('allows client to be configured using historical API', async () => {
       const authClient = await google.auth.getClient({
-        scopes: [
-          'https://www.googleapis.com/auth/cloud-platform'
-        ],
+        scopes: ['https://www.googleapis.com/auth/cloud-platform'],
       });
       const projectId = await google.auth.getProjectId();
       const result = await compute.instances.aggregatedList({
@@ -38,7 +35,7 @@ describe('google.auth', async () => {
 
     it('uses projectId from cached client', async () => {
       const authClient = await google.auth.getClient({
-        projectId: 'foo-project-id'
+        projectId: 'foo-project-id',
       });
       const projectId = await google.auth.getProjectId();
       expect(projectId).to.equal('foo-project-id');
@@ -47,9 +44,7 @@ describe('google.auth', async () => {
     it('uses the last configured client settings', async () => {
       let authClient = await google.auth.getClient();
       authClient = await google.auth.getClient({
-        scopes: [
-          'https://www.googleapis.com/auth/cloud-platform'
-        ],
+        scopes: ['https://www.googleapis.com/auth/cloud-platform'],
       });
       const projectId = await google.auth.getProjectId();
       const result = await compute.instances.aggregatedList({
@@ -64,9 +59,7 @@ describe('google.auth', async () => {
   describe('new google.auth.GoogleAuth', async () => {
     it('allows client to be configured using historical API', async () => {
       const auth = new google.auth.GoogleAuth({
-        scopes: [
-          'https://www.googleapis.com/auth/cloud-platform'
-        ],
+        scopes: ['https://www.googleapis.com/auth/cloud-platform'],
       });
       const authClient = await auth.getClient();
       const projectId = await google.auth.getProjectId();
