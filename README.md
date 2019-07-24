@@ -243,13 +243,13 @@ async function main () {
     // Scopes can be specified either as an array or as a single, space-delimited string.
     scopes: ['https://www.googleapis.com/auth/compute']
   });
-  const client = await auth.getClient();
+  const authClient = await auth.getClient();
 
   // obtain the current project Id
   const project = await auth.getProjectId();
 
   // Fetch the list of GCE zones within a project.
-  const res = await compute.zones.list({ project, auth: client });
+  const res = await compute.zones.list({ project, auth: authClient });
   console.log(res.data);
 }
 
@@ -444,7 +444,7 @@ async function main() {
   const auth = new google.auth.GoogleAuth({
     scopes: ['https://www.googleapis.com/auth/cloud-platform']
   });
-  const client = await auth.getClient();
+  const authClient = await auth.getClient();
 
   const projectId = await auth.getProjectId();
 
@@ -453,7 +453,7 @@ async function main() {
     datasetId: '<YOUR_DATASET_ID>',
 
     // This is a "request-level" option
-    auth: client
+    auth: authClient
   };
 
   const res = await bigquery.datasets.delete(request);
