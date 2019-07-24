@@ -30,7 +30,6 @@ async function listVMs() {
       'https://www.googleapis.com/auth/compute.readonly',
     ],
   });
-
   // [END auth]
 
   // [START list]
