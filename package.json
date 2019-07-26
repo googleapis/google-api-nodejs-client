@@ -69,7 +69,7 @@
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-node": "^9.0.1",
     "eslint-plugin-prettier": "^3.1.0",
-    "execa": "^1.0.0",
+    "execa": "^2.0.0",
     "gts": "^1.0.0",
     "hard-rejection": "^2.1.0",
     "intelli-espower-loader": "^1.0.1",
