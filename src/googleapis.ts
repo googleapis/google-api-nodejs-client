@@ -11,24 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {Compute, GoogleAuth, JWT, OAuth2Client} from 'google-auth-library';
+import * as apis from './apis';
+
 import {
+  AuthPlus,
   APIEndpoint,
   Discovery,
   Endpoint,
   GlobalOptions,
 } from 'googleapis-common';
 
-import * as apis from './apis';
-
-export class AuthPlus extends GoogleAuth {
-  // tslint:disable-next-line: variable-name
-  JWT = JWT;
-  // tslint:disable-next-line: variable-name
-  Compute = Compute;
-  // tslint:disable-next-line: variable-name
-  OAuth2 = OAuth2Client;
-}
+export {AuthPlus};
 
 export class GoogleApis extends apis.GeneratedAPIs {
   private _discovery = new Discovery({debug: false, includePrivate: false});

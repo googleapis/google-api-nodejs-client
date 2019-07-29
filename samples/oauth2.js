@@ -65,7 +65,7 @@ async function authenticate(scopes) {
             res.end('Authentication successful! Please return to the console.');
             server.destroy();
             const {tokens} = await oauth2Client.getToken(qs.get('code'));
-            oauth2Client.credentials = tokens;
+            oauth2Client.credentials = tokens; // eslint-disable-line require-atomic-updates
             resolve(oauth2Client);
           }
         } catch (e) {

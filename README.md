@@ -239,16 +239,17 @@ const compute = google.compute('v1');
 async function main () {
   // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
   // environment variables.
-  const auth = await google.auth.getClient({
+  const auth = new google.auth.GoogleAuth({
     // Scopes can be specified either as an array or as a single, space-delimited string.
     scopes: ['https://www.googleapis.com/auth/compute']
   });
+  const authClient = await auth.getClient();
 
   // obtain the current project Id
-  const project = await google.auth.getProjectId();
+  const project = await auth.getProjectId();
 
   // Fetch the list of GCE zones within a project.
-  const res = await compute.zones.list({ project, auth });
+  const res = await compute.zones.list({ project, auth: authClient });
   console.log(res.data);
 }
 
@@ -440,18 +441,19 @@ async function main() {
 
   // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
   // environment variables.
-  const client = await google.auth.getClient({
+  const auth = new google.auth.GoogleAuth({
     scopes: ['https://www.googleapis.com/auth/cloud-platform']
   });
+  const authClient = await auth.getClient();
 
-  const projectId = await google.auth.getProjectId();
+  const projectId = await auth.getProjectId();
 
   const request = {
     projectId,
     datasetId: '<YOUR_DATASET_ID>',
 
     // This is a "request-level" option
-    auth: client
+    auth: authClient
   };
 
   const res = await bigquery.datasets.delete(request);
