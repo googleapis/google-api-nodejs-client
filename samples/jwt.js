@@ -27,10 +27,11 @@ const path = require('path');
  */
 async function runSample() {
   // Create a new JWT client using the key file downloaded from the Google Developer Console
-  const client = await google.auth.getClient({
+  const auth = new google.auth.GoogleAuth({
     keyFile: path.join(__dirname, 'jwt.keys.json'),
     scopes: 'https://www.googleapis.com/auth/drive.readonly',
   });
+  const client = await auth.getClient();
 
   // Obtain a new drive client, making sure you pass along the auth client
   const drive = google.drive({
