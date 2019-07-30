@@ -12,11 +12,11 @@
 // limitations under the License.
 
 import {assert} from 'chai';
-import {shellSync} from 'execa';
+import * as execa from 'execa';
 
 describe('Compute samples', () => {
   it('should list all the VMs', async () => {
-    const res = shellSync('node ../samples/compute/listVMs');
+    const res = execa.sync('node ../samples/compute/listVMs', {shell: true});
     assert.match(res.stdout, /VMs:/);
   });
 });
