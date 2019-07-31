@@ -45,7 +45,7 @@
     "node": ">=8.10.0"
   },
   "devDependencies": {
-    "@compodoc/compodoc": "^1.1.9",
+    "@compodoc/compodoc": "^1.1.10",
     "@types/chai": "^4.1.7",
     "@types/execa": "^0.9.0",
     "@types/minimist": "^1.2.0",
@@ -69,8 +69,8 @@
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-node": "^9.0.1",
     "eslint-plugin-prettier": "^3.1.0",
-    "execa": "^1.0.0",
-    "gts": "^1.0.0",
+    "execa": "^2.0.3",
+    "gts": "^1.1.0",
     "hard-rejection": "^2.1.0",
     "intelli-espower-loader": "^1.0.1",
     "js-green-licenses": "^1.0.0",
