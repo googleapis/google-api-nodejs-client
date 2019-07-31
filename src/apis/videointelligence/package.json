@@ -29,7 +29,7 @@
     "webpack": "webpack"
   },
   "dependencies": {
-    "googleapis-common": "^2.0.4"
+    "googleapis-common": "^3.0.0"
   },
   "devDependencies": {
     "gts": "^1.0.0",
