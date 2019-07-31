@@ -4,6 +4,23 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [42.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v41.0.1...v42.0.0) (2019-07-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **auth:** pulling in updated idempotent google-auth-library (#1769)
+
+### Bug Fixes
+
+* **deps:** pull in version of gts that does not OOM error ([#1780](https://www.github.com/googleapis/google-api-nodejs-client/issues/1780)) ([c09e6f4](https://www.github.com/googleapis/google-api-nodejs-client/commit/c09e6f4))
+* **deps:** update dependency googleapis-common to v3 ([#1774](https://www.github.com/googleapis/google-api-nodejs-client/issues/1774)) ([9607c02](https://www.github.com/googleapis/google-api-nodejs-client/commit/9607c02))
+
+
+### Code Refactoring
+
+* **auth:** pulling in updated idempotent google-auth-library ([#1769](https://www.github.com/googleapis/google-api-nodejs-client/issues/1769)) ([168ad6b](https://www.github.com/googleapis/google-api-nodejs-client/commit/168ad6b))
+
 ### [41.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/v41.0.0...v41.0.1) (2019-07-16)
 
 
