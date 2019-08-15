@@ -85,7 +85,7 @@
     "open": "^6.3.0",
     "p-queue": "^6.0.0",
     "prettier": "^1.17.1",
-    "rimraf": "^2.6.3",
+    "rimraf": "^3.0.0",
     "server-destroy": "^1.0.1",
     "source-map-support": "^0.5.12",
     "tmp": "^0.1.0",
