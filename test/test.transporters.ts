@@ -18,13 +18,23 @@ import {GoogleApis} from '../src';
 import {Utils} from './utils';
 
 async function testHeaders(drive: APIEndpoint) {
-  nock(Utils.baseUrl)
+  const req = nock(Utils.baseUrl)
     .post('/drive/v2/files/a/comments')
-    .reply(200);
+    .reply(200, function() {
+      // ensure that the x-goog-api-client header is populated by
+      // googleapis-common:
+      const headers = this.req.headers['x-goog-api-client'];
+      assert.ok(
+        /gdcl\/[0-9]+\.[\w-.]+ gl-node\/[0-9]+\.[\w-.]+ auth\/[0-9]+\.[\w-.]+/.test(
+          headers
+        )
+      );
+    });
   const res = await drive.comments.insert({
     fileId: 'a',
     headers: {'If-None-Match': '12345'},
   });
+  req.done();
   assert.strictEqual(res.config.headers['If-None-Match'], '12345');
 }
 
