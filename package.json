@@ -1,8 +1,8 @@
 {
   "license": "Apache-2.0",
   "dependencies": {
-    "google-auth-library": "^5.1.0",
-    "googleapis-common": "^3.0.0"
+    "google-auth-library": "^5.2.0",
+    "googleapis-common": "^3.1.0"
   },
   "files": [
     "build/src",

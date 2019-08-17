@@ -1,15 +1,18 @@
-// Copyright 2013-2016, Google, Inc.
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//    http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/**
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 import * as assert from 'assert';
 import {APIEndpoint} from 'googleapis-common';
@@ -18,13 +21,23 @@ import {GoogleApis} from '../src';
 import {Utils} from './utils';
 
 async function testHeaders(drive: APIEndpoint) {
-  nock(Utils.baseUrl)
+  const req = nock(Utils.baseUrl)
     .post('/drive/v2/files/a/comments')
-    .reply(200);
+    .reply(200, function() {
+      // ensure that the x-goog-api-client header is populated by
+      // googleapis-common:
+      const headers = this.req.headers['x-goog-api-client'];
+      assert.ok(
+        /gdcl\/[0-9]+\.[\w-.]+ gl-node\/[0-9]+\.[\w-.]+ auth\/[0-9]+\.[\w-.]+/.test(
+          headers
+        )
+      );
+    });
   const res = await drive.comments.insert({
     fileId: 'a',
     headers: {'If-None-Match': '12345'},
   });
+  req.done();
   assert.strictEqual(res.config.headers['If-None-Match'], '12345');
 }
 
