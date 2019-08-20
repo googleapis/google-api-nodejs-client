@@ -33,18 +33,31 @@ async function runSample() {
     {fileId, mimeType: 'application/pdf'},
     {responseType: 'stream'}
   );
-  await new Promise((resolve, reject) => {
-    res.data
-      .on('end', () => {
-        console.log(`Done downloading document: ${destPath}.`);
-        resolve();
+  await Promise.all([
+      new Promise((resolve, reject) => {
+        res.data
+          .on('end', () => {
+            resolve();
+          })
+          .on('error', err => {
+            console.error('Error downloading document.');
+            reject(err);
+          })
+          .pipe(dest);
+      }),
+      new Promise((resolve, reject) => {
+        dest
+          .on('finish', () => {
+            console.log(`Done downloading document: ${destPath}.`);
+            resolve();
+          })
+          .on('error', err => {
+            console.error('Error saving document.');
+            reject(err);
+          })
       })
-      .on('error', err => {
-        console.error('Error downloading document.');
-        reject(err);
-      })
-      .pipe(dest);
-  });
+    ])
+  }
   // [END main_body]
 }
 
