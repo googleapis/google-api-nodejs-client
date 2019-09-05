@@ -1,4 +1,4 @@
-// Copyright 2014-2016, Google, Inc.
+// Copyright 2016 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -140,7 +140,8 @@ describe('Query params', () => {
   });
 
   it('should be set if params passed are falsy', async () => {
-    nock(Utils.baseUrl)
+    const computeRemoteUrl = 'https://compute.googleapis.com';
+    const r1 = nock(Utils.baseUrl)
       .post(
         '/compute/v1/projects//zones//instances//setDiskAutoDelete?autoDelete=false&deviceName='
       )
@@ -153,7 +154,7 @@ describe('Query params', () => {
       deviceName: '',
     });
     assert.strictEqual(Utils.getQs(res), 'autoDelete=false&deviceName=');
-    nock(Utils.baseUrl)
+    const r2 = nock(computeRemoteUrl)
       .post(
         '/compute/v1/projects//zones//instances//setDiskAutoDelete?autoDelete=false&deviceName='
       )
@@ -167,7 +168,7 @@ describe('Query params', () => {
     });
     assert.strictEqual(Utils.getQs(res2), 'autoDelete=false&deviceName=');
 
-    nock(Utils.baseUrl)
+    const r3 = nock(Utils.baseUrl)
       .post('/compute/v1/projects//zones//instanceGroupManagers//resize?size=0')
       .reply(200);
     const res3 = await localCompute.instanceGroupManagers.resize({
@@ -178,7 +179,7 @@ describe('Query params', () => {
     });
     assert.strictEqual(Utils.getQs(res3), 'size=0');
 
-    nock(Utils.baseUrl)
+    const r4 = nock(computeRemoteUrl)
       .post('/compute/v1/projects//zones//instanceGroupManagers//resize?size=0')
       .reply(200);
     const res4 = await remoteCompute.instanceGroupManagers.resize({
@@ -187,6 +188,10 @@ describe('Query params', () => {
       instanceGroupManager: '',
       size: 0,
     });
+    r1.done();
+    r2.done();
+    r3.done();
+    r4.done();
     assert.strictEqual(Utils.getQs(res4), 'size=0');
   });
 
