@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+### [42.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/v42.0.0...v42.0.1) (2019-09-06)
+
+
+### Bug Fixes
+
+* **deps:** fix nock version ([#1812](https://www.github.com/googleapis/google-api-nodejs-client/issues/1812)) ([a9a7329](https://www.github.com/googleapis/google-api-nodejs-client/commit/a9a7329))
+
 ## [42.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v41.0.1...v42.0.0) (2019-07-31)
 
 
