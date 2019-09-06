@@ -204,7 +204,7 @@ export namespace iam_v1 {
      */
     action?: string;
     /**
-     * Unimplemented. The condition that is associated with this binding. This field is logged only for Cloud Audit Logging.
+     * The condition that is associated with this binding. This field is logged only for Cloud Audit Logging.
      */
     condition?: Schema$Expr;
     /**
@@ -422,6 +422,10 @@ export namespace iam_v1 {
      */
     onlyInPredefinedRoles?: boolean;
     /**
+     * The preferred name for this permission. If present, then this permission is an alias of, and equivalent to, the listed primary_permission.
+     */
+    primaryPermission?: string;
+    /**
      * The current launch stage of the permission.
      */
     stage?: string;
@@ -573,7 +577,7 @@ export namespace iam_v1 {
      */
     includedPermissions?: string[];
     /**
-     * The name of the role.  When Role is used in CreateRole, the role name must not be set.  When Role is used in output and other input such as UpdateRole, the role name is the complete path, e.g., roles/logging.viewer for curated roles and organizations/{ORGANIZATION_ID}/roles/logging.viewer for custom roles.
+     * The name of the role.  When Role is used in CreateRole, the role name must not be set.  When Role is used in output and other input such as UpdateRole, the role name is the complete path, e.g., roles/logging.viewer for predefined roles and organizations/{ORGANIZATION_ID}/roles/logging.viewer for custom roles.
      */
     name?: string;
     /**
@@ -756,6 +760,15 @@ export namespace iam_v1 {
      * Metadata for the restored service account.
      */
     restoredAccount?: Schema$ServiceAccount;
+  }
+  /**
+   * The service account key upload request.
+   */
+  export interface Schema$UploadServiceAccountKeyRequest {
+    /**
+     * A field that allows clients to upload their own public key. If set, use this public key data to create a service account key for given service account. Please note, the expected format for this field is X509_PEM.
+     */
+    publicKeyData?: string;
   }
 
   export class Resource$Iampolicies {
@@ -3397,7 +3410,7 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}'. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account.
+     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      * @param {().EnableServiceAccountRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3635,7 +3648,7 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4548,7 +4561,7 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}'. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account.
+     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account.
      * @param {().UndeleteServiceAccountRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4809,7 +4822,7 @@ export namespace iam_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}'. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account.
+     * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
 
@@ -4838,7 +4851,7 @@ export namespace iam_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -4959,7 +4972,7 @@ export namespace iam_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}'. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account.
+     * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account.
      */
     name?: string;
 
@@ -5486,6 +5499,81 @@ export namespace iam_v1 {
         );
       }
     }
+
+    /**
+     * iam.projects.serviceAccounts.keys.upload
+     * @desc Upload public key for a given service account. This rpc will create a ServiceAccountKey that has the provided public key and returns it.
+     * @alias iam.projects.serviceAccounts.keys.upload
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * @param {().UploadServiceAccountKeyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    upload(
+      params?: Params$Resource$Projects$Serviceaccounts$Keys$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceAccountKey>;
+    upload(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Upload,
+      options: MethodOptions | BodyResponseCallback<Schema$ServiceAccountKey>,
+      callback: BodyResponseCallback<Schema$ServiceAccountKey>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Upload,
+      callback: BodyResponseCallback<Schema$ServiceAccountKey>
+    ): void;
+    upload(callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Keys$Upload
+        | BodyResponseCallback<Schema$ServiceAccountKey>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceAccountKey>,
+      callback?: BodyResponseCallback<Schema$ServiceAccountKey>
+    ): void | GaxiosPromise<Schema$ServiceAccountKey> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Keys$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Keys$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/keys:upload').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ServiceAccountKey>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Serviceaccounts$Keys$Create
@@ -5548,6 +5636,23 @@ export namespace iam_v1 {
      * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Using `-` as a wildcard for the `PROJECT_ID`, will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Upload
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadServiceAccountKeyRequest;
   }
 
   export class Resource$Roles {

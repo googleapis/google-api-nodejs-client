@@ -1522,9 +1522,6 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed string games#profileSettings.
      */
     kind?: string;
-    /**
-     * The player&#39;s current profile visibility. This field is visible to both 1P and 3P APIs.
-     */
     profileVisible?: boolean;
   }
   /**

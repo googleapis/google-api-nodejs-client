@@ -106,6 +106,7 @@ export namespace dlp_v2 {
   export class Dlp {
     context: APIRequestContext;
     infoTypes: Resource$Infotypes;
+    locations: Resource$Locations;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
 
@@ -116,6 +117,7 @@ export namespace dlp_v2 {
       };
 
       this.infoTypes = new Resource$Infotypes(this.context);
+      this.locations = new Resource$Locations(this.context);
       this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
@@ -610,7 +612,7 @@ export namespace dlp_v2 {
      */
     cryptoKey?: Schema$GooglePrivacyDlpV2CryptoKey;
     /**
-     * The custom info type to annotate the surrogate with. This annotation will be applied to the surrogate by prefixing it with the name of the custom info type followed by the number of characters comprising the surrogate. The following scheme defines the format: &lt;info type name&gt;(&lt;surrogate character count&gt;):&lt;surrogate&gt;  For example, if the name of custom info type is &#39;MY_TOKEN_INFO_TYPE&#39; and the surrogate is &#39;abc&#39;, the full replacement value will be: &#39;MY_TOKEN_INFO_TYPE(3):abc&#39;  This annotation identifies the surrogate when inspecting content using the custom info type &#39;Surrogate&#39;. This facilitates reversal of the surrogate when it occurs in free text.  In order for inspection to work properly, the name of this info type must not occur naturally anywhere in your data; otherwise, inspection may either  - reverse a surrogate that does not correspond to an actual identifier - be unable to parse the surrogate and result in an error  Therefore, choose your custom info type name carefully after considering what your data looks like. One way to select a name that has a high chance of yielding reliable detection is to include one or more unicode characters that are highly improbable to exist in your data. For example, assuming your data is entered from a regular ASCII keyboard, the symbol with the hex code point 29DD might be used like so: ⧝MY_TOKEN_TYPE
+     * The custom info type to annotate the surrogate with. This annotation will be applied to the surrogate by prefixing it with the name of the custom info type followed by the number of characters comprising the surrogate. The following scheme defines the format: &lt;info type name&gt;(&lt;surrogate character count&gt;):&lt;surrogate&gt;  For example, if the name of custom info type is &#39;MY_TOKEN_INFO_TYPE&#39; and the surrogate is &#39;abc&#39;, the full replacement value will be: &#39;MY_TOKEN_INFO_TYPE(3):abc&#39;  This annotation identifies the surrogate when inspecting content using the custom info type &#39;Surrogate&#39;. This facilitates reversal of the surrogate when it occurs in free text.  Note: For record transformations where the entire cell in a table is being transformed, surrogates are optional to use. Surrogates are used to denote the location of the token and are necessary for re-identification in free form text.  In order for inspection to work properly, the name of this info type must not occur naturally anywhere in your data; otherwise, inspection may either  - reverse a surrogate that does not correspond to an actual identifier - be unable to parse the surrogate and result in an error  Therefore, choose your custom info type name carefully after considering what your data looks like. One way to select a name that has a high chance of yielding reliable detection is to include one or more unicode characters that are highly improbable to exist in your data. For example, assuming your data is entered from a regular ASCII keyboard, the symbol with the hex code point 29DD might be used like so: ⧝MY_TOKEN_TYPE.
      */
     surrogateInfoType?: Schema$GooglePrivacyDlpV2InfoType;
   }
@@ -1306,6 +1308,10 @@ export namespace dlp_v2 {
      * The item to inspect.
      */
     item?: Schema$GooglePrivacyDlpV2ContentItem;
+    /**
+     * The geographic location to process content inspection. Reserved for future extensions.
+     */
+    location?: string;
   }
   /**
    * Results of inspecting an item.
@@ -1445,7 +1451,7 @@ export namespace dlp_v2 {
      */
     lastRunTime?: string;
     /**
-     * Unique resource name for the triggeredJob, assigned by the service when the triggeredJob is created, for example `projects/dlp-test-project/triggeredJobs/53234423`.
+     * Unique resource name for the triggeredJob, assigned by the service when the triggeredJob is created, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
     name?: string;
     /**
@@ -1746,6 +1752,19 @@ export namespace dlp_v2 {
      * The standard List next-page token.
      */
     nextPageToken?: string;
+  }
+  /**
+   * Request for the list of infoTypes.
+   */
+  export interface Schema$GooglePrivacyDlpV2ListInfoTypesRequest {
+    /**
+     * Optional filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
+     */
+    filter?: string;
+    /**
+     * Optional BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
+     */
+    languageCode?: string;
   }
   /**
    * Response to the ListInfoTypes request.
@@ -2125,6 +2144,10 @@ export namespace dlp_v2 {
      * The item to re-identify. Will be treated as text.
      */
     item?: Schema$GooglePrivacyDlpV2ContentItem;
+    /**
+     * The geographic location to process content reidentification.  Reserved for future extensions.
+     */
+    location?: string;
     /**
      * Configuration for the re-identification of the content item. This field shares the same proto message type that is used for de-identification, however its usage here is for the reversal of the previous de-identification. Re-identification is performed by examining the transformations used to de-identify the items and executing the reverse. This requires that only reversible transformations be provided here. The reversible transformations are:   - `CryptoReplaceFfxFpeConfig`
      */
@@ -2649,6 +2672,7 @@ export namespace dlp_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
      * @param {string=} params.languageCode Optional BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
+     * @param {string=} params.location The geographic location to list info types. Reserved for future extensions.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2743,6 +2767,127 @@ export namespace dlp_v2 {
      * Optional BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
      */
     languageCode?: string;
+    /**
+     * The geographic location to list info types. Reserved for future extensions.
+     */
+    location?: string;
+  }
+
+  export class Resource$Locations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dlp.locations.infoTypes
+     * @desc Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/dlp/docs/infotypes-reference to learn more.
+     * @alias dlp.locations.infoTypes
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.location The geographic location to list info types. Reserved for future extensions.
+     * @param {().GooglePrivacyDlpV2ListInfoTypesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    infoTypes(
+      params?: Params$Resource$Locations$Infotypes,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
+    infoTypes(
+      params: Params$Resource$Locations$Infotypes,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
+      >
+    ): void;
+    infoTypes(
+      params: Params$Resource$Locations$Infotypes,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
+      >
+    ): void;
+    infoTypes(
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
+      >
+    ): void;
+    infoTypes(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Infotypes
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
+      >
+    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Infotypes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Infotypes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/locations/{location}/infoTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Locations$Infotypes
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The geographic location to list info types. Reserved for future extensions.
+     */
+    location?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2ListInfoTypesRequest;
   }
 
   export class Resource$Organizations {
@@ -7057,6 +7202,198 @@ export namespace dlp_v2 {
         >(parameters);
       }
     }
+
+    /**
+     * dlp.projects.locations.content.inspect
+     * @desc Finds potentially sensitive info in content. This method has limits on input size, processing time, and output size.  When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.  For how to guides, see https://cloud.google.com/dlp/docs/inspecting-images and https://cloud.google.com/dlp/docs/inspecting-text,
+     * @alias dlp.projects.locations.content.inspect
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.location The geographic location to process content inspection. Reserved for future extensions.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {().GooglePrivacyDlpV2InspectContentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    inspect(
+      params?: Params$Resource$Projects$Locations$Content$Inspect,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse>;
+    inspect(
+      params: Params$Resource$Projects$Locations$Content$Inspect,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2InspectContentResponse
+      >
+    ): void;
+    inspect(
+      params: Params$Resource$Projects$Locations$Content$Inspect,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2InspectContentResponse
+      >
+    ): void;
+    inspect(
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2InspectContentResponse
+      >
+    ): void;
+    inspect(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Content$Inspect
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2InspectContentResponse
+      >
+    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Content$Inspect;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Content$Inspect;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+parent}/locations/{location}/content:inspect'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent', 'location'],
+        pathParams: ['location', 'parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2InspectContentResponse
+        >(parameters);
+      }
+    }
+
+    /**
+     * dlp.projects.locations.content.reidentify
+     * @desc Re-identifies content that has been de-identified. See https://cloud.google.com/dlp/docs/pseudonymization#re-identification_in_free_text_code_example to learn more.
+     * @alias dlp.projects.locations.content.reidentify
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.location The geographic location to process content reidentification.  Reserved for future extensions.
+     * @param {string} params.parent The parent resource name.
+     * @param {().GooglePrivacyDlpV2ReidentifyContentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    reidentify(
+      params?: Params$Resource$Projects$Locations$Content$Reidentify,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>;
+    reidentify(
+      params: Params$Resource$Projects$Locations$Content$Reidentify,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+      >
+    ): void;
+    reidentify(
+      params: Params$Resource$Projects$Locations$Content$Reidentify,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+      >
+    ): void;
+    reidentify(
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+      >
+    ): void;
+    reidentify(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Content$Reidentify
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Content$Reidentify;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Content$Reidentify;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+parent}/locations/{location}/content:reidentify'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent', 'location'],
+        pathParams: ['location', 'parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+        >(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Content$Deidentify
@@ -7079,6 +7416,48 @@ export namespace dlp_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GooglePrivacyDlpV2DeidentifyContentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Content$Inspect
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The geographic location to process content inspection. Reserved for future extensions.
+     */
+    location?: string;
+    /**
+     * The parent resource name, for example projects/my-project-id.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2InspectContentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Content$Reidentify
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The geographic location to process content reidentification.  Reserved for future extensions.
+     */
+    location?: string;
+    /**
+     * The parent resource name.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2ReidentifyContentRequest;
   }
 
   export class Resource$Projects$Storedinfotypes {

@@ -1,7 +1,7 @@
 {
-  "name": "@google/appstate",
+  "name": "@google/homegraph",
   "version": "0.1.0",
-  "description": "appstate",
+  "description": "homegraph",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "keywords": [

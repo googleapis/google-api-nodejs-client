@@ -442,7 +442,7 @@ export namespace cloudbuild_v1alpha1 {
    */
   export interface Schema$RepoSource {
     /**
-     * Name of the branch to build.
+     * Regex matching branches to build.  The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
      */
     branchName?: string;
     /**
@@ -462,7 +462,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     repoName?: string;
     /**
-     * Name of the tag to build.
+     * Regex matching tags to build.  The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
      */
     tagName?: string;
   }

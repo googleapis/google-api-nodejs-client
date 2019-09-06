@@ -103,6 +103,8 @@ export namespace content_v2_1 {
     products: Resource$Products;
     productstatuses: Resource$Productstatuses;
     regionalinventory: Resource$Regionalinventory;
+    returnaddress: Resource$Returnaddress;
+    returnpolicy: Resource$Returnpolicy;
     shippingsettings: Resource$Shippingsettings;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -125,6 +127,8 @@ export namespace content_v2_1 {
       this.products = new Resource$Products(this.context);
       this.productstatuses = new Resource$Productstatuses(this.context);
       this.regionalinventory = new Resource$Regionalinventory(this.context);
+      this.returnaddress = new Resource$Returnaddress(this.context);
+      this.returnpolicy = new Resource$Returnpolicy(this.context);
       this.shippingsettings = new Resource$Shippingsettings(this.context);
     }
   }
@@ -1154,7 +1158,7 @@ export namespace content_v2_1 {
      */
     excludedDestinations?: string[];
     /**
-     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in the excluded_destination field.
+     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in excludedDestinations.
      */
     includedDestinations?: string[];
     /**
@@ -1657,7 +1661,7 @@ export namespace content_v2_1 {
      */
     customer?: Schema$OrderCustomer;
     /**
-     * Delivery details for shipments.
+     * Delivery details for shipments of type delivery.
      */
     deliveryDetails?: Schema$OrderDeliveryDetails;
     /**
@@ -1784,9 +1788,27 @@ export namespace content_v2_1 {
      */
     fullName?: string;
     /**
+     * Email address for receiving merchant issued value-added tax or invoice documentation of this order.
+     */
+    invoiceReceivingEmail?: string;
+    /**
+     * Loyalty program information.
+     */
+    loyaltyInfo?: Schema$OrderCustomerLoyaltyInfo;
+    /**
      * Customer&#39;s marketing preferences. Contains the marketing opt-in information that is current at the time that the merchant call. User preference selections can change from one order to the next so preferences must be checked with every order.
      */
     marketingRightsInfo?: Schema$OrderCustomerMarketingRightsInfo;
+  }
+  export interface Schema$OrderCustomerLoyaltyInfo {
+    /**
+     * The loyalty card/membership number.
+     */
+    loyaltyNumber?: string;
+    /**
+     * Name of card/membership holder, this field will be populated when
+     */
+    name?: string;
   }
   export interface Schema$OrderCustomerMarketingRightsInfo {
     /**
@@ -1945,6 +1967,10 @@ export namespace content_v2_1 {
      * Number of items shipped.
      */
     quantityShipped?: number;
+    /**
+     * Number of items undeliverable.
+     */
+    quantityUndeliverable?: number;
     /**
      * Details of the return policy for the line item.
      */
@@ -2490,7 +2516,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment.  Acceptable values for US are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;  - &quot;efw&quot;    Acceptable values for FR are:   - &quot;colissimo&quot;  - &quot;chronopost&quot;  - &quot;gls&quot;  - &quot;dpd&quot;  - &quot;bpost&quot;
+     * The carrier handling the shipment.  Acceptable values for US are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;  - &quot;efw&quot;    Acceptable values for FR are:   - &quot;colissimo&quot;  - &quot;chronopost&quot;  - &quot;gls&quot;  - &quot;dpd&quot;  - &quot;bpost&quot;  - &quot;colis prive&quot;  - &quot;boxtal&quot;  - &quot;geodis&quot;
      */
     carrier?: string;
     /**
@@ -2509,6 +2535,10 @@ export namespace content_v2_1 {
      * The line items that are shipped.
      */
     lineItems?: Schema$OrderShipmentLineItemShipment[];
+    /**
+     * The shipment group ID of the shipment. This is set in shiplineitems request.
+     */
+    shipmentGroupId?: string;
     /**
      * The status of the shipment.
      */
@@ -3346,7 +3376,7 @@ export namespace content_v2_1 {
      */
     imageLink?: string;
     /**
-     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in the excluded_destination field.
+     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in excludedDestinations.
      */
     includedDestinations?: string[];
     /**
@@ -3965,6 +3995,254 @@ export namespace content_v2_1 {
      */
     regionalInventory?: Schema$RegionalInventory;
   }
+  /**
+   * Return address resource.
+   */
+  export interface Schema$ReturnAddress {
+    /**
+     * The address.
+     */
+    address?: Schema$ReturnAddressAddress;
+    /**
+     * The country of sale where the return address is applicable.
+     */
+    country?: string;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#returnAddress&quot;.
+     */
+    kind?: string;
+    /**
+     * The user-defined label of the return address. For the default address, use the label &quot;default&quot;.
+     */
+    label?: string;
+    /**
+     * The merchant&#39;s contact phone number regarding the return.
+     */
+    phoneNumber?: string;
+    /**
+     * Return address ID generated by Google.
+     */
+    returnAddressId?: string;
+  }
+  export interface Schema$ReturnAddressAddress {
+    /**
+     * CLDR country code (e.g. &quot;US&quot;).
+     */
+    country?: string;
+    /**
+     * City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
+     */
+    locality?: string;
+    /**
+     * Postal code or ZIP (e.g. &quot;94043&quot;).
+     */
+    postalCode?: string;
+    /**
+     * Name of the recipient to address returns to.
+     */
+    recipientName?: string;
+    /**
+     * Top-level administrative subdivision of the country. For example, a state like California (&quot;CA&quot;) or a province like Quebec (&quot;QC&quot;).
+     */
+    region?: string;
+    /**
+     * Street-level part of the address. May be up to two lines, each line specified as an array element.
+     */
+    streetAddress?: string[];
+  }
+  export interface Schema$ReturnaddressCustomBatchRequest {
+    /**
+     * The request entries to be processed in the batch.
+     */
+    entries?: Schema$ReturnaddressCustomBatchRequestEntry[];
+  }
+  export interface Schema$ReturnaddressCustomBatchRequestEntry {
+    /**
+     * An entry ID, unique within the batch request.
+     */
+    batchId?: number;
+    /**
+     * The Merchant Center account ID.
+     */
+    merchantId?: string;
+    method?: string;
+    /**
+     * The return address to submit. Set this only if the method is insert.
+     */
+    returnAddress?: Schema$ReturnAddress;
+    /**
+     * The return address ID. Set this only if the method is delete or get.
+     */
+    returnAddressId?: string;
+  }
+  export interface Schema$ReturnaddressCustomBatchResponse {
+    /**
+     * The result of the execution of the batch requests.
+     */
+    entries?: Schema$ReturnaddressCustomBatchResponseEntry[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#returnaddressCustomBatchResponse&quot;.
+     */
+    kind?: string;
+  }
+  export interface Schema$ReturnaddressCustomBatchResponseEntry {
+    /**
+     * The ID of the request entry to which this entry responds.
+     */
+    batchId?: number;
+    /**
+     * A list of errors defined if, and only if, the request failed.
+     */
+    errors?: Schema$Errors;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#returnaddressCustomBatchResponseEntry&quot;.
+     */
+    kind?: string;
+    /**
+     * The retrieved return address.
+     */
+    returnAddress?: Schema$ReturnAddress;
+  }
+  export interface Schema$ReturnaddressListResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#returnaddressListResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The token for the retrieval of the next page of addresses.
+     */
+    nextPageToken?: string;
+    resources?: Schema$ReturnAddress[];
+  }
+  /**
+   * Return policy resource.
+   */
+  export interface Schema$ReturnPolicy {
+    /**
+     * The country of sale where the return policy is applicable.
+     */
+    country?: string;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#returnPolicy&quot;.
+     */
+    kind?: string;
+    /**
+     * The user-defined label of the return policy. For the default policy, use the label &quot;default&quot;.
+     */
+    label?: string;
+    /**
+     * The name of the policy as shown in Merchant Center.
+     */
+    name?: string;
+    /**
+     * Return reasons that will incur return fees.
+     */
+    nonFreeReturnReasons?: string[];
+    /**
+     * The policy.
+     */
+    policy?: Schema$ReturnPolicyPolicy;
+    /**
+     * Return policy ID generated by Google.
+     */
+    returnPolicyId?: string;
+    /**
+     * An optional list of seasonal overrides.
+     */
+    seasonalOverrides?: Schema$ReturnPolicySeasonalOverride[];
+  }
+  export interface Schema$ReturnpolicyCustomBatchRequest {
+    /**
+     * The request entries to be processed in the batch.
+     */
+    entries?: Schema$ReturnpolicyCustomBatchRequestEntry[];
+  }
+  export interface Schema$ReturnpolicyCustomBatchRequestEntry {
+    /**
+     * An entry ID, unique within the batch request.
+     */
+    batchId?: number;
+    /**
+     * The Merchant Center account ID.
+     */
+    merchantId?: string;
+    method?: string;
+    /**
+     * The return policy to submit. Set this only if the method is insert.
+     */
+    returnPolicy?: Schema$ReturnPolicy;
+    /**
+     * The return policy ID. Set this only if the method is delete or get.
+     */
+    returnPolicyId?: string;
+  }
+  export interface Schema$ReturnpolicyCustomBatchResponse {
+    /**
+     * The result of the execution of the batch requests.
+     */
+    entries?: Schema$ReturnpolicyCustomBatchResponseEntry[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#returnpolicyCustomBatchResponse&quot;.
+     */
+    kind?: string;
+  }
+  export interface Schema$ReturnpolicyCustomBatchResponseEntry {
+    /**
+     * The ID of the request entry to which this entry responds.
+     */
+    batchId?: number;
+    /**
+     * A list of errors defined if, and only if, the request failed.
+     */
+    errors?: Schema$Errors;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#returnpolicyCustomBatchResponseEntry&quot;.
+     */
+    kind?: string;
+    /**
+     * The retrieved return policy.
+     */
+    returnPolicy?: Schema$ReturnPolicy;
+  }
+  export interface Schema$ReturnpolicyListResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#returnpolicyListResponse&quot;.
+     */
+    kind?: string;
+    resources?: Schema$ReturnPolicy[];
+  }
+  export interface Schema$ReturnPolicyPolicy {
+    /**
+     * Last day for returning the items. In ISO 8601 format. When specifying the return window like this, set the policy type to &quot;lastReturnDate&quot;. Use this for seasonal overrides only.
+     */
+    lastReturnDate?: string;
+    /**
+     * The number of days items can be returned after delivery, where one day is defined to be 24 hours after the delivery timestamp. When specifying the return window like this, set the policy type to &quot;numberOfDaysAfterDelivery&quot;. Acceptable values are 30, 45, 60, 90, 100, 180, 270 and 365 for the default policy. Additional policies further allow 14, 15, 21 and 28 days, but note that for most items a minimum of 30 days is required for returns. Exceptions may be made for electronics. A policy of less than 30 days can only be applied to those items.
+     */
+    numberOfDays?: string;
+    /**
+     * Policy type. Use &quot;lastReturnDate&quot; for seasonal overrides only. Note that for most items a minimum of 30 days is required for returns. Exceptions may be made for electronics or non-returnable items such as food, perishables, and living things. A policy of less than 30 days can only be applied to those items.
+     */
+    type?: string;
+  }
+  export interface Schema$ReturnPolicySeasonalOverride {
+    /**
+     * Last day on which the override applies. In ISO 8601 format.
+     */
+    endDate?: string;
+    /**
+     * The name of the seasonal override as shown in Merchant Center.
+     */
+    name?: string;
+    /**
+     * The policy which is in effect during that time.
+     */
+    policy?: Schema$ReturnPolicyPolicy;
+    /**
+     * First day on which the override applies. In ISO 8601 format.
+     */
+    startDate?: string;
+  }
   export interface Schema$ReturnShipment {
     creationDate?: string;
     deliveryDate?: string;
@@ -4209,7 +4487,7 @@ export namespace content_v2_1 {
      */
     promotions?: Schema$OrderPromotion[];
     /**
-     * The price of shipping for all items. Shipping tax is automatically calculated for MFL orders. For non-MFL orders, tax settings from Merchant Center are applied. Note that shipping is not taxed in certain states.
+     * The price of shipping for all items. Shipping tax is automatically calculated for orders where marketplace facilitator tax laws are applicable. Otherwise, tax settings from Merchant Center are applied. Note that shipping is not taxed in certain states.
      */
     shippingCost?: Schema$Price;
     /**
@@ -4273,7 +4551,7 @@ export namespace content_v2_1 {
      */
     offerId?: string;
     /**
-     * The price for the product. Tax is automatically calculated for MFL orders. For non-MFL orders, tax settings from Merchant Center are applied.
+     * The price for the product. Tax is automatically calculated for orders where marketplace facilitator tax laws are applicable. Otherwise, tax settings from Merchant Center are applied.
      */
     price?: Schema$Price;
     /**
@@ -9504,7 +9782,7 @@ export namespace content_v2_1 {
 
     /**
      * content.orders.instorerefundlineitem
-     * @desc Notifies that item return and refund was handled directly by merchant outside of Google payments processing (e.g. cash refund done in store). Note: We recommend calling the returnrefundlineitem method to refund in-store returns. We will issue the refund directly to the customer. This helps to prevent possible differences arising between merchant and Google transaction records. We also recommend having the point of sale system communicate with Google to ensure that customers do not receive a double refund by first refunding via Google then via an in-store return.
+     * @desc Deprecated. Notifies that item return and refund was handled directly by merchant outside of Google payments processing (e.g. cash refund done in store). Note: We recommend calling the returnrefundlineitem method to refund in-store returns. We will issue the refund directly to the customer. This helps to prevent possible differences arising between merchant and Google transaction records. We also recommend having the point of sale system communicate with Google to ensure that customers do not receive a double refund by first refunding via Google then via an in-store return.
      * @alias content.orders.instorerefundlineitem
      * @memberOf! ()
      *
@@ -12310,6 +12588,950 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$RegionalInventory;
+  }
+
+  export class Resource$Returnaddress {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * content.returnaddress.custombatch
+     * @desc Batches multiple return address related calls in a single request.
+     * @alias content.returnaddress.custombatch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().ReturnaddressCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    custombatch(
+      params?: Params$Resource$Returnaddress$Custombatch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReturnaddressCustomBatchResponse>;
+    custombatch(
+      params: Params$Resource$Returnaddress$Custombatch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReturnaddressCustomBatchResponse>,
+      callback: BodyResponseCallback<Schema$ReturnaddressCustomBatchResponse>
+    ): void;
+    custombatch(
+      params: Params$Resource$Returnaddress$Custombatch,
+      callback: BodyResponseCallback<Schema$ReturnaddressCustomBatchResponse>
+    ): void;
+    custombatch(
+      callback: BodyResponseCallback<Schema$ReturnaddressCustomBatchResponse>
+    ): void;
+    custombatch(
+      paramsOrCallback?:
+        | Params$Resource$Returnaddress$Custombatch
+        | BodyResponseCallback<Schema$ReturnaddressCustomBatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReturnaddressCustomBatchResponse>,
+      callback?: BodyResponseCallback<Schema$ReturnaddressCustomBatchResponse>
+    ): void | GaxiosPromise<Schema$ReturnaddressCustomBatchResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Returnaddress$Custombatch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnaddress$Custombatch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/returnaddress/batch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReturnaddressCustomBatchResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ReturnaddressCustomBatchResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * content.returnaddress.delete
+     * @desc Deletes a return address for the given Merchant Center account.
+     * @alias content.returnaddress.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The Merchant Center account from which to delete the given return address.
+     * @param {string} params.returnAddressId Return address ID generated by Google.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Returnaddress$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Returnaddress$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Returnaddress$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Returnaddress$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Returnaddress$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnaddress$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/returnaddress/{returnAddressId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'returnAddressId'],
+        pathParams: ['merchantId', 'returnAddressId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * content.returnaddress.get
+     * @desc Gets a return address of the Merchant Center account.
+     * @alias content.returnaddress.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The Merchant Center account to get a return address for.
+     * @param {string} params.returnAddressId Return address ID generated by Google.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Returnaddress$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReturnAddress>;
+    get(
+      params: Params$Resource$Returnaddress$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ReturnAddress>,
+      callback: BodyResponseCallback<Schema$ReturnAddress>
+    ): void;
+    get(
+      params: Params$Resource$Returnaddress$Get,
+      callback: BodyResponseCallback<Schema$ReturnAddress>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ReturnAddress>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Returnaddress$Get
+        | BodyResponseCallback<Schema$ReturnAddress>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReturnAddress>,
+      callback?: BodyResponseCallback<Schema$ReturnAddress>
+    ): void | GaxiosPromise<Schema$ReturnAddress> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Returnaddress$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnaddress$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/returnaddress/{returnAddressId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'returnAddressId'],
+        pathParams: ['merchantId', 'returnAddressId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReturnAddress>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ReturnAddress>(parameters);
+      }
+    }
+
+    /**
+     * content.returnaddress.insert
+     * @desc Inserts a return address for the Merchant Center account.
+     * @alias content.returnaddress.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The Merchant Center account to insert a return address for.
+     * @param {().ReturnAddress} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params?: Params$Resource$Returnaddress$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReturnAddress>;
+    insert(
+      params: Params$Resource$Returnaddress$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ReturnAddress>,
+      callback: BodyResponseCallback<Schema$ReturnAddress>
+    ): void;
+    insert(
+      params: Params$Resource$Returnaddress$Insert,
+      callback: BodyResponseCallback<Schema$ReturnAddress>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$ReturnAddress>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Returnaddress$Insert
+        | BodyResponseCallback<Schema$ReturnAddress>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReturnAddress>,
+      callback?: BodyResponseCallback<Schema$ReturnAddress>
+    ): void | GaxiosPromise<Schema$ReturnAddress> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Returnaddress$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnaddress$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/returnaddress').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReturnAddress>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ReturnAddress>(parameters);
+      }
+    }
+
+    /**
+     * content.returnaddress.list
+     * @desc Lists the return addresses of the Merchant Center account.
+     * @alias content.returnaddress.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.country List only return addresses applicable to the given country of sale. When omitted, all return addresses are listed.
+     * @param {integer=} params.maxResults The maximum number of addresses in the response, used for paging.
+     * @param {string} params.merchantId The Merchant Center account to list return addresses for.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Returnaddress$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReturnaddressListResponse>;
+    list(
+      params: Params$Resource$Returnaddress$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReturnaddressListResponse>,
+      callback: BodyResponseCallback<Schema$ReturnaddressListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Returnaddress$List,
+      callback: BodyResponseCallback<Schema$ReturnaddressListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ReturnaddressListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Returnaddress$List
+        | BodyResponseCallback<Schema$ReturnaddressListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReturnaddressListResponse>,
+      callback?: BodyResponseCallback<Schema$ReturnaddressListResponse>
+    ): void | GaxiosPromise<Schema$ReturnaddressListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Returnaddress$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnaddress$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/returnaddress').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReturnaddressListResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ReturnaddressListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Returnaddress$Custombatch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReturnaddressCustomBatchRequest;
+  }
+  export interface Params$Resource$Returnaddress$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The Merchant Center account from which to delete the given return address.
+     */
+    merchantId?: string;
+    /**
+     * Return address ID generated by Google.
+     */
+    returnAddressId?: string;
+  }
+  export interface Params$Resource$Returnaddress$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The Merchant Center account to get a return address for.
+     */
+    merchantId?: string;
+    /**
+     * Return address ID generated by Google.
+     */
+    returnAddressId?: string;
+  }
+  export interface Params$Resource$Returnaddress$Insert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The Merchant Center account to insert a return address for.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReturnAddress;
+  }
+  export interface Params$Resource$Returnaddress$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * List only return addresses applicable to the given country of sale. When omitted, all return addresses are listed.
+     */
+    country?: string;
+    /**
+     * The maximum number of addresses in the response, used for paging.
+     */
+    maxResults?: number;
+    /**
+     * The Merchant Center account to list return addresses for.
+     */
+    merchantId?: string;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Returnpolicy {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * content.returnpolicy.custombatch
+     * @desc Batches multiple return policy related calls in a single request.
+     * @alias content.returnpolicy.custombatch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().ReturnpolicyCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    custombatch(
+      params?: Params$Resource$Returnpolicy$Custombatch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReturnpolicyCustomBatchResponse>;
+    custombatch(
+      params: Params$Resource$Returnpolicy$Custombatch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReturnpolicyCustomBatchResponse>,
+      callback: BodyResponseCallback<Schema$ReturnpolicyCustomBatchResponse>
+    ): void;
+    custombatch(
+      params: Params$Resource$Returnpolicy$Custombatch,
+      callback: BodyResponseCallback<Schema$ReturnpolicyCustomBatchResponse>
+    ): void;
+    custombatch(
+      callback: BodyResponseCallback<Schema$ReturnpolicyCustomBatchResponse>
+    ): void;
+    custombatch(
+      paramsOrCallback?:
+        | Params$Resource$Returnpolicy$Custombatch
+        | BodyResponseCallback<Schema$ReturnpolicyCustomBatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReturnpolicyCustomBatchResponse>,
+      callback?: BodyResponseCallback<Schema$ReturnpolicyCustomBatchResponse>
+    ): void | GaxiosPromise<Schema$ReturnpolicyCustomBatchResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Returnpolicy$Custombatch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnpolicy$Custombatch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/returnpolicy/batch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReturnpolicyCustomBatchResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ReturnpolicyCustomBatchResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * content.returnpolicy.delete
+     * @desc Deletes a return policy for the given Merchant Center account.
+     * @alias content.returnpolicy.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The Merchant Center account from which to delete the given return policy.
+     * @param {string} params.returnPolicyId Return policy ID generated by Google.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Returnpolicy$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Returnpolicy$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Returnpolicy$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Returnpolicy$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Returnpolicy$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnpolicy$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/returnpolicy/{returnPolicyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'returnPolicyId'],
+        pathParams: ['merchantId', 'returnPolicyId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * content.returnpolicy.get
+     * @desc Gets a return policy of the Merchant Center account.
+     * @alias content.returnpolicy.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The Merchant Center account to get a return policy for.
+     * @param {string} params.returnPolicyId Return policy ID generated by Google.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Returnpolicy$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReturnPolicy>;
+    get(
+      params: Params$Resource$Returnpolicy$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ReturnPolicy>,
+      callback: BodyResponseCallback<Schema$ReturnPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Returnpolicy$Get,
+      callback: BodyResponseCallback<Schema$ReturnPolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ReturnPolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Returnpolicy$Get
+        | BodyResponseCallback<Schema$ReturnPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReturnPolicy>,
+      callback?: BodyResponseCallback<Schema$ReturnPolicy>
+    ): void | GaxiosPromise<Schema$ReturnPolicy> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Returnpolicy$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnpolicy$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/returnpolicy/{returnPolicyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'returnPolicyId'],
+        pathParams: ['merchantId', 'returnPolicyId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReturnPolicy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ReturnPolicy>(parameters);
+      }
+    }
+
+    /**
+     * content.returnpolicy.insert
+     * @desc Inserts a return policy for the Merchant Center account.
+     * @alias content.returnpolicy.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The Merchant Center account to insert a return policy for.
+     * @param {().ReturnPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params?: Params$Resource$Returnpolicy$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReturnPolicy>;
+    insert(
+      params: Params$Resource$Returnpolicy$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ReturnPolicy>,
+      callback: BodyResponseCallback<Schema$ReturnPolicy>
+    ): void;
+    insert(
+      params: Params$Resource$Returnpolicy$Insert,
+      callback: BodyResponseCallback<Schema$ReturnPolicy>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$ReturnPolicy>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Returnpolicy$Insert
+        | BodyResponseCallback<Schema$ReturnPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReturnPolicy>,
+      callback?: BodyResponseCallback<Schema$ReturnPolicy>
+    ): void | GaxiosPromise<Schema$ReturnPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Returnpolicy$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnpolicy$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/returnpolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReturnPolicy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ReturnPolicy>(parameters);
+      }
+    }
+
+    /**
+     * content.returnpolicy.list
+     * @desc Lists the return policies of the Merchant Center account.
+     * @alias content.returnpolicy.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The Merchant Center account to list return policies for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Returnpolicy$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReturnpolicyListResponse>;
+    list(
+      params: Params$Resource$Returnpolicy$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReturnpolicyListResponse>,
+      callback: BodyResponseCallback<Schema$ReturnpolicyListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Returnpolicy$List,
+      callback: BodyResponseCallback<Schema$ReturnpolicyListResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ReturnpolicyListResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Returnpolicy$List
+        | BodyResponseCallback<Schema$ReturnpolicyListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReturnpolicyListResponse>,
+      callback?: BodyResponseCallback<Schema$ReturnpolicyListResponse>
+    ): void | GaxiosPromise<Schema$ReturnpolicyListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Returnpolicy$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnpolicy$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/returnpolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReturnpolicyListResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ReturnpolicyListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Returnpolicy$Custombatch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReturnpolicyCustomBatchRequest;
+  }
+  export interface Params$Resource$Returnpolicy$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The Merchant Center account from which to delete the given return policy.
+     */
+    merchantId?: string;
+    /**
+     * Return policy ID generated by Google.
+     */
+    returnPolicyId?: string;
+  }
+  export interface Params$Resource$Returnpolicy$Get extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The Merchant Center account to get a return policy for.
+     */
+    merchantId?: string;
+    /**
+     * Return policy ID generated by Google.
+     */
+    returnPolicyId?: string;
+  }
+  export interface Params$Resource$Returnpolicy$Insert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The Merchant Center account to insert a return policy for.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReturnPolicy;
+  }
+  export interface Params$Resource$Returnpolicy$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The Merchant Center account to list return policies for.
+     */
+    merchantId?: string;
   }
 
   export class Resource$Shippingsettings {

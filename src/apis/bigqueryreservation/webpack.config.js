@@ -24,8 +24,8 @@ module.exports = {
     extensions: ['.ts', '.js', '.json'],
   },
   output: {
-    library: 'Appstate',
-    filename: 'appstate.min.js',
+    library: 'Bigqueryreservation',
+    filename: 'bigqueryreservation.min.js',
     path: path.resolve(__dirname, 'dist'),
   },
   node: {

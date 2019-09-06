@@ -1134,7 +1134,7 @@ export namespace slides_v1 {
    */
   export interface Schema$PageProperties {
     /**
-     * The color scheme of the page. If unset, the color scheme is inherited from a parent page. If the page has no parent, the color scheme uses a default Slides color scheme, matching the defaults in the Slides editor.  Only the concrete colors of the first 12 ThemeColorTypes are editable. In addition, only the color scheme on Master pages can be updated. To update the field, a color scheme containing mappings from all the first 12 ThemeColorTypes to their concrete colors must be provided. Colors for the remaining ThemeColorTypes will be ignored.
+     * The color scheme of the page. If unset, the color scheme is inherited from a parent page. If the page has no parent, the color scheme uses a default Slides color scheme, matching the defaults in the Slides editor.  Only the concrete colors of the first 12 ThemeColorTypes are editable. In addition, only the color scheme on `Master` pages can be updated. To update the field, a color scheme containing mappings from all the first 12 ThemeColorTypes to their concrete colors must be provided. Colors for the remaining ThemeColorTypes will be ignored.
      */
     colorScheme?: Schema$ColorScheme;
     /**
@@ -1400,7 +1400,7 @@ export namespace slides_v1 {
      */
     imageReplaceMethod?: string;
     /**
-     * The URL of the new image.  The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length. The URL itself is saved with the image, and exposed via the Image.source_url field.
+     * The image URL.  The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length. The URL itself is saved with the image, and exposed via the Image.source_url field.
      */
     url?: string;
   }

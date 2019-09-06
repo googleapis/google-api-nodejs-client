@@ -118,7 +118,7 @@ export namespace commentanalyzer_v1alpha1 {
   }
 
   /**
-   * The comment analysis request message.
+   * The comment analysis request message. LINT.IfChange
    */
   export interface Schema$AnalyzeCommentRequest {
     /**

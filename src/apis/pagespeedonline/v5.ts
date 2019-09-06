@@ -101,6 +101,7 @@ export namespace pagespeedonline_v5 {
     }
   }
 
+  export interface Schema$GoogleprotobufListValue {}
   export interface Schema$GoogleprotobufValue {}
   export interface Schema$LighthouseAuditResultV5 {
     /**
@@ -242,7 +243,7 @@ export namespace pagespeedonline_v5 {
     /**
      * List of all run warnings in the LHR. Will always output to at least `[]`.
      */
-    runWarnings?: any[];
+    runWarnings?: Schema$GoogleprotobufListValue;
     /**
      * The Stack Pack advice strings.
      */

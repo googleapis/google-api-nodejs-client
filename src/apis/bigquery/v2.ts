@@ -342,11 +342,50 @@ export namespace bigquery_v2 {
       learnRate?: number;
       minRelProgress?: number;
       l2Reg?: number;
-      learnRateStrategy?: string;
       warmStart?: boolean;
+      learnRateStrategy?: string;
       lineSearchInitLearnRate?: number;
       earlyStop?: boolean;
     };
+  }
+  /**
+   * Representative value of a categorical feature.
+   */
+  export interface Schema$CategoricalValue {
+    /**
+     * Counts of all categories for the categorical feature. If there are more than ten categories, we return top ten (by count) and return one more CategoryCount with category &quot;_OTHER_&quot; and count as aggregate counts of remaining categories.
+     */
+    categoryCounts?: Schema$CategoryCount[];
+  }
+  /**
+   * Represents the count of a single category within the cluster.
+   */
+  export interface Schema$CategoryCount {
+    /**
+     * The name of category.
+     */
+    category?: string;
+    /**
+     * The count of training samples matching the category within the cluster.
+     */
+    count?: string;
+  }
+  /**
+   * Message containing the information about one cluster.
+   */
+  export interface Schema$Cluster {
+    /**
+     * Centroid id.
+     */
+    centroidId?: string;
+    /**
+     * Count of training data rows that were assigned to this cluster.
+     */
+    count?: string;
+    /**
+     * Values of highly variant features for this cluster.
+     */
+    featureValues?: Schema$FeatureValue[];
   }
   /**
    * Information about a single cluster for clustering model.
@@ -375,6 +414,10 @@ export namespace bigquery_v2 {
    * Evaluation metrics for clustering models.
    */
   export interface Schema$ClusteringMetrics {
+    /**
+     * [Beta] Information for all clusters.
+     */
+    clusters?: Schema$Cluster[];
     /**
      * Davies-Bouldin index.
      */
@@ -428,13 +471,13 @@ export namespace bigquery_v2 {
      * [Optional] An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER;
      */
     access?: Array<{
-      role?: string;
-      view?: Schema$TableReference;
-      groupByEmail?: string;
       userByEmail?: string;
       domain?: string;
       iamMember?: string;
       specialGroup?: string;
+      role?: string;
+      view?: Schema$TableReference;
+      groupByEmail?: string;
     }>;
     /**
      * [Output-only] The time when this dataset was created, in milliseconds since the epoch.
@@ -495,12 +538,12 @@ export namespace bigquery_v2 {
      * An array of the dataset resources in the project. Each resource contains basic information. For full information about a particular dataset resource, use the Datasets: get method. This property is omitted when there are no datasets in the project.
      */
     datasets?: Array<{
+      labels?: {[key: string]: string};
+      datasetReference?: Schema$DatasetReference;
       id?: string;
       location?: string;
       friendlyName?: string;
       kind?: string;
-      labels?: {[key: string]: string};
-      datasetReference?: Schema$DatasetReference;
     }>;
     /**
      * A hash value of the results page. You can use this property to determine if the page has changed since the last request.
@@ -585,7 +628,7 @@ export namespace bigquery_v2 {
      */
     binaryClassificationMetrics?: Schema$BinaryClassificationMetrics;
     /**
-     * [Beta] Populated for clustering models.
+     * Populated for clustering models.
      */
     clusteringMetrics?: Schema$ClusteringMetrics;
     /**
@@ -593,7 +636,7 @@ export namespace bigquery_v2 {
      */
     multiClassClassificationMetrics?: Schema$MultiClassClassificationMetrics;
     /**
-     * Populated for regression models.
+     * Populated for regression models and explicit feedback type matrix factorization models.
      */
     regressionMetrics?: Schema$RegressionMetrics;
   }
@@ -775,6 +818,23 @@ export namespace bigquery_v2 {
      */
     sourceUris?: string[];
   }
+  /**
+   * Representative value of a single feature within the cluster.
+   */
+  export interface Schema$FeatureValue {
+    /**
+     * The categorical feature value.
+     */
+    categoricalValue?: Schema$CategoricalValue;
+    /**
+     * The feature column name.
+     */
+    featureColumn?: string;
+    /**
+     * The numerical feature value. This is the centroid value for this feature.
+     */
+    numericalValue?: number;
+  }
   export interface Schema$GetQueryResultsResponse {
     /**
      * Whether the query result was fetched from the query cache.
@@ -837,7 +897,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$GoogleSheetsOptions {
     /**
-     * [Beta] [Optional] Range of a sheet to query from. Only used when non-empty. Typical format: sheet_name!top_left_cell_id:bottom_right_cell_id For example: sheet1!A1:B20
+     * [Optional] Range of a sheet to query from. Only used when non-empty. Typical format: sheet_name!top_left_cell_id:bottom_right_cell_id For example: sheet1!A1:B20
      */
     range?: string;
     /**
@@ -860,7 +920,7 @@ export namespace bigquery_v2 {
    */
   export interface Schema$IterationResult {
     /**
-     * [Beta] Information about top clusters for clustering models.
+     * Information about top clusters for clustering models.
      */
     clusterInfos?: Schema$ClusterInfo[];
     /**
@@ -992,9 +1052,17 @@ export namespace bigquery_v2 {
      */
     printHeader?: boolean;
     /**
-     * [Required] A reference to the table being exported.
+     * A reference to the model being exported.
+     */
+    sourceModel?: Schema$ModelReference;
+    /**
+     * A reference to the table being exported.
      */
     sourceTable?: Schema$TableReference;
+    /**
+     * [Optional] If destinationFormat is set to &quot;AVRO&quot;, this flag indicates whether to enable extracting applicable column types (such as TIMESTAMP) to their corresponding AVRO logical types (timestamp-micros), instead of only using their raw types (avro-long).
+     */
+    useAvroLogicalTypes?: boolean;
   }
   export interface Schema$JobConfigurationLoad {
     /**
@@ -1235,15 +1303,15 @@ export namespace bigquery_v2 {
      * List of jobs that were requested.
      */
     jobs?: Array<{
+      jobReference?: Schema$JobReference;
+      status?: Schema$JobStatus;
+      state?: string;
       statistics?: Schema$JobStatistics;
       id?: string;
       configuration?: Schema$JobConfiguration;
       user_email?: string;
       errorResult?: Schema$ErrorProto;
       kind?: string;
-      jobReference?: Schema$JobReference;
-      status?: Schema$JobStatus;
-      state?: string;
     }>;
     /**
      * The resource type of the response.
@@ -1372,13 +1440,17 @@ export namespace bigquery_v2 {
      */
     queryPlan?: Schema$ExplainQueryStage[];
     /**
+     * [Output-only] Referenced routines (persistent user-defined functions and stored procedures) for the job.
+     */
+    referencedRoutines?: Schema$RoutineReference[];
+    /**
      * [Output-only] Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.
      */
     referencedTables?: Schema$TableReference[];
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: Array<{slotMs?: string; name?: string}>;
+    reservationUsage?: Array<{name?: string; slotMs?: string}>;
     /**
      * [Output-only] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
      */
@@ -1516,6 +1588,10 @@ export namespace bigquery_v2 {
      */
     description?: string;
     /**
+     * Custom encryption configuration (e.g., Cloud KMS keys). This shows the encryption configuration of the model data while stored in BigQuery storage.
+     */
+    encryptionConfiguration?: Schema$EncryptionConfiguration;
+    /**
      * Output only. A hash of this resource.
      */
     etag?: string;
@@ -1564,15 +1640,12 @@ export namespace bigquery_v2 {
     /**
      * [Output-only, Beta] Model options used for the first training run. These options are immutable for subsequent training runs. Default values are used for any options not specified in the input query.
      */
-    modelOptions?: {lossType?: string; modelType?: string; labels?: string[]};
+    modelOptions?: {modelType?: string; labels?: string[]; lossType?: string};
     /**
      * [Output-only, Beta] Information about ml training runs, each training run comprises of multiple iterations and there may be multiple training runs for the model if warm start is used or if a user decides to continue a previously cancelled query.
      */
     trainingRuns?: Schema$BqmlTrainingRun[];
   }
-  /**
-   * Id path of a model.
-   */
   export interface Schema$ModelReference {
     /**
      * [Required] The ID of the dataset containing this model.
@@ -1809,7 +1882,7 @@ export namespace bigquery_v2 {
     range?: {interval?: string; start?: string; end?: string};
   }
   /**
-   * Evaluation metrics for regression models.
+   * Evaluation metrics for regression and explicit feedback type matrix factorization models.
    */
   export interface Schema$RegressionMetrics {
     /**
@@ -2166,17 +2239,17 @@ export namespace bigquery_v2 {
      * Tables in the requested dataset.
      */
     tables?: Array<{
+      view?: {useLegacySql?: boolean};
+      creationTime?: string;
+      labels?: {[key: string]: string};
       clustering?: Schema$Clustering;
       type?: string;
-      expirationTime?: string;
       id?: string;
+      expirationTime?: string;
       tableReference?: Schema$TableReference;
       timePartitioning?: Schema$TimePartitioning;
       friendlyName?: string;
       kind?: string;
-      view?: {useLegacySql?: boolean};
-      creationTime?: string;
-      labels?: {[key: string]: string};
     }>;
     /**
      * The total number of tables in the dataset.
@@ -2238,7 +2311,7 @@ export namespace bigquery_v2 {
      */
     dataSplitMethod?: string;
     /**
-     * [Beta] Distance type for clustering models.
+     * Distance type for clustering models.
      */
     distanceType?: string;
     /**
@@ -2253,6 +2326,14 @@ export namespace bigquery_v2 {
      * Name of input label columns in training data.
      */
     inputLabelColumns?: string[];
+    /**
+     * The column used to provide the initial centroids for kmeans algorithm when kmeans_initialization_method is CUSTOM.
+     */
+    kmeansInitializationColumn?: string;
+    /**
+     * The method used to initialize the centroids for kmeans algorithm.
+     */
+    kmeansInitializationMethod?: string;
     /**
      * L1 regularization coefficient.
      */
@@ -2290,7 +2371,7 @@ export namespace bigquery_v2 {
      */
     modelUri?: string;
     /**
-     * [Beta] Number of clusters for clustering models.
+     * Number of clusters for clustering models.
      */
     numClusters?: string;
     /**
@@ -3820,6 +3901,7 @@ export namespace bigquery_v2 {
      * @param {integer=} params.maxResults Maximum number of results to return
      * @param {string=} params.minCreationTime Min value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created after or at this timestamp are returned
      * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+     * @param {string=} params.parentJobId If set, retrieves only jobs whose parent is this job. Otherwise, retrieves only jobs which have no parent
      * @param {string} params.projectId Project ID of the jobs to list
      * @param {string=} params.projection Restrict information returned to a set of selected fields
      * @param {string=} params.stateFilter Filter for job state
@@ -4141,6 +4223,10 @@ export namespace bigquery_v2 {
      * Page token, returned by a previous call, to request the next page of results
      */
     pageToken?: string;
+    /**
+     * If set, retrieves only jobs whose parent is this job. Otherwise, retrieves only jobs which have no parent
+     */
+    parentJobId?: string;
     /**
      * Project ID of the jobs to list
      */

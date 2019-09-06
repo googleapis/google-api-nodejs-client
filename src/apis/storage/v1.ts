@@ -797,6 +797,10 @@ export namespace storage_v1 {
      * The ID of the resource to which this policy belongs. Will be of the form projects/_/buckets/bucket for buckets, and projects/_/buckets/bucket/objects/object for objects. A specific generation may be specified by appending #generationNumber to the end of the object name, e.g. projects/_/buckets/my-bucket/objects/data.txt#17. The current generation can be denoted with #0. This field is ignored on input.
      */
     resourceId?: string;
+    /**
+     * The IAM policy format version.
+     */
+    version?: number;
   }
   /**
    * A rewrite response.
@@ -2079,6 +2083,7 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
+     * @param {integer=} params.optionsRequestedPolicyVersion The IAM policy format version to be returned. If the optionsRequestedPolicyVersion is for an older version that doesn't support part of the requested IAM policy, the request fails.
      * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3113,6 +3118,10 @@ export namespace storage_v1 {
      * Name of a bucket.
      */
     bucket?: string;
+    /**
+     * The IAM policy format version to be returned. If the optionsRequestedPolicyVersion is for an older version that doesn't support part of the requested IAM policy, the request fails.
+     */
+    optionsRequestedPolicyVersion?: number;
     /**
      * The project to be billed for this request if the target bucket is requester-pays bucket.
      */

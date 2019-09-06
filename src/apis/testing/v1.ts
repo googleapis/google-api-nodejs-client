@@ -687,7 +687,7 @@ export namespace testing_v1 {
     iosDevices?: Schema$IosDevice[];
   }
   /**
-   * A description of an iOS device tests may be run on.
+   * A description of an iOS device tests may be run on. Next tag: 10
    */
   export interface Schema$IosModel {
     /**
@@ -706,6 +706,18 @@ export namespace testing_v1 {
      * The human-readable name for this device model. Examples: &quot;iPhone 4s&quot;, &quot;iPad Mini 2&quot;.
      */
     name?: string;
+    /**
+     * Screen density in DPI.
+     */
+    screenDensity?: number;
+    /**
+     * Screen size in the horizontal (X) dimension measured in pixels.
+     */
+    screenX?: number;
+    /**
+     * Screen size in the vertical (Y) dimension measured in pixels.
+     */
+    screenY?: number;
     /**
      * The set of iOS major software versions this device supports.
      */

@@ -124,27 +124,27 @@ export namespace abusiveexperiencereport_v1 {
    */
   export interface Schema$SiteSummaryResponse {
     /**
-     * The status of the site reviewed for the abusive experiences.
+     * The site&#39;s Abusive Experience Report status.
      */
     abusiveStatus?: string;
     /**
-     * The date on which enforcement begins.
+     * The time at which [enforcement](https://support.google.com/webtools/answer/7538608) against the site began or will begin.  Not set when the filter_status is OFF.
      */
     enforcementTime?: string;
     /**
-     * The abusive experience enforcement status of the site.
+     * The site&#39;s [enforcement status](https://support.google.com/webtools/answer/7538608).
      */
     filterStatus?: string;
     /**
-     * The last time that the site changed status.
+     * The time at which the site&#39;s status last changed.
      */
     lastChangeTime?: string;
     /**
-     * A link that leads to a full abusive experience report.
+     * A link to the full Abusive Experience Report for the site.  Not set in ViolatingSitesResponse.  Note that you must complete the [Search Console verification process](https://support.google.com/webmasters/answer/9008080) for the site before you can access the full report.
      */
     reportUrl?: string;
     /**
-     * The name of the site reviewed.
+     * The name of the reviewed site, e.g. `google.com`.
      */
     reviewedSite?: string;
     /**
@@ -157,7 +157,7 @@ export namespace abusiveexperiencereport_v1 {
    */
   export interface Schema$ViolatingSitesResponse {
     /**
-     * A list of summaries of violating sites.
+     * The list of violating sites.
      */
     violatingSites?: Schema$SiteSummaryResponse[];
   }
@@ -170,12 +170,12 @@ export namespace abusiveexperiencereport_v1 {
 
     /**
      * abusiveexperiencereport.sites.get
-     * @desc Gets a summary of the abusive experience rating of a site.
+     * @desc Gets a site's Abusive Experience Report summary.
      * @alias abusiveexperiencereport.sites.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The required site name. This is the site property whose abusive experiences have been reviewed, and it must be URL-encoded. For example, sites/https%3A%2F%2Fwww.google.com. The server will return an error of BAD_REQUEST if this field is not filled in. Note that if the site property is not yet verified in Search Console, the reportUrl field returned by the API will lead to the verification page, prompting the user to go through that process before they can gain access to the Abusive Experience Report.
+     * @param {string} params.name Required. The name of the site whose summary to get, e.g. `sites/http%3A%2F%2Fwww.google.com%2F`.  Format: `sites/{site}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -247,7 +247,7 @@ export namespace abusiveexperiencereport_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The required site name. This is the site property whose abusive experiences have been reviewed, and it must be URL-encoded. For example, sites/https%3A%2F%2Fwww.google.com. The server will return an error of BAD_REQUEST if this field is not filled in. Note that if the site property is not yet verified in Search Console, the reportUrl field returned by the API will lead to the verification page, prompting the user to go through that process before they can gain access to the Abusive Experience Report.
+     * Required. The name of the site whose summary to get, e.g. `sites/http%3A%2F%2Fwww.google.com%2F`.  Format: `sites/{site}`
      */
     name?: string;
   }
@@ -260,7 +260,7 @@ export namespace abusiveexperiencereport_v1 {
 
     /**
      * abusiveexperiencereport.violatingSites.list
-     * @desc Lists sites with Abusive Experience Report statuses of "Failing".
+     * @desc Lists sites that are failing in the Abusive Experience Report.
      * @alias abusiveexperiencereport.violatingSites.list
      * @memberOf! ()
      *

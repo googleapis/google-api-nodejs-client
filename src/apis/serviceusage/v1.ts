@@ -286,7 +286,7 @@ export namespace serviceusage_v1 {
    */
   export interface Schema$BatchEnableServicesRequest {
     /**
-     * The identifiers of the services to enable on the project.  A valid identifier would be: serviceusage.googleapis.com  Enabling services requires that each service is public or is shared with the user enabling the service.  Two or more services must be specified. To enable a single service, use the `EnableService` method instead.  A single request can enable a maximum of 20 services at a time. If more than 20 services are specified, the request will fail, and no state changes will occur.
+     * The identifiers of the services to enable on the project.  A valid identifier would be: serviceusage.googleapis.com  Enabling services requires that each service is public or is shared with the user enabling the service.  A single request can enable a maximum of 20 services at a time. If more than 20 services are specified, the request will fail, and no state changes will occur.
      */
     serviceIds?: string[];
   }
@@ -1270,6 +1270,19 @@ export namespace serviceusage_v1 {
     overrideValue?: string;
   }
   /**
+   * Service identity for a service. This is the identity that service producer should use to access consumer resources.
+   */
+  export interface Schema$ServiceIdentity {
+    /**
+     * The email address of the service account that a service producer would use to access consumer resources.
+     */
+    email?: string;
+    /**
+     * The unique and stable id of the service account. https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts#ServiceAccount
+     */
+    uniqueId?: string;
+  }
+  /**
    * `SourceContext` represents information about the source of a protobuf element, like the file in which it is defined.
    */
   export interface Schema$SourceContext {
@@ -1770,7 +1783,7 @@ export namespace serviceusage_v1 {
 
     /**
      * serviceusage.services.batchEnable
-     * @desc Enable multiple services on a project. The operation is atomic: if enabling any service fails, then the entire batch fails, and no state changes occur.
+     * @desc Enable multiple services on a project. The operation is atomic: if enabling any service fails, then the entire batch fails, and no state changes occur. To enable a single service, use the `EnableService` method instead.
      * @alias serviceusage.services.batchEnable
      * @memberOf! ()
      *

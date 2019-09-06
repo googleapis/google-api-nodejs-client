@@ -141,7 +141,7 @@ describe('Query params', () => {
 
   it('should be set if params passed are falsy', async () => {
     const computeRemoteUrl = 'https://compute.googleapis.com';
-    const r1 = nock(Utils.baseUrl)
+    const r1 = nock(computeRemoteUrl)
       .post(
         '/compute/v1/projects//zones//instances//setDiskAutoDelete?autoDelete=false&deviceName='
       )
@@ -168,7 +168,7 @@ describe('Query params', () => {
     });
     assert.strictEqual(Utils.getQs(res2), 'autoDelete=false&deviceName=');
 
-    const r3 = nock(Utils.baseUrl)
+    const r3 = nock(computeRemoteUrl)
       .post('/compute/v1/projects//zones//instanceGroupManagers//resize?size=0')
       .reply(200);
     const res3 = await localCompute.instanceGroupManagers.resize({

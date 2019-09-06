@@ -343,6 +343,10 @@ export namespace firebaserules_v1 {
      */
     functionMocks?: Schema$FunctionMock[];
     /**
+     * Specifies whether paths (such as request.path) are encoded and how.
+     */
+    pathEncoding?: string;
+    /**
      * Request context.  The exact format of the request context is service-dependent. See the appropriate service documentation for information about the supported fields and types on the request. Minimally, all services support the following fields and types:  Request field  | Type ---------------|----------------- auth.uid       | `string` auth.token     | `map&lt;string, string&gt;` headers        | `map&lt;string, string&gt;` method         | `string` params         | `map&lt;string, string&gt;` path           | `string` time           | `google.protobuf.Timestamp`  If the request value is not well-formed for the service, the request will be rejected as an invalid argument.
      */
     request?: any;

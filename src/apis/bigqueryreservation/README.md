@@ -1,8 +1,8 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# appstate
+# bigqueryreservation
 
-> The Google App State API.
+> A service to modify your BigQuery flat-rate reservations.
 
 ## Installation
 
@@ -19,17 +19,17 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/appstate
+$ cd src/apis/bigqueryreservation
 $ npm install
 $ npm run webpack
 ```
 
-The generated bundle will be written to `dist/appstate.min.js`. Use it from your HTML file:
+The generated bundle will be written to `dist/bigqueryreservation.min.js`. Use it from your HTML file:
 
 ```html
-<script src="/path/to/appstate.min.js"></script>
+<script src="/path/to/bigqueryreservation.min.js"></script>
 <script>
-const { appstate, auth } = Appstate;
+const { bigqueryreservation, auth } = Bigqueryreservation;
 </script>
 ```
 

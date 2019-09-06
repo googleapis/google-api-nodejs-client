@@ -2286,6 +2286,10 @@ export namespace analytics_v3 {
      */
     kind?: string;
     /**
+     * Property ID
+     */
+    propertyId?: string;
+    /**
      * Web property ID of the form UA-XXXXX-YY.
      */
     webPropertyId?: string;

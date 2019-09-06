@@ -126,17 +126,27 @@ export namespace firebase_v1beta1 {
    */
   export interface Schema$AddFirebaseRequest {
     /**
-     * Deprecated. Instead, to set your project&#39;s default GCP resource location, call [`FinalizeDefaultLocation`](../projects.defaultLocation/finalize) after you add Firebase services to your project. &lt;br&gt; &lt;br&gt;The ID of the project&#39;s default GCP resource location. The location must be one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations).
+     * Deprecated. Instead, to set your project&#39;s default GCP resource location, call [`FinalizeDefaultLocation`](../projects.defaultLocation/finalize) after you add Firebase resources to your project. &lt;br&gt; &lt;br&gt;The ID of the project&#39;s default GCP resource location. The location must be one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations).
      */
     locationId?: string;
     /**
-     * The region code (CLDR) that the account will use for Firebase Analytics data. &lt;br&gt;For example: US, GB, or DE &lt;br&gt; &lt;br&gt;In Java, use `com.google.i18n.identifiers.RegionCode`.
+     * Deprecated. Instead, to link your Project with a Google Analytics account, call [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) after you add Firebase resources to your Project. &lt;br&gt; &lt;br&gt;The region code (CLDR) that the account will use for Firebase Analytics data. &lt;br&gt;For example: US, GB, or DE &lt;br&gt; &lt;br&gt;In Java, use `com.google.i18n.identifiers.RegionCode`.
      */
     regionCode?: string;
     /**
-     * The time zone that the account will use for Firebase Analytics data. &lt;br&gt;For example: America/Los_Angeles or Africa/Abidjan
+     * Deprecated. Instead, to link your Project with a Google Analytics account, call [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) after you add Firebase resources to your Project. &lt;br&gt; &lt;br&gt;The time zone that the account will use for Firebase Analytics data. &lt;br&gt;For example: America/Los_Angeles or Africa/Abidjan
      */
     timeZone?: string;
+  }
+  export interface Schema$AddGoogleAnalyticsRequest {
+    /**
+     * The ID for the existing [Google Analytics account](http://www.google.com/analytics/) that you want to link with your `FirebaseProject`. &lt;br&gt; &lt;br&gt;Specifying this field will provision a new Google Analytics property in your Google Analytics account and associate the new property with your `FirebaseProject`.
+     */
+    analyticsAccountId?: string;
+    /**
+     * The ID for the existing Google Analytics property that you want to associate with your `FirebaseProject`.
+     */
+    analyticsPropertyId?: string;
   }
   export interface Schema$AdminSdkConfig {
     /**
@@ -155,6 +165,29 @@ export namespace firebase_v1beta1 {
      * The default Cloud Storage for Firebase storage bucket name.
      */
     storageBucket?: string;
+  }
+  export interface Schema$AnalyticsDetails {
+    /**
+     * The Analytics Property object associated with the specified `FirebaseProject`. &lt;br&gt; &lt;br&gt;This object contains the details of the Google Analytics property associated with the specified `FirebaseProject`.
+     */
+    analyticsProperty?: Schema$AnalyticsProperty;
+    /**
+     * A map of `AppId` to `StreamId` for each Firebase App in the specified `FirebaseProject`. Each `AppId` and `StreamId` appears only once.
+     */
+    streamMappings?: Schema$StreamMapping[];
+  }
+  /**
+   * Details of a Google Analytics property
+   */
+  export interface Schema$AnalyticsProperty {
+    /**
+     * The display name of the Google Analytics property associated with the specified `FirebaseProject`.
+     */
+    displayName?: string;
+    /**
+     * The globally unique, Google-assigned identifier of the Google Analytics property associated with the specified `FirebaseProject`. &lt;br&gt; &lt;br&gt;If you called [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) to link your `FirebaseProject` with a Google Analytics account, the value in this `id` field is the same as the ID of the property either specified or provisioned with that call to `AddGoogleAnalytics`.
+     */
+    id?: string;
   }
   /**
    * Details of a Firebase App for Android.
@@ -426,13 +459,19 @@ export namespace firebase_v1beta1 {
      */
     displayName?: string;
     /**
-     * The ID of the project&#39;s default GCP resource location. The location is one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations). &lt;br&gt; &lt;br&gt; Not all projects will have this field populated. If it is not populated, it means that the project does not yet have a default GCP resource location. To set your project&#39;s default GCP resource location, call [`FinalizeDefaultLocation`](../projects.defaultLocation/finalize) after you add Firebase services to your project.
+     * The ID of the project&#39;s default GCP resource location. The location is one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations). &lt;br&gt; &lt;br&gt; Not all projects will have this field populated. If it is not populated, it means that the project does not yet have a default GCP resource location. To set your project&#39;s default GCP resource location, call [`FinalizeDefaultLocation`](../projects.defaultLocation/finalize) after you add Firebase resources to your project.
      */
     locationId?: string;
     /**
      * The resource name of the GCP `Project` to which Firebase resources can be added, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;&lt;/code&gt;
      */
     project?: string;
+  }
+  export interface Schema$RemoveAnalyticsRequest {
+    /**
+     * Optional. The ID of the Google Analytics property associated with the specified `FirebaseProject`. &lt;ul&gt; &lt;li&gt;If not set, then the Google Analytics property that is currently associated with the specified `FirebaseProject` is removed.&lt;/li&gt; &lt;li&gt;If set, and the specified `FirebaseProject` is currently associated with a &lt;em&gt;different&lt;/em&gt; Google Analytics property, then the response is a `412 Precondition Failed` error.&lt;/li&gt; &lt;/ul&gt;
+     */
+    analyticsPropertyId?: string;
   }
   export interface Schema$SearchFirebaseAppsResponse {
     /**
@@ -506,6 +545,19 @@ export namespace firebase_v1beta1 {
      * The following are usually only present when code != 0 Space to which this status belongs
      */
     space?: string;
+  }
+  /**
+   * A mapping of a Firebase App to a Google Analytics data stream
+   */
+  export interface Schema$StreamMapping {
+    /**
+     * The fully qualified resource name of the Firebase App associated with the Google Analytics data stream, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/iosApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt; or &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/androidApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt;
+     */
+    app?: string;
+    /**
+     * The unique Google-assigned identifier of the Google Analytics data stream associated with the Firebase App. &lt;br&gt; &lt;br&gt;Learn more about Google Analytics data streams in the [Analytics documentation](https://support.google.com/analytics/answer/9303323).
+     */
+    streamId?: string;
   }
   /**
    * Message that groups a protocol type_id (as defined by MessageSet), with an encoded message of that type.  Its use is similar to MessageSet, except it represents a single (type, encoded message) instead of a set.  To fill for known protocol type:   MyProtocolMsg proto;   TypedMessage typed_msg;   typed_msg.set_type_id(MyProtocolMsg::MESSAGE_TYPE_ID);   proto.AppendToCord(typed_msg.mutable_message());  To fill for unknown protocol type:   ProtocolMessage proto;   TypedMessage typed_msg;   typed_msg.set_type_id(proto.GetMapper()-&gt;type_id());   proto.AppendToCord(typed_msg.mutable_message());
@@ -802,7 +854,7 @@ export namespace firebase_v1beta1 {
 
     /**
      * firebase.projects.addFirebase
-     * @desc Adds Firebase resources to the specified existing [Google Cloud Platform (GCP) `Project`] (https://cloud.google.com/resource-manager/reference/rest/v1/projects). <br> <br>Since a FirebaseProject is actually also a GCP `Project`, a `FirebaseProject` uses underlying GCP identifiers (most importantly, the `projectId`) as its own for easy interop with GCP APIs. <br> <br>The result of this call is an [`Operation`](../../v1beta1/operations). Poll the `Operation` to track the provisioning process by calling GetOperation until [`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When `done` is `true`, the `Operation` has either succeeded or failed. If the `Operation` succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to a FirebaseProject; if the `Operation` failed, its [`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a google.rpc.Status. The `Operation` is automatically deleted after completion, so there is no need to call DeleteOperation. <br> <br>This method does not modify any billing account information on the underlying GCP `Project`. <br> <br>All fields listed in the [request body](#request-body) are required. <br> <br>To call `AddFirebase`, a member must be an Editor or Owner for the existing GCP `Project`. Service accounts cannot call `AddFirebase`.
+     * @desc Adds Firebase resources to the specified existing [Google Cloud Platform (GCP) `Project`] (https://cloud.google.com/resource-manager/reference/rest/v1/projects). <br> <br>Since a FirebaseProject is actually also a GCP `Project`, a `FirebaseProject` uses underlying GCP identifiers (most importantly, the `projectId`) as its own for easy interop with GCP APIs. <br> <br>The result of this call is an [`Operation`](../../v1beta1/operations). Poll the `Operation` to track the provisioning process by calling GetOperation until [`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When `done` is `true`, the `Operation` has either succeeded or failed. If the `Operation` succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to a FirebaseProject; if the `Operation` failed, its [`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a google.rpc.Status. The `Operation` is automatically deleted after completion, so there is no need to call DeleteOperation. <br> <br>This method does not modify any billing account information on the underlying GCP `Project`. <br> <br>To call `AddFirebase`, a member must be an Editor or Owner for the existing GCP `Project`. Service accounts cannot call `AddFirebase`.
      * @alias firebase.projects.addFirebase
      * @memberOf! ()
      *
@@ -866,6 +918,81 @@ export namespace firebase_v1beta1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * firebase.projects.addGoogleAnalytics
+     * @desc Links a FirebaseProject with an existing [Google Analytics account](http://www.google.com/analytics/). <br> <br>Using this call, you can either: <ul> <li>Provision a new Google Analytics property and associate the new property with your `FirebaseProject`.</li> <li>Associate an existing Google Analytics property with your `FirebaseProject`.</li> </ul> <br> Note that when you call `AddGoogleAnalytics`: <ul> <li>Any Firebase Apps already in your `FirebaseProject` are automatically provisioned as new <em>data streams</em> in the Google Analytics property.</li> <li>Any <em>data streams</em> already in the Google Analytics property are automatically associated with their corresponding Firebase Apps (only applies when an app's `packageName` or `bundleId` match those for an existing data stream).</li> </ul> Learn more about the hierarchy and structure of Google Analytics accounts in the [Analytics documentation](https://support.google.com/analytics/answer/9303323). <br> <br>The result of this call is an [`Operation`](../../v1beta1/operations). Poll the `Operation` to track the provisioning process by calling GetOperation until [`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When `done` is `true`, the `Operation` has either succeeded or failed. If the `Operation` succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to an AnalyticsDetails; if the `Operation` failed, its [`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a google.rpc.Status. <br> <br>To call `AddGoogleAnalytics`, a member must be an Owner for the existing `FirebaseProject` and have the [`Edit` permission](https://support.google.com/analytics/answer/2884495) for the Google Analytics account. <br> <br>If a `FirebaseProject` already has Google Analytics enabled, and you call `AddGoogleAnalytics` using an `analyticsPropertyId` that's different from the currently associated property, then the call will fail. Analytics may have already been enabled in the Firebase console or by specifying `timeZone` and `regionCode` in the call to [`AddFirebase`](../../v1beta1/projects/addFirebase).
+     * @alias firebase.projects.addGoogleAnalytics
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The parent `FirebaseProject` to link to an existing Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {().AddGoogleAnalyticsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addGoogleAnalytics(
+      params?: Params$Resource$Projects$Addgoogleanalytics,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    addGoogleAnalytics(
+      params: Params$Resource$Projects$Addgoogleanalytics,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    addGoogleAnalytics(
+      params: Params$Resource$Projects$Addgoogleanalytics,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    addGoogleAnalytics(callback: BodyResponseCallback<Schema$Operation>): void;
+    addGoogleAnalytics(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Addgoogleanalytics
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Addgoogleanalytics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Addgoogleanalytics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firebase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}:addGoogleAnalytics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -1015,6 +1142,79 @@ export namespace firebase_v1beta1 {
         createAPIRequest<Schema$AdminSdkConfig>(parameters, callback);
       } else {
         return createAPIRequest<Schema$AdminSdkConfig>(parameters);
+      }
+    }
+
+    /**
+     * firebase.projects.getAnalyticsDetails
+     * @desc Gets the Google Analytics details currently associated with a FirebaseProject. <br> <br>If the `FirebaseProject` is not yet linked to Google Analytics, then the response to `GetAnalyticsDetails` is NOT_FOUND.
+     * @alias firebase.projects.getAnalyticsDetails
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The fully qualified resource name, in the format: <br><code>projects/<var>projectId</var>/analyticsDetails</code>
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getAnalyticsDetails(
+      params?: Params$Resource$Projects$Getanalyticsdetails,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnalyticsDetails>;
+    getAnalyticsDetails(
+      params: Params$Resource$Projects$Getanalyticsdetails,
+      options: MethodOptions | BodyResponseCallback<Schema$AnalyticsDetails>,
+      callback: BodyResponseCallback<Schema$AnalyticsDetails>
+    ): void;
+    getAnalyticsDetails(
+      params: Params$Resource$Projects$Getanalyticsdetails,
+      callback: BodyResponseCallback<Schema$AnalyticsDetails>
+    ): void;
+    getAnalyticsDetails(
+      callback: BodyResponseCallback<Schema$AnalyticsDetails>
+    ): void;
+    getAnalyticsDetails(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getanalyticsdetails
+        | BodyResponseCallback<Schema$AnalyticsDetails>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnalyticsDetails>,
+      callback?: BodyResponseCallback<Schema$AnalyticsDetails>
+    ): void | GaxiosPromise<Schema$AnalyticsDetails> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getanalyticsdetails;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getanalyticsdetails;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firebase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnalyticsDetails>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AnalyticsDetails>(parameters);
       }
     }
 
@@ -1171,6 +1371,79 @@ export namespace firebase_v1beta1 {
     }
 
     /**
+     * firebase.projects.removeAnalytics
+     * @desc Unlinks the specified `FirebaseProject` from its Google Analytics account. <br> <br>This call removes the association of the specified `FirebaseProject` with its current Google Analytics property. However, this call does not delete the Google Analytics resources, such as the Google Analytics property or any data streams. <br> <br>These resources may be re-associated later to the `FirebaseProject` by calling [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) and specifying the same `analyticsPropertyId`. <br> <br>To call `RemoveAnalytics`, a member must be an Owner for the `FirebaseProject`.
+     * @alias firebase.projects.removeAnalytics
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The parent `FirebaseProject` to unlink from its Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {().RemoveAnalyticsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    removeAnalytics(
+      params?: Params$Resource$Projects$Removeanalytics,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    removeAnalytics(
+      params: Params$Resource$Projects$Removeanalytics,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    removeAnalytics(
+      params: Params$Resource$Projects$Removeanalytics,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    removeAnalytics(callback: BodyResponseCallback<Schema$Empty>): void;
+    removeAnalytics(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Removeanalytics
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Removeanalytics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Removeanalytics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firebase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}:removeAnalytics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * firebase.projects.searchApps
      * @desc A convenience method that lists all available Apps for the specified FirebaseProject. <br> <br>Typically, interaction with an App should be done using the platform-specific service, but some tool use-cases require a summary of all known Apps (such as for App selector interfaces).
      * @alias firebase.projects.searchApps
@@ -1271,6 +1544,23 @@ export namespace firebase_v1beta1 {
      */
     requestBody?: Schema$AddFirebaseRequest;
   }
+  export interface Params$Resource$Projects$Addgoogleanalytics
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The parent `FirebaseProject` to link to an existing Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddGoogleAnalyticsRequest;
+  }
   export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -1291,6 +1581,18 @@ export namespace firebase_v1beta1 {
 
     /**
      * The fully qualified resource name of the Project, in the format: <br><code>projects/<var>projectId</var>/adminSdkConfig</code>
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Getanalyticsdetails
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The fully qualified resource name, in the format: <br><code>projects/<var>projectId</var>/analyticsDetails</code>
      */
     name?: string;
   }
@@ -1328,6 +1630,23 @@ export namespace firebase_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$FirebaseProject;
+  }
+  export interface Params$Resource$Projects$Removeanalytics
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The parent `FirebaseProject` to unlink from its Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveAnalyticsRequest;
   }
   export interface Params$Resource$Projects$Searchapps
     extends StandardParameters {

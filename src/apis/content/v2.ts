@@ -1214,7 +1214,7 @@ export namespace content_v2 {
      */
     excludedDestinations?: string[];
     /**
-     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in the excluded_destination field.
+     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in excludedDestinations.
      */
     includedDestinations?: string[];
     /**
@@ -1935,7 +1935,7 @@ export namespace content_v2 {
      */
     customer?: Schema$OrderCustomer;
     /**
-     * Delivery details for shipments.
+     * Delivery details for shipments of type delivery.
      */
     deliveryDetails?: Schema$OrderDeliveryDetails;
     /**
@@ -2073,6 +2073,10 @@ export namespace content_v2 {
      * Full name of the customer.
      */
     fullName?: string;
+    /**
+     * Email address for receiving merchant issued value-added tax or invoice documentation of this order.
+     */
+    invoiceReceivingEmail?: string;
     /**
      * Customer&#39;s marketing preferences. Contains the marketing opt-in information that is current at the time that the merchant call. User preference selections can change from one order to the next so preferences must be checked with every order.
      */
@@ -3246,7 +3250,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment.  Acceptable values for US are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;  - &quot;efw&quot;    Acceptable values for FR are:   - &quot;colissimo&quot;  - &quot;chronopost&quot;  - &quot;gls&quot;  - &quot;dpd&quot;  - &quot;bpost&quot;
+     * The carrier handling the shipment.  Acceptable values for US are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;  - &quot;efw&quot;    Acceptable values for FR are:   - &quot;colissimo&quot;  - &quot;chronopost&quot;  - &quot;gls&quot;  - &quot;dpd&quot;  - &quot;bpost&quot;  - &quot;colis prive&quot;  - &quot;boxtal&quot;  - &quot;geodis&quot;
      */
     carrier?: string;
     /**
@@ -5029,7 +5033,7 @@ export namespace content_v2 {
      */
     promotions?: Schema$OrderLegacyPromotion[];
     /**
-     * The price of shipping for all items. Shipping tax is automatically calculated for MFL orders. For non-MFL orders, tax settings from Merchant Center are applied. Note that shipping is not taxed in certain states.
+     * The price of shipping for all items. Shipping tax is automatically calculated for orders where marketplace facilitator tax laws are applicable. Otherwise, tax settings from Merchant Center are applied. Note that shipping is not taxed in certain states.
      */
     shippingCost?: Schema$Price;
     /**
@@ -5133,7 +5137,7 @@ export namespace content_v2 {
      */
     offerId?: string;
     /**
-     * The price for the product. Tax is automatically calculated for MFL orders. For non-MFL orders, tax settings from Merchant Center are applied.
+     * The price for the product. Tax is automatically calculated for orders where marketplace facilitator tax laws are applicable. Otherwise, tax settings from Merchant Center are applied.
      */
     price?: Schema$Price;
     /**
@@ -11601,7 +11605,7 @@ export namespace content_v2 {
 
     /**
      * content.orders.instorerefundlineitem
-     * @desc Notifies that item return and refund was handled directly by merchant outside of Google payments processing (e.g. cash refund done in store). Note: We recommend calling the returnrefundlineitem method to refund in-store returns. We will issue the refund directly to the customer. This helps to prevent possible differences arising between merchant and Google transaction records. We also recommend having the point of sale system communicate with Google to ensure that customers do not receive a double refund by first refunding via Google then via an in-store return.
+     * @desc Deprecated. Notifies that item return and refund was handled directly by merchant outside of Google payments processing (e.g. cash refund done in store). Note: We recommend calling the returnrefundlineitem method to refund in-store returns. We will issue the refund directly to the customer. This helps to prevent possible differences arising between merchant and Google transaction records. We also recommend having the point of sale system communicate with Google to ensure that customers do not receive a double refund by first refunding via Google then via an in-store return.
      * @alias content.orders.instorerefundlineitem
      * @memberOf! ()
      *

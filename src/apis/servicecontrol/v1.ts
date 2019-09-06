@@ -119,7 +119,7 @@ export namespace servicecontrol_v1 {
 
   export interface Schema$AllocateInfo {
     /**
-     * A list of label keys that were unused by the server in processing the request. Thus, for similar requests repeated in a certain future time window, the caller can choose to ignore these labels in the requests to achieve better client-side cache hits and quota aggregation.
+     * A list of label keys that were unused by the server in processing the request. Thus, for similar requests repeated in a certain future time window, the caller can choose to ignore these labels in the requests to achieve better client-side cache hits and quota aggregation for rate quota. This field is not populated for allocation quota checks.
      */
     unusedArguments?: string[];
   }
@@ -610,6 +610,10 @@ export namespace servicecontrol_v1 {
      */
     severity?: string;
     /**
+     * Optional. Source code location information associated with the log entry, if any.
+     */
+    sourceLocation?: Schema$LogEntrySourceLocation;
+    /**
      * The log entry payload, represented as a structure that is expressed as a JSON object.
      */
     structPayload?: {[key: string]: any};
@@ -646,6 +650,23 @@ export namespace servicecontrol_v1 {
      * Optional. An arbitrary producer identifier. The combination of `id` and `producer` must be globally unique.  Examples for `producer`: `&quot;MyDivision.MyBigCompany.com&quot;`, `&quot;github.com/MyProject/MyApplication&quot;`.
      */
     producer?: string;
+  }
+  /**
+   * Additional information about the source code location that produced the log entry.
+   */
+  export interface Schema$LogEntrySourceLocation {
+    /**
+     * Optional. Source file name. Depending on the runtime environment, this might be a simple name or a fully-qualified name.
+     */
+    file?: string;
+    /**
+     * Optional. Human-readable name of the function or method being invoked, with optional context such as the class or package name. This information may be used in contexts such as the logs viewer, where a file and line number are less meaningful. The format can vary by language. For example: `qual.if.ied.Class.method` (Java), `dir/package.func` (Go), `function` (Python).
+     */
+    function?: string;
+    /**
+     * Optional. Line within the source file. 1-based; 0 indicates no line number available.
+     */
+    line?: string;
   }
   /**
    * Represents a single metric value.
@@ -776,7 +797,7 @@ export namespace servicecontrol_v1 {
     userLabels?: {[key: string]: string};
   }
   /**
-   * This message defines attributes for a node that handles a network request. The node can be either a service or an application that sends, forwards, or receives the request. Service peers should fill in the `service`, `principal`, and `labels` as appropriate.
+   * This message defines attributes for a node that handles a network request. The node can be either a service or an application that sends, forwards, or receives the request. Service peers should fill in `principal` and `labels` as appropriate.
    */
   export interface Schema$Peer {
     /**
@@ -799,10 +820,6 @@ export namespace servicecontrol_v1 {
      * The CLDR country/region code associated with the above IP address. If the IP address is private, the `region_code` should reflect the physical location where this peer is running.
      */
     regionCode?: string;
-    /**
-     * The canonical service name of the peer.  NOTE: different systems may have different service naming schemes.
-     */
-    service?: string;
   }
   /**
    * Represents error information for QuotaOperation.
@@ -945,10 +962,6 @@ export namespace servicecontrol_v1 {
      */
     auth?: Schema$Auth;
     /**
-     * The HTTP URL fragment. No URL decoding is performed.
-     */
-    fragment?: string;
-    /**
      * The HTTP request headers. If multiple headers share the same key, they must be merged according to the HTTP spec. All header keys must be lowercased, because HTTP header keys are case-insensitive.
      */
     headers?: {[key: string]: string};
@@ -1035,7 +1048,7 @@ export namespace servicecontrol_v1 {
      */
     service?: string;
     /**
-     * The type of the resource. The scheme is platform-specific because different platforms define their resources differently.
+     * The type of the resource. The syntax is platform-specific because different platforms define their resources differently.  For Google APIs, the type format must be &quot;{service}/{kind}&quot;.
      */
     type?: string;
   }

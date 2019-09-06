@@ -184,6 +184,10 @@ export namespace monitoring_v3 {
      * User-supplied key/value data to be used for organizing and identifying the AlertPolicy objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter.
      */
     userLabels?: {[key: string]: string};
+    /**
+     * Read-only description of how the alert policy is invalid. OK if the alert policy is valid. If not OK, the alert policy will not generate incidents.
+     */
+    validity?: Schema$Status;
   }
   /**
    * A type of authentication to perform against the specified resource or URL that uses username and password. Currently, only Basic authentication is supported in Uptime Monitoring.
@@ -328,6 +332,10 @@ export namespace monitoring_v3 {
      * String or regex content to match (max 1024 bytes)
      */
     content?: string;
+    /**
+     * The matcher representing content match options which the check will run with. If the field is not specified (in previous versions), the option is set to be CONTAINS_STRING which performs content substring matching.
+     */
+    matcher?: string;
   }
   /**
    * The CreateCollectdTimeSeries request.
@@ -586,6 +594,10 @@ export namespace monitoring_v3 {
      * If true, use HTTPS instead of HTTP to run the check.
      */
     useSsl?: boolean;
+    /**
+     * Boolean specifying whether to validate SSL certificates. Only applies to uptime_url checks. If use_ssl is false, setting this to true has no effect.
+     */
+    validateSsl?: boolean;
   }
   /**
    * An internal checker allows uptime checks to run on private/internal GCP resources.
@@ -1160,7 +1172,7 @@ export namespace monitoring_v3 {
     port?: number;
   }
   /**
-   * A closed time interval. It extends from the start time to the end time, and includes both: [startTime, endTime]. Valid time intervals depend on the MetricKind of the metric value. In no case can the end time be earlier than the start time. For a GAUGE metric, the startTime value is technically optional; if  no value is specified, the start time defaults to the value of the  end time, and the interval represents a single point in time. Such an  interval is valid only for GAUGE metrics, which are point-in-time  measurements. For DELTA and CUMULATIVE metrics, the start time must be later than  the end time. In all cases, the start time of the next interval must be  at least a microsecond after the end time of the previous interval.  Because the interval is closed, if the start time of a new interval  is the same as the end time of the previous interval, data written  at the new start time could overwrite data written at the previous  end time.
+   * A closed time interval. It extends from the start time to the end time, and includes both: [startTime, endTime]. Valid time intervals depend on the MetricKind of the metric value. In no case can the end time be earlier than the start time. For a GAUGE metric, the startTime value is technically optional; if  no value is specified, the start time defaults to the value of the  end time, and the interval represents a single point in time. Such an  interval is valid only for GAUGE metrics, which are point-in-time  measurements. For DELTA and CUMULATIVE metrics, the start time must be earlier  than the end time. In all cases, the start time of the next interval must be  at least a microsecond after the end time of the previous interval.  Because the interval is closed, if the start time of a new interval  is the same as the end time of the previous interval, data written  at the new start time could overwrite data written at the previous  end time.
    */
   export interface Schema$TimeInterval {
     /**

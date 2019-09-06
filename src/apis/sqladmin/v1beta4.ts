@@ -187,6 +187,14 @@ export namespace sqladmin_v1beta4 {
      */
     description?: string;
     /**
+     * Disk encryption configuration specific to a backup. Applies only to Second Generation instances.
+     */
+    diskEncryptionConfiguration?: Schema$DiskEncryptionConfiguration;
+    /**
+     * Disk encryption status specific to a backup. Applies only to Second Generation instances.
+     */
+    diskEncryptionStatus?: Schema$DiskEncryptionStatus;
+    /**
      * The time the backup operation completed in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
     endTime?: string;
@@ -663,6 +671,16 @@ export namespace sqladmin_v1beta4 {
    * Database instance import context.
    */
   export interface Schema$ImportContext {
+    /**
+     * Import parameters specific to SQL Server .BAK files
+     */
+    bakImportOptions?: {
+      encryptionOptions?: {
+        certPath?: string;
+        pvkPassword?: string;
+        pvkPath?: string;
+      };
+    };
     /**
      * Options for importing data as CSV.
      */
@@ -5431,7 +5449,7 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.host Host of the user in the instance.
+     * @param {string=} params.host Host of the user in the instance. For a MySQL instance, it's required; For a PostgreSQL instance, it's optional.
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.name Name of the user in the instance.
      * @param {string} params.project Project ID of the project that contains the instance.
@@ -5567,7 +5585,7 @@ export namespace sqladmin_v1beta4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Host of the user in the instance.
+     * Host of the user in the instance. For a MySQL instance, it's required; For a PostgreSQL instance, it's optional.
      */
     host?: string;
     /**
