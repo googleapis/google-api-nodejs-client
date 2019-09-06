@@ -433,6 +433,10 @@ export namespace videointelligence_v1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_ObjectTrackingAnnotation[];
     /**
+     * Video segment on which the annotation is run.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
+    /**
      * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
@@ -803,6 +807,10 @@ export namespace videointelligence_v1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_ObjectTrackingAnnotation[];
     /**
+     * Video segment on which the annotation is run.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
+    /**
      * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
@@ -1172,6 +1180,10 @@ export namespace videointelligence_v1 {
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_ObjectTrackingAnnotation[];
+    /**
+     * Video segment on which the annotation is run.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
     /**
      * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
@@ -1656,6 +1668,10 @@ export namespace videointelligence_v1 {
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_ObjectTrackingAnnotation[];
+    /**
+     * Video segment on which the annotation is run.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
     /**
      * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
@@ -2171,6 +2187,10 @@ export namespace videointelligence_v1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1_ObjectTrackingAnnotation[];
     /**
+     * Video segment on which the annotation is run.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
+    /**
      * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
@@ -2333,277 +2353,6 @@ export namespace videointelligence_v1 {
       this.context = context;
       this.projects = new Resource$Operations$Projects(this.context);
     }
-
-    /**
-     * videointelligence.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     * @alias videointelligence.operations.cancel
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    cancel(
-      params?: Params$Resource$Operations$Cancel,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobuf_Empty>;
-    cancel(
-      params: Params$Resource$Operations$Cancel,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
-    ): void;
-    cancel(
-      params: Params$Resource$Operations$Cancel,
-      callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
-    ): void;
-    cancel(callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
-    ): void | GaxiosPromise<Schema$GoogleProtobuf_Empty> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Operations$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://videointelligence.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/operations/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
-      }
-    }
-
-    /**
-     * videointelligence.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @alias videointelligence.operations.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-      params?: Params$Resource$Operations$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobuf_Empty>;
-    delete(
-      params: Params$Resource$Operations$Delete,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
-    ): void;
-    delete(
-      params: Params$Resource$Operations$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Operations$Delete
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
-    ): void | GaxiosPromise<Schema$GoogleProtobuf_Empty> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Operations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://videointelligence.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/operations/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
-      }
-    }
-
-    /**
-     * videointelligence.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @alias videointelligence.operations.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params?: Params$Resource$Operations$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunning_Operation>;
-    get(
-      params: Params$Resource$Operations$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
-    ): void;
-    get(
-      params: Params$Resource$Operations$Get,
-      callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning_Operation> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://videointelligence.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/operations/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunning_Operation>(
-          parameters,
-          callback
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Operations$Delete
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the operation resource to be deleted.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Operations$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
   }
 
   export class Resource$Operations$Projects {

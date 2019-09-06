@@ -247,7 +247,7 @@ export namespace toolresults_v1beta3 {
     numberOfCores?: number;
   }
   /**
-   * A Duration represents a signed, fixed-length span of time represented as a count of seconds and fractions of seconds at nanosecond resolution. It is independent of any calendar and concepts like &quot;day&quot; or &quot;month&quot;. It is related to Timestamp in that the difference between two Timestamp values is a Duration and it can be added or subtracted from a Timestamp. Range is approximately +-10,000 years.  # Examples  Example 1: Compute Duration from two Timestamps in pseudo code.  Timestamp start = ...; Timestamp end = ...; Duration duration = ...;  duration.seconds = end.seconds - start.seconds; duration.nanos = end.nanos - start.nanos;  if (duration.seconds  0) { duration.seconds += 1; duration.nanos -= 1000000000; } else if (durations.seconds &gt; 0 &amp;&amp; duration.nanos &lt; 0) { duration.seconds -= 1; duration.nanos += 1000000000; }  Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.  Timestamp start = ...; Duration duration = ...; Timestamp end = ...;  end.seconds = start.seconds + duration.seconds; end.nanos = start.nanos + duration.nanos;  if (end.nanos = 1000000000) { end.seconds += 1; end.nanos -= 1000000000; }  Example 3: Compute Duration from datetime.timedelta in Python.  td = datetime.timedelta(days=3, minutes=10) duration = Duration() duration.FromTimedelta(td)  # JSON Mapping  In JSON format, the Duration type is encoded as a string rather than an object, where the string ends in the suffix &quot;s&quot; (indicating seconds) and is preceded by the number of seconds, with nanoseconds expressed as fractional seconds. For example, 3 seconds with 0 nanoseconds should be encoded in JSON format as &quot;3s&quot;, while 3 seconds and 1 nanosecond should be expressed in JSON format as &quot;3.000000001s&quot;, and 3 seconds and 1 microsecond should be expressed in JSON format as &quot;3.000001s&quot;.
+   * A Duration represents a signed, fixed-length span of time represented as a count of seconds and fractions of seconds at nanosecond resolution. It is independent of any calendar and concepts like &quot;day&quot; or &quot;month&quot;. It is related to Timestamp in that the difference between two Timestamp values is a Duration and it can be added or subtracted from a Timestamp. Range is approximately +-10,000 years.  # Examples  Example 1: Compute Duration from two Timestamps in pseudo code.  Timestamp start = ...; Timestamp end = ...; Duration duration = ...;  duration.seconds = end.seconds - start.seconds; duration.nanos = end.nanos - start.nanos;  if (duration.seconds  0) { duration.seconds += 1; duration.nanos -= 1000000000; } else if (duration.seconds &gt; 0 &amp;&amp; duration.nanos &lt; 0) { duration.seconds -= 1; duration.nanos += 1000000000; }  Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.  Timestamp start = ...; Duration duration = ...; Timestamp end = ...;  end.seconds = start.seconds + duration.seconds; end.nanos = start.nanos + duration.nanos;  if (end.nanos = 1000000000) { end.seconds += 1; end.nanos -= 1000000000; }  Example 3: Compute Duration from datetime.timedelta in Python.  td = datetime.timedelta(days=3, minutes=10) duration = Duration() duration.FromTimedelta(td)  # JSON Mapping  In JSON format, the Duration type is encoded as a string rather than an object, where the string ends in the suffix &quot;s&quot; (indicating seconds) and is preceded by the number of seconds, with nanoseconds expressed as fractional seconds. For example, 3 seconds with 0 nanoseconds should be encoded in JSON format as &quot;3s&quot;, while 3 seconds and 1 nanosecond should be expressed in JSON format as &quot;3.000000001s&quot;, and 3 seconds and 1 microsecond should be expressed in JSON format as &quot;3.000001s&quot;.
    */
   export interface Schema$Duration {
     /**
@@ -802,7 +802,7 @@ export namespace toolresults_v1beta3 {
     message?: string;
   }
   /**
-   * A Step represents a single operation performed as part of Execution. A step can be used to represent the execution of a tool ( for example a test runner execution or an execution of a compiler).  Steps can overlap (for instance two steps might have the same start time if some operations are done in parallel).  Here is an example, let&#39;s consider that we have a continuous build is executing a test runner for each iteration. The workflow would look like: - user creates a Execution with id 1 - user creates an TestExecutionStep with id 100 for Execution 1 - user update TestExecutionStep with id 100 to add a raw xml log + the service parses the xml logs and returns a TestExecutionStep with updated TestResult(s). - user update the status of TestExecutionStep with id 100 to COMPLETE  A Step can be updated until its state is set to COMPLETE at which points it becomes immutable.
+   * A Step represents a single operation performed as part of Execution. A step can be used to represent the execution of a tool ( for example a test runner execution or an execution of a compiler).  Steps can overlap (for instance two steps might have the same start time if some operations are done in parallel).  Here is an example, let&#39;s consider that we have a continuous build is executing a test runner for each iteration. The workflow would look like: - user creates a Execution with id 1 - user creates an TestExecutionStep with id 100 for Execution 1 - user update TestExecutionStep with id 100 to add a raw xml log + the service parses the xml logs and returns a TestExecutionStep with updated TestResult(s). - user update the status of TestExecutionStep with id 100 to COMPLETE  A Step can be updated until its state is set to COMPLETE at which points it becomes immutable.  Next tag: 23
    */
   export interface Schema$Step {
     /**
@@ -884,6 +884,10 @@ export namespace toolresults_v1beta3 {
     otherNativeCrash?: boolean;
   }
   export interface Schema$TestCase {
+    /**
+     * The elapsed run time of the test case.  Required.
+     */
+    elapsedTime?: Schema$Duration;
     /**
      * The end time of the test case.  Optional.
      */
@@ -2264,9 +2268,9 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.executionId A Execution id.  Required.
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
+     * @param {string} params.executionId Required. An Execution id.
+     * @param {string} params.historyId Required. A History id.
+     * @param {string} params.projectId Required. A Project id.
      * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
      * @param {().Step} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2727,15 +2731,15 @@ export namespace toolresults_v1beta3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A Execution id.  Required.
+     * Required. An Execution id.
      */
     executionId?: string;
     /**
-     * A History id.  Required.
+     * Required. A History id.
      */
     historyId?: string;
     /**
-     * A Project id.  Required.
+     * Required. A Project id.
      */
     projectId?: string;
     /**

@@ -411,6 +411,10 @@ export namespace cloudbuild_v1 {
      */
     includedFiles?: string[];
     /**
+     * User assigned name of the trigger. Must be unique within the project.
+     */
+    name?: string;
+    /**
      * Substitutions data for Build resource.
      */
     substitutions?: {[key: string]: string};
@@ -581,11 +585,11 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$PushFilter {
     /**
-     * Regexes of branches to match.  The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
+     * Regexes matching branches to build.  The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
      */
     branch?: string;
     /**
-     * Regexes of tags to match.  The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
+     * Regexes matching tags to build.  The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
      */
     tag?: string;
   }
@@ -594,7 +598,7 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$RepoSource {
     /**
-     * Name of the branch to build.
+     * Regex matching branches to build.  The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
      */
     branchName?: string;
     /**
@@ -614,7 +618,7 @@ export namespace cloudbuild_v1 {
      */
     repoName?: string;
     /**
-     * Name of the tag to build.
+     * Regex matching tags to build.  The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
      */
     tagName?: string;
   }

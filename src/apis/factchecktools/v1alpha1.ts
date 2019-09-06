@@ -174,6 +174,10 @@ export namespace factchecktools_v1alpha1 {
      */
     imageUrl?: string;
     /**
+     * Corresponds to `ClaimReview.reviewRating.ratingExplanation`.
+     */
+    ratingExplanation?: string;
+    /**
      * A numeric rating of this claim, in the range worstRating — bestRating inclusive.&lt;br&gt; Corresponds to `ClaimReview.reviewRating.ratingValue`.
      */
     ratingValue?: number;

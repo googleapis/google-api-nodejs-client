@@ -199,7 +199,7 @@ export namespace speech_v1p1beta1 {
     response?: {[key: string]: any};
   }
   /**
-   * Contains audio data in the encoding specified in the `RecognitionConfig`. Either `content` or `uri` must be supplied. Supplying both or neither returns google.rpc.Code.INVALID_ARGUMENT. See [content limits](/speech-to-text/quotas#content).
+   * Contains audio data in the encoding specified in the `RecognitionConfig`. Either `content` or `uri` must be supplied. Supplying both or neither returns google.rpc.Code.INVALID_ARGUMENT. See [content limits](https://cloud.google.com/speech-to-text/quotas#content).
    */
   export interface Schema$RecognitionAudio {
     /**
@@ -216,7 +216,7 @@ export namespace speech_v1p1beta1 {
    */
   export interface Schema$RecognitionConfig {
     /**
-     * *Optional* A list of up to 3 additional [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags, listing possible alternative languages of the supplied audio. See [Language Support](/speech-to-text/docs/languages) for a list of the currently supported language codes. If alternative languages are listed, recognition result will contain recognition in the most likely language detected including the main language_code. The recognition result will include the language tag of the language detected in the audio. Note: This feature is only supported for Voice Command and Voice Search use cases and performance may vary for other use cases (e.g., phone call transcription).
+     * *Optional* A list of up to 3 additional [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags, listing possible alternative languages of the supplied audio. See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes. If alternative languages are listed, recognition result will contain recognition in the most likely language detected including the main language_code. The recognition result will include the language tag of the language detected in the audio. Note: This feature is only supported for Voice Command and Voice Search use cases and performance may vary for other use cases (e.g., phone call transcription).
      */
     alternativeLanguageCodes?: string[];
     /**
@@ -228,7 +228,7 @@ export namespace speech_v1p1beta1 {
      */
     diarizationConfig?: Schema$SpeakerDiarizationConfig;
     /**
-     * *Optional* If set, specifies the estimated number of speakers in the conversation. If not set, defaults to &#39;2&#39;. Ignored unless enable_speaker_diarization is set to true.&quot; Note: Use diarization_config instead. This field will be DEPRECATED soon.
+     * *Optional* If set, specifies the estimated number of speakers in the conversation. Defaults to &#39;2&#39;. Ignored unless enable_speaker_diarization is set to true. Note: Use diarization_config instead.
      */
     diarizationSpeakerCount?: number;
     /**
@@ -240,7 +240,7 @@ export namespace speech_v1p1beta1 {
      */
     enableSeparateRecognitionPerChannel?: boolean;
     /**
-     * *Optional* If &#39;true&#39;, enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_tag provided in the WordInfo. Note: Use diarization_config instead. This field will be DEPRECATED soon.
+     * *Optional* If &#39;true&#39;, enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_tag provided in the WordInfo. Note: Use diarization_config instead.
      */
     enableSpeakerDiarization?: boolean;
     /**
@@ -256,7 +256,7 @@ export namespace speech_v1p1beta1 {
      */
     encoding?: string;
     /**
-     * *Required* The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: &quot;en-US&quot;. See [Language Support](/speech-to-text/docs/languages) for a list of the currently supported language codes.
+     * *Required* The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: &quot;en-US&quot;. See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes.
      */
     languageCode?: string;
     /**
@@ -280,7 +280,7 @@ export namespace speech_v1p1beta1 {
      */
     sampleRateHertz?: number;
     /**
-     * *Optional* array of SpeechContext. A means to provide context to assist the speech recognition. For more information, see [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
+     * *Optional* array of SpeechContext. A means to provide context to assist the speech recognition. For more information, see [speech adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
      */
     speechContexts?: Schema$SpeechContext[];
     /**
@@ -355,17 +355,20 @@ export namespace speech_v1p1beta1 {
      */
     results?: Schema$SpeechRecognitionResult[];
   }
+  /**
+   * *Optional* Config to enable speaker diarization.
+   */
   export interface Schema$SpeakerDiarizationConfig {
     /**
      * *Optional* If &#39;true&#39;, enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_tag provided in the WordInfo.
      */
     enableSpeakerDiarization?: boolean;
     /**
-     * *Optional* Only used if diarization_speaker_count is not set. Maximum number of speakers in the conversation. This range gives you more flexibility by allowing the system to automatically determine the correct number of speakers. If not set, the default value is 6.
+     * *Optional* Maximum number of speakers in the conversation. This range gives you more flexibility by allowing the system to automatically determine the correct number of speakers. If not set, the default value is 6.
      */
     maxSpeakerCount?: number;
     /**
-     * *Optional* Only used if diarization_speaker_count is not set. Minimum number of speakers in the conversation. This range gives you more flexibility by allowing the system to automatically determine the correct number of speakers. If not set, the default value is 2.
+     * *Optional* Minimum number of speakers in the conversation. This range gives you more flexibility by allowing the system to automatically determine the correct number of speakers. If not set, the default value is 2.
      */
     minSpeakerCount?: number;
   }
@@ -378,7 +381,7 @@ export namespace speech_v1p1beta1 {
      */
     boost?: number;
     /**
-     * *Optional* A list of strings containing words and phrases &quot;hints&quot; so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](/speech-to-text/quotas#content).  List items can also be set to classes for groups of words that represent common concepts that occur in natural language. For example, rather than providing phrase hints for every month of the year, using the $MONTH class improves the likelihood of correctly transcribing audio that includes months.
+     * *Optional* A list of strings containing words and phrases &quot;hints&quot; so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech-to-text/quotas#content).  List items can also be set to classes for groups of words that represent common concepts that occur in natural language. For example, rather than providing phrase hints for every month of the year, using the $MONTH class improves the likelihood of correctly transcribing audio that includes months.
      */
     phrases?: string[];
   }

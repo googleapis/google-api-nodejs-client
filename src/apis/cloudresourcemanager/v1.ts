@@ -336,7 +336,7 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
     requestedPolicyVersion?: number;
   }
@@ -515,19 +515,19 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$Organization {
     /**
-     * Timestamp when the Organization was created. Assigned by the server. @OutputOnly
+     * Timestamp when the Organization was created. Assigned by the server.
      */
     creationTime?: string;
     /**
-     * A human-readable string that refers to the Organization in the GCP Console UI. This string is set by the server and cannot be changed. The string will be set to the primary domain (for example, &quot;google.com&quot;) of the G Suite customer that owns the organization. @OutputOnly
+     * A human-readable string that refers to the Organization in the GCP Console UI. This string is set by the server and cannot be changed. The string will be set to the primary domain (for example, &quot;google.com&quot;) of the G Suite customer that owns the organization.
      */
     displayName?: string;
     /**
-     * The organization&#39;s current lifecycle state. Assigned by the server. @OutputOnly
+     * The organization&#39;s current lifecycle state. Assigned by the server.
      */
     lifecycleState?: string;
     /**
-     * Output Only. The resource name of the organization. This is the organization&#39;s relative path in the API. Its format is &quot;organizations/[organization_id]&quot;. For example, &quot;organizations/1234&quot;.
+     * Output only. The resource name of the organization. This is the organization&#39;s relative path in the API. Its format is &quot;organizations/[organization_id]&quot;. For example, &quot;organizations/1234&quot;.
      */
     name?: string;
     /**
@@ -594,7 +594,7 @@ export namespace cloudresourcemanager_v1 {
      */
     etag?: string;
     /**
-     * Deprecated.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
     version?: number;
   }
@@ -5401,7 +5401,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.setIamPolicy
-     * @desc Sets the IAM access control policy for the specified Project. Overwrites any existing policy.  The following constraints apply when using `setIamPolicy()`:  + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`.  + The owner role can be granted only to `user` and `serviceAccount`.  + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation.  + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation.  + You can only grant ownership of a project to a member by using the GCP Console. Inviting a member will deliver an invitation email that they must accept. An invitation email is not generated if you are granting a role other than owner, or if both the member you are inviting and the project are part of your organization.  + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected.  + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified.  + This method will replace the existing policy, and cannot be used to append additional IAM settings.  Note: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles.  Authorization requires the Google IAM permission `resourcemanager.projects.setIamPolicy` on the project
+     * @desc Sets the IAM access control policy for the specified Project. Overwrites any existing policy.  The following constraints apply when using `setIamPolicy()`:  + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`.  + The owner role can be granted to a `user`, `serviceAccount`, or a group that is part of an organization. For example, group@myownpersonaldomain.com could be added as an owner to a project in the myownpersonaldomain.com organization, but not the examplepetstore.com organization.  + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation.  + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation.  + You can only grant ownership of a project to a member by using the GCP Console. Inviting a member will deliver an invitation email that they must accept. An invitation email is not generated if you are granting a role other than owner, or if both the member you are inviting and the project are part of your organization.  + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected.  + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified.  + This method will replace the existing policy, and cannot be used to append additional IAM settings.  Note: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles.  Authorization requires the Google IAM permission `resourcemanager.projects.setIamPolicy` on the project
      * @example
      * * // BEFORE RUNNING:
      * // ---------------

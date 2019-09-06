@@ -73,7 +73,7 @@ export namespace doubleclicksearch_v2 {
   }
 
   /**
-   * DoubleClick Search API
+   * Search Ads 360 API
    *
    * Reports and modifies your advertising data in DoubleClick Search (for example, campaigns, ad groups, keywords, and conversions).
    *
@@ -315,7 +315,7 @@ export namespace doubleclicksearch_v2 {
    */
   export interface Schema$Report {
     /**
-     * Asynchronous report only. Contains a list of generated report files once the report has succesfully completed.
+     * Asynchronous report only. Contains a list of generated report files once the report has successfully completed.
      */
     files?: Array<{byteCount?: string; url?: string}>;
     /**

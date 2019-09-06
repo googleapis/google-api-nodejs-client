@@ -690,6 +690,10 @@ export namespace genomics_v1alpha2 {
      */
     instance?: string;
     /**
+     * The machine type that was assigned for the worker.
+     */
+    machineType?: string;
+    /**
      * The zone the worker is running in.
      */
     zone?: string;

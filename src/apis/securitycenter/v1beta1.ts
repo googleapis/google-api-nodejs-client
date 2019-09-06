@@ -181,10 +181,6 @@ export namespace securitycenter_v1beta1 {
      */
     exemptedMembers?: string[];
     /**
-     * Specifies whether principals can be exempted for the same LogType in lower-level resource policies. If true, any lower-level exemptions will be ignored.
-     */
-    ignoreChildExemptions?: boolean;
-    /**
      * The log type that this config enables.
      */
     logType?: string;
@@ -294,7 +290,7 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      */
     requestedPolicyVersion?: number;
   }

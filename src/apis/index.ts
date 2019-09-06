@@ -32,9 +32,9 @@ import * as androidmanagement from './androidmanagement';
 import * as androidpublisher from './androidpublisher';
 import * as appengine from './appengine';
 import * as appsactivity from './appsactivity';
-import * as appstate from './appstate';
 import * as bigquery from './bigquery';
 import * as bigquerydatatransfer from './bigquerydatatransfer';
+import * as bigqueryreservation from './bigqueryreservation';
 import * as bigtableadmin from './bigtableadmin';
 import * as binaryauthorization from './binaryauthorization';
 import * as blogger from './blogger';
@@ -80,6 +80,7 @@ import * as discovery from './discovery';
 import * as dlp from './dlp';
 import * as dns from './dns';
 import * as docs from './docs';
+import * as domainsrdap from './domainsrdap';
 import * as doubleclickbidmanager from './doubleclickbidmanager';
 import * as doubleclicksearch from './doubleclicksearch';
 import * as drive from './drive';
@@ -102,6 +103,7 @@ import * as gmail from './gmail';
 import * as groupsmigration from './groupsmigration';
 import * as groupssettings from './groupssettings';
 import * as healthcare from './healthcare';
+import * as homegraph from './homegraph';
 import * as iam from './iam';
 import * as iamcredentials from './iamcredentials';
 import * as iap from './iap';
@@ -163,6 +165,7 @@ import * as tpu from './tpu';
 import * as translate from './translate';
 import * as urlshortener from './urlshortener';
 import * as vault from './vault';
+import * as verifiedaccess from './verifiedaccess';
 import * as videointelligence from './videointelligence';
 import * as vision from './vision';
 import * as webfonts from './webfonts';
@@ -197,9 +200,9 @@ export const APIS: APIList = {
   androidpublisher: androidpublisher.VERSIONS,
   appengine: appengine.VERSIONS,
   appsactivity: appsactivity.VERSIONS,
-  appstate: appstate.VERSIONS,
   bigquery: bigquery.VERSIONS,
   bigquerydatatransfer: bigquerydatatransfer.VERSIONS,
+  bigqueryreservation: bigqueryreservation.VERSIONS,
   bigtableadmin: bigtableadmin.VERSIONS,
   binaryauthorization: binaryauthorization.VERSIONS,
   blogger: blogger.VERSIONS,
@@ -245,6 +248,7 @@ export const APIS: APIList = {
   dlp: dlp.VERSIONS,
   dns: dns.VERSIONS,
   docs: docs.VERSIONS,
+  domainsrdap: domainsrdap.VERSIONS,
   doubleclickbidmanager: doubleclickbidmanager.VERSIONS,
   doubleclicksearch: doubleclicksearch.VERSIONS,
   drive: drive.VERSIONS,
@@ -267,6 +271,7 @@ export const APIS: APIList = {
   groupsmigration: groupsmigration.VERSIONS,
   groupssettings: groupssettings.VERSIONS,
   healthcare: healthcare.VERSIONS,
+  homegraph: homegraph.VERSIONS,
   iam: iam.VERSIONS,
   iamcredentials: iamcredentials.VERSIONS,
   iap: iap.VERSIONS,
@@ -328,6 +333,7 @@ export const APIS: APIList = {
   translate: translate.VERSIONS,
   urlshortener: urlshortener.VERSIONS,
   vault: vault.VERSIONS,
+  verifiedaccess: verifiedaccess.VERSIONS,
   videointelligence: videointelligence.VERSIONS,
   vision: vision.VERSIONS,
   webfonts: webfonts.VERSIONS,
@@ -359,9 +365,9 @@ export class GeneratedAPIs {
   androidpublisher = androidpublisher.androidpublisher;
   appengine = appengine.appengine;
   appsactivity = appsactivity.appsactivity;
-  appstate = appstate.appstate;
   bigquery = bigquery.bigquery;
   bigquerydatatransfer = bigquerydatatransfer.bigquerydatatransfer;
+  bigqueryreservation = bigqueryreservation.bigqueryreservation;
   bigtableadmin = bigtableadmin.bigtableadmin;
   binaryauthorization = binaryauthorization.binaryauthorization;
   blogger = blogger.blogger;
@@ -408,6 +414,7 @@ export class GeneratedAPIs {
   dlp = dlp.dlp;
   dns = dns.dns;
   docs = docs.docs;
+  domainsrdap = domainsrdap.domainsrdap;
   doubleclickbidmanager = doubleclickbidmanager.doubleclickbidmanager;
   doubleclicksearch = doubleclicksearch.doubleclicksearch;
   drive = drive.drive;
@@ -430,6 +437,7 @@ export class GeneratedAPIs {
   groupsmigration = groupsmigration.groupsmigration;
   groupssettings = groupssettings.groupssettings;
   healthcare = healthcare.healthcare;
+  homegraph = homegraph.homegraph;
   iam = iam.iam;
   iamcredentials = iamcredentials.iamcredentials;
   iap = iap.iap;
@@ -492,6 +500,7 @@ export class GeneratedAPIs {
   translate = translate.translate;
   urlshortener = urlshortener.urlshortener;
   vault = vault.vault;
+  verifiedaccess = verifiedaccess.verifiedaccess;
   videointelligence = videointelligence.videointelligence;
   vision = vision.vision;
   webfonts = webfonts.webfonts;

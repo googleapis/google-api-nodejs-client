@@ -118,6 +118,28 @@ export namespace spanner_v1 {
   }
 
   /**
+   * The request for BatchCreateSessions.
+   */
+  export interface Schema$BatchCreateSessionsRequest {
+    /**
+     * Required. The number of sessions to be created in this batch call. The API may return fewer than the requested number of sessions. If a specific number of sessions are desired, the client can make additional calls to BatchCreateSessions (adjusting session_count as necessary). The maximum allowed sessions are documented at https://goo.gl/hBUQED.
+     */
+    sessionCount?: number;
+    /**
+     * Parameters to be applied to each created session.
+     */
+    sessionTemplate?: Schema$Session;
+  }
+  /**
+   * The response for BatchCreateSessions.
+   */
+  export interface Schema$BatchCreateSessionsResponse {
+    /**
+     * The freshly created sessions.
+     */
+    session?: Schema$Session[];
+  }
+  /**
    * The request for BeginTransaction.
    */
   export interface Schema$BeginTransactionRequest {
@@ -135,7 +157,7 @@ export namespace spanner_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
@@ -394,7 +416,21 @@ export namespace spanner_v1 {
   /**
    * Request message for `GetIamPolicy` method.
    */
-  export interface Schema$GetIamPolicyRequest {}
+  export interface Schema$GetIamPolicyRequest {
+    /**
+     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`. This field is only used by Cloud IAM.
+     */
+    options?: Schema$GetPolicyOptions;
+  }
+  /**
+   * Encapsulates settings provided to GetIamPolicy.
+   */
+  export interface Schema$GetPolicyOptions {
+    /**
+     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    requestedPolicyVersion?: number;
+  }
   /**
    * An isolated set of Cloud Spanner resources on which databases can be hosted.
    */
@@ -754,7 +790,7 @@ export namespace spanner_v1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
     etag?: string;
     /**
@@ -3298,6 +3334,88 @@ export namespace spanner_v1 {
     }
 
     /**
+     * spanner.projects.instances.databases.sessions.batchCreate
+     * @desc Creates multiple new sessions. If the requested number of sessions would cause the database to exceed its session limit, returns a RESOURCE_EXHAUSTED error.  This API can be used to initialize a session cache on the clients. See https://goo.gl/TgSFN2 for best practices on session cache management.
+     * @alias spanner.projects.instances.databases.sessions.batchCreate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.database Required. The database in which the new sessions are created.
+     * @param {().BatchCreateSessionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    batchCreate(
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchCreateSessionsResponse>;
+    batchCreate(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchCreateSessionsResponse>,
+      callback: BodyResponseCallback<Schema$BatchCreateSessionsResponse>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate,
+      callback: BodyResponseCallback<Schema$BatchCreateSessionsResponse>
+    ): void;
+    batchCreate(
+      callback: BodyResponseCallback<Schema$BatchCreateSessionsResponse>
+    ): void;
+    batchCreate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate
+        | BodyResponseCallback<Schema$BatchCreateSessionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchCreateSessionsResponse>,
+      callback?: BodyResponseCallback<Schema$BatchCreateSessionsResponse>
+    ): void | GaxiosPromise<Schema$BatchCreateSessionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+database}/sessions:batchCreate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['database'],
+        pathParams: ['database'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchCreateSessionsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$BatchCreateSessionsResponse>(parameters);
+      }
+    }
+
+    /**
      * spanner.projects.instances.databases.sessions.beginTransaction
      * @desc Begins a new transaction. This step can often be skipped: Read, ExecuteSql and Commit can begin a new transaction as a side-effect.
      * @alias spanner.projects.instances.databases.sessions.beginTransaction
@@ -4348,6 +4466,23 @@ export namespace spanner_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The database in which the new sessions are created.
+     */
+    database?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchCreateSessionsRequest;
+  }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction
     extends StandardParameters {
     /**

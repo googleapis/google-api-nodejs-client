@@ -409,7 +409,7 @@ export namespace driveactivity_v2 {
      */
     driveFile?: Schema$DriveFile;
     /**
-     * The Drive item is a folder.
+     * The Drive item is a folder. Includes information about the type of folder.
      */
     driveFolder?: Schema$DriveFolder;
     /**

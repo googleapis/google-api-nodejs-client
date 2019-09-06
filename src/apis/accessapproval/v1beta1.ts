@@ -126,6 +126,10 @@ export namespace accessapproval_v1beta1 {
    */
   export interface Schema$AccessApprovalSettings {
     /**
+     * A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the resource given by name against any of these services contained here will be required to have explicit approval. If name refers to an organization, enrollment can be done for individual services. If name refers to a folder or project, enrollment can only be done on an all or nothing basis.  If a cloud_product is repeated in this list, the first entry will be honored and all following entries will be discarded.
+     */
+    enrolledServices?: Schema$EnrolledService[];
+    /**
      * The resource name of the settings. Format is one of: &lt;ol&gt;   &lt;li&gt;&quot;projects/{project_id}/accessApprovalSettings&quot;&lt;/li&gt;   &lt;li&gt;&quot;folders/{folder_id}/accessApprovalSettings&quot;&lt;/li&gt;   &lt;li&gt;&quot;organizations/{organization_id}/accessApprovalSettings&quot;&lt;/li&gt; &lt;ol&gt;
      */
     name?: string;
@@ -232,6 +236,19 @@ export namespace accessapproval_v1beta1 {
      * The time at which the approval request was dismissed.
      */
     dismissTime?: string;
+  }
+  /**
+   * Represents the enrollment of a cloud resource into a specific service.
+   */
+  export interface Schema$EnrolledService {
+    /**
+     * The product for which Access Approval will be enrolled. Allowed values are listed below (case-sensitive): &lt;ol&gt;   &lt;li&gt;all&lt;/li&gt;   &lt;li&gt;appengine.googleapis.com&lt;/li&gt;   &lt;li&gt;bigquery.googleapis.com&lt;/li&gt;   &lt;li&gt;bigtable.googleapis.com&lt;/li&gt;   &lt;li&gt;cloudkms.googleapis.com&lt;/li&gt;   &lt;li&gt;compute.googleapis.com&lt;/li&gt;   &lt;li&gt;dataflow.googleapis.com&lt;/li&gt;   &lt;li&gt;iam.googleapis.com&lt;/li&gt;   &lt;li&gt;pubsub.googleapis.com&lt;/li&gt;   &lt;li&gt;storage.googleapis.com&lt;/li&gt; &lt;ol&gt;
+     */
+    cloudProduct?: string;
+    /**
+     * The enrollment level of the service.
+     */
+    enrollmentLevel?: string;
   }
   /**
    * Response to listing of ApprovalRequest objects.
@@ -344,12 +361,13 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.folders.updateAccessApprovalSettings
-     * @desc Updates the settings associated with a project, folder, or organization. Completely replaces the existing settings.
+     * @desc Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
      * @alias accessapproval.folders.updateAccessApprovalSettings
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
+     * @param {string=} params.updateMask The update mask applies to the settings. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      * @param {().AccessApprovalSettings} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -443,6 +461,10 @@ export namespace accessapproval_v1beta1 {
      * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
     name?: string;
+    /**
+     * The update mask applies to the settings. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
@@ -927,12 +949,13 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.organizations.updateAccessApprovalSettings
-     * @desc Updates the settings associated with a project, folder, or organization. Completely replaces the existing settings.
+     * @desc Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
      * @alias accessapproval.organizations.updateAccessApprovalSettings
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
+     * @param {string=} params.updateMask The update mask applies to the settings. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      * @param {().AccessApprovalSettings} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1026,6 +1049,10 @@ export namespace accessapproval_v1beta1 {
      * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
     name?: string;
+    /**
+     * The update mask applies to the settings. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
@@ -1510,12 +1537,13 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.projects.updateAccessApprovalSettings
-     * @desc Updates the settings associated with a project, folder, or organization. Completely replaces the existing settings.
+     * @desc Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
      * @alias accessapproval.projects.updateAccessApprovalSettings
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
+     * @param {string=} params.updateMask The update mask applies to the settings. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      * @param {().AccessApprovalSettings} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1609,6 +1637,10 @@ export namespace accessapproval_v1beta1 {
      * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
     name?: string;
+    /**
+     * The update mask applies to the settings. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata

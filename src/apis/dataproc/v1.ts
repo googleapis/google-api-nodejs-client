@@ -139,7 +139,7 @@ export namespace dataproc_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. members can have the following values: allUsers: A special identifier that represents anyone who is  on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone  who is authenticated with a Google account or a service account. user:{emailid}: An email address that represents a specific Google  account. For example, alice@gmail.com . serviceAccount:{emailid}: An email address that represents a service  account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid}: An email address that represents a Google group.  For example, admins@example.com. domain:{domain}: The G Suite domain (primary) that represents all the  users of that domain. For example, google.com or example.com.
+     * Specifies the identities requesting access for a Cloud Platform resource. members can have the following values: allUsers: A special identifier that represents anyone who is  on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone  who is authenticated with a Google account or a service account. user:{emailid}: An email address that represents a specific Google  account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a service  account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid}: An email address that represents a Google group.  For example, admins@example.com. domain:{domain}: The G Suite domain (primary) that represents all the  users of that domain. For example, google.com or example.com.
      */
     members?: string[];
     /**
@@ -208,6 +208,10 @@ export namespace dataproc_v1 {
      * Optional. Commands to execute on each node after config is completed. By default, executables are run on master and all worker nodes. You can test a node&#39;s role metadata to run an executable on a master or worker node, as shown below using curl (you can also use wget): ROLE=$(curl -H Metadata-Flavor:Google http://metadata/computeMetadata/v1/instance/attributes/dataproc-role) if [[ &quot;${ROLE}&quot; == &#39;Master&#39; ]]; then   ... master specific actions ... else   ... worker specific actions ... fi
      */
     initializationActions?: Schema$NodeInitializationAction[];
+    /**
+     * Optional. Lifecycle setting for the cluster.
+     */
+    lifecycleConfig?: Schema$LifecycleConfig;
     /**
      * Optional. The Compute Engine config settings for the master instance in a cluster.
      */
@@ -455,7 +459,21 @@ export namespace dataproc_v1 {
   /**
    * Request message for GetIamPolicy method.
    */
-  export interface Schema$GetIamPolicyRequest {}
+  export interface Schema$GetIamPolicyRequest {
+    /**
+     * OPTIONAL: A GetPolicyOptions object for specifying options to GetIamPolicy. This field is only used by Cloud IAM.
+     */
+    options?: Schema$GetPolicyOptions;
+  }
+  /**
+   * Encapsulates settings provided to GetIamPolicy.
+   */
+  export interface Schema$GetPolicyOptions {
+    /**
+     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     */
+    requestedPolicyVersion?: number;
+  }
   /**
    * A Cloud Dataproc job for running Apache Hadoop MapReduce (https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html) jobs on Apache Hadoop YARN (https://hadoop.apache.org/docs/r2.7.1/hadoop-yarn/hadoop-yarn-site/YARN.html).
    */
@@ -746,6 +764,10 @@ export namespace dataproc_v1 {
      */
     kmsKeyUri?: string;
     /**
+     * Optional. The name of the on-cluster Kerberos realm. If not specified, the uppercased domain of hostnames will be the realm.
+     */
+    realm?: string;
+    /**
      * Required. The Cloud Storage URI of a KMS encrypted file containing the root principal password.
      */
     rootPrincipalPasswordUri?: string;
@@ -761,6 +783,27 @@ export namespace dataproc_v1 {
      * Optional. The Cloud Storage URI of the truststore file used for SSL encryption. If not provided, Dataproc will provide a self-signed certificate.
      */
     truststoreUri?: string;
+  }
+  /**
+   * Specifies the cluster auto-delete schedule configuration.
+   */
+  export interface Schema$LifecycleConfig {
+    /**
+     * Optional. The time when cluster will be auto-deleted.
+     */
+    autoDeleteTime?: string;
+    /**
+     * Optional. The lifetime duration of cluster. The cluster will be auto-deleted at the end of this period. Valid range: 10m, 14d.Example: &quot;1d&quot;, to delete the cluster 1 day after its creation..
+     */
+    autoDeleteTtl?: string;
+    /**
+     * Optional. The duration to keep the cluster alive while idling. Passing this threshold will cause the cluster to be deleted. Valid range: 10m, 14d.Example: &quot;10m&quot;, the minimum value, to delete the cluster when it has had no jobs running for 10 minutes.
+     */
+    idleDeleteTtl?: string;
+    /**
+     * Output only. The time when cluster became idle (most recent job finished) and became eligible for deletion due to idleness.
+     */
+    idleStartTime?: string;
   }
   /**
    * The list of all clusters in a project.
@@ -991,7 +1034,7 @@ export namespace dataproc_v1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to getIamPolicy, and systems are expected to put that etag in the request to setIamPolicy to ensure that their change will be applied to the same version of the policy.If no etag is provided in the call to setIamPolicy, then the existing policy is overwritten blindly.
+     * etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to getIamPolicy, and systems are expected to put that etag in the request to setIamPolicy to ensure that their change will be applied to the same version of the policy.If no etag is provided in the call to setIamPolicy, then the existing policy is overwritten.
      */
     etag?: string;
     /**
@@ -1283,7 +1326,7 @@ export namespace dataproc_v1 {
      */
     state?: string;
     /**
-     * Output only. The &quot;resource name&quot; of the template.
+     * Output only. The resource name of the workflow template as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      */
     template?: string;
     /**
@@ -1337,7 +1380,7 @@ export namespace dataproc_v1 {
      */
     labels?: {[key: string]: string};
     /**
-     * Output only. The &quot;resource name&quot; of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      */
     name?: string;
     /**
@@ -1405,457 +1448,13 @@ export namespace dataproc_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
-    autoscalingPolicies: Resource$Projects$Locations$Autoscalingpolicies;
     workflowTemplates: Resource$Projects$Locations$Workflowtemplates;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.autoscalingPolicies = new Resource$Projects$Locations$Autoscalingpolicies(
-        this.context
-      );
       this.workflowTemplates = new Resource$Projects$Locations$Workflowtemplates(
         this.context
       );
     }
-  }
-
-  export class Resource$Projects$Locations$Autoscalingpolicies {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * dataproc.projects.locations.autoscalingPolicies.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Dataproc API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dataproc
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * const {google} = require('googleapis');
-     * var dataproc = google.dataproc('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for
-     *     // the appropriate value for this field.
-     *     resource_: 'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscaling-policy',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dataproc.projects.locations.autoscalingPolicies.getIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
-     * @alias dataproc.projects.locations.autoscalingPolicies.getIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * dataproc.projects.locations.autoscalingPolicies.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Dataproc API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dataproc
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * const {google} = require('googleapis');
-     * var dataproc = google.dataproc('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for
-     *     // the appropriate value for this field.
-     *     resource_: 'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscaling-policy',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dataproc.projects.locations.autoscalingPolicies.setIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
-     * @alias dataproc.projects.locations.autoscalingPolicies.setIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy(
-      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * dataproc.projects.locations.autoscalingPolicies.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Dataproc API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dataproc
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * const {google} = require('googleapis');
-     * var dataproc = google.dataproc('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation
-     *     // documentation for the appropriate value for this field.
-     *     resource_: 'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscaling-policy',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dataproc.projects.locations.autoscalingPolicies.testIamPermissions(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
-     * @alias dataproc.projects.locations.autoscalingPolicies.testIamPermissions
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions(
-      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-          parameters,
-          callback
-        );
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
   export class Resource$Projects$Locations$Workflowtemplates {
@@ -1923,7 +1522,7 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string} params.parent Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,create, the resource name of the  region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.create, the resource name of  the location has the following format:  projects/{project_id}/locations/{location}
      * @param {().WorkflowTemplate} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2043,7 +1642,7 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {string} params.name Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.delete, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      * @param {integer=} params.version Optional. The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2161,8 +1760,8 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-     * @param {integer=} params.version Optional. The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
+     * @param {string} params.name Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
+     * @param {integer=} params.version Optional. The version of workflow template to retrieve. Only previously instantiated versions can be retrieved.If unspecified, retrieves the current version.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2352,7 +1951,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.locations.workflowTemplates.instantiate
-     * @desc Instantiates a template and begins execution.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata.On successful completion, Operation.response will be Empty.
+     * @desc Instantiates a template and begins execution.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata. Also see Using WorkflowMetadata.On successful completion, Operation.response will be Empty.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -2409,7 +2008,7 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {string} params.name Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      * @param {().InstantiateWorkflowTemplateRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2479,7 +2078,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.locations.workflowTemplates.instantiateInline
-     * @desc Instantiates a template and begins execution.This method is equivalent to executing the sequence CreateWorkflowTemplate, InstantiateWorkflowTemplate, DeleteWorkflowTemplate.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata.On successful completion, Operation.response will be Empty.
+     * @desc Instantiates a template and begins execution.This method is equivalent to executing the sequence CreateWorkflowTemplate, InstantiateWorkflowTemplate, DeleteWorkflowTemplate.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata. Also see Using WorkflowMetadata.On successful completion, Operation.response will be Empty.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -2536,7 +2135,7 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string} params.parent Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,instantiateinline, the resource  name of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.instantiateinline, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}
      * @param {string=} params.requestId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      * @param {().WorkflowTemplate} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2674,7 +2273,7 @@ export namespace dataproc_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of results to return in each response.
      * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
-     * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string} params.parent Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,list, the resource  name of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.list, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3067,7 +2666,7 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {string} params.name Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      * @param {().WorkflowTemplate} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3141,7 +2740,7 @@ export namespace dataproc_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,create, the resource name of the  region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.create, the resource name of  the location has the following format:  projects/{project_id}/locations/{location}
      */
     parent?: string;
 
@@ -3158,7 +2757,7 @@ export namespace dataproc_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.delete, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      */
     name?: string;
     /**
@@ -3174,11 +2773,11 @@ export namespace dataproc_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      */
     name?: string;
     /**
-     * Optional. The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
+     * Optional. The version of workflow template to retrieve. Only previously instantiated versions can be retrieved.If unspecified, retrieves the current version.
      */
     version?: number;
   }
@@ -3207,7 +2806,7 @@ export namespace dataproc_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      */
     name?: string;
 
@@ -3224,7 +2823,7 @@ export namespace dataproc_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,instantiateinline, the resource  name of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.instantiateinline, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}
      */
     parent?: string;
     /**
@@ -3253,7 +2852,7 @@ export namespace dataproc_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,list, the resource  name of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.list, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}
      */
     parent?: string;
   }
@@ -3299,7 +2898,7 @@ export namespace dataproc_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Output only. The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      */
     name?: string;
 
@@ -3311,16 +2910,12 @@ export namespace dataproc_v1 {
 
   export class Resource$Projects$Regions {
     context: APIRequestContext;
-    autoscalingPolicies: Resource$Projects$Regions$Autoscalingpolicies;
     clusters: Resource$Projects$Regions$Clusters;
     jobs: Resource$Projects$Regions$Jobs;
     operations: Resource$Projects$Regions$Operations;
     workflowTemplates: Resource$Projects$Regions$Workflowtemplates;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.autoscalingPolicies = new Resource$Projects$Regions$Autoscalingpolicies(
-        this.context
-      );
       this.clusters = new Resource$Projects$Regions$Clusters(this.context);
       this.jobs = new Resource$Projects$Regions$Jobs(this.context);
       this.operations = new Resource$Projects$Regions$Operations(this.context);
@@ -3328,446 +2923,6 @@ export namespace dataproc_v1 {
         this.context
       );
     }
-  }
-
-  export class Resource$Projects$Regions$Autoscalingpolicies {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * dataproc.projects.regions.autoscalingPolicies.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Dataproc API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dataproc
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * const {google} = require('googleapis');
-     * var dataproc = google.dataproc('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for
-     *     // the appropriate value for this field.
-     *     resource_: 'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscaling-policy',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dataproc.projects.regions.autoscalingPolicies.getIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
-     * @alias dataproc.projects.regions.autoscalingPolicies.getIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy(
-      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * dataproc.projects.regions.autoscalingPolicies.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Dataproc API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dataproc
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * const {google} = require('googleapis');
-     * var dataproc = google.dataproc('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for
-     *     // the appropriate value for this field.
-     *     resource_: 'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscaling-policy',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dataproc.projects.regions.autoscalingPolicies.setIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
-     * @alias dataproc.projects.regions.autoscalingPolicies.setIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy(
-      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * dataproc.projects.regions.autoscalingPolicies.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Dataproc API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dataproc
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * const {google} = require('googleapis');
-     * var dataproc = google.dataproc('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation
-     *     // documentation for the appropriate value for this field.
-     *     resource_: 'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscaling-policy',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   dataproc.projects.regions.autoscalingPolicies.testIamPermissions(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
-     * @alias dataproc.projects.regions.autoscalingPolicies.testIamPermissions
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions(
-      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-          parameters,
-          callback
-        );
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
   export class Resource$Projects$Regions$Clusters {
@@ -3778,7 +2933,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.regions.clusters.create
-     * @desc Creates a cluster in a project.
+     * @desc Creates a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -3907,7 +3062,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.regions.clusters.delete
-     * @desc Deletes a cluster in a project.
+     * @desc Deletes a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -4037,7 +3192,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.regions.clusters.diagnose
-     * @desc Gets cluster diagnostic information. After the operation completes, the Operation.response field contains DiagnoseClusterOutputLocation.
+     * @desc Gets cluster diagnostic information. The returned Operation.metadata will be ClusterOperationMetadata. After the operation completes, Operation.response contains DiagnoseClusterResults.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -4561,7 +3716,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.regions.clusters.patch
-     * @desc Updates a cluster in a project.
+     * @desc Updates a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -7578,7 +6733,7 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string} params.parent Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,create, the resource name of the  region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.create, the resource name of  the location has the following format:  projects/{project_id}/locations/{location}
      * @param {().WorkflowTemplate} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7698,7 +6853,7 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {string} params.name Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.delete, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      * @param {integer=} params.version Optional. The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7816,8 +6971,8 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-     * @param {integer=} params.version Optional. The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
+     * @param {string} params.name Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
+     * @param {integer=} params.version Optional. The version of workflow template to retrieve. Only previously instantiated versions can be retrieved.If unspecified, retrieves the current version.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8007,7 +7162,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.regions.workflowTemplates.instantiate
-     * @desc Instantiates a template and begins execution.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata.On successful completion, Operation.response will be Empty.
+     * @desc Instantiates a template and begins execution.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata. Also see Using WorkflowMetadata.On successful completion, Operation.response will be Empty.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -8064,7 +7219,7 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {string} params.name Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      * @param {().InstantiateWorkflowTemplateRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8134,7 +7289,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.regions.workflowTemplates.instantiateInline
-     * @desc Instantiates a template and begins execution.This method is equivalent to executing the sequence CreateWorkflowTemplate, InstantiateWorkflowTemplate, DeleteWorkflowTemplate.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata.On successful completion, Operation.response will be Empty.
+     * @desc Instantiates a template and begins execution.This method is equivalent to executing the sequence CreateWorkflowTemplate, InstantiateWorkflowTemplate, DeleteWorkflowTemplate.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata. Also see Using WorkflowMetadata.On successful completion, Operation.response will be Empty.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -8191,7 +7346,7 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string} params.parent Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,instantiateinline, the resource  name of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.instantiateinline, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}
      * @param {string=} params.requestId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      * @param {().WorkflowTemplate} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8329,7 +7484,7 @@ export namespace dataproc_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of results to return in each response.
      * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
-     * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string} params.parent Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,list, the resource  name of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.list, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8722,7 +7877,7 @@ export namespace dataproc_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {string} params.name Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      * @param {().WorkflowTemplate} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8796,7 +7951,7 @@ export namespace dataproc_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,create, the resource name of the  region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.create, the resource name of  the location has the following format:  projects/{project_id}/locations/{location}
      */
     parent?: string;
 
@@ -8813,7 +7968,7 @@ export namespace dataproc_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.delete, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      */
     name?: string;
     /**
@@ -8829,11 +7984,11 @@ export namespace dataproc_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      */
     name?: string;
     /**
-     * Optional. The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
+     * Optional. The version of workflow template to retrieve. Only previously instantiated versions can be retrieved.If unspecified, retrieves the current version.
      */
     version?: number;
   }
@@ -8862,7 +8017,7 @@ export namespace dataproc_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      */
     name?: string;
 
@@ -8879,7 +8034,7 @@ export namespace dataproc_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,instantiateinline, the resource  name of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.instantiateinline, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}
      */
     parent?: string;
     /**
@@ -8908,7 +8063,7 @@ export namespace dataproc_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,list, the resource  name of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.list, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}
      */
     parent?: string;
   }
@@ -8954,7 +8109,7 @@ export namespace dataproc_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Output only. The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      */
     name?: string;
 

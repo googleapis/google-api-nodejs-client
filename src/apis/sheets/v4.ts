@@ -395,6 +395,10 @@ export namespace sheets_v4 {
      * The axis title text position.
      */
     titleTextPosition?: Schema$TextPosition;
+    /**
+     * The view window options for this axis.
+     */
+    viewWindowOptions?: Schema$ChartAxisViewWindowOptions;
   }
   /**
    * The domain of a chart. For example, if charting stock prices over time, this would be the date.
@@ -1001,6 +1005,23 @@ export namespace sheets_v4 {
     wrapStrategy?: string;
   }
   /**
+   * The options that define a &quot;view window&quot; for a chart (such as the visible values in an axis).
+   */
+  export interface Schema$ChartAxisViewWindowOptions {
+    /**
+     * The maximum numeric value to be shown in this view window. If unset, will automatically determine a maximum value that looks good for the data.
+     */
+    viewWindowMax?: number;
+    /**
+     * The minimum numeric value to be shown in this view window. If unset, will automatically determine a minimum value that looks good for the data.
+     */
+    viewWindowMin?: number;
+    /**
+     * The view window&#39;s mode.
+     */
+    viewWindowMode?: string;
+  }
+  /**
    * The data included in a domain or series.
    */
   export interface Schema$ChartData {
@@ -1380,6 +1401,28 @@ export namespace sheets_v4 {
      * The dimensions to delete from the sheet.
      */
     range?: Schema$DimensionRange;
+  }
+  /**
+   * Removes rows within this range that contain values in the specified columns that are duplicates of values in any previous row. Rows with identical values but different letter cases, formatting, or formulas are considered to be duplicates.  This request also removes duplicate rows hidden from view (for example, due to a filter). When removing duplicates, the first instance of each duplicate row scanning from the top downwards is kept in the resulting range. Content outside of the specified range isn&#39;t removed, and rows considered duplicates do not have to be adjacent to each other in the range.
+   */
+  export interface Schema$DeleteDuplicatesRequest {
+    /**
+     * The columns in the range to analyze for duplicate values. If no columns are selected then all columns are analyzed for duplicates.
+     */
+    comparisonColumns?: Schema$DimensionRange[];
+    /**
+     * The range to remove duplicates rows from.
+     */
+    range?: Schema$GridRange;
+  }
+  /**
+   * The result of removing duplicates in a range.
+   */
+  export interface Schema$DeleteDuplicatesResponse {
+    /**
+     * The number of duplicate rows removed.
+     */
+    duplicatesRemovedCount?: number;
   }
   /**
    * Deletes the embedded object with the given ID.
@@ -2600,6 +2643,10 @@ export namespace sheets_v4 {
      */
     deleteDimensionGroup?: Schema$DeleteDimensionGroupRequest;
     /**
+     * Removes rows containing duplicate values in specified columns of a cell range.
+     */
+    deleteDuplicates?: Schema$DeleteDuplicatesRequest;
+    /**
      * Deletes an embedded object (e.g, chart, image) in a sheet.
      */
     deleteEmbeddedObject?: Schema$DeleteEmbeddedObjectRequest;
@@ -2679,6 +2726,10 @@ export namespace sheets_v4 {
      * Converts a column of text into many columns of text.
      */
     textToColumns?: Schema$TextToColumnsRequest;
+    /**
+     * Trims cells of whitespace (such as spaces, tabs, or new lines).
+     */
+    trimWhitespace?: Schema$TrimWhitespaceRequest;
     /**
      * Unmerges merged cells.
      */
@@ -2789,6 +2840,10 @@ export namespace sheets_v4 {
      */
     deleteDimensionGroup?: Schema$DeleteDimensionGroupResponse;
     /**
+     * A reply from removing rows containing duplicate values.
+     */
+    deleteDuplicates?: Schema$DeleteDuplicatesResponse;
+    /**
      * A reply from duplicating a filter view.
      */
     duplicateFilterView?: Schema$DuplicateFilterViewResponse;
@@ -2800,6 +2855,10 @@ export namespace sheets_v4 {
      * A reply from doing a find/replace.
      */
     findReplace?: Schema$FindReplaceResponse;
+    /**
+     * A reply from trimming whitespace.
+     */
+    trimWhitespace?: Schema$TrimWhitespaceResponse;
     /**
      * A reply from updating a conditional format rule.
      */
@@ -3211,6 +3270,24 @@ export namespace sheets_v4 {
      * The text format for all labels on the chart.
      */
     textFormat?: Schema$TextFormat;
+  }
+  /**
+   * Trims the whitespace (such as spaces, tabs, or new lines) in every cell in the specified range. This request removes all whitespace from the start and end of each cell&#39;s text, and reduces any subsequence of remaining whitespace characters to a single space. If the resulting trimmed text starts with a &#39;+&#39; or &#39;=&#39; character, the text remains as a string value and isn&#39;t interpreted as a formula.
+   */
+  export interface Schema$TrimWhitespaceRequest {
+    /**
+     * The range whose cells to trim.
+     */
+    range?: Schema$GridRange;
+  }
+  /**
+   * The result of trimming whitespace in cells.
+   */
+  export interface Schema$TrimWhitespaceResponse {
+    /**
+     * The number of cells that were trimmed of whitespace.
+     */
+    cellsChangedCount?: number;
   }
   /**
    * Unmerges cells in the given range.

@@ -257,13 +257,17 @@ export namespace firebasehosting_v1beta1 {
    */
   export interface Schema$Header {
     /**
-     * Required. The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
+     * The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string;
     /**
      * Required. The additional headers to add to the response.
      */
     headers?: {[key: string]: string};
+    /**
+     * The user-supplied RE2 regular expression to match against the request URL path.
+     */
+    regex?: string;
   }
   export interface Schema$ListDomainsResponse {
     /**
@@ -316,13 +320,17 @@ export namespace firebasehosting_v1beta1 {
    */
   export interface Schema$Redirect {
     /**
-     * Required. The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
+     * The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string;
     /**
      * Required. The value to put in the HTTP location header of the response. &lt;br&gt;The location can contain capture group values from the pattern using a `:` prefix to identify the segment and an optional `*` to capture the rest of the URL. For example: &lt;code&gt;&quot;glob&quot;: &quot;/:capture*&quot;, &lt;br&gt;&quot;statusCode&quot;: 301, &lt;br&gt;&quot;location&quot;: &quot;https://example.com/foo/:capture&quot;&lt;/code&gt;
      */
     location?: string;
+    /**
+     * The user-supplied RE2 regular expression to match against the request URL path.
+     */
+    regex?: string;
     /**
      * Required. The status HTTP code to return in the response. It must be a valid 3xx status code.
      */
@@ -353,7 +361,7 @@ export namespace firebasehosting_v1beta1 {
      */
     type?: string;
     /**
-     * Output only.  The configuration and content that was released.
+     * Output only. The configuration and content that was released.
      */
     version?: Schema$Version;
   }
@@ -370,13 +378,17 @@ export namespace firebasehosting_v1beta1 {
      */
     function?: string;
     /**
-     * Required. The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
+     * The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string;
     /**
      * The URL path to rewrite the request to.
      */
     path?: string;
+    /**
+     * The user-supplied RE2 regular expression to match against the request URL path.
+     */
+    regex?: string;
     /**
      * The request will be forwarded to Cloud Run.
      */

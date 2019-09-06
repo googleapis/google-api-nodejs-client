@@ -1319,6 +1319,19 @@ export namespace serviceusage_v1beta1 {
     usage?: Schema$Usage;
   }
   /**
+   * Service identity for a service. This is the identity that service producer should use to access consumer resources.
+   */
+  export interface Schema$ServiceIdentity {
+    /**
+     * The email address of the service account that a service producer would use to access consumer resources.
+     */
+    email?: string;
+    /**
+     * The unique and stable id of the service account. https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts#ServiceAccount
+     */
+    uniqueId?: string;
+  }
+  /**
    * `SourceContext` represents information about the source of a protobuf element, like the file in which it is defined.
    */
   export interface Schema$SourceContext {

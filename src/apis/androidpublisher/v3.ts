@@ -390,6 +390,10 @@ export namespace androidpublisher_v3 {
      */
     sha1?: string;
     /**
+     * A sha256 hash of the image that was uploaded.
+     */
+    sha256?: string;
+    /**
      * A URL that will serve a preview of the image.
      */
     url?: string;
@@ -945,13 +949,25 @@ export namespace androidpublisher_v3 {
      */
     kind?: string;
     /**
+     * The order id which uniquely identifies a one-time purchase, subscription purchase, or subscription renewal.
+     */
+    orderId?: string;
+    /**
      * The time at which the purchase was made, in milliseconds since the epoch (Jan 1, 1970).
      */
     purchaseTimeMillis?: string;
     /**
-     * The token that was generated when a purchase was made. This uniquely identifies a purchase.
+     * The token which uniquely identifies a one-time purchase or subscription. To uniquely identify subscription renewals use order_id (available starting from version 3 of the API).
      */
     purchaseToken?: string;
+    /**
+     * The reason why the purchase was voided, possible values are:   - Other  - Remorse  - Not_received  - Defective  - Accidental_purchase  - Fraud  - Friendly_fraud  - Chargeback
+     */
+    voidedReason?: number;
+    /**
+     * The initiator of voided purchase, possible values are:   - User  - Developer  - Google
+     */
+    voidedSource?: number;
     /**
      * The time at which the purchase was canceled/refunded/charged-back, in milliseconds since the epoch (Jan 1, 1970).
      */
@@ -6379,12 +6395,13 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.endTime The time, in milliseconds since the Epoch, of the newest voided in-app product purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
+     * @param {string=} params.endTime The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
      * @param {integer=} params.maxResults
      * @param {string} params.packageName The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing').
      * @param {integer=} params.startIndex
-     * @param {string=} params.startTime The time, in milliseconds since the Epoch, of the oldest voided in-app product purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
+     * @param {string=} params.startTime The time, in milliseconds since the Epoch, of the oldest voided purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
      * @param {string=} params.token
+     * @param {integer=} params.type The type of voided purchases that you want to see in the response. Possible values are:   - 0: Only voided in-app product purchases will be returned in the response. This is the default value. - 1: Both voided in-app purchases and voided subscription purchases will be returned in the response.  Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6467,7 +6484,7 @@ export namespace androidpublisher_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The time, in milliseconds since the Epoch, of the newest voided in-app product purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
+     * The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
      */
     endTime?: string;
     /**
@@ -6483,13 +6500,17 @@ export namespace androidpublisher_v3 {
      */
     startIndex?: number;
     /**
-     * The time, in milliseconds since the Epoch, of the oldest voided in-app product purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
+     * The time, in milliseconds since the Epoch, of the oldest voided purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
      */
     startTime?: string;
     /**
      *
      */
     token?: string;
+    /**
+     * The type of voided purchases that you want to see in the response. Possible values are:   - 0: Only voided in-app product purchases will be returned in the response. This is the default value. - 1: Both voided in-app purchases and voided subscription purchases will be returned in the response.  Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
+     */
+    type?: number;
   }
 
   export class Resource$Reviews {

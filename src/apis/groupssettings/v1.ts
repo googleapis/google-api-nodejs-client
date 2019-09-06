@@ -106,247 +106,247 @@ export namespace groupssettings_v1 {
    */
   export interface Schema$Groups {
     /**
-     * Are external members allowed to join the group.
+     * Identifies whether members external to your organization can join the group. Possible values are:   - true: G Suite users external to your organization can become members of this group.  - false: Users not belonging to the organization are not allowed to become members of this group.
      */
     allowExternalMembers?: string;
     /**
-     * Is google allowed to contact admins.
+     * Deprecated. Allows Google to contact administrator of the group.   - true: Allow Google to contact managers of this group. Occasionally Google may send updates on the latest features, ask for input on new features, or ask for permission to highlight your group.  - false: Google can not contact managers of this group.
      */
     allowGoogleCommunication?: string;
     /**
-     * If posting from web is allowed.
+     * Allows posting from web. Possible values are:   - true: Allows any member to post to the group forum.  - false: Members only use Gmail to communicate with the group.
      */
     allowWebPosting?: string;
     /**
-     * If the group is archive only
+     * Allows the group to be archived only. Possible values are:   - true: Group is archived and the group is inactive. New messages to this group are rejected. The older archived messages are browseable and searchable.   - If true, the whoCanPostMessage property is set to NONE_CAN_POST.   - If reverted from true to false, whoCanPostMessages is set to ALL_MANAGERS_CAN_POST.   - false: The group is active and can receive messages.   - When false, updating whoCanPostMessage to NONE_CAN_POST, results in an error.
      */
     archiveOnly?: string;
     /**
-     * Custom footer text.
+     * Set the content of custom footer text. The maximum number of characters is 1,000.
      */
     customFooterText?: string;
     /**
-     * Default email to which reply to any message should go.
+     * An email address used when replying to a message if the replyTo property is set to REPLY_TO_CUSTOM. This address is defined by an account administrator.   - When the group&#39;s ReplyTo property is set to REPLY_TO_CUSTOM, the customReplyTo property holds a custom email address used when replying to a message.  - If the group&#39;s ReplyTo property is set to REPLY_TO_CUSTOM, the customReplyTo property must have a text value or an error is returned.
      */
     customReplyTo?: string;
     /**
-     * If any of the settings that will be merged have custom roles which is anything other than owners, managers, or group scopes.
+     * Specifies whether the group has a custom role that&#39;s included in one of the settings being merged. This field is read-only and update/patch requests to it are ignored. Possible values are:   - true  - false
      */
     customRolesEnabledForSettingsToBeMerged?: string;
     /**
-     * Default message deny notification message
+     * When a message is rejected, this is text for the rejection notification sent to the message&#39;s author. By default, this property is empty and has no value in the API&#39;s response body. The maximum notification text size is 10,000 characters. Note: Requires sendMessageDenyNotification property to be true.
      */
     defaultMessageDenyNotificationText?: string;
     /**
-     * Description of the group
+     * Description of the group. This property value may be an empty string if no group description has been entered. If entered, the maximum group description is no more than 300 characters.
      */
     description?: string;
     /**
-     * Email id of the group
+     * The group&#39;s email address. This property can be updated using the Directory API. Note: Only a group owner can change a group&#39;s email address. A group manager can&#39;t do this. When you change your group&#39;s address using the Directory API or the control panel, you are changing the address your subscribers use to send email and the web address people use to access your group. People can&#39;t reach your group by visiting the old address.
      */
     email?: string;
     /**
-     * If a primary Collab Inbox feature is enabled.
+     * Specifies whether a collaborative inbox will remain turned on for the group. Possible values are:   - true  - false
      */
     enableCollaborativeInbox?: string;
     /**
-     * If favorite replies should be displayed above other replies.
+     * Indicates if favorite replies should be displayed above other replies.   - true: Favorite replies will be displayed above other replies.  - false: Favorite replies will not be displayed above other replies.
      */
     favoriteRepliesOnTop?: string;
     /**
-     * Whether to include custom footer.
+     * Whether to include custom footer. Possible values are:   - true  - false
      */
     includeCustomFooter?: string;
     /**
-     * If this groups should be included in global address list or not.
+     * Enables the group to be included in the Global Address List. For more information, see the help center. Possible values are:   - true: Group is included in the Global Address List.  - false: Group is not included in the Global Address List.
      */
     includeInGlobalAddressList?: string;
     /**
-     * If the contents of the group are archived.
+     * Allows the Group contents to be archived. Possible values are:   - true: Archive messages sent to the group.  - false: Do not keep an archive of messages sent to this group. If false, previously archived messages remain in the archive.
      */
     isArchived?: string;
     /**
-     * The type of the resource.
+     * The type of the resource. It is always groupsSettings#groups.
      */
     kind?: string;
     /**
-     * Maximum message size allowed.
+     * Deprecated. The maximum size of a message is 25Mb.
      */
     maxMessageBytes?: number;
     /**
-     * Can members post using the group email address.
+     * Enables members to post messages as the group. Possible values are:   - true: Group member can post messages using the group&#39;s email address instead of their own email address. Message appear to originate from the group itself. Note: When true, any message moderation settings on individual users or new members do not apply to posts made on behalf of the group.  - false: Members can not post in behalf of the group&#39;s email address.
      */
     membersCanPostAsTheGroup?: string;
     /**
-     * Default message display font. Possible values are: DEFAULT_FONT FIXED_WIDTH_FONT
+     * Deprecated. The default message display font always has a value of &quot;DEFAULT_FONT&quot;.
      */
     messageDisplayFont?: string;
     /**
-     * Moderation level for messages. Possible values are: MODERATE_ALL_MESSAGES MODERATE_NON_MEMBERS MODERATE_NEW_MEMBERS MODERATE_NONE
+     * Moderation level of incoming messages. Possible values are:   - MODERATE_ALL_MESSAGES: All messages are sent to the group owner&#39;s email address for approval. If approved, the message is sent to the group.  - MODERATE_NON_MEMBERS: All messages from non group members are sent to the group owner&#39;s email address for approval. If approved, the message is sent to the group.  - MODERATE_NEW_MEMBERS: All messages from new members are sent to the group owner&#39;s email address for approval. If approved, the message is sent to the group.  - MODERATE_NONE: No moderator approval is required. Messages are delivered directly to the group. Note: When the whoCanPostMessage is set to ANYONE_CAN_POST, we recommend the messageModerationLevel be set to MODERATE_NON_MEMBERS to protect the group from possible spam. When memberCanPostAsTheGroup is true, any message moderation settings on individual users or new members will not apply to posts made on behalf of the group.
      */
     messageModerationLevel?: string;
     /**
-     * Name of the Group
+     * Name of the group, which has a maximum size of 75 characters.
      */
     name?: string;
     /**
-     * Primary language for the group.
+     * The primary language for group. For a group&#39;s primary language use the language tags from the G Suite languages found at G Suite Email Settings API Email Language Tags.
      */
     primaryLanguage?: string;
     /**
-     * Whome should the default reply to a message go to. Possible values are: REPLY_TO_CUSTOM REPLY_TO_SENDER REPLY_TO_LIST REPLY_TO_OWNER REPLY_TO_IGNORE REPLY_TO_MANAGERS
+     * Specifies who should the default reply go to. Possible values are:   - REPLY_TO_CUSTOM: For replies to messages, use the group&#39;s custom email address. When the group&#39;s ReplyTo property is set to REPLY_TO_CUSTOM, the customReplyTo property holds the custom email address used when replying to a message. If the group&#39;s ReplyTo property is set to REPLY_TO_CUSTOM, the customReplyTo property must have a value. Otherwise an error is returned.   - REPLY_TO_SENDER: The reply sent to author of message.  - REPLY_TO_LIST: This reply message is sent to the group.  - REPLY_TO_OWNER: The reply is sent to the owner(s) of the group. This does not include the group&#39;s managers.  - REPLY_TO_IGNORE: Group users individually decide where the message reply is sent.  - REPLY_TO_MANAGERS: This reply message is sent to the group&#39;s managers, which includes all managers and the group owner.
      */
     replyTo?: string;
     /**
-     * Should the member be notified if his message is denied by owner.
+     * Allows a member to be notified if the member&#39;s message to the group is denied by the group owner. Possible values are:   - true: When a message is rejected, send the deny message notification to the message author. The defaultMessageDenyNotificationText property is dependent on the sendMessageDenyNotification property being true.   - false: When a message is rejected, no notification is sent.
      */
     sendMessageDenyNotification?: string;
     /**
-     * Is the group listed in groups directory
+     * Deprecated. This is merged into the new whoCanDiscoverGroup setting. Allows the group to be visible in the Groups Directory. Possible values are:   - true: All groups in the account are listed in the Groups directory.  - false: All groups in the account are not listed in the directory.
      */
     showInGroupDirectory?: string;
     /**
-     * Moderation level for messages detected as spam. Possible values are: ALLOW MODERATE SILENTLY_MODERATE REJECT
+     * Specifies moderation levels for messages detected as spam. Possible values are:   - ALLOW: Post the message to the group.  - MODERATE: Send the message to the moderation queue. This is the default.  - SILENTLY_MODERATE: Send the message to the moderation queue, but do not send notification to moderators.  - REJECT: Immediately reject the message.
      */
     spamModerationLevel?: string;
     /**
-     * Permissions to add members. Possible values are: ALL_MANAGERS_CAN_ADD ALL_OWNERS_CAN_ADD ALL_MEMBERS_CAN_ADD NONE_CAN_ADD
+     * Deprecated. This is merged into the new whoCanModerateMembers setting. Permissions to add members. Possible values are:   - ALL_MEMBERS_CAN_ADD: Managers and members can directly add new members.  - ALL_MANAGERS_CAN_ADD: Only managers can directly add new members. this includes the group&#39;s owner.  - ALL_OWNERS_CAN_ADD: Only owners can directly add new members.  - NONE_CAN_ADD: No one can directly add new members.
      */
     whoCanAdd?: string;
     /**
-     * Permission to add references to a topic. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This functionality is no longer supported in the Google Groups UI. The value is always &quot;NONE&quot;.
      */
     whoCanAddReferences?: string;
     /**
-     * Permission to approve members. Possible values are: ALL_OWNERS_CAN_APPROVE ALL_MANAGERS_CAN_APPROVE ALL_MEMBERS_CAN_APPROVE NONE_CAN_APPROVE
+     * Specifies who can approve members who ask to join groups. This permission will be deprecated once it is merged into the new whoCanModerateMembers setting. Possible values are:   - ALL_MEMBERS_CAN_APPROVE  - ALL_MANAGERS_CAN_APPROVE  - ALL_OWNERS_CAN_APPROVE  - NONE_CAN_APPROVE
      */
     whoCanApproveMembers?: string;
     /**
-     * Permission to approve pending messages in the moderation queue. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanModerateContent setting. Specifies who can approve pending messages in the moderation queue. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - OWNERS_ONLY  - NONE
      */
     whoCanApproveMessages?: string;
     /**
-     * Permission to assign topics in a forum to another user. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanAssistContent setting. Permission to assign topics in a forum to another user. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - MANAGERS_ONLY  - OWNERS_ONLY  - NONE
      */
     whoCanAssignTopics?: string;
     /**
-     * Permission for content assistants. Possible values are: Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Specifies who can moderate metadata. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - MANAGERS_ONLY  - OWNERS_ONLY  - NONE
      */
     whoCanAssistContent?: string;
     /**
-     * Permission to ban users. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Specifies who can deny membership to users. This permission will be deprecated once it is merged into the new whoCanModerateMembers setting. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - OWNERS_ONLY  - NONE
      */
     whoCanBanUsers?: string;
     /**
-     * Permission to contact owner of the group via web UI. Possible values are: ANYONE_CAN_CONTACT ALL_IN_DOMAIN_CAN_CONTACT ALL_MEMBERS_CAN_CONTACT ALL_MANAGERS_CAN_CONTACT
+     * Permission to contact owner of the group via web UI. Possible values are:   - ALL_IN_DOMAIN_CAN_CONTACT  - ALL_MANAGERS_CAN_CONTACT  - ALL_MEMBERS_CAN_CONTACT  - ANYONE_CAN_CONTACT
      */
     whoCanContactOwner?: string;
     /**
-     * Permission to delete replies to topics. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanModerateContent setting. Specifies who can delete replies to topics. (Authors can always delete their own posts). Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - OWNERS_ONLY  - NONE
      */
     whoCanDeleteAnyPost?: string;
     /**
-     * Permission to delete topics. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanModerateContent setting. Specifies who can delete topics. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - OWNERS_ONLY  - NONE
      */
     whoCanDeleteTopics?: string;
     /**
-     * Permission for who can discover the group. Possible values are: ALL_MEMBERS_CAN_DISCOVER ALL_IN_DOMAIN_CAN_DISCOVER ANYONE_CAN_DISCOVER
+     * Specifies the set of users for whom this group is discoverable. Possible values are:   - ANYONE_CAN_DISCOVER  - ALL_IN_DOMAIN_CAN_DISCOVER  - ALL_MEMBERS_CAN_DISCOVER
      */
     whoCanDiscoverGroup?: string;
     /**
-     * Permission to enter free form tags for topics in a forum. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanAssistContent setting. Permission to enter free form tags for topics in a forum. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - MANAGERS_ONLY  - OWNERS_ONLY  - NONE
      */
     whoCanEnterFreeFormTags?: string;
     /**
-     * Permission to hide posts by reporting them as abuse. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanModerateContent setting. Specifies who can hide posts by reporting them as abuse. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - OWNERS_ONLY  - NONE
      */
     whoCanHideAbuse?: string;
     /**
-     * Permissions to invite members. Possible values are: ALL_MEMBERS_CAN_INVITE ALL_MANAGERS_CAN_INVITE ALL_OWNERS_CAN_INVITE NONE_CAN_INVITE
+     * Deprecated. This is merged into the new whoCanModerateMembers setting. Permissions to invite new members. Possible values are:   - ALL_MEMBERS_CAN_INVITE: Managers and members can invite a new member candidate.  - ALL_MANAGERS_CAN_INVITE: Only managers can invite a new member. This includes the group&#39;s owner.  - ALL_OWNERS_CAN_INVITE: Only owners can invite a new member.  - NONE_CAN_INVITE: No one can invite a new member candidate.
      */
     whoCanInvite?: string;
     /**
-     * Permissions to join the group. Possible values are: ANYONE_CAN_JOIN ALL_IN_DOMAIN_CAN_JOIN INVITED_CAN_JOIN CAN_REQUEST_TO_JOIN
+     * Permission to join group. Possible values are:   - ANYONE_CAN_JOIN: Anyone in the account domain can join. This includes accounts with multiple domains.  - ALL_IN_DOMAIN_CAN_JOIN: Any Internet user who is outside your domain can access your Google Groups service and view the list of groups in your Groups directory. Warning: Group owners can add external addresses, outside of the domain to their groups. They can also allow people outside your domain to join their groups. If you later disable this option, any external addresses already added to users&#39; groups remain in those groups.  - INVITED_CAN_JOIN: Candidates for membership can be invited to join.   - CAN_REQUEST_TO_JOIN: Non members can request an invitation to join.
      */
     whoCanJoin?: string;
     /**
-     * Permission to leave the group. Possible values are: ALL_MANAGERS_CAN_LEAVE ALL_OWNERS_CAN_LEAVE ALL_MEMBERS_CAN_LEAVE NONE_CAN_LEAVE
+     * Permission to leave the group. Possible values are:   - ALL_MANAGERS_CAN_LEAVE  - ALL_MEMBERS_CAN_LEAVE  - NONE_CAN_LEAVE
      */
     whoCanLeaveGroup?: string;
     /**
-     * Permission to lock topics. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanModerateContent setting. Specifies who can prevent users from posting replies to topics. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - OWNERS_ONLY  - NONE
      */
     whoCanLockTopics?: string;
     /**
-     * Permission to make topics appear at the top of the topic list. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanModerateContent setting. Specifies who can make topics appear at the top of the topic list. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - OWNERS_ONLY  - NONE
      */
     whoCanMakeTopicsSticky?: string;
     /**
-     * Permission to mark a topic as a duplicate of another topic. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanAssistContent setting. Permission to mark a topic as a duplicate of another topic. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - MANAGERS_ONLY  - OWNERS_ONLY  - NONE
      */
     whoCanMarkDuplicate?: string;
     /**
-     * Permission to mark any other user&#39;s post as a favorite reply. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanAssistContent setting. Permission to mark any other user&#39;s post as a favorite reply. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - MANAGERS_ONLY  - OWNERS_ONLY  - NONE
      */
     whoCanMarkFavoriteReplyOnAnyTopic?: string;
     /**
-     * Permission to mark a post for a topic they started as a favorite reply. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanAssistContent setting. Permission to mark a post for a topic they started as a favorite reply. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - MANAGERS_ONLY  - OWNERS_ONLY  - NONE
      */
     whoCanMarkFavoriteReplyOnOwnTopic?: string;
     /**
-     * Permission to mark a topic as not needing a response. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanAssistContent setting. Permission to mark a topic as not needing a response. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - MANAGERS_ONLY  - OWNERS_ONLY  - NONE
      */
     whoCanMarkNoResponseNeeded?: string;
     /**
-     * Permission for content moderation. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Specifies who can moderate content. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - OWNERS_ONLY  - NONE
      */
     whoCanModerateContent?: string;
     /**
-     * Permission for membership moderation. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Specifies who can manage members. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - OWNERS_ONLY  - NONE
      */
     whoCanModerateMembers?: string;
     /**
-     * Permission to modify members (change member roles). Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanModerateMembers setting. Specifies who can change group members&#39; roles. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - OWNERS_ONLY  - NONE
      */
     whoCanModifyMembers?: string;
     /**
-     * Permission to change tags and categories. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanAssistContent setting. Permission to change tags and categories. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - MANAGERS_ONLY  - OWNERS_ONLY  - NONE
      */
     whoCanModifyTagsAndCategories?: string;
     /**
-     * Permission to move topics into the group or forum. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanModerateContent setting. Specifies who can move topics into the group or forum. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - OWNERS_ONLY  - NONE
      */
     whoCanMoveTopicsIn?: string;
     /**
-     * Permission to move topics out of the group or forum. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanModerateContent setting. Specifies who can move topics out of the group or forum. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - OWNERS_ONLY  - NONE
      */
     whoCanMoveTopicsOut?: string;
     /**
-     * Permission to post announcements, a special topic type. Possible values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanModerateContent setting. Specifies who can post announcements, a special topic type. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - OWNERS_ONLY  - NONE
      */
     whoCanPostAnnouncements?: string;
     /**
-     * Permissions to post messages to the group. Possible values are: NONE_CAN_POST ALL_MANAGERS_CAN_POST ALL_MEMBERS_CAN_POST ALL_OWNERS_CAN_POST ALL_IN_DOMAIN_CAN_POST ANYONE_CAN_POST
+     * Permissions to post messages. Possible values are:   - NONE_CAN_POST: The group is disabled and archived. No one can post a message to this group.   - When archiveOnly is false, updating whoCanPostMessage to NONE_CAN_POST, results in an error.  - If archiveOnly is reverted from true to false, whoCanPostMessages is set to ALL_MANAGERS_CAN_POST.   - ALL_MANAGERS_CAN_POST: Managers, including group owners, can post messages.  - ALL_MEMBERS_CAN_POST: Any group member can post a message.  - ALL_OWNERS_CAN_POST: Only group owners can post a message.  - ALL_IN_DOMAIN_CAN_POST: Anyone in the account can post a message.   - ANYONE_CAN_POST: Any Internet user who outside your account can access your Google Groups service and post a message. Note: When whoCanPostMessage is set to ANYONE_CAN_POST, we recommend the messageModerationLevel be set to MODERATE_NON_MEMBERS to protect the group from possible spam.
      */
     whoCanPostMessage?: string;
     /**
-     * Permission to take topics in a forum. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanAssistContent setting. Permission to take topics in a forum. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - MANAGERS_ONLY  - OWNERS_ONLY  - NONE
      */
     whoCanTakeTopics?: string;
     /**
-     * Permission to unassign any topic in a forum. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanAssistContent setting. Permission to unassign any topic in a forum. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - MANAGERS_ONLY  - OWNERS_ONLY  - NONE
      */
     whoCanUnassignTopic?: string;
     /**
-     * Permission to unmark any post from a favorite reply. Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     * Deprecated. This is merged into the new whoCanAssistContent setting. Permission to unmark any post from a favorite reply. Possible values are:   - ALL_MEMBERS  - OWNERS_AND_MANAGERS  - MANAGERS_ONLY  - OWNERS_ONLY  - NONE
      */
     whoCanUnmarkFavoriteReplyOnAnyTopic?: string;
     /**
-     * Permissions to view group. Possible values are: ANYONE_CAN_VIEW ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW ALL_OWNERS_CAN_VIEW
+     * Permissions to view group messages. Possible values are:   - ANYONE_CAN_VIEW: Any Internet user can view the group&#39;s messages.   - ALL_IN_DOMAIN_CAN_VIEW: Anyone in your account can view this group&#39;s messages.  - ALL_MEMBERS_CAN_VIEW: All group members can view the group&#39;s messages.  - ALL_MANAGERS_CAN_VIEW: Any group manager can view this group&#39;s messages.
      */
     whoCanViewGroup?: string;
     /**
-     * Permissions to view membership. Possible values are: ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW ALL_OWNERS_CAN_VIEW
+     * Permissions to view membership. Possible values are:   - ALL_IN_DOMAIN_CAN_VIEW: Anyone in the account can view the group members list. If a group already has external members, those members can still send email to this group.   - ALL_MEMBERS_CAN_VIEW: The group members can view the group members list.  - ALL_MANAGERS_CAN_VIEW: The group managers can view group members list.
      */
     whoCanViewMembership?: string;
   }
@@ -364,7 +364,7 @@ export namespace groupssettings_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupUniqueId The resource ID
+     * @param {string} params.groupUniqueId The group's email address.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -435,7 +435,7 @@ export namespace groupssettings_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupUniqueId The resource ID
+     * @param {string} params.groupUniqueId The group's email address.
      * @param {().Groups} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -507,7 +507,7 @@ export namespace groupssettings_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupUniqueId The resource ID
+     * @param {string} params.groupUniqueId The group's email address.
      * @param {().Groups} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -580,7 +580,7 @@ export namespace groupssettings_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource ID
+     * The group's email address.
      */
     groupUniqueId?: string;
   }
@@ -591,7 +591,7 @@ export namespace groupssettings_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource ID
+     * The group's email address.
      */
     groupUniqueId?: string;
 
@@ -607,7 +607,7 @@ export namespace groupssettings_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource ID
+     * The group's email address.
      */
     groupUniqueId?: string;
 

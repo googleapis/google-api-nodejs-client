@@ -1,0 +1,43 @@
+{
+  "name": "@google/verifiedaccess",
+  "version": "0.1.0",
+  "description": "verifiedaccess",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "keywords": [
+    "google"
+  ],
+  "author": "Google LLC",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/googleapis/google-api-nodejs-client",
+  "bugs": {
+    "url": "https://github.com/googleapis/google-api-nodejs-client/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/googleapis/google-api-nodejs-client.git"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "fix": "gts fix",
+    "lint": "gts check",
+    "compile": "tsc -p .",
+    "prepare": "npm run compile",
+    "docs": "typedoc --out docs/",
+    "webpack": "webpack"
+  },
+  "dependencies": {
+    "googleapis-common": "^3.0.0"
+  },
+  "devDependencies": {
+    "gts": "^1.0.0",
+    "null-loader": "^3.0.0",
+    "ts-loader": "^6.0.4",
+    "typedoc": "^0.15.0",
+    "typescript": "~3.6.0",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5"
+  }
+}

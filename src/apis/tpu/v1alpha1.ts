@@ -146,6 +146,10 @@ export namespace tpu_v1alpha1 {
      * The next page token or empty if none.
      */
     nextPageToken?: string;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[];
   }
   /**
    * The response message for Locations.ListLocations.
@@ -202,6 +206,10 @@ export namespace tpu_v1alpha1 {
      * The listed nodes.
      */
     tensorflowVersions?: Schema$TensorFlowVersion[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[];
   }
   /**
    * A resource that represents Google Cloud Platform location.

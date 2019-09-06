@@ -550,10 +550,6 @@ export namespace dataflow_v1b3 {
     projectId?: string;
   }
   /**
-   * Response from deleting a snapshot.
-   */
-  export interface Schema$DeleteSnapshotResponse {}
-  /**
    * Specification of one of the bundles produced as a result of splitting a Source (e.g. when executing a SourceSplitRequest, or when splitting an active task using WorkItemStatus.dynamic_source_split), relative to the source being split.
    */
   export interface Schema$DerivedSource {
@@ -1319,15 +1315,6 @@ export namespace dataflow_v1b3 {
     nextPageToken?: string;
   }
   /**
-   * List of snapshots.
-   */
-  export interface Schema$ListSnapshotsResponse {
-    /**
-     * Returned snapshots.
-     */
-    snapshots?: Schema$Snapshot[];
-  }
-  /**
    * MapTask consists of an ordered set of instructions, each of which describes one particular low-level operation for the worker to perform in order to accomplish the MapTask&#39;s WorkItem.  Each instruction must appear in the list before any instructions which depends on its output.
    */
   export interface Schema$MapTask {
@@ -1970,48 +1957,6 @@ export namespace dataflow_v1b3 {
      * The sink to write to, plus its parameters.
      */
     spec?: {[key: string]: any};
-  }
-  /**
-   * Represents a snapshot of a job.
-   */
-  export interface Schema$Snapshot {
-    /**
-     * The time this snapshot was created.
-     */
-    creationTime?: string;
-    /**
-     * The unique ID of this snapshot.
-     */
-    id?: string;
-    /**
-     * The project this snapshot belongs to.
-     */
-    projectId?: string;
-    /**
-     * The job this snapshot was created from.
-     */
-    sourceJobId?: string;
-    /**
-     * State of the snapshot.
-     */
-    state?: string;
-    /**
-     * The time after which this snapshot will be automatically deleted.
-     */
-    ttl?: string;
-  }
-  /**
-   * Request to create a snapshot of a job.
-   */
-  export interface Schema$SnapshotJobRequest {
-    /**
-     * The location that contains this job.
-     */
-    location?: string;
-    /**
-     * TTL for the snapshot.
-     */
-    ttl?: string;
   }
   /**
    * A source that records can be read and decoded from.
@@ -3072,94 +3017,12 @@ export namespace dataflow_v1b3 {
     context: APIRequestContext;
     jobs: Resource$Projects$Jobs;
     locations: Resource$Projects$Locations;
-    snapshots: Resource$Projects$Snapshots;
     templates: Resource$Projects$Templates;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.jobs = new Resource$Projects$Jobs(this.context);
       this.locations = new Resource$Projects$Locations(this.context);
-      this.snapshots = new Resource$Projects$Snapshots(this.context);
       this.templates = new Resource$Projects$Templates(this.context);
-    }
-
-    /**
-     * dataflow.projects.deleteSnapshots
-     * @desc Deletes a snapshot.
-     * @alias dataflow.projects.deleteSnapshots
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.location The location that contains this snapshot.
-     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
-     * @param {string=} params.snapshotId The ID of the snapshot.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    deleteSnapshots(
-      params?: Params$Resource$Projects$Deletesnapshots,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$DeleteSnapshotResponse>;
-    deleteSnapshots(
-      params: Params$Resource$Projects$Deletesnapshots,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
-      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
-    ): void;
-    deleteSnapshots(
-      params: Params$Resource$Projects$Deletesnapshots,
-      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
-    ): void;
-    deleteSnapshots(
-      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
-    ): void;
-    deleteSnapshots(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Deletesnapshots
-        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
-      callback?: BodyResponseCallback<Schema$DeleteSnapshotResponse>
-    ): void | GaxiosPromise<Schema$DeleteSnapshotResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Deletesnapshots;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Deletesnapshots;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1b3/projects/{projectId}/snapshots').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$DeleteSnapshotResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$DeleteSnapshotResponse>(parameters);
-      }
     }
 
     /**
@@ -3244,26 +3107,6 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Deletesnapshots
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The location that contains this snapshot.
-     */
-    location?: string;
-    /**
-     * The ID of the Cloud Platform project that the snapshot belongs to.
-     */
-    projectId?: string;
-    /**
-     * The ID of the snapshot.
-     */
-    snapshotId?: string;
-  }
   export interface Params$Resource$Projects$Workermessages
     extends StandardParameters {
     /**
@@ -3679,79 +3522,6 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.jobs.snapshot
-     * @desc Snapshot the state of a streaming job.
-     * @alias dataflow.projects.jobs.snapshot
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job to be snapshotted.
-     * @param {string} params.projectId The project which owns the job to be snapshotted.
-     * @param {().SnapshotJobRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    snapshot(
-      params?: Params$Resource$Projects$Jobs$Snapshot,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Snapshot>;
-    snapshot(
-      params: Params$Resource$Projects$Jobs$Snapshot,
-      options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
-      callback: BodyResponseCallback<Schema$Snapshot>
-    ): void;
-    snapshot(
-      params: Params$Resource$Projects$Jobs$Snapshot,
-      callback: BodyResponseCallback<Schema$Snapshot>
-    ): void;
-    snapshot(callback: BodyResponseCallback<Schema$Snapshot>): void;
-    snapshot(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Jobs$Snapshot
-        | BodyResponseCallback<Schema$Snapshot>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
-      callback?: BodyResponseCallback<Schema$Snapshot>
-    ): void | GaxiosPromise<Schema$Snapshot> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Jobs$Snapshot;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Jobs$Snapshot;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}:snapshot'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'jobId'],
-        pathParams: ['jobId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Snapshot>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Snapshot>(parameters);
-      }
-    }
-
-    /**
      * dataflow.projects.jobs.update
      * @desc Updates the state of an existing Cloud Dataflow job.  To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.
      * @alias dataflow.projects.jobs.update
@@ -3967,27 +3737,6 @@ export namespace dataflow_v1b3 {
      * Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
      */
     view?: string;
-  }
-  export interface Params$Resource$Projects$Jobs$Snapshot
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The job to be snapshotted.
-     */
-    jobId?: string;
-    /**
-     * The project which owns the job to be snapshotted.
-     */
-    projectId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SnapshotJobRequest;
   }
   export interface Params$Resource$Projects$Jobs$Update
     extends StandardParameters {
@@ -4571,13 +4320,11 @@ export namespace dataflow_v1b3 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     jobs: Resource$Projects$Locations$Jobs;
-    snapshots: Resource$Projects$Locations$Snapshots;
     sql: Resource$Projects$Locations$Sql;
     templates: Resource$Projects$Locations$Templates;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.jobs = new Resource$Projects$Locations$Jobs(this.context);
-      this.snapshots = new Resource$Projects$Locations$Snapshots(this.context);
       this.sql = new Resource$Projects$Locations$Sql(this.context);
       this.templates = new Resource$Projects$Locations$Templates(this.context);
     }
@@ -4692,15 +4439,11 @@ export namespace dataflow_v1b3 {
     context: APIRequestContext;
     debug: Resource$Projects$Locations$Jobs$Debug;
     messages: Resource$Projects$Locations$Jobs$Messages;
-    snapshots: Resource$Projects$Locations$Jobs$Snapshots;
     workItems: Resource$Projects$Locations$Jobs$Workitems;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.debug = new Resource$Projects$Locations$Jobs$Debug(this.context);
       this.messages = new Resource$Projects$Locations$Jobs$Messages(
-        this.context
-      );
-      this.snapshots = new Resource$Projects$Locations$Jobs$Snapshots(
         this.context
       );
       this.workItems = new Resource$Projects$Locations$Jobs$Workitems(
@@ -5014,81 +4757,6 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * dataflow.projects.locations.jobs.snapshot
-     * @desc Snapshot the state of a streaming job.
-     * @alias dataflow.projects.locations.jobs.snapshot
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The job to be snapshotted.
-     * @param {string} params.location The location that contains this job.
-     * @param {string} params.projectId The project which owns the job to be snapshotted.
-     * @param {().SnapshotJobRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    snapshot(
-      params?: Params$Resource$Projects$Locations$Jobs$Snapshot,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Snapshot>;
-    snapshot(
-      params: Params$Resource$Projects$Locations$Jobs$Snapshot,
-      options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
-      callback: BodyResponseCallback<Schema$Snapshot>
-    ): void;
-    snapshot(
-      params: Params$Resource$Projects$Locations$Jobs$Snapshot,
-      callback: BodyResponseCallback<Schema$Snapshot>
-    ): void;
-    snapshot(callback: BodyResponseCallback<Schema$Snapshot>): void;
-    snapshot(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Jobs$Snapshot
-        | BodyResponseCallback<Schema$Snapshot>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
-      callback?: BodyResponseCallback<Schema$Snapshot>
-    ): void | GaxiosPromise<Schema$Snapshot> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Jobs$Snapshot;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Jobs$Snapshot;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}:snapshot'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'location', 'jobId'],
-        pathParams: ['jobId', 'location', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Snapshot>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Snapshot>(parameters);
-      }
-    }
-
-    /**
      * dataflow.projects.locations.jobs.update
      * @desc Updates the state of an existing Cloud Dataflow job.  To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.
      * @alias dataflow.projects.locations.jobs.update
@@ -5272,31 +4940,6 @@ export namespace dataflow_v1b3 {
      * Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
      */
     view?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Jobs$Snapshot
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The job to be snapshotted.
-     */
-    jobId?: string;
-    /**
-     * The location that contains this job.
-     */
-    location?: string;
-    /**
-     * The project which owns the job to be snapshotted.
-     */
-    projectId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SnapshotJobRequest;
   }
   export interface Params$Resource$Projects$Locations$Jobs$Update
     extends StandardParameters {
@@ -5675,112 +5318,6 @@ export namespace dataflow_v1b3 {
     startTime?: string;
   }
 
-  export class Resource$Projects$Locations$Jobs$Snapshots {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * dataflow.projects.locations.jobs.snapshots.list
-     * @desc Lists snapshots.
-     * @alias dataflow.projects.locations.jobs.snapshots.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId If specified, list snapshots created from this job.
-     * @param {string} params.location The location to list snapshots in.
-     * @param {string} params.projectId The project ID to list snapshots for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params?: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSnapshotsResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
-      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
-      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListSnapshotsResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Jobs$Snapshots$List
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
-      callback?: BodyResponseCallback<Schema$ListSnapshotsResponse>
-    ): void | GaxiosPromise<Schema$ListSnapshotsResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Jobs$Snapshots$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Jobs$Snapshots$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/snapshots'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'location', 'jobId'],
-        pathParams: ['jobId', 'location', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListSnapshotsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Jobs$Snapshots$List
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * If specified, list snapshots created from this job.
-     */
-    jobId?: string;
-    /**
-     * The location to list snapshots in.
-     */
-    location?: string;
-    /**
-     * The project ID to list snapshots for.
-     */
-    projectId?: string;
-  }
-
   export class Resource$Projects$Locations$Jobs$Workitems {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -6002,304 +5539,6 @@ export namespace dataflow_v1b3 {
      * Request body metadata
      */
     requestBody?: Schema$ReportWorkItemStatusRequest;
-  }
-
-  export class Resource$Projects$Locations$Snapshots {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * dataflow.projects.locations.snapshots.delete
-     * @desc Deletes a snapshot.
-     * @alias dataflow.projects.locations.snapshots.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.location The location that contains this snapshot.
-     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
-     * @param {string} params.snapshotId The ID of the snapshot.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-      params?: Params$Resource$Projects$Locations$Snapshots$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$DeleteSnapshotResponse>;
-    delete(
-      params: Params$Resource$Projects$Locations$Snapshots$Delete,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
-      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Snapshots$Delete,
-      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Snapshots$Delete
-        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
-      callback?: BodyResponseCallback<Schema$DeleteSnapshotResponse>
-    ): void | GaxiosPromise<Schema$DeleteSnapshotResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Snapshots$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Snapshots$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1b3/projects/{projectId}/locations/{location}/snapshots/{snapshotId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'location', 'snapshotId'],
-        pathParams: ['location', 'projectId', 'snapshotId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$DeleteSnapshotResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$DeleteSnapshotResponse>(parameters);
-      }
-    }
-
-    /**
-     * dataflow.projects.locations.snapshots.get
-     * @desc Gets information about a snapshot.
-     * @alias dataflow.projects.locations.snapshots.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.location The location that contains this snapshot.
-     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
-     * @param {string} params.snapshotId The ID of the snapshot.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params?: Params$Resource$Projects$Locations$Snapshots$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Snapshot>;
-    get(
-      params: Params$Resource$Projects$Locations$Snapshots$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
-      callback: BodyResponseCallback<Schema$Snapshot>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Snapshots$Get,
-      callback: BodyResponseCallback<Schema$Snapshot>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Snapshot>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Snapshots$Get
-        | BodyResponseCallback<Schema$Snapshot>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
-      callback?: BodyResponseCallback<Schema$Snapshot>
-    ): void | GaxiosPromise<Schema$Snapshot> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Snapshots$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Snapshots$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1b3/projects/{projectId}/locations/{location}/snapshots/{snapshotId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'location', 'snapshotId'],
-        pathParams: ['location', 'projectId', 'snapshotId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Snapshot>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Snapshot>(parameters);
-      }
-    }
-
-    /**
-     * dataflow.projects.locations.snapshots.list
-     * @desc Lists snapshots.
-     * @alias dataflow.projects.locations.snapshots.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.jobId If specified, list snapshots created from this job.
-     * @param {string} params.location The location to list snapshots in.
-     * @param {string} params.projectId The project ID to list snapshots for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params?: Params$Resource$Projects$Locations$Snapshots$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSnapshotsResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Snapshots$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
-      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Snapshots$List,
-      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListSnapshotsResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Snapshots$List
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
-      callback?: BodyResponseCallback<Schema$ListSnapshotsResponse>
-    ): void | GaxiosPromise<Schema$ListSnapshotsResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Snapshots$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Snapshots$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1b3/projects/{projectId}/locations/{location}/snapshots'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'location'],
-        pathParams: ['location', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListSnapshotsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Snapshots$Delete
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The location that contains this snapshot.
-     */
-    location?: string;
-    /**
-     * The ID of the Cloud Platform project that the snapshot belongs to.
-     */
-    projectId?: string;
-    /**
-     * The ID of the snapshot.
-     */
-    snapshotId?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Snapshots$Get
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The location that contains this snapshot.
-     */
-    location?: string;
-    /**
-     * The ID of the Cloud Platform project that the snapshot belongs to.
-     */
-    projectId?: string;
-    /**
-     * The ID of the snapshot.
-     */
-    snapshotId?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Snapshots$List
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * If specified, list snapshots created from this job.
-     */
-    jobId?: string;
-    /**
-     * The location to list snapshots in.
-     */
-    location?: string;
-    /**
-     * The project ID to list snapshots for.
-     */
-    projectId?: string;
   }
 
   export class Resource$Projects$Locations$Sql {
@@ -6727,205 +5966,6 @@ export namespace dataflow_v1b3 {
      * Request body metadata
      */
     requestBody?: Schema$LaunchTemplateParameters;
-  }
-
-  export class Resource$Projects$Snapshots {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * dataflow.projects.snapshots.get
-     * @desc Gets information about a snapshot.
-     * @alias dataflow.projects.snapshots.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.location The location that contains this snapshot.
-     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
-     * @param {string} params.snapshotId The ID of the snapshot.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params?: Params$Resource$Projects$Snapshots$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Snapshot>;
-    get(
-      params: Params$Resource$Projects$Snapshots$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
-      callback: BodyResponseCallback<Schema$Snapshot>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Snapshots$Get,
-      callback: BodyResponseCallback<Schema$Snapshot>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Snapshot>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Snapshots$Get
-        | BodyResponseCallback<Schema$Snapshot>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
-      callback?: BodyResponseCallback<Schema$Snapshot>
-    ): void | GaxiosPromise<Schema$Snapshot> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Snapshots$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Snapshots$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1b3/projects/{projectId}/snapshots/{snapshotId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'snapshotId'],
-        pathParams: ['projectId', 'snapshotId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Snapshot>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Snapshot>(parameters);
-      }
-    }
-
-    /**
-     * dataflow.projects.snapshots.list
-     * @desc Lists snapshots.
-     * @alias dataflow.projects.snapshots.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.jobId If specified, list snapshots created from this job.
-     * @param {string=} params.location The location to list snapshots in.
-     * @param {string} params.projectId The project ID to list snapshots for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params?: Params$Resource$Projects$Snapshots$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSnapshotsResponse>;
-    list(
-      params: Params$Resource$Projects$Snapshots$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
-      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Snapshots$List,
-      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListSnapshotsResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Snapshots$List
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
-      callback?: BodyResponseCallback<Schema$ListSnapshotsResponse>
-    ): void | GaxiosPromise<Schema$ListSnapshotsResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Snapshots$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Snapshots$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1b3/projects/{projectId}/snapshots').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListSnapshotsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Snapshots$Get
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The location that contains this snapshot.
-     */
-    location?: string;
-    /**
-     * The ID of the Cloud Platform project that the snapshot belongs to.
-     */
-    projectId?: string;
-    /**
-     * The ID of the snapshot.
-     */
-    snapshotId?: string;
-  }
-  export interface Params$Resource$Projects$Snapshots$List
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * If specified, list snapshots created from this job.
-     */
-    jobId?: string;
-    /**
-     * The location to list snapshots in.
-     */
-    location?: string;
-    /**
-     * The project ID to list snapshots for.
-     */
-    projectId?: string;
   }
 
   export class Resource$Projects$Templates {

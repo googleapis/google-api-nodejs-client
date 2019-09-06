@@ -213,7 +213,7 @@ export namespace androidmanagement_v1 {
      */
     installType?: string;
     /**
-     * Whether the app is allowed to lock itself in full-screen mode.
+     * Whether the app is allowed to lock itself in full-screen mode. DEPRECATED. Use InstallType KIOSK or kioskCustomLauncherEnabled to to configure a dedicated device.
      */
     lockTaskAllowed?: boolean;
     /**
@@ -483,6 +483,10 @@ export namespace androidmanagement_v1 {
      * If the same physical device has been enrolled multiple times, this field contains its previous device names. The serial number is used as the unique identifier to determine if the same physical device has enrolled previously. The names are in chronological order.
      */
     previousDeviceNames?: string[];
+    /**
+     * Device&#39;s security posture value that reflects how secure the device is.
+     */
+    securityPosture?: Schema$SecurityPosture;
     /**
      * Detailed information about the device software. This information is only available if softwareInfoEnabled is true in the device&#39;s policy.
      */
@@ -1110,7 +1114,7 @@ export namespace androidmanagement_v1 {
     policy?: string;
   }
   /**
-   * A default activity for handling intents that match a particular intent filter.
+   * A default activity for handling intents that match a particular intent filter. Note: To set up a kiosk, use InstallType to KIOSK rather than use persistent preferred activities.
    */
   export interface Schema$PersistentPreferredActivity {
     /**
@@ -1255,7 +1259,7 @@ export namespace androidmanagement_v1 {
      */
     keyguardDisabledFeatures?: string[];
     /**
-     * Whether the kiosk custom launcher is enabled. This replaces the home screen with a launcher that locks down the device to the apps installed via the applications setting. The apps appear on a single page in alphabetical order. It is recommended to also use status_bar_disabled to block access to device settings.
+     * Whether the kiosk custom launcher is enabled. This replaces the home screen with a launcher that locks down the device to the apps installed via the applications setting. Apps appear on a single page in alphabetical order. The status bar is disabled when this is set.
      */
     kioskCustomLauncherEnabled?: boolean;
     /**
@@ -1387,7 +1391,7 @@ export namespace androidmanagement_v1 {
      */
     smsDisabled?: boolean;
     /**
-     * Whether the status bar is disabled. This disables notifications, quick settings, and other screen overlays that allow escape from full-screen mode.
+     * Whether the status bar is disabled. This disables notifications, quick settings, and other screen overlays that allow escape from full-screen mode. DEPRECATED. To disable the status bar on a kiosk device, use InstallType KIOSK or kioskCustomLauncherEnabled.
      */
     statusBarDisabled?: boolean;
     /**
@@ -1457,6 +1461,19 @@ export namespace androidmanagement_v1 {
     wipeAction?: Schema$WipeAction;
   }
   /**
+   * Detail that provides further information if the device is not in the most secure state.
+   */
+  export interface Schema$PostureDetail {
+    /**
+     * Corresponding pieces of advice to mitigate the security risk.
+     */
+    advice?: Schema$UserFacingMessage[];
+    /**
+     * The risk that makes the device not in the most secure state.
+     */
+    securityRisk?: string;
+  }
+  /**
    * A power management event.
    */
   export interface Schema$PowerManagementEvent {
@@ -1493,6 +1510,19 @@ export namespace androidmanagement_v1 {
      * The port of the direct proxy.
      */
     port?: number;
+  }
+  /**
+   * . Device&#39;s security posture value that reflects how secure the device is.
+   */
+  export interface Schema$SecurityPosture {
+    /**
+     * Device&#39;s security posture value.
+     */
+    devicePosture?: string;
+    /**
+     * Details that provide further information if the device is not in the most secure state.
+     */
+    postureDetails?: Schema$PostureDetail[];
   }
   /**
    * An action executed during setup.
@@ -1643,6 +1673,10 @@ export namespace androidmanagement_v1 {
      * Whether software info reporting is enabled.
      */
     softwareInfoEnabled?: boolean;
+    /**
+     * Whether system properties reporting is enabled.
+     */
+    systemPropertiesEnabled?: boolean;
   }
   /**
    * Configuration for managing system updates

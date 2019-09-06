@@ -172,7 +172,7 @@ export namespace androidenterprise_v1 {
      */
     managedConfigurations?: Schema$AdministratorWebTokenSpecManagedConfigurations;
     /**
-     * The URI of the parent frame hosting the iframe. To prevent XSS, the iframe may not be hosted at other URIs. This URI must be https.
+     * The URI of the parent frame hosting the iframe. To prevent XSS, the iframe may not be hosted at other URIs. This URI must be https. Use whitespaces to separate multiple parent URIs.
      */
     parent?: string;
     /**
