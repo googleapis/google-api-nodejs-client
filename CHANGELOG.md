@@ -4,6 +4,49 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [43.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v42.0.0...v43.0.0) (2019-09-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has multiple breaking changes.  The following APIs have been removed:
+- appstate/v1
+- compute/alpha
+- run/v1beta1
+
+In addition, the default rootUrl for the compute API has been switched from `www.googleapis.com` to `compute.googleapis.com`.
+
+The following APIs have been added:
+- bigqueryreservation/v1
+- bigqueryreservation/v1alpha2
+- domainsrdap/v1
+- homegraph/v1
+- speech/v2beta
+- translate/v3beta1
+- verifiedaccess/v1
+
+### Bug Fixes
+
+* **deps:** fix nock version ([#1812](https://www.github.com/googleapis/google-api-nodejs-client/issues/1812)) ([a9a7329](https://www.github.com/googleapis/google-api-nodejs-client/commit/a9a7329))
+
+
+### Features
+
+* **gen:** run the generator ([#1814](https://www.github.com/googleapis/google-api-nodejs-client/issues/1814)) ([381f54a](https://www.github.com/googleapis/google-api-nodejs-client/commit/381f54a))
+* run the generator ([b99011a](https://www.github.com/googleapis/google-api-nodejs-client/commit/b99011a))
+
+## [42.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v42.0.0...v42.1.0) (2019-09-06)
+
+
+### Bug Fixes
+
+* **deps:** fix nock version ([#1812](https://www.github.com/googleapis/google-api-nodejs-client/issues/1812)) ([a9a7329](https://www.github.com/googleapis/google-api-nodejs-client/commit/a9a7329))
+
+
+### Features
+
+* **gen:** run the generator ([#1814](https://www.github.com/googleapis/google-api-nodejs-client/issues/1814)) ([381f54a](https://www.github.com/googleapis/google-api-nodejs-client/commit/381f54a))
+
 ## [42.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v41.0.1...v42.0.0) (2019-07-31)
 
 

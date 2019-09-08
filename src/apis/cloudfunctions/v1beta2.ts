@@ -186,15 +186,15 @@ export namespace cloudfunctions_v1beta2 {
      */
     name?: string;
     /**
-     * The VPC Network that this cloud function can connect to. It can be either the fully-qualified URI, or the short name of the network resource. If the short network name is used, the network must belong to the same project. Otherwise, it must belong to a project within the same organization. The format of this field is either `projects/{project}/global/networks/{network}` or `{network}`, where {project} is a project id where the network is defined, and {network} is the short name of the network.  This field is mutually exclusive with `vpc_connector` and will be replaced by it.  See [the VPC documentation](https://cloud.google.com/compute/docs/vpc) for more information on connecting Cloud projects.  This feature is currently in alpha, available only for whitelisted users.
+     * The VPC Network that this cloud function can connect to. It can be either the fully-qualified URI, or the short name of the network resource. If the short network name is used, the network must belong to the same project. Otherwise, it must belong to a project within the same organization. The format of this field is either `projects/{project}/global/networks/{network}` or `{network}`, where {project} is a project id where the network is defined, and {network} is the short name of the network.  This field is mutually exclusive with `vpc_connector` and will be replaced by it.  See [the VPC documentation](https://cloud.google.com/compute/docs/vpc) for more information on connecting Cloud projects.
      */
     network?: string;
     /**
-     * Required. The runtime in which the function is going to run. Choices:  * `nodejs6`: Node.js 6 * `nodejs8`: Node.js 8 * `nodejs10`: Node.js 10 * `python37`: Python 3.7 * `go111`: Go 1.11
+     * The runtime in which to run the function. Required when deploying a new function, optional when updating an existing function. For a complete list of possible choices, see the [`gcloud` command reference](/sdk/gcloud/reference/functions/deploy#--runtime).
      */
     runtime?: string;
     /**
-     * The email of the function&#39;s service account. If empty, defaults to {project_id}@appspot.gserviceaccount.com.
+     * The email of the function&#39;s service account. If empty, defaults to `{project_id}@appspot.gserviceaccount.com`.
      */
     serviceAccount?: string;
     /**
@@ -230,7 +230,7 @@ export namespace cloudfunctions_v1beta2 {
      */
     versionId?: string;
     /**
-     * The VPC Network Connector that this cloud function can connect to. It can be either the fully-qualified URI, or the short name of the network connector resource. The format of this field is `projects/x/locations/x/connectors/x  This field is mutually exclusive with `network` field and will eventually replace it.  See [the VPC documentation](https://cloud.google.com/compute/docs/vpc) for more information on connecting Cloud projects.  This feature is currently in alpha, available only for whitelisted users.
+     * The VPC Network Connector that this cloud function can connect to. It can be either the fully-qualified URI, or the short name of the network connector resource. The format of this field is `projects/x/locations/x/connectors/x  This field is mutually exclusive with `network` field and will eventually replace it.  See [the VPC documentation](https://cloud.google.com/compute/docs/vpc) for more information on connecting Cloud projects.
      */
     vpcConnector?: string;
   }

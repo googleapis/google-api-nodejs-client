@@ -122,7 +122,7 @@ export namespace language_v1beta2 {
    */
   export interface Schema$AnalyzeEntitiesRequest {
     /**
-     * Input document.
+     * Required. Input document.
      */
     document?: Schema$Document;
     /**
@@ -148,7 +148,7 @@ export namespace language_v1beta2 {
    */
   export interface Schema$AnalyzeEntitySentimentRequest {
     /**
-     * Input document.
+     * Required. Input document.
      */
     document?: Schema$Document;
     /**
@@ -174,7 +174,7 @@ export namespace language_v1beta2 {
    */
   export interface Schema$AnalyzeSentimentRequest {
     /**
-     * Input document.
+     * Required. Input document.
      */
     document?: Schema$Document;
     /**
@@ -204,7 +204,7 @@ export namespace language_v1beta2 {
    */
   export interface Schema$AnalyzeSyntaxRequest {
     /**
-     * Input document.
+     * Required. Input document.
      */
     document?: Schema$Document;
     /**
@@ -234,7 +234,7 @@ export namespace language_v1beta2 {
    */
   export interface Schema$AnnotateTextRequest {
     /**
-     * Input document.
+     * Required. Input document.
      */
     document?: Schema$Document;
     /**
@@ -242,7 +242,7 @@ export namespace language_v1beta2 {
      */
     encodingType?: string;
     /**
-     * The enabled features.
+     * Required. The enabled features.
      */
     features?: Schema$Features;
   }
@@ -293,7 +293,7 @@ export namespace language_v1beta2 {
    */
   export interface Schema$ClassifyTextRequest {
     /**
-     * Input document.
+     * Required. Input document.
      */
     document?: Schema$Document;
   }

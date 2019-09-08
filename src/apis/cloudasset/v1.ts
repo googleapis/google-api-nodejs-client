@@ -123,6 +123,8 @@ export namespace cloudasset_v1 {
    * Cloud asset. This includes all Google Cloud Platform resources, Cloud IAM policies, and other non-GCP assets.
    */
   export interface Schema$Asset {
+    accessLevel?: Schema$GoogleIdentityAccesscontextmanagerV1AccessLevel;
+    accessPolicy?: Schema$GoogleIdentityAccesscontextmanagerV1AccessPolicy;
     /**
      * Type of the asset. Example: &quot;compute.googleapis.com/Disk&quot;.
      */
@@ -143,9 +145,10 @@ export namespace cloudasset_v1 {
      * Representation of the resource.
      */
     resource?: Schema$Resource;
+    servicePerimeter?: Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeter;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:foo@gmail.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:bar@gmail.com&quot;               ]             }           ]         }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -158,7 +161,7 @@ export namespace cloudasset_v1 {
     service?: string;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:foo@gmail.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -180,6 +183,23 @@ export namespace cloudasset_v1 {
     assets?: Schema$TemporalAsset[];
   }
   /**
+   * A BigQuery destination.
+   */
+  export interface Schema$BigQueryDestination {
+    /**
+     * Required. The BigQuery dataset in format &quot;projects/projectId/datasets/datasetId&quot;, to which the snapshot result should be exported. If this dataset does not exist, the export call returns an error.
+     */
+    dataset?: string;
+    /**
+     * If the destination table already exists and this flag is `TRUE`, the table will be overwritten by the contents of assets snapshot. If the flag is not set and the destination table already exists, the export call returns an error.
+     */
+    force?: boolean;
+    /**
+     * Required. The BigQuery table to which the snapshot result should be written. If this table does not exist, a new table with the given name will be created.
+     */
+    table?: string;
+  }
+  /**
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
@@ -188,7 +208,7 @@ export namespace cloudasset_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
@@ -323,6 +343,198 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleCloudOrgpolicyV1RestoreDefault {}
   /**
+   * An `AccessLevel` is a label that can be applied to requests to GCP services, along with a list of requirements necessary for the label to be applied.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1AccessLevel {
+    /**
+     * A `BasicLevel` composed of `Conditions`.
+     */
+    basic?: Schema$GoogleIdentityAccesscontextmanagerV1BasicLevel;
+    /**
+     * Output only. Time the `AccessLevel` was created in UTC.
+     */
+    createTime?: string;
+    /**
+     * Description of the `AccessLevel` and its use. Does not affect behavior.
+     */
+    description?: string;
+    /**
+     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`
+     */
+    name?: string;
+    /**
+     * Human readable title. Must be unique within the Policy.
+     */
+    title?: string;
+    /**
+     * Output only. Time the `AccessLevel` was updated in UTC.
+     */
+    updateTime?: string;
+  }
+  /**
+   * `AccessPolicy` is a container for `AccessLevels` (which define the necessary attributes to use GCP services) and `ServicePerimeters` (which define regions of services able to freely pass data within a perimeter). An access policy is globally visible within an organization, and the restrictions it specifies apply to all projects within an organization.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1AccessPolicy {
+    /**
+     * Output only. Time the `AccessPolicy` was created in UTC.
+     */
+    createTime?: string;
+    /**
+     * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id}`
+     */
+    name?: string;
+    /**
+     * Required. The parent of this `AccessPolicy` in the Cloud Resource Hierarchy. Currently immutable once created. Format: `organizations/{organization_id}`
+     */
+    parent?: string;
+    /**
+     * Required. Human readable title. Does not affect behavior.
+     */
+    title?: string;
+    /**
+     * Output only. Time the `AccessPolicy` was updated in UTC.
+     */
+    updateTime?: string;
+  }
+  /**
+   * `BasicLevel` is an `AccessLevel` using a set of recommended features.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1BasicLevel {
+    /**
+     * How the `conditions` list should be combined to determine if a request is granted this `AccessLevel`. If AND is used, each `Condition` in `conditions` must be satisfied for the `AccessLevel` to be applied. If OR is used, at least one `Condition` in `conditions` must be satisfied for the `AccessLevel` to be applied. Default behavior is AND.
+     */
+    combiningFunction?: string;
+    /**
+     * Required. A list of requirements for the `AccessLevel` to be granted.
+     */
+    conditions?: Schema$GoogleIdentityAccesscontextmanagerV1Condition[];
+  }
+  /**
+   * A condition necessary for an `AccessLevel` to be granted. The Condition is an AND over its fields. So a Condition is true if: 1) the request IP is from one of the listed subnetworks AND 2) the originating device complies with the listed device policy AND 3) all listed access levels are granted AND 4) the request was sent at a time allowed by the DateTimeRestriction.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1Condition {
+    /**
+     * Device specific restrictions, all restrictions must hold for the Condition to be true. If not specified, all devices are allowed.
+     */
+    devicePolicy?: Schema$GoogleIdentityAccesscontextmanagerV1DevicePolicy;
+    /**
+     * CIDR block IP subnetwork specification. May be IPv4 or IPv6. Note that for a CIDR IP address block, the specified IP address portion must be properly truncated (i.e. all the host bits must be zero) or the input is considered malformed. For example, &quot;192.0.2.0/24&quot; is accepted but &quot;192.0.2.1/24&quot; is not. Similarly, for IPv6, &quot;2001:db8::/32&quot; is accepted whereas &quot;2001:db8::1/32&quot; is not. The originating IP of a request must be in one of the listed subnets in order for this Condition to be true. If empty, all IP addresses are allowed.
+     */
+    ipSubnetworks?: string[];
+    /**
+     * The request must be made by one of the provided user or service accounts. Groups are not supported. Syntax: `user:{emailid}` `serviceAccount:{emailid}` If not specified, a request may come from any user.
+     */
+    members?: string[];
+    /**
+     * Whether to negate the Condition. If true, the Condition becomes a NAND over its non-empty fields, each field must be false for the Condition overall to be satisfied. Defaults to false.
+     */
+    negate?: boolean;
+    /**
+     * The request must originate from one of the provided countries/regions. Must be valid ISO 3166-1 alpha-2 codes.
+     */
+    regions?: string[];
+    /**
+     * A list of other access levels defined in the same `Policy`, referenced by resource name. Referencing an `AccessLevel` which does not exist is an error. All access levels listed must be granted for the Condition to be true. Example: &quot;`accessPolicies/MY_POLICY/accessLevels/LEVEL_NAME&quot;`
+     */
+    requiredAccessLevels?: string[];
+  }
+  /**
+   * `DevicePolicy` specifies device specific restrictions necessary to acquire a given access level. A `DevicePolicy` specifies requirements for requests from devices to be granted access levels, it does not do any enforcement on the device. `DevicePolicy` acts as an AND over all specified fields, and each repeated field is an OR over its elements. Any unset fields are ignored. For example, if the proto is { os_type : DESKTOP_WINDOWS, os_type : DESKTOP_LINUX, encryption_status: ENCRYPTED}, then the DevicePolicy will be true for requests originating from encrypted Linux desktops and encrypted Windows desktops.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1DevicePolicy {
+    /**
+     * Allowed device management levels, an empty list allows all management levels.
+     */
+    allowedDeviceManagementLevels?: string[];
+    /**
+     * Allowed encryptions statuses, an empty list allows all statuses.
+     */
+    allowedEncryptionStatuses?: string[];
+    /**
+     * Allowed OS versions, an empty list allows all types and all versions.
+     */
+    osConstraints?: Schema$GoogleIdentityAccesscontextmanagerV1OsConstraint[];
+    /**
+     * Whether the device needs to be approved by the customer admin.
+     */
+    requireAdminApproval?: boolean;
+    /**
+     * Whether the device needs to be corp owned.
+     */
+    requireCorpOwned?: boolean;
+    /**
+     * Whether or not screenlock is required for the DevicePolicy to be true. Defaults to `false`.
+     */
+    requireScreenlock?: boolean;
+  }
+  /**
+   * A restriction on the OS type and version of devices making requests.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1OsConstraint {
+    /**
+     * The minimum allowed OS version. If not set, any version of this OS satisfies the constraint. Format: `&quot;major.minor.patch&quot;`. Examples: `&quot;10.5.301&quot;`, `&quot;9.2.1&quot;`.
+     */
+    minimumVersion?: string;
+    /**
+     * Required. The allowed OS type.
+     */
+    osType?: string;
+    /**
+     * Only allows requests from devices with a verified Chrome OS. Verifications includes requirements that the device is enterprise-managed, conformant to Dasher domain policies, and the caller has permission to call the API targeted by the request.
+     */
+    requireVerifiedChromeOs?: boolean;
+  }
+  /**
+   * `ServicePerimeter` describes a set of GCP resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single GCP project can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only GCP projects as members, a single GCP project may belong to multiple Service Perimeter Bridges.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeter {
+    /**
+     * Output only. Time the `ServicePerimeter` was created in UTC.
+     */
+    createTime?: string;
+    /**
+     * Description of the `ServicePerimeter` and its use. Does not affect behavior.
+     */
+    description?: string;
+    /**
+     * Required. Resource name for the ServicePerimeter.  The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
+     */
+    name?: string;
+    /**
+     * Perimeter type indicator. A single project is allowed to be a member of single regular perimeter, but multiple service perimeter bridges. A project cannot be a included in a perimeter bridge without being included in regular perimeter. For perimeter bridges, the restricted service list as well as access level lists must be empty.
+     */
+    perimeterType?: string;
+    /**
+     * Current ServicePerimeter configuration. Specifies sets of resources, restricted services and access levels that determine perimeter content and boundaries.
+     */
+    status?: Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeterConfig;
+    /**
+     * Human readable title. Must be unique within the Policy.
+     */
+    title?: string;
+    /**
+     * Output only. Time the `ServicePerimeter` was updated in UTC.
+     */
+    updateTime?: string;
+  }
+  /**
+   * `ServicePerimeterConfig` specifies a set of GCP resources that describe specific Service Perimeter configuration.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeterConfig {
+    /**
+     * A list of `AccessLevel` resource names that allow resources within the `ServicePerimeter` to be accessed from the internet. `AccessLevels` listed must be in the same policy as this `ServicePerimeter`. Referencing a nonexistent `AccessLevel` is a syntax error. If no `AccessLevel` names are listed, resources within the perimeter can only be accessed via GCP calls with request origins within the perimeter. Example: `&quot;accessPolicies/MY_POLICY/accessLevels/MY_LEVEL&quot;`. For Service Perimeter Bridge, must be empty.
+     */
+    accessLevels?: string[];
+    /**
+     * A list of GCP resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number}`
+     */
+    resources?: string[];
+    /**
+     * GCP services that are subject to the Service Perimeter restrictions. For example, if `storage.googleapis.com` is specified, access to the storage buckets inside the perimeter must meet the perimeter&#39;s access restrictions.
+     */
+    restrictedServices?: string[];
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -352,6 +564,10 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$OutputConfig {
     /**
+     * Destination on BigQuery. The output table stores the fields in asset proto as columns in BigQuery. The resource/iam_policy field is converted to a record with each field to a column, except metadata to a single JSON string.
+     */
+    bigqueryDestination?: Schema$BigQueryDestination;
+    /**
      * Destination on Cloud Storage.
      */
     gcsDestination?: Schema$GcsDestination;
@@ -369,11 +585,11 @@ export namespace cloudasset_v1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
     etag?: string;
     /**
-     * Deprecated.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
     version?: number;
   }

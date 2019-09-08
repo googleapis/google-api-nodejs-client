@@ -14,19 +14,21 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {appstate_v1} from './v1';
+import {verifiedaccess_v1} from './v1';
 
 export const VERSIONS = {
-  v1: appstate_v1.Appstate,
+  v1: verifiedaccess_v1.Verifiedaccess,
 };
 
-export function appstate(version: 'v1'): appstate_v1.Appstate;
-export function appstate(options: appstate_v1.Options): appstate_v1.Appstate;
-export function appstate<T = appstate_v1.Appstate>(
+export function verifiedaccess(version: 'v1'): verifiedaccess_v1.Verifiedaccess;
+export function verifiedaccess(
+  options: verifiedaccess_v1.Options
+): verifiedaccess_v1.Verifiedaccess;
+export function verifiedaccess<T = verifiedaccess_v1.Verifiedaccess>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | appstate_v1.Options
+  versionOrOptions: 'v1' | verifiedaccess_v1.Options
 ) {
-  return getAPI<T>('appstate', versionOrOptions, VERSIONS, this);
+  return getAPI<T>('verifiedaccess', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();

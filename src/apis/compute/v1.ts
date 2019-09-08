@@ -96,6 +96,7 @@ export namespace compute_v1 {
     backendServices: Resource$Backendservices;
     disks: Resource$Disks;
     diskTypes: Resource$Disktypes;
+    externalVpnGateways: Resource$Externalvpngateways;
     firewalls: Resource$Firewalls;
     forwardingRules: Resource$Forwardingrules;
     globalAddresses: Resource$Globaladdresses;
@@ -147,6 +148,7 @@ export namespace compute_v1 {
     targetTcpProxies: Resource$Targettcpproxies;
     targetVpnGateways: Resource$Targetvpngateways;
     urlMaps: Resource$Urlmaps;
+    vpnGateways: Resource$Vpngateways;
     vpnTunnels: Resource$Vpntunnels;
     zoneOperations: Resource$Zoneoperations;
     zones: Resource$Zones;
@@ -164,6 +166,7 @@ export namespace compute_v1 {
       this.backendServices = new Resource$Backendservices(this.context);
       this.disks = new Resource$Disks(this.context);
       this.diskTypes = new Resource$Disktypes(this.context);
+      this.externalVpnGateways = new Resource$Externalvpngateways(this.context);
       this.firewalls = new Resource$Firewalls(this.context);
       this.forwardingRules = new Resource$Forwardingrules(this.context);
       this.globalAddresses = new Resource$Globaladdresses(this.context);
@@ -231,6 +234,7 @@ export namespace compute_v1 {
       this.targetTcpProxies = new Resource$Targettcpproxies(this.context);
       this.targetVpnGateways = new Resource$Targetvpngateways(this.context);
       this.urlMaps = new Resource$Urlmaps(this.context);
+      this.vpnGateways = new Resource$Vpngateways(this.context);
       this.vpnTunnels = new Resource$Vpntunnels(this.context);
       this.zoneOperations = new Resource$Zoneoperations(this.context);
       this.zones = new Resource$Zones(this.context);
@@ -600,15 +604,15 @@ export namespace compute_v1 {
    */
   export interface Schema$AllocationSpecificSKUReservation {
     /**
-     * Specifies number of resources that are allocated.
+     * Specifies the number of resources that are allocated.
      */
     count?: string;
     /**
-     * The instance properties for this specific sku reservation.
+     * The instance properties for the reservation.
      */
     instanceProperties?: Schema$AllocationSpecificSKUAllocationReservedInstanceProperties;
     /**
-     * [OutputOnly] Indicates how many resource are in use.
+     * [OutputOnly] Indicates how many instances are in use.
      */
     inUseCount?: string;
   }
@@ -682,7 +686,7 @@ export namespace compute_v1 {
      */
     diskName?: string;
     /**
-     * Specifies the size of the disk in base-2 GB.
+     * Specifies the size of the disk in base-2 GB. If not specified, the disk will be the same size as the image (usually 10GB). If specified, the size must be equal to or larger than 10GB.
      */
     diskSizeGb?: string;
     /**
@@ -715,7 +719,7 @@ export namespace compute_v1 {
     sourceSnapshotEncryptionKey?: Schema$CustomerEncryptionKey;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:  { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot;, } ] }, { &quot;service&quot;: &quot;fooservice.googleapis.com&quot; &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:bar@gmail.com&quot; ] } ] } ] }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:  { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot;, } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot; &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -729,13 +733,17 @@ export namespace compute_v1 {
     service?: string;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:  { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, } ] }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:  { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, } ] }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of [Binding.members][].
      */
     exemptedMembers?: string[];
+    /**
+     * Specifies whether principals can be exempted for the same LogType in lower-level resource policies. If true, any lower-level exemptions will be ignored.
+     */
+    ignoreChildExemptions?: boolean;
     /**
      * The log type that this config enables.
      */
@@ -959,7 +967,7 @@ export namespace compute_v1 {
    */
   export interface Schema$Backend {
     /**
-     * Specifies the balancing mode for the backend.  When choosing a balancing mode, you need to consider the loadBalancingScheme, and protocol for the backend service, as well as the type of backend (instance group or NEG).    - If the load balancing mode is CONNECTION, then the load is spread based on how many concurrent connections the backend can handle. The CONNECTION balancing mode is only available if the protocol for the backend service is SSL, TCP, or UDP.  If the loadBalancingScheme for the backend service is EXTERNAL (SSL Proxy and TCP Proxy load balancers), you must also specify exactly one of the following parameters: maxConnections, maxConnectionsPerInstance, or maxConnectionsPerEndpoint.  If the loadBalancingScheme for the backend service is INTERNAL (internal TCP/UDP load balancers), you cannot specify any additional parameters.   - If the load balancing mode is RATE, then the load is spread based on the rate of HTTP requests per second (RPS). The RATE balancing mode is only available if the protocol for the backend service is HTTP or HTTPS. You must specify exactly one of the following parameters: maxRate, maxRatePerInstance, or maxRatePerEndpoint.   - If the load balancing mode is UTILIZATION, then the load is spread based on the CPU utilization of instances in an instance group. The UTILIZATION balancing mode is only available if the loadBalancingScheme of the backend service is EXTERNAL, INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED and the backend is made up of instance groups. There are no restrictions on the backend service protocol.
+     * Specifies the balancing mode for the backend.  When choosing a balancing mode, you need to consider the loadBalancingScheme, and protocol for the backend service, as well as the type of backend (instance group or NEG).    - If the load balancing mode is CONNECTION, then the load is spread based on how many concurrent connections the backend can handle. You can use the CONNECTION balancing mode if the protocol for the backend service is SSL, TCP, or UDP.  If the loadBalancingScheme for the backend service is EXTERNAL (SSL Proxy and TCP Proxy load balancers), you must also specify exactly one of the following parameters: maxConnections, maxConnectionsPerInstance, or maxConnectionsPerEndpoint.  If the loadBalancingScheme for the backend service is INTERNAL (internal TCP/UDP load balancers), you cannot specify any additional parameters.   - If the load balancing mode is RATE, the load is spread based on the rate of HTTP requests per second (RPS). You can use the RATE balancing mode if the protocol for the backend service is HTTP or HTTPS. You must specify exactly one of the following parameters: maxRate, maxRatePerInstance, or maxRatePerEndpoint.   - If the load balancing mode is UTILIZATION, the load is spread based on the CPU utilization of instances in an instance group. You can use the UTILIZATION balancing mode if the loadBalancingScheme of the backend service is EXTERNAL, INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED and the backends are instance groups. There are no restrictions on the backend service protocol.
      */
     balancingMode?: string;
     /**
@@ -1173,7 +1181,7 @@ export namespace compute_v1 {
      */
     selfLink?: string;
     /**
-     * Type of session affinity to use. The default is NONE. Session affinity is not applicable if the --protocol is UDP.  When the loadBalancingScheme is EXTERNAL, possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. GENERATED_COOKIE is only available if the protocol is HTTP or HTTPS.  When the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.  When the loadBalancingScheme is INTERNAL_SELF_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.
+     * Type of session affinity to use. The default is NONE. Session affinity is not applicable if the --protocol is UDP.  When the loadBalancingScheme is EXTERNAL, possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. You can use GENERATED_COOKIE if the protocol is HTTP or HTTPS.  When the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.  When the loadBalancingScheme is INTERNAL_SELF_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.
      */
     sessionAffinity?: string;
     /**
@@ -1312,7 +1320,7 @@ export namespace compute_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@gmail.com` .    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.    * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` .    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.    * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
@@ -1389,7 +1397,7 @@ export namespace compute_v1 {
      */
     region?: string;
     /**
-     * List of reservations for this commitment.
+     * List of reservations in this commitment.
      */
     reservations?: Schema$Reservation[];
     /**
@@ -1685,7 +1693,7 @@ export namespace compute_v1 {
      */
     sourceSnapshotId?: string;
     /**
-     * [Output Only] The status of disk creation.
+     * [Output Only] The status of disk creation. CREATING: Disk is provisioning. RESTORING: Source data is being copied into the disk. FAILED: Disk creation failed. READY: Disk is ready for use. DELETING: Disk is deleting.
      */
     status?: string;
     /**
@@ -1953,6 +1961,15 @@ export namespace compute_v1 {
       message?: string;
     };
   }
+  /**
+   * A set of Display Device options
+   */
+  export interface Schema$DisplayDevice {
+    /**
+     * Defines whether the instance has Display enabled.
+     */
+    enableDisplay?: boolean;
+  }
   export interface Schema$DistributionPolicy {
     /**
      * Zones where the regional managed instance group will create and manage instances.
@@ -1985,6 +2002,98 @@ export namespace compute_v1 {
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string;
+  }
+  /**
+   * External VPN gateway is the on-premises VPN gateway(s) or another cloud provider?s VPN gateway that connects to your Google Cloud VPN gateway. To create a highly available VPN from Google Cloud to your on-premises side or another Cloud provider&#39;s VPN gateway, you must create a external VPN gateway resource in GCP, which provides the information to GCP about your external VPN gateway.
+   */
+  export interface Schema$ExternalVpnGateway {
+    /**
+     * [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string;
+    /**
+     * An optional description of this resource. Provide this property when you create the resource.
+     */
+    description?: string;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     */
+    id?: string;
+    /**
+     * List of interfaces for this external VPN gateway.
+     */
+    interfaces?: Schema$ExternalVpnGatewayInterface[];
+    /**
+     * [Output Only] Type of the resource. Always compute#externalVpnGateway for externalVpnGateways.
+     */
+    kind?: string;
+    /**
+     * A fingerprint for the labels being applied to this ExternalVpnGateway, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet.  To see the latest fingerprint, make a get() request to retrieve an ExternalVpnGateway.
+     */
+    labelFingerprint?: string;
+    /**
+     * Labels to apply to this ExternalVpnGateway resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
+     */
+    labels?: {[key: string]: string};
+    /**
+     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     */
+    name?: string;
+    /**
+     * Indicates the user-supplied redundancy type of this external VPN gateway.
+     */
+    redundancyType?: string;
+    /**
+     * [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string;
+  }
+  /**
+   * The interface for the external VPN gateway.
+   */
+  export interface Schema$ExternalVpnGatewayInterface {
+    /**
+     * The numeric ID of this interface. The allowed input values for this id for different redundancy types of external VPN gateway: SINGLE_IP_INTERNALLY_REDUNDANT - 0 TWO_IPS_REDUNDANCY - 0, 1 FOUR_IPS_REDUNDANCY - 0, 1, 2, 3
+     */
+    id?: number;
+    /**
+     * IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider?s VPN gateway, it cannot be an IP address from Google Compute Engine.
+     */
+    ipAddress?: string;
+  }
+  /**
+   * Response to the list request, and contains a list of externalVpnGateways.
+   */
+  export interface Schema$ExternalVpnGatewayList {
+    etag?: string;
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of ExternalVpnGateway resources.
+     */
+    items?: Schema$ExternalVpnGateway[];
+    /**
+     * [Output Only] Type of resource. Always compute#externalVpnGatewayList  for lists of externalVpnGateways.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    };
   }
   /**
    * Represents a Firewall Rule resource.  Firewall rules allow or deny ingress traffic to, and egress traffic from your instances. For more information, read Firewall rules.
@@ -2151,7 +2260,7 @@ export namespace compute_v1 {
      */
     id?: string;
     /**
-     * The IP address that this forwarding rule is serving on behalf of.  Addresses are restricted based on the forwarding rule&#39;s load balancing scheme (EXTERNAL or INTERNAL) and scope (global or regional).  When the load balancing scheme is EXTERNAL, for global forwarding rules, the address must be a global IP, and for regional forwarding rules, the address must live in the same region as the forwarding rule. If this field is empty, an ephemeral IPv4 address from the same scope (global or regional) will be assigned. A regional forwarding rule supports IPv4 only. A global forwarding rule supports either IPv4 or IPv6.  When the load balancing scheme is INTERNAL_SELF_MANAGED, this must be a URL reference to an existing Address resource ( internal regional static IP address), with a purpose of GCE_END_POINT and address_type of INTERNAL.  When the load balancing scheme is INTERNAL, this can only be an RFC 1918 IP address belonging to the network/subnet configured for the forwarding rule. By default, if this field is empty, an ephemeral internal IP address will be automatically allocated from the IP range of the subnet or network configured for this forwarding rule.  An address can be specified either by a literal IP address or a URL reference to an existing Address resource. The following examples are all valid:   - 100.1.2.3  - https://www.googleapis.com/compute/v1/projects/project/regions/region/addresses/address  - projects/project/regions/region/addresses/address  - regions/region/addresses/address  - global/addresses/address  - address
+     * IP address that this forwarding rule serves. When a client sends traffic to this IP address, the forwarding rule directs the traffic to the target that you specify in the forwarding rule.  If you don&#39;t specify a reserved IP address, an ephemeral IP address is assigned. Methods for specifying an IP address:  * IPv4 dotted decimal, as in `100.1.2.3` * Full URL, as in https://www.googleapis.com/compute/v1/projects/project_id/regions/region/addresses/address-name * Partial URL or by name, as in: * projects/project_id/regions/region/addresses/address-name * regions/region/addresses/address-name * global/addresses/address-name * address-name   The loadBalancingScheme and the forwarding rule&#39;s target determine the type of IP address that you can use. For detailed information, refer to [IP address specifications](/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications).
      */
     IPAddress?: string;
     /**
@@ -2183,11 +2292,11 @@ export namespace compute_v1 {
      */
     networkTier?: string;
     /**
-     * This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.  Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.  Some types of forwarding target have constraints on the acceptable ports:   - TargetHttpProxy: 80, 8080  - TargetHttpsProxy: 443  - TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetVpnGateway: 500, 4500
+     * This field is deprecated. See the port field.
      */
     portRange?: string;
     /**
-     * This field is used along with the backend_service field for internal load balancing.  When the load balancing scheme is INTERNAL, a list of ports can be configured, for example, [&#39;80&#39;], [&#39;8000&#39;,&#39;9000&#39;] etc. Only packets addressed to these ports will be forwarded to the backends configured with this forwarding rule.  You may specify a maximum of up to 5 ports.
+     * List of comma-separated ports. The forwarding rule forwards packets with matching destination ports. If the forwarding rule&#39;s loadBalancingScheme is EXTERNAL, and the forwarding rule references a target pool, specifying ports is optional. You can specify an unlimited number of ports, but they must be contiguous. If you omit ports, GCP forwards traffic on any port of the forwarding rule&#39;s protocol.  If the forwarding rule&#39;s loadBalancingScheme is EXTERNAL, and the forwarding rule references a target HTTP proxy, target HTTPS proxy, target TCP proxy, target SSL proxy, or target VPN gateway, you must specify ports using the following constraints:    - TargetHttpProxy: 80, 8080  - TargetHttpsProxy: 443  - TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetVpnGateway: 500, 4500    If the forwarding rule&#39;s loadBalancingScheme is INTERNAL, you must specify ports in one of the following ways:  * A list of up to five ports, which can be non-contiguous * Keyword ALL, which causes the forwarding rule to forward traffic on any port of the forwarding rule&#39;s protocol.  The ports field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.  Applicable only when IPProtocol is TCP, UDP, or SCTP. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.
      */
     ports?: string[];
     /**
@@ -2199,7 +2308,7 @@ export namespace compute_v1 {
      */
     selfLink?: string;
     /**
-     * An optional prefix to the service name for this Forwarding Rule. If specified, will be the first label of the fully qualified service name.  The label must be 1-63 characters long, and comply with RFC1035. Specifically, the label must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.  This field is only used for internal load balancing.
+     * An optional prefix to the service name for this Forwarding Rule. If specified, the prefix is the first label of the fully qualified service name.  The label must be 1-63 characters long, and comply with RFC1035. Specifically, the label must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.  This field is only used for internal load balancing.
      */
     serviceLabel?: string;
     /**
@@ -2975,9 +3084,16 @@ export namespace compute_v1 {
      */
     disks?: Schema$AttachedDisk[];
     /**
+     * Enables display device for the instance.
+     */
+    displayDevice?: Schema$DisplayDevice;
+    /**
      * A list of the type and count of accelerator cards attached to the instance.
      */
     guestAccelerators?: Schema$AcceleratorConfig[];
+    /**
+     * Specifies the hostname of the instance. The specified hostname must be RFC1035 compliant. If hostname is not specified, the default hostname is [INSTANCE_NAME].c.[PROJECT_ID].internal when using the global DNS, and [INSTANCE_NAME].[ZONE].c.[PROJECT_ID].internal when using zonal DNS.
+     */
     hostname?: string;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -3950,7 +4066,7 @@ export namespace compute_v1 {
      */
     adminEnabled?: boolean;
     /**
-     * Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values:  - BPS_50M: 50 Mbit/s  - BPS_100M: 100 Mbit/s  - BPS_200M: 200 Mbit/s  - BPS_300M: 300 Mbit/s  - BPS_400M: 400 Mbit/s  - BPS_500M: 500 Mbit/s  - BPS_1G: 1 Gbit/s  - BPS_2G: 2 Gbit/s  - BPS_5G: 5 Gbit/s  - BPS_10G: 10 Gbit/s
+     * Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values:  - BPS_50M: 50 Mbit/s  - BPS_100M: 100 Mbit/s  - BPS_200M: 200 Mbit/s  - BPS_300M: 300 Mbit/s  - BPS_400M: 400 Mbit/s  - BPS_500M: 500 Mbit/s  - BPS_1G: 1 Gbit/s  - BPS_2G: 2 Gbit/s  - BPS_5G: 5 Gbit/s  - BPS_10G: 10 Gbit/s  - BPS_20G: 20 Gbit/s  - BPS_50G: 50 Gbit/s
      */
     bandwidth?: string;
     /**
@@ -4889,7 +5005,7 @@ export namespace compute_v1 {
      */
     instance?: string;
     /**
-     * Optional IPv4 address of network endpoint. The IP address must belong to a VM in GCE (either the primary IP or as part of an aliased IP range). If the IP address is not specified, then the primary IP address for the VM instance in the network that the network endpoint group belongs to will be used.
+     * Optional IPv4 address of network endpoint. The IP address must belong to a VM in Compute Engine (either the primary IP or as part of an aliased IP range). If the IP address is not specified, then the primary IP address for the VM instance in the network that the network endpoint group belongs to will be used.
      */
     ipAddress?: string;
     /**
@@ -5161,6 +5277,14 @@ export namespace compute_v1 {
      */
     exchangeSubnetRoutes?: boolean;
     /**
+     * Whether to export the custom routes to peer network.
+     */
+    exportCustomRoutes?: boolean;
+    /**
+     * Whether to import the custom routes from peer network.
+     */
+    importCustomRoutes?: boolean;
+    /**
      * Name of this peering. Provided by the client when the peering is created. The name must comply with RFC1035. Specifically, the name must be 1-63 characters long and match regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all the following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     name?: string;
@@ -5209,6 +5333,9 @@ export namespace compute_v1 {
      * Name of the peering, which should conform to RFC1035.
      */
     name?: string;
+  }
+  export interface Schema$NetworksUpdatePeeringRequest {
+    networkPeering?: Schema$NetworkPeering;
   }
   /**
    * Represent a sole-tenant Node Group resource.  A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes. (== resource_for beta.nodeGroups ==) (== resource_for v1.nodeGroups ==) NextID: 15
@@ -5341,6 +5468,9 @@ export namespace compute_v1 {
     additionalNodeCount?: number;
   }
   export interface Schema$NodeGroupsDeleteNodesRequest {
+    /**
+     * Names of the nodes to delete.
+     */
     nodes?: string[];
   }
   export interface Schema$NodeGroupsListNodes {
@@ -5697,7 +5827,7 @@ export namespace compute_v1 {
      */
     httpErrorStatusCode?: number;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the operation. This identifier is defined by the server.
      */
     id?: string;
     /**
@@ -5709,7 +5839,7 @@ export namespace compute_v1 {
      */
     kind?: string;
     /**
-     * [Output Only] Name of the resource.
+     * [Output Only] Name of the operation.
      */
     name?: string;
     /**
@@ -5889,7 +6019,7 @@ export namespace compute_v1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
     etag?: string;
     iamOwned?: boolean;
@@ -6379,11 +6509,11 @@ export namespace compute_v1 {
     policy?: Schema$Policy;
   }
   /**
-   * Represents a reservation resource. A reservation ensures that capacity is held in a specific zone even if the reserved VMs are not running. For more information, read  Reserving zonal resources. (== resource_for beta.reservations ==) (== resource_for v1.reservations ==) (== NextID: 13 ==)
+   * Represents a reservation resource. A reservation ensures that capacity is held in a specific zone even if the reserved VMs are not running. For more information, read  Reserving zonal resources. (== resource_for beta.reservations ==) (== resource_for v1.reservations ==)
    */
   export interface Schema$Reservation {
     /**
-     * [OutputOnly] Full or partial url for parent commitment for reservations which are tied to a commitment.
+     * [OutputOnly] Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.
      */
     commitment?: string;
     /**
@@ -6423,7 +6553,7 @@ export namespace compute_v1 {
      */
     status?: string;
     /**
-     * Zone in which the reservation resides, must be provided if reservation is created with commitment creation.
+     * Zone in which the reservation resides. A zone must be provided if the reservation is created within a commitment.
      */
     zone?: string;
   }
@@ -6746,7 +6876,7 @@ export namespace compute_v1 {
      */
     labels?: {[key: string]: string};
     /**
-     * GCS bucket storage location of the auto snapshot (regional or multi-regional).
+     * Cloud Storage bucket storage location of the auto snapshot (regional or multi-regional).
      */
     storageLocations?: string[];
   }
@@ -7030,7 +7160,7 @@ export namespace compute_v1 {
      */
     managementType?: string;
     /**
-     * Name of this BGP peer. The name must be 1-63 characters long and comply with RFC1035.
+     * Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     name?: string;
     /**
@@ -7060,7 +7190,7 @@ export namespace compute_v1 {
      */
     managementType?: string;
     /**
-     * Name of this interface entry. The name must be 1-63 characters long and comply with RFC1035.
+     * Name of this interface entry. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     name?: string;
   }
@@ -7666,7 +7796,7 @@ export namespace compute_v1 {
      */
     storageBytesStatus?: string;
     /**
-     * GCS bucket storage location of the snapshot (regional or multi-regional).
+     * Cloud Storage bucket storage location of the snapshot (regional or multi-regional).
      */
     storageLocations?: string[];
   }
@@ -7941,6 +8071,10 @@ export namespace compute_v1 {
      */
     kind?: string;
     /**
+     * This field denotes the VPC flow logging options for this subnetwork. If logging is enabled, logs are exported to Stackdriver.
+     */
+    logConfig?: Schema$SubnetworkLogConfig;
+    /**
      * The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     name?: string;
@@ -8027,6 +8161,27 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     };
+  }
+  /**
+   * The available logging options for this subnetwork.
+   */
+  export interface Schema$SubnetworkLogConfig {
+    /**
+     * Can only be specified if VPC flow logging for this subnetwork is enabled. Toggles the aggregation interval for collecting flow logs. Increasing the interval time will reduce the amount of generated flow logs for long lasting connections. Default is an interval of 5 seconds per connection.
+     */
+    aggregationInterval?: string;
+    /**
+     * Whether to enable flow logging for this subnetwork. If this field is not explicitly set, it will not appear in get listings. If not set the default behavior is to disable flow logging.
+     */
+    enable?: boolean;
+    /**
+     * Can only be specified if VPC flow logging for this subnetwork is enabled. The value of the field must be in [0, 1]. Set the sampling rate of VPC flow logs within the subnetwork where 1.0 means all collected logs are reported and 0.0 means no logs are reported. Default is 0.5, which means half of all collected logs are reported.
+     */
+    flowSampling?: number;
+    /**
+     * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is INCLUDE_ALL_METADATA.
+     */
+    metadata?: string;
   }
   /**
    * Represents a secondary IP range of a subnetwork.
@@ -9135,6 +9290,205 @@ export namespace compute_v1 {
     };
   }
   /**
+   * Represents a VPN gateway resource.
+   */
+  export interface Schema$VpnGateway {
+    /**
+     * [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string;
+    /**
+     * An optional description of this resource. Provide this property when you create the resource.
+     */
+    description?: string;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] Type of resource. Always compute#vpnGateway for VPN gateways.
+     */
+    kind?: string;
+    /**
+     * A fingerprint for the labels being applied to this VpnGateway, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet.  To see the latest fingerprint, make a get() request to retrieve an VpnGateway.
+     */
+    labelFingerprint?: string;
+    /**
+     * Labels to apply to this VpnGateway resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
+     */
+    labels?: {[key: string]: string};
+    /**
+     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     */
+    name?: string;
+    /**
+     * URL of the network to which this VPN gateway is attached. Provided by the client when the VPN gateway is created.
+     */
+    network?: string;
+    /**
+     * [Output Only] URL of the region where the VPN gateway resides.
+     */
+    region?: string;
+    /**
+     * [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] A list of interfaces on this VPN gateway.
+     */
+    vpnInterfaces?: Schema$VpnGatewayVpnGatewayInterface[];
+  }
+  export interface Schema$VpnGatewayAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of VpnGateway resources.
+     */
+    items?: {[key: string]: Schema$VpnGatewaysScopedList};
+    /**
+     * [Output Only] Type of resource. Always compute#vpnGateway for VPN gateways.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    };
+  }
+  /**
+   * Contains a list of VpnGateway resources.
+   */
+  export interface Schema$VpnGatewayList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of VpnGateway resources.
+     */
+    items?: Schema$VpnGateway[];
+    /**
+     * [Output Only] Type of resource. Always compute#vpnGateway for VPN gateways.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    };
+  }
+  export interface Schema$VpnGatewaysGetStatusResponse {
+    result?: Schema$VpnGatewayStatus;
+  }
+  export interface Schema$VpnGatewaysScopedList {
+    /**
+     * [Output Only] A list of VPN gateways contained in this scope.
+     */
+    vpnGateways?: Schema$VpnGateway[];
+    /**
+     * [Output Only] Informational warning which replaces the list of addresses when the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    };
+  }
+  export interface Schema$VpnGatewayStatus {
+    /**
+     * List of VPN connection for this VpnGateway.
+     */
+    vpnConnections?: Schema$VpnGatewayStatusVpnConnection[];
+  }
+  /**
+   * Describes the high availability requirement state for the VPN connection between this Cloud VPN gateway and a peer gateway.
+   */
+  export interface Schema$VpnGatewayStatusHighAvailabilityRequirementState {
+    /**
+     * Indicates the high availability requirement state for the VPN connection. Valid values are CONNECTION_REDUNDANCY_MET, CONNECTION_REDUNDANCY_NOT_MET.
+     */
+    state?: string;
+    /**
+     * Indicates the reason why the VPN connection does not meet the high availability redundancy criteria/requirement. Valid values is INCOMPLETE_TUNNELS_COVERAGE.
+     */
+    unsatisfiedReason?: string;
+  }
+  /**
+   * Contains some information about a VPN tunnel.
+   */
+  export interface Schema$VpnGatewayStatusTunnel {
+    /**
+     * The VPN gateway interface this VPN tunnel is associated with.
+     */
+    localGatewayInterface?: number;
+    /**
+     * The peer gateway interface this VPN tunnel is connected to, the peer gateway could either be an external VPN gateway or GCP VPN gateway.
+     */
+    peerGatewayInterface?: number;
+    /**
+     * URL reference to the VPN tunnel.
+     */
+    tunnelUrl?: string;
+  }
+  /**
+   * A VPN connection contains all VPN tunnels connected from this VpnGateway to the same peer gateway. The peer gateway could either be a external VPN gateway or GCP VPN gateway.
+   */
+  export interface Schema$VpnGatewayStatusVpnConnection {
+    /**
+     * URL reference to the peer external VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
+     */
+    peerExternalGateway?: string;
+    /**
+     * URL reference to the peer side VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
+     */
+    peerGcpGateway?: string;
+    /**
+     * HighAvailabilityRequirementState for the VPN connection.
+     */
+    state?: Schema$VpnGatewayStatusHighAvailabilityRequirementState;
+    /**
+     * List of VPN tunnels that are in this VPN connection.
+     */
+    tunnels?: Schema$VpnGatewayStatusTunnel[];
+  }
+  /**
+   * A VPN gateway interface.
+   */
+  export interface Schema$VpnGatewayVpnGatewayInterface {
+    /**
+     * The numeric ID of this VPN gateway interface.
+     */
+    id?: number;
+    /**
+     * The external IP address for this VPN gateway interface.
+     */
+    ipAddress?: string;
+  }
+  /**
    * Represents a Cloud VPN Tunnel resource.  For more information about VPN, read the the Cloud VPN Overview. (== resource_for beta.vpnTunnels ==) (== resource_for v1.vpnTunnels ==)
    */
   export interface Schema$VpnTunnel {
@@ -9171,6 +9525,18 @@ export namespace compute_v1 {
      */
     name?: string;
     /**
+     * URL of the peer side external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. This field is exclusive with the field peerGcpGateway.
+     */
+    peerExternalGateway?: string;
+    /**
+     * The interface ID of the external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created.
+     */
+    peerExternalGatewayInterface?: number;
+    /**
+     * URL of the peer side HA GCP VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. This field can be used when creating highly available VPN from VPC network to VPC network, the field is exclusive with the field peerExternalGateway. If provided, the VPN tunnel will automatically use the same vpnGatewayInterface ID in the peer GCP VPN gateway.
+     */
+    peerGcpGateway?: string;
+    /**
      * IP address of the peer VPN gateway. Only IPv4 is supported.
      */
     peerIp?: string;
@@ -9206,6 +9572,14 @@ export namespace compute_v1 {
      * URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
      */
     targetVpnGateway?: string;
+    /**
+     * URL of the VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created. This must be used (instead of target_vpn_gateway) if a High Availability VPN gateway resource is created.
+     */
+    vpnGateway?: string;
+    /**
+     * The interface ID of the VPN gateway with which this VPN tunnel is associated.
+     */
+    vpnGatewayInterface?: number;
   }
   export interface Schema$VpnTunnelAggregatedList {
     /**
@@ -9557,7 +9931,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9694,7 +10068,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9839,7 +10213,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10072,7 +10446,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10203,7 +10577,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10332,7 +10706,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10465,7 +10839,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10609,7 +10983,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10887,7 +11261,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11019,7 +11393,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11150,7 +11524,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11284,7 +11658,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11428,7 +11802,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11564,7 +11938,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11700,7 +12074,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11970,7 +12344,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12099,7 +12473,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12176,7 +12550,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12304,7 +12678,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12434,7 +12808,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12574,7 +12948,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12708,7 +13082,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12843,7 +13217,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13112,7 +13486,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13257,7 +13631,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13391,7 +13765,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13468,7 +13842,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13596,7 +13970,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13732,7 +14106,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13865,7 +14239,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14005,7 +14379,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14139,7 +14513,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14216,7 +14590,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14351,7 +14725,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14695,7 +15069,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14838,7 +15212,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14976,7 +15350,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15108,7 +15482,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15237,7 +15611,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15311,7 +15685,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15445,7 +15819,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15586,7 +15960,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15665,7 +16039,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15802,7 +16176,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15877,7 +16251,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16014,7 +16388,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16095,7 +16469,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16594,7 +16968,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16722,7 +17096,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16866,7 +17240,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16967,6 +17341,604 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+  }
+
+  export class Resource$Externalvpngateways {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * compute.externalVpnGateways.delete
+     * @desc Deletes the specified externalVpnGateway.
+     * @alias compute.externalVpnGateways.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.externalVpnGateway Name of the externalVpnGateways to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Externalvpngateways$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Externalvpngateways$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Externalvpngateways$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Externalvpngateways$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Externalvpngateways$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Externalvpngateways$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/externalVpnGateways/{externalVpnGateway}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'externalVpnGateway'],
+        pathParams: ['externalVpnGateway', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.externalVpnGateways.get
+     * @desc Returns the specified externalVpnGateway. Get a list of available externalVpnGateways by making a list() request.
+     * @alias compute.externalVpnGateways.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.externalVpnGateway Name of the externalVpnGateway to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Externalvpngateways$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExternalVpnGateway>;
+    get(
+      params: Params$Resource$Externalvpngateways$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ExternalVpnGateway>,
+      callback: BodyResponseCallback<Schema$ExternalVpnGateway>
+    ): void;
+    get(
+      params: Params$Resource$Externalvpngateways$Get,
+      callback: BodyResponseCallback<Schema$ExternalVpnGateway>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ExternalVpnGateway>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Externalvpngateways$Get
+        | BodyResponseCallback<Schema$ExternalVpnGateway>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExternalVpnGateway>,
+      callback?: BodyResponseCallback<Schema$ExternalVpnGateway>
+    ): void | GaxiosPromise<Schema$ExternalVpnGateway> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Externalvpngateways$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Externalvpngateways$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/externalVpnGateways/{externalVpnGateway}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'externalVpnGateway'],
+        pathParams: ['externalVpnGateway', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExternalVpnGateway>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ExternalVpnGateway>(parameters);
+      }
+    }
+
+    /**
+     * compute.externalVpnGateways.insert
+     * @desc Creates a ExternalVpnGateway in the specified project using the data included in the request.
+     * @alias compute.externalVpnGateways.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().ExternalVpnGateway} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params?: Params$Resource$Externalvpngateways$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    insert(
+      params: Params$Resource$Externalvpngateways$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Externalvpngateways$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Externalvpngateways$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Externalvpngateways$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Externalvpngateways$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/externalVpnGateways'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.externalVpnGateways.list
+     * @desc Retrieves the list of ExternalVpnGateway available to the specified project.
+     * @alias compute.externalVpnGateways.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Externalvpngateways$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExternalVpnGatewayList>;
+    list(
+      params: Params$Resource$Externalvpngateways$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExternalVpnGatewayList>,
+      callback: BodyResponseCallback<Schema$ExternalVpnGatewayList>
+    ): void;
+    list(
+      params: Params$Resource$Externalvpngateways$List,
+      callback: BodyResponseCallback<Schema$ExternalVpnGatewayList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ExternalVpnGatewayList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Externalvpngateways$List
+        | BodyResponseCallback<Schema$ExternalVpnGatewayList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExternalVpnGatewayList>,
+      callback?: BodyResponseCallback<Schema$ExternalVpnGatewayList>
+    ): void | GaxiosPromise<Schema$ExternalVpnGatewayList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Externalvpngateways$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Externalvpngateways$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/externalVpnGateways'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExternalVpnGatewayList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ExternalVpnGatewayList>(parameters);
+      }
+    }
+
+    /**
+     * compute.externalVpnGateways.setLabels
+     * @desc Sets the labels on an ExternalVpnGateway. To learn more about labels, read the Labeling Resources documentation.
+     * @alias compute.externalVpnGateways.setLabels
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().GlobalSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setLabels(
+      params?: Params$Resource$Externalvpngateways$Setlabels,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    setLabels(
+      params: Params$Resource$Externalvpngateways$Setlabels,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setLabels(
+      params: Params$Resource$Externalvpngateways$Setlabels,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setLabels(callback: BodyResponseCallback<Schema$Operation>): void;
+    setLabels(
+      paramsOrCallback?:
+        | Params$Resource$Externalvpngateways$Setlabels
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Externalvpngateways$Setlabels;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Externalvpngateways$Setlabels;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/externalVpnGateways/{resource}/setLabels'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.externalVpnGateways.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.externalVpnGateways.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+      params?: Params$Resource$Externalvpngateways$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Externalvpngateways$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Externalvpngateways$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Externalvpngateways$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Externalvpngateways$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Externalvpngateways$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/externalVpnGateways/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Externalvpngateways$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the externalVpnGateways to delete.
+     */
+    externalVpnGateway?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Externalvpngateways$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the externalVpnGateway to return.
+     */
+    externalVpnGateway?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Externalvpngateways$Insert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExternalVpnGateway;
+  }
+  export interface Params$Resource$Externalvpngateways$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Externalvpngateways$Setlabels
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetLabelsRequest;
+  }
+  export interface Params$Resource$Externalvpngateways$Testiampermissions
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
   }
 
   export class Resource$Firewalls {
@@ -17079,7 +18051,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17204,7 +18176,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17333,7 +18305,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17472,7 +18444,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17605,7 +18577,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17739,7 +18711,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18021,7 +18993,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18159,7 +19131,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18291,7 +19263,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18425,7 +19397,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18570,7 +19542,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18708,7 +19680,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19003,7 +19975,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19129,7 +20101,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19259,7 +20231,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19399,7 +20371,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19620,7 +20592,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19748,7 +20720,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19878,7 +20850,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20018,7 +20990,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20151,7 +21123,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20414,7 +21386,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20536,7 +21508,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20664,7 +21636,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20805,7 +21777,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21029,7 +22001,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21156,7 +22128,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21286,7 +22258,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21426,7 +22398,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21560,7 +22532,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21695,7 +22667,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21966,7 +22938,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22094,7 +23066,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22224,7 +23196,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22364,7 +23336,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22498,7 +23470,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22633,7 +23605,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22905,7 +23877,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23033,7 +24005,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23163,7 +24135,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23306,7 +24278,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23441,7 +24413,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23576,7 +24548,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23847,7 +24819,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23979,7 +24951,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24104,7 +25076,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24229,7 +25201,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24302,7 +25274,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24432,7 +25404,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24571,7 +25543,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24644,7 +25616,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24776,7 +25748,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24856,7 +25828,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25205,7 +26177,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25350,7 +26322,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25488,7 +26460,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25626,7 +26598,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25760,7 +26732,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25894,7 +26866,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26041,7 +27013,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26197,7 +27169,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26279,7 +27251,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26417,7 +27389,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26556,7 +27528,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26694,7 +27666,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26832,7 +27804,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27345,7 +28317,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27490,7 +28462,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27626,7 +28598,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27758,7 +28730,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27892,7 +28864,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28037,7 +29009,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28195,7 +29167,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28336,7 +29308,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28474,7 +29446,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28881,7 +29853,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29026,7 +29998,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29164,7 +30136,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29296,7 +30268,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29437,7 +30409,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29580,7 +30552,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29709,7 +30681,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29789,7 +30761,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29863,7 +30835,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29999,7 +30971,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30079,7 +31051,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30213,7 +31185,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30356,7 +31328,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30439,7 +31411,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30571,7 +31543,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30707,7 +31679,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30848,7 +31820,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30929,7 +31901,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31067,7 +32039,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31205,7 +32177,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31343,7 +32315,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31481,7 +32453,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31619,7 +32591,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31757,7 +32729,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31895,7 +32867,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31975,7 +32947,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32113,7 +33085,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32191,7 +33163,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32323,7 +33295,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32463,7 +33435,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32595,7 +33567,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32676,7 +33648,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32755,7 +33727,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32769,6 +33741,84 @@ export namespace compute_v1 {
         ),
         params,
         requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.instances.updateDisplayDevice
+     * @desc Updates the Display config for a VM instance. You can only use this method on a stopped VM instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @alias compute.instances.updateDisplayDevice
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().DisplayDevice} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateDisplayDevice(
+      params?: Params$Resource$Instances$Updatedisplaydevice,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateDisplayDevice(
+      params: Params$Resource$Instances$Updatedisplaydevice,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateDisplayDevice(
+      params: Params$Resource$Instances$Updatedisplaydevice,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateDisplayDevice(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateDisplayDevice(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Updatedisplaydevice
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Updatedisplaydevice;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Updatedisplaydevice;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/updateDisplayDevice'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
         context: this.context,
       };
@@ -32836,7 +33886,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32916,7 +33966,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -33850,6 +34900,35 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$AccessConfig;
   }
+  export interface Params$Resource$Instances$Updatedisplaydevice
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DisplayDevice;
+  }
   export interface Params$Resource$Instances$Updatenetworkinterface
     extends StandardParameters {
     /**
@@ -34024,7 +35103,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34152,7 +35231,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34225,7 +35304,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34355,7 +35434,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34498,7 +35577,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34572,7 +35651,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34652,7 +35731,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34956,7 +36035,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35094,7 +36173,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35228,7 +36307,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35362,7 +36441,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35511,7 +36590,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35592,7 +36671,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35888,7 +36967,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36031,7 +37110,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36212,7 +37291,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36340,7 +37419,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36421,7 +37500,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36556,7 +37635,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36696,7 +37775,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36830,7 +37909,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37038,7 +38117,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37118,7 +38197,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37237,7 +38316,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37362,7 +38441,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37435,7 +38514,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37510,7 +38589,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37588,7 +38667,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37661,7 +38740,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37741,7 +38820,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38033,7 +39112,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38166,7 +39245,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38311,7 +39390,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38480,7 +39559,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38565,7 +39644,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38642,7 +39721,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38722,7 +39801,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38800,7 +39879,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38877,7 +39956,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38958,7 +40037,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -39057,7 +40136,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -39143,7 +40222,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -39538,7 +40617,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -39666,7 +40745,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -39791,7 +40870,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -39920,7 +40999,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40059,7 +41138,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40192,7 +41271,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40326,7 +41405,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40455,7 +41534,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40464,6 +41543,83 @@ export namespace compute_v1 {
               '/compute/v1/projects/{project}/global/networks/{network}/switchToCustomMode'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.networks.updatePeering
+     * @desc Updates the specified network peering with the data included in the request Only the following fields can be modified: NetworkPeering.export_custom_routes, and NetworkPeering.import_custom_routes
+     * @alias compute.networks.updatePeering
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.network Name of the network resource which the updated peering is belonging to.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().NetworksUpdatePeeringRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updatePeering(
+      params?: Params$Resource$Networks$Updatepeering,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updatePeering(
+      params: Params$Resource$Networks$Updatepeering,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updatePeering(
+      params: Params$Resource$Networks$Updatepeering,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updatePeering(callback: BodyResponseCallback<Schema$Operation>): void;
+    updatePeering(
+      paramsOrCallback?:
+        | Params$Resource$Networks$Updatepeering
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Networks$Updatepeering;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Networks$Updatepeering;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/networks/{network}/updatePeering'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
           },
           options
         ),
@@ -40655,6 +41811,31 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
+  export interface Params$Resource$Networks$Updatepeering
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the network resource which the updated peering is belonging to.
+     */
+    network?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NetworksUpdatePeeringRequest;
+  }
 
   export class Resource$Nodegroups {
     context: APIRequestContext;
@@ -40716,7 +41897,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40798,7 +41979,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40874,7 +42055,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40905,7 +42086,7 @@ export namespace compute_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.nodeGroup Name of the NodeGroup resource to delete.
+     * @param {string} params.nodeGroup Name of the NodeGroup resource whose nodes will be deleted.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
@@ -40952,7 +42133,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41027,7 +42208,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41101,7 +42282,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41179,7 +42360,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41256,7 +42437,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41335,7 +42516,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41410,7 +42591,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41488,7 +42669,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41569,7 +42750,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41683,7 +42864,7 @@ export namespace compute_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the NodeGroup resource to delete.
+     * Name of the NodeGroup resource whose nodes will be deleted.
      */
     nodeGroup?: string;
     /**
@@ -41983,7 +43164,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42063,7 +43244,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42139,7 +43320,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42213,7 +43394,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42290,7 +43471,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42369,7 +43550,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42444,7 +43625,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42525,7 +43706,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42814,7 +43995,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42886,7 +44067,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42964,7 +44145,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43174,7 +44355,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43303,7 +44484,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43427,7 +44608,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43556,7 +44737,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43676,7 +44857,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43798,7 +44979,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -43942,7 +45123,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -44087,7 +45268,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -44216,7 +45397,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -44346,7 +45527,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -44477,7 +45658,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -44555,7 +45736,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -44686,7 +45867,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -45089,7 +46270,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -45221,7 +46402,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -45355,7 +46536,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -45502,7 +46683,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -45638,7 +46819,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -45774,7 +46955,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46074,7 +47255,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46206,7 +47387,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46346,7 +47527,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46483,7 +47664,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46628,7 +47809,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46767,7 +47948,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -46906,7 +48087,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47243,7 +48424,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47374,7 +48555,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47508,7 +48689,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47653,7 +48834,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47844,7 +49025,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47922,7 +49103,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -47999,7 +49180,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48072,7 +49253,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48150,7 +49331,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48225,7 +49406,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48304,7 +49485,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48382,7 +49563,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48460,7 +49641,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48541,7 +49722,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48896,7 +50077,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -48975,7 +50156,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49173,7 +50354,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49306,7 +50487,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49444,7 +50625,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49578,7 +50759,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49712,7 +50893,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -49861,7 +51042,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -50022,7 +51203,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -50104,7 +51285,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -50242,7 +51423,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -50379,7 +51560,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -50517,7 +51698,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -50655,7 +51836,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -51134,7 +52315,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -51281,7 +52462,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -51439,7 +52620,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -51582,7 +52763,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -51839,7 +53020,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -51971,7 +53152,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52116,7 +53297,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52321,7 +53502,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52460,7 +53641,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52592,7 +53773,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52671,7 +53852,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52697,7 +53878,7 @@ export namespace compute_v1 {
 
     /**
      * compute.reservations.get
-     * @desc Retrieves all information of the specified reservation.
+     * @desc Retrieves information about the specified reservation.
      * @alias compute.reservations.get
      * @memberOf! ()
      *
@@ -52746,7 +53927,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52820,7 +54001,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52897,7 +54078,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -52923,7 +54104,7 @@ export namespace compute_v1 {
 
     /**
      * compute.reservations.list
-     * @desc A list all the reservations that have been configured for the specified project in specified zone.
+     * @desc A list of all the reservations that have been configured for the specified project in specified zone.
      * @alias compute.reservations.list
      * @memberOf! ()
      *
@@ -52976,7 +54157,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53002,7 +54183,7 @@ export namespace compute_v1 {
 
     /**
      * compute.reservations.resize
-     * @desc Resizes the reservation (applicable to standalone reservations only)
+     * @desc Resizes the reservation (applicable to standalone reservations only). For more information, read Modifying reservations.
      * @alias compute.reservations.resize
      * @memberOf! ()
      *
@@ -53054,7 +54235,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53129,7 +54310,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53210,7 +54391,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53527,7 +54708,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53609,7 +54790,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53685,7 +54866,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53759,7 +54940,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53836,7 +55017,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53915,7 +55096,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -53990,7 +55171,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -54071,7 +55252,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -54423,7 +55604,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -54554,7 +55735,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -54683,7 +55864,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -54767,7 +55948,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -54906,7 +56087,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55039,7 +56220,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55183,7 +56364,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55321,7 +56502,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55461,7 +56642,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55599,7 +56780,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -55996,7 +57177,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56120,7 +57301,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56248,7 +57429,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56387,7 +57568,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56551,7 +57732,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56627,7 +57808,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56702,7 +57883,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56778,7 +57959,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56854,7 +58035,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -56931,7 +58112,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57007,7 +58188,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57084,7 +58265,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57160,7 +58341,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57492,7 +58673,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57617,7 +58798,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57690,7 +58871,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57830,7 +59011,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -57903,7 +59084,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -58036,7 +59217,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -58116,7 +59297,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -58393,7 +59574,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -58521,7 +59702,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -58651,7 +59832,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -58791,7 +59972,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -58959,7 +60140,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -59033,7 +60214,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -59109,7 +60290,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -59185,7 +60366,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -59274,7 +60455,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -59356,7 +60537,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -59645,7 +60826,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -59777,7 +60958,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -59915,7 +61096,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60046,7 +61227,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60120,7 +61301,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60254,7 +61435,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60398,7 +61579,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60424,7 +61605,7 @@ export namespace compute_v1 {
 
     /**
      * compute.subnetworks.listUsable
-     * @desc Retrieves an aggregated list of usable subnetworks.
+     * @desc Retrieves an aggregated list of all usable subnetworks in the project. The list contains all of the subnetworks in the project and the subnetworks that were shared by a Shared VPC host project.
      * @alias compute.subnetworks.listUsable
      * @memberOf! ()
      *
@@ -60480,7 +61661,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60563,7 +61744,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60638,7 +61819,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60778,7 +61959,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -60859,7 +62040,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61308,7 +62489,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61436,7 +62617,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61566,7 +62747,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61707,7 +62888,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -61841,7 +63022,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62088,7 +63269,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62216,7 +63397,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62346,7 +63527,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62489,7 +63670,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62566,7 +63747,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62700,7 +63881,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62777,7 +63958,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -62911,7 +64092,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -63249,7 +64430,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -63387,7 +64568,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -63519,7 +64700,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -63653,7 +64834,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -63798,7 +64979,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -64073,7 +65254,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -64211,7 +65392,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -64356,7 +65537,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -64488,7 +65669,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -64619,7 +65800,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -64760,7 +65941,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -64894,7 +66075,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65038,7 +66219,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65176,7 +66357,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65314,7 +66495,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65453,7 +66634,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -65891,7 +67072,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -66019,7 +67200,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -66149,7 +67330,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -66289,7 +67470,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -66422,7 +67603,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -66556,7 +67737,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -66690,7 +67871,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -66767,7 +67948,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -67089,7 +68270,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -67217,7 +68398,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -67347,7 +68528,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -67487,7 +68668,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -67620,7 +68801,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -67754,7 +68935,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68042,7 +69223,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68180,7 +69361,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68312,7 +69493,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68446,7 +69627,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68593,7 +69774,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68858,7 +70039,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -68982,7 +70163,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69110,7 +70291,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69243,7 +70424,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69383,7 +70564,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69516,7 +70697,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69649,7 +70830,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69784,7 +70965,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -69984,6 +71165,847 @@ export namespace compute_v1 {
     requestBody?: Schema$UrlMapsValidateRequest;
   }
 
+  export class Resource$Vpngateways {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * compute.vpnGateways.aggregatedList
+     * @desc Retrieves an aggregated list of VPN gateways.
+     * @alias compute.vpnGateways.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+      params?: Params$Resource$Vpngateways$Aggregatedlist,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VpnGatewayAggregatedList>;
+    aggregatedList(
+      params: Params$Resource$Vpngateways$Aggregatedlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VpnGatewayAggregatedList>,
+      callback: BodyResponseCallback<Schema$VpnGatewayAggregatedList>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Vpngateways$Aggregatedlist,
+      callback: BodyResponseCallback<Schema$VpnGatewayAggregatedList>
+    ): void;
+    aggregatedList(
+      callback: BodyResponseCallback<Schema$VpnGatewayAggregatedList>
+    ): void;
+    aggregatedList(
+      paramsOrCallback?:
+        | Params$Resource$Vpngateways$Aggregatedlist
+        | BodyResponseCallback<Schema$VpnGatewayAggregatedList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VpnGatewayAggregatedList>,
+      callback?: BodyResponseCallback<Schema$VpnGatewayAggregatedList>
+    ): void | GaxiosPromise<Schema$VpnGatewayAggregatedList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Vpngateways$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/compute/v1/projects/{project}/aggregated/vpnGateways'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VpnGatewayAggregatedList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$VpnGatewayAggregatedList>(parameters);
+      }
+    }
+
+    /**
+     * compute.vpnGateways.delete
+     * @desc Deletes the specified VPN gateway.
+     * @alias compute.vpnGateways.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.vpnGateway Name of the VPN gateway to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Vpngateways$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Vpngateways$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Vpngateways$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Vpngateways$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Vpngateways$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{vpnGateway}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'vpnGateway'],
+        pathParams: ['project', 'region', 'vpnGateway'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.vpnGateways.get
+     * @desc Returns the specified VPN gateway. Gets a list of available VPN gateways by making a list() request.
+     * @alias compute.vpnGateways.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.vpnGateway Name of the VPN gateway to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Vpngateways$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VpnGateway>;
+    get(
+      params: Params$Resource$Vpngateways$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$VpnGateway>,
+      callback: BodyResponseCallback<Schema$VpnGateway>
+    ): void;
+    get(
+      params: Params$Resource$Vpngateways$Get,
+      callback: BodyResponseCallback<Schema$VpnGateway>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$VpnGateway>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Vpngateways$Get
+        | BodyResponseCallback<Schema$VpnGateway>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VpnGateway>,
+      callback?: BodyResponseCallback<Schema$VpnGateway>
+    ): void | GaxiosPromise<Schema$VpnGateway> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Vpngateways$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{vpnGateway}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'vpnGateway'],
+        pathParams: ['project', 'region', 'vpnGateway'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VpnGateway>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$VpnGateway>(parameters);
+      }
+    }
+
+    /**
+     * compute.vpnGateways.getStatus
+     * @desc Returns the status for the specified VPN gateway.
+     * @alias compute.vpnGateways.getStatus
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.vpnGateway Name of the VPN gateway to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getStatus(
+      params?: Params$Resource$Vpngateways$Getstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VpnGatewaysGetStatusResponse>;
+    getStatus(
+      params: Params$Resource$Vpngateways$Getstatus,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VpnGatewaysGetStatusResponse>,
+      callback: BodyResponseCallback<Schema$VpnGatewaysGetStatusResponse>
+    ): void;
+    getStatus(
+      params: Params$Resource$Vpngateways$Getstatus,
+      callback: BodyResponseCallback<Schema$VpnGatewaysGetStatusResponse>
+    ): void;
+    getStatus(
+      callback: BodyResponseCallback<Schema$VpnGatewaysGetStatusResponse>
+    ): void;
+    getStatus(
+      paramsOrCallback?:
+        | Params$Resource$Vpngateways$Getstatus
+        | BodyResponseCallback<Schema$VpnGatewaysGetStatusResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VpnGatewaysGetStatusResponse>,
+      callback?: BodyResponseCallback<Schema$VpnGatewaysGetStatusResponse>
+    ): void | GaxiosPromise<Schema$VpnGatewaysGetStatusResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Vpngateways$Getstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$Getstatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{vpnGateway}/getStatus'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'vpnGateway'],
+        pathParams: ['project', 'region', 'vpnGateway'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VpnGatewaysGetStatusResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$VpnGatewaysGetStatusResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * compute.vpnGateways.insert
+     * @desc Creates a VPN gateway in the specified project and region using the data included in the request.
+     * @alias compute.vpnGateways.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().VpnGateway} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params?: Params$Resource$Vpngateways$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    insert(
+      params: Params$Resource$Vpngateways$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Vpngateways$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Vpngateways$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Vpngateways$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/vpnGateways'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.vpnGateways.list
+     * @desc Retrieves a list of VPN gateways available to the specified project and region.
+     * @alias compute.vpnGateways.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Vpngateways$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VpnGatewayList>;
+    list(
+      params: Params$Resource$Vpngateways$List,
+      options: MethodOptions | BodyResponseCallback<Schema$VpnGatewayList>,
+      callback: BodyResponseCallback<Schema$VpnGatewayList>
+    ): void;
+    list(
+      params: Params$Resource$Vpngateways$List,
+      callback: BodyResponseCallback<Schema$VpnGatewayList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$VpnGatewayList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Vpngateways$List
+        | BodyResponseCallback<Schema$VpnGatewayList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VpnGatewayList>,
+      callback?: BodyResponseCallback<Schema$VpnGatewayList>
+    ): void | GaxiosPromise<Schema$VpnGatewayList> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Vpngateways$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/vpnGateways'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VpnGatewayList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$VpnGatewayList>(parameters);
+      }
+    }
+
+    /**
+     * compute.vpnGateways.setLabels
+     * @desc Sets the labels on a VpnGateway. To learn more about labels, read the Labeling Resources documentation.
+     * @alias compute.vpnGateways.setLabels
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().RegionSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setLabels(
+      params?: Params$Resource$Vpngateways$Setlabels,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    setLabels(
+      params: Params$Resource$Vpngateways$Setlabels,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setLabels(
+      params: Params$Resource$Vpngateways$Setlabels,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setLabels(callback: BodyResponseCallback<Schema$Operation>): void;
+    setLabels(
+      paramsOrCallback?:
+        | Params$Resource$Vpngateways$Setlabels
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Vpngateways$Setlabels;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$Setlabels;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{resource}/setLabels'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.vpnGateways.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.vpnGateways.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+      params?: Params$Resource$Vpngateways$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Vpngateways$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Vpngateways$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Vpngateways$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Vpngateways$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Vpngateways$Aggregatedlist
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Vpngateways$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the VPN gateway to delete.
+     */
+    vpnGateway?: string;
+  }
+  export interface Params$Resource$Vpngateways$Get extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the VPN gateway to return.
+     */
+    vpnGateway?: string;
+  }
+  export interface Params$Resource$Vpngateways$Getstatus
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the VPN gateway to return.
+     */
+    vpnGateway?: string;
+  }
+  export interface Params$Resource$Vpngateways$Insert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$VpnGateway;
+  }
+  export interface Params$Resource$Vpngateways$List extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Vpngateways$Setlabels
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionSetLabelsRequest;
+  }
+  export interface Params$Resource$Vpngateways$Testiampermissions
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
   export class Resource$Vpntunnels {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -70111,7 +72133,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -70243,7 +72265,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -70374,7 +72396,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -70508,7 +72530,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -70652,7 +72674,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -70914,7 +72936,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -71046,7 +73068,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -71191,7 +73213,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -71395,7 +73417,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -71532,7 +73554,7 @@ export namespace compute_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {

@@ -196,16 +196,16 @@ export namespace storagetransfer_v1 {
      */
     errorCount?: string;
     /**
-     * Error samples.  No more than 100 error log entries may be recorded for a given error code for a single task.
+     * Error samples.  At most 5 error log entries will be recorded for a given error code for a single transfer operation.
      */
     errorLogEntries?: Schema$ErrorLogEntry[];
   }
   /**
-   * In a GcsData resource, an object&#39;s name is the Google Cloud Storage object&#39;s name and its `lastModificationTime` refers to the object&#39;s updated time, which changes when the content or the metadata of the object is updated.
+   * In a GcsData resource, an object&#39;s name is the Cloud Storage object&#39;s name and its `lastModificationTime` refers to the object&#39;s updated time, which changes when the content or the metadata of the object is updated.
    */
   export interface Schema$GcsData {
     /**
-     * Required. Google Cloud Storage bucket name (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/naming#requirements)).
+     * Required. Cloud Storage bucket name (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/naming#requirements)).
      */
     bucketName?: string;
   }
@@ -219,7 +219,7 @@ export namespace storagetransfer_v1 {
     accountEmail?: string;
   }
   /**
-   * An HttpData resource specifies a list of objects on the web to be transferred over HTTP.  The information of the objects to be transferred is contained in a file referenced by a URL. The first line in the file must be &quot;TsvHttpData-1.0&quot;, which specifies the format of the file.  Subsequent lines specify the information of the list of objects, one object per list entry. Each entry has the following tab-delimited fields:  * HTTP URL - The location of the object.  * Length - The size of the object in bytes.  * MD5 - The base64-encoded MD5 hash of the object.  For an example of a valid TSV file, see [Transferring data from URLs](https://cloud.google.com/storage/transfer/create-url-list).  When transferring data based on a URL list, keep the following in mind:  * When an object located at `http(s)://hostname:port/&lt;URL-path&gt;` is transferred to a data sink, the name of the object at the data sink is `&lt;hostname&gt;/&lt;URL-path&gt;`.  * If the specified size of an object does not match the actual size of the object fetched, the object will not be transferred.  * If the specified MD5 does not match the MD5 computed from the transferred bytes, the object transfer will fail. For more information, see [Generating MD5 hashes](https://cloud.google.com/storage/transfer/#md5)  * Ensure that each URL you specify is publicly accessible. For example, in Google Cloud Storage you can [share an object publicly] (https://cloud.google.com/storage/docs/cloud-console#_sharingdata) and get a link to it.  * Storage Transfer Service obeys `robots.txt` rules and requires the source HTTP server to support `Range` requests and to return a `Content-Length` header in each response.  * [ObjectConditions](#ObjectConditions) have no effect when filtering objects to transfer.
+   * An HttpData resource specifies a list of objects on the web to be transferred over HTTP.  The information of the objects to be transferred is contained in a file referenced by a URL. The first line in the file must be &quot;TsvHttpData-1.0&quot;, which specifies the format of the file.  Subsequent lines specify the information of the list of objects, one object per list entry. Each entry has the following tab-delimited fields:  * HTTP URL - The location of the object.  * Length - The size of the object in bytes.  * MD5 - The base64-encoded MD5 hash of the object.  For an example of a valid TSV file, see [Transferring data from URLs](https://cloud.google.com/storage/transfer/create-url-list).  When transferring data based on a URL list, keep the following in mind:  * When an object located at `http(s)://hostname:port/&lt;URL-path&gt;` is transferred to a data sink, the name of the object at the data sink is `&lt;hostname&gt;/&lt;URL-path&gt;`.  * If the specified size of an object does not match the actual size of the object fetched, the object will not be transferred.  * If the specified MD5 does not match the MD5 computed from the transferred bytes, the object transfer will fail. For more information, see [Generating MD5 hashes](https://cloud.google.com/storage/transfer/#md5)  * Ensure that each URL you specify is publicly accessible. For example, in Cloud Storage you can [share an object publicly] (https://cloud.google.com/storage/docs/cloud-console#_sharingdata) and get a link to it.  * Storage Transfer Service obeys `robots.txt` rules and requires the source HTTP server to support `Range` requests and to return a `Content-Length` header in each response.  * [ObjectConditions](#ObjectConditions) have no effect when filtering objects to transfer.
    */
   export interface Schema$HttpData {
     /**
@@ -254,7 +254,7 @@ export namespace storagetransfer_v1 {
     transferJobs?: Schema$TransferJob[];
   }
   /**
-   * Conditions that determine which objects will be transferred. Applies only to S3 and GCS objects.
+   * Conditions that determine which objects will be transferred. Applies only to S3 and Cloud Storage objects.
    */
   export interface Schema$ObjectConditions {
     /**
@@ -266,11 +266,11 @@ export namespace storagetransfer_v1 {
      */
     includePrefixes?: string[];
     /**
-     * If specified, only objects with a `lastModificationTime` on or after `NOW` - `maxTimeElapsedSinceLastModification` and objects that don&#39;t have a `lastModificationTime` are transferred.  Note that, for each `TransferOperation` started by this `TransferJob`, `NOW` refers to the `start_time` of the &#39;TransferOperation`. Also, `lastModificationTime` refers to the time of the last change to the object&#39;s content or metadata - specifically, this would be the `updated` property of GCS objects and the `LastModified` field of S3 objects.
+     * If specified, only objects with a `lastModificationTime` on or after `NOW` - `maxTimeElapsedSinceLastModification` and objects that don&#39;t have a `lastModificationTime` are transferred.  Note that, for each `TransferOperation` started by this `TransferJob`, `NOW` refers to the `start_time` of the &#39;TransferOperation`. Also, `lastModificationTime` refers to the time of the last change to the object&#39;s content or metadata - specifically, this would be the `updated` property of Cloud Storage objects and the `LastModified` field of S3 objects.
      */
     maxTimeElapsedSinceLastModification?: string;
     /**
-     * If specified, only objects with a `lastModificationTime` before `NOW` - `minTimeElapsedSinceLastModification` and objects that don&#39;t have a `lastModificationTime` are transferred.  Note that, for each `TransferOperation` started by this `TransferJob`, `NOW` refers to the `start_time` of the &#39;TransferOperation`. Also, `lastModificationTime` refers to the time of the last change to the object&#39;s content or metadata - specifically, this would be the `updated` property of GCS objects and the `LastModified` field of S3 objects.
+     * If specified, only objects with a `lastModificationTime` before `NOW` - `minTimeElapsedSinceLastModification` and objects that don&#39;t have a `lastModificationTime` are transferred.  Note that, for each `TransferOperation` started by this `TransferJob`, `NOW` refers to the `start_time` of the &#39;TransferOperation`. Also, `lastModificationTime` refers to the time of the last change to the object&#39;s content or metadata - specifically, this would be the `updated` property of Cloud Storage objects and the `LastModified` field of S3 objects.
      */
     minTimeElapsedSinceLastModification?: string;
   }
@@ -539,11 +539,11 @@ export namespace storagetransfer_v1 {
      */
     awsS3DataSource?: Schema$AwsS3Data;
     /**
-     * A Google Cloud Storage data sink.
+     * A Cloud Storage data sink.
      */
     gcsDataSink?: Schema$GcsData;
     /**
-     * A Google Cloud Storage data source.
+     * A Cloud Storage data source.
      */
     gcsDataSource?: Schema$GcsData;
     /**
@@ -1638,7 +1638,7 @@ export namespace storagetransfer_v1 {
 
     /**
      * storagetransfer.transferOperations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @desc Lists transfer operations.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------

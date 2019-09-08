@@ -130,7 +130,7 @@ export namespace run_v1alpha1 {
     url?: string;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:foo@gmail.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:bar@gmail.com&quot;               ]             }           ]         }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -143,7 +143,7 @@ export namespace run_v1alpha1 {
     service?: string;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:foo@gmail.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -177,7 +177,7 @@ export namespace run_v1alpha1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
@@ -208,6 +208,23 @@ export namespace run_v1alpha1 {
     localObjectReference?: Schema$LocalObjectReference;
     /**
      * Specify whether the ConfigMap must be defined +optional
+     */
+    optional?: boolean;
+  }
+  /**
+   * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Selects a key from a ConfigMap.
+   */
+  export interface Schema$ConfigMapKeySelector {
+    /**
+     * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  The key to select.
+     */
+    key?: string;
+    /**
+     * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  The ConfigMap to select from.
+     */
+    localObjectReference?: Schema$LocalObjectReference;
+    /**
+     * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Specify whether the ConfigMap or its key must be defined +optional
      */
     optional?: boolean;
   }
@@ -563,6 +580,23 @@ export namespace run_v1alpha1 {
      * Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any route environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to &quot;&quot;. +optional
      */
     value?: string;
+    /**
+     * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Source for the environment variable&#39;s value. Cannot be used if value is not empty. +optional
+     */
+    valueFrom?: Schema$EnvVarSource;
+  }
+  /**
+   * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  EnvVarSource represents a source for the value of an EnvVar.
+   */
+  export interface Schema$EnvVarSource {
+    /**
+     * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Selects a key of a ConfigMap. +optional
+     */
+    configMapKeyRef?: Schema$ConfigMapKeySelector;
+    /**
+     * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Selects a key of a secret in the pod&#39;s namespace +optional
+     */
+    secretKeyRef?: Schema$SecretKeySelector;
   }
   export interface Schema$EventType {
     /**
@@ -582,6 +616,30 @@ export namespace run_v1alpha1 {
      */
     spec?: Schema$EventTypeSpec;
   }
+  export interface Schema$EventTypeImporter {
+    /**
+     * The API version of the importer CRD.
+     */
+    apiVersion?: string;
+    /**
+     * The kind of the importer CRD.
+     */
+    kind?: string;
+    /**
+     * Parameters required to create an importer for the EventType.
+     */
+    parameters?: Schema$EventTypeParameter[];
+  }
+  export interface Schema$EventTypeParameter {
+    /**
+     * Description of the parameter. E.g. &quot;Google Cloud Project Id.&quot;
+     */
+    description?: string;
+    /**
+     * Name of the parameter. E.g. googleCloudProject.
+     */
+    name?: string;
+  }
   export interface Schema$EventTypeSpec {
     /**
      * Refers to the Broker that can provide the EventType.
@@ -591,6 +649,10 @@ export namespace run_v1alpha1 {
      * Description is a string describing what the EventType is about. +optional
      */
     description?: string;
+    /**
+     * The importer that provides this EventType to the eventing mesh.
+     */
+    importer?: Schema$EventTypeImporter;
     /**
      * Schema is a URI with the EventType schema. It may be a JSON schema, a protobuf schema, etc. +optional
      */
@@ -633,6 +695,23 @@ export namespace run_v1alpha1 {
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string;
+  }
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$GoogleRpcStatus {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number;
+    /**
+     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}>;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string;
   }
   /**
    * Handler defines a specific action that should be taken
@@ -722,7 +801,7 @@ export namespace run_v1alpha1 {
     /**
      * The type of the value.
      */
-    type?: string;
+    type?: number;
   }
   /**
    * Maps a string key to a path within a volume.
@@ -788,6 +867,10 @@ export namespace run_v1alpha1 {
      */
     metadata?: Schema$ListMeta;
     /**
+     * Details for the regions used during a global call including any failures. This is not populated when targeting a specific region.
+     */
+    regionDetails?: {[key: string]: Schema$RegionDetails};
+    /**
      * Locations that could not be reached.
      */
     unreachable?: string[];
@@ -812,6 +895,10 @@ export namespace run_v1alpha1 {
      * Metadata associated with this DomainMapping list.
      */
     metadata?: Schema$ListMeta;
+    /**
+     * Details for the regions used during a global call including any failures. This is not populated when targeting a specific region.
+     */
+    regionDetails?: {[key: string]: Schema$RegionDetails};
   }
   /**
    * ListEventTypesResponse is a list of EventType resources.
@@ -833,6 +920,10 @@ export namespace run_v1alpha1 {
      * Metadata associated with this EventType list.
      */
     metadata?: Schema$ListMeta;
+    /**
+     * Details for the regions used during a global call including any failures. This is not populated when targeting a specific region.
+     */
+    regionDetails?: {[key: string]: Schema$RegionDetails};
     /**
      * Locations that could not be reached.
      */
@@ -889,6 +980,10 @@ export namespace run_v1alpha1 {
      */
     metadata?: Schema$ListMeta;
     /**
+     * Details for the regions used during a global call including any failures. This is not populated when targeting a specific region.
+     */
+    regionDetails?: {[key: string]: Schema$RegionDetails};
+    /**
      * Locations that could not be reached.
      */
     unreachable?: string[];
@@ -913,6 +1008,10 @@ export namespace run_v1alpha1 {
      * Metadata associated with this Route list.
      */
     metadata?: Schema$ListMeta;
+    /**
+     * Details for the regions used during a global call including any failures. This is not populated when targeting a specific region.
+     */
+    regionDetails?: {[key: string]: Schema$RegionDetails};
     /**
      * Locations that could not be reached.
      */
@@ -939,6 +1038,10 @@ export namespace run_v1alpha1 {
      */
     metadata?: Schema$ListMeta;
     /**
+     * Details for the regions used during a global call including any failures. This is not populated when targeting a specific region.
+     */
+    regionDetails?: {[key: string]: Schema$RegionDetails};
+    /**
      * Locations that could not be reached.
      */
     unreachable?: string[];
@@ -963,6 +1066,10 @@ export namespace run_v1alpha1 {
      * Metadata associated with this Trigger list.
      */
     metadata?: Schema$ListMeta;
+    /**
+     * Details for the regions used during a global call including any failures. This is not populated when targeting a specific region.
+     */
+    regionDetails?: {[key: string]: Schema$RegionDetails};
     /**
      * Locations that could not be reached.
      */
@@ -1146,11 +1253,11 @@ export namespace run_v1alpha1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
     etag?: string;
     /**
-     * Deprecated.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
     version?: number;
   }
@@ -1191,6 +1298,15 @@ export namespace run_v1alpha1 {
      * Stringified version of the quantity, e.g., &quot;800 MiB&quot;.
      */
     string?: string;
+  }
+  /**
+   * Information for a regional call used for a global API.
+   */
+  export interface Schema$RegionDetails {
+    /**
+     * The status indicating why the regional call failed
+     */
+    error?: Schema$GoogleRpcStatus;
   }
   /**
    * A DNS resource record.
@@ -1297,7 +1413,7 @@ export namespace run_v1alpha1 {
      */
     container?: Schema$Container;
     /**
-     * ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container of the Revision. Values are: - `0` thread-safe, the system should manage the max concurrency. This is    the default value. - `1` not-thread-safe. Single concurrency - `2-N` thread-safe, max concurrency of N
+     * (Optional)  ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container instance of the Revision.  Cloud Run fully managed: supported, defaults to 80  Cloud Run on GKE: supported, defaults to 0, which means concurrency to the application is not limited, and the system decides the target concurrency for the autoscaler.
      */
     containerConcurrency?: number;
     /**
@@ -1474,6 +1590,23 @@ export namespace run_v1alpha1 {
     optional?: boolean;
   }
   /**
+   * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  SecretKeySelector selects a key of a Secret.
+   */
+  export interface Schema$SecretKeySelector {
+    /**
+     * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  The key of the secret to select from.  Must be a valid secret key.
+     */
+    key?: string;
+    /**
+     * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  The name of the secret in the pod&#39;s namespace to select from.
+     */
+    localObjectReference?: Schema$LocalObjectReference;
+    /**
+     * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Specify whether the Secret or its key must be defined +optional
+     */
+    optional?: boolean;
+  }
+  /**
    * The contents of the target Secret&#39;s Data field will be presented in a volume as files using the keys in the Data field as the file names.
    */
   export interface Schema$SecretVolumeSource {
@@ -1517,7 +1650,7 @@ export namespace run_v1alpha1 {
     /**
      * The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. +optional
      */
-    runAsGroup?: string;
+    runAsGroup?: number;
     /**
      * Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. +optional
      */
@@ -1525,7 +1658,7 @@ export namespace run_v1alpha1 {
     /**
      * The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. +optional
      */
-    runAsUser?: string;
+    runAsUser?: number;
     /**
      * The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. +optional
      */
@@ -1782,7 +1915,7 @@ export namespace run_v1alpha1 {
      */
     configurationName?: string;
     /**
-     * LatestRevision may be optionally provided to indicate that the latest ready Revision of the Configuration should be used for this traffic target. When provided LatestRevision must be true if RevisionName is empty; it must be false when RevisionName is non-empty.  Not currently supported in Cloud Run. +optional
+     * LatestRevision may be optionally provided to indicate that the latest ready Revision of the Configuration should be used for this traffic target. When provided LatestRevision must be true if RevisionName is empty; it must be false when RevisionName is non-empty. +optional
      */
     latestRevision?: boolean;
     /**
@@ -1867,6 +2000,16 @@ export namespace run_v1alpha1 {
     source?: string;
     type?: string;
   }
+  export interface Schema$TriggerImporterSpec {
+    /**
+     * Arguments to use for the importer. These must match the parameters in the EventType&#39;s importer.
+     */
+    arguments?: {[key: string]: string};
+    /**
+     * Name of the EventType that this importer provides.
+     */
+    eventTypeName?: string;
+  }
   /**
    * The desired state of the Trigger.
    */
@@ -1876,9 +2019,13 @@ export namespace run_v1alpha1 {
      */
     broker?: string;
     /**
-     * Filter is the filter to apply against all events from the Broker. Only events that pass this filter will be sent to the Subscriber. If not specified, will default to allowing all events.  This must be specified in Cloud Run.
+     * Filter is the filter to apply against all events from the Broker. Only events that pass this filter will be sent to the Subscriber.
      */
     filter?: Schema$TriggerFilter;
+    /**
+     * Specification of the importers that will provide events to the trigger. Note, for Cloud Run, the importers will only be used if a filter is not specified.
+     */
+    importers?: Schema$TriggerImporterSpec[];
     /**
      * Subscriber is the addressable that receives events from the Broker that pass the Filter. It is required.  E.g. https://us-central1-myproject.cloudfunctions.net/myfunction or /namespaces/my-project/services/my-service.
      */
@@ -6309,7 +6456,7 @@ export namespace run_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6749,7 +6896,7 @@ export namespace run_v1alpha1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
     'options.requestedPolicyVersion'?: number;
     /**

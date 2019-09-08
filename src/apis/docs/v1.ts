@@ -495,47 +495,47 @@ export namespace docs_v1 {
    */
   export interface Schema$DocumentStyle {
     /**
-     * The background of the document.
+     * The background of the document. Documents cannot have a transparent background color.
      */
     background?: Schema$Background;
     /**
-     * The ID of the default footer. If not set, there is no default footer.
+     * The ID of the default footer. If not set, there is no default footer.  This property is read-only.
      */
     defaultFooterId?: string;
     /**
-     * The ID of the default header. If not set, there is no default header.
+     * The ID of the default header. If not set, there is no default header.  This property is read-only.
      */
     defaultHeaderId?: string;
     /**
-     * The ID of the footer used only for even pages. The value of use_even_page_header_footer determines whether to use the default_footer_id or this value for the footer on even pages. If not set, there is no even page footer.
+     * The ID of the footer used only for even pages. The value of use_even_page_header_footer determines whether to use the default_footer_id or this value for the footer on even pages. If not set, there is no even page footer.  This property is read-only.
      */
     evenPageFooterId?: string;
     /**
-     * The ID of the header used only for even pages. The value of use_even_page_header_footer determines whether to use the default_header_id or this value for the header on even pages. If not set, there is no even page header.
+     * The ID of the header used only for even pages. The value of use_even_page_header_footer determines whether to use the default_header_id or this value for the header on even pages. If not set, there is no even page header.  This property is read-only.
      */
     evenPageHeaderId?: string;
     /**
-     * The ID of the footer used only for the first page. If not set then a unique footer for the first page does not exist. The value of use_first_page_header_footer determines whether to use the default_footer_id or this value for the footer on the first page. If not set, there is no first page footer.
+     * The ID of the footer used only for the first page. If not set then a unique footer for the first page does not exist. The value of use_first_page_header_footer determines whether to use the default_footer_id or this value for the footer on the first page. If not set, there is no first page footer.  This property is read-only.
      */
     firstPageFooterId?: string;
     /**
-     * The ID of the header used only for the first page. If not set then a unique header for the first page does not exist. The value of use_first_page_header_footer determines whether to use the default_header_id or this value for the header on the first page. If not set, there is no first page header.
+     * The ID of the header used only for the first page. If not set then a unique header for the first page does not exist. The value of use_first_page_header_footer determines whether to use the default_header_id or this value for the header on the first page. If not set, there is no first page header.  This property is read-only.
      */
     firstPageHeaderId?: string;
     /**
-     * The bottom page margin.
+     * The bottom page margin.  Updating the bottom page margin on the document style clears the bottom page margin on all section styles.
      */
     marginBottom?: Schema$Dimension;
     /**
-     * The left page margin.
+     * The left page margin.  Updating the left page margin on the document style clears the left page margin on all section styles. It may also cause columns to resize in all sections.
      */
     marginLeft?: Schema$Dimension;
     /**
-     * The right page margin.
+     * The right page margin.  Updating the right page margin on the document style clears the right page margin on all section styles. It may also cause columns to resize in all sections.
      */
     marginRight?: Schema$Dimension;
     /**
-     * The top page margin.
+     * The top page margin.  Updating the top page margin on the document style clears the top page margin on all section styles.
      */
     marginTop?: Schema$Dimension;
     /**
@@ -547,11 +547,11 @@ export namespace docs_v1 {
      */
     pageSize?: Schema$Size;
     /**
-     * Indicates whether to use the even page header / footer IDs for the even pages.
+     * Indicates whether to use the even page header / footer IDs for the even pages.  This property is read-only.
      */
     useEvenPageHeaderFooter?: boolean;
     /**
-     * Indicates whether to use the first page header / footer IDs for the first page.
+     * Indicates whether to use the first page header / footer IDs for the first page.  This property is read-only.
      */
     useFirstPageHeaderFooter?: boolean;
   }
@@ -1221,6 +1221,15 @@ export namespace docs_v1 {
     segmentId?: string;
   }
   /**
+   * Merges cells in a Table.
+   */
+  export interface Schema$MergeTableCellsRequest {
+    /**
+     * The table range specifying which cells of the table to merge.  Any text in the cells being merged will be concatenated and stored in the &quot;head&quot; cell of the range. This is the upper-left cell of the range when the content direction is left to right, and the upper-right cell of the range otherwise.  If the range is non-rectangular (which can occur in some cases where the range covers cells that are already merged or where the table is non-rectangular), a 400 bad request error is returned.
+     */
+    tableRange?: Schema$TableRange;
+  }
+  /**
    * A collection of Ranges with the same named range ID.  Named ranges allow developers to associate parts of a document with an arbitrary user-defined label so their contents can be programmatically read or edited at a later time. A document can contain multiple named ranges with the same name, but every named range has a unique ID.  A named range is created with a single Range, and content inserted inside a named range generally expands that range. However, certain document changes can cause the range to be split into multiple ranges.  Named ranges are not private. All applications and collaborators that have access to the document can see its named ranges.
    */
   export interface Schema$NamedRange {
@@ -1553,7 +1562,7 @@ export namespace docs_v1 {
      */
     direction?: string;
     /**
-     * The heading ID of the paragraph. If empty, then this paragraph is not a heading. This property is read-only.
+     * The heading ID of the paragraph. If empty, then this paragraph is not a heading.  This property is read-only.
      */
     headingId?: string;
     /**
@@ -1601,7 +1610,7 @@ export namespace docs_v1 {
      */
     spacingMode?: string;
     /**
-     * A list of the tab stops for this paragraph. The list of tab stops is not inherited. This property is read-only.
+     * A list of the tab stops for this paragraph. The list of tab stops is not inherited.  This property is read-only.
      */
     tabStops?: Schema$TabStop[];
   }
@@ -1817,6 +1826,23 @@ export namespace docs_v1 {
     occurrencesChanged?: number;
   }
   /**
+   * Replaces an existing image with a new image.  Replacing an image removes some image effects from the existing image in order to mirror the behavior of the Docs editor.
+   */
+  export interface Schema$ReplaceImageRequest {
+    /**
+     * The ID of the existing image that will be replaced.
+     */
+    imageObjectId?: string;
+    /**
+     * The replacement method.
+     */
+    imageReplaceMethod?: string;
+    /**
+     * The URI of the new image.  The image is fetched once at insertion time and a copy is stored for display inside the document. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format.  The provided URI can be at most 2 kB in length. The URI itself is saved with the image, and exposed via the ImageProperties.source_uri field.
+     */
+    uri?: string;
+  }
+  /**
    * A single update to apply to a document.
    */
   export interface Schema$Request {
@@ -1877,13 +1903,33 @@ export namespace docs_v1 {
      */
     insertText?: Schema$InsertTextRequest;
     /**
+     * Merges cells in a table.
+     */
+    mergeTableCells?: Schema$MergeTableCellsRequest;
+    /**
      * Replaces all instances of the specified text.
      */
     replaceAllText?: Schema$ReplaceAllTextRequest;
     /**
+     * Replaces an image in the document.
+     */
+    replaceImage?: Schema$ReplaceImageRequest;
+    /**
+     * Unmerges cells in a table.
+     */
+    unmergeTableCells?: Schema$UnmergeTableCellsRequest;
+    /**
+     * Updates the style of the document.
+     */
+    updateDocumentStyle?: Schema$UpdateDocumentStyleRequest;
+    /**
      * Updates the paragraph style at the specified range.
      */
     updateParagraphStyle?: Schema$UpdateParagraphStyleRequest;
+    /**
+     * Updates the style of table cells.
+     */
+    updateTableCellStyle?: Schema$UpdateTableCellStyleRequest;
     /**
      * Updates the properties of columns in a table.
      */
@@ -2289,11 +2335,11 @@ export namespace docs_v1 {
     tableCellStyle?: Schema$TableCellStyle;
   }
   /**
-   * A border around a table cell.
+   * A border around a table cell.  Table cell borders cannot be transparent. To hide a table cell border, make its width 0.
    */
   export interface Schema$TableCellBorder {
     /**
-     * The color of the border.
+     * The color of the border.  This color cannot be transparent.
      */
     color?: Schema$OptionalColor;
     /**
@@ -2347,7 +2393,7 @@ export namespace docs_v1 {
      */
     borderTop?: Schema$TableCellBorder;
     /**
-     * The column span of the cell. This property is read-only.
+     * The column span of the cell.  This property is read-only.
      */
     columnSpan?: number;
     /**
@@ -2371,7 +2417,7 @@ export namespace docs_v1 {
      */
     paddingTop?: Schema$Dimension;
     /**
-     * The row span of the cell. This property is read-only.
+     * The row span of the cell.  This property is read-only.
      */
     rowSpan?: number;
   }
@@ -2457,6 +2503,23 @@ export namespace docs_v1 {
      * The suggested insertion IDs. A TableOfContents may have multiple insertion IDs if it is a nested suggested change. If empty, then this is not a suggested insertion.
      */
     suggestedInsertionIds?: string[];
+  }
+  /**
+   * A table range represents a reference to a subset of a table.  It&#39;s important to note that the cells specified by a table range do not necessarily form a rectangle. For example, let&#39;s say we have a 3 x 3 table where all the cells of the last row are merged together. The table looks like this:                      [             ]  A table range with table cell location = (table_start_location, row = 0, column = 0), row span = 3 and column span = 2 specifies the following cells:        x     x       [ x    x    x ]
+   */
+  export interface Schema$TableRange {
+    /**
+     * The column span of the table range.
+     */
+    columnSpan?: number;
+    /**
+     * The row span of the table range.
+     */
+    rowSpan?: number;
+    /**
+     * The cell location where the table range starts.
+     */
+    tableCellLocation?: Schema$TableCellLocation;
   }
   /**
    * The contents and style of a row in a Table.
@@ -2657,6 +2720,28 @@ export namespace docs_v1 {
     weightedFontFamilySuggested?: boolean;
   }
   /**
+   * Unmerges cells in a Table.
+   */
+  export interface Schema$UnmergeTableCellsRequest {
+    /**
+     * The table range specifying which cells of the table to unmerge.  All merged cells in this range will be unmerged, and cells that are already unmerged will not be affected. If the range has no merged cells, the request will do nothing.  If there is text in any of the merged cells, the text will remain in the &quot;head&quot; cell of the resulting block of unmerged cells. The &quot;head&quot; cell is the upper-left cell when the content direction is from left to right, and the upper-right otherwise.
+     */
+    tableRange?: Schema$TableRange;
+  }
+  /**
+   * Updates the DocumentStyle.
+   */
+  export interface Schema$UpdateDocumentStyleRequest {
+    /**
+     * The styles to set on the document.  Certain document style changes may cause other changes in order to mirror the behavior of the Docs editor. See the documentation of DocumentStyle for more information.
+     */
+    documentStyle?: Schema$DocumentStyle;
+    /**
+     * The fields that should be updated.  At least one field must be specified. The root `document_style` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the background, set `fields` to `&quot;background&quot;`.
+     */
+    fields?: string;
+  }
+  /**
    * Update the styling of all paragraphs that overlap with the given range.
    */
   export interface Schema$UpdateParagraphStyleRequest {
@@ -2672,6 +2757,27 @@ export namespace docs_v1 {
      * The range overlapping the paragraphs to style.
      */
     range?: Schema$Range;
+  }
+  /**
+   * Updates the style of a range of table cells.
+   */
+  export interface Schema$UpdateTableCellStyleRequest {
+    /**
+     * The fields that should be updated.  At least one field must be specified. The root `tableCellStyle` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the table cell background color, set `fields` to `&quot;backgroundColor&quot;`.  To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     */
+    fields?: string;
+    /**
+     * The style to set on the table cells.  When updating borders, if a cell shares a border with an adjacent cell, the corresponding border property of the adjacent cell is updated as well. Borders that are merged and invisible are not updated.  Since updating a border shared by adjacent cells in the same request can cause conflicting border updates, border updates are applied in the following order:  - `border_right` - `border_left` - `border_bottom` - `border_top`
+     */
+    tableCellStyle?: Schema$TableCellStyle;
+    /**
+     * The table range representing the subset of the table to which the updates are applied.
+     */
+    tableRange?: Schema$TableRange;
+    /**
+     * The location where the table starts in the document. When specified, the updates are applied to all the cells in the table.
+     */
+    tableStartLocation?: Schema$Location;
   }
   /**
    * Updates the TableColumnProperties of columns in a table.
@@ -2724,7 +2830,7 @@ export namespace docs_v1 {
      */
     fields?: string;
     /**
-     * The range of text to style.  The range may be extended to include adjacent newlines.  If the range fully contains a paragraph belonging to a list, the paragraph&#39;s bullet is also updated with the matching text style.
+     * The range of text to style.  The range may be extended to include adjacent newlines.  If the range fully contains a paragraph belonging to a list, the paragraph&#39;s bullet is also updated with the matching text style.  Ranges cannot be inserted inside a relative UpdateTextStyleRequest.
      */
     range?: Schema$Range;
     /**

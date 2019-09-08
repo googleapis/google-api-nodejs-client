@@ -193,7 +193,7 @@ export namespace libraryagent_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the shelf to retrieve.
+     * @param {string} params.name Required. The name of the shelf to retrieve.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -369,7 +369,7 @@ export namespace libraryagent_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the shelf to retrieve.
+     * Required. The name of the shelf to retrieve.
      */
     name?: string;
   }
@@ -402,7 +402,7 @@ export namespace libraryagent_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the book to borrow.
+     * @param {string} params.name Required. The name of the book to borrow.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -482,7 +482,7 @@ export namespace libraryagent_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the book to retrieve.
+     * @param {string} params.name Required. The name of the book to retrieve.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -564,7 +564,7 @@ export namespace libraryagent_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Requested page size. Server may return fewer books than requested. If unspecified, server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBooksResponse.next_page_token. returned from the previous call to `ListBooks` method.
-     * @param {string} params.parent The name of the shelf whose books we'd like to list.
+     * @param {string} params.parent Required. The name of the shelf whose books we'd like to list.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -663,7 +663,7 @@ export namespace libraryagent_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the book to return.
+     * @param {string} params.name Required. The name of the book to return.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -745,7 +745,7 @@ export namespace libraryagent_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the book to borrow.
+     * Required. The name of the book to borrow.
      */
     name?: string;
   }
@@ -757,7 +757,7 @@ export namespace libraryagent_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the book to retrieve.
+     * Required. The name of the book to retrieve.
      */
     name?: string;
   }
@@ -777,7 +777,7 @@ export namespace libraryagent_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the shelf whose books we'd like to list.
+     * Required. The name of the shelf whose books we'd like to list.
      */
     parent?: string;
   }
@@ -789,7 +789,7 @@ export namespace libraryagent_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the book to return.
+     * Required. The name of the book to return.
      */
     name?: string;
   }

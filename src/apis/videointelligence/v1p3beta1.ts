@@ -429,6 +429,10 @@ export namespace videointelligence_v1p3beta1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_ObjectTrackingAnnotation[];
     /**
+     * Video segment on which the annotation is run.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
+    /**
      * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
@@ -799,6 +803,10 @@ export namespace videointelligence_v1p3beta1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_ObjectTrackingAnnotation[];
     /**
+     * Video segment on which the annotation is run.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
+    /**
      * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
@@ -1168,6 +1176,10 @@ export namespace videointelligence_v1p3beta1 {
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_ObjectTrackingAnnotation[];
+    /**
+     * Video segment on which the annotation is run.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
     /**
      * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
@@ -1797,6 +1809,10 @@ export namespace videointelligence_v1p3beta1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_ObjectTrackingAnnotation[];
     /**
+     * Video segment on which the annotation is run.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
+    /**
      * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
@@ -2199,6 +2215,10 @@ export namespace videointelligence_v1p3beta1 {
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1_ObjectTrackingAnnotation[];
+    /**
+     * Video segment on which the annotation is run.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
     /**
      * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
      */

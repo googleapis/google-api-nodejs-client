@@ -36,7 +36,7 @@
     "null-loader": "^3.0.0",
     "ts-loader": "^6.0.4",
     "typedoc": "^0.15.0",
-    "typescript": "~3.5.3",
+    "typescript": "~3.6.0",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5"
   }

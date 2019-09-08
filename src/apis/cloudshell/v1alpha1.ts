@@ -183,6 +183,10 @@ export namespace cloudshell_v1alpha1 {
      * Output only. Current execution state of this environment.
      */
     state?: string;
+    /**
+     * Output only. Host to which clients can connect to initiate HTTPS or WSS connections with the environment.
+     */
+    webHost?: string;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.

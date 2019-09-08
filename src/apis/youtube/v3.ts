@@ -104,6 +104,8 @@ export namespace youtube_v3 {
     liveChatMessages: Resource$Livechatmessages;
     liveChatModerators: Resource$Livechatmoderators;
     liveStreams: Resource$Livestreams;
+    members: Resource$Members;
+    membershipsLevels: Resource$Membershipslevels;
     playlistItems: Resource$Playlistitems;
     playlists: Resource$Playlists;
     search: Resource$Search;
@@ -137,6 +139,8 @@ export namespace youtube_v3 {
       this.liveChatMessages = new Resource$Livechatmessages(this.context);
       this.liveChatModerators = new Resource$Livechatmoderators(this.context);
       this.liveStreams = new Resource$Livestreams(this.context);
+      this.members = new Resource$Members(this.context);
+      this.membershipsLevels = new Resource$Membershipslevels(this.context);
       this.playlistItems = new Resource$Playlistitems(this.context);
       this.playlists = new Resource$Playlists(this.context);
       this.search = new Resource$Search(this.context);
@@ -1307,7 +1311,7 @@ export namespace youtube_v3 {
     videoId?: string;
   }
   /**
-   * Ratings schemes. The country-specific ratings are mostly for movies and shows. NEXT_ID: 71
+   * Ratings schemes. The country-specific ratings are mostly for movies and shows. NEXT_ID: 72
    */
   export interface Schema$ContentRating {
     /**
@@ -1542,6 +1546,7 @@ export namespace youtube_v3 {
      * The video&#39;s rating from the Nacionãlais Kino centrs (National Film Centre of Latvia).
      */
     nkclvRating?: string;
+    nmcRating?: string;
     /**
      * The video&#39;s Office of Film and Literature Classification (OFLC - New Zealand) rating.
      */
@@ -1954,6 +1959,9 @@ export namespace youtube_v3 {
   export interface Schema$LanguageTag {
     value?: string;
   }
+  export interface Schema$LevelDetails {
+    displayName?: string;
+  }
   /**
    * A liveBroadcast resource represents an event that will be streamed, via live video, on YouTube.
    */
@@ -2088,6 +2096,7 @@ export namespace youtube_v3 {
      * The date and time that the broadcast actually started. This information is only available once the broadcast&#39;s state is live. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
      */
     actualStartTime?: string;
+    broadcastType?: string;
     /**
      * The ID that YouTube uses to uniquely identify the channel that is publishing the broadcast.
      */
@@ -2664,6 +2673,145 @@ export namespace youtube_v3 {
   export interface Schema$LocalizedString {
     language?: string;
     value?: string;
+  }
+  /**
+   * A member resource represents a member for a YouTube channel. A member provides recurring monetary support to a creator and receives special benefits.
+   */
+  export interface Schema$Member {
+    /**
+     * Etag of this resource.
+     */
+    etag?: string;
+    /**
+     * The ID that YouTube assigns to uniquely identify the member.
+     */
+    id?: string;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#member&quot;.
+     */
+    kind?: string;
+    /**
+     * The snippet object contains basic details about the member.
+     */
+    snippet?: Schema$MemberSnippet;
+  }
+  export interface Schema$MemberListResponse {
+    /**
+     * Etag of this resource.
+     */
+    etag?: string;
+    /**
+     * Serialized EventId of the request which produced this response.
+     */
+    eventId?: string;
+    /**
+     * A list of members that match the request criteria.
+     */
+    items?: Schema$Member[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#memberListResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
+     */
+    nextPageToken?: string;
+    pageInfo?: Schema$PageInfo;
+    tokenPagination?: Schema$TokenPagination;
+    /**
+     * The visitorId identifies the visitor.
+     */
+    visitorId?: string;
+  }
+  export interface Schema$MembershipsDetails {
+    /**
+     * All levels that the user has access to. This includes the purchased level and all other levels that are included because of a higher purchase.
+     */
+    accessibleLevels?: string[];
+    /**
+     * The date and time when the user became a continuous member across all levels.
+     */
+    memberSince?: string;
+    /**
+     * The date and time when the user started to continuously have access to the currently highest level.
+     */
+    memberSinceCurrentLevel?: string;
+    /**
+     * The cumulative time the user has been a member across all levels in complete months (the time is rounded down to the nearest integer).
+     */
+    memberTotalDuration?: number;
+    /**
+     * The cumulative time the user has had access to the currently highest level in complete months (the time is rounded down to the nearest integer).
+     */
+    memberTotalDurationCurrentLevel?: number;
+    /**
+     * The highest level the user has access to at the moment.
+     */
+    purchasedLevel?: string;
+  }
+  /**
+   * A membershipsLevel resource represents an offer made by YouTube creators for their fans. Users can become members of the channel by joining one of the available levels. They will provide recurring monetary support and receives special benefits.
+   */
+  export interface Schema$MembershipsLevel {
+    /**
+     * Etag of this resource.
+     */
+    etag?: string;
+    /**
+     * The ID that YouTube assigns to uniquely identify the memberships level.
+     */
+    id?: string;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#membershipsLevel&quot;.
+     */
+    kind?: string;
+    /**
+     * The snippet object contains basic details about the level.
+     */
+    snippet?: Schema$MembershipsLevelSnippet;
+  }
+  export interface Schema$MembershipsLevelListResponse {
+    /**
+     * Etag of this resource.
+     */
+    etag?: string;
+    /**
+     * Serialized EventId of the request which produced this response.
+     */
+    eventId?: string;
+    /**
+     * A list of pricing levels offered by a creator to the fans.
+     */
+    items?: Schema$MembershipsLevel[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#membershipsLevelListResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The visitorId identifies the visitor.
+     */
+    visitorId?: string;
+  }
+  export interface Schema$MembershipsLevelSnippet {
+    /**
+     * The id of the channel that&#39;s offering channel memberships.
+     */
+    creatorChannelId?: string;
+    levelDetails?: Schema$LevelDetails;
+  }
+  export interface Schema$MemberSnippet {
+    /**
+     * The id of the channel that&#39;s offering memberships.
+     */
+    creatorChannelId?: string;
+    /**
+     * Details about the member.
+     */
+    memberDetails?: Schema$ChannelProfileDetails;
+    /**
+     * Details about the user&#39;s membership.
+     */
+    membershipsDetails?: Schema$MembershipsDetails;
   }
   /**
    * Settings and Info of the monitor stream
@@ -9048,6 +9196,221 @@ export namespace youtube_v3 {
      * Request body metadata
      */
     requestBody?: Schema$LiveStream;
+  }
+
+  export class Resource$Members {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * youtube.members.list
+     * @desc Lists members for a channel.
+     * @alias youtube.members.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.hasAccessToLevel The hasAccessToLevel parameter specifies, when set, the ID of a pricing level that members from the results set should have access to. When not set, all members will be considered, regardless of their active pricing level.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param {string=} params.mode The mode parameter specifies which channel members to return.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies the member resource parts that the API response will include. Supported values are id and snippet.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Members$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MemberListResponse>;
+    list(
+      params: Params$Resource$Members$List,
+      options: MethodOptions | BodyResponseCallback<Schema$MemberListResponse>,
+      callback: BodyResponseCallback<Schema$MemberListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Members$List,
+      callback: BodyResponseCallback<Schema$MemberListResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$MemberListResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Members$List
+        | BodyResponseCallback<Schema$MemberListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MemberListResponse>,
+      callback?: BodyResponseCallback<Schema$MemberListResponse>
+    ): void | GaxiosPromise<Schema$MemberListResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Members$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Members$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/members').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MemberListResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$MemberListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Members$List extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The hasAccessToLevel parameter specifies, when set, the ID of a pricing level that members from the results set should have access to. When not set, all members will be considered, regardless of their active pricing level.
+     */
+    hasAccessToLevel?: string;
+    /**
+     * The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     */
+    maxResults?: number;
+    /**
+     * The mode parameter specifies which channel members to return.
+     */
+    mode?: string;
+    /**
+     * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     */
+    pageToken?: string;
+    /**
+     * The part parameter specifies the member resource parts that the API response will include. Supported values are id and snippet.
+     */
+    part?: string;
+  }
+
+  export class Resource$Membershipslevels {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * youtube.membershipsLevels.list
+     * @desc Lists pricing levels for a channel.
+     * @alias youtube.membershipsLevels.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.part The part parameter specifies the membershipsLevel resource parts that the API response will include. Supported values are id and snippet.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Membershipslevels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MembershipsLevelListResponse>;
+    list(
+      params: Params$Resource$Membershipslevels$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MembershipsLevelListResponse>,
+      callback: BodyResponseCallback<Schema$MembershipsLevelListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Membershipslevels$List,
+      callback: BodyResponseCallback<Schema$MembershipsLevelListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$MembershipsLevelListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Membershipslevels$List
+        | BodyResponseCallback<Schema$MembershipsLevelListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MembershipsLevelListResponse>,
+      callback?: BodyResponseCallback<Schema$MembershipsLevelListResponse>
+    ): void | GaxiosPromise<Schema$MembershipsLevelListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Membershipslevels$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Membershipslevels$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/membershipsLevels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MembershipsLevelListResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$MembershipsLevelListResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Membershipslevels$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The part parameter specifies the membershipsLevel resource parts that the API response will include. Supported values are id and snippet.
+     */
+    part?: string;
   }
 
   export class Resource$Playlistitems {

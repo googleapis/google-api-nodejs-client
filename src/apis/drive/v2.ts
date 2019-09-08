@@ -857,6 +857,7 @@ export namespace drive_v2 {
       canDownload?: boolean;
       canEdit?: boolean;
       canListChildren?: boolean;
+      canModifyContent?: boolean;
       canMoveChildrenOutOfDrive?: boolean;
       canMoveChildrenOutOfTeamDrive?: boolean;
       canMoveChildrenWithinDrive?: boolean;

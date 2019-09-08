@@ -406,6 +406,10 @@ export namespace container_v1 {
      */
     desiredImageType?: string;
     /**
+     * The desired config of Intra-node visibility.
+     */
+    desiredIntraNodeVisibilityConfig?: Schema$IntraNodeVisibilityConfig;
+    /**
      * The desired list of Google Compute Engine [zones](/compute/docs/zones#available) in which the cluster&#39;s nodes should be located. Changing the locations a cluster is in will result in nodes being either created or removed from the cluster, depending on whether locations are being added or removed.  This list must always include the cluster&#39;s primary zone.
      */
     desiredLocations?: string[];
@@ -540,6 +544,10 @@ export namespace container_v1 {
    */
   export interface Schema$GetJSONWebKeysResponse {
     /**
+     * OnePlatform automatically extracts this field and uses it to set the HTTP Cache-Control header.
+     */
+    cacheHeader?: Schema$HttpCacheControlResponseHeader;
+    /**
      * The public component of the keys used by the cluster to sign token requests.
      */
     keys?: Schema$Jwk[];
@@ -548,6 +556,10 @@ export namespace container_v1 {
    * GetOpenIDConfigResponse is an OIDC discovery document for the cluster. See the OpenID Connect Discovery 1.0 specification for details.
    */
   export interface Schema$GetOpenIDConfigResponse {
+    /**
+     * OnePlatform automatically extracts this field and uses it to set the HTTP Cache-Control header.
+     */
+    cacheHeader?: Schema$HttpCacheControlResponseHeader;
     /**
      * Supported claims.
      */
@@ -587,6 +599,23 @@ export namespace container_v1 {
     disabled?: boolean;
   }
   /**
+   * RFC-2616: cache control support
+   */
+  export interface Schema$HttpCacheControlResponseHeader {
+    /**
+     * 14.6 response cache age, in seconds since the response is generated
+     */
+    age?: string;
+    /**
+     * 14.9 request and response directives
+     */
+    directive?: string;
+    /**
+     * 14.21 response cache expires, in RFC 1123 date format
+     */
+    expires?: string;
+  }
+  /**
    * Configuration options for the HTTP (L7) load balancing controller addon, which makes it easy to set up HTTP load balancers for services in a cluster.
    */
   export interface Schema$HttpLoadBalancing {
@@ -594,6 +623,15 @@ export namespace container_v1 {
      * Whether the HTTP Load Balancing controller is enabled in the cluster. When enabled, it runs a small pod in the cluster that manages the load balancers.
      */
     disabled?: boolean;
+  }
+  /**
+   * IntraNodeVisibilityConfig contains the desired config of the intra-node visibility on this cluster.
+   */
+  export interface Schema$IntraNodeVisibilityConfig {
+    /**
+     * Enables intra node visibility for this cluster.
+     */
+    enabled?: boolean;
   }
   /**
    * Configuration for controlling how IPs are allocated in the cluster.
@@ -828,6 +866,10 @@ export namespace container_v1 {
    * NetworkConfig reports the relative names of network &amp; subnetwork.
    */
   export interface Schema$NetworkConfig {
+    /**
+     * Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.
+     */
+    enableIntraNodeVisibility?: boolean;
     /**
      * Output only. The relative name of the Google Compute Engine network(/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network
      */

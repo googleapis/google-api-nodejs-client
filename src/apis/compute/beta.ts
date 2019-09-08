@@ -628,15 +628,15 @@ export namespace compute_beta {
    */
   export interface Schema$AllocationSpecificSKUReservation {
     /**
-     * Specifies number of resources that are allocated.
+     * Specifies the number of resources that are allocated.
      */
     count?: string;
     /**
-     * The instance properties for this specific sku reservation.
+     * The instance properties for the reservation.
      */
     instanceProperties?: Schema$AllocationSpecificSKUAllocationReservedInstanceProperties;
     /**
-     * [OutputOnly] Indicates how many resource are in use.
+     * [OutputOnly] Indicates how many instances are in use.
      */
     inUseCount?: string;
   }
@@ -710,7 +710,7 @@ export namespace compute_beta {
      */
     diskName?: string;
     /**
-     * Specifies the size of the disk in base-2 GB.
+     * Specifies the size of the disk in base-2 GB. If not specified, the disk will be the same size as the image (usually 10GB). If specified, the size must be equal to or larger than 10GB.
      */
     diskSizeGb?: string;
     /**
@@ -747,7 +747,7 @@ export namespace compute_beta {
     sourceSnapshotEncryptionKey?: Schema$CustomerEncryptionKey;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:  { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot;, } ] }, { &quot;service&quot;: &quot;fooservice.googleapis.com&quot; &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:bar@gmail.com&quot; ] } ] } ] }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:  { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot;, } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot; &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -761,13 +761,17 @@ export namespace compute_beta {
     service?: string;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:  { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, } ] }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:  { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, } ] }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of [Binding.members][].
      */
     exemptedMembers?: string[];
+    /**
+     * Specifies whether principals can be exempted for the same LogType in lower-level resource policies. If true, any lower-level exemptions will be ignored.
+     */
+    ignoreChildExemptions?: boolean;
     /**
      * The log type that this config enables.
      */
@@ -999,7 +1003,7 @@ export namespace compute_beta {
    */
   export interface Schema$Backend {
     /**
-     * Specifies the balancing mode for the backend.  When choosing a balancing mode, you need to consider the loadBalancingScheme, and protocol for the backend service, as well as the type of backend (instance group or NEG).    - If the load balancing mode is CONNECTION, then the load is spread based on how many concurrent connections the backend can handle. The CONNECTION balancing mode is only available if the protocol for the backend service is SSL, TCP, or UDP.  If the loadBalancingScheme for the backend service is EXTERNAL (SSL Proxy and TCP Proxy load balancers), you must also specify exactly one of the following parameters: maxConnections, maxConnectionsPerInstance, or maxConnectionsPerEndpoint.  If the loadBalancingScheme for the backend service is INTERNAL (internal TCP/UDP load balancers), you cannot specify any additional parameters.   - If the load balancing mode is RATE, then the load is spread based on the rate of HTTP requests per second (RPS). The RATE balancing mode is only available if the protocol for the backend service is HTTP or HTTPS. You must specify exactly one of the following parameters: maxRate, maxRatePerInstance, or maxRatePerEndpoint.   - If the load balancing mode is UTILIZATION, then the load is spread based on the CPU utilization of instances in an instance group. The UTILIZATION balancing mode is only available if the loadBalancingScheme of the backend service is EXTERNAL, INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED and the backend is made up of instance groups. There are no restrictions on the backend service protocol.
+     * Specifies the balancing mode for the backend.  When choosing a balancing mode, you need to consider the loadBalancingScheme, and protocol for the backend service, as well as the type of backend (instance group or NEG).    - If the load balancing mode is CONNECTION, then the load is spread based on how many concurrent connections the backend can handle. You can use the CONNECTION balancing mode if the protocol for the backend service is SSL, TCP, or UDP.  If the loadBalancingScheme for the backend service is EXTERNAL (SSL Proxy and TCP Proxy load balancers), you must also specify exactly one of the following parameters: maxConnections, maxConnectionsPerInstance, or maxConnectionsPerEndpoint.  If the loadBalancingScheme for the backend service is INTERNAL (internal TCP/UDP load balancers), you cannot specify any additional parameters.   - If the load balancing mode is RATE, the load is spread based on the rate of HTTP requests per second (RPS). You can use the RATE balancing mode if the protocol for the backend service is HTTP or HTTPS. You must specify exactly one of the following parameters: maxRate, maxRatePerInstance, or maxRatePerEndpoint.   - If the load balancing mode is UTILIZATION, the load is spread based on the CPU utilization of instances in an instance group. You can use the UTILIZATION balancing mode if the loadBalancingScheme of the backend service is EXTERNAL, INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED and the backends are instance groups. There are no restrictions on the backend service protocol.
      */
     balancingMode?: string;
     /**
@@ -1213,6 +1217,10 @@ export namespace compute_beta {
      */
     name?: string;
     /**
+     * The URL of the network to which this backend service belongs. This field can only be spcified when the load balancing scheme is set to INTERNAL.
+     */
+    network?: string;
+    /**
      * Settings controlling eviction of unhealthy hosts from the load balancing pool. This field is applicable to either:   - A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED.  - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.
      */
     outlierDetection?: Schema$OutlierDetection;
@@ -1241,7 +1249,7 @@ export namespace compute_beta {
      */
     selfLink?: string;
     /**
-     * Type of session affinity to use. The default is NONE. Session affinity is not applicable if the --protocol is UDP.  When the loadBalancingScheme is EXTERNAL, possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. GENERATED_COOKIE is only available if the protocol is HTTP or HTTPS.  When the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.  When the loadBalancingScheme is INTERNAL_SELF_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.
+     * Type of session affinity to use. The default is NONE. Session affinity is not applicable if the --protocol is UDP.  When the loadBalancingScheme is EXTERNAL, possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. You can use GENERATED_COOKIE if the protocol is HTTP or HTTPS.  When the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.  When the loadBalancingScheme is INTERNAL_SELF_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.
      */
     sessionAffinity?: string;
     /**
@@ -1398,6 +1406,135 @@ export namespace compute_beta {
       message?: string;
     };
   }
+  export interface Schema$BfdPacket {
+    /**
+     * The Authentication Present bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     */
+    authenticationPresent?: boolean;
+    /**
+     * The Control Plane Independent bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     */
+    controlPlaneIndependent?: boolean;
+    /**
+     * The demand bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     */
+    demand?: boolean;
+    /**
+     * The diagnostic code specifies the local system&#39;s reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880
+     */
+    diagnostic?: string;
+    /**
+     * The Final bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     */
+    final?: boolean;
+    /**
+     * The length of the BFD Control packet in bytes. This is specified in section 4.1 of RFC5880
+     */
+    length?: number;
+    /**
+     * The Required Min Echo RX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     */
+    minEchoRxIntervalMs?: number;
+    /**
+     * The Required Min RX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     */
+    minRxIntervalMs?: number;
+    /**
+     * The Desired Min TX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     */
+    minTxIntervalMs?: number;
+    /**
+     * The detection time multiplier of the BFD packet. This is specified in section 4.1 of RFC5880
+     */
+    multiplier?: number;
+    /**
+     * The multipoint bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     */
+    multipoint?: boolean;
+    /**
+     * The My Discriminator value in the BFD packet. This is specified in section 4.1 of RFC5880
+     */
+    myDiscriminator?: number;
+    /**
+     * The Poll bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     */
+    poll?: boolean;
+    /**
+     * The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880
+     */
+    state?: string;
+    /**
+     * The version number of the BFD protocol, as specified in section 4.1 of RFC5880.
+     */
+    version?: number;
+    /**
+     * The Your Discriminator value in the BFD packet. This is specified in section 4.1 of RFC5880
+     */
+    yourDiscriminator?: number;
+  }
+  /**
+   * Next free: 15
+   */
+  export interface Schema$BfdStatus {
+    /**
+     * The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer.
+     */
+    bfdSessionInitializationMode?: string;
+    /**
+     * Unix timestamp of the most recent config update.
+     */
+    configUpdateTimestampMicros?: string;
+    /**
+     * Control packet counts for the current BFD session.
+     */
+    controlPacketCounts?: Schema$BfdStatusPacketCounts;
+    /**
+     * Inter-packet time interval statistics for control packets.
+     */
+    controlPacketIntervals?: Schema$PacketIntervals[];
+    /**
+     * The diagnostic code specifies the local system&#39;s reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880
+     */
+    localDiagnostic?: string;
+    /**
+     * The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880
+     */
+    localState?: string;
+    /**
+     * Negotiated transmit interval for control packets.
+     */
+    negotiatedLocalControlTxIntervalMs?: number;
+    /**
+     * The most recent Rx control packet for this BFD session.
+     */
+    rxPacket?: Schema$BfdPacket;
+    /**
+     * The most recent Tx control packet for this BFD session.
+     */
+    txPacket?: Schema$BfdPacket;
+    /**
+     * Session uptime in milliseconds. Value will be 0 if session is not up.
+     */
+    uptimeMs?: string;
+  }
+  export interface Schema$BfdStatusPacketCounts {
+    /**
+     * Number of packets received since the beginning of the current BFD session.
+     */
+    numRx?: number;
+    /**
+     * Number of packets received that were rejected because of errors since the beginning of the current BFD session.
+     */
+    numRxRejected?: number;
+    /**
+     * Number of packets received that were successfully processed since the beginning of the current BFD session.
+     */
+    numRxSuccessful?: number;
+    /**
+     * Number of packets transmitted since the beginning of the current BFD session.
+     */
+    numTx?: number;
+  }
   /**
    * Associates `members` with a `role`.
    */
@@ -1407,7 +1544,7 @@ export namespace compute_beta {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@gmail.com` .    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.    * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` .    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.    * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
@@ -1513,7 +1650,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * List of reservations for this commitment.
+     * List of reservations in this commitment.
      */
     reservations?: Schema$Reservation[];
     /**
@@ -1888,7 +2025,7 @@ export namespace compute_beta {
      */
     sourceSnapshotId?: string;
     /**
-     * [Output Only] The status of disk creation.
+     * [Output Only] The status of disk creation. CREATING: Disk is provisioning. RESTORING: Source data is being copied into the disk. FAILED: Disk creation failed. READY: Disk is ready for use. DELETING: Disk is deleting.
      */
     status?: string;
     /**
@@ -2536,7 +2673,7 @@ export namespace compute_beta {
      */
     id?: string;
     /**
-     * The IP address that this forwarding rule is serving on behalf of.  Addresses are restricted based on the forwarding rule&#39;s load balancing scheme (EXTERNAL or INTERNAL) and scope (global or regional).  When the load balancing scheme is EXTERNAL, for global forwarding rules, the address must be a global IP, and for regional forwarding rules, the address must live in the same region as the forwarding rule. If this field is empty, an ephemeral IPv4 address from the same scope (global or regional) will be assigned. A regional forwarding rule supports IPv4 only. A global forwarding rule supports either IPv4 or IPv6.  When the load balancing scheme is INTERNAL_SELF_MANAGED, this must be a URL reference to an existing Address resource ( internal regional static IP address), with a purpose of GCE_END_POINT and address_type of INTERNAL.  When the load balancing scheme is INTERNAL, this can only be an RFC 1918 IP address belonging to the network/subnet configured for the forwarding rule. By default, if this field is empty, an ephemeral internal IP address will be automatically allocated from the IP range of the subnet or network configured for this forwarding rule.  An address can be specified either by a literal IP address or a URL reference to an existing Address resource. The following examples are all valid:   - 100.1.2.3  - https://www.googleapis.com/compute/v1/projects/project/regions/region/addresses/address  - projects/project/regions/region/addresses/address  - regions/region/addresses/address  - global/addresses/address  - address
+     * IP address that this forwarding rule serves. When a client sends traffic to this IP address, the forwarding rule directs the traffic to the target that you specify in the forwarding rule.  If you don&#39;t specify a reserved IP address, an ephemeral IP address is assigned. Methods for specifying an IP address:  * IPv4 dotted decimal, as in `100.1.2.3` * Full URL, as in https://www.googleapis.com/compute/v1/projects/project_id/regions/region/addresses/address-name * Partial URL or by name, as in: * projects/project_id/regions/region/addresses/address-name * regions/region/addresses/address-name * global/addresses/address-name * address-name   The loadBalancingScheme and the forwarding rule&#39;s target determine the type of IP address that you can use. For detailed information, refer to [IP address specifications](/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications).
      */
     IPAddress?: string;
     /**
@@ -2580,11 +2717,11 @@ export namespace compute_beta {
      */
     networkTier?: string;
     /**
-     * This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.  Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.  Some types of forwarding target have constraints on the acceptable ports:   - TargetHttpProxy: 80, 8080  - TargetHttpsProxy: 443  - TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetVpnGateway: 500, 4500
+     * This field is deprecated. See the port field.
      */
     portRange?: string;
     /**
-     * This field is used along with the backend_service field for internal load balancing.  When the load balancing scheme is INTERNAL, a list of ports can be configured, for example, [&#39;80&#39;], [&#39;8000&#39;,&#39;9000&#39;] etc. Only packets addressed to these ports will be forwarded to the backends configured with this forwarding rule.  You may specify a maximum of up to 5 ports.
+     * List of comma-separated ports. The forwarding rule forwards packets with matching destination ports. If the forwarding rule&#39;s loadBalancingScheme is EXTERNAL, and the forwarding rule references a target pool, specifying ports is optional. You can specify an unlimited number of ports, but they must be contiguous. If you omit ports, GCP forwards traffic on any port of the forwarding rule&#39;s protocol.  If the forwarding rule&#39;s loadBalancingScheme is EXTERNAL, and the forwarding rule references a target HTTP proxy, target HTTPS proxy, target TCP proxy, target SSL proxy, or target VPN gateway, you must specify ports using the following constraints:    - TargetHttpProxy: 80, 8080  - TargetHttpsProxy: 443  - TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetVpnGateway: 500, 4500    If the forwarding rule&#39;s loadBalancingScheme is INTERNAL, you must specify ports in one of the following ways:  * A list of up to five ports, which can be non-contiguous * Keyword ALL, which causes the forwarding rule to forward traffic on any port of the forwarding rule&#39;s protocol.  The ports field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.  Applicable only when IPProtocol is TCP, UDP, or SCTP. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.
      */
     ports?: string[];
     /**
@@ -2596,7 +2733,7 @@ export namespace compute_beta {
      */
     selfLink?: string;
     /**
-     * An optional prefix to the service name for this Forwarding Rule. If specified, will be the first label of the fully qualified service name.  The label must be 1-63 characters long, and comply with RFC1035. Specifically, the label must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.  This field is only used for internal load balancing.
+     * An optional prefix to the service name for this Forwarding Rule. If specified, the prefix is the first label of the fully qualified service name.  The label must be 1-63 characters long, and comply with RFC1035. Specifically, the label must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.  This field is only used for internal load balancing.
      */
     serviceLabel?: string;
     /**
@@ -3115,36 +3252,6 @@ export namespace compute_beta {
      */
     replace?: boolean;
   }
-  export interface Schema$HTTPHealthCheck {
-    /**
-     * The value of the host header in the HTTP health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value is 80. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.   If not specified, HTTP health check follows behavior specified in port and portName fields.
-     */
-    portSpecification?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTP health check request. The default value is /.
-     */
-    requestPath?: string;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
-     */
-    response?: string;
-  }
   /**
    * Represents a legacy HTTP Health Check resource.  Legacy health checks are required by network load balancers. For more information, read Health Check Concepts.
    */
@@ -3201,6 +3308,36 @@ export namespace compute_beta {
      * A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
      */
     unhealthyThreshold?: number;
+  }
+  export interface Schema$HTTPHealthCheck {
+    /**
+     * The value of the host header in the HTTP health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value is 80. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.   If not specified, HTTP health check follows behavior specified in port and portName fields.
+     */
+    portSpecification?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTP health check request. The default value is /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
+     */
+    response?: string;
   }
   /**
    * Contains a list of HttpHealthCheck resources.
@@ -3387,36 +3524,6 @@ export namespace compute_beta {
      */
     regexMatch?: string;
   }
-  export interface Schema$HTTPSHealthCheck {
-    /**
-     * The value of the host header in the HTTPS health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.   If not specified, HTTPS health check follows behavior specified in port and portName fields.
-     */
-    portSpecification?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTPS health check request. The default value is /.
-     */
-    requestPath?: string;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
-     */
-    response?: string;
-  }
   /**
    * Represents a legacy HTTPS Health Check resource.  Legacy health checks are required by network load balancers. For more information, read Health Check Concepts.
    */
@@ -3473,6 +3580,36 @@ export namespace compute_beta {
      * A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
      */
     unhealthyThreshold?: number;
+  }
+  export interface Schema$HTTPSHealthCheck {
+    /**
+     * The value of the host header in the HTTPS health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.   If not specified, HTTPS health check follows behavior specified in port and portName fields.
+     */
+    portSpecification?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTPS health check request. The default value is /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
+     */
+    response?: string;
   }
   /**
    * Contains a list of HttpsHealthCheck resources.
@@ -3624,7 +3761,7 @@ export namespace compute_beta {
      */
     status?: string;
     /**
-     * GCS bucket storage location of the image (regional or multi-regional).
+     * Cloud Storage bucket storage location of the image (regional or multi-regional).
      */
     storageLocations?: string[];
   }
@@ -3697,6 +3834,9 @@ export namespace compute_beta {
      * A list of the type and count of accelerator cards attached to the instance.
      */
     guestAccelerators?: Schema$AcceleratorConfig[];
+    /**
+     * Specifies the hostname of the instance. The specified hostname must be RFC1035 compliant. If hostname is not specified, the default hostname is [INSTANCE_NAME].c.[PROJECT_ID].internal when using the global DNS, and [INSTANCE_NAME].[ZONE].c.[PROJECT_ID].internal when using zonal DNS.
+     */
     hostname?: string;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -4260,6 +4400,9 @@ export namespace compute_beta {
     isReached?: boolean;
   }
   export interface Schema$InstanceGroupManagerUpdatePolicy {
+    /**
+     * The  instance redistribution policy for regional managed instance groups. Valid values are:   - PROACTIVE (default): The group attempts to maintain an even distribution of VM instances across zones in the region.  - NONE: For non-autoscaled groups, proactive redistribution is disabled.
+     */
     instanceRedistributionType?: string;
     /**
      * The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.  At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
@@ -4789,7 +4932,7 @@ export namespace compute_beta {
      */
     adminEnabled?: boolean;
     /**
-     * Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values:  - BPS_50M: 50 Mbit/s  - BPS_100M: 100 Mbit/s  - BPS_200M: 200 Mbit/s  - BPS_300M: 300 Mbit/s  - BPS_400M: 400 Mbit/s  - BPS_500M: 500 Mbit/s  - BPS_1G: 1 Gbit/s  - BPS_2G: 2 Gbit/s  - BPS_5G: 5 Gbit/s  - BPS_10G: 10 Gbit/s
+     * Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values:  - BPS_50M: 50 Mbit/s  - BPS_100M: 100 Mbit/s  - BPS_200M: 200 Mbit/s  - BPS_300M: 300 Mbit/s  - BPS_400M: 400 Mbit/s  - BPS_500M: 500 Mbit/s  - BPS_1G: 1 Gbit/s  - BPS_2G: 2 Gbit/s  - BPS_5G: 5 Gbit/s  - BPS_10G: 10 Gbit/s  - BPS_20G: 20 Gbit/s  - BPS_50G: 50 Gbit/s
      */
     bandwidth?: string;
     /**
@@ -5754,7 +5897,7 @@ export namespace compute_beta {
      */
     instance?: string;
     /**
-     * Optional IPv4 address of network endpoint. The IP address must belong to a VM in GCE (either the primary IP or as part of an aliased IP range). If the IP address is not specified, then the primary IP address for the VM instance in the network that the network endpoint group belongs to will be used.
+     * Optional IPv4 address of network endpoint. The IP address must belong to a VM in Compute Engine (either the primary IP or as part of an aliased IP range). If the IP address is not specified, then the primary IP address for the VM instance in the network that the network endpoint group belongs to will be used.
      */
     ipAddress?: string;
     /**
@@ -6242,6 +6385,9 @@ export namespace compute_beta {
     additionalNodeCount?: number;
   }
   export interface Schema$NodeGroupsDeleteNodesRequest {
+    /**
+     * Names of the nodes to delete.
+     */
     nodes?: string[];
   }
   export interface Schema$NodeGroupsListNodes {
@@ -6598,7 +6744,7 @@ export namespace compute_beta {
      */
     httpErrorStatusCode?: number;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the operation. This identifier is defined by the server.
      */
     id?: string;
     /**
@@ -6610,7 +6756,7 @@ export namespace compute_beta {
      */
     kind?: string;
     /**
-     * [Output Only] Name of the resource.
+     * [Output Only] Name of the operation.
      */
     name?: string;
     /**
@@ -6793,6 +6939,35 @@ export namespace compute_beta {
     successRateStdevFactor?: number;
   }
   /**
+   * Next free: 7
+   */
+  export interface Schema$PacketIntervals {
+    /**
+     * Average observed inter-packet interval in milliseconds.
+     */
+    avgMs?: string;
+    /**
+     * From how long ago in the past these intervals were observed.
+     */
+    duration?: string;
+    /**
+     * Maximum observed inter-packet interval in milliseconds.
+     */
+    maxMs?: string;
+    /**
+     * Minimum observed inter-packet interval in milliseconds.
+     */
+    minMs?: string;
+    /**
+     * Number of inter-packet intervals from which these statistics were derived.
+     */
+    numIntervals?: string;
+    /**
+     * The type of packets for which inter-packet intervals were computed.
+     */
+    type?: string;
+  }
+  /**
    * A matcher for the path portion of the URL. The BackendService from the longest-matched rule will serve the URL. If no rule was matched, the default service will be used.
    */
   export interface Schema$PathMatcher {
@@ -6863,7 +7038,7 @@ export namespace compute_beta {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
     etag?: string;
     iamOwned?: boolean;
@@ -7099,7 +7274,7 @@ export namespace compute_beta {
   }
   export interface Schema$RegionCommitmentsUpdateReservationsRequest {
     /**
-     * List of reservations for the capacity move of VMs with accelerators and local ssds.
+     * List of two reservations to transfer GPUs and local SSD between.
      */
     reservations?: Schema$Reservation[];
   }
@@ -7410,11 +7585,11 @@ export namespace compute_beta {
     backendService?: string;
   }
   /**
-   * Represents a reservation resource. A reservation ensures that capacity is held in a specific zone even if the reserved VMs are not running. For more information, read  Reserving zonal resources. (== resource_for beta.reservations ==) (== resource_for v1.reservations ==) (== NextID: 13 ==)
+   * Represents a reservation resource. A reservation ensures that capacity is held in a specific zone even if the reserved VMs are not running. For more information, read  Reserving zonal resources. (== resource_for beta.reservations ==) (== resource_for v1.reservations ==)
    */
   export interface Schema$Reservation {
     /**
-     * [OutputOnly] Full or partial url for parent commitment for reservations which are tied to a commitment.
+     * [OutputOnly] Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.
      */
     commitment?: string;
     /**
@@ -7454,7 +7629,7 @@ export namespace compute_beta {
      */
     status?: string;
     /**
-     * Zone in which the reservation resides, must be provided if reservation is created with commitment creation.
+     * Zone in which the reservation resides. A zone must be provided if the reservation is created within a commitment.
      */
     zone?: string;
   }
@@ -7777,7 +7952,7 @@ export namespace compute_beta {
      */
     labels?: {[key: string]: string};
     /**
-     * GCS bucket storage location of the auto snapshot (regional or multi-regional).
+     * Cloud Storage bucket storage location of the auto snapshot (regional or multi-regional).
      */
     storageLocations?: string[];
   }
@@ -8038,6 +8213,10 @@ export namespace compute_beta {
      * Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.
      */
     asn?: number;
+    /**
+     * The interval in seconds between BGP keepalive messages that are sent to the peer. Hold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer. BGP will use the smaller of either the local hold time value or the peer?s hold time value as the hold time for the BGP connection between the two peers. If set, this value must be between 1 and 120. The default is 20.
+     */
+    keepaliveInterval?: number;
   }
   export interface Schema$RouterBgpPeer {
     /**
@@ -8057,6 +8236,14 @@ export namespace compute_beta {
      */
     advertiseMode?: string;
     /**
+     * BFD configuration for the BGP peering.
+     */
+    bfd?: Schema$RouterBgpPeerBfd;
+    /**
+     * The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
+     */
+    enable?: string;
+    /**
      * Name of the interface the BGP peer is associated with.
      */
     interfaceName?: string;
@@ -8069,7 +8256,7 @@ export namespace compute_beta {
      */
     managementType?: string;
     /**
-     * Name of this BGP peer. The name must be 1-63 characters long and comply with RFC1035.
+     * Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     name?: string;
     /**
@@ -8080,6 +8267,24 @@ export namespace compute_beta {
      * IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
      */
     peerIpAddress?: string;
+  }
+  export interface Schema$RouterBgpPeerBfd {
+    /**
+     * The minimum interval, in milliseconds, between BFD control packets received from the peer router. The actual value is negotiated between the two routers and is equal to the greater of this value and the transmit interval of the other router. If set, this value must be between 100 and 30000. The default is 300.
+     */
+    minReceiveInterval?: number;
+    /**
+     * The minimum interval, in milliseconds, between BFD control packets transmitted to the peer router. The actual value is negotiated between the two routers and is equal to the greater of this value and the corresponding receive interval of the other router. If set, this value must be between 100 and 30000. The default is 300.
+     */
+    minTransmitInterval?: number;
+    /**
+     * The number of consecutive BFD packets that must be missed before BFD declares that a peer is unavailable. If set, the value must be a value between 2 and 16. The default is 3.
+     */
+    multiplier?: number;
+    /**
+     * The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer. The default is PASSIVE.
+     */
+    sessionInitializationMode?: string;
   }
   export interface Schema$RouterInterface {
     /**
@@ -8099,7 +8304,7 @@ export namespace compute_beta {
      */
     managementType?: string;
     /**
-     * Name of this interface entry. The name must be 1-63 characters long and comply with RFC1035.
+     * Name of this interface entry. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     name?: string;
   }
@@ -8140,6 +8345,10 @@ export namespace compute_beta {
    * Represents a Nat resource. It enables the VMs within the specified subnetworks to access Internet without external IP addresses. It specifies a list of subnetworks (and the ranges within) that want to use NAT. Customers can also provide the external IPs that would be used for NAT. GCP would auto-allocate ephemeral IPs if no external IPs are provided.
    */
   export interface Schema$RouterNat {
+    /**
+     * A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT. These IPs should be used for updating/patching a NAT only.
+     */
+    drainNatIps?: string[];
     /**
      * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      */
@@ -8256,6 +8465,7 @@ export namespace compute_beta {
      * Routes that were advertised to the remote BGP peer
      */
     advertisedRoutes?: Schema$Route[];
+    bfdStatus?: Schema$BfdStatus;
     /**
      * IP address of the local BGP interface.
      */
@@ -8301,6 +8511,14 @@ export namespace compute_beta {
      * A list of IPs auto-allocated for NAT. Example: [&quot;1.1.1.1&quot;, &quot;129.2.16.89&quot;]
      */
     autoAllocatedNatIps?: string[];
+    /**
+     * A list of IPs auto-allocated for NAT that are in drain mode. Example: [&quot;1.1.1.1&quot;, ?179.12.26.133?].
+     */
+    drainAutoAllocatedNatIps?: string[];
+    /**
+     * A list of IPs user-allocated for NAT that are in drain mode. Example: [&quot;1.1.1.1&quot;, ?179.12.26.133?].
+     */
+    drainUserAllocatedNatIps?: string[];
     /**
      * The number of extra IPs to allocate. This will be greater than 0 only if user-specified IPs are NOT enough to allow all configured VMs to use NAT. This value is meaningful only when auto-allocation of NAT IPs is *not* used.
      */
@@ -8779,7 +8997,7 @@ export namespace compute_beta {
      */
     storageBytesStatus?: string;
     /**
-     * GCS bucket storage location of the snapshot (regional or multi-regional).
+     * Cloud Storage bucket storage location of the snapshot (regional or multi-regional).
      */
     storageLocations?: string[];
   }
@@ -10514,9 +10732,17 @@ export namespace compute_beta {
    */
   export interface Schema$VmEndpointNatMappingsInterfaceNatMappings {
     /**
+     * List of all drain IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: [&quot;2.2.2.2:12345-12355&quot;, &quot;1.1.1.1:2234-2234&quot;].
+     */
+    drainNatIpPortRanges?: string[];
+    /**
      * A list of all IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: [&quot;2.2.2.2:12345-12355&quot;, &quot;1.1.1.1:2234-2234&quot;].
      */
     natIpPortRanges?: string[];
+    /**
+     * Total number of drain ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field drain_nat_ip_port_ranges.
+     */
+    numTotalDrainNatPorts?: number;
     /**
      * Total number of ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field nat_ip_port_ranges.
      */
@@ -17679,6 +17905,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.optionsRequestedPolicyVersion Requested IAM Policy version.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
@@ -18730,6 +18957,10 @@ export namespace compute_beta {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
     /**
      * Project ID for this request.
      */
@@ -29245,6 +29476,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.optionsRequestedPolicyVersion Requested IAM Policy version.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30004,6 +30236,10 @@ export namespace compute_beta {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
     /**
      * Project ID for this request.
      */
@@ -35876,6 +36112,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.optionsRequestedPolicyVersion Requested IAM Policy version.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
@@ -39959,6 +40196,10 @@ export namespace compute_beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
+    /**
      * Project ID for this request.
      */
     project?: string;
@@ -41132,6 +41373,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.optionsRequestedPolicyVersion Requested IAM Policy version.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -41726,6 +41968,10 @@ export namespace compute_beta {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
     /**
      * Project ID for this request.
      */
@@ -44826,6 +45072,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.optionsRequestedPolicyVersion Requested IAM Policy version.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -45160,6 +45407,10 @@ export namespace compute_beta {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
     /**
      * Project ID for this request.
      */
@@ -48631,7 +48882,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.nodeGroup Name of the NodeGroup resource to delete.
+     * @param {string} params.nodeGroup Name of the NodeGroup resource whose nodes will be deleted.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
@@ -48784,6 +49035,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.optionsRequestedPolicyVersion Requested IAM Policy version.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
@@ -49411,7 +49663,7 @@ export namespace compute_beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the NodeGroup resource to delete.
+     * Name of the NodeGroup resource whose nodes will be deleted.
      */
     nodeGroup?: string;
     /**
@@ -49458,6 +49710,10 @@ export namespace compute_beta {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
     /**
      * Project ID for this request.
      */
@@ -49898,6 +50154,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.optionsRequestedPolicyVersion Requested IAM Policy version.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
@@ -50357,6 +50614,10 @@ export namespace compute_beta {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
     /**
      * Project ID for this request.
      */
@@ -55745,7 +56006,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.commitment Name of the commitment of which the reservation's capacities are being updated.
+     * @param {string} params.commitment Name of the commitment for which the reservation is being updated.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -55930,7 +56191,7 @@ export namespace compute_beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the commitment of which the reservation's capacities are being updated.
+     * Name of the commitment for which the reservation is being updated.
      */
     commitment?: string;
     /**
@@ -56271,6 +56532,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.optionsRequestedPolicyVersion Requested IAM Policy version.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
@@ -56993,6 +57255,10 @@ export namespace compute_beta {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
     /**
      * Project ID for this request.
      */
@@ -64961,7 +65227,7 @@ export namespace compute_beta {
 
     /**
      * compute.reservations.get
-     * @desc Retrieves all information of the specified reservation.
+     * @desc Retrieves information about the specified reservation.
      * @alias compute.reservations.get
      * @memberOf! ()
      *
@@ -65041,6 +65307,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.optionsRequestedPolicyVersion Requested IAM Policy version.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
@@ -65187,7 +65454,7 @@ export namespace compute_beta {
 
     /**
      * compute.reservations.list
-     * @desc A list all the reservations that have been configured for the specified project in specified zone.
+     * @desc A list of all the reservations that have been configured for the specified project in specified zone.
      * @alias compute.reservations.list
      * @memberOf! ()
      *
@@ -65266,7 +65533,7 @@ export namespace compute_beta {
 
     /**
      * compute.reservations.resize
-     * @desc Resizes the reservation (applicable to standalone reservations only)
+     * @desc Resizes the reservation (applicable to standalone reservations only). For more information, read Modifying reservations.
      * @alias compute.reservations.resize
      * @memberOf! ()
      *
@@ -65577,6 +65844,10 @@ export namespace compute_beta {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
     /**
      * Project ID for this request.
      */
@@ -65980,6 +66251,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.optionsRequestedPolicyVersion Requested IAM Policy version.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
@@ -66439,6 +66711,10 @@ export namespace compute_beta {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
     /**
      * Project ID for this request.
      */
@@ -66980,6 +67256,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.natName Name of the nat service to filter the Nat Mapping information. If it is omitted, all nats for this router will be returned. Name should conform to RFC1035.
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
@@ -68114,6 +68391,10 @@ export namespace compute_beta {
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
+    /**
+     * Name of the nat service to filter the Nat Mapping information. If it is omitted, all nats for this router will be returned. Name should conform to RFC1035.
+     */
+    natName?: string;
     /**
      * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      */
@@ -70921,6 +71202,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.optionsRequestedPolicyVersion Requested IAM Policy version.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -71512,6 +71794,10 @@ export namespace compute_beta {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
     /**
      * Project ID for this request.
      */
@@ -73840,6 +74126,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.optionsRequestedPolicyVersion Requested IAM Policy version.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
@@ -74187,7 +74474,7 @@ export namespace compute_beta {
 
     /**
      * compute.subnetworks.listUsable
-     * @desc Retrieves an aggregated list of usable subnetworks.
+     * @desc Retrieves an aggregated list of all usable subnetworks in the project. The list contains all of the subnetworks in the project and the subnetworks that were shared by a Shared VPC host project.
      * @alias compute.subnetworks.listUsable
      * @memberOf! ()
      *
@@ -74936,6 +75223,10 @@ export namespace compute_beta {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
     /**
      * Project ID for this request.
      */

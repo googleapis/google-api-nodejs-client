@@ -1241,6 +1241,10 @@ export namespace cloudsearch_v1 {
      */
     isSortable?: boolean;
     /**
+     * Indicates that the property can be used for generating query suggestions.
+     */
+    isSuggestable?: boolean;
+    /**
      * Indicates that users can perform wildcard search for this property. Only supported for Text properties. IsReturnable must be true to set this option. In a given datasource maximum of 5 properties can be marked as is_wildcard_searchable.  Note: This is an alpha feature and is enabled for whitelisted users only.
      */
     isWildcardSearchable?: boolean;
@@ -1311,7 +1315,7 @@ export namespace cloudsearch_v1 {
   export interface Schema$QueryInterpretation {
     interpretationType?: string;
     /**
-     * The interpretation of the query used in search. For example, query &quot;email from john&quot; will be interpreted as &quot;from:john source:mail&quot;
+     * The interpretation of the query used in search. For example, queries with natural language intent like &quot;email from john&quot; will be interpreted as &quot;from:john source:mail&quot;. This field will not be filled when the reason is NO_RESULTS_FOUND_FOR_USER_QUERY.
      */
     interpretedQuery?: string;
   }
@@ -1807,10 +1811,6 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$SourceCrowdingConfig {
     /**
-     * Use a field to control results crowding. For example, if you want to control overly similar results from Gmail topics, use `thread_id`. For similar pages from Google Sites, you can use `webspace_id`. When matching query results contain the same field value in `GenericMetadata`, crowding limits are set on those records.
-     */
-    field?: string;
-    /**
      * Maximum number of results allowed from a source. No limits will be set on results if this value is less than or equal to 0.
      */
     numResults?: number;
@@ -1818,10 +1818,6 @@ export namespace cloudsearch_v1 {
      * Maximum number of suggestions allowed from a source. No limits will be set on results if this value is less than or equal to 0.
      */
     numSuggestions?: number;
-    /**
-     * Control results by content source. This option limits the total number of results from a given source and ignores field-based crowding control.
-     */
-    source?: boolean;
   }
   /**
    * Per source result count information.
@@ -3620,7 +3616,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.upload
-     * @desc Creates an upload session for uploading item content. For items smaller than 100 KiB, it's easier to embed the content inline within update.
+     * @desc Creates an upload session for uploading item content. For items smaller than 100 KB, it's easier to embed the content inline within an index request.
      * @alias cloudsearch.indexing.datasources.items.upload
      * @memberOf! ()
      *
@@ -3885,7 +3881,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.media.upload
-     * @desc Uploads media for indexing.  The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be inlined during index requests. To index large content:  1. Call upload to begin    a session and get the item reference. 1. Upload the content using the item reference's resource name. 1. Call index with the item    reference as the content.  For additional information, see [Create a content connector using the REST API](https://developers.google.com/cloud-search/docs/guides/content-connector#rest).
+     * @desc Uploads media for indexing.  The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be [inlined during index requests](https://developers.google.com/cloud-search/docs/reference/rest/v1/indexing.datasources.items#itemcontent). To index large content:  1. Call    indexing.datasources.items.upload    with the resource name to begin an upload session and retrieve the    UploadItemRef. 1. Call media.upload to upload the content using the same resource name from step 1. 1. Call indexing.datasources.items.index    to index the item. Populate the    [ItemContent](/cloud-search/docs/reference/rest/v1/indexing.datasources.items#ItemContent)    with the UploadItemRef from step 1.   For additional information, see [Create a content connector using the REST API](https://developers.google.com/cloud-search/docs/guides/content-connector#rest).
      * @alias cloudsearch.media.upload
      * @memberOf! ()
      *

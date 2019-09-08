@@ -282,6 +282,10 @@ export namespace cloudtrace_v2 {
      */
     spanId?: string;
     /**
+     * Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call.
+     */
+    spanKind?: string;
+    /**
      * Stack trace captured at the start of the span.
      */
     stackTrace?: Schema$StackTrace;

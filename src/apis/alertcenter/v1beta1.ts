@@ -214,11 +214,19 @@ export namespace alertcenter_v1beta1 {
      */
     endTime?: string;
     /**
+     * Optional. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of an alert from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform alert updates in order to avoid race conditions: An `etag` is returned in the response which contains alerts, and systems are expected to put that etag in the request to update alert to ensure that their change will be applied to the same version of the alert.  If no `etag` is provided in the call to update alert, then the existing alert is overwritten blindly.
+     */
+    etag?: string;
+    /**
+     * Output only. The metadata associated with this alert.
+     */
+    metadata?: Schema$AlertMetadata;
+    /**
      * Output only. An optional [Security Investigation Tool](https://support.google.com/a/answer/7575955) query for this alert.
      */
     securityInvestigationToolLink?: string;
     /**
-     * Required. A unique identifier for the system that reported the alert. This is output only after alert is created.  Supported sources are any of the following:  * Google Operations * Mobile device management * Gmail phishing * Domain wide takeout * Government attack warning * Google identity
+     * Required. A unique identifier for the system that reported the alert. This is output only after alert is created.  Supported sources are any of the following:  * Google Operations * Mobile device management * Gmail phishing * Domain wide takeout * State sponsored attack * Google identity
      */
     source?: string;
     /**
@@ -264,6 +272,39 @@ export namespace alertcenter_v1beta1 {
     type?: string;
   }
   /**
+   * An alert metadata.
+   */
+  export interface Schema$AlertMetadata {
+    /**
+     * Output only. The alert identifier.
+     */
+    alertId?: string;
+    /**
+     * The email address of the user assigned to the alert.
+     */
+    assignee?: string;
+    /**
+     * Output only. The unique identifier of the Google account of the customer.
+     */
+    customerId?: string;
+    /**
+     * Optional. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of an alert metadata from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform metatdata updates in order to avoid race conditions: An `etag` is returned in the response which contains alert metadata, and systems are expected to put that etag in the request to update alert metadata to ensure that their change will be applied to the same version of the alert metadata.  If no `etag` is provided in the call to update alert metadata, then the existing alert metadata is overwritten blindly.
+     */
+    etag?: string;
+    /**
+     * The severity value of the alert. Alert Center will set this field at alert creation time, default&#39;s to an empty string when it could not be determined. The supported values for update actions on this field are the following:  * HIGH * MEDIUM * LOW
+     */
+    severity?: string;
+    /**
+     * The current status of the alert. The supported values are the following:  * NOT_STARTED * IN_PROGRESS * CLOSED
+     */
+    status?: string;
+    /**
+     * Output only. The time this metadata was last updated.
+     */
+    updateTime?: string;
+  }
+  /**
    * Attachment with application-specific information about an alert.
    */
   export interface Schema$Attachment {
@@ -292,6 +333,58 @@ export namespace alertcenter_v1beta1 {
      * The source IP address of the malicious email, for example, `127.0.0.1`.
      */
     sourceIp?: string;
+  }
+  /**
+   * A request to perform batch delete on alerts.
+   */
+  export interface Schema$BatchDeleteAlertsRequest {
+    /**
+     * Required. list of alert ids.
+     */
+    alertId?: string[];
+    /**
+     * Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with.
+     */
+    customerId?: string;
+  }
+  /**
+   * Response to batch delete operation on alerts.
+   */
+  export interface Schema$BatchDeleteAlertsResponse {
+    /**
+     * The status details for each failed alert_id.
+     */
+    failedAlertStatus?: {[key: string]: Schema$Status};
+    /**
+     * The successful list of alert ids.
+     */
+    successAlertIds?: string[];
+  }
+  /**
+   * A request to perform batch undelete on alerts.
+   */
+  export interface Schema$BatchUndeleteAlertsRequest {
+    /**
+     * Required. list of alert ids.
+     */
+    alertId?: string[];
+    /**
+     * Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with.
+     */
+    customerId?: string;
+  }
+  /**
+   * Response to batch undelete operation on alerts.
+   */
+  export interface Schema$BatchUndeleteAlertsResponse {
+    /**
+     * The status details for each failed alert_id.
+     */
+    failedAlertStatus?: {[key: string]: Schema$Status};
+    /**
+     * The successful list of alert ids.
+     */
+    successAlertIds?: string[];
   }
   /**
    * A reference to a Cloud Pubsub topic.  To register for notifications, the owner of the topic must grant `alerts-api-push-notifications@system.gserviceaccount.com` the  `projects.topics.publish` permission.
@@ -576,6 +669,23 @@ export namespace alertcenter_v1beta1 {
     email?: string;
   }
   /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number;
+    /**
+     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}>;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string;
+  }
+  /**
    * A mobile suspicious activity alert. Derived from audit logs.
    */
   export interface Schema$SuspiciousActivity {
@@ -645,6 +755,168 @@ export namespace alertcenter_v1beta1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.feedback = new Resource$Alerts$Feedback(this.context);
+    }
+
+    /**
+     * alertcenter.alerts.batchDelete
+     * @desc Performs batch delete operation on alerts.
+     * @alias alertcenter.alerts.batchDelete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().BatchDeleteAlertsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    batchDelete(
+      params?: Params$Resource$Alerts$Batchdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchDeleteAlertsResponse>;
+    batchDelete(
+      params: Params$Resource$Alerts$Batchdelete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchDeleteAlertsResponse>,
+      callback: BodyResponseCallback<Schema$BatchDeleteAlertsResponse>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Alerts$Batchdelete,
+      callback: BodyResponseCallback<Schema$BatchDeleteAlertsResponse>
+    ): void;
+    batchDelete(
+      callback: BodyResponseCallback<Schema$BatchDeleteAlertsResponse>
+    ): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Alerts$Batchdelete
+        | BodyResponseCallback<Schema$BatchDeleteAlertsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchDeleteAlertsResponse>,
+      callback?: BodyResponseCallback<Schema$BatchDeleteAlertsResponse>
+    ): void | GaxiosPromise<Schema$BatchDeleteAlertsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Alerts$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Alerts$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/alerts:batchDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchDeleteAlertsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$BatchDeleteAlertsResponse>(parameters);
+      }
+    }
+
+    /**
+     * alertcenter.alerts.batchUndelete
+     * @desc Performs batch undelete operation on alerts.
+     * @alias alertcenter.alerts.batchUndelete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().BatchUndeleteAlertsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    batchUndelete(
+      params?: Params$Resource$Alerts$Batchundelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchUndeleteAlertsResponse>;
+    batchUndelete(
+      params: Params$Resource$Alerts$Batchundelete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUndeleteAlertsResponse>,
+      callback: BodyResponseCallback<Schema$BatchUndeleteAlertsResponse>
+    ): void;
+    batchUndelete(
+      params: Params$Resource$Alerts$Batchundelete,
+      callback: BodyResponseCallback<Schema$BatchUndeleteAlertsResponse>
+    ): void;
+    batchUndelete(
+      callback: BodyResponseCallback<Schema$BatchUndeleteAlertsResponse>
+    ): void;
+    batchUndelete(
+      paramsOrCallback?:
+        | Params$Resource$Alerts$Batchundelete
+        | BodyResponseCallback<Schema$BatchUndeleteAlertsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUndeleteAlertsResponse>,
+      callback?: BodyResponseCallback<Schema$BatchUndeleteAlertsResponse>
+    ): void | GaxiosPromise<Schema$BatchUndeleteAlertsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Alerts$Batchundelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Alerts$Batchundelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/alerts:batchUndelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchUndeleteAlertsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$BatchUndeleteAlertsResponse>(parameters);
+      }
     }
 
     /**
@@ -788,6 +1060,81 @@ export namespace alertcenter_v1beta1 {
         createAPIRequest<Schema$Alert>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Alert>(parameters);
+      }
+    }
+
+    /**
+     * alertcenter.alerts.getMetadata
+     * @desc Returns the metadata of an alert. Attempting to get metadata for a non-existent alert returns `NOT_FOUND` error.
+     * @alias alertcenter.alerts.getMetadata
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.alertId Required. The identifier of the alert this metadata belongs to.
+     * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert metadata is associated with. Inferred from the caller identity if not provided.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getMetadata(
+      params?: Params$Resource$Alerts$Getmetadata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AlertMetadata>;
+    getMetadata(
+      params: Params$Resource$Alerts$Getmetadata,
+      options: MethodOptions | BodyResponseCallback<Schema$AlertMetadata>,
+      callback: BodyResponseCallback<Schema$AlertMetadata>
+    ): void;
+    getMetadata(
+      params: Params$Resource$Alerts$Getmetadata,
+      callback: BodyResponseCallback<Schema$AlertMetadata>
+    ): void;
+    getMetadata(callback: BodyResponseCallback<Schema$AlertMetadata>): void;
+    getMetadata(
+      paramsOrCallback?:
+        | Params$Resource$Alerts$Getmetadata
+        | BodyResponseCallback<Schema$AlertMetadata>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AlertMetadata>,
+      callback?: BodyResponseCallback<Schema$AlertMetadata>
+    ): void | GaxiosPromise<Schema$AlertMetadata> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Alerts$Getmetadata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Alerts$Getmetadata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/alerts/{alertId}/metadata').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['alertId'],
+        pathParams: ['alertId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AlertMetadata>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AlertMetadata>(parameters);
       }
     }
 
@@ -938,6 +1285,30 @@ export namespace alertcenter_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Alerts$Batchdelete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchDeleteAlertsRequest;
+  }
+  export interface Params$Resource$Alerts$Batchundelete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchUndeleteAlertsRequest;
+  }
   export interface Params$Resource$Alerts$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -965,6 +1336,22 @@ export namespace alertcenter_v1beta1 {
     alertId?: string;
     /**
      * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     */
+    customerId?: string;
+  }
+  export interface Params$Resource$Alerts$Getmetadata
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The identifier of the alert this metadata belongs to.
+     */
+    alertId?: string;
+    /**
+     * Optional. The unique identifier of the G Suite organization account of the customer the alert metadata is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
   }
@@ -1020,7 +1407,7 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * alertcenter.alerts.feedback.create
-     * @desc Creates new feedback for an alert. Attempting to create a feedback for a non-existent alert returns `NOT_FOUND` error.
+     * @desc Creates new feedback for an alert. Attempting to create a feedback for a non-existent alert returns `NOT_FOUND` error. Attempting to create a feedback for an alert that is marked for deletion returns `FAILED_PRECONDITION' error.
      * @alias alertcenter.alerts.feedback.create
      * @memberOf! ()
      *

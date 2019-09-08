@@ -520,6 +520,10 @@ export namespace admin_directory_v1 {
      */
     annotatedUser?: string;
     /**
+     * (Read-only) The timestamp after which the device will stop receiving Chrome updates or support
+     */
+    autoUpdateExpiration?: string;
+    /**
      * Chromebook boot mode (Read-only)
      */
     bootMode?: string;
@@ -555,6 +559,10 @@ export namespace admin_directory_v1 {
       }>;
     }>;
     /**
+     * (Read-only) Built-in MAC address for the docking station that the device connected to. Factory sets Media access control address (MAC address) assigned for use by a dock. Currently this is only supported on the Dell Arcada / Sarien devices and the Dell WD19 / WD19TB Docking Station. It is reserved specifically for MAC pass through device policy. The format is twelve (12) hexadecimal digits without any delimiter (uppercase letters). This is only relevant for Dell devices.
+     */
+    dockMacAddress?: string;
+    /**
      * ETag of the resource.
      */
     etag?: string;
@@ -562,6 +570,10 @@ export namespace admin_directory_v1 {
      * Chromebook Mac Address on ethernet network interface (Read-only)
      */
     ethernetMacAddress?: string;
+    /**
+     * (Read-only) MAC address used by the Chromebook’s internal ethernet port, and for onboard network (ethernet) interface. The format is twelve (12) hexadecimal digits without any delimiter (uppercase letters). This is only relevant for Dell devices.
+     */
+    ethernetMacAddress0?: string;
     /**
      * Chromebook firmware version (Read-only)
      */
@@ -582,6 +594,10 @@ export namespace admin_directory_v1 {
      * Chromebook Mac Address on wifi network interface (Read-only)
      */
     macAddress?: string;
+    /**
+     * (Read-only) The date the device was manufactured in yyyy-mm-dd format.
+     */
+    manufactureDate?: string;
     /**
      * Mobile Equipment identifier for the 3G mobile card in the Chromebook (Read-only)
      */
@@ -1010,7 +1026,7 @@ export namespace admin_directory_v1 {
      */
     etag?: string;
     /**
-     * Unique identifier of customer member (Read-only) Unique identifier of group (Read-only) Unique identifier of member (Read-only)
+     * The unique ID of the group member. A member id can be used as a member request URI&#39;s memberKey. Unique identifier of group (Read-only) Unique identifier of member (Read-only)
      */
     id?: string;
     /**
@@ -1403,7 +1419,7 @@ export namespace admin_directory_v1 {
      */
     privilegeName?: string;
     /**
-     * The obfuscated ID of the service this privilege is for.
+     * The obfuscated ID of the service this privilege is for. This value is returned with Privileges.list().
      */
     serviceId?: string;
     /**
@@ -1832,6 +1848,14 @@ export namespace admin_directory_v1 {
      * username of User
      */
     primaryEmail?: string;
+    /**
+     * Recovery email of the user.
+     */
+    recoveryEmail?: string;
+    /**
+     * Recovery phone of the user. The phone number must be in the E.164 format, starting with the plus sign (+). Example: +16506661212.
+     */
+    recoveryPhone?: string;
     relations?: any;
     sshPublicKeys?: any;
     /**
@@ -2121,7 +2145,7 @@ export namespace admin_directory_v1 {
      */
     domain?: string;
     /**
-     * The full-time equivalent percent within the organization (100000 = 100%).
+     * The full-time equivalent millipercent within the organization (100000 = 100%).
      */
     fullTimeEquivalent?: number;
     /**
@@ -2895,7 +2919,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100
+     * @param {integer=} params.maxResults Maximum number of results to return. Max allowed value is 200.
      * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.orgUnitPath Full path of the organizational unit or its ID
      * @param {string=} params.pageToken Token to specify next page in the list
@@ -3250,7 +3274,7 @@ export namespace admin_directory_v1 {
      */
     customerId?: string;
     /**
-     * Maximum number of results to return. Default is 100
+     * Maximum number of results to return. Max allowed value is 200.
      */
     maxResults?: number;
     /**
@@ -4562,12 +4586,12 @@ export namespace admin_directory_v1 {
      * @param {object=} params Parameters for request
      * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
      * @param {string=} params.domain Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
+     * @param {integer=} params.maxResults Maximum number of results to return. Max allowed value is 200.
      * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-groups
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
-     * @param {string=} params.userKey Email or immutable Id of the user if only those groups are to be listed, the given user is a member of. If Id, it should match with id of user object
+     * @param {string=} params.userKey Email or immutable ID of the user if only those groups are to be listed, the given user is a member of. If it's an ID, it should match with the ID of the user object.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4824,7 +4848,7 @@ export namespace admin_directory_v1 {
      */
     domain?: string;
     /**
-     * Maximum number of results to return. Default is 200
+     * Maximum number of results to return. Max allowed value is 200.
      */
     maxResults?: number;
     /**
@@ -4844,7 +4868,7 @@ export namespace admin_directory_v1 {
      */
     sortOrder?: string;
     /**
-     * Email or immutable Id of the user if only those groups are to be listed, the given user is a member of. If Id, it should match with id of user object
+     * Email or immutable ID of the user if only those groups are to be listed, the given user is a member of. If it's an ID, it should match with the ID of the user object.
      */
     userKey?: string;
   }
@@ -5454,7 +5478,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable ID of the group
      * @param {boolean=} params.includeDerivedMembership Whether to list indirect memberships. Default: false.
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
+     * @param {integer=} params.maxResults Maximum number of results to return. Max allowed value is 200.
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.roles Comma separated role values to filter list results on.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5743,7 +5767,7 @@ export namespace admin_directory_v1 {
      */
     includeDerivedMembership?: boolean;
     /**
-     * Maximum number of results to return. Default is 200
+     * Maximum number of results to return. Max allowed value is 200.
      */
     maxResults?: number;
     /**
@@ -6033,7 +6057,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100
+     * @param {integer=} params.maxResults Maximum number of results to return. Max allowed value is 100.
      * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
@@ -6175,7 +6199,7 @@ export namespace admin_directory_v1 {
      */
     customerId?: string;
     /**
-     * Maximum number of results to return. Default is 100
+     * Maximum number of results to return. Max allowed value is 100.
      */
     maxResults?: number;
     /**
@@ -11278,12 +11302,12 @@ export namespace admin_directory_v1 {
      * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
      * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
      * @param {string=} params.event Event on which subscription is intended (if subscribing)
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100. Max allowed is 500
+     * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.projection What subset of fields to fetch for this user.
      * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
-     * @param {string=} params.showDeleted If set to true retrieves the list of deleted users. Default is false
+     * @param {string=} params.showDeleted If set to true, retrieves the list of deleted users. (Default: false)
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
      * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11646,12 +11670,12 @@ export namespace admin_directory_v1 {
      * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
      * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
      * @param {string=} params.event Event on which subscription is intended (if subscribing)
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100. Max allowed is 500
+     * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.projection What subset of fields to fetch for this user.
      * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
-     * @param {string=} params.showDeleted If set to true retrieves the list of deleted users. Default is false
+     * @param {string=} params.showDeleted If set to true, retrieves the list of deleted users. (Default: false)
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
      * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
      * @param {().Channel} params.resource Request body data
@@ -11787,7 +11811,7 @@ export namespace admin_directory_v1 {
      */
     event?: string;
     /**
-     * Maximum number of results to return. Default is 100. Max allowed is 500
+     * Maximum number of results to return.
      */
     maxResults?: number;
     /**
@@ -11807,7 +11831,7 @@ export namespace admin_directory_v1 {
      */
     query?: string;
     /**
-     * If set to true retrieves the list of deleted users. Default is false
+     * If set to true, retrieves the list of deleted users. (Default: false)
      */
     showDeleted?: string;
     /**
@@ -11906,7 +11930,7 @@ export namespace admin_directory_v1 {
      */
     event?: string;
     /**
-     * Maximum number of results to return. Default is 100. Max allowed is 500
+     * Maximum number of results to return.
      */
     maxResults?: number;
     /**
@@ -11926,7 +11950,7 @@ export namespace admin_directory_v1 {
      */
     query?: string;
     /**
-     * If set to true retrieves the list of deleted users. Default is false
+     * If set to true, retrieves the list of deleted users. (Default: false)
      */
     showDeleted?: string;
     /**

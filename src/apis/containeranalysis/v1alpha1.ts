@@ -162,32 +162,6 @@ export namespace containeranalysis_v1alpha1 {
     humanReadableName?: string;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:foo@gmail.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:bar@gmail.com&quot;               ]             }           ]         }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
-   */
-  export interface Schema$AuditConfig {
-    /**
-     * The configuration for logging of each type of permission.
-     */
-    auditLogConfigs?: Schema$AuditLogConfig[];
-    /**
-     * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
-     */
-    service?: string;
-  }
-  /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:foo@gmail.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
-   */
-  export interface Schema$AuditLogConfig {
-    /**
-     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
-     */
-    exemptedMembers?: string[];
-    /**
-     * The log type that this config enables.
-     */
-    logType?: string;
-  }
-  /**
    * Basis describes the base image portion (Note) of the DockerImage relationship.  Linked occurrences are derived from this or an equivalent image via:   FROM &lt;Basis.resource_url&gt; Or an equivalent reference, e.g. a tag of the resource_url.
    */
   export interface Schema$Basis {
@@ -209,7 +183,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
@@ -591,7 +565,7 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      */
     requestedPolicyVersion?: number;
   }
@@ -877,7 +851,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     longDescription?: string;
     /**
-     * The name of the note in the form &quot;providers/{provider_id}/notes/{NOTE_ID}&quot;
+     * The name of the note in the form &quot;projects/{provider_project_id}/notes/{NOTE_ID}&quot;
      */
     name?: string;
     /**
@@ -896,6 +870,10 @@ export namespace containeranalysis_v1alpha1 {
      * Output only. The time this note was last updated. This field can be used as a filter in list requests.
      */
     updateTime?: string;
+    /**
+     * A note describing an upgrade.
+     */
+    upgrade?: Schema$UpgradeNote;
     /**
      * A package vulnerability type of note.
      */
@@ -961,6 +939,10 @@ export namespace containeranalysis_v1alpha1 {
      * Output only. The time this `Occurrence` was last updated.
      */
     updateTime?: string;
+    /**
+     * Describes an upgrade.
+     */
+    upgrade?: Schema$UpgradeOccurrence;
     /**
      * Details of a security vulnerability note.
      */
@@ -1040,15 +1022,11 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$Policy {
     /**
-     * Specifies cloud audit logging configuration for this policy.
-     */
-    auditConfigs?: Schema$AuditConfig[];
-    /**
      * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
     etag?: string;
     /**
@@ -1144,10 +1122,6 @@ export namespace containeranalysis_v1alpha1 {
      * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
-    /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
-     */
-    updateMask?: string;
   }
   /**
    * The number of occurrences created for a specific severity.
@@ -1255,6 +1229,61 @@ export namespace containeranalysis_v1alpha1 {
      * The fields to update.
      */
     updateMask?: string;
+  }
+  /**
+   * The Upgrade Distribution represents metadata about the Upgrade for each operating system (CPE). Some distributions have additional metadata around updates, classifying them into various categories and severities.
+   */
+  export interface Schema$UpgradeDistribution {
+    /**
+     * The operating system classification of this Upgrade, as specified by the upstream operating system upgrade feed.
+     */
+    classification?: string;
+    /**
+     * Required - The specific operating system this metadata applies to. See https://cpe.mitre.org/specification/.
+     */
+    cpeUri?: string;
+    /**
+     * The cve that would be resolved by this upgrade.
+     */
+    cve?: string[];
+    /**
+     * The severity as specified by the upstream operating system.
+     */
+    severity?: string;
+  }
+  /**
+   * An Upgrade Note represents a potential upgrade of a package to a given version. For each package version combination (i.e. bash 4.0, bash 4.1, bash 4.1.2), there will be a Upgrade Note.
+   */
+  export interface Schema$UpgradeNote {
+    /**
+     * Metadata about the upgrade for each specific operating system.
+     */
+    distributions?: Schema$UpgradeDistribution[];
+    /**
+     * Required - The package this Upgrade is for.
+     */
+    package?: string;
+    /**
+     * Required - The version of the package in machine + human readable form.
+     */
+    version?: Schema$Version;
+  }
+  /**
+   * An Upgrade Occurrence represents that a specific resource_url could install a specific upgrade. This presence is supplied via local sources (i.e. it is present in the mirror and the running system has noticed its availability).
+   */
+  export interface Schema$UpgradeOccurrence {
+    /**
+     * Metadata about the upgrade for available for the specific operating system for the resource_url. This allows efficient filtering, as well as making it easier to use the occurrence.
+     */
+    distribution?: Schema$UpgradeDistribution;
+    /**
+     * Required - The package this Upgrade is for.
+     */
+    package?: string;
+    /**
+     * Required - The version of the package in a machine + human readable form.
+     */
+    parsedVersion?: Schema$Version;
   }
   /**
    * Version contains structured information about the version of the package. For a discussion of this in Debian/Ubuntu: http://serverfault.com/questions/604541/debian-packages-version-convention For a discussion of this in Redhat/Fedora/Centos: http://blog.jasonantman.com/2014/07/how-yum-and-rpm-compare-versions/

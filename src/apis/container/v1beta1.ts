@@ -437,6 +437,10 @@ export namespace container_v1beta1 {
      */
     privateClusterConfig?: Schema$PrivateClusterConfig;
     /**
+     * Release channel configuration.
+     */
+    releaseChannel?: Schema$ReleaseChannel;
+    /**
      * The resource labels for the cluster to use to annotate any related Google Compute Engine resources.
      */
     resourceLabels?: {[key: string]: string};
@@ -452,6 +456,10 @@ export namespace container_v1beta1 {
      * [Output only] The IP address range of the Kubernetes services in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). Service addresses are typically put in the last `/16` from the container CIDR.
      */
     servicesIpv4Cidr?: string;
+    /**
+     * Shielded Nodes configuration.
+     */
+    shieldedNodes?: Schema$ShieldedNodes;
     /**
      * [Output only] The current status of this cluster.
      */
@@ -579,6 +587,10 @@ export namespace container_v1beta1 {
      */
     desiredResourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
     /**
+     * Configuration for Shielded Nodes.
+     */
+    desiredShieldedNodes?: Schema$ShieldedNodes;
+    /**
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
     desiredVerticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
@@ -694,9 +706,26 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
+   * FeatureConfig is the configuration for a specific feature including the definition of the feature as well as the tier in which it resides.
+   */
+  export interface Schema$FeatureConfig {
+    /**
+     * The feature that is being configured with this value.
+     */
+    feature?: string;
+    /**
+     * The tier in which the configured feature resides.
+     */
+    tier?: string;
+  }
+  /**
    * GetJSONWebKeysResponse is a valid JSON Web Key Set as specififed in rfc 7517
    */
   export interface Schema$GetJSONWebKeysResponse {
+    /**
+     * OnePlatform automatically extracts this field and uses it to set the HTTP Cache-Control header.
+     */
+    cacheHeader?: Schema$HttpCacheControlResponseHeader;
     /**
      * The public component of the keys used by the cluster to sign token requests.
      */
@@ -706,6 +735,10 @@ export namespace container_v1beta1 {
    * GetOpenIDConfigResponse is an OIDC discovery document for the cluster. See the OpenID Connect Discovery 1.0 specification for details.
    */
   export interface Schema$GetOpenIDConfigResponse {
+    /**
+     * OnePlatform automatically extracts this field and uses it to set the HTTP Cache-Control header.
+     */
+    cacheHeader?: Schema$HttpCacheControlResponseHeader;
     /**
      * Supported claims.
      */
@@ -743,6 +776,23 @@ export namespace container_v1beta1 {
      * Whether the Horizontal Pod Autoscaling feature is enabled in the cluster. When enabled, it ensures that a Heapster pod is running in the cluster, which is also used by the Cloud Monitoring service.
      */
     disabled?: boolean;
+  }
+  /**
+   * RFC-2616: cache control support
+   */
+  export interface Schema$HttpCacheControlResponseHeader {
+    /**
+     * 14.6 response cache age, in seconds since the response is generated
+     */
+    age?: string;
+    /**
+     * 14.9 request and response directives
+     */
+    directive?: string;
+    /**
+     * 14.21 response cache expires, in RFC 1123 date format
+     */
+    expires?: string;
   }
   /**
    * Configuration options for the HTTP (L7) load balancing controller addon, which makes it easy to set up HTTP load balancers for services in a cluster.
@@ -1376,6 +1426,19 @@ export namespace container_v1beta1 {
     enabled?: boolean;
   }
   /**
+   * PremiumConfig is the configuration for all premium features and tiers.
+   */
+  export interface Schema$PremiumConfig {
+    /**
+     * The features that GKE provides.
+     */
+    features?: Schema$FeatureConfig[];
+    /**
+     * The tiers that are part of the premium offering.
+     */
+    tiers?: Schema$TierConfig[];
+  }
+  /**
    * Configuration options for private clusters.
    */
   export interface Schema$PrivateClusterConfig {
@@ -1403,6 +1466,28 @@ export namespace container_v1beta1 {
      * Output only. The external IP address of this cluster&#39;s master endpoint.
      */
     publicEndpoint?: string;
+  }
+  /**
+   * ReleaseChannel indicates which release channel a cluster is subscribed to. Release channels are arranged in order of risk and frequency of updates.  When a cluster is subscribed to a release channel, Google maintains both the master version and the node version. Node auto-upgrade defaults to true and cannot be disabled. Updates to version related fields (e.g. current_master_version) return an error.
+   */
+  export interface Schema$ReleaseChannel {
+    /**
+     * channel specifies which release channel the cluster is subscribed to.
+     */
+    channel?: string;
+  }
+  /**
+   * ReleaseChannelConfig exposes configuration for a release channel.
+   */
+  export interface Schema$ReleaseChannelConfig {
+    /**
+     * The release channel this configuration applies to.
+     */
+    channel?: string;
+    /**
+     * The default version for newly created clusters on the channel.
+     */
+    defaultVersion?: string;
   }
   /**
    * Contains information about amount of some resource in the cluster. For memory, value should be in GB.
@@ -1477,6 +1562,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$ServerConfig {
     /**
+     * List of release channel configurations.
+     */
+    channels?: Schema$ReleaseChannelConfig[];
+    /**
      * Version of Kubernetes the service deploys by default.
      */
     defaultClusterVersion?: string;
@@ -1484,6 +1573,10 @@ export namespace container_v1beta1 {
      * Default image type.
      */
     defaultImageType?: string;
+    /**
+     * Premium configuration for service.
+     */
+    premiumConfig?: Schema$PremiumConfig;
     /**
      * List of valid image types.
      */
@@ -1831,6 +1924,15 @@ export namespace container_v1beta1 {
     enableSecureBoot?: boolean;
   }
   /**
+   * Configuration of Shielded Nodes feature.
+   */
+  export interface Schema$ShieldedNodes {
+    /**
+     * Whether Shielded Nodes features are enabled on all nodes in this cluster.
+     */
+    enabled?: boolean;
+  }
+  /**
    * StartIPRotationRequest creates a new IP for the cluster and then performs a node upgrade on each node pool to point to the new IP.
    */
   export interface Schema$StartIPRotationRequest {
@@ -1867,6 +1969,19 @@ export namespace container_v1beta1 {
      * Human-friendly representation of the condition
      */
     message?: string;
+  }
+  /**
+   * TierConfig is the configuration for a tier offering.  For example the GKE standard or advanced offerings which contain different levels of functionality and possibly cost.
+   */
+  export interface Schema$TierConfig {
+    /**
+     * The tier from which the tier being configured inherits.  The configured tier will inherit all the features from its parent tier.
+     */
+    parent?: string;
+    /**
+     * The tier that is being configured with this value.
+     */
+    tier?: string;
   }
   /**
    * Cluster tier settings.

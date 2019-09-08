@@ -151,7 +151,7 @@ export namespace genomics_v2alpha1 {
      */
     entrypoint?: string;
     /**
-     * The environment to pass into the container. This environment is merged with any values specified in the `Pipeline` message. These values overwrite any in the `Pipeline` message.  In addition to the values passed here, a few other values are automatically injected into the environment. These cannot be hidden or overwritten.  `GOOGLE_PIPELINE_FAILED` will be set to &quot;1&quot; if the pipeline failed because an action has exited with a non-zero status (and did not have the `IGNORE_EXIT_STATUS` flag set). This can be used to determine if additional debug or logging actions should execute.  `GOOGLE_LAST_EXIT_STATUS` will be set to the exit status of the last non-background action that executed. This can be used by workflow engine authors to determine whether an individual action has succeeded or failed.
+     * The environment to pass into the container. This environment is merged with values specified in the google.genomics.v2alpha1.Pipeline message, overwriting any duplicate values.  In addition to the values passed here, a few other values are automatically injected into the environment. These cannot be hidden or overwritten.  `GOOGLE_PIPELINE_FAILED` will be set to &quot;1&quot; if the pipeline failed because an action has exited with a non-zero status (and did not have the `IGNORE_EXIT_STATUS` flag set). This can be used to determine if additional debug or logging actions should execute.  `GOOGLE_LAST_EXIT_STATUS` will be set to the exit status of the last non-background action that executed. This can be used by workflow engine authors to determine whether an individual action has succeeded or failed.
      */
     environment?: {[key: string]: string};
     /**
@@ -159,7 +159,7 @@ export namespace genomics_v2alpha1 {
      */
     flags?: string[];
     /**
-     * The URI to pull the container image from. Note that all images referenced by actions in the pipeline are pulled before the first action runs. If multiple actions reference the same image, it is only pulled once, ensuring that the same image is used for all actions in a single pipeline.
+     * Required. The URI to pull the container image from. Note that all images referenced by actions in the pipeline are pulled before the first action runs. If multiple actions reference the same image, it is only pulled once, ensuring that the same image is used for all actions in a single pipeline.  The image URI can be either a complete host and image specification (e.g., quay.io/biocontainers/samtools), a library and image name (e.g., google/cloud-sdk) or a bare image name (&#39;bash&#39;) to pull from the default library.  No schema is required in any of these cases.  If the specified image is not public, the service account specified for the Virtual Machine must have access to pull the images from GCR, or appropriate credentials must be specified in the google.genomics.v2alpha1.Action.credentials field.
      */
     imageUri?: string;
     /**
@@ -598,7 +598,7 @@ export namespace genomics_v2alpha1 {
      */
     labels?: {[key: string]: string};
     /**
-     * The description of the pipeline to run.
+     * Required. The description of the pipeline to run.
      */
     pipeline?: Schema$Pipeline;
   }
@@ -637,7 +637,7 @@ export namespace genomics_v2alpha1 {
      */
     email?: string;
     /**
-     * List of scopes to be enabled for this service account on the VM, in addition to the Cloud Genomics API scope.
+     * List of scopes to be enabled for this service account on the VM, in addition to the cloud-platform API scope that will be added by default.
      */
     scopes?: string[];
   }
@@ -700,11 +700,11 @@ export namespace genomics_v2alpha1 {
      */
     enableStackdriverMonitoring?: boolean;
     /**
-     * Optional set of labels to apply to the VM and any attached disk resources. These labels must adhere to the name and value restrictions on VM labels imposed by Compute Engine.  Labels keys with the prefix &#39;google-&#39; are reserved for use by Google.  Labels applied at creation time to the VM. Applied on a best-effort basis to attached disk resources shortly after VM creation.
+     * Optional set of labels to apply to the VM and any attached disk resources. These labels must adhere to the [name and value restrictions](https://cloud.google.com/compute/docs/labeling-resources) on VM labels imposed by Compute Engine.  Labels keys with the prefix &#39;google-&#39; are reserved for use by Google.  Labels applied at creation time to the VM. Applied on a best-effort basis to attached disk resources shortly after VM creation.
      */
     labels?: {[key: string]: string};
     /**
-     * The machine type of the virtual machine to create. Must be the short name of a standard machine type (such as &quot;n1-standard-1&quot;) or a custom machine type (such as &quot;custom-1-4096&quot;, where &quot;1&quot; indicates the number of vCPUs and &quot;4096&quot; indicates the memory in MB). See [Creating an instance with a custom machine type](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create) for more specifications on creating a custom machine type.
+     * Required. The machine type of the virtual machine to create. Must be the short name of a standard machine type (such as &quot;n1-standard-1&quot;) or a custom machine type (such as &quot;custom-1-4096&quot;, where &quot;1&quot; indicates the number of vCPUs and &quot;4096&quot; indicates the memory in MB). See [Creating an instance with a custom machine type](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create) for more specifications on creating a custom machine type.
      */
     machineType?: string;
     /**
@@ -732,6 +732,10 @@ export namespace genomics_v2alpha1 {
      * The worker&#39;s instance name.
      */
     instance?: string;
+    /**
+     * The machine type that was assigned for the worker.
+     */
+    machineType?: string;
     /**
      * The zone the worker is running in.
      */
@@ -784,7 +788,7 @@ export namespace genomics_v2alpha1 {
 
     /**
      * genomics.pipelines.run
-     * @desc Runs a pipeline.  **Note:** Before you can use this method, the Genomics Service Agent must have access to your project. This is done automatically when the Cloud Genomics API is first enabled, but if you delete this permission, or if you enabled the Cloud Genomics API before the v2alpha1 API launch, you must disable and re-enable the API to grant the Genomics Service Agent the required permissions. Authorization requires the following [Google IAM](https://cloud.google.com/iam/) permission:  * `genomics.operations.create`  [1]: /genomics/gsa
+     * @desc Runs a pipeline.  The returned Operation's metadata field will contain a google.genomics.v2alpha1.Metadata object describing the status of the pipeline execution.  The [response] field will contain a google.genomics.v2alpha1.RunPipelineResponse object if the pipeline completes successfully.  **Note:** Before you can use this method, the Genomics Service Agent must have access to your project. This is done automatically when the Cloud Genomics API is first enabled, but if you delete this permission, or if you enabled the Cloud Genomics API before the v2alpha1 API launch, you must disable and re-enable the API to grant the Genomics Service Agent the required permissions. Authorization requires the following [Google IAM](https://cloud.google.com/iam/) permission:  * `genomics.operations.create`  [1]: /genomics/gsa
      * @example
      * * // BEFORE RUNNING:
      * // ---------------

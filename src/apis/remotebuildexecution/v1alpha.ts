@@ -586,6 +586,19 @@ export namespace remotebuildexecution_v1alpha {
     message?: string;
   }
   /**
+   * AcceleratorConfig defines the accelerator cards to attach to the VM.
+   */
+  export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaAcceleratorConfig {
+    /**
+     * The number of the guest accelerator cards exposed to this VM.
+     */
+    acceleratorCount?: string;
+    /**
+     * The type of accelerator to attach to this VM, e.g. &quot;nvidia-tesla-k80&quot; for nVidia Tesla K80.
+     */
+    acceleratorType?: string;
+  }
+  /**
    * The request used for `CreateInstance`.
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateInstanceRequest {
@@ -690,7 +703,7 @@ export namespace remotebuildexecution_v1alpha {
   }
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsRequest {
     /**
-     * Optional. A filter to constrain the pools returned. Filters have the form:  &lt;field&gt; &lt;operator&gt; &lt;value&gt; [[AND|OR] &lt;field&gt; &lt;operator&gt; &lt;value&gt;]...  &lt;field&gt; is the path for a field or map key in the Pool proto message. e.g. &quot;configuration.disk_size_gb&quot; or &quot;configuration.labels.key&quot;. &lt;operator&gt; can be one of &quot;&lt;&quot;, &quot;&lt;=&quot;, &quot;&gt;=&quot;, &quot;&gt;&quot;, &quot;=&quot;, &quot;!=&quot;, &quot;:&quot;. &quot;:&quot; is a HAS operation for strings and repeated primitive fields. &lt;value&gt; is the value to test, case-insensitive for strings. &quot;*&quot; stands for any value and can be used to test for key presence. Parenthesis determine AND/OR precedence. In space separated restrictions, AND is implicit, e.g. &quot;a = b x = y&quot; is equivalent to &quot;a = b AND x = y&quot;.  Example filter: configuration.labels.key1 = * AND (state = RUNNING OR state = UPDATING)
+     * Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `&gt;`, `&gt;=`, `&lt;=` or `&lt;`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test  whether a key has been defined.  You can also filter on nested fields.  To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed.  Examples:  Include only pools with more than 100 reserved workers: `(worker_count &gt; 100) (worker_config.reserved = true)`  Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
      */
     filter?: string;
     /**
@@ -722,6 +735,10 @@ export namespace remotebuildexecution_v1alpha {
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerConfig {
     /**
+     * The accelerator card attached to each VM.
+     */
+    accelerator?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaAcceleratorConfig;
+    /**
      * Required. Size of the disk attached to the worker, in GB. See https://cloud.google.com/compute/docs/disks/
      */
     diskSizeGb?: string;
@@ -730,7 +747,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     diskType?: string;
     /**
-     * Labels associated with the workers. Label keys and values can be no longer than 63 characters, can only contain lowercase letters, numeric characters, underscores and dashes. International letters are permitted. Keys must start with a letter but values are optional. There can not be more than 64 labels per resource.
+     * Labels associated with the workers. Label keys and values can be no longer than 63 characters, can only contain lowercase letters, numeric characters, underscores and dashes. International letters are permitted. Label keys must start with a letter. Label values are optional. There can not be more than 64 labels per resource.
      */
     labels?: {[key: string]: string};
     /**
@@ -2008,7 +2025,7 @@ export namespace remotebuildexecution_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. A filter to constrain the pools returned. Filters have the form:  <field> <operator> <value> [[AND|OR] <field> <operator> <value>]...  <field> is the path for a field or map key in the Pool proto message. e.g. "configuration.disk_size_gb" or "configuration.labels.key". <operator> can be one of "<", "<=", ">=", ">", "=", "!=", ":". ":" is a HAS operation for strings and repeated primitive fields. <value> is the value to test, case-insensitive for strings. "*" stands for any value and can be used to test for key presence. Parenthesis determine AND/OR precedence. In space separated restrictions, AND is implicit, e.g. "a = b x = y" is equivalent to "a = b AND x = y".  Example filter: configuration.labels.key1 = * AND (state = RUNNING OR state = UPDATING)
+     * @param {string=} params.filter Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `>`, `>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test  whether a key has been defined.  You can also filter on nested fields.  To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed.  Examples:  Include only pools with more than 100 reserved workers: `(worker_count > 100) (worker_config.reserved = true)`  Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
      * @param {string} params.parent Resource name of the instance. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2233,7 +2250,7 @@ export namespace remotebuildexecution_v1alpha {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. A filter to constrain the pools returned. Filters have the form:  <field> <operator> <value> [[AND|OR] <field> <operator> <value>]...  <field> is the path for a field or map key in the Pool proto message. e.g. "configuration.disk_size_gb" or "configuration.labels.key". <operator> can be one of "<", "<=", ">=", ">", "=", "!=", ":". ":" is a HAS operation for strings and repeated primitive fields. <value> is the value to test, case-insensitive for strings. "*" stands for any value and can be used to test for key presence. Parenthesis determine AND/OR precedence. In space separated restrictions, AND is implicit, e.g. "a = b x = y" is equivalent to "a = b AND x = y".  Example filter: configuration.labels.key1 = * AND (state = RUNNING OR state = UPDATING)
+     * Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `>`, `>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test  whether a key has been defined.  You can also filter on nested fields.  To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed.  Examples:  Include only pools with more than 100 reserved workers: `(worker_count > 100) (worker_config.reserved = true)`  Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
      */
     filter?: string;
     /**

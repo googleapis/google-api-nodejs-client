@@ -365,6 +365,15 @@ export namespace people_v1 {
     year?: number;
   }
   /**
+   * The response for deleteing a contact&#39;s photo.
+   */
+  export interface Schema$DeleteContactPhotoResponse {
+    /**
+     * The updated person, if person_fields is set in the DeleteContactPhotoRequest; otherwise this will be unset.
+     */
+    person?: Schema$Person;
+  }
+  /**
    * A read-only G Suite Domain membership.
    */
   export interface Schema$DomainMembership {
@@ -595,6 +604,10 @@ export namespace people_v1 {
    * The response to a modify contact group members request.
    */
   export interface Schema$ModifyContactGroupMembersResponse {
+    /**
+     * The contact people resource names that cannot be removed from their last contact group.
+     */
+    canNotRemoveLastContactGroupResourceNames?: string[];
     /**
      * The contact people resource names that were not found.
      */
@@ -1155,6 +1168,28 @@ export namespace people_v1 {
      * The contact group to update.
      */
     contactGroup?: Schema$ContactGroup;
+  }
+  /**
+   * A request to update an existing contact&#39;s photo. All requests must have a valid photo format: JPEG or PNG.
+   */
+  export interface Schema$UpdateContactPhotoRequest {
+    /**
+     * **Optional.** Not specifying any fields will skip the post mutate read. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * sipAddresses * skills * taglines * urls * userDefined
+     */
+    personFields?: string;
+    /**
+     * Raw photo bytes
+     */
+    photoBytes?: string;
+  }
+  /**
+   * The response for updating a contact&#39;s photo.
+   */
+  export interface Schema$UpdateContactPhotoResponse {
+    /**
+     * The updated person, if person_fields is set in the UpdateContactPhotoRequest; otherwise this will be unset.
+     */
+    person?: Schema$Person;
   }
   /**
    * A person&#39;s associated URLs.
@@ -2023,6 +2058,88 @@ export namespace people_v1 {
     }
 
     /**
+     * people.people.deleteContactPhoto
+     * @desc Delete a contact's photo.
+     * @alias people.people.deleteContactPhoto
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.personFields **Optional.** Not specifying any fields will skip the post mutate read. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * sipAddresses * skills * taglines * urls * userDefined
+     * @param {string} params.resourceName The resource name of the contact whose photo will be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteContactPhoto(
+      params?: Params$Resource$People$Deletecontactphoto,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeleteContactPhotoResponse>;
+    deleteContactPhoto(
+      params: Params$Resource$People$Deletecontactphoto,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteContactPhotoResponse>,
+      callback: BodyResponseCallback<Schema$DeleteContactPhotoResponse>
+    ): void;
+    deleteContactPhoto(
+      params: Params$Resource$People$Deletecontactphoto,
+      callback: BodyResponseCallback<Schema$DeleteContactPhotoResponse>
+    ): void;
+    deleteContactPhoto(
+      callback: BodyResponseCallback<Schema$DeleteContactPhotoResponse>
+    ): void;
+    deleteContactPhoto(
+      paramsOrCallback?:
+        | Params$Resource$People$Deletecontactphoto
+        | BodyResponseCallback<Schema$DeleteContactPhotoResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteContactPhotoResponse>,
+      callback?: BodyResponseCallback<Schema$DeleteContactPhotoResponse>
+    ): void | GaxiosPromise<Schema$DeleteContactPhotoResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Deletecontactphoto;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$People$Deletecontactphoto;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resourceName}:deleteContactPhoto').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resourceName'],
+        pathParams: ['resourceName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeleteContactPhotoResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$DeleteContactPhotoResponse>(parameters);
+      }
+    }
+
+    /**
      * people.people.get
      * @desc Provides information about a person by specifying a resource name. Use `people/me` to indicate the authenticated user. <br> The request throws a 400 error if 'personFields' is not specified.
      * @alias people.people.get
@@ -2173,7 +2290,7 @@ export namespace people_v1 {
 
     /**
      * people.people.updateContact
-     * @desc Update contact data for an existing contact person. Any non-contact data will not be modified.  The request throws a 400 error if `updatePersonFields` is not specified. <br> The request throws a 400 error if `person.metadata.sources` is not specified for the contact to be updated. <br> The request throws a 412 error if `person.metadata.sources.etag` is different than the contact's etag, which indicates the contact has changed since its data was read. Clients should get the latest person and re-apply their updates to the latest person.
+     * @desc Update contact data for an existing contact person. Any non-contact data will not be modified.  The request throws a 400 error if `updatePersonFields` is not specified. <br> The request throws a 400 error if `person.metadata.sources` is not specified for the contact to be updated. <br> The request throws a 400 error with an error with reason `"failedPrecondition"` if `person.metadata.sources.etag` is different than the contact's etag, which indicates the contact has changed since its data was read. Clients should get the latest person and re-apply their updates to the latest person.
      * @alias people.people.updateContact
      * @memberOf! ()
      *
@@ -2244,6 +2361,88 @@ export namespace people_v1 {
         return createAPIRequest<Schema$Person>(parameters);
       }
     }
+
+    /**
+     * people.people.updateContactPhoto
+     * @desc Update a contact's photo.
+     * @alias people.people.updateContactPhoto
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resourceName Person resource name
+     * @param {().UpdateContactPhotoRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateContactPhoto(
+      params?: Params$Resource$People$Updatecontactphoto,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UpdateContactPhotoResponse>;
+    updateContactPhoto(
+      params: Params$Resource$People$Updatecontactphoto,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UpdateContactPhotoResponse>,
+      callback: BodyResponseCallback<Schema$UpdateContactPhotoResponse>
+    ): void;
+    updateContactPhoto(
+      params: Params$Resource$People$Updatecontactphoto,
+      callback: BodyResponseCallback<Schema$UpdateContactPhotoResponse>
+    ): void;
+    updateContactPhoto(
+      callback: BodyResponseCallback<Schema$UpdateContactPhotoResponse>
+    ): void;
+    updateContactPhoto(
+      paramsOrCallback?:
+        | Params$Resource$People$Updatecontactphoto
+        | BodyResponseCallback<Schema$UpdateContactPhotoResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UpdateContactPhotoResponse>,
+      callback?: BodyResponseCallback<Schema$UpdateContactPhotoResponse>
+    ): void | GaxiosPromise<Schema$UpdateContactPhotoResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Updatecontactphoto;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$People$Updatecontactphoto;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resourceName}:updateContactPhoto').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resourceName'],
+        pathParams: ['resourceName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UpdateContactPhotoResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$UpdateContactPhotoResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$People$Createcontact
@@ -2272,6 +2471,22 @@ export namespace people_v1 {
 
     /**
      * The resource name of the contact to delete.
+     */
+    resourceName?: string;
+  }
+  export interface Params$Resource$People$Deletecontactphoto
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * **Optional.** Not specifying any fields will skip the post mutate read. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * sipAddresses * skills * taglines * urls * userDefined
+     */
+    personFields?: string;
+    /**
+     * The resource name of the contact whose photo will be deleted.
      */
     resourceName?: string;
   }
@@ -2334,6 +2549,23 @@ export namespace people_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Person;
+  }
+  export interface Params$Resource$People$Updatecontactphoto
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Person resource name
+     */
+    resourceName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpdateContactPhotoRequest;
   }
 
   export class Resource$People$Connections {

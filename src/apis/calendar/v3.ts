@@ -375,7 +375,7 @@ export namespace calendar_v3 {
   }
   export interface Schema$ConferenceData {
     /**
-     * The ID of the conference. Can be used by developers to keep track of conferences, should not be displayed to users. Values for solution types:   - &quot;eventHangout&quot;: unset. - &quot;eventNamedHangout&quot;: the name of the Hangout. - &quot;hangoutsMeet&quot;: the 10-letter meeting code, for example &quot;aaa-bbbb-ccc&quot;.  Optional.
+     * The ID of the conference. Can be used by developers to keep track of conferences, should not be displayed to users. Values for solution types:   - &quot;eventHangout&quot;: unset. - &quot;eventNamedHangout&quot;: the name of the Hangout. - &quot;hangoutsMeet&quot;: the 10-letter meeting code, for example &quot;aaa-bbbb-ccc&quot;. - &quot;addOn&quot;: defined by 3P conference provider.  Optional.
      */
     conferenceId?: string;
     /**

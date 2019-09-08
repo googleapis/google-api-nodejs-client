@@ -628,9 +628,22 @@ export namespace ml_v1 {
      */
     imageUri?: string;
     /**
-     * TensorFlow version used in the custom container. This field is required if the replica is a TPU worker that uses a custom container. Otherwise, do not specify this field.
+     * The AI Platform runtime version that includes a TensorFlow version matching the one used in the custom container. This field is required if the replica is a TPU worker that uses a custom container. Otherwise, do not specify this field. This must be a [runtime version that currently supports training with TPUs](/ml-engine/docs/tensorflow/runtime-version-list#tpu-support).  Note that the version of TensorFlow included in a runtime version may differ from the numbering of the runtime version itself, because it may have a different [patch version](https://www.tensorflow.org/guide/version_compat#semantic_versioning_20). In this field, you must specify the runtime version (TensorFlow minor version). For example, if your custom container runs TensorFlow `1.x.y`, specify `1.x`.
      */
     tpuTfVersion?: string;
+  }
+  /**
+   * Configurations for logging request-response pairs. Currently only BigQuery logging is supported. The request and response will be converted to raw string and stored within the specified BigQuery table. The schema is:   model: STRING   version: STRING   time: Timestamp   raw_data: STRING   raw_prediction: STRING   ground_truth: STRING
+   */
+  export interface Schema$GoogleCloudMlV1__RequestLoggingConfig {
+    /**
+     * Fully qualified BigQuery table name in the format of &quot;[project_id].[dataset_name].[table_name]&quot;.
+     */
+    bigqueryTableName?: string;
+    /**
+     * Percentage of the request being logged. The sampling window is the lifetime of the Version. Defaults to 0.
+     */
+    samplingPercentage?: number;
   }
   /**
    * Request message for the SetDefaultVersion request.
@@ -660,10 +673,6 @@ export namespace ml_v1 {
      * Optional. Specifies the type of virtual machine to use for your training job&#39;s master worker.  The following types are supported:  &lt;dl&gt;   &lt;dt&gt;standard&lt;/dt&gt;   &lt;dd&gt;   A basic machine configuration suitable for training simple models with   small to moderate datasets.   &lt;/dd&gt;   &lt;dt&gt;large_model&lt;/dt&gt;   &lt;dd&gt;   A machine with a lot of memory, specially suited for parameter servers   when your model is large (having many hidden layers or layers with very   large numbers of nodes).   &lt;/dd&gt;   &lt;dt&gt;complex_model_s&lt;/dt&gt;   &lt;dd&gt;   A machine suitable for the master and workers of the cluster when your   model requires more computation than the standard machine can handle   satisfactorily.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m&lt;/dt&gt;   &lt;dd&gt;   A machine with roughly twice the number of cores and roughly double the   memory of &lt;i&gt;complex_model_s&lt;/i&gt;.   &lt;/dd&gt;   &lt;dt&gt;complex_model_l&lt;/dt&gt;   &lt;dd&gt;   A machine with roughly twice the number of cores and roughly double the   memory of &lt;i&gt;complex_model_m&lt;/i&gt;.   &lt;/dd&gt;   &lt;dt&gt;standard_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;standard&lt;/i&gt; that   also includes a single NVIDIA Tesla K80 GPU. See more about   &lt;a href=&quot;/ml-engine/docs/tensorflow/using-gpus&quot;&gt;using GPUs to   train your model&lt;/a&gt;.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that also includes   four NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;   &lt;dt&gt;complex_model_l_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;complex_model_l&lt;/i&gt; that also includes   eight NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;   &lt;dt&gt;standard_p100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;standard&lt;/i&gt; that   also includes a single NVIDIA Tesla P100 GPU.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m_p100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that also includes   four NVIDIA Tesla P100 GPUs.   &lt;/dd&gt;   &lt;dt&gt;standard_v100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;standard&lt;/i&gt; that   also includes a single NVIDIA Tesla V100 GPU.   &lt;/dd&gt;   &lt;dt&gt;large_model_v100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;large_model&lt;/i&gt; that   also includes a single NVIDIA Tesla V100 GPU.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m_v100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that   also includes four NVIDIA Tesla V100 GPUs.   &lt;/dd&gt;   &lt;dt&gt;complex_model_l_v100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;complex_model_l&lt;/i&gt; that   also includes eight NVIDIA Tesla V100 GPUs.   &lt;/dd&gt;   &lt;dt&gt;cloud_tpu&lt;/dt&gt;   &lt;dd&gt;   A TPU VM including one Cloud TPU. See more about   &lt;a href=&quot;/ml-engine/docs/tensorflow/using-tpus&quot;&gt;using TPUs to train   your model&lt;/a&gt;.   &lt;/dd&gt; &lt;/dl&gt;  You may also use certain Compute Engine machine types directly in this field. The following types are supported:  - `n1-standard-4` - `n1-standard-8` - `n1-standard-16` - `n1-standard-32` - `n1-standard-64` - `n1-standard-96` - `n1-highmem-2` - `n1-highmem-4` - `n1-highmem-8` - `n1-highmem-16` - `n1-highmem-32` - `n1-highmem-64` - `n1-highmem-96` - `n1-highcpu-16` - `n1-highcpu-32` - `n1-highcpu-64` - `n1-highcpu-96`  See more about [using Compute Engine machine types](/ml-engine/docs/tensorflow/machine-types#compute-engine-machine-types).  You must set this value when `scaleTier` is set to `CUSTOM`.
      */
     masterType?: string;
-    /**
-     * Optional. The maximum job running time. The default is 7 days.
-     */
-    maxRunningTime?: string;
     /**
      * Required. The Google Cloud Storage location of the packages with the training program and any additional dependencies. The maximum number of package URIs is 100.
      */
@@ -815,6 +824,10 @@ export namespace ml_v1 {
      */
     pythonVersion?: string;
     /**
+     * Optional. Configures the request-response pair logging on predictions from this Version.
+     */
+    requestLoggingConfig?: Schema$GoogleCloudMlV1__RequestLoggingConfig;
+    /**
      * Optional. The AI Platform runtime version to use for this deployment. If not set, AI Platform uses the default stable version, 1.0. For more information, see the [runtime version list](/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](/ml-engine/docs/versioning).
      */
     runtimeVersion?: string;
@@ -887,7 +900,7 @@ export namespace ml_v1 {
      */
     etag?: string;
     /**
-     * Deprecated.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
     version?: number;
   }
@@ -1438,7 +1451,7 @@ export namespace ml_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1890,7 +1903,7 @@ export namespace ml_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -2432,7 +2445,7 @@ export namespace ml_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2891,7 +2904,7 @@ export namespace ml_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
     'options.requestedPolicyVersion'?: number;
     /**
