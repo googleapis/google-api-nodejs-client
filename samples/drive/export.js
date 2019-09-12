@@ -35,15 +35,10 @@ async function runSample() {
   );
   await new Promise((resolve, reject) => {
     res.data
-      .on('end', () => {
-        console.log(`Done downloading document: ${destPath}.`);
-        resolve();
-      })
-      .on('error', err => {
-        console.error('Error downloading document.');
-        reject(err);
-      })
-      .pipe(dest);
+      .on('error', reject)
+      .pipe(dest)
+      .on('error', reject)
+      .on('finish', resolve);
   });
   // [END main_body]
 }
